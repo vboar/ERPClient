@@ -95,4 +95,9 @@ public class PurchaseVO {
 		   this.isWriteOff=isWriteOff;
 		   this.receiptType=receiptType;
 	   }
+	 
+	 public PurchaseVO(String operator, double total){
+		 this.operator = operator;
+		 this.total = total;
+	 }
 }

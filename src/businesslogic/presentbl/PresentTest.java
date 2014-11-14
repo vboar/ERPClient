@@ -1,12 +1,11 @@
 package businesslogic.presentbl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import util.ResultMessage;
-import businesslogic.commoditybl.Commodity;
 
 public class PresentTest {
 

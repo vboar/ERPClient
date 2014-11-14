@@ -120,4 +120,9 @@ public class SaleVO {
 		   this.isWriteOff=isWriteOff;
 		   this.receiptType=receiptType;
 	   } 
+	   
+	   public SaleVO(String name, double total){
+		   this.name = name;
+		   this.totalAfterDiscount = total;
+	   }
 }
