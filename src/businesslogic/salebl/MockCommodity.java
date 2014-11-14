@@ -1,3 +1,8 @@
+/**
+ * MockCommodity
+ * @author oneoneO
+ * @date 2014/11/14
+ */
 package businesslogic.salebl;
 
 import java.util.ArrayList;
