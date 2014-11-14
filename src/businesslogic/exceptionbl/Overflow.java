@@ -1,42 +1,31 @@
+/**
+ * overflow逻辑类
+ */
+
 package businesslogic.exceptionbl;
 
-import java.util.ArrayList;
-
-import util.DocumentStatus;
+import businesslogic.stockbl.MockLog;
 import util.ResultMessage;
-import vo.ExceptionVO;
-import businesslogicservice.exceptionblservice.ExceptionBLService;
 
-public class Overflow implements ExceptionBLService {
 
-	@Override
-	public ResultMessage create(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+public class Overflow {
+
+	private MockCommodity mc;
+	
+	public Overflow() {}
+	
+	public Overflow(MockCommodity mc) {
+		this.mc = mc;
 	}
-
-	@Override
-	public ArrayList<ExceptionVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public boolean isOverflow(int newNum) {
+		if(mc.getNum() < newNum) return true;
+		return false;
 	}
-
-	@Override
-	public ArrayList<ExceptionVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public ResultMessage createLog(String content) {
+		MockLog ml = new MockLog(content);
+		return ml.create();
 	}
-
-	@Override
-	public ArrayList<ExceptionVO> findByStatus(DocumentStatus status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage update(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

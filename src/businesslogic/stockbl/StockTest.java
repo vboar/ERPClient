@@ -53,7 +53,7 @@ public class StockTest {
 	@Test
 	public void testCreateLog() {
 		Stock stock = new Stock();
-		assertEquals(ResultMessage.SUCCESS, stock.createLog("2014/11/14 do commodity!"));
+		assertEquals(ResultMessage.SUCCESS, stock.createLog("2014/11/14 do stock!"));
 	}
 
 }

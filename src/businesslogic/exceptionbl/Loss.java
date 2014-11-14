@@ -6,43 +6,28 @@
 
 package businesslogic.exceptionbl;
 
-import java.util.ArrayList;
-
-import util.DocumentStatus;
 import util.ResultMessage;
-import vo.ExceptionVO;
-import businesslogicservice.exceptionblservice.ExceptionBLService;
+import businesslogic.stockbl.MockLog;
 
-public class Loss implements ExceptionBLService {
 
-	@Override
-	public ResultMessage create(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+public class Loss {
+
+	private MockCommodity mc;
+	
+	public Loss() {}
+	
+	public Loss(MockCommodity mc) {
+		this.mc = mc;
 	}
-
-	@Override
-	public ArrayList<ExceptionVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public boolean isLoss(int newNum) {
+		if(mc.getNum() > newNum) return true;
+		return false;
 	}
-
-	@Override
-	public ArrayList<ExceptionVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public ResultMessage createLog(String content) {
+		MockLog ml = new MockLog(content);
+		return ml.create();
 	}
-
-	@Override
-	public ArrayList<ExceptionVO> findByStatus(DocumentStatus status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage update(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

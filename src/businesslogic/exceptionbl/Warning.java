@@ -1,29 +1,36 @@
+/**
+ * warning逻辑类
+ * @author Vboar
+ * @date 2014/11/14
+ */
+
 package businesslogic.exceptionbl;
 
-import java.util.ArrayList;
-
 import util.ResultMessage;
-import vo.WarningVO;
-import businesslogicservice.exceptionblservice.WarningBLService;
+import businesslogic.stockbl.MockLog;
 
-public class Warning implements WarningBLService {
 
-	@Override
-	public ResultMessage create(WarningVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+public class Warning {
+
+	private MockCommodity mc;
+	private MockSale ms;
+	
+	public Warning() {}
+	
+	public Warning(MockCommodity mc, MockSale ms) {
+		this.mc = mc;
+		this.ms = ms;
 	}
-
-	@Override
-	public ArrayList<WarningVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public boolean isWarning() {
+		mc.setNum(mc.getNum()-ms.getNum());
+		if(mc.getNum() < mc.getWarningNumber()) return true;
+		return false;
 	}
-
-	@Override
-	public ArrayList<WarningVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public ResultMessage createLog(String content) {
+		MockLog ml = new MockLog(content);
+		return ml.create();
 	}
 
 }
