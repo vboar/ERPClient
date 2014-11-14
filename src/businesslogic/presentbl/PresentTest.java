@@ -16,7 +16,7 @@ public class PresentTest {
 	@Test
 	public void testAfterApproval() {
 		MockCommodity mc = new MockCommodity("1", 50);
-		Present present = new Present(mc);
+		new Present(mc);
 		mc.updateNum(10);
 		assertEquals(40, mc.getNum());
 	}
