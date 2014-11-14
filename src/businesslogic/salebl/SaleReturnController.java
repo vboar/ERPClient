@@ -3,6 +3,7 @@ package businesslogic.salebl;
 import java.util.ArrayList;
 
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.SaleVO;
 import businesslogicservice.saleblservice.SaleBLService;
 
@@ -47,6 +48,19 @@ public class SaleReturnController implements SaleBLService {
 	@Override
 	public ArrayList<SaleVO> show() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage updateCommodityBySale(
+			ArrayList<CommodityLineItemVO> list) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ResultMessage updateAccountBySale(String name,double total) {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 

@@ -3,6 +3,7 @@ package businesslogicservice.purchaseblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
 
 public interface PurchaseBLService {
@@ -57,4 +58,6 @@ public interface PurchaseBLService {
 	 * @return
 	 */
 	public ArrayList<PurchaseVO> show();
+	
+	public ResultMessage updateCommodityByPurchase(ArrayList<CommodityLineItemVO> list);
 }

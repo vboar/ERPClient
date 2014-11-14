@@ -3,6 +3,7 @@ package businesslogicservice.saleblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.SaleVO;
 
 public interface SaleBLService {
@@ -57,4 +58,13 @@ public interface SaleBLService {
 	 * @return
 	 */
 	public ArrayList<SaleVO> show();
+	
+	/**
+	 * 审批后修改商品信息
+	 * @param list
+	 * @return
+	 */
+	public ResultMessage updateCommodityBySale(ArrayList<CommodityLineItemVO> list);
+	
+	public ResultMessage updateAccountBySale(String name,double total);
 }

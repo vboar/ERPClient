@@ -83,4 +83,17 @@ public class SaleBLService_Stub implements SaleBLService{
 	 
 	    return list;
 	}
+
+	@Override
+	public ResultMessage updateCommodityBySale(
+			ArrayList<CommodityLineItemVO> list) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ResultMessage updateAccountBySale(String name,double total) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }

@@ -86,4 +86,12 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 	    return list;
 	}
 
+
+	@Override
+	public ResultMessage updateCommodityByPurchase(
+			ArrayList<CommodityLineItemVO> list) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

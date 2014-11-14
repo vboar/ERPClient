@@ -3,6 +3,7 @@ package businesslogic.purchasebl;
 import java.util.ArrayList;
 
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
 import businesslogicservice.purchaseblservice.PurchaseBLService;
 
@@ -47,6 +48,13 @@ public class PurchaseController implements PurchaseBLService {
 	@Override
 	public ArrayList<PurchaseVO> show() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage updateCommodityByPurchase(
+			ArrayList<CommodityLineItemVO> list) {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 
