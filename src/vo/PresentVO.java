@@ -76,4 +76,9 @@ public class PresentVO implements DocumentVO {
 		this.isWriteoff = isWriteoff;
 	}
 	
+	public PresentVO(String time, String clientName){
+		this.time = time;
+		this.clientName = clientName;
+	}
+	
 }

@@ -61,4 +61,8 @@ public class ExceptionVO implements DocumentVO {
 		this.isWriteoff = isWriteoff;
 	}
 	
+	public ExceptionVO(String id,String time){
+		this.id = id;
+		this.time = time;
+	}
 }

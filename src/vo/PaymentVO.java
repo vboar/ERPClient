@@ -77,4 +77,9 @@ public class PaymentVO implements DocumentVO {
 		this.documentType = documentType;
 	}
 	
+	public PaymentVO(String id, double total){
+		this.id = id;
+		this.total = total;
+	}
+	
 }
