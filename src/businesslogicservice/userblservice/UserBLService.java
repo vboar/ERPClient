@@ -54,6 +54,7 @@ public interface UserBLService {
      * @param id
      * @return 用户列表
      */
+    public  ArrayList<UserVO> findById(String id);
     public ArrayList<UserVO> findByid(String id);
     
     /**

@@ -76,4 +76,10 @@ public class UserBLService_Stub implements UserBLService {
 		return ResultMessage.FAILED;
 	}
 
+	@Override
+	public ArrayList<UserVO> findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
