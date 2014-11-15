@@ -24,7 +24,7 @@ public class WarningTest {
 	@Test
 	public void testCreateLog() {
 		Warning warning = new Warning();
-		assertEquals(ResultMessage.SUCCESS, warning.createLog("2014/11/14 overflow!"));
+		assertEquals(ResultMessage.SUCCESS, warning.createLog("2014/11/14 warning!"));
 	}
 
 }

@@ -21,6 +21,7 @@ import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.purchasedataservice.PurchaseDataService;
 import dataservice.saledataservice.SaleDataService;
 import dataservice.stockdataservice.StockDataService;
+import dataservice.systemdateservice.SystemDataService;
 import dataservice.userdataservice.UserDataService;
 
 public interface DataFactory {
@@ -58,4 +59,6 @@ public interface DataFactory {
 	public StockDataService getStockData();
 	
 	public UserDataService getUserData();
+	
+	public SystemDataService getSystemData();
 }
