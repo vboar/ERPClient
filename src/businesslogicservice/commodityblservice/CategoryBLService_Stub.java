@@ -32,7 +32,7 @@ public class CategoryBLService_Stub implements CategoryBLService {
 	@Override
 	public ArrayList<CategoryVO> findById(String id) {
 		ArrayList<CategoryVO> list = new ArrayList<CategoryVO>();
-		list.add(new CategoryVO("吊灯", 2));
+		list.add(new CategoryVO("吊灯", 2,null));
 		list.get(0).id = "00001-00001";
 		return list;
 	}
@@ -40,7 +40,7 @@ public class CategoryBLService_Stub implements CategoryBLService {
 	@Override
 	public ArrayList<CategoryVO> findByName(String name) {
 		ArrayList<CategoryVO> list = new ArrayList<CategoryVO>();
-		list.add(new CategoryVO(name, 2));
+		list.add(new CategoryVO(name, 2,null));
 		list.get(0).id = "00001-00001";
 		return list;
 	}
@@ -48,7 +48,7 @@ public class CategoryBLService_Stub implements CategoryBLService {
 	@Override
 	public ArrayList<CategoryVO> show() {
 		ArrayList<CategoryVO> list = new ArrayList<CategoryVO>();
-		list.add(new CategoryVO("吊灯", 2));
+		list.add(new CategoryVO("吊灯", 2,null));
 		list.get(0).id = "00001-00001";
 		return list;
 	}
