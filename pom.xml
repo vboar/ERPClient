@@ -17,6 +17,8 @@
 					<include>**/*.java</include>
 				</includes>
 				<excludes>
+					<exclude>config/*.java</exclude>
+					<exclude>ui/*.java</exclude>
 				</excludes>
 			</resource>
 		</resources>
@@ -36,6 +38,11 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6</version>
 		</dependency>
 	</dependencies>
 </project>
