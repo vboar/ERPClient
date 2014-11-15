@@ -13,6 +13,6 @@ public class MockCustomer extends Account{
 public ResultMessage updateCustomerBySale(String name,double total){
 	AccountPO a=new AccountPO("","",0);
 	a.setBalance(a.getBalance()+total);
-	return null;
+	return ResultMessage.SUCCESS;
 }
 }

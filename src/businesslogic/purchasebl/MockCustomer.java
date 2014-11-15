@@ -12,6 +12,6 @@ public class MockCustomer {
 	public ResultMessage updateCustomerByPurchase(String name,double total){
 		AccountPO a=new AccountPO("","",0);
 		a.setBalance(a.getBalance()+total);
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 }

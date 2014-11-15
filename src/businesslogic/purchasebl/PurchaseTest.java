@@ -45,6 +45,7 @@ public class PurchaseTest {
 		assertEquals(ResultMessage.SUCCESS,p.updateCommodityByPurchase(list));
 		
 		assertEquals(ResultMessage.SUCCESS,p.updateCustomerByPurchase("飞利浦",  100));
+		
 		assertEquals(ResultMessage.SUCCESS,p.addLog("2014/11/15 Purchase"));
 	}
 

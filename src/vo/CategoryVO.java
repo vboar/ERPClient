@@ -23,13 +23,19 @@ public class CategoryVO {
 	public int number;
 	
 	/**
+	 * 父分类
+	 */
+	public CategoryVO father;
+	
+	/**
 	 * 构造方法
 	 * @param name
 	 * @param number
 	 */
-	public CategoryVO(String name, int number) {
+	public CategoryVO(String name, int number,CategoryVO father) {
 		this.name = name;
 		this.number = number;
+		this.father=father;
 	}
 	
 }

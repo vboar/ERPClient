@@ -17,17 +17,17 @@ public class CategoryBLService_Driver {
 		ResultMessage result;
 		
 		System.out.println("添加商品分类的返回信息：");
-		result = categoryBLService.add(new CategoryVO("日光灯", 0));
+		result = categoryBLService.add(new CategoryVO("日光灯", 0,null));
 		if (result == ResultMessage.SUCCESS) System.out.println("商品分类添加成功！\n");
 		else System.out.println("商品分类添加失败！\n");
 		
 		System.out.println("删除商品分类的返回信息：");
-		result = categoryBLService.delete(new CategoryVO("吊灯", 2));
+		result = categoryBLService.delete(new CategoryVO("吊灯", 2,null));
 		if (result == ResultMessage.SUCCESS) System.out.println("商品分类删除成功！\n");
 		else System.out.println("商品分类删除失败！\n");
 		
 		System.out.println("更新商品分类的返回信息：");
-		result = categoryBLService.update(new CategoryVO("大吊灯", 2));
+		result = categoryBLService.update(new CategoryVO("大吊灯", 2,null));
 		if (result == ResultMessage.SUCCESS) System.out.println("商品分类更新成功！\n");
 		else System.out.println("商品分类更新失败！\n");
 		
