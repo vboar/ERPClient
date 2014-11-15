@@ -27,18 +27,18 @@ public class Writeoff {
 	}
 	
 	public ResultMessage autoCreate(DocumentType type, String id) {
-		for(int i=0; i<bls.size(); ++i){
-			if(bls.get(type.ordinal()).getType() == type){
-				return bls.get(type.ordinal()).createWriteOffDocument(id);
+		for(int i=0; i<bls.size(); i++){
+			if(bls.get(i).getType() == type){
+				return bls.get(i).createWriteOffDocument(id);
 			}
 		}
 		return ResultMessage.FAILED;
 	}
 	
 	public ResultMessage manualCreate(DocumentType type, DocumentVO vo){
-		for(int i=0; i<bls.size(); ++i){
-			if(bls.get(type.ordinal()).getType() == type){
-				return bls.get(type.ordinal()).manualCreateDocument(vo);
+		for(int i=0; i<bls.size(); i++){
+			if(bls.get(i).getType() == type){
+				return bls.get(i).manualCreateDocument(vo);
 			}
 		}
 		return ResultMessage.FAILED;	
