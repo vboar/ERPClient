@@ -43,8 +43,11 @@ import dataservice.purchasedataservice.PurchaseDataServiceImpl;
 import dataservice.saledataservice.SaleDataService;
 import dataservice.saledataservice.SaleDataServiceImpl;
 import dataservice.stockdataservice.StockDataService;
+import dataservice.stockdataservice.StockDataServiceImpl;
 import dataservice.systemdateservice.SystemDataService;
+import dataservice.systemdateservice.SystemDataServiceImpl;
 import dataservice.userdataservice.UserDataService;
+import dataservice.userdataservice.UserDataServiceImpl;
 
 /**
  * Lazy initialization holder class 单例模式
@@ -148,21 +151,18 @@ public class DataFactoryImpl implements DataFactory {
 	}
 
 	@Override
-	public StockDataService getStockData() {
-		// TODO Auto-generated method stub
-		return null;
+	public StockDataService getStockData() throws RemoteException {
+		return new StockDataServiceImpl();
 	}
 
 	@Override
-	public UserDataService getUserData() {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDataService getUserData() throws RemoteException {
+		return new UserDataServiceImpl();
 	}
 
 	@Override
-	public SystemDataService getSystemData() {
-		// TODO Auto-generated method stub
-		return null;
+	public SystemDataService getSystemData() throws RemoteException {
+		return new SystemDataServiceImpl();
 	}
 
 }

@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import po.UserPO;
 import util.UserType;
 
-public class UserDataImpl extends UnicastRemoteObject implements UserDataService {
+public class UserDataServiceImpl extends UnicastRemoteObject implements UserDataService {
 
 	private static final long serialVersionUID = 1L;
 
-	protected UserDataImpl() throws RemoteException {
+	public UserDataServiceImpl() throws RemoteException {
 		super();
 	}
 
