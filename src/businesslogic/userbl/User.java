@@ -71,15 +71,16 @@ public class User {
 	 */
 	public ResultMessage addUser(UserVO vo) throws RemoteException {
 		UserPO po = userVOToUserPO(vo);
-		if (existPO(po.getId())) {
-			return ResultMessage.EXIST;
-		}
-		ResultMessage result = inputValid(po);
-		if (result == ResultMessage.SUCCESS) {
+//		if (existPO(po.getId())) {
+//			return ResultMessage.EXIST;
+//		}
+//		ResultMessage result = inputValid(po);
+//		if (result == ResultMessage.SUCCESS) {
 			DataFactoryImpl.getInstance().getUserData().insert(po);
-			return result;
-		}
-		return result;
+			return ResultMessage.SUCCESS;
+//			return result;
+//		}
+//		return result;
 	}
 
 	/**

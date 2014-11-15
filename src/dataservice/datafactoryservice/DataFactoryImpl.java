@@ -6,6 +6,9 @@
 
 package dataservice.datafactoryservice;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import dataservice.accountdataservice.AccountDataService;
@@ -43,7 +46,9 @@ import dataservice.purchasedataservice.PurchaseDataServiceImpl;
 import dataservice.saledataservice.SaleDataService;
 import dataservice.saledataservice.SaleDataServiceImpl;
 import dataservice.stockdataservice.StockDataService;
+import dataservice.stockdataservice.StockDataServiceImpl;
 import dataservice.systemdateservice.SystemDataService;
+import dataservice.systemdateservice.SystemDataServiceImpl;
 import dataservice.userdataservice.UserDataService;
 
 /**
@@ -148,21 +153,27 @@ public class DataFactoryImpl implements DataFactory {
 	}
 
 	@Override
-	public StockDataService getStockData() {
-		// TODO Auto-generated method stub
+	public StockDataService getStockData() throws RemoteException {
+		return new StockDataServiceImpl();
+	}
+
+	@Override
+	public UserDataService getUserData() throws RemoteException {
+		try {
+			return (UserDataService) Naming.lookup("rmi://127.0.0.1:8888/UserDataService");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public UserDataService getUserData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SystemDataService getSystemData() {
-		// TODO Auto-generated method stub
-		return null;
+	public SystemDataService getSystemData() throws RemoteException {
+		return new SystemDataServiceImpl();
 	}
 
 }
