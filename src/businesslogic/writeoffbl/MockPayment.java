@@ -5,15 +5,31 @@
  */
 package businesslogic.writeoffbl;
 
+import util.DocumentType;
 import util.ResultMessage;
+import vo.DocumentVO;
+import businesslogic.paymentbl.Payment;
 
-public class MockPayment {
+public class MockPayment extends Payment implements CanWriteOff{
 
 	
 	public MockPayment() {
+		super();
 	}
-	
-	public ResultMessage autoCreateWriteOffPayment(String id) {
+
+	@Override
+	public ResultMessage createWriteOffDocument(String id) {
 		return ResultMessage.SUCCESS;
 	}
+
+	@Override
+	public DocumentType getType() {
+		return DocumentType.PAYMENT;
+	}
+
+	@Override
+	public ResultMessage manualCreateDocument(DocumentVO vo) {
+		return ResultMessage.SUCCESS;
+	}
+
 }

@@ -6,18 +6,15 @@ import org.junit.Test;
 
 import util.DocumentType;
 import util.ResultMessage;
+import vo.CashVO;
+import vo.ExceptionVO;
+import vo.PaymentVO;
 
 public class WriteoffTest {
 
 	@Test
 	public void testAutoCreate() {
-		MockCash mc = new MockCash();
-		MockOver mo = new MockOver();
-		MockPayment mpay = new MockPayment();
-		MockPurchase mpur = new MockPurchase();
-		MockSale ms = new MockSale();
-		MockPresent mpre = new MockPresent();
-		Writeoff wt = new Writeoff(mo,mc,mpay,mpre,mpur,ms);
+		Writeoff wt = new Writeoff();
 		assertEquals(ResultMessage.SUCCESS,wt.autoCreate(DocumentType.CASH, "XJFYD-00001"));
 		assertEquals(ResultMessage.SUCCESS,wt.autoCreate(DocumentType.OVERFLOW, "BYD-00001"));
 		assertEquals(ResultMessage.SUCCESS,wt.autoCreate(DocumentType.PAYMENT, "FKD-00001"));
@@ -27,4 +24,13 @@ public class WriteoffTest {
 		
 	}
 
+	@Test
+	public void testManualCreate() {
+		Writeoff wt = new Writeoff();
+		assertEquals(ResultMessage.SUCCESS,wt.manualCreate(DocumentType.CASH, new CashVO()));
+		assertEquals(ResultMessage.SUCCESS,wt.manualCreate(DocumentType.OVERFLOW, new ExceptionVO()));
+		assertEquals(ResultMessage.SUCCESS,wt.manualCreate(DocumentType.PAYMENT, new PaymentVO()));
+
+		
+	}
 }

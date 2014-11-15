@@ -3,6 +3,7 @@ dataservice\commoditydataservice\CategoryDataServiceTxtFileImpl_Driver.class
 businesslogic\writeoffbl\MockPurchase.class
 businesslogicservice\businessconditionblservice\SaleDetailsBLService_Stub.class
 businesslogic\messagebl\MessageTest.class
+businesslogic\salebl\SaleReturnTest.class
 businesslogic\initialbl\Initial.class
 dataservice\stockdataservice\StockDataServiceTxtFileImpl_Driver.class
 vo\CommodityLineItemVO.class
@@ -100,10 +101,10 @@ businesslogicservice\accountblservice\AccountBLService_Stub.class
 po\TotalGiftPO.class
 businesslogic\messagebl\MockLog.class
 dataservice\purchasedataservice\PurchaseDataServiceTxtFileImpl_Driver.class
+businesslogic\salebl\MockCommodity.class
 businesslogicservice\promotionblservice\PromotionBLService.class
 businesslogicservice\stockblservice\StockBLService_Driver.class
 businesslogic\businessconditionbl\SaleDetails.class
-businesslogic\writeoffbl\Writeoff$1.class
 po\PresentLineItemPO.class
 po\CombinationCommodityLineItemPO.class
 businesslogic\customerbl\MockLog.class
@@ -198,6 +199,7 @@ po\CustomerPO.class
 businesslogic\exceptionbl\MockLog.class
 vo\CustomerVO.class
 vo\PurchaseVO.class
+businesslogic\purchasebl\PurchaseReturnTest.class
 businesslogicservice\purchaseblservice\PurchaseReturnBLService_Stub.class
 businesslogicservice\businessconditionblservice\BusinessConditionBLService_Stub.class
 businesslogicservice\approvalblservice\ApprovalBLService_Stub.class
@@ -218,8 +220,10 @@ vo\StockInfoVO.class
 businesslogic\businessconditionbl\MockPayment.class
 po\CommodityLineItemPO.class
 dataservice\purchasedataservice\PurchaseDataService.class
+businesslogic\writeoffbl\CanWriteOff.class
 vo\TotalGiftVO.class
 vo\CashVO.class
+businesslogic\salebl\MockAccount.class
 businesslogic\writeoffbl\WriteoffController.class
 businesslogic\stockbl\MockPurchaseReturn.class
 businesslogicservice\exceptionblservice\WarningBLService_Driver.class
@@ -240,6 +244,7 @@ vo\CommodityVO.class
 vo\TransferLineItemVO.class
 po\InitialPO.class
 businesslogic\paymentbl\MockLog.class
+businesslogic\salebl\SaleTest.class
 businesslogic\promotionbl\PromotionController.class
 businesslogic\writeoffbl\MockCash.class
 businesslogicservice\presentblservice\PresentBLService_Driver.class
@@ -268,6 +273,7 @@ businesslogic\purchasebl\PurchaseReturnController.class
 util\CountLines.class
 businesslogic\accountbl\AccountTest.class
 businesslogic\writeoffbl\MockPayment.class
+businesslogic\purchasebl\MockCommodity.class
 businesslogicservice\customerblservice\CustomerBLService_Driver.class
 businesslogicservice\messageblservice\MessageBLService.class
 dataservice\saledataservice\SaleDataService.class
@@ -283,6 +289,7 @@ businesslogicservice\paymentblservice\PaymentBLService_Stub.class
 vo\InitialVO.class
 po\CustomerGiftPO.class
 dataservice\commoditydataservice\CategoryDataService.class
+businesslogic\purchasebl\PurchaseTest.class
 businesslogic\paymentbl\Payment.class
 dataservice\paymentdataservice\CashDataService.class
 businesslogic\userbl\UserTest.class

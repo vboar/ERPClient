@@ -5,51 +5,43 @@
  */
 package businesslogic.writeoffbl;
 
+import java.util.ArrayList;
+
 import util.DocumentType;
 import util.ResultMessage;
+import vo.DocumentVO;
 
 public class Writeoff {
 
-	private MockOver mo;
-
-	private MockCash mc;
-
-	private MockPayment mpay;
-
-	private MockSale ms;
-
-	private MockPresent mpre;
-
-	private MockPurchase mpur;
+	private ArrayList<CanWriteOff> bls;
 	
-	public Writeoff(MockOver mo, MockCash mc, MockPayment mpay,
-			MockPresent mpre, MockPurchase mpur, MockSale ms) {
-		super();
-		this.mo = mo;
-		this.mc = mc;
-		this.mpay = mpay;
-		this.ms = ms;
-		this.mpre = mpre;
-		this.mpur = mpur;
+	public Writeoff(){
+		bls = new ArrayList<CanWriteOff>();
+		bls.add(new MockPresent());
+		bls.add(new MockOver());
+		bls.add(new MockCash());
+		bls.add(new MockPayment());
+		bls.add(new MockPurchase());
+		bls.add(new MockSale());
+		bls.add(new MockLoss());
 	}
-
+	
 	public ResultMessage autoCreate(DocumentType type, String id) {
-		switch (type) {
-		case PAYMENT:
-			return mpay.autoCreateWriteOffPayment(id);
-		case PURCHASE:
-			return mpur.autoCreateWriteOffPurchase(id);
-		case SALE:
-			return ms.autoCreateWriteOffSale(id);
-		case CASH:
-			return mc.autoCreateWriteOffCash(id);
-		case PRESENT:
-			return mpre.autoCreateWriteOffPresent(id);
-		case OVERFLOW:
-			return mo.autoCreateWriteOffOverflow(id);
-		default:
-			return ResultMessage.FAILED;
+		for(int i=0; i<bls.size(); ++i){
+			if(bls.get(type.ordinal()).getType() == type){
+				return bls.get(type.ordinal()).createWriteOffDocument(id);
+			}
 		}
+		return ResultMessage.FAILED;
+	}
+	
+	public ResultMessage manualCreate(DocumentType type, DocumentVO vo){
+		for(int i=0; i<bls.size(); ++i){
+			if(bls.get(type.ordinal()).getType() == type){
+				return bls.get(type.ordinal()).manualCreateDocument(vo);
+			}
+		}
+		return ResultMessage.FAILED;	
 	}
 
 }

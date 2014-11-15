@@ -6,15 +6,30 @@
 
 package businesslogic.writeoffbl;
 
+import util.DocumentType;
 import util.ResultMessage;
+import vo.DocumentVO;
 import businesslogic.presentbl.Present;
 
-public class MockPresent extends Present {
+public class MockPresent extends Present implements CanWriteOff{
 
+	private DocumentType type = DocumentType.PRESENT;
+	
 	public MockPresent() {
 	}
 
-	public ResultMessage autoCreateWriteOffPresent(String id) {
+	@Override
+	public ResultMessage createWriteOffDocument(String id) {
 		return ResultMessage.SUCCESS;
 	}
+
+	public DocumentType getType() {
+		return type;
+	}
+
+	@Override
+	public ResultMessage manualCreateDocument(DocumentVO vo) {
+		return ResultMessage.SUCCESS;
+	}
+	
 }

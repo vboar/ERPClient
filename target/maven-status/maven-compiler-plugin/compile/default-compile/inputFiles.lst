@@ -34,6 +34,8 @@ D:\LDQ\ERPClient\src\businesslogic\presentbl\MockCommodity.java
 D:\LDQ\ERPClient\src\dataservice\accountdataservice\AccountDataServiceTxtFileImpl_Driver.java
 D:\LDQ\ERPClient\src\businesslogic\businessconditionbl\MockPayment.java
 D:\LDQ\ERPClient\src\dataservice\exceptiondataservice\ExceptionDataService.java
+D:\LDQ\ERPClient\src\businesslogic\salebl\SaleReturnTest.java
+D:\LDQ\ERPClient\src\businesslogic\purchasebl\PurchaseReturnTest.java
 D:\LDQ\ERPClient\src\businesslogic\paymentbl\MockLog.java
 D:\LDQ\ERPClient\src\businesslogicservice\customerblservice\CustomerBLService_Stub.java
 D:\LDQ\ERPClient\src\businesslogic\accountbl\AccountController.java
@@ -41,6 +43,7 @@ D:\LDQ\ERPClient\src\businesslogicservice\messageblservice\MessageBLService_Stub
 D:\LDQ\ERPClient\src\businesslogicservice\initialblservice\InitialBLService_Stub.java
 D:\LDQ\ERPClient\src\businesslogicservice\approvalblservice\ApprovalBLService_Stub.java
 D:\LDQ\ERPClient\src\businesslogicservice\writeoffblservice\WriteoffBLService_Stub.java
+D:\LDQ\ERPClient\src\businesslogic\salebl\MockCommodity.java
 D:\LDQ\ERPClient\src\businesslogicservice\customerblservice\CustomerBLService.java
 D:\LDQ\ERPClient\src\businesslogicservice\businessconditionblservice\BusinessHistoryBLService_Driver.java
 D:\LDQ\ERPClient\src\vo\TotalGiftVO.java
@@ -65,6 +68,7 @@ D:\LDQ\ERPClient\src\businesslogic\purchasebl\Purchase.java
 D:\LDQ\ERPClient\src\businesslogic\stockbl\StockTest.java
 D:\LDQ\ERPClient\src\businesslogic\promotionbl\PromotionController.java
 D:\LDQ\ERPClient\src\dataservice\paymentdataservice\PaymentDataServiceTxtFileImpl_Driver.java
+D:\LDQ\ERPClient\src\businesslogic\purchasebl\PurchaseTest.java
 D:\LDQ\ERPClient\src\businesslogic\utilitybl\Utility.java
 D:\LDQ\ERPClient\src\vo\DocumentVO.java
 D:\LDQ\ERPClient\src\businesslogicservice\messageblservice\MessageBLService.java
@@ -87,13 +91,14 @@ D:\LDQ\ERPClient\src\businesslogic\exceptionbl\MockSale.java
 D:\LDQ\ERPClient\src\dataservice\customerdataservice\CustomerDataServiceTxtFileImpl_Driver.java
 D:\LDQ\ERPClient\src\po\TotalGiftPO.java
 D:\LDQ\ERPClient\src\businesslogic\paymentbl\PaymentController.java
+D:\LDQ\ERPClient\src\businesslogic\salebl\MockAccount.java
 D:\LDQ\ERPClient\src\dataservice\messagedataservice\MessageDataServiceTxtFileImpl_Driver.java
 D:\LDQ\ERPClient\src\businesslogic\businessconditionbl\SaleDetailsTest.java
 D:\LDQ\ERPClient\src\po\MessagePO.java
 D:\LDQ\ERPClient\src\dataservice\stockdataservice\StockDataService.java
 D:\LDQ\ERPClient\src\businesslogic\exceptionbl\LossController.java
-D:\LDQ\ERPClient\src\businesslogicservice\businessconditionblservice\BusinessConditionBLService.java
 D:\LDQ\ERPClient\src\businesslogicservice\exceptionblservice\LossBLService_Stub.java
+D:\LDQ\ERPClient\src\businesslogicservice\businessconditionblservice\BusinessConditionBLService.java
 D:\LDQ\ERPClient\src\po\PresentPO.java
 D:\LDQ\ERPClient\src\util\CountLines.java
 D:\LDQ\ERPClient\src\businesslogic\customerbl\CustomerController.java
@@ -184,12 +189,12 @@ D:\LDQ\ERPClient\src\po\ExceptionPO.java
 D:\LDQ\ERPClient\src\po\CategoryPO.java
 D:\LDQ\ERPClient\src\dataservice\userdataservice\UserDataServiceTxtFileImpl_Driver.java
 D:\LDQ\ERPClient\src\dataservice\messagedataservice\MessageDataService.java
-D:\LDQ\ERPClient\src\vo\PresentLineItemVO.java
 D:\LDQ\ERPClient\src\vo\MessageVO.java
+D:\LDQ\ERPClient\src\vo\PresentLineItemVO.java
 D:\LDQ\ERPClient\src\businesslogic\presentbl\Present.java
 D:\LDQ\ERPClient\src\businesslogic\initialbl\Initial.java
-D:\LDQ\ERPClient\src\vo\CustomerVO.java
 D:\LDQ\ERPClient\src\businesslogic\messagebl\MessageController.java
+D:\LDQ\ERPClient\src\vo\CustomerVO.java
 D:\LDQ\ERPClient\src\dataservice\promotiondataservice\PromotionDataServiceTxtFileImpl_Stub.java
 D:\LDQ\ERPClient\src\dataservice\stockdataservice\StockDataServiceTxtFileImpl_Stub.java
 D:\LDQ\ERPClient\src\po\CustomerGiftPO.java
@@ -241,6 +246,7 @@ D:\LDQ\ERPClient\src\businesslogicservice\paymentblservice\PaymentBLService.java
 D:\LDQ\ERPClient\src\businesslogic\initialbl\InitialTest.java
 D:\LDQ\ERPClient\src\businesslogic\presentbl\MockLog.java
 D:\LDQ\ERPClient\src\businesslogicservice\writeoffblservice\WriteoffBLService_Driver.java
+D:\LDQ\ERPClient\src\businesslogic\writeoffbl\CanWriteOff.java
 D:\LDQ\ERPClient\src\dataservice\accountdataservice\AccountDataService.java
 D:\LDQ\ERPClient\src\businesslogic\stockbl\MockSaleReturn.java
 D:\LDQ\ERPClient\src\dataservice\promotiondataservice\PromotionDataServiceTxtFileImpl_Driver.java
@@ -249,6 +255,7 @@ D:\LDQ\ERPClient\src\vo\InitialVO.java
 D:\LDQ\ERPClient\src\vo\StockVO.java
 D:\LDQ\ERPClient\src\businesslogicservice\exceptionblservice\WarningBLService.java
 D:\LDQ\ERPClient\src\businesslogicservice\saleblservice\SaleReturnBLService_Driver.java
+D:\LDQ\ERPClient\src\businesslogic\salebl\SaleTest.java
 D:\LDQ\ERPClient\src\vo\WarningLineItemVO.java
 D:\LDQ\ERPClient\src\businesslogicservice\exceptionblservice\WarningBLService_Stub.java
 D:\LDQ\ERPClient\src\businesslogic\paymentbl\Receipt.java
@@ -269,6 +276,7 @@ D:\LDQ\ERPClient\src\businesslogicservice\paymentblservice\CashBLService.java
 D:\LDQ\ERPClient\src\businesslogicservice\writeoffblservice\WriteoffBLService.java
 D:\LDQ\ERPClient\src\vo\StockInfoVO.java
 D:\LDQ\ERPClient\src\businesslogic\paymentbl\MockAccount.java
+D:\LDQ\ERPClient\src\businesslogic\purchasebl\MockCommodity.java
 D:\LDQ\ERPClient\src\vo\CommodityLineItemVO.java
 D:\LDQ\ERPClient\src\businesslogicservice\businessconditionblservice\BusinessConditionBLService_Stub.java
 D:\LDQ\ERPClient\src\dataservice\exceptiondataservice\WarningDataService.java

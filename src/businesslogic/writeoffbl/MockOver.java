@@ -5,15 +5,32 @@
  */
 package businesslogic.writeoffbl;
 
+import businesslogic.exceptionbl.Overflow;
+import util.DocumentType;
 import util.ResultMessage;
+import vo.DocumentVO;
 
-public class MockOver {
+public class MockOver extends Overflow implements CanWriteOff{
 	
 	public MockOver() {
 	}
-	
-	public ResultMessage autoCreateWriteOffOverflow(String id) {
+
+
+	@Override
+	public ResultMessage createWriteOffDocument(String id) {
 		return ResultMessage.SUCCESS;
 	}
+
+	@Override
+	public DocumentType getType() {
+		return DocumentType.OVERFLOW;
+	}
+
+
+	@Override
+	public ResultMessage manualCreateDocument(DocumentVO vo) {
+		return ResultMessage.SUCCESS;
+	}
+
 	
 }

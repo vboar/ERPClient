@@ -65,4 +65,8 @@ public class ExceptionVO implements DocumentVO {
 		this.id = id;
 		this.time = time;
 	}
+	
+	public ExceptionVO(){
+		
+	}
 }

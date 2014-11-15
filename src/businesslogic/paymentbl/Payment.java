@@ -19,6 +19,10 @@ public class Payment {
 		this.account = account;	
 	}
 	
+	public Payment(){
+		
+	}
+	
 	public ResultMessage update(double money){
 		this.customer.updatePay(-money);
 		this.account.updateAccount(-money);
@@ -27,6 +31,6 @@ public class Payment {
 
 	public ResultMessage createLog(String content){	
 		MockLog log = new MockLog(content);
-		return log.add();	
+		return log.add();
 	}
 }

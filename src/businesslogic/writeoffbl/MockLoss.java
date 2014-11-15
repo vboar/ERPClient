@@ -5,30 +5,26 @@
  */
 package businesslogic.writeoffbl;
 
-import java.util.ArrayList;
+import util.DocumentType;
+import util.ResultMessage;
+import vo.DocumentVO;
+import businesslogic.exceptionbl.Loss;
 
-import vo.ExceptionVO;
+public class MockLoss extends Loss implements CanWriteOff{
 
-public class MockLoss {
-	
-	private ArrayList<ExceptionVO> list;
-	
-	private double total;
-	
-	public MockLoss(ArrayList<ExceptionVO> list) {
-		this.list = list;
+	@Override
+	public ResultMessage createWriteOffDocument(String id) {
+		return ResultMessage.SUCCESS;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return DocumentType.LOSS;
+	}
+
+	@Override
+	public ResultMessage manualCreateDocument(DocumentVO vo) {
+		return ResultMessage.SUCCESS;
 	}
 	
-	public MockLoss(double total){
-		this.total = total;
-	}
-	
-	public ArrayList<ExceptionVO> findByTime(String time1, String time2){
-		return this.list;
-	}
-	
-	
-	public double getTotal(){
-		return total;
-	}
 }
