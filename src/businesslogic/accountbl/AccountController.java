@@ -16,7 +16,8 @@ public class AccountController implements AccountBLService {
 
 	@Override
 	public ResultMessage add(AccountVO vo) {
-		// TODO Auto-generated method stub
+		Account a=new Account();
+		a.add(vo);
 		return null;
 	}
 

@@ -5,7 +5,9 @@
  */
 package businesslogic.accountbl;
 
+import po.AccountPO;
 import util.ResultMessage;
+import vo.AccountVO;
 
 public class Account {
 
@@ -14,5 +16,10 @@ public class Account {
 		MockLog log = new MockLog(content);
 		return log.add();	
 		
+	}
+	
+	public ResultMessage add(AccountVO vo){
+		new AccountPO(vo.name,vo.account,vo.balance);
+		return ResultMessage.SUCCESS;
 	}
 }
