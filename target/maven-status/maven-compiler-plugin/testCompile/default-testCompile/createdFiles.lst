@@ -295,6 +295,7 @@ dataservice\paymentdataservice\CashDataService.class
 businesslogic\userbl\UserTest.class
 businesslogic\exceptionbl\WarningController.class
 businesslogic\customerbl\Customer.class
+ui\mainUI.class
 businesslogic\paymentbl\ReceiptTest.class
 businesslogic\exceptionbl\Overflow.class
 businesslogicservice\accountblservice\AccountBLService.class
