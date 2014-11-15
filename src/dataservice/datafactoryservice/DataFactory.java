@@ -5,6 +5,8 @@
  */
 package dataservice.datafactoryservice;
 
+import java.rmi.RemoteException;
+
 import dataservice.accountdataservice.AccountDataService;
 import dataservice.commoditydataservice.CategoryDataService;
 import dataservice.commoditydataservice.CommodityDataService;
@@ -17,7 +19,9 @@ import dataservice.messagedataservice.MessageDataService;
 import dataservice.paymentdataservice.CashDataService;
 import dataservice.paymentdataservice.PaymentDataService;
 import dataservice.presentdataservice.PresentDataService;
-import dataservice.promotiondataservice.PromotionDataService;
+import dataservice.promotiondataservice.CustomerGiftDataservice;
+import dataservice.promotiondataservice.SpecialOfferDataService;
+import dataservice.promotiondataservice.TotalGiftDataService;
 import dataservice.purchasedataservice.PurchaseDataService;
 import dataservice.saledataservice.SaleDataService;
 import dataservice.stockdataservice.StockDataService;
@@ -26,39 +30,43 @@ import dataservice.userdataservice.UserDataService;
 
 public interface DataFactory {
 
-	public AccountDataService getAccountData();
+	public AccountDataService getAccountData() throws RemoteException;
 	
-	public CategoryDataService getCategoryData();
+	public CategoryDataService getCategoryData() throws RemoteException;
 	
-	public CommodityDataService getCommodityData();
+	public CommodityDataService getCommodityData() throws RemoteException;
 	
-	public CustomerDataService getCustomerData();
+	public CustomerDataService getCustomerData() throws RemoteException;
 	
-	public ExceptionDataService getExceptionData();
+	public ExceptionDataService getExceptionData() throws RemoteException;
 	
-	public WarningDataService getWarningData();
+	public WarningDataService getWarningData() throws RemoteException;
 	
-	public InitialDataService getInitialData();
+	public InitialDataService getInitialData() throws RemoteException;
 	
-	public LogDataService getLogData();
+	public LogDataService getLogData() throws RemoteException;
 	
-	public MessageDataService getMessageData();
+	public MessageDataService getMessageData() throws RemoteException;
 	
-	public CashDataService getCashDataService();
+	public CashDataService getCashDataService() throws RemoteException;
 	
-	public PaymentDataService getPaymentData();
+	public PaymentDataService getPaymentData() throws RemoteException;
 	
-	public PresentDataService getPresentData();
+	public PresentDataService getPresentData() throws RemoteException;
 	
-	public PromotionDataService getPromotionData();
+	public CustomerGiftDataservice getCustomerGiftData() throws RemoteException;
 	
-	public PurchaseDataService getPurchaseData();
+	public TotalGiftDataService getTotalGiftData() throws RemoteException;
 	
-	public SaleDataService getSaleDataService();
+	public SpecialOfferDataService getSpecialOfferData() throws RemoteException;
 	
-	public StockDataService getStockData();
+	public PurchaseDataService getPurchaseData() throws RemoteException;
 	
-	public UserDataService getUserData();
+	public SaleDataService getSaleDataService() throws RemoteException;
 	
-	public SystemDataService getSystemData();
+	public StockDataService getStockData() throws RemoteException;
+	
+	public UserDataService getUserData() throws RemoteException;
+	
+	public SystemDataService getSystemData() throws RemoteException;
 }

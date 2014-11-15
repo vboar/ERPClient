@@ -5,12 +5,13 @@
  */
 package dataservice.stockdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.StockPO;
 
-public interface StockDataService {
+public interface StockDataService extends Remote {
 	
 	public void insert(StockPO po) throws RemoteException;
 

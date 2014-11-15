@@ -1,5 +1,5 @@
 /**
- * 客户端RMI
+ * 用户数据实现
  * @author Vboar
  * @date 2014/11/15
  */
@@ -9,7 +9,6 @@ package dataservice.userdataservice;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.List;
 
 import po.UserPO;
 import util.UserType;
@@ -24,17 +23,14 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 
 	@Override
 	public void insert(UserPO po) throws RemoteException {
-		System.out.println("insert a UserPO");
 	}
 
 	@Override
 	public void delete(UserPO po) throws RemoteException {
-		System.out.println("delete a UserPO");
 	}
 
 	@Override
 	public void update(UserPO po) throws RemoteException {
-		System.out.println("update a UserPO");
 	}
 
 	@Override

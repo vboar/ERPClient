@@ -5,12 +5,13 @@
  */
 package dataservice.paymentdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.CashPO;
 
-public interface CashDataService {
+public interface CashDataService extends Remote {
 
 	public void insert(CashPO po) throws RemoteException;
 
@@ -20,6 +21,6 @@ public interface CashDataService {
 
 	public ArrayList<CashPO> findById(String id) throws RemoteException;
 
-	public ArrayList<CashPO> findByTime(String time1,String time2) throws RemoteException;
+	public ArrayList<CashPO> findByTime(String time1, String time2) throws RemoteException;
 		
 }

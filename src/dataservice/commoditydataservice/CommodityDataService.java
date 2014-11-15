@@ -5,12 +5,13 @@
  */
 package dataservice.commoditydataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.CommodityPO;
 
-public interface CommodityDataService {
+public interface CommodityDataService extends Remote {
 
 	public void insert(CommodityPO po) throws RemoteException;
 	

@@ -5,6 +5,8 @@
  */
 package dataservice.datafactoryservice;
 
+import java.rmi.RemoteException;
+
 import dataservice.accountdataservice.AccountDataService;
 import dataservice.accountdataservice.AccountDataServiceTxtFileImpl_Stub;
 import dataservice.commoditydataservice.CategoryDataService;
@@ -29,8 +31,10 @@ import dataservice.paymentdataservice.PaymentDataService;
 import dataservice.paymentdataservice.PaymentDataServiceTxtFileImpl_Stub;
 import dataservice.presentdataservice.PresentDataService;
 import dataservice.presentdataservice.PresentDataServiceTxtFileImpl_Stub;
-import dataservice.promotiondataservice.PromotionDataService;
-import dataservice.promotiondataservice.PromotionDataServiceTxtFileImpl_Stub;
+import dataservice.promotiondataservice.CustomerGiftDataservice;
+import dataservice.promotiondataservice.CustomerGiftDataserviceImpl;
+import dataservice.promotiondataservice.SpecialOfferDataService;
+import dataservice.promotiondataservice.TotalGiftDataService;
 import dataservice.purchasedataservice.PurchaseDataService;
 import dataservice.purchasedataservice.PurchaseDataServiceTxtFileImpl_Stub;
 import dataservice.saledataservice.SaleDataService;
@@ -104,8 +108,20 @@ public class DataFactory_Stub implements DataFactory {
 	}
 
 	@Override
-	public PromotionDataService getPromotionData() {
-		return new PromotionDataServiceTxtFileImpl_Stub();
+	public CustomerGiftDataservice getCustomerGiftData() throws RemoteException {
+		return new CustomerGiftDataserviceImpl();
+	}
+
+	@Override
+	public TotalGiftDataService getTotalGiftData() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SpecialOfferDataService getSpecialOfferData() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	@Override

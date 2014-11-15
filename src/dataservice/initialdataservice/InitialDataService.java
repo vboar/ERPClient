@@ -1,16 +1,17 @@
 /**
- * 期初建账消息
+ * 期初建账数据接口
  * @author Vboar
  * @date 2014/10/26
  */
 package dataservice.initialdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.InitialPO;
 
-public interface InitialDataService {
+public interface InitialDataService extends Remote {
 	
 	public void insert(InitialPO po) throws RemoteException;
 	

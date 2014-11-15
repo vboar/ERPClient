@@ -6,13 +6,14 @@
 
 package dataservice.exceptiondataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.ExceptionPO;
 import util.DocumentStatus;
 
-public interface ExceptionDataService {
+public interface ExceptionDataService extends Remote {
 
 	public void insert(ExceptionPO po) throws RemoteException;
 	

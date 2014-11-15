@@ -5,22 +5,19 @@
  */
 package dataservice.paymentdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.PaymentPO;
 
-public interface PaymentDataService {
+public interface PaymentDataService extends Remote {
 
 	public void insert(PaymentPO po) throws RemoteException;
 
 	public void update(PaymentPO po) throws RemoteException;
 
 	public ArrayList<PaymentPO> show() throws RemoteException;
-
-	public void init() throws RemoteException;
-
-	public void finish() throws RemoteException;
 
 	public ArrayList<PaymentPO> findById(String id) throws RemoteException;
 

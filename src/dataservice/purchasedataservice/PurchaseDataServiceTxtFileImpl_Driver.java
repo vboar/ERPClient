@@ -25,8 +25,6 @@ public class PurchaseDataServiceTxtFileImpl_Driver {
 		
 		pds.show();
 		
-		pds.findByCommodityName("飞利浦吊灯");
-		
 		pds.findByCustomer("钢铁侠");
 		
 		pds.findBySalesman("美队");

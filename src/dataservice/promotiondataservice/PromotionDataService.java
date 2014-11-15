@@ -6,6 +6,7 @@
 
 package dataservice.promotiondataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import po.CustomerGiftPO;
 import po.SpecialOfferPO;
 import po.TotalGiftPO;
 
-public interface PromotionDataService {
+public interface PromotionDataService extends Remote {
 	public void insert(CustomerGiftPO po)throws RemoteException;
 	public void insert(TotalGiftPO po)throws RemoteException;
 	public void insert(SpecialOfferPO po)throws RemoteException;
@@ -24,7 +25,7 @@ public interface PromotionDataService {
 	
 	public ArrayList<CustomerGiftPO> findByVip() throws RemoteException; 
 	public ArrayList<SpecialOfferPO> findByCommodity() throws RemoteException; 
-	public ArrayList<TotalGiftPO> findByPrice() throws RemoteException; 
+	public ArrayList<TotalGiftPO> findByPrice() throws RemoteException;
 	
 
 

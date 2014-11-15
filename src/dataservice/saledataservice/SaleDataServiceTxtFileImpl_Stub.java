@@ -34,18 +34,6 @@ public class SaleDataServiceTxtFileImpl_Stub implements SaleDataService{
 	}
 
 	@Override
-	public ArrayList<SalePO> findByCommodityName(String commodityName)
-			throws RemoteException {
-		ArrayList<SalePO> result=new ArrayList<SalePO>();
-		ArrayList<CommodityLineItemPO> commodity=new ArrayList<CommodityLineItemPO>();
-		commodity.add(new CommodityLineItemPO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
-		result.add(new SalePO("XSD-20141023-00001","17:54:54","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
-                ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
-		System.out.println("FindByCommodityName succeed!\n");
-		return result;
-	}
-
-	@Override
 	public ArrayList<SalePO> findByCustomer(String customer)
 			throws RemoteException {
 		ArrayList<SalePO> result=new ArrayList<SalePO>();

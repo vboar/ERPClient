@@ -5,12 +5,13 @@
  */
 package dataservice.presentdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.PresentPO;
 
-public interface PresentDataService {
+public interface PresentDataService extends Remote {
 	
 	public void insert(PresentPO po) throws RemoteException;
 	

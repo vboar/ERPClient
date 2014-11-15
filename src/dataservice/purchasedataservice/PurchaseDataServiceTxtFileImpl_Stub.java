@@ -36,19 +36,6 @@ public class PurchaseDataServiceTxtFileImpl_Stub implements PurchaseDataService{
 	}
 
 	@Override
-	public ArrayList<PurchasePO> findByCommodityName(String commodityName)
-			throws RemoteException {
-		ArrayList<CommodityLineItemPO> commodity=new ArrayList<CommodityLineItemPO>();
-		commodity.add(new CommodityLineItemPO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,20,1000,"自提"));
-	    ArrayList<PurchasePO> list=new ArrayList<PurchasePO>();
-	    list.add(new PurchasePO("JHD-20141023-00001","17:54:54","00002","雷神托尔","XS001-浩克","1",commodity,1750,
-	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
-	 
-	    System.out.println("FindByCommodityName Succeed!");
-	    return list;
-	}
-
-	@Override
 	public ArrayList<PurchasePO> findByCustomer(String customer)
 			throws RemoteException {
 		ArrayList<CommodityLineItemPO> commodity=new ArrayList<CommodityLineItemPO>();

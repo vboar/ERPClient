@@ -23,7 +23,6 @@ public class PaymentDataServiceTxtFileImpl_Driver {
 				transferList,700,DocumentStatus.PASSED, false,DocumentType.PAYMENT);
 		
 		System.out.println("收付款单数据处理消息：\n");
-		paymentDataService.init();
 		paymentDataService.insert(po);
 		paymentDataService.update(po);
 		paymentDataService.show();
@@ -31,6 +30,5 @@ public class PaymentDataServiceTxtFileImpl_Driver {
 		paymentDataService.findByCustomer("00002");
 		paymentDataService.findByOperator("王小明");
 		paymentDataService.findByTime("2014/09/25", "2014/10/25");
-		paymentDataService.finish();
 	}
 }

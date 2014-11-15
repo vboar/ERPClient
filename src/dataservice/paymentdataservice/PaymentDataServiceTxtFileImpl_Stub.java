@@ -83,13 +83,4 @@ public class PaymentDataServiceTxtFileImpl_Stub implements PaymentDataService {
 		return list;
 	}
 	
-	@Override
-	public void init() throws RemoteException {
-		System.out.println("初始化成功！");
-	}
-
-	@Override
-	public void finish() throws RemoteException {
-		System.out.println("已结束使用！");
-	}
 }

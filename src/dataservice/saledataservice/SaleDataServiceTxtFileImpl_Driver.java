@@ -26,8 +26,6 @@ public class SaleDataServiceTxtFileImpl_Driver {
 	    
 	    sds.show();
 	    
-	    sds.findByCommodityName("飞利浦吊灯");
-	    
 	    sds.findByCustomer("钢铁侠");
 	    
 	    sds.findBySalesman("美队");
