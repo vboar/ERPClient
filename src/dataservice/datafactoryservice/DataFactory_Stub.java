@@ -37,6 +37,7 @@ import dataservice.saledataservice.SaleDataService;
 import dataservice.saledataservice.SaleDataServiceTxtFileImpl_Stub;
 import dataservice.stockdataservice.StockDataService;
 import dataservice.stockdataservice.StockDataServiceTxtFileImpl_Stub;
+import dataservice.systemdateservice.SystemDataService;
 import dataservice.userdataservice.UserDataService;
 import dataservice.userdataservice.UserDataServiceTxtFileImpl_Stub;
 
@@ -125,6 +126,12 @@ public class DataFactory_Stub implements DataFactory {
 	@Override
 	public UserDataService getUserData() {
 		return new UserDataServiceTxtFileImpl_Stub();
+	}
+
+	@Override
+	public SystemDataService getSystemData() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
