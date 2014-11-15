@@ -7,6 +7,7 @@ package businesslogic.writeoffbl;
 
 import java.util.ArrayList;
 
+import businesslogic.accountbl.MockLog;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.DocumentVO;
@@ -42,6 +43,11 @@ public class Writeoff {
 			}
 		}
 		return ResultMessage.FAILED;	
+	}
+	
+	public ResultMessage createLog(String content){	
+		MockLog log = new MockLog(content);
+		return log.add();		
 	}
 
 }

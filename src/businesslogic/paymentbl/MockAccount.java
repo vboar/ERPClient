@@ -5,7 +5,9 @@
  */
 package businesslogic.paymentbl;
 
-public class MockAccount {
+import businesslogic.accountbl.Account;
+
+public class MockAccount extends Account{
 
 	double account;
 	

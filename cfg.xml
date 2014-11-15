@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<erp>
+	<loginframe width="540" height="360" windowUp="20">	
+		<panel className="ui.login.LoginPanel">
+			<button text="登录" w="80" h="40" x="300" y="260"/>		
+			<button text="退出" w="80" h="40" x="400" y="260"/>
+			<button text="设置" w="80" h="30" x="440" y="15"/>
+			<label text="类型" w="100" h="30" x="270" y="80"/>
+			<label text="I D" w="100" h="30" x="270" y="120"/>
+			<label text="密码" w="100" h="30" x="270" y="160"/>	
+			<textfield w="145" h="30" x="350" y="120"/>
+			<textfield w="145" h="30" x="350" y="160"/>
+			<comboboxs>
+				<combobox w="" h="" x="" y="">
+					<string str="库存管理人员"/>	<string str="进货销售人员"/>	<string str="财务人员"/>
+					<string str="总经理"/>			<string str="系统管理员"/>
+				</combobox>
+			</comboboxs>		
+		</panel>
+	</loginframe>
+	<frame title="ERP" width="900" height="600" windowUp="20">
+	</frame>
+</erp>

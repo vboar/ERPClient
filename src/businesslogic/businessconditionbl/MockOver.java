@@ -8,8 +8,9 @@ package businesslogic.businessconditionbl;
 import java.util.ArrayList;
 
 import vo.ExceptionVO;
+import businesslogic.exceptionbl.Overflow;
 
-public class MockOver {
+public class MockOver extends Overflow{
 	
 	private ArrayList<ExceptionVO> list;
 	

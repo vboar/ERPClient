@@ -8,8 +8,9 @@ package businesslogic.businessconditionbl;
 import java.util.ArrayList;
 
 import vo.ExceptionVO;
+import businesslogic.exceptionbl.Loss;
 
-public class MockLoss {
+public class MockLoss extends Loss{
 	
 	private ArrayList<ExceptionVO> list;
 	

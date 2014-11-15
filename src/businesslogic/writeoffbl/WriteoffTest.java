@@ -30,7 +30,12 @@ public class WriteoffTest {
 		assertEquals(ResultMessage.SUCCESS,wt.manualCreate(DocumentType.CASH, new CashVO()));
 		assertEquals(ResultMessage.SUCCESS,wt.manualCreate(DocumentType.OVERFLOW, new ExceptionVO()));
 		assertEquals(ResultMessage.SUCCESS,wt.manualCreate(DocumentType.PAYMENT, new PaymentVO()));
-
-		
 	}
+	
+	@Test
+	public void testCreateLog(){
+		Writeoff wt = new Writeoff();
+		assertEquals(ResultMessage.SUCCESS, wt.createLog("2014/11/13 create an writeoff!"));
+	}
+	
 }

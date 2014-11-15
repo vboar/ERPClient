@@ -8,8 +8,9 @@ package businesslogic.businessconditionbl;
 import java.util.ArrayList;
 
 import vo.PaymentVO;
+import businesslogic.paymentbl.Payment;
 
-public class MockPayment {
+public class MockPayment extends Payment{
 
 	private ArrayList<PaymentVO> list;
 	
