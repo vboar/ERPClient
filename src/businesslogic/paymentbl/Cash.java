@@ -16,6 +16,10 @@ public class Cash {
 		this.account = account;
 	}
 	
+	public Cash(){
+		
+	}
+	
 	public ResultMessage update(double money){
 		this.account.updateAccount(-money);
 		return ResultMessage.SUCCESS;

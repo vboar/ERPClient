@@ -12,7 +12,7 @@ import po.AccountPO;
 
 public interface AccountDataService {
 
-	public ArrayList<AccountPO> find(String name)throws RemoteException;
+	public ArrayList<AccountPO> find(String name) throws RemoteException;
 	
 	public void insert(AccountPO po) throws RemoteException;
 

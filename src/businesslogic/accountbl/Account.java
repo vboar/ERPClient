@@ -11,11 +11,9 @@ import vo.AccountVO;
 
 public class Account {
 
-	public ResultMessage createLog(String content){
-		
+	public ResultMessage createLog(String content){	
 		MockLog log = new MockLog(content);
-		return log.add();	
-		
+		return log.add();		
 	}
 	
 	public ResultMessage add(AccountVO vo){

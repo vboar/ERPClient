@@ -82,4 +82,7 @@ public class PaymentVO implements DocumentVO {
 		this.total = total;
 	}
 	
+	public PaymentVO(){
+		
+	}
 }

@@ -1,5 +1,5 @@
 /**
- * stock mocksale
+ * businesscondition mocksale
  * @author Vboar
  * @date 2014/11/14
  */

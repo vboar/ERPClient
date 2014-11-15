@@ -63,5 +63,8 @@ public class CashVO implements DocumentVO{
 		this.approvalState = approvalState;
 	}
 
+	public CashVO(){
+		
+	}
 	
 }
