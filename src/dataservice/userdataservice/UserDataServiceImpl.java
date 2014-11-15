@@ -19,6 +19,7 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 
 	public UserDataServiceImpl() throws RemoteException {
 		super();
+		
 	}
 
 	@Override
