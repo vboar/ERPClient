@@ -1,7 +1,7 @@
 /**
  * SaleTest
  * @author oneoneO
- * @date 2014/11/14
+ * @date 2014/11/15
  */
 package businesslogic.salebl;
 
@@ -37,12 +37,15 @@ public class SaleTest {
 	}
 
 	@Test
-	public void testUpdateCommodityBySale() {
+	public void test() {
 		ArrayList<CommodityLineItemVO> sli=new ArrayList<CommodityLineItemVO>();
 		sli.add(new CommodityLineItemVO("","","",10,0,0,""));
 		
 		Sale sl=new Sale();
 		assertEquals(ResultMessage.SUCCESS,sl.updateCommodityBySale(sli));
+		
+		assertEquals(ResultMessage.SUCCESS,sl.updateCustomerBySale("飞利浦", 100));
+		assertEquals(ResultMessage.SUCCESS,sl.addlog("2014/11/15 Sale"));
 	}
 
 }

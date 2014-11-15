@@ -1,11 +1,11 @@
 /**
- * PurchaseTest
- * @author oenoneO
- * @date 2014/11/14
+ * Purchase
+ * @author oneoneO
+ * @date 2014/11/15
  */
 package businesslogic.purchasebl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -37,12 +37,15 @@ public class PurchaseTest {
 	}
 
 	@Test
-	public void testUpdateCommodityByPurchase() {
+	public void test() {
 		ArrayList<CommodityLineItemVO> list=new ArrayList<CommodityLineItemVO>();
 		list.add(new CommodityLineItemVO("","","",10,0,0,""));
 		
 		Purchase p=new Purchase();
 		assertEquals(ResultMessage.SUCCESS,p.updateCommodityByPurchase(list));
+		
+		assertEquals(ResultMessage.SUCCESS,p.updateCustomerByPurchase("飞利浦",  100));
+		assertEquals(ResultMessage.SUCCESS,p.addLog("2014/11/15 Purchase"));
 	}
 
 }

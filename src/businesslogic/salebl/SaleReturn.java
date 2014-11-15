@@ -64,9 +64,14 @@ public class SaleReturn {
 	}
 
 
-	public ResultMessage updateAccountBySale(String name,double total) {
-		MockAccount ma=new MockAccount();
-		return ma.updateAccountBySale(name,total);
+	public ResultMessage updateCustomerBySale(String name,double total) {
+		MockCustomer ma=new MockCustomer();
+		return ma.updateCustomerBySale(name,total);
 	}
 
+	public ResultMessage addlog(String content){
+		MockLog ml=new MockLog();
+		
+		return ml.addlog(content);
+	}
 }

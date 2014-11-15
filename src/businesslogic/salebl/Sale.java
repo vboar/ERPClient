@@ -64,10 +64,14 @@ public class Sale {
 	}
 
 
-	public ResultMessage updateAccountBySale(String name,double total) {
-		MockAccount ma=new MockAccount();
+	public ResultMessage updateCustomerBySale(String name,double total) {
+		MockCustomer ma=new MockCustomer();
 		
-		return ma.updateAccountBySale(name,total);
+		return ma.updateCustomerBySale(name,total);
 	}
 
+	public ResultMessage addlog(String content){
+		MockLog ml=new MockLog();
+		return ml.addlog(content);
+	}
 }

@@ -1,7 +1,7 @@
 /**
  * SaleReturnTest
  * @author oneoneO
- * @date 2014/11/14
+ * @date 2014/11/15
  */
 package businesslogic.salebl;
 
@@ -37,14 +37,16 @@ public class SaleReturnTest {
 	}
 
 	@Test
-	public void testUpdateCommodityBySale() {
+	public void test() {
 		ArrayList<CommodityLineItemVO> list=new ArrayList<CommodityLineItemVO>();
-	
+		
 		list.add(new CommodityLineItemVO("","","",10,0,0,""));
 		
 		SaleReturn sr=new SaleReturn();
 		
 		assertEquals(ResultMessage.SUCCESS,sr.updateCommodityBySale(list));
+		
+		assertEquals(ResultMessage.SUCCESS,sr.updateCustomerBySale("飞利浦", 100));
 	}
 
 }

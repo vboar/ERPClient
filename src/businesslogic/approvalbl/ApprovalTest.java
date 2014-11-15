@@ -25,6 +25,14 @@ public class ApprovalTest {
 		approval.approve(10.0,po);
 		assertEquals(20000-10, (int)po.getReceivables());
 		
+		
+		assertEquals(ResultMessage.SUCCESS,approval.updateAccountByApproval("飞利浦", "12345678", 100));
+		
+		assertEquals(ResultMessage.SUCCESS,approval.updateCommodityBySale("123456",10,100));
+		
+		assertEquals(ResultMessage.SUCCESS,approval.updateCommodityByPurchase("123456",10, 100));
+		
+		assertEquals(ResultMessage.SUCCESS,approval.sendMessage("付款单通过审批"));
 	}
 	
 	

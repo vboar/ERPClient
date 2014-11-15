@@ -1,5 +1,5 @@
 /**
- *MockAccount
+ *MockCustomer
  *@author oenoneO
  *@date 2014/11/14
  */
@@ -9,8 +9,8 @@ import businesslogic.accountbl.Account;
 import po.AccountPO;
 import util.ResultMessage;
 
-public class MockAccount extends Account{
-public ResultMessage updateAccountBySale(String name,double total){
+public class MockCustomer extends Account{
+public ResultMessage updateCustomerBySale(String name,double total){
 	AccountPO a=new AccountPO("","",0);
 	a.setBalance(a.getBalance()+total);
 	return null;

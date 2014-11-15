@@ -63,5 +63,17 @@ public class PurchaseReturn implements PurchaseBLService{
 		
 		return mc.updateCommodityByPurchase(list);
 	}
+	
+	public ResultMessage updateCustomerByPurchase(String name,double total){
+		MockCustomer mc=new MockCustomer();
+		
+		return mc.updateCustomerByPurchase(name, total);
+	}
+	
+	public ResultMessage addLog(String content){
+		MockLog ml=new MockLog();
+		
+		return ml.addLog(content);
+	}
 
 }
