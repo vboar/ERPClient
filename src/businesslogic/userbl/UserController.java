@@ -62,4 +62,10 @@ public class UserController implements UserBLService {
 		return null;
 	}
 
+	@Override
+	public ArrayList<UserVO> findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
