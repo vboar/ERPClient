@@ -1,3 +1,8 @@
+/**
+ * 界面工具类
+ * @author JaneLDQ
+ * @date 2014/11/13
+ */
 package ui.util;
 
 import java.awt.Dimension;

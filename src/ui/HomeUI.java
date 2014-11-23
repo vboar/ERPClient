@@ -1,3 +1,8 @@
+/**
+ * 主界面
+ * @author JaneLDQ
+ * @date 2014/11/13
+ */
 package ui;
 
 import javax.swing.JFrame;

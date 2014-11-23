@@ -1,8 +1,5 @@
 package config;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.dom4j.Element;
 
 public class PanelConfig {
@@ -13,88 +10,52 @@ public class PanelConfig {
 	private String className;
 	
 	/**
-	 * 按钮属性
+	 * 按钮配置
 	 */
-	private ArrayList<ButtonConfig> buttonsCfg;
+	private Element buttons;
+	
+	/**
+	 * 标签配置
+	 */
+	private Element labels;
+	
+	/**
+	 * 输入框配置
+	 */
+	private Element textFields;
+	
+	/**
+	 * 复选框配置
+	 */
+	private Element comboboxes;
 
-	/**
-	 * 标签属性
-	 */
-	private ArrayList<LabelConfig> labelsCfg;
-	
-	/**
-	 * 输入框属性
-	 */
-	private ArrayList<TextFieldConfig> textFieldsCfg;
-	
 	public PanelConfig(Element panel) {
 		this.className = panel.attributeValue("className");
 		// 获取按钮属性
-		buttonsCfg = new ArrayList<ButtonConfig>();
-		this.setButtonsCfg(panel);
+		this.buttons = panel.element("buttons");
 		// 获取标签属性
-		labelsCfg = new ArrayList<LabelConfig>();
-		this.setLabelsCfg(panel);
+		this.labels = panel.element("labels");
 		// 获取输入框属性
-		textFieldsCfg = new ArrayList<TextFieldConfig>();
-		this.setTextFieldCfg(panel);
-	}
-		
-	private void setTextFieldCfg(Element panel) {
-		@SuppressWarnings("unchecked")
-		List<Element> textfields = panel.elements("textfield");
-		// 获取标签属性
-		for (Element textfield : textfields) {
-			// 设置单个标签属性
-			TextFieldConfig tc = new TextFieldConfig(
-					Integer.parseInt(textfield.attributeValue("w")),
-					Integer.parseInt(textfield.attributeValue("h")),
-					Integer.parseInt(textfield.attributeValue("x")),
-					Integer.parseInt(textfield.attributeValue("y")));
-			textFieldsCfg.add(tc);
-		}
+		this.textFields = panel.element("textfields");
+		// 获取复选框属性
+		this.comboboxes = panel.element("comboboxes");
+	}	
+
+
+	public Element getButtons() {
+		return buttons;
 	}
 
-	public void setLabelsCfg(Element panel){
-		@SuppressWarnings("unchecked")
-		List<Element> labels = panel.elements("label");
-		// 获取标签属性
-		for (Element label : labels) {
-			// 设置单个标签属性
-			LabelConfig bl = new LabelConfig(label.attributeValue("text"),
-					Integer.parseInt(label.attributeValue("w")),
-					Integer.parseInt(label.attributeValue("h")),
-					Integer.parseInt(label.attributeValue("x")),
-					Integer.parseInt(label.attributeValue("y")));
-			labelsCfg.add(bl);
-		}
+	public Element getLabels() {
+		return labels;
 	}
 
-	public void setButtonsCfg(Element panel){
-		@SuppressWarnings("unchecked")
-		List<Element> buttons = panel.elements("button");
-		// 获取按钮属性
-		for (Element button : buttons) {
-			// 设置单个按钮属性
-			ButtonConfig bc = new ButtonConfig(button.attributeValue("text"),
-					Integer.parseInt(button.attributeValue("w")),
-					Integer.parseInt(button.attributeValue("h")),
-					Integer.parseInt(button.attributeValue("x")),
-					Integer.parseInt(button.attributeValue("y")));
-			buttonsCfg.add(bc);
-		}
+	public Element getTextFields() {
+		return textFields;
 	}
 	
-	public ArrayList<ButtonConfig> getButtonsCfg() {
-		return buttonsCfg;
-	}
-
-	public ArrayList<LabelConfig> getLabelsCfg() {
-		return labelsCfg;
-	}
-
-	public ArrayList<TextFieldConfig> getTextFieldsCfg() {
-		return textFieldsCfg;
+	public Element getComboboxes() {
+		return comboboxes;
 	}
 
 	public String getClassName() {

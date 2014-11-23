@@ -69,14 +69,6 @@ public class UserBLService_Stub implements UserBLService {
 	}
 
 	@Override
-	public ResultMessage login(String id, String password) {
-		if(id.equals("xs0001")&&password.equals("123456")){
-			return ResultMessage.SUCCESS;
-		}
-		return ResultMessage.FAILED;
-	}
-
-	@Override
 	public ArrayList<UserVO> findById(String id) {
 		// TODO Auto-generated method stub
 		return null;

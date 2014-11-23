@@ -1,3 +1,8 @@
+/**
+ * 登录界面
+ * @author JaneLDQ
+ * @date 2014/11/23
+ */
 package ui;
 
 import javax.swing.JFrame;
@@ -8,9 +13,9 @@ import config.ERPConfig;
 import config.FrameConfig;
 
 @SuppressWarnings("serial")
-public class LoginUI extends JFrame{
-	
-	public LoginUI(){
+public class LoginUI extends JFrame {
+
+	public LoginUI() {
 		// 获得窗口配置
 		FrameConfig fcfg = ERPConfig.getLOGINFRAME_CONFIG();
 		// 设置大小
@@ -20,15 +25,12 @@ public class LoginUI extends JFrame{
 		// 默认关闭退出
 		this.setDefaultCloseOperation(3);
 		// 居中
-		FrameUtil.setFrameCenter(this,fcfg.getWindowUp());
-		// 设置面板
-		this.setContentPane(new LoginPanel());
-		// 显示
+		FrameUtil.setFrameCenter(this, fcfg.getWindowUp());
+		this.getContentPane().add(new LoginPanel(this));
 		this.setVisible(true);
 	}
-		
-	public static void main(String[] args) {
+	
+	public static void main(String[] args){
 		new LoginUI();
 	}
-
 }
