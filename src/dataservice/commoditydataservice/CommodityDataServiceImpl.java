@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import dataservice.commoditydataservice.CommodityDataService;
 import po.CommodityPO;
 
 public class CommodityDataServiceImpl extends UnicastRemoteObject implements CommodityDataService {
@@ -47,6 +48,11 @@ public class CommodityDataServiceImpl extends UnicastRemoteObject implements Com
 
 	@Override
 	public ArrayList<CommodityPO> findByModel(String model) throws RemoteException {
+		return null;
+	}
+	
+	@Override
+	public CommodityPO getById(String id) throws RemoteException {
 		return null;
 	}
 

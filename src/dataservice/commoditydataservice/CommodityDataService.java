@@ -25,6 +25,8 @@ public interface CommodityDataService extends Remote {
 	
 	public ArrayList<CommodityPO> findByModel(String model) throws RemoteException;
 	
+	public CommodityPO getById(String id) throws RemoteException;
+	
 	public ArrayList<CommodityPO> show() throws RemoteException;
 	
 }

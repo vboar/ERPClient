@@ -10,7 +10,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.UserPO;
-import util.UserType;
 
 public interface UserDataService extends Remote {
 	
@@ -24,7 +23,9 @@ public interface UserDataService extends Remote {
 	
 	public ArrayList<UserPO> findByName(String name) throws RemoteException;
 	
-	public ArrayList<UserPO> findByType(UserType type) throws RemoteException;
+	public ArrayList<UserPO> findByType(int type) throws RemoteException;
+	
+	public UserPO getById(String id) throws RemoteException;
 	
 	public ArrayList<UserPO> show() throws RemoteException;
 

@@ -11,47 +11,62 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.UserPO;
-import util.UserType;
 
 public class UserDataServiceImpl extends UnicastRemoteObject implements UserDataService {
 
+	protected UserDataServiceImpl() throws RemoteException {
+		super();
+	}
+
 	private static final long serialVersionUID = 1L;
 
-	public UserDataServiceImpl() throws RemoteException {
-		super();
+	@Override
+	public void insert(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void insert(UserPO po) throws RemoteException {
-	}
-
-	@Override
 	public void delete(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void update(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public ArrayList<UserPO> findById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<UserPO> findByName(String name) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<UserPO> findByType(UserType type) throws RemoteException {
+	public ArrayList<UserPO> findByType(int type) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserPO getById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<UserPO> show() throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }
