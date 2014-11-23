@@ -8,9 +8,6 @@ package po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import util.DocumentStatus;
-import util.DocumentType;
-
 public class PaymentPO implements Serializable {
 
 	/**

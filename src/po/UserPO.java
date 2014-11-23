@@ -7,8 +7,6 @@ package po;
 
 import java.io.Serializable;
 
-import util.UserType;
-
 public class UserPO implements Serializable{
 	
 	/**
