@@ -50,6 +50,7 @@ public class UserPO implements Serializable{
 	public UserPO(String id,String password,int type,int perssion,String name){
 		this.id=id;
 		this.password=password;
+		this.type = type;
 		this.permission=perssion;
 		this.name=name;
 	}

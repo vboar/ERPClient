@@ -14,7 +14,6 @@ import java.rmi.RemoteException;
 import dataservice.accountdataservice.AccountDataService;
 import dataservice.accountdataservice.AccountDataServiceImpl;
 import dataservice.commoditydataservice.CategoryDataService;
-import dataservice.commoditydataservice.CategoryDataServiceImpl;
 import dataservice.commoditydataservice.CommodityDataService;
 import dataservice.commoditydataservice.CommodityDataServiceImpl;
 import dataservice.customerdataservice.CustomerDataService;
@@ -57,6 +56,8 @@ import dataservice.userdataservice.UserDataService;
  */
 public class DataFactoryImpl implements DataFactory {
 	
+	private String url = "rmi://127.0.0.1:8888/";
+	
 	private DataFactoryImpl() {}
 	
 	public static DataFactoryImpl getInstance() {
@@ -74,7 +75,14 @@ public class DataFactoryImpl implements DataFactory {
 
 	@Override
 	public CategoryDataService getCategoryData() throws RemoteException {
-		return new CategoryDataServiceImpl();
+		try {
+			return (CategoryDataService) Naming.lookup(url + "CategoryDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -160,7 +168,7 @@ public class DataFactoryImpl implements DataFactory {
 	@Override
 	public UserDataService getUserData() throws RemoteException {
 		try {
-			return (UserDataService) Naming.lookup("rmi://127.0.0.1:8888/UserDataService");
+			return (UserDataService) Naming.lookup(url + "UserDataService");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
