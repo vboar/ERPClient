@@ -62,14 +62,7 @@ public interface UserBLService {
      * @return 用户列表
      */
     public ArrayList<UserVO> show();
-    
-    /**
-     * 用户登录
-     * @param id
-     * @param password
-     * @return 结果消息
-     */
-    public ResultMessage login(String id, String password);
+
 
 
 }

@@ -23,6 +23,8 @@ public interface CategoryDataService extends Remote {
 	
 	public ArrayList<CategoryPO> findByName(String name) throws RemoteException;
 	
+	public CategoryPO getById(String id) throws RemoteException;
+	
 	public ArrayList<CategoryPO> show() throws RemoteException;
 
 }

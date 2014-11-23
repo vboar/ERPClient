@@ -100,8 +100,6 @@ public class CustomerGiftPO implements Serializable {
 		return vip;
 	}
 
-	
-
 	public ArrayList<CombinationCommodityLineItemPO> getGiftInfo() {
 		return giftInfo;
 	}

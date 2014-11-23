@@ -8,9 +8,6 @@ package po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import util.DocumentStatus;
-import util.DocumentType;
-
 public class CashPO implements Serializable {
 
 	/**
@@ -31,7 +28,7 @@ public class CashPO implements Serializable {
 	/**
 	 * 操作员
 	 */
-	private String operator;
+	private String operatorId;
 	
 	/**
 	 * 银行账户
@@ -51,7 +48,7 @@ public class CashPO implements Serializable {
 	/**
 	 * 审批状态
 	 */
-	private DocumentStatus approvalState;
+	private int documentStatus;
 	
 	/**
 	 * 是否为红冲单据
@@ -61,7 +58,7 @@ public class CashPO implements Serializable {
 	/**
 	 * 单据类型
 	 */
-	private DocumentType documentType;
+	private int documentType;
 	
 	/**
 	 * 构造方法
@@ -73,28 +70,36 @@ public class CashPO implements Serializable {
 	 * @param isWriteOff
 	 * @param documentType
 	 */
-	public CashPO(String ID,String time,String operator,String bankAccount,ArrayList<ClauseLineItemPO> clauseList,
-			DocumentStatus approvalState, boolean isWriteOff,DocumentType documentType){
+	public CashPO(String ID,String time,String operatorId,String bankAccount,ArrayList<ClauseLineItemPO> clauseList,
+			int documentStatus, boolean isWriteOff,int documentType){
 		this.id = ID;
 		this.time = time;
-		this.operator = operator;
+		this.operatorId = operatorId;
 		this.bankAccount = bankAccount;
 		this.clauseList = clauseList;
-		this.approvalState = approvalState;
+		this.documentStatus = documentStatus;
 		this.isWriteOff = isWriteOff;
 		this.documentType = documentType;
 	}
 
-	public DocumentStatus getApprovalState() {
-		return approvalState;
+	public int getDocumentStatus() {
+		return documentStatus;
 	}
 
-	public void setApprovalState(DocumentStatus approvalState) {
-		this.approvalState = approvalState;
+	public void setDocumentStatus(int documentStatus) {
+		this.documentStatus = documentStatus;
 	}
 
-	public String getOperator() {
-		return operator;
+	public int getDocumentType() {
+		return documentType;
+	}
+
+	public void setDocumentType(int documentType) {
+		this.documentType = documentType;
+	}
+
+	public String getOperatorId() {
+		return operatorId;
 	}
 
 	public String getBankAccount() {
@@ -103,10 +108,6 @@ public class CashPO implements Serializable {
 
 	public ArrayList<ClauseLineItemPO> getClauseList() {
 		return clauseList;
-	}
-
-	public DocumentType getDocumentType() {
-		return documentType;
 	}
 
 	public boolean isWriteOff() {

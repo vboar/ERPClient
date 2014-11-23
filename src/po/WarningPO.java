@@ -8,8 +8,6 @@ package po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import util.DocumentType;
-
 public class WarningPO implements Serializable {
 
 	/**
@@ -35,7 +33,7 @@ public class WarningPO implements Serializable {
 	/**
 	 * 单据类型
 	 */
-	private DocumentType type;
+	private int documentType;
 	
 	/**
 	 * 无参构造
@@ -49,10 +47,10 @@ public class WarningPO implements Serializable {
 	 * @param list
 	 * @param type
 	 */
-	public WarningPO(String id, String time, ArrayList<WarningLineItemPO> list, DocumentType type) {
+	public WarningPO(String id, String time, ArrayList<WarningLineItemPO> list, int documentType) {
 		this.id = id;
 		this.time = time;
-		this.type = type;
+		this.documentType = documentType;
 	}
 
 	public String getId() {
@@ -67,8 +65,8 @@ public class WarningPO implements Serializable {
 		return list;
 	}
 
-	public DocumentType getType() {
-		return type;
+	public int getDocumentType() {
+		return documentType;
 	}
 	
 }

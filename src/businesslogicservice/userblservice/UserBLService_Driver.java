@@ -52,15 +52,6 @@ public class UserBLService_Driver {
 		System.out.println("下面是查找到的用户id");
 		System.out.println(volist4.get(0).id);
 		System.out.println();
-		
-		ResultMessage result3=userBLService.login("xs001", "123456");
-		System.out.println("下面是登录的返回信息");
-		if(result3==ResultMessage.SUCCESS){
-			System.out.println("登陆成功");
-		}else{
-			System.out.println("登录失败");
-		}
-		
-		
+
 	}
 }

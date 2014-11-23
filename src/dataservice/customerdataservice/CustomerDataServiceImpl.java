@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import dataservice.customerdataservice.CustomerDataService;
 import po.CustomerPO;
 
 public class CustomerDataServiceImpl extends UnicastRemoteObject implements CustomerDataService {
@@ -42,6 +43,11 @@ public class CustomerDataServiceImpl extends UnicastRemoteObject implements Cust
 
 	@Override
 	public ArrayList<CustomerPO> findById(String id) throws RemoteException {
+		return null;
+	}
+	
+	@Override
+	public CustomerPO getById(String id) throws RemoteException {
 		return null;
 	}
 

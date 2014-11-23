@@ -33,28 +33,28 @@ public class CommodityBLService_Stub implements CommodityBLService {
 	@Override
 	public ArrayList<CommodityVO> findById(String id) {
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
-		list.add(new CommodityVO(id, "飞利浦吊灯", "FLP01", 233, 20 ,40 ,20 ,40, 50, true));
+		list.add(new CommodityVO(id, "飞利浦吊灯", "FLP01", 233, 20 ,40 ,20 ,40, 50, true,null));
 		return list;
 	}
 
 	@Override
 	public ArrayList<CommodityVO> findByName(String name) {
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
-		list.add(new CommodityVO("00001-00001-00001", name, "FLP01", 233, 20 ,40 ,20 ,40, 50, true));
+		list.add(new CommodityVO("00001-00001-00001", name, "FLP01", 233, 20 ,40 ,20 ,40, 50, true,null));
 		return list;
 	}
 
 	@Override
 	public ArrayList<CommodityVO> findByModel(String model) {
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
-		list.add(new CommodityVO("00001-00001-00001", "飞利浦吊灯", model, 233, 20 ,40 ,20 ,40, 50, true));
+		list.add(new CommodityVO("00001-00001-00001", "飞利浦吊灯", model, 233, 20 ,40 ,20 ,40, 50, true,null));
 		return list;
 	}
 
 	@Override
 	public ArrayList<CommodityVO> show() {
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
-		list.add(new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,20 ,40, 50, true));
+		list.add(new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,20 ,40, 50, true,null));
 		return list;
 	}
 

@@ -57,12 +57,6 @@ public class UserController implements UserBLService {
 	}
 
 	@Override
-	public ResultMessage login(String id, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<UserVO> findById(String id) {
 		// TODO Auto-generated method stub
 		return null;

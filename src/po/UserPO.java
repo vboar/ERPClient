@@ -7,8 +7,6 @@ package po;
 
 import java.io.Serializable;
 
-import util.UserType;
-
 public class UserPO implements Serializable{
 	
 	/**
@@ -29,7 +27,7 @@ public class UserPO implements Serializable{
 	/**
 	 * 类型
 	 */
-	private UserType type;
+	private int type;
 	
 	/**
 	 * 权限
@@ -49,7 +47,7 @@ public class UserPO implements Serializable{
 	 * @param perssion
 	 * @param name
 	 */
-	public UserPO(String id,String password,UserType type,int perssion,String name){
+	public UserPO(String id,String password,int type,int perssion,String name){
 		this.id=id;
 		this.password=password;
 		this.permission=perssion;
@@ -64,11 +62,11 @@ public class UserPO implements Serializable{
 		this.password = password;
 	}
 
-	public UserType getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(UserType type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

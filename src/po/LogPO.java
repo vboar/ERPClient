@@ -27,7 +27,7 @@ public class LogPO implements Serializable {
 	/**
 	 * 操作员
 	 */
-	private String operator;
+	private String operatorId;
 	
 	/**
 	 * 操作内容
@@ -41,10 +41,10 @@ public class LogPO implements Serializable {
 	 * @param operator
 	 * @param content
 	 */
-	public LogPO(String id,String time,String operator,String content){
+	public LogPO(String id,String time,String operatorId,String content){
 		this.id=id;
 		this.time=time;
-		this.operator=operator;
+		this.operatorId=operatorId;
 		this.content=content;
 	}
 
@@ -56,8 +56,8 @@ public class LogPO implements Serializable {
 		return time;
 	}
 
-	public String getOperator() {
-		return operator;
+	public String getOperatorId() {
+		return operatorId;
 	}
 
 	public String getContent() {
