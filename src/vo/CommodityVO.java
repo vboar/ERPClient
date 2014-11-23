@@ -58,6 +58,11 @@ public class CommodityVO {
 	public boolean isTrade;
 	
 	/**
+	 * 它的分类
+	 */
+	public CategoryVO category;
+	
+	/**
 	 * 构造方法
 	 * @param name
 	 * @param model
@@ -71,16 +76,18 @@ public class CommodityVO {
 	 */
 	public CommodityVO(String id, String name, String model, int number, double purchasePrice,
 			double salePrice, double recentPurchasePrice, double recentSalePrice,
-	        int warningNumber, boolean isTrade) {
+	        int warningNumber, boolean isTrade,CategoryVO category) {
 		    this.id = id;
 		    this.name = name;
 		    this.model = model;
+		    this.number=number;
 		    this.purchasePrice = purchasePrice;
 		    this.salePrice = salePrice;
 		    this.recentPurchasePrice = recentPurchasePrice;
 		    this.recentSalePrice = recentSalePrice;
 		    this.warningNumber = warningNumber;
 		    this.isTrade = isTrade;
+		    this.category=category;
 	}
 	
 }

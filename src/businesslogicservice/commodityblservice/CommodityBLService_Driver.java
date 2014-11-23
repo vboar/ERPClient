@@ -18,19 +18,19 @@ public class CommodityBLService_Driver {
 		
 		System.out.println("添加商品的返回信息：");
 		result = commodityBLService.add(
-				new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,0 ,0, 50, false));
+				new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,0 ,0, 50, false,null));
 		if (result == ResultMessage.SUCCESS) System.out.println("商品添加成功！\n");
 		else System.out.println("商品添加失败！\n");
 		
 		System.out.println("删除商品的返回信息：");
 		result = commodityBLService.delete(
-				new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,0 ,0, 50, false));
+				new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,0 ,0, 50, false,null));
 		if (result == ResultMessage.SUCCESS) System.out.println("商品删除成功！\n");
 		else System.out.println("商品删除失败！\n");
 		
 		System.out.println("更新商品的返回信息：");
 		result = commodityBLService.update(
-				new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,10 ,20, 50, true));
+				new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,10 ,20, 50, true,null));
 		if (result == ResultMessage.SUCCESS) System.out.println("商品更新成功！\n");
 		else System.out.println("商品更新失败！\n");
 		

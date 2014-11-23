@@ -14,7 +14,8 @@ public enum ResultMessage {
 	TOO_SHORT,//输入的内容过短
 	UNVALID,//输入的内容含有非法字符
 	NOT_FOUND,//没有找到所需要的数据
-	HAS_CHILDREN//有子分类
+	HAS_CHILDREN,//有子分类
+	IS_TRADE//已经进行过交易
 	
 	
 	

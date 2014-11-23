@@ -37,7 +37,7 @@ public class InitialBLService_Stub implements InitialBLService {
 	@Override
 	public ArrayList<CommodityVO> showCommodity(InitialVO vo) {
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
-		list.add(new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,20 ,40, 50, true));
+		list.add(new CommodityVO("00001-00001-00001", "飞利浦吊灯", "FLP01", 233, 20 ,40 ,20 ,40, 50, true,null));
 		return list;
 	}
 

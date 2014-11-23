@@ -22,13 +22,22 @@ public class Category {
 		return ml.create();
 	}
 	
-	public CategoryPO CategoryVOToCategoryPO(CategoryVO vo){
+	private  CategoryPO CategoryVOToCategoryPO(CategoryVO vo){
 		String id="";
 		//todo
 		String name=vo.name;
 		int number=vo.number;
 		CategoryPO po=new CategoryPO(id,name,number);
 		return po;
+	}
+	
+	private  CategoryVO CategoryPOToCategoryVO(CategoryPO po) throws RemoteException{
+		String id=po.getId();
+		String name=po.getName();
+		int number=po.getNumber();
+		CategoryVO vo=new CategoryVO(name,number,findById(id).get(0));
+				
+		return vo;
 	}
 	
 	
@@ -76,15 +85,40 @@ public class Category {
 	
 	
 	
-	
-	public ArrayList<CategoryPO> show(){
-		return null;
+	public ArrayList<CategoryVO> findById(String id) throws RemoteException{
+		ArrayList<CategoryPO> poList= DataFactoryImpl.getInstance().getCategoryData().findById(id);
+		 ArrayList<CategoryVO> voList=new ArrayList<CategoryVO>();
+		 for(CategoryPO po:poList){
+			 voList.add(CategoryPOToCategoryVO(po));
+		 }
+		 return voList;
 	}
 	
-	public boolean existPO(String id) throws RemoteException {
-		ArrayList<CategoryPO> poList = show();
-		for (CategoryPO poCheck : poList) {
-			if (poCheck.getId().equals(id)) {
+	public ArrayList<CategoryVO> findByName(String name) throws RemoteException{
+		ArrayList<CategoryPO> poList= DataFactoryImpl.getInstance().getCategoryData().findByName(name);
+		 ArrayList<CategoryVO> voList=new ArrayList<CategoryVO>();
+		 for(CategoryPO po:poList){
+			 voList.add(CategoryPOToCategoryVO(po));
+		 }
+		 return voList;
+	}		
+	
+	public ArrayList<CategoryVO> show() throws RemoteException{
+		ArrayList<CategoryPO> poList= DataFactoryImpl.getInstance().getCategoryData().show();
+		 ArrayList<CategoryVO> voList=new ArrayList<CategoryVO>();
+		 for(CategoryPO po:poList){
+			 voList.add(CategoryPOToCategoryVO(po));
+		 }
+		 return voList;
+
+	}
+	
+	
+	
+	private boolean existPO(String id) throws RemoteException {
+		ArrayList<CategoryVO> voList = show();
+		for (CategoryVO voCheck : voList) {
+			if (voCheck.id.equals(id)) {
 				return true;
 			}
 		}
