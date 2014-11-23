@@ -9,15 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-import ui.util.MyOptionPane;
-import ui.HomeUI;
+import ui.homeui.HomeUI;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -52,20 +51,22 @@ public class LoginPanel extends JPanel{
 	
 	public LoginPanel(LoginUI frame){
 		this.loginController = ControllerFactoryImpl.getInstance().getLoginController();
+		//获得面板配置
+		PanelConfig panelCfg = ERPConfig.getLOGINFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.frame = frame;
 		// 设置布局管理器为自由布局
 		this.setLayout(null);
+		this.setSize(panelCfg.getWidth(), panelCfg.getHeight());
+		this.setLocation(panelCfg.getX(), panelCfg.getY());
 		// 初始化组件
-		this.initComponent();
+		this.initComponent(panelCfg);
 		this.repaint();
 	}
 
 	/**
 	 * 初始化组件
 	 */
-	private void initComponent() {
-		//获得面板配置
-		PanelConfig panelCfg = ERPConfig.getLOGINFRAME_CONFIG().getPanelsCfg().get(0);
+	private void initComponent(PanelConfig panelCfg) {
 		this.initComboBox(panelCfg);
 		this.initText(panelCfg);
 		this.initLabel(panelCfg);
@@ -121,12 +122,20 @@ public class LoginPanel extends JPanel{
 			// 事件处理
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ResultMessage login = loginController.login(idTxt.getText(), String.valueOf(passwordTxt.getPassword()));
-				if(login == ResultMessage.SUCCESS){
-					new HomeUI();
+				ResultMessage loginresult = loginController.login(usertype.getSelectedIndex(),idTxt.getText(), 
+						String.valueOf(passwordTxt.getPassword()));
+				if(loginresult == ResultMessage.SUCCESS){
+					new HomeUI(loginController);
 					frame.dispose();
 				}else{
-					MyOptionPane.showMessageDialog(null, "用户名或密码错误！");
+					if(loginresult==ResultMessage.WRONG_ID){
+						MyOptionPane.showMessageDialog(null, "用户名错误！");
+						idTxt.setText("");
+						passwordTxt.setText("");
+					}else{
+						MyOptionPane.showMessageDialog(null, "密码错误！");
+						passwordTxt.setText("");
+					}
 				}
 			}
 		});

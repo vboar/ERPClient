@@ -8,6 +8,7 @@ package util;
 
 public enum UserType {
 	STOCKKEEPER, // 库存管理员
+	COUNTER, //  财务人员
 	SALESMAN, // 销售人员
 	MANAGER, // 总经理
 	ADMINISTRATOR // 系统管理员

@@ -8,6 +8,8 @@ package util;
 public enum ResultMessage {
 	SUCCESS, // 成功
 	FAILED, // 失败
+	
+	WRONG_ID, // 错误用户ID
 		
 	EXIST,//想要添加的东西在数据库已存在
 	TOO_LONG,//输入的内容过长

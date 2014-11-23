@@ -26,4 +26,13 @@ public class MyButton extends JButton{
 				Integer.parseInt(ele.attributeValue("y")));;
 		
 	}
+	
+	public MyButton(String text, Element ele){
+		this.setText(text);
+		this.setSize(Integer.parseInt(ele.attributeValue("w")),
+				Integer.parseInt(ele.attributeValue("h")));
+		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
+				Integer.parseInt(ele.attributeValue("y")));;
+		
+	}
 }

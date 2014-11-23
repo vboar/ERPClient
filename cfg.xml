@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <erp>
 	<loginframe width="540" height="360" windowUp="20">
-		<panel className="ui.login.LoginPanel">
+		<panel className="ui.loginui.LoginPanel" width="540" height="360" x="0" y="0">
 			<buttons>
-				<login 	text="登录" w="80" h="40" x="300" y="260" />
-				<quit	text="退出" w="80" h="40" x="400" y="260" />
-				<setting	text="设置" w="80" h="30" x="440" y="15" />
+				<login text="登录" w="80" h="40" x="300" y="260" />
+				<quit text="退出" w="80" h="40" x="400" y="260" />
+				<setting text="设置" w="80" h="30" x="440" y="15" />
 			</buttons>
 			<labels>
 				<type text="类型" w="100" h="30" x="270" y="80" />
@@ -27,6 +27,30 @@
 			</comboboxes>
 		</panel>
 	</loginframe>
-	<frame title="ERP" width="900" height="600" windowUp="20">
+	<frame title="ERP" width="960" height="600" windowUp="20">
+		<panel className="ui.homeui.LoginUserInfoPanel" width="960" height="90" x="0" y="0">
+			<buttons>
+				<mailbox text="收件箱" w="80" h="30" x="140" y="50" />
+			</buttons>
+			<labels>
+				<username w="100" h="30" x="60" y="10" />
+				<id w="100" h="30" x="60" y="30" />
+				<img text="IMG" w="50" h="50" x="20" y="20" />
+			</labels>
+		</panel>
+		<panel className="ui.userui.UserPanel" width="960" height="510" x="0" y="90">
+			<buttons>
+				<add text="添加" w="80" h="30" x="120" y="20" />
+				<delete text="删除" w="80" h="30" x="220" y="20" />
+				<modify text="修改" w="80" h="30" x="320" y="20" />
+				<find text="查找" w="80" h="30" x="740" y="20" />
+			</buttons>
+			<labels>
+				<userlist text="用户列表" w="100" h="30" x="20" y="20" />
+			</labels>
+			<textfields>
+				<findinput w="145" h="30" x="520" y="20" />
+			</textfields>
+		</panel>
 	</frame>
 </erp>

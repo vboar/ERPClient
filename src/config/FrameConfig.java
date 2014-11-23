@@ -1,6 +1,6 @@
 package config;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.dom4j.Element;
@@ -27,7 +27,7 @@ public class FrameConfig {
 	/**
 	 * 面板配置
 	 */
-	private ArrayList<PanelConfig> panelsCfg;
+	private HashMap<String,PanelConfig> configMap;
 	
 	public FrameConfig(Element frame) {
 		// 获取窗口标题
@@ -39,12 +39,12 @@ public class FrameConfig {
 		// 获取窗口拔高
 		this.windowUp = Integer.parseInt(frame.attributeValue("windowUp"));
 		// 获取面板配置
-		this.panelsCfg = new ArrayList<PanelConfig>();
+		this.configMap = new HashMap<String, PanelConfig>();
 		@SuppressWarnings("unchecked")
 		List<Element> panels = frame.elements("panel");
 		for(Element panel: panels){
 			PanelConfig pcfg = new PanelConfig(panel);
-			this.panelsCfg.add(pcfg);
+			this.configMap.put(pcfg.getClassName(), pcfg);
 		}
 	}
 
@@ -64,8 +64,9 @@ public class FrameConfig {
 		return windowUp;
 	}
 
-	public ArrayList<PanelConfig> getPanelsCfg() {
-		return panelsCfg;
+	public HashMap<String, PanelConfig> getConfigMap() {
+		return configMap;
 	}
+
 
 }

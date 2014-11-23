@@ -1,6 +1,7 @@
 package businesslogicservice.loginblservice;
 
 import util.ResultMessage;
+import util.UserType;
 
 public interface LoginBLService {
     
@@ -10,5 +11,11 @@ public interface LoginBLService {
      * @param password
      * @return 结果消息
      */
-    public ResultMessage login(String id, String password);
+    public ResultMessage login(int type, String id, String password);
+    
+    public String getUserName();
+    
+    public String getUserId();
+    
+    public UserType getUserType();
 }

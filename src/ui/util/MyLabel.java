@@ -28,4 +28,14 @@ public class MyLabel extends JLabel{
 		this.setHorizontalAlignment(CENTER);
 		
 	}
+	
+	public MyLabel(String text,Element ele){
+		this.setText(text);
+		this.setSize(Integer.parseInt(ele.attributeValue("w")),
+				Integer.parseInt(ele.attributeValue("h")));
+		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
+				Integer.parseInt(ele.attributeValue("y")));;
+		this.setHorizontalAlignment(CENTER);
+		
+	}
 }
