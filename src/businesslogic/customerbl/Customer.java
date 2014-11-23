@@ -102,7 +102,7 @@ public class Customer {
 			result.add(new CustomerVO(temp.getId(),temp.getCategory(),temp.getLevel(),
 					temp.getName(),temp.getPhoneNumber(),temp.getAddress(),
 					temp.getPostalCode(),temp.getEmail(),temp.getCreditLimit(),
-					temp.getReceivables(),temp.getPaybles(),temp.getDefaultOperator(),temp.isDeletable()));
+					temp.getReceivables(),temp.getPaybles(),temp.getDefaultOperatorId(),temp.isDeletable()));
 		}
 		
 		return result;
