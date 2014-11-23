@@ -34,14 +34,9 @@ public class PaymentPO implements Serializable {
 	private String customerId;
 	
 	/**
-	 * 客户名称
-	 */
-	private String customerName;
-	
-	/**
 	 * 操作员
 	 */
-	private String operator;
+	private String operatorId;
 	
 	/**
 	 * 转账列表
@@ -56,7 +51,7 @@ public class PaymentPO implements Serializable {
 	/**
 	 * 审批状态
 	 */
-	private DocumentStatus approvalState;
+	private int documentStatus;
 	
 	/**
 	 * 是否为红冲单据
@@ -66,7 +61,7 @@ public class PaymentPO implements Serializable {
 	/**
 	 * 单据类型
 	 */
-	private DocumentType documentType;
+	private int documentType;
 	
 	/**
 	 * 构造方法
@@ -80,27 +75,18 @@ public class PaymentPO implements Serializable {
 	 * @param isWriteOff
 	 * @param documentType
 	 */
-	public PaymentPO(String id,String time,String customerId,String customerName,
-			String operator,ArrayList<TransferLineItemPO> transferList,double total,
-			DocumentStatus approvalState,boolean isWriteOff,DocumentType documentType){
+	public PaymentPO(String id,String time,String customerId,String operatorId,
+			ArrayList<TransferLineItemPO> transferList,double total,
+			int documentStatus,boolean isWriteOff,int documentType){
 		this.id = id;
 		this.time = time;
 		this.customerId = customerId;
-		this.customerName = customerName;
-		this.operator = operator;
+		this.operatorId = operatorId;
 		this.transferList = transferList;
 		this.total = total;
-		this.approvalState = approvalState;
+		this.documentStatus = documentStatus;
 		this.isWriteOff = isWriteOff;
 		this.documentType = documentType;
-	}
-
-	public DocumentStatus getApprovalState() {
-		return approvalState;
-	}
-
-	public void setApprovalState(DocumentStatus approvalState) {
-		this.approvalState = approvalState;
 	}
 
 	public String getId() {
@@ -109,14 +95,6 @@ public class PaymentPO implements Serializable {
 
 	public String getCustomerId() {
 		return customerId;
-	}
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-	public String getOperator() {
-		return operator;
 	}
 
 	public ArrayList<TransferLineItemPO> getTransferList() {
@@ -131,12 +109,24 @@ public class PaymentPO implements Serializable {
 		return isWriteOff;
 	}
 
-	public DocumentType getDocumentType() {
-		return documentType;
-	}
-
 	public String getTime() {
 		return time;
+	}
+
+	public int getDocumentStatus() {
+		return documentStatus;
+	}
+
+	public void setDocumentStatus(int documentStatus) {
+		this.documentStatus = documentStatus;
+	}
+
+	public String getOperatorId() {
+		return operatorId;
+	}
+
+	public int getDocumentType() {
+		return documentType;
 	}
 	
 }

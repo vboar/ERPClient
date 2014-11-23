@@ -5,6 +5,7 @@
  */
 package util;
 
+
 public enum UserType {
 	STOCKKEEPER, // 库存管理员
 	SALESMAN, // 销售人员

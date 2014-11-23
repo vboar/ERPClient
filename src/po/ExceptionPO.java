@@ -36,12 +36,12 @@ public class ExceptionPO implements Serializable {
 	/**
 	 * 审批状态
 	 */
-	private DocumentStatus status;
+	private int documentStatus;
 	
 	/**
 	 * 单据类型
 	 */
-	private DocumentType type;
+	private int documentType;
 	
 	/**
 	 * 是否为红冲单据
@@ -63,21 +63,13 @@ public class ExceptionPO implements Serializable {
 	 * @param isWriteoff
 	 */
 	public ExceptionPO(String id, String time, ArrayList<ExceptionLineItemPO> list,
-			DocumentStatus status, DocumentType type, boolean isWriteoff) {
+			int documentStatus, int documentType, boolean isWriteoff) {
 		this.id = id;
 		this.time = time;
 		this.list = list;
-		this.status = status;
-		this.type = type;
+		this.documentStatus = documentStatus;
+		this.documentType = documentType;
 		this.isWriteoff = isWriteoff;
-	}
-
-	public DocumentStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(DocumentStatus status) {
-		this.status = status;
 	}
 
 	public String getId() {
@@ -92,8 +84,16 @@ public class ExceptionPO implements Serializable {
 		return list;
 	}
 
-	public DocumentType getType() {
-		return type;
+	public int getDocumentStatus() {
+		return documentStatus;
+	}
+
+	public void setDocumentStatus(int documentStatus) {
+		this.documentStatus = documentStatus;
+	}
+
+	public int getDocumentType() {
+		return documentType;
 	}
 
 	public boolean isWriteoff() {

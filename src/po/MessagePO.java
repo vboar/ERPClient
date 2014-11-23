@@ -32,18 +32,18 @@ public class MessagePO implements Serializable {
 	/**
 	 * 接收者
 	 */
-	private String receiver;
+	private String receiverId;
 	
 	/**
 	 * 消息内容
 	 */
     private String content;
     
-    public MessagePO(String id,String time,int state,String receiver,String content){
+    public MessagePO(String id,String time,int state,String receiverId,String content){
     	this.id=id;
     	this.time=time;
     	this.state=state;
-    	this.receiver=receiver;
+    	this.receiverId=receiverId;
     	this.content=content;
     }
 
@@ -64,7 +64,7 @@ public class MessagePO implements Serializable {
 	}
 
 	public String getReceiver() {
-		return receiver;
+		return receiverId;
 	}
 
 	public String getContent() {

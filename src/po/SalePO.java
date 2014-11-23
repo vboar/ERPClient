@@ -8,9 +8,6 @@ package po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import util.DocumentStatus;
-import util.DocumentType;
-
 public class SalePO implements Serializable {
 
 	/**
@@ -32,20 +29,16 @@ public class SalePO implements Serializable {
 	* 客户编号
 	*/
 	 private String customerId;	
-	   
-	/**
-	* 客户姓名
-	*/
-	private String name;
 	
 	/**
 	* 业务员
 	*/
 	private String salesman;
+	
 	/**
 	* 操作员
 	*/
-	private String operator;
+	private String operatorId;
 	   
 	/**
 	* 仓库
@@ -85,7 +78,7 @@ public class SalePO implements Serializable {
 	/**
 	* 审批状态
 	*/
-	private DocumentStatus approvalState;
+	private int documentStatus;
 	   
 	/**
 	* 是否为红冲单据
@@ -95,16 +88,15 @@ public class SalePO implements Serializable {
 	/**
 	* 单据类型
 	*/
-	private DocumentType receiptType;
+	private int documentType;
 	
 	/**
 	 * 构造方法
 	 * @param receiptId
 	 * @param time
 	 * @param customerId
-	 * @param name
 	 * @param salsman
-	 * @param operator
+	 * @param operatorId
 	 * @param storage
 	 * @param saleList
 	 * @param totalBeforeDiscount
@@ -116,16 +108,15 @@ public class SalePO implements Serializable {
 	 * @param isWriteOff
 	 * @param receiptType
 	 */
-	public SalePO(String receiptId,String time,String customerId,String name,String salsman,
-			String operator,String storage,ArrayList<CommodityLineItemPO> saleList,double totalBeforeDiscount,
+	public SalePO(String receiptId,String time,String customerId,String salsman,
+			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,double totalBeforeDiscount,
 			double discount,double voucher,double totalAfterDiscount,String remark,
-			DocumentStatus approvalState,boolean isWriteOff,DocumentType receiptType){
+			int documentStatus,boolean isWriteOff,int documentType){
 		this.receiptId=receiptId;
 		this.time = time;
 		this.customerId=customerId;
-		this.name=name;
 		this.salesman = salsman;
-		this.operator=operator;
+		this.operatorId=operatorId;
 		this.storage=storage;
 		this.saleList=saleList;
 		this.totalBeforeDiscount=totalBeforeDiscount;
@@ -133,19 +124,11 @@ public class SalePO implements Serializable {
 		this.voucher=voucher;
 		this.totalAfterDiscount=totalAfterDiscount;
 		this.remark=remark;
-		this.approvalState=approvalState;
+		this.documentStatus=documentStatus;
 		this.isWriteOff=isWriteOff;
-		this.receiptType=receiptType;
+		this.documentType=documentType;
 	}
-
-	public DocumentStatus getApprovalState() {
-		return approvalState;
-	}
-
-	public void setApprovalState(DocumentStatus approvalState) {
-		this.approvalState = approvalState;
-	}
-
+	
 	public String getReceiptId() {
 		return receiptId;
 	}
@@ -158,16 +141,8 @@ public class SalePO implements Serializable {
 		return customerId;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public String getSalesman() {
 		return salesman;
-	}
-
-	public String getOperator() {
-		return operator;
 	}
 
 	public String getStorage() {
@@ -202,8 +177,20 @@ public class SalePO implements Serializable {
 		return isWriteOff;
 	}
 
-	public DocumentType getReceiptType() {
-		return receiptType;
+	public int getDocumentStatus() {
+		return documentStatus;
+	}
+
+	public void setDocumentStatus(int documentStatus) {
+		this.documentStatus = documentStatus;
+	}
+
+	public String getOperatorId() {
+		return operatorId;
+	}
+
+	public int getDocumentType() {
+		return documentType;
 	}
 	
 }

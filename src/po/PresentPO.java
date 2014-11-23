@@ -34,11 +34,6 @@ public class PresentPO implements Serializable {
 	private String clientId;
 	
 	/**
-	 * 客户姓名
-	 */
-	private String clientName;
-	
-	/**
 	 * 赠品列表
 	 */
 	private ArrayList<PresentLineItemPO> list;
@@ -46,12 +41,12 @@ public class PresentPO implements Serializable {
 	/**
 	 * 审批状态
 	 */
-	private DocumentStatus status;
+	private int documentStatus;
 	
 	/**
 	 * 单据类型
 	 */
-	private DocumentType type;
+	private int documentType;
 	
 	/**
 	 * 是否为红冲单据
@@ -63,7 +58,6 @@ public class PresentPO implements Serializable {
 	 * @param id
 	 * @param time
 	 * @param clientId
-	 * @param clientName
 	 * @param list
 	 * @param status
 	 * @param type
@@ -71,14 +65,13 @@ public class PresentPO implements Serializable {
 	 */
 	public PresentPO(String id, String time, String clientId,
 			String clientName, ArrayList<PresentLineItemPO> list,
-			DocumentStatus status, DocumentType type, boolean isWriteoff) {
+			int documentStatus, int documentType, boolean isWriteoff) {
 		this.id = id;
 		this.time = time;
 		this.clientId = clientId;
-		this.clientName = clientName;
 		this.list = list;
-		this.status = status;
-		this.type = type;
+		this.documentStatus = documentStatus;
+		this.documentType = documentType;
 		this.isWriteoff = isWriteoff;
 	}
 
@@ -90,24 +83,12 @@ public class PresentPO implements Serializable {
 		this.list = list;
 	}
 
-	public DocumentStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(DocumentStatus status) {
-		this.status = status;
-	}
-
 	public String getId() {
 		return id;
 	}
 
 	public String getTime() {
 		return time;
-	}
-
-	public DocumentType getType() {
-		return type;
 	}
 
 	public boolean isWriteoff() {
@@ -118,8 +99,16 @@ public class PresentPO implements Serializable {
 		return clientId;
 	}
 
-	public String getClientName() {
-		return clientName;
+	public int getDocumentStatus() {
+		return documentStatus;
+	}
+
+	public void setDocumentStatus(int documentStatus) {
+		this.documentStatus = documentStatus;
+	}
+
+	public int getDocumentType() {
+		return documentType;
 	}
 
 }
