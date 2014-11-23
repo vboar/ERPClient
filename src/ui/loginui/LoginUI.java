@@ -3,11 +3,10 @@
  * @author JaneLDQ
  * @date 2014/11/23
  */
-package ui;
+package ui.loginui;
 
 import javax.swing.JFrame;
 
-import ui.login.LoginPanel;
 import ui.util.FrameUtil;
 import config.ERPConfig;
 import config.FrameConfig;

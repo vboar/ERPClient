@@ -3,7 +3,7 @@
  * @author JaneLDQ
  * @date 2014/11/23
  */
-package ui.login;
+package ui.loginui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +13,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+import ui.util.MyOptionPane;
 import ui.HomeUI;
-import ui.LoginUI;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
 import ui.util.MyTextField;
+import util.ResultMessage;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.loginbl.LoginController;
 import config.ERPConfig;
 import config.PanelConfig;
@@ -46,9 +48,10 @@ public class LoginPanel extends JPanel{
 	
 	private LoginUI frame;
 	
-//	private LoginController loginController;
+	private LoginController loginController;
 	
 	public LoginPanel(LoginUI frame){
+		this.loginController = ControllerFactoryImpl.getInstance().getLoginController();
 		this.frame = frame;
 		// 设置布局管理器为自由布局
 		this.setLayout(null);
@@ -63,35 +66,19 @@ public class LoginPanel extends JPanel{
 	private void initComponent() {
 		//获得面板配置
 		PanelConfig panelCfg = ERPConfig.getLOGINFRAME_CONFIG().getPanelsCfg().get(0);
-		this.initButton(panelCfg);
+		this.initComboBox(panelCfg);
 		this.initText(panelCfg);
 		this.initLabel(panelCfg);
-		this.initComboBox(panelCfg);
+		this.initButtons(panelCfg);
 	}
 	
-	private void initButton(PanelConfig cfg){
-		this.loginBtn = new MyButton(cfg.getButtons().element("login"));
-		this.loginBtn.addActionListener(new ActionListener(){
-			// 事件处理
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new HomeUI();
-				frame.dispose();
-			}
-		});
-		this.quitBtn = new MyButton(cfg.getButtons().element("quit"));
-		this.quitBtn.addActionListener(new ActionListener(){
-			// 事件处理
-			@Override
-			public void actionPerformed(ActionEvent e){
-				int result = JOptionPane.showConfirmDialog(null, "确认退出？","系统提示",
-						JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-				if(result==JOptionPane.YES_OPTION){
-					System.exit(0);
-				}
-			}
-		});
-		this.setBtn = new MyButton(cfg.getButtons().element("setting"));
+	private void initButtons(PanelConfig cfg){
+		// 初始登录按钮
+		this.initLoginBtn(cfg);
+		// 初始退出按钮
+		this.initQuitBtn(cfg);
+		// 初始设置按钮
+		this.initSetBtn(cfg);
 		this.add(this.loginBtn);
 		this.add(this.quitBtn);
 		this.add(this.setBtn);
@@ -105,6 +92,7 @@ public class LoginPanel extends JPanel{
 		this.add(this.typeLab);
 		this.add(this.idLab);
 		this.add(this.passwordLab);
+		
 	}
 	
 	private void initText(PanelConfig cfg){
@@ -124,5 +112,43 @@ public class LoginPanel extends JPanel{
 		// 获得复选框配置
 		this.usertype = new MyComboBox(cfg.getComboboxes().element("usertype"));
 		this.add(this.usertype);
+	}
+	
+	public void initLoginBtn(PanelConfig cfg){
+		// 初始化登录按钮
+		this.loginBtn = new MyButton(cfg.getButtons().element("login"));
+		this.loginBtn.addActionListener(new ActionListener(){
+			// 事件处理
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ResultMessage login = loginController.login(idTxt.getText(), String.valueOf(passwordTxt.getPassword()));
+				if(login == ResultMessage.SUCCESS){
+					new HomeUI();
+					frame.dispose();
+				}else{
+					MyOptionPane.showMessageDialog(null, "用户名或密码错误！");
+				}
+			}
+		});
+	}
+	
+	public void initQuitBtn(PanelConfig cfg){
+		// 初始化退出按钮
+		this.quitBtn = new MyButton(cfg.getButtons().element("quit"));
+		this.quitBtn.addActionListener(new ActionListener(){
+			// 事件处理
+			@Override
+			public void actionPerformed(ActionEvent e){
+				int result = MyOptionPane.showConfirmDialog(null, "确认退出？","系统提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+				if(result==MyOptionPane.YES_OPTION){
+					System.exit(0);
+				}
+			}
+		});
+	}
+
+	public void initSetBtn(PanelConfig cfg){
+		this.setBtn = new MyButton(cfg.getButtons().element("setting"));
 	}
 }
