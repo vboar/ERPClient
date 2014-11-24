@@ -31,7 +31,7 @@ public class PromotionTest {
 		ArrayList<CustomerGiftVO> list2 = new ArrayList<CustomerGiftVO>();
 		list2.add(new CustomerGiftVO("00001", 5, null, 100.0, 10.0,
 				"2014/10/23", "2014/10/25", false));
-		Promotion bl = new Promotion();
+		CustomerGiftPromotion bl = new CustomerGiftPromotion();
 		MockCustomer customer = new MockCustomer(5);
 		for (int i = 0; i < list2.size(); i++) {
 			assertEquals(list2.get(i).id,

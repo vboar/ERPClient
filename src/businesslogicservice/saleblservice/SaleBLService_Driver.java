@@ -14,7 +14,7 @@ public class SaleBLService_Driver {
 	
 	ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 	commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",5,40,200,"自提"));
-    result=sbs.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,350
+    result=sbs.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,null,350
             ,70,0,280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	
     if(result==ResultMessage.SUCCESS)
@@ -24,7 +24,7 @@ public class SaleBLService_Driver {
 
     ArrayList<SaleVO> list=sbs.show();
     System.out.println("销售单查看结果：");
-    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).name+"；业务员："+
+    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).VIP+"；业务员："+
                        list.get(0).salesman+"；操作员："+list.get(0).operator+"；仓库："+
     		           list.get(0).storage+"\n"+"出货商品清单：\n"+
                        "商品编号："+list.get(0).saleList.get(0).id+"；商品名称："+
@@ -41,7 +41,7 @@ public class SaleBLService_Driver {
   
     list=sbs.findByTime("2014/10/20", "2014/10/26");
     System.out.println("按时间查找销售单的结果：");
-    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).name+"；业务员："+
+    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).VIP+"；业务员："+
                        list.get(0).salesman+"；操作员："+list.get(0).operator+"；仓库："+
     		           list.get(0).storage+"\n"+"出货商品清单：\n"+
                        "商品编号："+list.get(0).saleList.get(0).id+"；商品名称："+
@@ -58,7 +58,7 @@ public class SaleBLService_Driver {
   
     list=sbs.findByCommodityName("飞利浦吊灯");
     System.out.println("按商品名称查找销售退货单的结果：");
-    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).name+"；业务员："+
+    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).VIP+"；业务员："+
                        list.get(0).salesman+"；操作员："+list.get(0).operator+"；仓库："+
     		           list.get(0).storage+"\n"+"出货商品清单：\n"+
                        "商品编号："+list.get(0).saleList.get(0).id+"；商品名称："+
@@ -75,7 +75,7 @@ public class SaleBLService_Driver {
   
     list=sbs.findByCustomer("钢铁侠");
     System.out.println("按客户查找销售退货单的结果：");
-    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).name+"；业务员："+
+    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).VIP+"；业务员："+
                        list.get(0).salesman+"；操作员："+list.get(0).operator+"；仓库："+
     		           list.get(0).storage+"\n"+"出货商品清单：\n"+
                        "商品编号："+list.get(0).saleList.get(0).id+"；商品名称："+
@@ -92,7 +92,7 @@ public class SaleBLService_Driver {
   
     list=sbs.findBySalesman("美队");
     System.out.println("按业务员查找销售退货单的结果：");
-    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).name+"；业务员："+
+    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).VIP+"；业务员："+
                        list.get(0).salesman+"；操作员："+list.get(0).operator+"；仓库："+
     		           list.get(0).storage+"\n"+"出货商品清单：\n"+
                        "商品编号："+list.get(0).saleList.get(0).id+"；商品名称："+
@@ -109,7 +109,7 @@ public class SaleBLService_Driver {
     
     list=sbs.findByStorage("1");
     System.out.println("按仓库查找销售退货单的结果：");
-    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).name+"；业务员："+
+    System.out.println("客户编号:"+list.get(0).customerId+"；客户姓名："+list.get(0).VIP+"；业务员："+
                        list.get(0).salesman+"；操作员："+list.get(0).operator+"；仓库："+
     		           list.get(0).storage+"\n"+"出货商品清单：\n"+
                        "商品编号："+list.get(0).saleList.get(0).id+"；商品名称："+

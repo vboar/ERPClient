@@ -23,7 +23,7 @@ public class SaleReturnBLService_Stub implements SaleBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
 	    ArrayList<SaleVO> list=new ArrayList<SaleVO>();
-	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
+	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,commodity,-350
                             ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -36,7 +36,7 @@ public class SaleReturnBLService_Stub implements SaleBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
 	    ArrayList<SaleVO> list=new ArrayList<SaleVO>();
-	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
+	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,commodity,-350
                             ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -48,7 +48,7 @@ public class SaleReturnBLService_Stub implements SaleBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
 	    ArrayList<SaleVO> list=new ArrayList<SaleVO>();
-	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
+	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,commodity,-350
                             ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -60,7 +60,7 @@ public class SaleReturnBLService_Stub implements SaleBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
 	    ArrayList<SaleVO> list=new ArrayList<SaleVO>();
-	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
+	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,commodity,-350
                             ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -72,7 +72,7 @@ public class SaleReturnBLService_Stub implements SaleBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
 	    ArrayList<SaleVO> list=new ArrayList<SaleVO>();
-	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
+	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,commodity,-350
                             ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -84,7 +84,7 @@ public class SaleReturnBLService_Stub implements SaleBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",-5,-40,-200,"自提"));
 	    ArrayList<SaleVO> list=new ArrayList<SaleVO>();
-	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠","美队","XS001-浩克","1",commodity,-350
+	    list.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,commodity,-350
                             ,-70,0,-280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;

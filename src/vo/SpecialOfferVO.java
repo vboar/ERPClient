@@ -16,7 +16,7 @@ public class SpecialOfferVO {
 	/**
 	 * 商品列表
 	 */
-	public ArrayList<CombinationCommodityLineItemVO> commodityList;
+	public ArrayList<CommodityLineItemVO> commodityList;
 	
 	/**
 	 * 总价
@@ -46,7 +46,7 @@ public class SpecialOfferVO {
 	 * @param endTime
 	 * @param valid 
 	 */
-	public SpecialOfferVO(String id,ArrayList<CombinationCommodityLineItemVO> commodityList
+	public SpecialOfferVO(String id,ArrayList<CommodityLineItemVO> commodityList
 			,double total,String startTime,String endTime, boolean valid){
 		this.id= id;
 		this.commodityList=commodityList;

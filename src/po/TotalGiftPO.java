@@ -30,7 +30,7 @@ public class TotalGiftPO implements Serializable {
 	/**
 	 * 赠品的列表
 	 */
-	private ArrayList<CombinationCommodityLineItemPO> giftInfo;
+	private ArrayList<CommodityLineItemPO> giftInfo;
 	
 	/**
 	 * 价格折让
@@ -57,7 +57,7 @@ public class TotalGiftPO implements Serializable {
 	 */
 	private boolean valid;
 	
-	public TotalGiftPO(String id,double total,ArrayList<CombinationCommodityLineItemPO> giftInfo,double discount,double voucher,
+	public TotalGiftPO(String id,double total,ArrayList<CommodityLineItemPO> giftInfo,double discount,double voucher,
 			String startTime,String endTime,boolean valid){
 		this.id=id;
 		this.total=total;
@@ -86,7 +86,7 @@ public class TotalGiftPO implements Serializable {
 	}
 	
 
-	public ArrayList<CombinationCommodityLineItemPO> getGiftInfo() {
+	public ArrayList<CommodityLineItemPO> getGiftInfo() {
 		return giftInfo;
 	}
 

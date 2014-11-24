@@ -17,7 +17,8 @@ public enum ResultMessage {
 	UNVALID,//输入的内容含有非法字符
 	NOT_FOUND,//没有找到所需要的数据
 	HAS_CHILDREN,//有子分类
-	IS_TRADE//已经进行过交易
+	IS_TRADE,//已经进行过交易
+	TIME_ERROR//时间前后错误
 	
 	
 	

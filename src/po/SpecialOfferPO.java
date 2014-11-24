@@ -22,7 +22,7 @@ public class SpecialOfferPO implements Serializable {
 	/**
 	 * 商品列表
 	 */
-	private ArrayList<CombinationCommodityLineItemPO> commodityList;
+	private ArrayList<CommodityLineItemPO> commodityList;
 	
 	/**
 	 * 总价
@@ -51,7 +51,7 @@ public class SpecialOfferPO implements Serializable {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public SpecialOfferPO(String id,ArrayList<CombinationCommodityLineItemPO> commodityList
+	public SpecialOfferPO(String id,ArrayList<CommodityLineItemPO> commodityList
 			,double total,String startTime,String endTime,boolean valid){
 		this.id=id;
 		this.commodityList=commodityList;
@@ -73,7 +73,7 @@ public class SpecialOfferPO implements Serializable {
 		this.valid = valid;
 	}
 
-	public ArrayList<CombinationCommodityLineItemPO> getCommodityList() {
+	public ArrayList<CommodityLineItemPO> getCommodityList() {
 		return commodityList;
 	}
 
