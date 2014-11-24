@@ -5,6 +5,8 @@
  */
 package ui.loginui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -45,32 +47,42 @@ public class LoginPanel extends JPanel{
 	
 	private JPasswordField passwordTxt;
 	
+	private Image bg;
+	
 	private LoginUI frame;
+	
+	private PanelConfig pcfg;
 	
 	private LoginController loginController;
 	
 	public LoginPanel(LoginUI frame){
 		this.loginController = ControllerFactoryImpl.getInstance().getLoginController();
 		//获得面板配置
-		PanelConfig panelCfg = ERPConfig.getLOGINFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		this.pcfg = ERPConfig.getLOGINFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.frame = frame;
 		// 设置布局管理器为自由布局
 		this.setLayout(null);
-		this.setSize(panelCfg.getWidth(), panelCfg.getHeight());
-		this.setLocation(panelCfg.getX(), panelCfg.getY());
+		this.setSize(pcfg.getWidth(), pcfg.getHeight());
+		this.setLocation(pcfg.getX(), pcfg.getY());
+		this.bg = pcfg.getBg();
 		// 初始化组件
-		this.initComponent(panelCfg);
+		this.initComponent();
 		this.repaint();
 	}
 
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, pcfg.getWidth(), pcfg.getHeight(), null);
+	}
+	
 	/**
 	 * 初始化组件
 	 */
-	private void initComponent(PanelConfig panelCfg) {
-		this.initComboBox(panelCfg);
-		this.initText(panelCfg);
-		this.initLabel(panelCfg);
-		this.initButtons(panelCfg);
+	private void initComponent() {
+		this.initComboBox(pcfg);
+		this.initText(pcfg);
+		this.initLabel(pcfg);
+		this.initButtons(pcfg);
 	}
 	
 	private void initButtons(PanelConfig cfg){
@@ -104,6 +116,8 @@ public class LoginPanel extends JPanel{
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("h")));
 		this.passwordTxt.setLocation(Integer.parseInt(cfg.getTextFields().element("password").attributeValue("x")),
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("y")));
+		this.idTxt.setText("admin");
+		this.passwordTxt.setText("1");
 		this.add(this.idTxt);
 		this.add(this.passwordTxt);
 		

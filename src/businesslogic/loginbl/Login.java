@@ -19,7 +19,7 @@ public class Login {
 	}
 
 	public ResultMessage login(String password){
-		if((type==UserType.ADMINISTRATOR.ordinal())&&this.currentUserId.equals("a")&&password.equals("1")){
+		if((type==UserType.ADMINISTRATOR.ordinal())&&this.currentUserId.equals("admin")&&password.equals("1")){
 			this.currentUserType = UserType.ADMINISTRATOR;
 			return ResultMessage.SUCCESS;
 		}

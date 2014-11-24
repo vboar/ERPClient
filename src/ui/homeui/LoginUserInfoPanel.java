@@ -5,6 +5,11 @@
  */
 package ui.homeui;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JPanel;
 
 import org.dom4j.Element;
@@ -30,17 +35,25 @@ public class LoginUserInfoPanel extends JPanel {
 	
 	private LoginController lc;
 	
+	private Image bg;
+	
 	public LoginUserInfoPanel(LoginController lc){
 		this.lc = lc;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setLayout(null);
 		this.setSize(pcfg.getWidth(), pcfg.getHeight());
 		this.setLocation(pcfg.getX(), pcfg.getY());
+		this.bg = pcfg.getBg();
 		// 初始化组件
 		this.initComponent(pcfg);
 		this.repaint();
 	}
 
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, pcfg.getWidth(), pcfg.getHeight(), null);
+	}
+	
 	private void initComponent(PanelConfig cfg) {
 		this.initLabels(cfg.getLabels());
 		this.initButtons(cfg.getButtons());
@@ -52,9 +65,12 @@ public class LoginUserInfoPanel extends JPanel {
 	}
 
 	private void initLabels(Element label) {
-		this.username = new MyLabel(lc.getUserName(), label.element("username"));
-		this.userId = new MyLabel(lc.getUserId(),label.element("id"));
+		this.username = new MyLabel("操作员："+lc.getUserName(), label.element("username"));
+		this.userId = new MyLabel("ID："+lc.getUserId(),label.element("id"));
 		this.img = new MyLabel(label.element("img"));
+		this.username.setForeground(Color.WHITE);
+		this.userId.setForeground(Color.WHITE);
+		this.userId.setFont(new Font("黑体",Font.PLAIN,16));
 		this.add(this.username);
 		this.add(this.userId);
 		this.add(this.img);

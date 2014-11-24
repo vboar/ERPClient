@@ -1,5 +1,9 @@
 package config;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import org.dom4j.Element;
 
 public class PanelConfig {
@@ -37,6 +41,8 @@ public class PanelConfig {
 	
 	private int y;
 	
+	private Image bg;
+	
 	public PanelConfig(Element panel) {
 		this.className = panel.attributeValue("className");
 		// 获取按钮属性
@@ -51,6 +57,7 @@ public class PanelConfig {
 		this.height = Integer.parseInt(panel.attributeValue("height"));
 		this.x = Integer.parseInt(panel.attributeValue("x"));
 		this.y = Integer.parseInt(panel.attributeValue("y"));
+		this.bg = new ImageIcon(panel.attributeValue("bg")).getImage();
 	}	
 
 
@@ -89,6 +96,10 @@ public class PanelConfig {
 
 	public int getY() {
 		return y;
+	}
+
+	public Image getBg() {
+		return bg;
 	}
 
 }

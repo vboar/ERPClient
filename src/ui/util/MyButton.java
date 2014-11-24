@@ -5,6 +5,7 @@
  */
 package ui.util;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.dom4j.Element;
@@ -16,6 +17,7 @@ public class MyButton extends JButton{
 		this.setText(text);
 		this.setSize(w, h);
 		this.setLocation(x, y);
+		this.setFocusPainted(false);
 	}
 	
 	public MyButton(Element ele){
@@ -23,8 +25,13 @@ public class MyButton extends JButton{
 		this.setSize(Integer.parseInt(ele.attributeValue("w")),
 				Integer.parseInt(ele.attributeValue("h")));
 		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
-				Integer.parseInt(ele.attributeValue("y")));;
-		
+				Integer.parseInt(ele.attributeValue("y")));
+		if(ele.attributeValue("path")!=null){
+			this.setIcon(new ImageIcon(ele.attributeValue("path")));
+			this.setBorderPainted(false);
+			this.setContentAreaFilled(false);
+		}
+		this.setFocusPainted(false);
 	}
 	
 	public MyButton(String text, Element ele){
@@ -32,7 +39,7 @@ public class MyButton extends JButton{
 		this.setSize(Integer.parseInt(ele.attributeValue("w")),
 				Integer.parseInt(ele.attributeValue("h")));
 		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
-				Integer.parseInt(ele.attributeValue("y")));;
-		
+				Integer.parseInt(ele.attributeValue("y")));
+		this.setFocusPainted(false);
 	}
 }

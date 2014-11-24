@@ -5,6 +5,9 @@
  */
 package ui.userui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -31,6 +34,8 @@ public class UserPanel extends JPanel{
 	
 	private MyLabel userlist;
 	
+	private Image bg;
+	
 	@SuppressWarnings("unused")
 	private JFrame homeframe;
 	
@@ -42,10 +47,16 @@ public class UserPanel extends JPanel{
 		this.setSize(pcfg.getWidth(), pcfg.getHeight());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
+		this.bg = pcfg.getBg();
 		this.initComponent(pcfg);
 		this.repaint();
 	}
 
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, pcfg.getWidth(),pcfg.getHeight(),null);
+	}
+	
 	private void initComponent(PanelConfig cfg) {
 		this.initButtons(cfg.getButtons());
 		this.initLabels(cfg.getLabels());

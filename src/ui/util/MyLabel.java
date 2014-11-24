@@ -5,6 +5,7 @@
  */
 package ui.util;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import org.dom4j.Element;
@@ -16,7 +17,6 @@ public class MyLabel extends JLabel{
 		this.setText(text);
 		this.setSize(w,h);
 		this.setLocation(x, y);
-		this.setHorizontalAlignment(CENTER);
 	}
 	
 	public MyLabel(Element ele){
@@ -25,8 +25,9 @@ public class MyLabel extends JLabel{
 				Integer.parseInt(ele.attributeValue("h")));
 		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
 				Integer.parseInt(ele.attributeValue("y")));;
-		this.setHorizontalAlignment(CENTER);
-		
+		if(ele.attributeValue("path")!=null){
+			this.setIcon(new ImageIcon(ele.attributeValue("path")));
+		}
 	}
 	
 	public MyLabel(String text,Element ele){
@@ -35,7 +36,5 @@ public class MyLabel extends JLabel{
 				Integer.parseInt(ele.attributeValue("h")));
 		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
 				Integer.parseInt(ele.attributeValue("y")));;
-		this.setHorizontalAlignment(CENTER);
-		
 	}
 }
