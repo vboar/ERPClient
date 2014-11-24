@@ -39,11 +39,11 @@ public class HomeUI extends JFrame{
 		this.setVisible(true);
 	}
 	
-	public void addUserInfoPanel(LoginController lc){
+	private void addUserInfoPanel(LoginController lc){
 		this.getContentPane().add(new LoginUserInfoPanel(lc));
 	}
 	
-	public void addMainPanel(LoginController lc){
+	private void addMainPanel(LoginController lc){
 		if(lc.getUserType() == UserType.ADMINISTRATOR){
 			this.add(new LoginUserInfoPanel(lc));
 			this.add(new UserPanel(this));

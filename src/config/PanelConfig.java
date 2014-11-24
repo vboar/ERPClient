@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 import org.dom4j.Element;
 
-public class PanelConfig {
+public class PanelConfig extends ComponentConfig{
 	
 	/**
 	 * 类名
@@ -32,14 +32,8 @@ public class PanelConfig {
 	 * 复选框配置
 	 */
 	private Element comboboxes;
-
-	private int width;
 	
-	private int height;
-	
-	private int x;
-	
-	private int y;
+	private Element tablepane;
 	
 	private Image bg;
 	
@@ -53,11 +47,12 @@ public class PanelConfig {
 		this.textFields = panel.element("textfields");
 		// 获取复选框属性
 		this.comboboxes = panel.element("comboboxes");
-		this.width = Integer.parseInt(panel.attributeValue("width"));
-		this.height = Integer.parseInt(panel.attributeValue("height"));
+		this.w = Integer.parseInt(panel.attributeValue("width"));
+		this.h = Integer.parseInt(panel.attributeValue("height"));
 		this.x = Integer.parseInt(panel.attributeValue("x"));
 		this.y = Integer.parseInt(panel.attributeValue("y"));
 		this.bg = new ImageIcon(panel.attributeValue("bg")).getImage();
+		this.tablepane = panel.element("tablepane");
 	}	
 
 
@@ -81,25 +76,12 @@ public class PanelConfig {
 		return className;
 	}
 
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
 	public Image getBg() {
 		return bg;
+	}
+
+	public Element getTablepane() {
+		return tablepane;
 	}
 
 }

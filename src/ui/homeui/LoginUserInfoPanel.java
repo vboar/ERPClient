@@ -41,7 +41,7 @@ public class LoginUserInfoPanel extends JPanel {
 		this.lc = lc;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setLayout(null);
-		this.setSize(pcfg.getWidth(), pcfg.getHeight());
+		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.bg = pcfg.getBg();
 		// 初始化组件
@@ -51,7 +51,7 @@ public class LoginUserInfoPanel extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g){
-		g.drawImage(bg, 0, 0, pcfg.getWidth(), pcfg.getHeight(), null);
+		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
 	}
 	
 	private void initComponent(PanelConfig cfg) {

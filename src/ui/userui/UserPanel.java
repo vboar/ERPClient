@@ -8,6 +8,7 @@ package ui.userui;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,6 +19,7 @@ import ui.util.MyLabel;
 import ui.util.MyTextField;
 import config.ERPConfig;
 import config.PanelConfig;
+import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class UserPanel extends JPanel{
@@ -36,6 +38,8 @@ public class UserPanel extends JPanel{
 	
 	private Image bg;
 	
+	private UserTablePane userTable;
+	
 	@SuppressWarnings("unused")
 	private JFrame homeframe;
 	
@@ -44,7 +48,7 @@ public class UserPanel extends JPanel{
 	public UserPanel(JFrame frame){
 		this.homeframe = frame;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		this.setSize(pcfg.getWidth(), pcfg.getHeight());
+		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
 		this.bg = pcfg.getBg();
@@ -54,13 +58,22 @@ public class UserPanel extends JPanel{
 
 	@Override
 	public void paintComponent(Graphics g){
-		g.drawImage(bg, 0, 0, pcfg.getWidth(),pcfg.getHeight(),null);
+		g.drawImage(bg, 0, 0, pcfg.getW(),pcfg.getH(),null);
 	}
 	
 	private void initComponent(PanelConfig cfg) {
 		this.initButtons(cfg.getButtons());
 		this.initLabels(cfg.getLabels());
 		this.initTextFields(cfg.getTextFields());
+		this.initTable(cfg.getTablepane());
+	}
+
+	private void initTable(Element tablepane) {
+		JButton jt = new JButton("Hello!");
+		jt.setBounds(30, 30, 100, 50);
+		this.userTable = new UserTablePane(new TableConfig(tablepane));
+		this.add(this.userTable);
+
 	}
 
 	private void initTextFields(Element textfields) {

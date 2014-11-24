@@ -40,17 +40,22 @@
 		</panel>
 		<panel className="ui.userui.UserPanel" width="960" height="510" x="0" y="90" bg="img/mainpanel.jpg">
 			<buttons>
-				<add text="添加" w="60" h="30" x="320" y="10" />
-				<delete text="删除" w="60" h="30" x="400" y="10" />
-				<modify text="修改" w="60" h="30" x="480" y="10" />
-				<find text="查找" w="60" h="30" x="780" y="10" />
+				<add text="添加" w="60" h="30" x="360" y="20" />
+				<delete text="删除" w="60" h="30" x="440" y="20" />
+				<modify text="修改" w="60" h="30" x="520" y="20" />
+				<find text="查找" w="60" h="30" x="870" y="20" />
 			</buttons>
 			<labels>
 				<userlist text="用户列表" w="100" h="30" x="210" y="10" />
 			</labels>
 			<textfields>
-				<findinput w="160" h="30" x="600" y="10" />
+				<findinput w="200" h="30" x="640" y="20" />
 			</textfields>
+			<tablepane className="ui.userui.UserTablePane" width="730" height="410" x="210" y="60">
+				<columnnames>
+					<columnname name="用户名"/> <columnname name="ID"/> <columnname name="密码"/> <columnname name="权限"/>
+				</columnnames>
+			</tablepane>
 		</panel>
 	</frame>
 </erp>

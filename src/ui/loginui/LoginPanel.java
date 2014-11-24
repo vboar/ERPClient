@@ -62,7 +62,7 @@ public class LoginPanel extends JPanel{
 		this.frame = frame;
 		// 设置布局管理器为自由布局
 		this.setLayout(null);
-		this.setSize(pcfg.getWidth(), pcfg.getHeight());
+		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.bg = pcfg.getBg();
 		// 初始化组件
@@ -72,7 +72,7 @@ public class LoginPanel extends JPanel{
 
 	@Override
 	public void paintComponent(Graphics g){
-		g.drawImage(bg, 0, 0, pcfg.getWidth(), pcfg.getHeight(), null);
+		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
 	}
 	
 	/**
@@ -123,13 +123,13 @@ public class LoginPanel extends JPanel{
 		
 	}
 	
-	public void initComboBox(PanelConfig cfg){
+	private void initComboBox(PanelConfig cfg){
 		// 获得复选框配置
 		this.usertype = new MyComboBox(cfg.getComboboxes().element("usertype"));
 		this.add(this.usertype);
 	}
 	
-	public void initLoginBtn(PanelConfig cfg){
+	private void initLoginBtn(PanelConfig cfg){
 		// 初始化登录按钮
 		this.loginBtn = new MyButton(cfg.getButtons().element("login"));
 		this.loginBtn.addActionListener(new ActionListener(){
@@ -155,7 +155,7 @@ public class LoginPanel extends JPanel{
 		});
 	}
 	
-	public void initQuitBtn(PanelConfig cfg){
+	private void initQuitBtn(PanelConfig cfg){
 		// 初始化退出按钮
 		this.quitBtn = new MyButton(cfg.getButtons().element("quit"));
 		this.quitBtn.addActionListener(new ActionListener(){
@@ -171,7 +171,7 @@ public class LoginPanel extends JPanel{
 		});
 	}
 
-	public void initSetBtn(PanelConfig cfg){
+	private void initSetBtn(PanelConfig cfg){
 		this.setBtn = new MyButton(cfg.getButtons().element("setting"));
 	}
 }
