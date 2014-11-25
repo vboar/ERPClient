@@ -1,5 +1,5 @@
 /**
- * 账户管理数据实现
+ * 账户管理数据操作实现
  * @author Vboar
  * @date 2014/11/15
  */
@@ -14,18 +14,10 @@ import po.AccountPO;
 
 public class AccountDataServiceImpl extends UnicastRemoteObject implements AccountDataService {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public AccountDataServiceImpl() throws RemoteException {
 		super();
-	}
-	
-	@Override
-	public ArrayList<AccountPO> find(String name) throws RemoteException {
-		return null;
 	}
 
 	@Override
@@ -41,12 +33,17 @@ public class AccountDataServiceImpl extends UnicastRemoteObject implements Accou
 	}
 
 	@Override
-	public ArrayList<AccountPO> show() throws RemoteException {
+	public ArrayList<AccountPO> findByName(String name) throws RemoteException {
 		return null;
 	}
 
 	@Override
-	public ArrayList<AccountPO> findByAccount(String account) throws RemoteException {
+	public AccountPO findById(String id) throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public ArrayList<AccountPO> show() throws RemoteException {
 		return null;
 	}
 

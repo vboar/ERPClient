@@ -1,5 +1,5 @@
 /**
- * 客户管理数据实现
+ * 客户管理数据操作实现
  * @author Vboar
  * @date 2014/11/15
  */
@@ -15,9 +15,6 @@ import po.CustomerPO;
 
 public class CustomerDataServiceImpl extends UnicastRemoteObject implements CustomerDataService {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public CustomerDataServiceImpl() throws RemoteException {

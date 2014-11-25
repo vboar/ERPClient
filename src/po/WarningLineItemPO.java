@@ -20,6 +20,16 @@ public class WarningLineItemPO implements Serializable {
 	private String id;
 	
 	/**
+	 * 商品名称
+	 */
+	private String name;
+	
+	/**
+	 * 商品型号
+	 */
+	private String model;
+	
+	/**
 	 * 库存数量
 	 */
 	private int stockNumber;
@@ -29,14 +39,10 @@ public class WarningLineItemPO implements Serializable {
 	 */
 	private int warningNumber;
 
-	/**
-	 * 构造方法
-	 * @param id
-	 * @param stockNumber
-	 * @param warningNumber
-	 */
-	public WarningLineItemPO(String id, int stockNumber, int warningNumber) {
+	public WarningLineItemPO(String id, String name, String model, int stockNumber, int warningNumber) {
 		this.id = id;
+		this.name = name;
+		this.model = model;
 		this.stockNumber = stockNumber;
 		this.warningNumber = warningNumber;
 	}
@@ -52,5 +58,14 @@ public class WarningLineItemPO implements Serializable {
 	public int getWarningNumber() {
 		return warningNumber;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getModel() {
+		return model;
+	}
+	
 	
 }

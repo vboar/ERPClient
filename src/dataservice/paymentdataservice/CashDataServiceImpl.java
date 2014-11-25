@@ -14,9 +14,6 @@ import po.CashPO;
 
 public class CashDataServiceImpl extends UnicastRemoteObject implements CashDataService {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public CashDataServiceImpl() throws RemoteException {
@@ -44,6 +41,11 @@ public class CashDataServiceImpl extends UnicastRemoteObject implements CashData
 	@Override
 	public ArrayList<CashPO> findByTime(String time1, String time2)
 			throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public CashPO getById(String id) throws RemoteException {
 		return null;
 	}
 

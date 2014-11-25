@@ -1,5 +1,5 @@
 /**
- * 报溢报损单数据接口
+ * 报溢报损单数据操作接口
  * @author Vboar
  * @date 2014/10/25
  */
@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.ExceptionPO;
-import util.DocumentStatus;
 
 public interface ExceptionDataService extends Remote {
 
@@ -23,6 +22,8 @@ public interface ExceptionDataService extends Remote {
 	
 	public ArrayList<ExceptionPO> findById(String id) throws RemoteException;
 	
-	public ArrayList<ExceptionPO> findByStatus(DocumentStatus status) throws RemoteException;
+	public ArrayList<ExceptionPO> findByStatus(int status) throws RemoteException;
+	
+	public ExceptionPO getById(String id) throws RemoteException;
 	
 }

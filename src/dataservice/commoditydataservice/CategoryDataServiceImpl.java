@@ -1,5 +1,5 @@
 /**
- * 商品分类数据实现
+ * 商品分类数据操作实现
  * @author Vboar
  * @date 2014/11/15
  */
@@ -14,9 +14,6 @@ import po.CategoryPO;
 
 public class CategoryDataServiceImpl extends UnicastRemoteObject implements CategoryDataService {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public CategoryDataServiceImpl() throws RemoteException {

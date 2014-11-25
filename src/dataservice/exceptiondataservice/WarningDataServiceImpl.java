@@ -1,5 +1,5 @@
 /**
- * 报警单数据实现
+ * 报警单数据操作实现
  * @author Vboar
  * @date 2014/11/15
  */
@@ -13,10 +13,7 @@ import java.util.ArrayList;
 import po.WarningPO;
 
 public class WarningDataServiceImpl extends UnicastRemoteObject implements WarningDataService {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public WarningDataServiceImpl() throws RemoteException {
@@ -38,4 +35,9 @@ public class WarningDataServiceImpl extends UnicastRemoteObject implements Warni
 		return null;
 	}
 
+	@Override
+	public WarningPO getById(String id) throws RemoteException {
+		return null;
+	}
+	
 }

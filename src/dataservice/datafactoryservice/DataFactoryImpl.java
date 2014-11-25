@@ -12,42 +12,24 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import dataservice.accountdataservice.AccountDataService;
-import dataservice.accountdataservice.AccountDataServiceImpl;
 import dataservice.commoditydataservice.CategoryDataService;
 import dataservice.commoditydataservice.CommodityDataService;
-import dataservice.commoditydataservice.CommodityDataServiceImpl;
 import dataservice.customerdataservice.CustomerDataService;
-import dataservice.customerdataservice.CustomerDataServiceImpl;
 import dataservice.exceptiondataservice.ExceptionDataService;
-import dataservice.exceptiondataservice.ExceptionDataServiceImpl;
 import dataservice.exceptiondataservice.WarningDataService;
-import dataservice.exceptiondataservice.WarningDataServiceImpl;
 import dataservice.initialdataservice.InitialDataService;
-import dataservice.initialdataservice.InitialDataServiceImpl;
 import dataservice.logdataservice.LogDataService;
-import dataservice.logdataservice.LogDataServiceImpl;
 import dataservice.messagedataservice.MessageDataService;
-import dataservice.messagedataservice.MessageDataServiceImpl;
 import dataservice.paymentdataservice.CashDataService;
-import dataservice.paymentdataservice.CashDataServiceImpl;
 import dataservice.paymentdataservice.PaymentDataService;
-import dataservice.paymentdataservice.PaymentDataServiceImpl;
 import dataservice.presentdataservice.PresentDataService;
-import dataservice.presentdataservice.PresentDataServiceImpl;
-import dataservice.promotiondataservice.CustomerGiftDataservice;
-import dataservice.promotiondataservice.CustomerGiftDataserviceImpl;
+import dataservice.promotiondataservice.CustomerGiftDataService;
 import dataservice.promotiondataservice.SpecialOfferDataService;
-import dataservice.promotiondataservice.SpecialOfferDataServiceImpl;
 import dataservice.promotiondataservice.TotalGiftDataService;
-import dataservice.promotiondataservice.TotalGiftDataServiceImpl;
 import dataservice.purchasedataservice.PurchaseDataService;
-import dataservice.purchasedataservice.PurchaseDataServiceImpl;
 import dataservice.saledataservice.SaleDataService;
-import dataservice.saledataservice.SaleDataServiceImpl;
 import dataservice.stockdataservice.StockDataService;
-import dataservice.stockdataservice.StockDataServiceImpl;
 import dataservice.systemdateservice.SystemDataService;
-import dataservice.systemdateservice.SystemDataServiceImpl;
 import dataservice.userdataservice.UserDataService;
 
 /**
@@ -70,7 +52,14 @@ public class DataFactoryImpl implements DataFactory {
 	
 	@Override
 	public AccountDataService getAccountData() throws RemoteException {
-		return new AccountDataServiceImpl();
+		try {
+			return (AccountDataService) Naming.lookup(url + "AccountDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -87,82 +76,194 @@ public class DataFactoryImpl implements DataFactory {
 
 	@Override
 	public CommodityDataService getCommodityData() throws RemoteException {
-		return new CommodityDataServiceImpl();
+		try {
+			return (CommodityDataService) Naming.lookup(url + "CommodityDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public CustomerDataService getCustomerData() throws RemoteException {
-		return new CustomerDataServiceImpl();
+		try {
+			return (CustomerDataService) Naming.lookup(url + "CustomerDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public ExceptionDataService getExceptionData() throws RemoteException {
-		return new ExceptionDataServiceImpl();
+		try {
+			return (ExceptionDataService) Naming.lookup(url + "ExceptionDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public WarningDataService getWarningData() throws RemoteException {
-		return new WarningDataServiceImpl();
+		try {
+			return (WarningDataService) Naming.lookup(url + "WarningDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public InitialDataService getInitialData() throws RemoteException {
-		return new InitialDataServiceImpl();
+		try {
+			return (InitialDataService) Naming.lookup(url + "InitialDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public LogDataService getLogData() throws RemoteException {
-		return new LogDataServiceImpl();
+		try {
+			return (LogDataService) Naming.lookup(url + "LogDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public MessageDataService getMessageData() throws RemoteException {
-		return new MessageDataServiceImpl();
+		try {
+			return (MessageDataService) Naming.lookup(url + "MessageDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public CashDataService getCashDataService() throws RemoteException {
-		return new CashDataServiceImpl();
+		try {
+			return (CashDataService) Naming.lookup(url + "CashDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public PaymentDataService getPaymentData() throws RemoteException {
-		return new PaymentDataServiceImpl();
+		try {
+			return (PaymentDataService) Naming.lookup(url + "PaymentDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public PresentDataService getPresentData() throws RemoteException {
-		return new PresentDataServiceImpl();
+		try {
+			return (PresentDataService) Naming.lookup(url + "PresentDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@Override
-	public CustomerGiftDataservice getCustomerGiftData() throws RemoteException {
-		return new CustomerGiftDataserviceImpl();
+	public CustomerGiftDataService getCustomerGiftData() throws RemoteException {
+		try {
+			return (CustomerGiftDataService) Naming.lookup(url + "CustomerGiftDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public TotalGiftDataService getTotalGiftData() throws RemoteException {
-		return new TotalGiftDataServiceImpl();
+		try {
+			return (TotalGiftDataService) Naming.lookup(url + "TotalGiftDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public SpecialOfferDataService getSpecialOfferData() throws RemoteException {
-		return new SpecialOfferDataServiceImpl();
+		try {
+			return (SpecialOfferDataService) Naming.lookup(url + "SpecialOfferDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public PurchaseDataService getPurchaseData() throws RemoteException {
-		return new PurchaseDataServiceImpl();
+		try {
+			return (PurchaseDataService) Naming.lookup(url + "PurchaseDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public SaleDataService getSaleDataService() throws RemoteException {
-		return new SaleDataServiceImpl();
+		try {
+			return (SaleDataService) Naming.lookup(url + "SaleDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public StockDataService getStockData() throws RemoteException {
-		return new StockDataServiceImpl();
+		try {
+			return (StockDataService) Naming.lookup(url + "StockDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -170,10 +271,8 @@ public class DataFactoryImpl implements DataFactory {
 		try {
 			return (UserDataService) Naming.lookup(url + "UserDataService");
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -181,7 +280,14 @@ public class DataFactoryImpl implements DataFactory {
 
 	@Override
 	public SystemDataService getSystemData() throws RemoteException {
-		return new SystemDataServiceImpl();
+		try {
+			return (SystemDataService) Naming.lookup(url + "SystemDataService");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

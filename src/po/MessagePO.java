@@ -63,7 +63,7 @@ public class MessagePO implements Serializable {
 		return time;
 	}
 
-	public String getReceiver() {
+	public String getReceiverId() {
 		return receiverId;
 	}
 

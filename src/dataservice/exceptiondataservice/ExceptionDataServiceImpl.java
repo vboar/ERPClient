@@ -11,13 +11,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.ExceptionPO;
-import util.DocumentStatus;
 
 public class ExceptionDataServiceImpl extends UnicastRemoteObject implements ExceptionDataService {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public ExceptionDataServiceImpl() throws RemoteException {
@@ -44,8 +40,13 @@ public class ExceptionDataServiceImpl extends UnicastRemoteObject implements Exc
 	}
 
 	@Override
-	public ArrayList<ExceptionPO> findByStatus(DocumentStatus status)
+	public ArrayList<ExceptionPO> findByStatus(int status)
 			throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public ExceptionPO getById(String id) throws RemoteException {
 		return null;
 	}
 
