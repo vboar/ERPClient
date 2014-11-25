@@ -45,4 +45,9 @@ public class AccountDataServiceImpl extends UnicastRemoteObject implements Accou
 		return null;
 	}
 
+	@Override
+	public ArrayList<AccountPO> findByAccount(String account) throws RemoteException {
+		return null;
+	}
+
 }

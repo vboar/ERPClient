@@ -5,9 +5,14 @@
  */
 package businesslogic.paymentbl;
 
+import java.rmi.RemoteException;
+
+import po.AccountPO;
+import businesslogic.accountbl.Account;
 import businesslogic.accountbl.MockLog;
 import util.ResultMessage;
 
+//oneoneO
 public class Payment {
 
 	MockCustomer customer;
@@ -23,9 +28,11 @@ public class Payment {
 		
 	}
 	
-	public ResultMessage update(double money){
-		this.customer.updatePay(-money);
-		this.account.updateAccount(-money);
+	public ResultMessage update(double money,String account) throws RemoteException{
+		Account acc=new Account();
+		AccountPO temp=acc.findByAccount(account).get(0);
+		temp.setBalance(temp.getBalance()-money);
+		acc.update(temp);
 		return ResultMessage.SUCCESS;
 	}
 

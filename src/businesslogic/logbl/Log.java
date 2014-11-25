@@ -5,6 +5,7 @@
 package businesslogic.logbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import po.LogPO;
@@ -14,7 +15,7 @@ import util.ResultMessage;
 
 //oneoneO
 public class Log {
-		public ResultMessage createLog(String content) throws RemoteException{
+		public ResultMessage add(String content) throws RemoteException{
 			Calendar c=Calendar.getInstance();
 			String year=String.valueOf(c.get(Calendar.YEAR));
 			String month=String.valueOf(c.get(Calendar.MONTH));
@@ -24,15 +25,17 @@ public class Log {
 			String second=String.valueOf(c.get(Calendar.SECOND));
 			String time=year+"/"+month+"/"+date+" "+hour+":"+minute+":"+second;
 			
-			//todo
 			String id=getLogId();
 			
-			//todo
 			String operator=getOperator();
 			
 			DataFactoryImpl.getInstance().getLogData().insert(new LogPO(time,id,operator,content));
 			
 			return ResultMessage.SUCCESS;
+		}
+		
+		public ArrayList<LogPO> show() throws RemoteException{
+			return DataFactoryImpl.getInstance().getLogData().show();
 		}
 		
 		//TODO

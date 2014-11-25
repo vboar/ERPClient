@@ -48,4 +48,10 @@ public class AccountBLService_Stub implements AccountBLService {
 		return list;
 	}
 
+	@Override
+	public ArrayList<AccountVO> findByAccount(String account) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

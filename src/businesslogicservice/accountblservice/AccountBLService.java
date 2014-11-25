@@ -19,6 +19,8 @@ public interface AccountBLService {
 	 */
 	public ArrayList<AccountVO> find(String name);
 	
+	public ArrayList<AccountVO> findByAccount(String account);
+	
 	/**
 	 * 增加账户
 	 * @param vo

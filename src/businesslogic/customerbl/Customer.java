@@ -12,18 +12,20 @@ import po.CustomerPO;
 import util.ResultMessage;
 import vo.CustomerVO;
 import businesslogic.accountbl.MockLog;
+import businesslogic.logbl.Log;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Customer {
-
-	public ResultMessage createLog(String content){
+    Log l=new Log();
+	
+    public ResultMessage createLog(String content){
 		MockLog log = new MockLog(content);
 		return log.add();	
 	}
 	//客户名唯一
 	public ResultMessage add(CustomerVO vo) throws RemoteException{
 		if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).size()==0){
-			createLog("Customer Add Error:customer exists");
+			l.add("Customer Add Error:customer exists");
 			return ResultMessage.EXIST;
 		}else{
 			//todo
@@ -34,7 +36,7 @@ public class Customer {
 					vo.defaultOperator,vo.isDeletable));
 		}
 		
-		createLog("Add customer Successfully");
+		l.add("Add customer Successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -45,11 +47,11 @@ public class Customer {
 					vo.defaultOperator,vo.isDeletable));
 		}else{
 			//该客户不能删除
-			createLog("Fail to delete customer:customer is undeletable");
+			l.add("Fail to delete customer:customer is undeletable");
 			return ResultMessage.FAILED;
 		}
 		
-		createLog("Delete customer successfully");
+		l.add("Delete customer successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -58,7 +60,7 @@ public class Customer {
 					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
 					vo.defaultOperator,vo.isDeletable));
 		
-		createLog("Update customer successfully");
+		l.add("Update customer successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -67,7 +69,7 @@ public class Customer {
 		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().findByName(name);
 		result=poToVo(po);
 		
-		createLog("Find customer by name successfully");
+		l.add("Find customer by name successfully");
 		return result;
 	}
 	
@@ -76,7 +78,7 @@ public class Customer {
 		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().findById(id);
 		result=poToVo(po);
 		
-		createLog("Find customer by id successfully");
+		l.add("Find customer by id successfully");
 		return result;
 	}
 	
@@ -85,7 +87,7 @@ public class Customer {
 		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().show();
 		result=poToVo(po);
 		
-		createLog("show successfully");
+		l.add("show successfully");
 		return result;
 	}
 	

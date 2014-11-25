@@ -7,6 +7,8 @@ package businesslogic.paymentbl;
 
 import static org.junit.Assert.assertEquals;
 
+import java.rmi.RemoteException;
+
 import org.junit.Test;
 
 import util.ResultMessage;
@@ -14,13 +16,13 @@ import util.ResultMessage;
 public class PaymentTest {
 
 	@Test
-	public void testUpdate() {
+	public void testUpdate() throws RemoteException {
 		MockCustomer customer = new MockCustomer();
 		customer.setPaybles(1000);
 		customer.setReceivables(2000);
 		MockAccount account = new MockAccount(3000);
 		Payment pay = new Payment(customer,account);
-		pay.update(200);
+		pay.update(200,"12345678");
 		assertEquals(800,(int)customer.getPaybles());
 		assertEquals(2800,(int)account.getAccount());
 	}
