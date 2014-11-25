@@ -21,7 +21,7 @@ public interface AccountDataService extends Remote {
 	
 	public ArrayList<AccountPO> findByName(String name) throws RemoteException;
 	
-	public AccountPO findById(String id) throws RemoteException;
+	public AccountPO findByAccount(String account) throws RemoteException;
 
 	public ArrayList<AccountPO> show() throws RemoteException;
 

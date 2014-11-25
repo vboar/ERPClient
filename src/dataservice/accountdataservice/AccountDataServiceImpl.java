@@ -38,7 +38,7 @@ public class AccountDataServiceImpl extends UnicastRemoteObject implements Accou
 	}
 
 	@Override
-	public AccountPO findById(String id) throws RemoteException {
+	public AccountPO findByAccount(String account) throws RemoteException {
 		return null;
 	}
 

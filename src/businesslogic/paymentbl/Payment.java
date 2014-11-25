@@ -16,6 +16,8 @@ import businesslogic.accountbl.Account;
 import businesslogic.accountbl.MockLog;
 import businesslogic.logbl.Log;
 import businesslogic.loginbl.Login;
+import util.DocumentStatus;
+import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
 import vo.PaymentVO;
@@ -54,7 +56,7 @@ public class Payment {
 		
 		DataFactoryImpl.getInstance().getPaymentData().insert(new PaymentPO(vo.id,time,
 				vo.customerId,vo.customerName,Login.currentUserId,transferlist,
-				vo.total,(int)vo.approvalState,vo.isWriteOff,(int)vo.documentType));
+				vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal()));
 
 		//???
 		Log l=new Log();
@@ -70,6 +72,43 @@ public class Payment {
 		return ResultMessage.SUCCESS;
 	}
 
-	public ArrayList<TransferLineItem> find(){}
+	public ArrayList<PaymentVO> findById(String id) throws RemoteException{
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findById(id));
+		return result;
+	}
 
+	public ArrayList<PaymentVO> findByTime(String time1,String time2) throws RemoteException{
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2));
+		return result;
+	}
+	
+	public ArrayList<PaymentVO> findByCustomer(String customerId) throws RemoteException{
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByCustomer(customerId));
+		return result;
+	}
+	
+	public ArrayList<PaymentVO> findByOperator(String operator) throws RemoteException{
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByOperator(operator));
+		return result;
+	}
+	
+	public ArrayList<PaymentVO> poToVo(ArrayList<PaymentPO> po){
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		for(int i=0;i<po.size();i++){
+			ArrayList<TransferLineItemVO> temp=new ArrayList<TransferLineItemVO>();
+			ArrayList<TransferLineItemPO> p=po.get(i).getTransferList();
+			for(int j=0;j<p.size();j++){
+				TransferLineItemPO t=p.get(j);
+				temp.add(new TransferLineItemVO(t.getBankAccount(),t.getAccount(),t.getRemark()));
+			}
+			PaymentPO temp2=po.get(i);
+			result.add(new PaymentVO(temp2.getId(),temp2.getCustomerId(),temp2.getCustomerName(),temp2.getOperatorId(),temp,temp2.getTotal(),DocumentStatus.values()[temp2.getApprovalStatus()],DocumentType.values()[temp2.getDocumentType()]));
+		}
+		
+		return result;
+	}
 }

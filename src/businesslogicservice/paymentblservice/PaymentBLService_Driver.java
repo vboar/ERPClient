@@ -36,17 +36,17 @@ public class PaymentBLService_Driver {
 		
 		System.out.println("根据审批状态查找付款单：");
 		ArrayList<PaymentVO> list1 = paymentBLService.findByStatus(DocumentStatus.PASSED);
-		System.out.println("单据编号："+list1.get(0).id+"；操作员："+list1.get(0).operator+"；客户编号："
+		System.out.println("单据编号："+list1.get(0).id+"；操作员："+list1.get(0).operatorId+"；客户编号："
 				+list1.get(0).customerId+"；客户名称："+list1.get(0).customerName+"；金额："+list1.get(0).total+"\n");
 		
 		System.out.println("根据单据编号查找付款费用单：");
 		ArrayList<PaymentVO> list2 = paymentBLService.findById("FKD-20141025-00001");
-		System.out.println("单据编号："+list2.get(0).id+"；操作员："+list2.get(0).operator+"；客户编号："
+		System.out.println("单据编号："+list2.get(0).id+"；操作员："+list2.get(0).operatorId+"；客户编号："
 				+list2.get(0).customerId+"；客户名称："+list2.get(0).customerName+"；金额："+list2.get(0).total+"\n");
 		
 		System.out.println("查看一段时间内的付款单：");
 		ArrayList<PaymentVO> list3 = paymentBLService.show("20141023","20141025");
-		System.out.println("单据编号："+list3.get(0).id+"；操作员："+list3.get(0).operator+"；客户编号："
+		System.out.println("单据编号："+list3.get(0).id+"；操作员："+list3.get(0).operatorId+"；客户编号："
 				+list3.get(0).customerId+"；客户名称："+list3.get(0).customerName+"；金额："+list3.get(0).total+"\n");
 		
 		

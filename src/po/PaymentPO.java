@@ -108,7 +108,7 @@ public class PaymentPO implements Serializable {
 		return total;
 	}
 
-	public boolean isWriteOff() {
+	public boolean getIsWriteOff() {
 		return isWriteOff;
 	}
 
@@ -138,6 +138,10 @@ public class PaymentPO implements Serializable {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public void setIsWriteOff(boolean isWriteOff) {
+		this.isWriteOff = isWriteOff;
 	}
 	
 }
