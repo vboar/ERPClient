@@ -20,6 +20,16 @@ public class StockPO implements Serializable {
 	public String commodityId;
 	
 	/**
+	 * 商品名称
+	 */
+	public String commodityName;
+	
+	/**
+	 * 商品型号
+	 */
+	public String commodityModel;
+	
+	/**
 	 * 库存数量
 	 */
 	private int number;
@@ -44,16 +54,11 @@ public class StockPO implements Serializable {
 	 */
 	public StockPO() {}
 	
-	/**
-	 * 构造方法
-	 * @param commodityId
-	 * @param number
-	 * @param avgPrice
-	 * @param batch
-	 * @param batchNumber
-	 */
-	public StockPO(String commodityId, int number, double avgPrice, String batch, String batchNumber) {
+	public StockPO(String commodityId, String commodityName, String commodityModel, int number, 
+			double avgPrice, String batch, String batchNumber) {
 		this.commodityId = commodityId;
+		this.commodityName = commodityName;
+		this.commodityModel = commodityModel;
 		this.number = number;
 		this.avgPrice = avgPrice;
 		this.batch = batch;
@@ -79,6 +84,13 @@ public class StockPO implements Serializable {
 	public String getCommodityId() {
 		return commodityId;
 	}
-	
+
+	public String getCommodityName() {
+		return commodityName;
+	}
+
+	public String getCommodityModel() {
+		return commodityModel;
+	}
 	
 }

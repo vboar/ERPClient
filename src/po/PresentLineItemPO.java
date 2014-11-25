@@ -20,17 +20,24 @@ public class PresentLineItemPO implements Serializable {
 	private String id;
 	
 	/**
+	 * 赠品名称
+	 */
+	private String name;
+	
+	/**
+	 * 赠品型号
+	 */
+	private String model;
+	
+	/**
 	 * 赠品数量
 	 */
 	private int number;
 	
-	/**
-	 * 构造方法
-	 * @param id
-	 * @param number
-	 */
-	public PresentLineItemPO(String id, int number) {
+	public PresentLineItemPO(String id, String name, String model, int number) {
 		this.id = id;
+		this.name = name;
+		this.model = model;
 		this.number = number;
 	}
 	
@@ -44,6 +51,14 @@ public class PresentLineItemPO implements Serializable {
 
 	public void setNumber(int number) {
 		this.number = number;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getModel() {
+		return model;
 	}
 	
 }
