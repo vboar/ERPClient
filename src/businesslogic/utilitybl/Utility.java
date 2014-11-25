@@ -2,10 +2,13 @@ package businesslogic.utilitybl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import po.CommodityLineItemPO;
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 
 public class Utility {
 
@@ -71,6 +74,38 @@ public class Utility {
 		boolean flag1 = start.before(nowdate);
 		boolean flag2 = end.after(nowdate);
 		return flag1&&flag2;
+	}
+	
+public static ArrayList<CommodityLineItemPO> voListToPOList(ArrayList<CommodityLineItemVO> voList){
+	ArrayList<CommodityLineItemPO> poList=new ArrayList<CommodityLineItemPO>();
+		for(CommodityLineItemVO vo:voList){
+			String id=vo.id;
+			String name=vo.name;
+			String model=vo.model;
+			int number=vo.number;
+            double price=vo.price;
+            double total=vo.total;
+            String remark=vo.remark;
+            CommodityLineItemPO po=new CommodityLineItemPO(id, name, model, number, price, total, remark);
+            poList.add(po);						
+		}
+		return poList;
+	}
+
+public static ArrayList<CommodityLineItemVO> poListToVOList(ArrayList<CommodityLineItemPO> poList){
+	ArrayList<CommodityLineItemVO> voList=new ArrayList<CommodityLineItemVO>();
+		for(CommodityLineItemPO po:poList){
+			String id=po.getId();
+			String name=po.getName();
+			String model=po.getModel();
+			int number=po.getNumber();
+            double price=po.getPrice();
+            double total=po.getTotal();
+            String remark=po.getRemark();
+            CommodityLineItemVO vo=new CommodityLineItemVO(id, name, model, number, price, total, remark);
+            voList.add(vo);						
+		}
+		return voList;
 	}
 
 //	public static void main(String[] args) {

@@ -29,6 +29,17 @@ public class SalePO implements Serializable {
 	* 客户编号
 	*/
 	 private String customerId;	
+	 
+	 /**
+	  * 客户姓名
+	  */
+	 private String name;
+	 
+	 /**
+	  * 客户vip
+	  */
+	private int VIP;
+	
 	
 	/**
 	* 业务员
@@ -36,7 +47,17 @@ public class SalePO implements Serializable {
 	private String salesman;
 	
 	/**
+	 * 业务员id
+	 */
+	private String salesmanId;
+	
+	/**
 	* 操作员
+	*/
+	private String operator;
+	
+	/**
+	* 操作员id
 	*/
 	private String operatorId;
 	   
@@ -113,14 +134,18 @@ public class SalePO implements Serializable {
 	 * @param isWriteOff
 	 * @param receiptType
 	 */
-	public SalePO(String receiptId,String time,String customerId,String salsman,
-			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,ArrayList<CommodityLineItemPO> giftList,double totalBeforeDiscount,
+	public SalePO(String receiptId,String time,String customerId,String name,int VIP,String salsman,String salesmanId,
+			String operator,String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,ArrayList<CommodityLineItemPO> giftList,double totalBeforeDiscount,
 			double discount,double voucher,double totalAfterDiscount,String remark,
 			int documentStatus,boolean isWriteOff,int documentType){
 		this.receiptId=receiptId;
 		this.time = time;
 		this.customerId=customerId;
+		this.name=name;
+		this.VIP=VIP;
 		this.salesman = salsman;
+		this.salesmanId=salesmanId;
+		this.operator=operator;
 		this.operatorId=operatorId;
 		this.storage=storage;
 		this.saleList=saleList;
@@ -135,6 +160,18 @@ public class SalePO implements Serializable {
 		this.documentType=documentType;
 	}
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getSalesmanId() {
+		return salesmanId;
+	}
+
+	public String getOperator() {
+		return operator;
+	}
+
 	public String getReceiptId() {
 		return receiptId;
 	}
@@ -145,6 +182,14 @@ public class SalePO implements Serializable {
 
 	public String getCustomerId() {
 		return customerId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getVIP() {
+		return VIP;
 	}
 
 	public String getSalesman() {

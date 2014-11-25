@@ -12,7 +12,7 @@ import vo.SpecialOfferVO;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
-public class SpecialOffPromotion {
+public class SpecialOfferPromotion {
 	
 	public ResultMessage add(SpecialOfferVO vo) throws RemoteException{
 		SpecialOfferPO po=voToPO(vo);

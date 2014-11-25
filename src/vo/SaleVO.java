@@ -11,7 +11,13 @@ public class SaleVO {
 	 * 单据编号
 	 */
 	 public String receiptId;
-	   
+	 
+	 /**
+	  * 创建时间
+	  */
+	 public String time;
+	 
+	 
 	   /**
 	    * 客户编号
 	    */
@@ -31,11 +37,23 @@ public class SaleVO {
 	  * 业务员
 	  */
 	 public String salesman;
+	 
+	 /**
+	  * 业务员id
+	  */
+	 public String salesmanId;
+	 
 	   
 	   /**
 	    * 操作员
 	    */
 	 public String operator;
+	 
+	 /**
+	  * 操作员id
+	  */
+	 public String operatorId;
+	 
 	   
 	   /**
 	    * 仓库
@@ -110,16 +128,19 @@ public class SaleVO {
 	   * @param isWriteOff
 	   * @param receiptType
 	   */
-	   public SaleVO(String receiptId,String customerId,String name,int VIP,String salesman,
-	   String operator,String storage,ArrayList<CommodityLineItemVO> saleList,ArrayList<CommodityLineItemVO> giftList,double totalBeforeDiscount,
+	   public SaleVO(String receiptId,String time,String customerId,String name,int VIP,String salesman,String salesmanId,
+	   String operator,String operatorId,String storage,ArrayList<CommodityLineItemVO> saleList,ArrayList<CommodityLineItemVO> giftList,double totalBeforeDiscount,
 	   double discount,double voucher,double totalAfterDiscount,String remark,
 	   DocumentStatus approvalState,boolean isWriteOff,DocumentType receiptType){
 		   this.receiptId=receiptId;
+		   this.time=time;
 		   this.customerId=customerId;
 		   this.name=name;
 		   this.VIP=VIP;
 		   this.salesman=salesman;
+		   this.salesmanId=salesmanId;
 		   this.operator=operator;
+		   this.operator=operatorId;
 		   this.storage=storage;
 		   this.saleList=saleList;
 		   this.giftList=giftList;

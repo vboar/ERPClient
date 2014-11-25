@@ -14,7 +14,7 @@ public class SaleBLService_Driver {
 	
 	ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 	commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",5,40,200,"自提"));
-    result=sbs.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",5,"美队","XS001-浩克","1",commodity,null,350
+    result=sbs.add(new SaleVO("XSD-20141023-00001","00001","钢铁侠",null, 5,"美队","XS001-浩克","1",null, null, commodity,null,350
             ,70,0,280,"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	
     if(result==ResultMessage.SUCCESS)
