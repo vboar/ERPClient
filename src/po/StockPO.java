@@ -75,5 +75,10 @@ public class StockPO implements Serializable {
 	public String getBatchNumber() {
 		return batchNumber;
 	}
+
+	public String getCommodityId() {
+		return commodityId;
+	}
+	
 	
 }

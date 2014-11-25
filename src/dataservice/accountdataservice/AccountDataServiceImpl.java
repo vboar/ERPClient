@@ -21,33 +21,45 @@ public class AccountDataServiceImpl extends UnicastRemoteObject implements Accou
 
 	public AccountDataServiceImpl() throws RemoteException {
 		super();
-	}
-	
-	@Override
-	public ArrayList<AccountPO> find(String name) throws RemoteException {
-		return null;
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void insert(AccountPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void delete(AccountPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void update(AccountPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<AccountPO> findByName(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AccountPO findById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public ArrayList<AccountPO> show() throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public ArrayList<AccountPO> findByAccount(String account) throws RemoteException {
-		return null;
-	}
+
 
 }

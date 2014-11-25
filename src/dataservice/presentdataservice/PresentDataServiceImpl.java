@@ -15,34 +15,33 @@ public class PresentDataServiceImpl extends UnicastRemoteObject implements Prese
 
 	public PresentDataServiceImpl() throws RemoteException {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void insert(PresentPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void update(PresentPO po) throws RemoteException {
-	}
-
-	@Override
-	public ArrayList<PresentPO> show() throws RemoteException {
-		return null;
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public ArrayList<PresentPO> findById(String id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<PresentPO> findByOperator(String operator) {
+	public ArrayList<PresentPO> showByTime(String time1, String time2) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public ArrayList<PresentPO> findByTime(String time1, String time2) {
-		return null;
-	}
+
 
 }

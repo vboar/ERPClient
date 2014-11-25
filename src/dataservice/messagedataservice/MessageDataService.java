@@ -1,5 +1,5 @@
 /**
- * 消息处理数据接口
+ * 消息处理数据层操作接口
  * @date 2014/10/26
  * @author chengcheng
  */
@@ -15,6 +15,8 @@ import po.UserPO;
 public interface MessageDataService extends Remote {
 	
 	public void insert(MessagePO po) throws RemoteException;
+	
+	public void delete(MessagePO po) throws RemoteException;
 	
 	public void update(MessagePO po) throws RemoteException;
 	

@@ -14,7 +14,7 @@ import po.MessagePO;
 import po.UserPO;
 
 public class MessageDataServiceImpl extends UnicastRemoteObject implements MessageDataService {
-	
+
 	/**
 	 * 
 	 */
@@ -22,19 +22,33 @@ public class MessageDataServiceImpl extends UnicastRemoteObject implements Messa
 
 	public MessageDataServiceImpl() throws RemoteException {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void insert(MessagePO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(MessagePO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void update(MessagePO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public ArrayList<MessagePO> showByUser(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
 
 }

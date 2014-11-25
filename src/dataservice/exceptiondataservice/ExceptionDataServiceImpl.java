@@ -11,10 +11,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.ExceptionPO;
-import util.DocumentStatus;
 
 public class ExceptionDataServiceImpl extends UnicastRemoteObject implements ExceptionDataService {
-	
+
 	/**
 	 * 
 	 */
@@ -22,31 +21,47 @@ public class ExceptionDataServiceImpl extends UnicastRemoteObject implements Exc
 
 	public ExceptionDataServiceImpl() throws RemoteException {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void insert(ExceptionPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void update(ExceptionPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public ArrayList<ExceptionPO> show(String time1, String time2)
 			throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<ExceptionPO> findById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<ExceptionPO> findByStatus(DocumentStatus status)
+	public ArrayList<ExceptionPO> findByStatus(int status)
 			throws RemoteException {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ExceptionPO getById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
 
 }

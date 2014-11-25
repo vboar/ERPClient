@@ -60,8 +60,7 @@ public class PresentPO implements Serializable {
 	 * @param type
 	 * @param isWriteoff
 	 */
-	public PresentPO(String id, String time, String clientId,
-			String clientName, ArrayList<PresentLineItemPO> list,
+	public PresentPO(String id, String time, String clientId, ArrayList<PresentLineItemPO> list,
 			int documentStatus, int documentType, boolean isWriteoff) {
 		this.id = id;
 		this.time = time;

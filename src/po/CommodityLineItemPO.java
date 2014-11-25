@@ -18,16 +18,6 @@ public class CommodityLineItemPO implements Serializable {
 	 * 商品编号
 	 */
 	private String id;
-	
-	 /**
-     * 名称
-     */
-	private String name;
-	
-	 /**
-     * 型号
-     */
-	private String model;
     
     /**
      * 数量
@@ -61,10 +51,8 @@ public class CommodityLineItemPO implements Serializable {
      * @param total
      * @param remark
      */
-    public CommodityLineItemPO(String id,String name,String model,int number,double price,double total,String remark){
+    public CommodityLineItemPO(String id,int number,double price,double total,String remark){
     	this.id=id;
-    	this.name=name;
-    	this.model=model;
     	this.number=number;
     	this.price=price;
     	this.total=total;
@@ -74,30 +62,21 @@ public class CommodityLineItemPO implements Serializable {
     public String getId(){
     	return id;
     }
-
-	public String getName() {
-		return name;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public int getNumber() {
-		return number;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public double getTotal() {
-		return total;
-	}
-
-	public String getRemark() {
-		return remark;
+    
+	public int number(){
+    	return number;
+    }
+    
+    public double price(){
+    	return price;
 	}
     
-
+    public double total(){
+    	return total;
+    }
+    
+    public String remark(){
+    	return remark;
+    }
+    
 }
