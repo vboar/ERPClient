@@ -6,24 +6,17 @@ package businesslogic.logbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import po.LogPO;
-import dataservice.datafactoryservice.DataFactoryImpl;
 import util.ResultMessage;
+import util.Time;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 
 //oneoneO
 public class Log {
 		public ResultMessage add(String content) throws RemoteException{
-			Calendar c=Calendar.getInstance();
-			String year=String.valueOf(c.get(Calendar.YEAR));
-			String month=String.valueOf(c.get(Calendar.MONTH));
-			String date=String.valueOf(c.get(Calendar.DATE));
-			String hour=String.valueOf(c.get(Calendar.HOUR_OF_DAY));
-			String minute=String.valueOf(c.get(Calendar.MINUTE));
-			String second=String.valueOf(c.get(Calendar.SECOND));
-			String time=year+"/"+month+"/"+date+" "+hour+":"+minute+":"+second;
+			String time=Time.getCurrentTime();
 			
 			String id=getLogId();
 			

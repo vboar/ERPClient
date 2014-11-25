@@ -29,7 +29,7 @@ public class PaymentVO implements DocumentVO {
 	/**
 	 * 操作员
 	 */
-	public String operator;
+	public String operatorId;
 	
 	/**
 	 * 转账列表
@@ -45,6 +45,11 @@ public class PaymentVO implements DocumentVO {
 	 * 审批状态
 	 */
 	public DocumentStatus approvalState;
+	
+	/**
+	 * 是否为红冲单据
+	 */
+	public boolean isWriteOff;
 	
 	/**
 	 * 单据类型
@@ -63,14 +68,14 @@ public class PaymentVO implements DocumentVO {
 	 * @param documentType
 	 */
 	public PaymentVO(String id, String customerId, String customerName,
-			String operator, ArrayList<TransferLineItemVO> transferList,
+			String operatorId, ArrayList<TransferLineItemVO> transferList,
 			double total, DocumentStatus approvalState,
 			DocumentType documentType) {
 		super();
 		this.id = id;
 		this.customerId = customerId;
 		this.customerName = customerName;
-		this.operator = operator;
+		this.operatorId = operatorId;
 		this.transferList = transferList;
 		this.total = total;
 		this.approvalState = approvalState;
