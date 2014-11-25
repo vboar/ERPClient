@@ -20,4 +20,8 @@ public interface SpecialOfferDataService extends Remote {
 	
 	public ArrayList<SpecialOfferPO> show() throws RemoteException;
 	
+	public ArrayList<SpecialOfferPO> findByValid() throws RemoteException;
+	
+	public SpecialOfferPO getById(String id) throws RemoteException;
+	
 }

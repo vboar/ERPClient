@@ -17,8 +17,14 @@ public interface PresentDataService extends Remote {
 	
 	public void update(PresentPO po) throws RemoteException;
 	
-	public ArrayList<PresentPO> findById(String id);
+	public ArrayList<PresentPO> findById(String id) throws RemoteException;
 	
-	public ArrayList<PresentPO> showByTime(String time1,String time2);
+	public ArrayList<PresentPO> findByTime(String time1,String time2) throws RemoteException;
+	
+	public ArrayList<PresentPO> findByStatus(int status) throws RemoteException;
+	
+	public ArrayList<PresentPO> findByCustomerId(String customerId) throws RemoteException;
+	
+	public PresentPO getById(String id) throws RemoteException;
 	
 }

@@ -1,5 +1,5 @@
 /**
- * 商品管理数据实现
+ * 商品管理数据操作实现
  * @author Vboar
  * @date 2014/11/15
  */
@@ -15,9 +15,6 @@ import po.CommodityPO;
 
 public class CommodityDataServiceImpl extends UnicastRemoteObject implements CommodityDataService {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public CommodityDataServiceImpl() throws RemoteException {

@@ -28,7 +28,7 @@ public class LogDataServiceImpl extends UnicastRemoteObject implements LogDataSe
 	}
 
 	@Override
-	public ArrayList<LogPO> find(String time1, String time2)
+	public ArrayList<LogPO> findByTime(String time1, String time2)
 			throws RemoteException {
 		return null;
 	}

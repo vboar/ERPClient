@@ -12,12 +12,16 @@ import java.util.ArrayList;
 
 import po.CustomerGiftPO;
 
-public interface CustomerGiftDataservice extends Remote {
+public interface CustomerGiftDataService extends Remote {
 
 	public void insert(CustomerGiftPO po) throws RemoteException;
 	
 	public void update(CustomerGiftPO po) throws RemoteException;
 	
 	public ArrayList<CustomerGiftPO> show() throws RemoteException;
+	
+	public ArrayList<CustomerGiftPO> findByValid(boolean valid) throws RemoteException;
+	
+	public CustomerGiftPO getById(String id) throws RemoteException;
 	
 }

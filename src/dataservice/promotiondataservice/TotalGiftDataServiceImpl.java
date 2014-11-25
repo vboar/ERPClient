@@ -30,4 +30,16 @@ public class TotalGiftDataServiceImpl extends UnicastRemoteObject implements Tot
 		return null;
 	}
 
+	@Override
+	public ArrayList<TotalGiftPO> findByValid() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TotalGiftPO getById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

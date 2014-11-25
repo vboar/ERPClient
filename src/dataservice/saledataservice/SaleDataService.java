@@ -24,7 +24,11 @@ public interface SaleDataService extends Remote {
 	public ArrayList<SalePO> findBySalesman(String salesman) throws RemoteException;
 	
 	public ArrayList<SalePO> findByStorage(String Storage) throws RemoteException;
+	
+	public ArrayList<SalePO> findByStatus(int status) throws RemoteException;
 
 	public ArrayList<SalePO> show() throws RemoteException;
+	
+	public SalePO getById(String id) throws RemoteException;
 	
 }

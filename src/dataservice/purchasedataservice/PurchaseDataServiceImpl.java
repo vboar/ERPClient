@@ -60,4 +60,17 @@ public class PurchaseDataServiceImpl extends UnicastRemoteObject implements Purc
 		return null;
 	}
 
+	@Override
+	public ArrayList<PurchasePO> findByStatus(int status)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PurchasePO getById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

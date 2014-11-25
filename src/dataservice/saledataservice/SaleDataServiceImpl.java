@@ -60,4 +60,16 @@ public class SaleDataServiceImpl extends UnicastRemoteObject implements SaleData
 		return null;
 	}
 
+	@Override
+	public ArrayList<SalePO> findByStatus(int status) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SalePO getById(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -19,7 +19,7 @@ import dataservice.messagedataservice.MessageDataService;
 import dataservice.paymentdataservice.CashDataService;
 import dataservice.paymentdataservice.PaymentDataService;
 import dataservice.presentdataservice.PresentDataService;
-import dataservice.promotiondataservice.CustomerGiftDataservice;
+import dataservice.promotiondataservice.CustomerGiftDataService;
 import dataservice.promotiondataservice.SpecialOfferDataService;
 import dataservice.promotiondataservice.TotalGiftDataService;
 import dataservice.purchasedataservice.PurchaseDataService;
@@ -54,7 +54,7 @@ public interface DataFactory {
 	
 	public PresentDataService getPresentData() throws RemoteException;
 	
-	public CustomerGiftDataservice getCustomerGiftData() throws RemoteException;
+	public CustomerGiftDataService getCustomerGiftData() throws RemoteException;
 	
 	public TotalGiftDataService getTotalGiftData() throws RemoteException;
 	
