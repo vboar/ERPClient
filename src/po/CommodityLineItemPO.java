@@ -70,33 +70,40 @@ public class CommodityLineItemPO implements Serializable {
     	this.total=total;
     	this.remark=remark;
     }
-    
-    public String getId(){
-    	return id;
-    }
-    
-	public int number(){
-    	return number;
-    }
-    
-    public double price(){
-    	return price;
+
+
+	public String getId() {
+		return id;
 	}
-    
-    public double total(){
-    	return total;
-    }
-    
-    public String remark(){
-    	return remark;
-    }
+
+
+	public int getNumber() {
+		return number;
+	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public String getModel() {
 		return model;
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public double getTotal() {
+		return total;
+	}
+
+
+	public String getRemark() {
+		return remark;
 	}
     
     

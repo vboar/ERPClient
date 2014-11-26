@@ -33,7 +33,7 @@ public class PresentPO implements Serializable {
 	/**
 	 * 客户姓名
 	 */
-	private String cusomerName;
+	private String customerName;
 	
 	/**
 	 * 赠品列表
@@ -55,11 +55,13 @@ public class PresentPO implements Serializable {
 	 */
 	private boolean isWriteoff;
 	
-	public PresentPO(String id, String time, String customerId, ArrayList<PresentLineItemPO> list,
-			int documentStatus, int documentType, boolean isWriteoff) {
+	public PresentPO(String id, String time, String customerId, String customerName, 
+			ArrayList<PresentLineItemPO> list, int documentStatus, int documentType, 
+			boolean isWriteoff) {
 		this.id = id;
 		this.time = time;
 		this.customerId = customerId;
+		this.customerName = customerName;
 		this.list = list;
 		this.documentStatus = documentStatus;
 		this.documentType = documentType;
@@ -102,8 +104,8 @@ public class PresentPO implements Serializable {
 		return documentType;
 	}
 
-	public String getCusomerName() {
-		return cusomerName;
+	public String getCustomerName() {
+		return customerName;
 	}
-
+	
 }

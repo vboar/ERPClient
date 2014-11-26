@@ -23,6 +23,8 @@ public interface CashDataService extends Remote {
 
 	public ArrayList<CashPO> findByTime(String time1, String time2) throws RemoteException;
 	
+	public ArrayList<CashPO> findByStatus(int status) throws RemoteException;
+	
 	public CashPO getById(String id) throws RemoteException;
 		
 }

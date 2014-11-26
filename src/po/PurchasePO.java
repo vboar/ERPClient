@@ -18,7 +18,7 @@ public class PurchasePO implements Serializable {
 	/**
 	 * 单据编号
 	 */
-	private String receiptId;
+	private String id;
 	
 	/**
 	 * 创建时间
@@ -75,11 +75,11 @@ public class PurchasePO implements Serializable {
 	*/
 	private int documentType;
 	   
-	public PurchasePO(String receiptId,String time,String customerId,String customerName,
+	public PurchasePO(String id,String time,String customerId,String customerName,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,double total,
 			String remark,int documentStatus,boolean isWriteOff,int documentType){
 		this.time = time;
-		this.receiptId=receiptId;
+		this.id=id;
 		this.customerId=customerId;
 		this.customerName=customerName;
 		this.operatorId=operatorId;
@@ -100,8 +100,8 @@ public class PurchasePO implements Serializable {
 		this.isWriteOff = isWriteOff;
 	}
 
-	public String getReceiptId() {
-		return receiptId;
+	public String getId() {
+		return id;
 	}
 
 	public String getTime() {
