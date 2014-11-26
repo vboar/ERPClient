@@ -23,7 +23,7 @@ public interface SaleDataService extends Remote {
 	
 	public ArrayList<SalePO> findBySalesman(String salesman) throws RemoteException;
 	
-	public ArrayList<SalePO> findByStorage(String Storage) throws RemoteException;
+	public ArrayList<SalePO> findByStorage(String storage) throws RemoteException;
 	
 	public ArrayList<SalePO> findByStatus(int status) throws RemoteException;
 

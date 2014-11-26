@@ -50,7 +50,7 @@ public class SaleDataServiceImpl extends UnicastRemoteObject implements SaleData
 	}
 
 	@Override
-	public ArrayList<SalePO> findByStorage(String Storage)
+	public ArrayList<SalePO> findByStorage(String storage)
 			throws RemoteException {
 		return null;
 	}
