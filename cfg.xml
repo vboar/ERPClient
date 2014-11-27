@@ -67,6 +67,9 @@
 			</tablepane>
 
 		</panel>
+		<panel className="ui.userui.CustomerPanel" width="960" height="510"
+			x="0" y="90" bg="img/mainpanel.jpg">
+		</panel>
 	</frame>
 	<userinfodialog width="500" height="280" x="230" y="180">
 		<buttons>
