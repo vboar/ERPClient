@@ -70,36 +70,19 @@ public class CustomerPO implements Serializable {
     private double paybles;
     
     /**
-     * 默认操作员
+     * 默认业务员
      */
-    private String defaultOperatorId;
+    private String salesman;
     
     /**
      * 是否可删
      */
     private boolean isDeletable;
     
-    /**
-     * 构造方法
-     * 
-     * @param id
-     * @param category
-     * @param level
-     * @param name
-     * @param phoneNumber
-     * @param address
-     * @param postalCode
-     * @param email
-     * @param creditLimit
-     * @param receivables
-     * @param paybles
-     * @param defaultOperatorId
-     * @param isDeletable
-     */
     public CustomerPO(String id,int category,int level,String name,
   		            String phoneNumber,String address,String postalCode,String email,
   		            double creditLimit,double receivables,double paybles,
-  		            String defaultOperatorId,boolean isDeletable){
+  		            String salesman,boolean isDeletable){
     	this.id=id;
     	this.category=category;
     	this.level=level;
@@ -111,7 +94,7 @@ public class CustomerPO implements Serializable {
   	  	this.creditLimit=creditLimit;
   	  	this.receivables=receivables;
   	  	this.paybles=paybles;
-  	  	this.defaultOperatorId=defaultOperatorId;
+  	  	this.salesman=salesman;
   	  	this.isDeletable=isDeletable;    	 
     }
 
@@ -195,14 +178,6 @@ public class CustomerPO implements Serializable {
 		this.paybles = paybles;
 	}
 
-	public String getDefaultOperatorId() {
-		return defaultOperatorId;
-	}
-
-	public void setDefaultOperatorId(String defaultOperator) {
-		this.defaultOperatorId = defaultOperator;
-	}
-
 	public boolean isDeletable() {
 		return isDeletable;
 	}
@@ -214,6 +189,9 @@ public class CustomerPO implements Serializable {
 	public String getId() {
 		return id;
 	}
-    
+
+	public String getSalesman() {
+		return salesman;
+	}
    
 }

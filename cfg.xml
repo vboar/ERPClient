@@ -102,4 +102,25 @@
 			</permission>
 		</comboboxes>
 	</userinfodialog>
+	<customerinfodialog width="500" height="280" x="230" y="180">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<category text="客户类别" w="40" h="30" x="30" y="20" />
+			<level text="客户级别" w="60" h="30" x="240" y="20" />
+			<name text="姓名" w="40" h="30" x="30" y="80" />
+			<phonenumber text="电话" w="40" h="30" x="30" y="140" />
+			<address text="地址" w="40" h="30" x="240" y="140" />
+			<postalcode text="邮编" w="40" h="30" x="240" y="140" />
+			<email text="电子邮箱" w="40" h="30" x="240" y="140" />
+			<creditlimit text="应收额度" w="40" h="30" x="240" y="140" />
+			<salesman text="默认业务员" w="40" h="30" x="240" y="140" />
+		</labels>
+		<textfields>
+			
+		</textfields>
+		<comboboxes></comboboxes>
+	</customerinfodialog>
 </erp>
