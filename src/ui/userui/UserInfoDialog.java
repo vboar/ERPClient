@@ -57,8 +57,12 @@ public class UserInfoDialog extends JDialog{
 	private Boolean isAdd;
 	
 	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
+<<<<<<< HEAD
 		super(frame,true);
 		this.setTitle("用户信息");
+=======
+		super(frame);
+>>>>>>> 86bcbd172f08817cf4c2e0a288078a8a1b3f4ffa
 		this.isAdd = isAdd;
 		this.panel = panel;
 		this.cfg = cfg;
