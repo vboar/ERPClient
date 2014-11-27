@@ -33,11 +33,6 @@ public class TotalGiftPO implements Serializable {
 	private ArrayList<PresentLineItemPO> giftInfo;
 	
 	/**
-	 * 价格折让
-	 */
-	private double discount;
-	
-	/**
 	 * 代金券
 	 */
 	private double voucher;
@@ -57,12 +52,11 @@ public class TotalGiftPO implements Serializable {
 	 */
 	private boolean valid;
 	
-	public TotalGiftPO(String id,double total,ArrayList<PresentLineItemPO> giftInfo,double discount,double voucher,
+	public TotalGiftPO(String id,double total,ArrayList<PresentLineItemPO> giftInfo,double voucher,
 			String startTime,String endTime,boolean valid){
 		this.id=id;
 		this.total=total;
 		this.giftInfo=giftInfo;
-		this.discount=discount;
 		this.voucher=voucher;
 		this.startTime=startTime;
 		this.endTime=endTime;
@@ -88,10 +82,6 @@ public class TotalGiftPO implements Serializable {
 
 	public ArrayList<PresentLineItemPO> getGiftInfo() {
 		return giftInfo;
-	}
-
-	public double getDiscount() {
-		return discount;
 	}
 
 	public double getVoucher() {
