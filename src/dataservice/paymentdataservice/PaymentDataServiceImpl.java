@@ -59,4 +59,10 @@ public class PaymentDataServiceImpl extends UnicastRemoteObject implements Payme
 		return null;
 	}
 
+	@Override
+	public ArrayList<PaymentPO> findByStatus(int status) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

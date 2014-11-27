@@ -27,6 +27,8 @@ public interface PaymentDataService extends Remote {
 
 	public ArrayList<PaymentPO> findByOperator(String operator) throws RemoteException;
 	
+	public ArrayList<PaymentPO> findByStatus(int status) throws RemoteException;
+	
 	public PaymentPO getById(String id) throws RemoteException;
 		
 }
