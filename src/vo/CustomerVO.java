@@ -63,36 +63,19 @@ public class CustomerVO {
     public double paybles;
     
     /**
-     * 默认操作员
+     * 默认业务员
      */
-    public String defaultOperator;
+    public String salesman;
     
     /**
      * 是否可删
      */
     public boolean isDeletable;
     
-    /**
-     * 构造方法
-     * 
-     * @param id
-     * @param category
-     * @param level
-     * @param name
-     * @param phoneNumber
-     * @param address
-     * @param postalCode
-     * @param email
-     * @param creditLimit
-     * @param receivables
-     * @param paybles
-     * @param defaultOperator
-     * @param isDeletable
-     */
     public CustomerVO(String id,int category,int level,String name,
   		            String phoneNumber,String address,String postalCode,String email,
   		            double creditLimit,double receivables,double paybles,
-  		            String defaultOperator,boolean isDeletable){
+  		            String salesman,boolean isDeletable){
   	  this.id=id;
   	  this.category=category;
   	  this.level=level;
@@ -104,7 +87,7 @@ public class CustomerVO {
   	  this.creditLimit=creditLimit;
   	  this.receivables=receivables;
   	  this.paybles=paybles;
-  	  this.defaultOperator=defaultOperator;
+  	  this.salesman=salesman;
       this.isDeletable=isDeletable;    	 
     }
 }

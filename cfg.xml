@@ -137,11 +137,11 @@
 				<string str="销售商" />
 			</type>
 			<type w="130" h="30" x="80" y="140">
-				<string str="青铜" />
-				<string str="白银" />
-				<string str="黄金" />
-				<string str="白金" />
-				<string str="钻石" />
+				<string str="VIP1" />
+				<string str="VIP2" />
+				<string str="VIP3" />
+				<string str="VIP4" />
+				<string str="VIP5" />
 			</type>
 		</comboboxes>
 	</customerinfodialog>
