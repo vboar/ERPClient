@@ -119,8 +119,26 @@
 			<salesman text="默认业务员" w="40" h="30" x="240" y="140" />
 		</labels>
 		<textfields>
-			
+			<name w="40" h="30" x="30" y="80" />
+			<phonenumber w="40" h="30" x="30" y="140" />
+			<address w="40" h="30" x="240" y="140" />
+			<postalcode w="40" h="30" x="240" y="140" />
+			<email w="40" h="30" x="240" y="140" />
+			<creditlimit w="40" h="30" x="240" y="140" />
+			<salesman w="40" h="30" x="240" y="140" />
 		</textfields>
-		<comboboxes></comboboxes>
+		<comboboxes>
+			<type w="130" h="30" x="80" y="140">
+				<string str="供应商" />
+				<string str="销售商" />
+			</type>
+			<type w="130" h="30" x="80" y="140">
+				<string str="青铜" />
+				<string str="白银" />
+				<string str="黄金" />
+				<string str="白金" />
+				<string str="钻石" />
+			</type>
+		</comboboxes>
 	</customerinfodialog>
 </erp>
