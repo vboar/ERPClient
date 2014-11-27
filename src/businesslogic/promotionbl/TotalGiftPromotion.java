@@ -68,7 +68,7 @@ public class TotalGiftPromotion {
 		}
 		id=vo.id;
 		double total=vo.total;
-		ArrayList<PresentLineItemPO> giftInfo=Utility.presentVOListToVOlist(vo.giftInfo);
+		ArrayList<PresentLineItemPO> giftInfo=Utility.presentVOListToPOlist(vo.giftInfo);
 	
 		
 		double voucher=vo.voucher;
