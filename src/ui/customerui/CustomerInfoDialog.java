@@ -6,8 +6,13 @@
 
 package ui.customerui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+
+import org.dom4j.Element;
 
 import ui.util.MyButton;
 import ui.util.MyComboBox;
@@ -75,7 +80,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());
-		
+		this.initComponent();
 	}
 	
 	public CustomerInfoDialog(InfoDialogConfig cfg, JFrame frame, CustomerPanel panel, 
@@ -92,6 +97,76 @@ public class CustomerInfoDialog extends JDialog {
 		this.levelBox.setSelectedIndex(vo.level);
 	}
 	
+	private void initComponent() {
+		this.initLabels(this.cfg.getLabels());
+		this.initButtons(this.cfg.getButtons());
+		this.initTextFields(this.cfg.getTextFields());
+		this.initComboBoxes(this.cfg.getComboboxes());
+	}
 	
+	private void initLabels(Element ele) {
+		this.categoryLabel = new MyLabel(ele.element("category"));
+		this.levelLabel = new MyLabel(ele.element("level"));
+		this.nameLabel = new  MyLabel(ele.element("name"));
+		this.phoneNumberLabel = new MyLabel(ele.element("phonenumber"));
+		this.addressLabel = new MyLabel(ele.element("address"));
+		this.postalCodeLabel = new MyLabel(ele.element("postalcode"));
+		this.emailLabel = new MyLabel(ele.element("email"));
+		this.creditLimitLabel = new MyLabel(ele.element("creditlimit"));
+		this.salesmanLabel = new MyLabel(ele.element("salesman"));
+		this.add(categoryLabel);
+		this.add(levelLabel);
+		this.add(nameLabel);
+		this.add(phoneNumberLabel);
+		this.add(addressLabel);
+		this.add(postalCodeLabel);
+		this.add(emailLabel);
+		this.add(creditLimitLabel);
+		this.add(salesmanLabel);
+	}
 	
+	private void initButtons(Element ele){
+		
+		this.commit = new MyButton(ele.element("commit"));
+		this.commit.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+//				CustomerVO vo = new CustomerVO(null, );
+			}
+			
+		});
+		
+		this.cancel = new MyButton(ele.element("cancel"));
+		this.cancel.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+	}
+	
+	private void initTextFields(Element ele) {
+		this.addressTxt = new MyTextField(ele.element("address"));
+		this.creditLimitTxt = new MyTextField(ele.element("creditlimit"));
+		this.emailTxt = new MyTextField(ele.element("email"));
+		this.nameTxt = new MyTextField(ele.element("name"));
+		this.phoneNumberTxt = new MyTextField(ele.element("phonenumber"));
+		this.postalCodeTxt = new MyTextField(ele.element("postalcode"));
+		this.salesmanTxt = new MyTextField(ele.element("salesman"));
+		this.add(addressTxt);
+		this.add(creditLimitTxt);
+		this.add(emailTxt);
+		this.add(nameTxt);
+		this.add(phoneNumberTxt);
+		this.add(postalCodeTxt);
+		this.add(salesmanTxt);
+	}
+	
+	private void initComboBoxes(Element ele) {
+		
+	}
 }
