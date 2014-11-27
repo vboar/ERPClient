@@ -11,14 +11,14 @@ public class Login {
 
 	private String currentUserName;
 	
-	public String currentUserId;
+	public static String currentUserId;
 	
 	private UserType currentUserType;
 	
 	private int type;
 	
 	public Login(String id, int type) {
-		this.currentUserId = id;
+		Login.currentUserId = id;
 		this.type  = type;
 	}
 

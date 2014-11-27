@@ -33,7 +33,7 @@ public class Customer {
 			DataFactoryImpl.getInstance().getCustomerData().insert(new CustomerPO(id,
 					vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
 					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
-					vo.defaultOperator,vo.isDeletable));
+					vo.salesman,vo.isDeletable));
 		}
 		
 		l.add("Add customer Successfully");
@@ -44,7 +44,7 @@ public class Customer {
 		if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).get(0).isDeletable()){
 			DataFactoryImpl.getInstance().getCustomerData().delete(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
 					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
-					vo.defaultOperator,vo.isDeletable));
+					vo.salesman,vo.isDeletable));
 		}else{
 			//该客户不能删除
 			l.add("Fail to delete customer:customer is undeletable");
@@ -58,7 +58,7 @@ public class Customer {
 	public ResultMessage update(CustomerVO vo) throws RemoteException{
 		DataFactoryImpl.getInstance().getCustomerData().update(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
 					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
-					vo.defaultOperator,vo.isDeletable));
+					vo.salesman,vo.isDeletable));
 		
 		l.add("Update customer successfully");
 		return ResultMessage.SUCCESS;
