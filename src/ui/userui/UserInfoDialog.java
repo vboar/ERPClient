@@ -52,7 +52,7 @@ public class UserInfoDialog extends JDialog{
 	private Boolean isAdd;
 	
 	public UserInfoDialog(UserInfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
-		super(frame);
+		super(frame,true);
 		this.isAdd = isAdd;
 		this.panel = panel;
 		this.cfg = cfg;

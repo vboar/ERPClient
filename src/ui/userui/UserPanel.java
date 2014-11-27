@@ -40,6 +40,8 @@ public class UserPanel extends JPanel implements FindTextListener{
 	
 	private MyButton findbtn;
 	
+	private MyButton showAll;
+	
 	private MyFindComboBox findbox;
 	
 	private MyLabel userlist;
@@ -104,12 +106,18 @@ public class UserPanel extends JPanel implements FindTextListener{
 		this.initDeleteBtn(buttons.element("delete"));
 		this.initUpdateBtn(buttons.element("modify"));
 		this.initFindBtn(buttons.element("find"));
+		this.initShowAllBtn(buttons.element("showall"));
 		this.add(this.addbtn);
 		this.add(this.deletebtn);
 		this.add(this.modifybtn);
 		this.add(this.findbtn);
 	}
 	
+	private void initShowAllBtn(Element ele) {
+		this.showAll = new MyButton(ele);
+		this.add(this.showAll);
+	}
+
 	private void initFindBtn(Element find){
 		this.findbtn = new MyButton(find);
 		this.findbtn.addActionListener(new ActionListener(){
