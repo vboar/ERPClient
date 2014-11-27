@@ -1,3 +1,8 @@
+/**
+ * 添加/修改用户信息面板
+ * @author JaneLDQ
+ * @date 2014/11/26
+ */
 package ui.userui;
 
 import java.awt.event.ActionEvent;
@@ -51,13 +56,9 @@ public class UserInfoDialog extends JDialog{
 	
 	private Boolean isAdd;
 	
-<<<<<<< HEAD
-	public UserInfoDialog(UserInfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
-		super(frame,true);
-=======
 	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
-		super(frame);
->>>>>>> c1e0793258451e0efd98c65df0015c9b396dfb3f
+		super(frame,true);
+		this.setTitle("用户信息");
 		this.isAdd = isAdd;
 		this.panel = panel;
 		this.cfg = cfg;
@@ -156,8 +157,23 @@ public class UserInfoDialog extends JDialog{
 	
 	private void initComboBoxes(Element ele){
 		this.typebox = new MyComboBox(ele.element("type"));
+		this.typebox.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())){
+					permissionbox.setEnabled(false);
+				}else{
+					permissionbox.setEnabled(true);
+				}
+			}		
+		});
 		this.permissionbox = new MyComboBox(ele.element("permission"));
+		if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())){
+			this.permissionbox.setEnabled(false);
+		}
 		this.add(this.typebox);
 		this.add(this.permissionbox);
 	}
+	
+	
 }

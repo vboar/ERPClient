@@ -98,6 +98,9 @@ public class UserPanel extends JPanel implements FindTextListener{
 
 	private void initLabels(Element labels) {
 		this.userlist = new MyLabel(labels.element("userlist"));
+		this.add(new MyLabel(labels.element("modulename")));
+		this.add(new MyLabel(labels.element("admin")));
+		this.add(new MyLabel(labels.element("usermanagebtn")));
 		this.add(this.userlist);
 	}
 
@@ -115,6 +118,13 @@ public class UserPanel extends JPanel implements FindTextListener{
 	
 	private void initShowAllBtn(Element ele) {
 		this.showAll = new MyButton(ele);
+		this.showAll.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				userTable.showFindTable(userController.show());
+				userTable.updateUI();
+			}		
+		});
 		this.add(this.showAll);
 	}
 

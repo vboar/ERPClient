@@ -1,3 +1,8 @@
+/**
+ * 行号表格
+ * @author JaneLDQ
+ * @date 2014/11/24
+ */
 package ui.util;
 
 import java.awt.Color;

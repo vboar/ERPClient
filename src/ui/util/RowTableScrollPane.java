@@ -1,3 +1,8 @@
+/**
+ * 行号表格滚动面板
+ * @author JaneLDQ
+ * @date 2014/11/25
+ */
 package ui.util;
 
 import java.beans.PropertyChangeEvent;
