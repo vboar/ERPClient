@@ -5,6 +5,7 @@
  */
 package dataservice.datafactoryservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import dataservice.accountdataservice.AccountDataService;
@@ -28,7 +29,7 @@ import dataservice.stockdataservice.StockDataService;
 import dataservice.systemdateservice.SystemDataService;
 import dataservice.userdataservice.UserDataService;
 
-public interface DataFactory {
+public interface DataFactory extends Remote {
 
 	public AccountDataService getAccountData() throws RemoteException;
 	

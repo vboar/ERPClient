@@ -31,7 +31,7 @@ public class SpecialOfferDataServiceImpl extends UnicastRemoteObject implements 
 	}
 
 	@Override
-	public ArrayList<SpecialOfferPO> findByValid() throws RemoteException {
+	public ArrayList<SpecialOfferPO> findByValid(boolean valid) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
