@@ -28,7 +28,12 @@ public class PresentPO implements Serializable {
 	/**
 	 * 客户编号
 	 */
-	private String clientId;
+	private String customerId;
+	
+	/**
+	 * 客户姓名
+	 */
+	private String customerName;
 	
 	/**
 	 * 赠品列表
@@ -50,21 +55,13 @@ public class PresentPO implements Serializable {
 	 */
 	private boolean isWriteoff;
 	
-	/**
-	 * 构造方法
-	 * @param id
-	 * @param time
-	 * @param clientId
-	 * @param list
-	 * @param status
-	 * @param type
-	 * @param isWriteoff
-	 */
-	public PresentPO(String id, String time, String clientId, ArrayList<PresentLineItemPO> list,
-			int documentStatus, int documentType, boolean isWriteoff) {
+	public PresentPO(String id, String time, String customerId, String customerName, 
+			ArrayList<PresentLineItemPO> list, int documentStatus, int documentType, 
+			boolean isWriteoff) {
 		this.id = id;
 		this.time = time;
-		this.clientId = clientId;
+		this.customerId = customerId;
+		this.customerName = customerName;
 		this.list = list;
 		this.documentStatus = documentStatus;
 		this.documentType = documentType;
@@ -91,8 +88,8 @@ public class PresentPO implements Serializable {
 		return isWriteoff;
 	}
 
-	public String getClientId() {
-		return clientId;
+	public String getCustomerId() {
+		return customerId;
 	}
 
 	public int getDocumentStatus() {
@@ -107,4 +104,8 @@ public class PresentPO implements Serializable {
 		return documentType;
 	}
 
+	public String getCustomerName() {
+		return customerName;
+	}
+	
 }

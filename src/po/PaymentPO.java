@@ -31,6 +31,11 @@ public class PaymentPO implements Serializable {
 	private String customerId;
 	
 	/**
+	 * 客户姓名
+	 */
+	private String customerName;
+	
+	/**
 	 * 操作员
 	 */
 	private String operatorId;
@@ -48,7 +53,7 @@ public class PaymentPO implements Serializable {
 	/**
 	 * 审批状态
 	 */
-	private int documentStatus;
+	private int approvalStatus;
 	
 	/**
 	 * 是否为红冲单据
@@ -72,16 +77,17 @@ public class PaymentPO implements Serializable {
 	 * @param isWriteOff
 	 * @param documentType
 	 */
-	public PaymentPO(String id,String time,String customerId,String operatorId,
-			ArrayList<TransferLineItemPO> transferList,double total,
-			int documentStatus,boolean isWriteOff,int documentType){
+	public PaymentPO(String id,String time,String customerId,String customerName,
+			String operatorId,ArrayList<TransferLineItemPO> transferList,double total,
+			int approvalStatus,boolean isWriteOff,int documentType){
 		this.id = id;
 		this.time = time;
 		this.customerId = customerId;
+		this.setCustomerName(customerName);
 		this.operatorId = operatorId;
 		this.transferList = transferList;
 		this.total = total;
-		this.documentStatus = documentStatus;
+		this.approvalStatus = approvalStatus;
 		this.isWriteOff = isWriteOff;
 		this.documentType = documentType;
 	}
@@ -102,7 +108,7 @@ public class PaymentPO implements Serializable {
 		return total;
 	}
 
-	public boolean isWriteOff() {
+	public boolean getIsWriteOff() {
 		return isWriteOff;
 	}
 
@@ -110,12 +116,12 @@ public class PaymentPO implements Serializable {
 		return time;
 	}
 
-	public int getDocumentStatus() {
-		return documentStatus;
+	public int getApprovalStatus() {
+		return approvalStatus;
 	}
 
-	public void setDocumentStatus(int documentStatus) {
-		this.documentStatus = documentStatus;
+	public void setApprovalStatus(int approvalStatus) {
+		this.approvalStatus=approvalStatus;
 	}
 
 	public String getOperatorId() {
@@ -124,6 +130,18 @@ public class PaymentPO implements Serializable {
 
 	public int getDocumentType() {
 		return documentType;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public void setIsWriteOff(boolean isWriteOff) {
+		this.isWriteOff = isWriteOff;
 	}
 	
 }

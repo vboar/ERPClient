@@ -20,7 +20,7 @@ public interface TotalGiftDataService extends Remote {
 	
 	public ArrayList<TotalGiftPO> show() throws RemoteException;
 	
-	public ArrayList<TotalGiftPO> findByValid() throws RemoteException;
+	public ArrayList<TotalGiftPO> findByValid(boolean valid) throws RemoteException;
 	
 	public TotalGiftPO getById(String id) throws RemoteException;
 	

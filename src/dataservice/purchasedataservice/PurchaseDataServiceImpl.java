@@ -44,13 +44,7 @@ public class PurchaseDataServiceImpl extends UnicastRemoteObject implements Purc
 	}
 
 	@Override
-	public ArrayList<PurchasePO> findBySalesman(String salesman)
-			throws RemoteException {
-		return null;
-	}
-
-	@Override
-	public ArrayList<PurchasePO> findByStorage(String Storage)
+	public ArrayList<PurchasePO> findByStorage(String storage)
 			throws RemoteException {
 		return null;
 	}

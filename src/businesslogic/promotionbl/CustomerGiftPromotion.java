@@ -8,8 +8,8 @@ package businesslogic.promotionbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import po.CommodityLineItemPO;
 import po.CustomerGiftPO;
+import po.PresentLineItemPO;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.CustomerGiftVO;
@@ -85,7 +85,7 @@ public class CustomerGiftPromotion {
 	}else  id=vo.id;
 		
 		int VIP=vo.vip;
-		ArrayList<CommodityLineItemPO> giftInfo=null;//vo.giftInfo;
+		ArrayList<PresentLineItemPO> giftInfo=null;//vo.giftInfo;
 		//TODO
 		double discount=vo.discount;
 		double voucher=vo.voucher;

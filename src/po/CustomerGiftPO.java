@@ -29,7 +29,7 @@ public class CustomerGiftPO implements Serializable {
 	/**
 	 * 赠品的列表
 	 */
-	private ArrayList<CommodityLineItemPO> giftInfo;
+	private ArrayList<PresentLineItemPO> giftInfo;
 	
 	/**
 	 * 价格折让
@@ -68,7 +68,7 @@ public class CustomerGiftPO implements Serializable {
 	 * @param endTime
 	 * @param valid
 	 */
-	public CustomerGiftPO(String id,int VIP,ArrayList<CommodityLineItemPO> giftInfo,
+	public CustomerGiftPO(String id,int VIP,ArrayList<PresentLineItemPO> giftInfo,
 			double discount,double voucher,String startTime,String endTime,boolean valid){
 		this.id=id;
 		this.vip=VIP;
@@ -100,7 +100,7 @@ public class CustomerGiftPO implements Serializable {
 		return vip;
 	}
 
-	public ArrayList<CommodityLineItemPO> getGiftInfo() {
+	public ArrayList<PresentLineItemPO> getGiftInfo() {
 		return giftInfo;
 	}
 

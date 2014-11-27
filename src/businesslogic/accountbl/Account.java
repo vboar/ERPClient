@@ -24,7 +24,7 @@ public class Account {
 	}
 	
 	public ResultMessage add(AccountVO vo) throws RemoteException{
-		if(DataFactoryImpl.getInstance().getAccountData().find(vo.name).size()==0){
+		if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
 			l.add("Add account failed:account exists");
 			return ResultMessage.EXIST;
 		}else{
@@ -36,7 +36,7 @@ public class Account {
 	}
 	
 	public ResultMessage delete(AccountVO vo) throws RemoteException{
-		if(DataFactoryImpl.getInstance().getAccountData().find(vo.name).size()==0){
+		if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
 			l.add("Delete account failed:account doesn't exists");
 			return ResultMessage.FAILED;
 		}else{
@@ -52,9 +52,8 @@ public class Account {
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ArrayList<AccountPO> findByAccount(String account) throws RemoteException{
-		ArrayList<AccountPO> result=new ArrayList<AccountPO>();
-		result=DataFactoryImpl.getInstance().getAccountData().findByAccount(account);
+	public AccountPO findByAccount(String account) throws RemoteException{
+		AccountPO result=DataFactoryImpl.getInstance().getAccountData().findByAccount(account);
 		return result;
 	}
 }

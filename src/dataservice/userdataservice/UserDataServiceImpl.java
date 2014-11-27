@@ -14,7 +14,7 @@ import po.UserPO;
 
 public class UserDataServiceImpl extends UnicastRemoteObject implements UserDataService {
 
-	protected UserDataServiceImpl() throws RemoteException {
+	public UserDataServiceImpl() throws RemoteException {
 		super();
 	}
 

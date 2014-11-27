@@ -71,12 +71,13 @@ public class CashPO implements Serializable {
 	 * @param documentType
 	 */
 	public CashPO(String ID,String time,String operatorId,String bankAccount,ArrayList<ClauseLineItemPO> clauseList,
-			int documentStatus, boolean isWriteOff,int documentType){
+			double total, int documentStatus, boolean isWriteOff,int documentType){
 		this.id = ID;
 		this.time = time;
 		this.operatorId = operatorId;
 		this.bankAccount = bankAccount;
 		this.clauseList = clauseList;
+		this.total = total;
 		this.documentStatus = documentStatus;
 		this.isWriteOff = isWriteOff;
 		this.documentType = documentType;

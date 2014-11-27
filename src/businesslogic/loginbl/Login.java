@@ -7,7 +7,7 @@ public class Login {
 
 	private String currentUserName;
 	
-	private String currentUserId;
+	public static String currentUserId;
 	
 	private UserType currentUserType;
 	

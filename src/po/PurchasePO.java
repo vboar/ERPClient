@@ -18,7 +18,7 @@ public class PurchasePO implements Serializable {
 	/**
 	 * 单据编号
 	 */
-	private String receiptId;
+	private String id;
 	
 	/**
 	 * 创建时间
@@ -29,6 +29,11 @@ public class PurchasePO implements Serializable {
 	* 客户编号
 	*/
 	private String customerId;	   
+	
+	/**
+	 * 客户姓名
+	 */
+	private String customerName;
 	   
 	/**
 	* 操作员
@@ -70,29 +75,13 @@ public class PurchasePO implements Serializable {
 	*/
 	private int documentType;
 	   
-	/**
-	* 构造方法
-	* 
-	* @param receiptId
-	* @param customerId
-	* @param operatord
-	* @param storage
-	* @param saleList
-	* @param totalBeforeDiscount
-	* @param discount
-	* @param voucher
-	* @param totalAfterDiscount
-	* @param remark
-	* @param approvalState
-	* @param isWriteOff
-	* @param receiptType
-	*/
-	public PurchasePO(String receiptId,String time,String customerId,
+	public PurchasePO(String id,String time,String customerId,String customerName,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,double total,
 			String remark,int documentStatus,boolean isWriteOff,int documentType){
 		this.time = time;
-		this.receiptId=receiptId;
+		this.id=id;
 		this.customerId=customerId;
+		this.customerName=customerName;
 		this.operatorId=operatorId;
 		this.storage=storage;
 		this.saleList=saleList;
@@ -111,8 +100,8 @@ public class PurchasePO implements Serializable {
 		this.isWriteOff = isWriteOff;
 	}
 
-	public String getReceiptId() {
-		return receiptId;
+	public String getId() {
+		return id;
 	}
 
 	public String getTime() {
@@ -153,6 +142,10 @@ public class PurchasePO implements Serializable {
 
 	public int getDocumentType() {
 		return documentType;
+	}
+
+	public String getCustomerName() {
+		return customerName;
 	}
 	
 }

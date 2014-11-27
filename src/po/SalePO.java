@@ -18,7 +18,7 @@ public class SalePO implements Serializable {
 	/**
 	* 单据编号
 	*/
-	private String receiptId;
+	private String id;
 	 
 	/**
 	* 创建时间
@@ -28,33 +28,22 @@ public class SalePO implements Serializable {
 	/**
 	* 客户编号
 	*/
-	 private String customerId;	
+	private String customerId;	
 	 
-	 /**
-	  * 客户姓名
-	  */
-	 private String name;
+	/**
+	 * 客户姓名
+	 */
+	private String customerName;
 	 
-	 /**
-	  * 客户vip
-	  */
-	private int VIP;
-	
+	/**
+	* 客户vip
+	*/
+	private int customerVIP;
 	
 	/**
 	* 业务员
 	*/
 	private String salesman;
-	
-	/**
-	 * 业务员id
-	 */
-	private String salesmanId;
-	
-	/**
-	* 操作员
-	*/
-	private String operator;
 	
 	/**
 	* 操作员id
@@ -74,7 +63,7 @@ public class SalePO implements Serializable {
 	/**
 	* 赠品列表
 	*/
-	private ArrayList<CommodityLineItemPO> giftList;
+	private ArrayList<PresentLineItemPO> giftList;
 	   
 	/**
 	* 折让前总额
@@ -116,36 +105,17 @@ public class SalePO implements Serializable {
 	*/
 	private int documentType;
 	
-	/**
-	 * 构造方法
-	 * @param receiptId
-	 * @param time
-	 * @param customerId
-	 * @param salsman
-	 * @param operatorId
-	 * @param storage
-	 * @param saleList
-	 * @param totalBeforeDiscount
-	 * @param discount
-	 * @param voucher
-	 * @param totalAfterDiscount
-	 * @param remark
-	 * @param approvalState
-	 * @param isWriteOff
-	 * @param receiptType
-	 */
-	public SalePO(String receiptId,String time,String customerId,String name,int VIP,String salsman,String salesmanId,
-			String operator,String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,ArrayList<CommodityLineItemPO> giftList,double totalBeforeDiscount,
+	public SalePO(String id,String time,String customerId,String customerName,int customerVIP,String salesman,
+			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,
+			ArrayList<PresentLineItemPO> giftList,double totalBeforeDiscount,
 			double discount,double voucher,double totalAfterDiscount,String remark,
 			int documentStatus,boolean isWriteOff,int documentType){
-		this.receiptId=receiptId;
+		this.id=id;
 		this.time = time;
 		this.customerId=customerId;
-		this.name=name;
-		this.VIP=VIP;
-		this.salesman = salsman;
-		this.salesmanId=salesmanId;
-		this.operator=operator;
+		this.customerName=customerName;
+		this.customerVIP=customerVIP;
+		this.salesman = salesman;
 		this.operatorId=operatorId;
 		this.storage=storage;
 		this.saleList=saleList;
@@ -164,16 +134,8 @@ public class SalePO implements Serializable {
 		return serialVersionUID;
 	}
 
-	public String getSalesmanId() {
-		return salesmanId;
-	}
-
-	public String getOperator() {
-		return operator;
-	}
-
-	public String getReceiptId() {
-		return receiptId;
+	public String getId() {
+		return id;
 	}
 
 	public String getTime() {
@@ -182,14 +144,6 @@ public class SalePO implements Serializable {
 
 	public String getCustomerId() {
 		return customerId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getVIP() {
-		return VIP;
 	}
 
 	public String getSalesman() {
@@ -203,15 +157,7 @@ public class SalePO implements Serializable {
 	public ArrayList<CommodityLineItemPO> getSaleList() {
 		return saleList;
 	}
-
-	public ArrayList<CommodityLineItemPO> getGiftList() {
-		return giftList;
-	}
-
-	public void setGiftList(ArrayList<CommodityLineItemPO> giftList) {
-		this.giftList = giftList;
-	}
-
+	
 	public double getTotalBeforeDiscount() {
 		return totalBeforeDiscount;
 	}
@@ -250,6 +196,18 @@ public class SalePO implements Serializable {
 
 	public int getDocumentType() {
 		return documentType;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public int getCustomerVIP() {
+		return customerVIP;
+	}
+
+	public ArrayList<PresentLineItemPO> getGiftList() {
+		return giftList;
 	}
 	
 }

@@ -49,4 +49,10 @@ public class CashDataServiceImpl extends UnicastRemoteObject implements CashData
 		return null;
 	}
 
+	@Override
+	public ArrayList<CashPO> findByStatus(int status) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
