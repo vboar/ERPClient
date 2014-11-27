@@ -33,7 +33,7 @@ public class UserBLService_Driver {
 		}
 		System.out.println();
 		
-		ArrayList<UserVO> volist1=userBLService.findByid("xs001");
+		ArrayList<UserVO> volist1=userBLService.findById("xs001");
 		System.out.println("下面是查找到的用户id");
 		System.out.println(volist1.get(0).id);
 		System.out.println();

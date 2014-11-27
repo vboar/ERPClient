@@ -29,7 +29,7 @@ public class PromotionBLService_Driver {
 		}
 			
 		result=promotionBLService.createByPrice(
-				new TotalGiftVO("00002",10000.0,null,10.0,10.0,"2014/10/23","2014/10/25",false));
+				new TotalGiftVO("00002",10000.0,null,10.0,"2014/10/23","2014/10/25",false));
 			if(result==ResultMessage.SUCCESS){
 				System.out.println("创建成功");					
 		}
@@ -44,7 +44,7 @@ public class PromotionBLService_Driver {
 				System.out.println("创建成功");	
 		}
 		result=promotionBLService.update(
-					new TotalGiftVO("00002",10000.0,null,10.0,10.0,"2014/10/23","2014/10/25",false));
+					new TotalGiftVO("00002",10000.0,null,10.0,"2014/10/23","2014/10/25",false));
 				if(result==ResultMessage.SUCCESS){
 					System.out.println("创建成功");					
 			}	
@@ -59,11 +59,7 @@ public class PromotionBLService_Driver {
 				System.out.println("特价包金额为：");
 				System.out.println(voList2.get(0).total);
 				
-				ArrayList<TotalGiftVO> voList3=new ArrayList<TotalGiftVO>();
-				voList3=promotionBLService.findByPrice();
-				System.out.println("折让金额为：");
-				System.out.println(voList3.get(0).discount);
-				
+								
 				
 				
 	}

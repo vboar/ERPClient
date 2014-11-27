@@ -75,7 +75,7 @@ public class TotalGiftPromotion {
 		String startTime=vo.startTime;
 		String endTime=vo.endTime;
 		boolean valid=vo.valid;
-		TotalGiftPO po=new TotalGiftPO(id, total, giftInfo, 0, voucher, startTime, endTime, valid);
+		TotalGiftPO po=new TotalGiftPO(id, total, giftInfo, voucher, startTime, endTime, valid);
 		
 		return po;
 		
