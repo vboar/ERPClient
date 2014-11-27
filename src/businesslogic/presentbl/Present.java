@@ -55,6 +55,45 @@ public class Present {
 		return null;
 				
 	}
+	
+	public ArrayList<PresentVO> findByStatus(DocumentStatus status){
+		ArrayList<PresentPO> poList;
+		try {
+			poList = DataFactoryImpl.getInstance().getPresentData().findByStatus(status.ordinal());
+			ArrayList<PresentVO> voList=poListToVOList(poList);
+			return voList;
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<PresentVO> findByCustomerId(String customerId){
+		ArrayList<PresentPO> poList=null;
+	try {
+		DataFactoryImpl.getInstance().getPresentData().findByCustomerId(customerId);
+	} catch (RemoteException e) {
+		e.printStackTrace();
+	}
+	ArrayList<PresentVO> voList=poListToVOList(poList);
+	return voList;
+	}
+	
+	public ArrayList<PresentVO> findByTime(String time1,String time2){
+		ArrayList<PresentPO> poList=null;
+	try {
+		DataFactoryImpl.getInstance().getPresentData().findByTime(time1, time2);
+	} catch (RemoteException e) {
+		e.printStackTrace();
+	}
+	ArrayList<PresentVO> voList=poListToVOList(poList);
+	return voList;
+	}
+	
+	
+	public ResultMessage approve(PresentVO vo){
+	return null;
+	}
 
 	private PresentPO voToPO(PresentVO vo) {
 		// String id, String time, String customerId, String customerName,

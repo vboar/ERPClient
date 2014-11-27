@@ -25,7 +25,7 @@ public class PresentBLService_Stub implements PresentBLService {
 		ArrayList<PresentLineItemVO> list2 = new ArrayList<PresentLineItemVO>();
 		list2.add(new PresentLineItemVO("00001-00001", "飞利浦吊灯", "FLP01", 50));
 		list.add(new PresentVO("ZSD-20141023-00001", "21:29:32", "00001",
-				"金刚狼",list2, DocumentStatus.NONCHECKED, false));
+				"金刚狼",list2, DocumentStatus.NONCHECKED, null, false));
 		return list;
 	}
 
@@ -34,7 +34,7 @@ public class PresentBLService_Stub implements PresentBLService {
 		ArrayList<PresentVO> list = new ArrayList<PresentVO>();
 		ArrayList<PresentLineItemVO> list2 = new ArrayList<PresentLineItemVO>();
 		list2.add(new PresentLineItemVO("00001-00001", "飞利浦吊灯", "FLP01", 50));
-		list.add(new PresentVO(id, "21:29:32","00001","金刚狼", list2, DocumentStatus.NONCHECKED, false));
+		list.add(new PresentVO(id, "21:29:32","00001","金刚狼", list2, DocumentStatus.NONCHECKED, null, false));
 		return list;
 	}
 
@@ -43,7 +43,7 @@ public class PresentBLService_Stub implements PresentBLService {
 		ArrayList<PresentVO> list = new ArrayList<PresentVO>();
 		ArrayList<PresentLineItemVO> list2 = new ArrayList<PresentLineItemVO>();
 		list2.add(new PresentLineItemVO("00001-00001", "飞利浦吊灯", "FLP01", 50));
-		list.add(new PresentVO("ZSD-20141023-00001", "21:29:32","00001","金刚狼", list2, status, false));
+		list.add(new PresentVO("ZSD-20141023-00001", "21:29:32","00001","金刚狼", list2, status, null, false));
 		return list;
 	}
 
