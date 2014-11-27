@@ -121,11 +121,18 @@ public class User {
 	 * @throws RemoteException
 	 */
 	public ArrayList<UserVO> findById(String id) throws RemoteException {
-		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().findById(id);
+//		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().findById(id);
 		 ArrayList<UserVO> voList=new ArrayList<UserVO>();
-		 for(UserPO po:poList){
-			 voList.add(userPOToUservo(po));
+//		 for(UserPO po:poList){
+//			 voList.add(userPOToUservo(po));
+//		 }
+		 if(id.equals("1")){
+			 voList.add(new UserVO("0001","123456",UserType.STOCKKEEPER,1,"啦啦"));
+			 voList.add(new UserVO("0002","123456",UserType.COUNTER,1,"哈哈"));
+		 }else if(id.equals("12")){
+			 voList.add(new UserVO("0001","123456",UserType.STOCKKEEPER,1,"啦啦"));
 		 }
+		 voList.add(new UserVO("0001","123456",UserType.STOCKKEEPER,1,"啦啦"));
 		 return voList;
 
 	}
@@ -168,11 +175,15 @@ public class User {
 	 * @throws RemoteException
 	 */
 	public ArrayList<UserVO> show() throws RemoteException {
-		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().show();
+//		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().show();
 		 ArrayList<UserVO> voList=new ArrayList<UserVO>();
-		 for(UserPO po:poList){
-			 voList.add(userPOToUservo(po));
-		 }
+//		 for(UserPO po:poList){
+//			 voList.add(userPOToUservo(po));
+//		 }
+		 voList.add(new UserVO("0001","123456",UserType.STOCKKEEPER,1,"啦啦"));
+		 voList.add(new UserVO("0002","123456",UserType.COUNTER,1,"哈哈"));
+		 voList.add(new UserVO("0003","123456",UserType.SALESMAN,0,"嘿嘿"));
+		 voList.add(new UserVO("0004","123456",UserType.ADMINISTRATOR,0,"呵呵"));
 		 return voList;
 
 	}

@@ -5,6 +5,7 @@
 
 package businesslogic.userbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.ResultMessage;
@@ -14,22 +15,28 @@ import businesslogicservice.userblservice.UserBLService;
 
 public class UserController implements UserBLService {
 
+	User user;
+	
+	public UserController(){
+		this.user = new User();
+	}
+	
 	@Override
 	public ResultMessage add(UserVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage delete(UserVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage update(UserVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
@@ -47,13 +54,23 @@ public class UserController implements UserBLService {
 	@Override
 	public ArrayList<UserVO> findByid(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return user.findById(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public ArrayList<UserVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return user.show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
