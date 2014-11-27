@@ -10,7 +10,7 @@ public class SaleVO {
 	/**
 	 * 单据编号
 	 */
-	 public String receiptId;
+	 public String id;
 	 
 	 /**
 	  * 创建时间
@@ -26,28 +26,23 @@ public class SaleVO {
 	   /**
 	    * 客户姓名
 	    */
-	 public String name;
+	 public String customerName;
 	 
 	 /**
 	    * 客户等级
 	    */
-	 public int VIP;
+	 public int customerVIP;
 	 
 	 /**
 	  * 业务员
 	  */
 	 public String salesman;
-	 
-	 /**
-	  * 业务员id
-	  */
-	 public String salesmanId;
-	 
+	 	 
 	   
 	   /**
-	    * 操作员
+	    * 操作员姓名
 	    */
-	 public String operator;
+	 public String operatorName;
 	 
 	 /**
 	  * 操作员id
@@ -68,7 +63,7 @@ public class SaleVO {
 	 /**
 	    * 入库商品列表
 	    */
-	 public ArrayList<CommodityLineItemVO> giftList;
+	 public ArrayList<PresentLineItemVO> giftList;
 	   
 	   /**
 	    * 折让前总额
@@ -128,19 +123,18 @@ public class SaleVO {
 	   * @param isWriteOff
 	   * @param receiptType
 	   */
-	   public SaleVO(String receiptId,String time,String customerId,String name,int VIP,String salesman,String salesmanId,
-	   String operator,String operatorId,String storage,ArrayList<CommodityLineItemVO> saleList,ArrayList<CommodityLineItemVO> giftList,double totalBeforeDiscount,
+	   public SaleVO(String id,String time,String customerId,String customerName,int customerVIP,String salesman,
+	   String operatorName,String operatorId,String storage,ArrayList<CommodityLineItemVO> saleList,ArrayList<PresentLineItemVO> giftList,double totalBeforeDiscount,
 	   double discount,double voucher,double totalAfterDiscount,String remark,
 	   DocumentStatus approvalState,boolean isWriteOff,DocumentType receiptType){
-		   this.receiptId=receiptId;
+		   this.id=id;
 		   this.time=time;
 		   this.customerId=customerId;
-		   this.name=name;
-		   this.VIP=VIP;
+		   this.customerName=customerName;
+		   this.customerVIP=customerVIP;
 		   this.salesman=salesman;
-		   this.salesmanId=salesmanId;
-		   this.operator=operator;
-		   this.operator=operatorId;
+		   this.operatorName=operatorName;
+		   this.operatorId=operatorId;
 		   this.storage=storage;
 		   this.saleList=saleList;
 		   this.giftList=giftList;
@@ -155,7 +149,7 @@ public class SaleVO {
 	   } 
 	   
 	   public SaleVO(String name, double total){
-		   this.name = name;
+		   this.customerName = name;
 		   this.totalAfterDiscount = total;
 	   }
 }
