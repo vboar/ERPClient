@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import po.PresentLineItemPO;
 import po.TotalGiftPO;
 import util.ResultMessage;
-import vo.CommodityLineItemVO;
+import vo.PresentLineItemVO;
 import vo.SaleVO;
 import vo.TotalGiftVO;
 import businesslogic.utilitybl.Utility;
@@ -53,8 +53,8 @@ public class TotalGiftPromotion {
 			saleVO.remark+=" 总额不够，无法享受促销优惠";
 			return saleVO;
 		}
-		saleVO.discount=saleVO.totalBeforeDiscount*totalGiftVO.discount;
-		saleVO.totalAfterDiscount=saleVO.totalBeforeDiscount*(1-totalGiftVO.discount);
+		//TODO
+		//代金券没弄
 		saleVO.giftList=totalGiftVO.giftInfo;
 		return saleVO;
 	}
@@ -64,21 +64,18 @@ public class TotalGiftPromotion {
 		String id;
 		if(vo.id.equals("0000")){
 			id="";
-			//TODO
+			//TODO 新生成的单子，id还没有生成
 		}
 		id=vo.id;
 		double total=vo.total;
-		ArrayList<PresentLineItemPO> giftInfo=null;
-		//TODO
+		ArrayList<PresentLineItemPO> giftInfo=Utility.presentVOListToVOlist(vo.giftInfo);
 	
-		double discount=vo.discount;
-		//TODO 
-		//究竟有没有discount
+		
 		double voucher=vo.voucher;
 		String startTime=vo.startTime;
 		String endTime=vo.endTime;
 		boolean valid=vo.valid;
-		TotalGiftPO po=new TotalGiftPO(id, total, giftInfo, discount, voucher, startTime, endTime, valid);
+		TotalGiftPO po=new TotalGiftPO(id, total, giftInfo, 0, voucher, startTime, endTime, valid);
 		
 		return po;
 		
@@ -86,14 +83,12 @@ public class TotalGiftPromotion {
 	private TotalGiftVO poToVo(TotalGiftPO po){
 		String id=po.getId();
 		double total=po.getTotal();
-		ArrayList<CommodityLineItemVO> giftInfo=null;
-		//TODO
-		double discount=po.getDiscount();
+		ArrayList<PresentLineItemVO> giftInfo=Utility.presentPOListToVOList(po.getGiftInfo());	
 		double voucher=po.getVoucher();
 		String startTime=po.getStartTime();
 		String endTime=po.getEndTime();
 		boolean valid=po.isValid();
-		TotalGiftVO vo=new TotalGiftVO(id, total, giftInfo, discount, voucher, startTime, endTime, valid);
+		TotalGiftVO vo=new TotalGiftVO(id, total, giftInfo, voucher, startTime, endTime, valid);
 		return vo;
 		
 	}

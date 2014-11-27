@@ -22,7 +22,7 @@ public class CustomerGiftVO {
 	/**
 	 * 赠品的列表
 	 */
-	public ArrayList<CommodityLineItemVO> giftInfo;
+	public ArrayList<PresentLineItemVO> giftInfo;
 	
 	/**
 	 * 价格折让
@@ -61,7 +61,7 @@ public class CustomerGiftVO {
 	 * @param endTime
 	 * @param valid
 	 */
-	public CustomerGiftVO(String id,int VIP,ArrayList<CommodityLineItemVO> giftInfo
+	public CustomerGiftVO(String id,int VIP,ArrayList<PresentLineItemVO> giftInfo
 			,double discount,double voucher,String startTime,String endTime,boolean valid){
 		this.id=id;
 		this.vip=VIP;

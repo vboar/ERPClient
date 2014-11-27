@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import po.CustomerGiftPO;
 import po.PresentLineItemPO;
 import util.ResultMessage;
-import vo.CommodityLineItemVO;
 import vo.CustomerGiftVO;
+import vo.PresentLineItemVO;
 import vo.SaleVO;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
@@ -62,7 +62,7 @@ public class CustomerGiftPromotion {
 		return voList;
 	}
 	public SaleVO calBonus(SaleVO saleVO,CustomerGiftVO customerGiftVO){
-		if(saleVO.VIP<=customerGiftVO.vip){
+		if(saleVO.customerVIP<=customerGiftVO.vip){
 			saleVO.remark+=" vip等级不够，无法享受促销优惠";
 			return saleVO;
 		}
@@ -99,7 +99,7 @@ public class CustomerGiftPromotion {
 	private CustomerGiftVO poToVo(CustomerGiftPO po){
 		String id=po.getId();
 		int VIP=po.getVIP();
-		ArrayList<CommodityLineItemVO> giftInfo=null;//vo
+		ArrayList<PresentLineItemVO> giftInfo=null;//vo
 		//TODO
 		
 		double discount=po.getDiscount();
