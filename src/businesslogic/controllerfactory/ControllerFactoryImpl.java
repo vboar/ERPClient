@@ -52,8 +52,7 @@ public class ControllerFactoryImpl implements ControllerFactory{
 
 	@Override
 	public CustomerController getCustomerController() {
-		// TODO Auto-generated method stub
-		return null;
+		return new CustomerController();
 	}
 
 	@Override

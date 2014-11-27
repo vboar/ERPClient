@@ -1,12 +1,10 @@
 package ui.util;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import vo.UserVO;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
@@ -35,6 +33,5 @@ public abstract class TablePanel extends JPanel{
 		this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.add(this.rollpane);
 	}
-	
-	abstract protected void initTable(ArrayList<UserVO> list);
+
 }

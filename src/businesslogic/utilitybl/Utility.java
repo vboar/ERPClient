@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import po.CommodityLineItemPO;
+import po.PresentLineItemPO;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
+import vo.PresentLineItemVO;
 
 public class Utility {
 
@@ -45,6 +47,12 @@ public class Utility {
 		return ResultMessage.SUCCESS;
 	}
 
+	/**
+	 * 检查输入的开始时间是否在结束时间之前
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return
+	 */
 	public static boolean checkTime(String startTime, String endTime) {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA);
@@ -60,6 +68,12 @@ public class Utility {
 		return flag;
 	}
 
+	/**
+	 * 检查当前时间是否在输入的时间区间内
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
 	public static boolean inTime(String startTime,String endTime) {
 		java.util.Date nowdate = new java.util.Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA);
@@ -76,6 +90,11 @@ public class Utility {
 		return flag1&&flag2;
 	}
 	
+	/**
+	 * commoditylineitem的vo转换po
+	 * @param voList
+	 * @return
+	 */
 public static ArrayList<CommodityLineItemPO> voListToPOList(ArrayList<CommodityLineItemVO> voList){
 	ArrayList<CommodityLineItemPO> poList=new ArrayList<CommodityLineItemPO>();
 		for(CommodityLineItemVO vo:voList){
@@ -91,7 +110,11 @@ public static ArrayList<CommodityLineItemPO> voListToPOList(ArrayList<CommodityL
 		}
 		return poList;
 	}
-
+/**
+ * commodity的po转换vo
+ * @param poList
+ * @return
+ */
 public static ArrayList<CommodityLineItemVO> poListToVOList(ArrayList<CommodityLineItemPO> poList){
 	ArrayList<CommodityLineItemVO> voList=new ArrayList<CommodityLineItemVO>();
 		for(CommodityLineItemPO po:poList){
@@ -107,6 +130,36 @@ public static ArrayList<CommodityLineItemVO> poListToVOList(ArrayList<CommodityL
 		}
 		return voList;
 	}
+/**
+ * presentLineItem的po转vo
+ * @param poList
+ * @return
+ */
+public static ArrayList<PresentLineItemVO> presentPOListToVOList(ArrayList<PresentLineItemPO> poList){
+	ArrayList<PresentLineItemVO> voList=new ArrayList<PresentLineItemVO>();
+	for(PresentLineItemPO po:poList){
+		String id=po.getId();
+		String name=po.getName();
+		String model=po.getModel();
+		int number=po.getNumber();
+		PresentLineItemVO vo=new PresentLineItemVO(id, name, model, number);
+		voList.add(vo);
+	}
+	return voList;
+}
+
+public static ArrayList<PresentLineItemPO> presentVOListToVOlist(ArrayList<PresentLineItemVO> voList){
+	ArrayList<PresentLineItemPO> poList=new ArrayList<PresentLineItemPO>();
+	for(PresentLineItemVO vo:voList){
+		String id=vo.id;
+		String name=vo.name;
+		String model=vo.model;
+		int number=vo.number;
+		PresentLineItemPO po=new PresentLineItemPO(id, name, model, number);
+		poList.add(po);
+	}
+	return poList;
+}
 
 //	public static void main(String[] args) {
 //		// java.util.Date nowdate=new java.util.Date();

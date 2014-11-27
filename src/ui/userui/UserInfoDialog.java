@@ -16,7 +16,7 @@ import ui.util.MyTextField;
 import util.ResultMessage;
 import util.UserType;
 import vo.UserVO;
-import config.UserInfoDialogConfig;
+import config.InfoDialogConfig;
 
 @SuppressWarnings("serial")
 public class UserInfoDialog extends JDialog{
@@ -45,14 +45,19 @@ public class UserInfoDialog extends JDialog{
 	
 	private MyButton cancel;
 	
-	private UserInfoDialogConfig cfg;
+	private InfoDialogConfig cfg;
 	
 	public UserPanel panel;
 	
 	private Boolean isAdd;
 	
+<<<<<<< HEAD
 	public UserInfoDialog(UserInfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
 		super(frame,true);
+=======
+	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
+		super(frame);
+>>>>>>> c1e0793258451e0efd98c65df0015c9b396dfb3f
 		this.isAdd = isAdd;
 		this.panel = panel;
 		this.cfg = cfg;
@@ -65,7 +70,7 @@ public class UserInfoDialog extends JDialog{
 	}
 	
 	@SuppressWarnings("deprecation")
-	public UserInfoDialog(UserInfoDialogConfig userinfo_DIALOG_CONFIG,
+	public UserInfoDialog(InfoDialogConfig userinfo_DIALOG_CONFIG,
 			JFrame homeframe, UserPanel userPanel, Boolean isAdd,UserVO vo) {
 		this(userinfo_DIALOG_CONFIG,homeframe,userPanel,isAdd);
 		this.idTxt.setText(vo.id);

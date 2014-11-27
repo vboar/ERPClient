@@ -3,7 +3,7 @@ package businesslogic.promotionbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import po.CommodityLineItemPO;
+import po.PresentLineItemPO;
 import po.TotalGiftPO;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
@@ -68,7 +68,7 @@ public class TotalGiftPromotion {
 		}
 		id=vo.id;
 		double total=vo.total;
-		ArrayList<CommodityLineItemPO> giftInfo=null;
+		ArrayList<PresentLineItemPO> giftInfo=null;
 		//TODO
 	
 		double discount=vo.discount;

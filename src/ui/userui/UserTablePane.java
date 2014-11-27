@@ -29,7 +29,6 @@ public class UserTablePane extends TablePanel{
 		this.initComponent();
 	}
 
-	@Override
 	protected void initTable(ArrayList<UserVO> list){
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
