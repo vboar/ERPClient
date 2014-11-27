@@ -21,7 +21,7 @@ public class MyTextField extends JTextField{
 		this.setSize(Integer.parseInt(ele.attributeValue("w")),
 				Integer.parseInt(ele.attributeValue("h")));
 		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
-				Integer.parseInt(ele.attributeValue("y")));;
-		
+				Integer.parseInt(ele.attributeValue("y")));	
 	}
+	
 }

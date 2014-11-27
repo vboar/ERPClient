@@ -142,8 +142,7 @@ public class ControllerFactoryImpl implements ControllerFactory{
 
 	@Override
 	public UserController getUserController() {
-		// TODO Auto-generated method stub
-		return null;
+		return new UserController();
 	}
 
 	@Override

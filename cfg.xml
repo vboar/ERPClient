@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <erp>
 	<loginframe width="540" height="360" windowUp="20">
-		<panel className="ui.loginui.LoginPanel" width="540" height="360" x="0" y="0" bg="img/login.jpg">
+		<panel className="ui.loginui.LoginPanel" width="540" height="360"
+			x="0" y="0" bg="img/login.jpg">
 			<buttons>
 				<login text="登录" w="80" h="40" x="320" y="260" />
 				<quit text="退出" w="80" h="40" x="400" y="260" />
@@ -28,17 +29,19 @@
 		</panel>
 	</loginframe>
 	<frame title="ERP企业进销存管理系统" width="960" height="600" windowUp="20">
-		<panel className="ui.homeui.LoginUserInfoPanel" width="960" height="90" x="0" y="0" bg="img/title.jpg">
+		<panel className="ui.homeui.LoginUserInfoPanel" width="960"
+			height="90" x="0" y="0" bg="img/title.jpg">
 			<buttons>
-				<mailbox text="" w="40" h="30" x="190" y="54" path="img/2.png"/>
+				<mailbox text="" w="40" h="30" x="190" y="54" path="img/2.png" />
 			</buttons>
 			<labels>
 				<username w="100" h="30" x="80" y="15" />
 				<id w="100" h="30" x="80" y="35" />
-				<img text="" w="60" h="60" x="20" y="15" path="img\1.jpg"/>
+				<img text="" w="60" h="60" x="20" y="15" path="img\1.jpg" />
 			</labels>
 		</panel>
-		<panel className="ui.userui.UserPanel" width="960" height="510" x="0" y="90" bg="img/mainpanel.jpg">
+		<panel className="ui.userui.UserPanel" width="960" height="510"
+			x="0" y="90" bg="img/mainpanel.jpg">
 			<buttons>
 				<add text="添加" w="60" h="30" x="360" y="20" />
 				<delete text="删除" w="60" h="30" x="440" y="20" />
@@ -47,15 +50,53 @@
 			</buttons>
 			<labels>
 				<userlist text="用户列表" w="100" h="30" x="210" y="10" />
+				<findresult text="" w="200" h="30" x="2640" y="50" />
 			</labels>
 			<textfields>
 				<findinput w="200" h="30" x="640" y="20" />
 			</textfields>
-			<tablepane className="ui.userui.UserTablePane" width="730" height="410" x="210" y="60">
+			<tablepane className="ui.userui.UserTablePane" width="730"
+				height="410" x="210" y="60">
 				<columnnames>
-					<columnname name="用户名"/> <columnname name="ID"/> <columnname name="密码"/> <columnname name="权限"/>
+					<columnname name="ID" />
+					<columnname name="用户名" />
+					<columnname name="密码" />
+					<columnname name="类型" />
+					<columnname name="权限" />
 				</columnnames>
 			</tablepane>
+
 		</panel>
 	</frame>
+	<userinfodialog width="500" height="280" x="230" y="180">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<id text="用户名" w="40" h="30" x="30" y="20" />
+			<name text="真实姓名" w="60" h="30" x="240" y="20" />
+			<password text="密码" w="40" h="30" x="30" y="80" />
+			<type text="类型" w="40" h="30" x="30" y="140" />
+			<permission text="权限" w="40" h="30" x="240" y="140" />
+		</labels>
+		<textfields>
+			<id w="130" h="30" x="80" y="20" />
+			<password w="200" h="30" x="80" y="80" />
+			<name w="130" h="30" x="300" y="20" />
+		</textfields>
+		<comboboxes>
+			<type w="130" h="30" x="80" y="140">
+				<string str="库存管理人员" />
+				<string str="进货销售人员" />
+				<string str="财务人员" />
+				<string str="总经理" />
+				<string str="系统管理员" />
+			</type>
+			<permission w="130" h="30" x="300" y="140">
+				<string str="普通权限" />
+				<string str="最高权限" />
+			</permission>
+		</comboboxes>
+	</userinfodialog>
 </erp>
