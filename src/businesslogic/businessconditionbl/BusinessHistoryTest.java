@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import vo.ExceptionVO;
 import vo.PaymentVO;
-import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
 
@@ -59,14 +58,6 @@ public class BusinessHistoryTest {
 		assertEquals("2014/11/1", findList.get(0).time);
 	}
 
-	@Test
-	public void testShowPresentByTime() {
-		ArrayList<PresentVO> list = new ArrayList<PresentVO>();
-		list.add(new PresentVO("2014/11/1","A"));
-		MockPresent mpre = new MockPresent(list);
-		BusinessHistory bh = new BusinessHistory(mpre);
-		ArrayList<PresentVO> findList = bh.showPresentByTime("2014/11/1","2014/11/14");
-		assertEquals("A", findList.get(0).clientName);
-	}
+	
 
 }
