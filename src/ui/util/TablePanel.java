@@ -1,3 +1,8 @@
+/**
+ * 表格面板
+ * @author JaneLDQ
+ * @date 2014/11/24
+ */
 package ui.util;
 
 import java.awt.Dimension;

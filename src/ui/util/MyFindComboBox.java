@@ -1,3 +1,8 @@
+/**
+ * 模糊查找复选框类
+ * @author JaneLDQ
+ * @date 2014/11/27
+ */
 package ui.util;
 
 import java.awt.event.KeyEvent;
