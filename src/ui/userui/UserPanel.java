@@ -52,11 +52,14 @@ public class UserPanel extends JPanel implements FindTextListener{
 	
 	private JFrame homeframe;
 	
+	private Boolean hasADialog;
+	
 	private PanelConfig pcfg;
 	
 	private UserController userController;
 		
 	public UserPanel(JFrame frame){
+		this.hasADialog = false;
 		this.homeframe = frame;
 		this.userController = ControllerFactoryImpl.getInstance().getUserController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -122,7 +125,9 @@ public class UserPanel extends JPanel implements FindTextListener{
 		this.addbtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showUserDialog();
+				if(!hasADialog){
+					showUserDialog();
+				}
 			}		
 		});
 	}
@@ -166,6 +171,7 @@ public class UserPanel extends JPanel implements FindTextListener{
 	}
 	
 	private void showUserDialog(){
+		this.hasADialog = true;
 		this.userInfoDiaglog = new UserInfoDialog(ERPConfig.getUSERINFO_DIALOG_CONFIG(),
 				this.homeframe,this,true);
 		this.userInfoDiaglog.setVisible(true);
@@ -209,18 +215,30 @@ public class UserPanel extends JPanel implements FindTextListener{
 	}
 	
 	public void findUser(String id){
-		this.userTable.showFindTable(userController.findByid(id));
+		this.userTable.showFindTable(userController.findById(id));
 	}
 
 	@Override
 	public void showFindResult(String str) {
-		ArrayList<UserVO> result = this.userController.findByid(str);
+		ArrayList<UserVO> result = this.userController.findById(str);
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<result.size(); ++i){
 			UserVO vo = result.get(i);
 			strs.add(vo.id);
 		}
 		this.findbox.addItems(strs);
+	}
+
+	public Boolean getHasADialog() {
+		return hasADialog;
+	}
+
+	public void setHasADialog(Boolean hasADialog) {
+		this.hasADialog = hasADialog;
+	}
+
+	public JFrame getHomeframe() {
+		return homeframe;
 	}
 	
 }

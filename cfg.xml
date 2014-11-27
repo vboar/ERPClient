@@ -43,20 +43,20 @@
 		<panel className="ui.userui.UserPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
 			<buttons>
-				<add text="添加" w="60" h="30" x="360" y="20" />
-				<delete text="删除" w="60" h="30" x="440" y="20" />
-				<modify text="修改" w="60" h="30" x="520" y="20" />
-				<find text="查找" w="60" h="30" x="870" y="20" />
+				<add text="" w="80" h="32" x="380" y="40" path="img\adduser.png"/>
+				<delete text="" w="80" h="32" x="480" y="40" path="img\deluser.png"/>
+				<modify text="" w="80" h="32" x="580" y="40" path="img\upduser.png"/>
+				<find text="查找" w="60" h="30" x="875" y="40" />
 			</buttons>
 			<labels>
-				<userlist text="用户列表" w="100" h="30" x="210" y="10" />
-				<findresult text="" w="200" h="30" x="2640" y="50" />
+				<userlist text="" w="120" h="32" x="220" y="36" path="img\userlist1.png"/>
+				<find text="" w="200" h="30" x="260" y="50" />
 			</labels>
 			<textfields>
-				<findinput w="200" h="30" x="640" y="20" />
+				<findinput w="200" h="30" x="670" y="40" />
 			</textfields>
 			<tablepane className="ui.userui.UserTablePane" width="730"
-				height="410" x="210" y="60">
+				height="400" x="210" y="75">
 				<columnnames>
 					<columnname name="ID" />
 					<columnname name="用户名" />

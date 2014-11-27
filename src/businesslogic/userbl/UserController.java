@@ -52,18 +52,6 @@ public class UserController implements UserBLService {
 	}
 
 	@Override
-	public ArrayList<UserVO> findByid(String id) {
-		// TODO Auto-generated method stub
-		try {
-			return user.findById(id);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@Override
 	public ArrayList<UserVO> show() {
 		try {
 			return user.show();
@@ -75,8 +63,13 @@ public class UserController implements UserBLService {
 
 	@Override
 	public ArrayList<UserVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return user.findById(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
