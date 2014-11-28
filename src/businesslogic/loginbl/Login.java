@@ -31,9 +31,9 @@ public class Login {
 	public ResultMessage login(String password) {
 		UserPO po = null;
 		try {
-			po= DataFactoryImpl.getInstance().getUserData().getById(currentUserId);
-		} catch (RemoteException e) {
-			e.printStackTrace();
+			po = DataFactoryImpl.getInstance().getUserData().getById(currentUserId);
+		} catch (Exception e) {
+			return ResultMessage.FAILED;
 		}
 		// 用户ID错误（ID不存在或者不对应）
 		if(po == null) return ResultMessage.WRONG_ID;

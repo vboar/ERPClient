@@ -124,6 +124,7 @@ public class LoginPanel extends JPanel{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void initComboBox(PanelConfig cfg){
 		// 获得复选框配置
 		this.usertype = new MyComboBox(cfg.getComboboxes().element("usertype"));
@@ -159,9 +160,11 @@ public class LoginPanel extends JPanel{
 						MyOptionPane.showMessageDialog(null, "用户名错误！");
 						idTxt.setText("");
 						passwordTxt.setText("");
-					}else{
+					} else if(loginresult==ResultMessage.WRONG_PASSWD) {
 						MyOptionPane.showMessageDialog(null, "密码错误！");
 						passwordTxt.setText("");
+					} else {
+						MyOptionPane.showMessageDialog(null, "服务器未开启！");
 					}
 				}
 			}
