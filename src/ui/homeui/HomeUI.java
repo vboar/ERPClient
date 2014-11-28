@@ -35,6 +35,7 @@ public class HomeUI extends JFrame{
 		// 初始化组件
 		this.addUserInfoPanel(lc);
 		this.addMainPanel(lc);
+		this.addTimePanel();
 		// 显示
 		this.setVisible(true);
 	}
@@ -48,5 +49,9 @@ public class HomeUI extends JFrame{
 			this.add(new LoginUserInfoPanel(lc));
 			this.add(new UserPanel(this));
 		}
+	}
+	
+	private void addTimePanel(){
+		this.add(new TimePanel());
 	}
 }

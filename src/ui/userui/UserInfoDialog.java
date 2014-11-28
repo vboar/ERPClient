@@ -133,7 +133,7 @@ public class UserInfoDialog extends JDialog{
 		this.cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认取消添加该用户信息？","确认提示",
+				int result = MyOptionPane.showConfirmDialog(null, "确认取消操作？","确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result==MyOptionPane.YES_OPTION){
 					UserInfoDialog.this.dispose();
