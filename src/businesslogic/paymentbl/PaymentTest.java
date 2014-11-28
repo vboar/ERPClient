@@ -8,10 +8,12 @@ package businesslogic.paymentbl;
 import static org.junit.Assert.assertEquals;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
 import util.ResultMessage;
+import vo.TransferLineItemVO;
 
 public class PaymentTest {
 
@@ -22,7 +24,7 @@ public class PaymentTest {
 		customer.setReceivables(2000);
 		MockAccount account = new MockAccount(3000);
 		Payment pay = new Payment(customer,account);
-		pay.update(200,"12345678");
+		pay.update(new ArrayList<TransferLineItemVO>(),"","",0);
 		assertEquals(800,(int)customer.getPaybles());
 		assertEquals(2800,(int)account.getAccount());
 	}

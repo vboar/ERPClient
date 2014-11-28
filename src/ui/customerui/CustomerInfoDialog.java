@@ -17,6 +17,7 @@ import org.dom4j.Element;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import vo.CustomerVO;
 import config.InfoDialogConfig;
@@ -143,6 +144,18 @@ public class CustomerInfoDialog extends JDialog {
 				String salesman = salesmanTxt.getText();
 				CustomerVO vo = new CustomerVO(null, category, level, name, phoneNumber, address,
 						postalCode, email, creditLimit, 0, 0, salesman, true);
+				
+				int result = MyOptionPane.showConfirmDialog(null, "确认提交？", "确认提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+				if(result == MyOptionPane.YES_OPTION){
+					// TODO
+					if(isAdd) {
+						
+					} else {
+						
+					}
+					
+				}
 			}
 			
 		});
@@ -152,7 +165,12 @@ public class CustomerInfoDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
+				int result = MyOptionPane.showConfirmDialog(null, "确认取消？","确认提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+				if(result==MyOptionPane.YES_OPTION){
+					CustomerInfoDialog.this.dispose();
+				}
 				
 			}
 			

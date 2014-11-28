@@ -74,7 +74,6 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 				dataFactory = (DataFactory) Naming.lookup(url + "DataFactory");
 			} catch (MalformedURLException | RemoteException
 					| NotBoundException e) {
-				e.printStackTrace();
 			}
 		}
 		return dataFactory;

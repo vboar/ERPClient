@@ -93,6 +93,23 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	private void initFindComboBox(Element textfields) {
 		this.userfindbox = new MySpecialTextField(textfields.element("findinput"),this);
 		this.add(this.userfindbox);
+		this.userfindbox.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					System.out.println("enter");
+					findUser(userfindbox.getText());
+				}
+			}
+			
+		});
 	}
 
 	private void initLabels(Element labels) {
@@ -135,22 +152,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 				findUser(userfindbox.getText());
 			}	
 		});
-		this.findbtn.addKeyListener(new KeyListener(){
-
-			@Override
-			public void keyTyped(KeyEvent e) {}
-
-			@Override
-			public void keyPressed(KeyEvent e) {}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER){
-					findUser(userfindbox.getText());
-				}
-			}
-			
-		});
+		
 	}
 	
 	private void initAddBtn(Element add){

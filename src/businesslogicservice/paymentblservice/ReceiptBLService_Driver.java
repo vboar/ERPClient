@@ -5,6 +5,7 @@
  */
 package businesslogicservice.paymentblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
@@ -15,7 +16,7 @@ import vo.TransferLineItemVO;
 
 public class ReceiptBLService_Driver {
 
-	public void drive(PaymentBLService receiptBLService){
+	public void drive(PaymentBLService receiptBLService) throws RemoteException{
 		ResultMessage result;
 		
 		ArrayList<TransferLineItemVO> transferList = new ArrayList<TransferLineItemVO>();
@@ -28,8 +29,7 @@ public class ReceiptBLService_Driver {
 		else System.out.println("收款单创建失败！\n");
 		
 		System.out.println("更新收款单返回信息：");
-		result = receiptBLService.update(new PaymentVO("SKD-20141025-00001","00002","雷神托尔","金刚狼",
-				transferList,700,DocumentStatus.PASSED, DocumentType.RECEIPT));
+		result = receiptBLService.update(transferList);
 		if (result == ResultMessage.SUCCESS) System.out.println("收款单更新成功！\n");
 		else System.out.println("收款单更新失败！\n");
 		
@@ -44,7 +44,7 @@ public class ReceiptBLService_Driver {
 				+list2.get(0).customerId+"；客户名称："+list2.get(0).customerName+"；金额："+list2.get(0).total+"\n");
 		
 		System.out.println("查看一段时间内的收款单：");
-		ArrayList<PaymentVO> list3 = receiptBLService.show("20141023","20141025");
+		ArrayList<PaymentVO> list3 = receiptBLService.show();
 		System.out.println("单据编号："+list3.get(0).id+"；操作员："+list3.get(0).operatorId+"；客户编号："
 				+list3.get(0).customerId+"；客户名称："+list3.get(0).customerName+"；金额："+list3.get(0).total+"\n");
 		

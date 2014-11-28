@@ -5,6 +5,7 @@
  */
 package businesslogicservice.paymentblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
@@ -21,18 +22,13 @@ public class PaymentBLService_Stub implements PaymentBLService {
 	}
 
 	@Override
-	public ArrayList<PaymentVO> show(String time1, String time2) {
+	public ArrayList<PaymentVO> show() {
 		ArrayList<PaymentVO> list = new ArrayList<PaymentVO>();
 		ArrayList<TransferLineItemVO> transferList = new ArrayList<TransferLineItemVO>();
 		transferList.add(new TransferLineItemVO("工商银行账户1",1000,"无"));
-		list.add(new PaymentVO("FKD-"+time1+"-00001","00002","雷神托尔","金刚狼",
+		list.add(new PaymentVO("FKD-"+"-00001","00002","雷神托尔","金刚狼",
 				transferList,700,DocumentStatus.PASSED, DocumentType.PAYMENT));
 		return list;
-	}
-
-	@Override
-	public ResultMessage update(PaymentVO vo) {
-		return ResultMessage.SUCCESS;
 	}
 
 	@Override
@@ -53,6 +49,33 @@ public class PaymentBLService_Stub implements PaymentBLService {
 		list.add(new PaymentVO(id,"00002","雷神托尔","金刚狼",
 				transferList,700,DocumentStatus.PASSED, DocumentType.PAYMENT));
 		return list;
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findByTime(String time1, String time2)
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findByCustomer(String customerId)
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findByOperator(String operator)
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist)
+			throws RemoteException {
+		return ResultMessage.SUCCESS;
 	}
 
 }

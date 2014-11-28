@@ -17,6 +17,11 @@ public class PaymentVO implements DocumentVO {
 	public String id;
 	
 	/**
+	 * 创建时间
+	 */
+	public String time;
+	
+	/**
 	 * 客户编号
 	 */
 	public String customerId;
