@@ -117,8 +117,8 @@ public class LoginPanel extends JPanel{
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("h")));
 		this.passwordTxt.setLocation(Integer.parseInt(cfg.getTextFields().element("password").attributeValue("x")),
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("y")));
-		this.idTxt.setText("admin");
-		this.passwordTxt.setText("1");
+		this.idTxt.setText("a0015");
+		this.passwordTxt.setText("123456");
 		this.add(this.idTxt);
 		this.add(this.passwordTxt);
 		
