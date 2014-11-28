@@ -23,32 +23,63 @@ public class UserController implements UserBLService {
 	
 	@Override
 	public ResultMessage add(UserVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		 try {
+			return user.addUser(vo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 //ResultMessage.SUCCESS;
+		 return null;
 	}
 
 	@Override
 	public ResultMessage delete(UserVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		 try {
+			return user.delete(vo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 //ResultMessage.SUCCESS;
+		 return null;
 	}
 
 	@Override
 	public ResultMessage update(UserVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		 try {
+			return user.update(vo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 //ResultMessage.SUCCESS;
+		 return null;
 	}
 
 	@Override
 	public ArrayList<UserVO> findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		 try {
+			return user.findByName(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 //ResultMessage.SUCCESS;
+		 return null;
 	}
 
 	@Override
 	public ArrayList<UserVO> findByType(UserType type) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		 try {
+			return user.findByType(type);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 //ResultMessage.SUCCESS;
+		 return null;
 	}
 
 	@Override
