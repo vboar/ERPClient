@@ -36,7 +36,7 @@ public class PaymentPO implements Serializable {
 	private String customerName;
 	
 	/**
-	 * 操作员
+	 * 操作员编号
 	 */
 	private String operatorId;
 	

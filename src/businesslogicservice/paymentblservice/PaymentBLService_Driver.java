@@ -5,6 +5,7 @@
  */
 package businesslogicservice.paymentblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
@@ -15,7 +16,7 @@ import vo.TransferLineItemVO;
 
 public class PaymentBLService_Driver {
 
-	public void drive(PaymentBLService paymentBLService){
+	public void drive(PaymentBLService paymentBLService) throws RemoteException{
 		
 		ResultMessage result;
 		
@@ -29,8 +30,7 @@ public class PaymentBLService_Driver {
 		else System.out.println("付款单创建失败！\n");
 		
 		System.out.println("更新付款单返回信息：");
-		result = paymentBLService.update(new PaymentVO("FKD-20141025-00001","00002","雷神托尔","金刚狼",
-				transferList,700,DocumentStatus.PASSED, DocumentType.PAYMENT));
+		result = paymentBLService.update(transferList);
 		if (result == ResultMessage.SUCCESS) System.out.println("付款单删除成功！\n");
 		else System.out.println("付款单删除失败！\n");
 		
@@ -45,7 +45,7 @@ public class PaymentBLService_Driver {
 				+list2.get(0).customerId+"；客户名称："+list2.get(0).customerName+"；金额："+list2.get(0).total+"\n");
 		
 		System.out.println("查看一段时间内的付款单：");
-		ArrayList<PaymentVO> list3 = paymentBLService.show("20141023","20141025");
+		ArrayList<PaymentVO> list3 = paymentBLService.show();
 		System.out.println("单据编号："+list3.get(0).id+"；操作员："+list3.get(0).operatorId+"；客户编号："
 				+list3.get(0).customerId+"；客户名称："+list3.get(0).customerName+"；金额："+list3.get(0).total+"\n");
 		

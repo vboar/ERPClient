@@ -8,20 +8,21 @@ package businesslogic.paymentbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import dataservice.datafactoryservice.DataFactoryImpl;
-import po.AccountPO;
 import po.PaymentPO;
 import po.TransferLineItemPO;
-import businesslogic.accountbl.Account;
-import businesslogic.accountbl.MockLog;
-import businesslogic.logbl.Log;
-import businesslogic.loginbl.Login;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
+import vo.AccountVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
+import businesslogic.accountbl.AccountController;
+import businesslogic.accountbl.MockLog;
+import businesslogic.customerbl.CustomerController;
+import businesslogic.logbl.Log;
+import businesslogic.loginbl.Login;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 //oneoneO
 public class Payment {
@@ -45,7 +46,7 @@ public class Payment {
 	}
 	
 	//真逻辑开始
-	public ResultMessage add(PaymentVO vo) throws RemoteException{
+	public ResultMessage create(PaymentVO vo) {
 		String time=Time.getCurrentTime();
 		ArrayList<TransferLineItemPO> transferlist=new ArrayList<TransferLineItemPO>();
 		for(int i=0;i<vo.transferList.size();i++){
@@ -54,45 +55,104 @@ public class Payment {
 			transferlist.add(temp);
 		}
 		
-		DataFactoryImpl.getInstance().getPaymentData().insert(new PaymentPO(vo.id,time,
-				vo.customerId,vo.customerName,Login.currentUserId,transferlist,
-				vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal()));
+		try {
+			DataFactoryImpl.getInstance().getPaymentData().insert(new PaymentPO(vo.id,time,
+					vo.customerId,vo.customerName,Login.currentUserId,transferlist,
+					vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal()));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 
 		//???
 		Log l=new Log();
-		l.add("Add payment successfully");
+		try {
+			l.add("Add payment successfully");
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage update(double money,String account) throws RemoteException{
-		Account acc=new Account();
-		AccountPO temp=acc.findByAccount(account).get(0);
-		temp.setBalance(temp.getBalance()-money);
-		acc.update(temp);
+	//审批通过引起的更新
+	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){	
+		//修改公司账户金额，修改客户应收应付
+		AccountController acc=new AccountController();
+		CustomerController c=new CustomerController();
+		
+		for(int i=0;i<transferlist.size();i++){
+		AccountVO temp;
+		temp =acc.findByAccount(transferlist.get(i).bankAccount);
+		temp.balance=temp.balance-transferlist.get(i).account;
+		}
+		
+		c.update(customerId,total);
 		return ResultMessage.SUCCESS;
 	}
-
-	public ArrayList<PaymentVO> findById(String id) throws RemoteException{
+	
+	public ArrayList<PaymentVO> show(){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
-		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findById(id));
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().show());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
-	public ArrayList<PaymentVO> findByTime(String time1,String time2) throws RemoteException{
+	public ArrayList<PaymentVO> findById(String id){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
-		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2));
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findById(id));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public ArrayList<PaymentVO> findByTime(String time1,String time2){
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
-	public ArrayList<PaymentVO> findByCustomer(String customerId) throws RemoteException{
+	public ArrayList<PaymentVO> findByCustomer(String customerId){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
-		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByCustomer(customerId));
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByCustomer(customerId));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
-	public ArrayList<PaymentVO> findByOperator(String operator) throws RemoteException{
+	public ArrayList<PaymentVO> findByStatus(int status){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
-		result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByOperator(operator));
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByStatus(status));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public ArrayList<PaymentVO> findByOperator(String operator){
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByOperator(operator));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	

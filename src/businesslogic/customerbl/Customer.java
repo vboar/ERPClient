@@ -64,6 +64,20 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
+	//因为审批付款单引起的更新
+	public ResultMessage update(String customerId,double total){
+		try {
+			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
+			cpo.setPaybles(cpo.getPaybles()-total);
+			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.SUCCESS;
+	}
+	
 	public ArrayList<CustomerVO> findByname(String name) throws RemoteException{
 		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
 		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().findByName(name);
@@ -104,7 +118,7 @@ public class Customer {
 			result.add(new CustomerVO(temp.getId(),temp.getCategory(),temp.getLevel(),
 					temp.getName(),temp.getPhoneNumber(),temp.getAddress(),
 					temp.getPostalCode(),temp.getEmail(),temp.getCreditLimit(),
-					temp.getReceivables(),temp.getPaybles(),temp.getDefaultOperatorId(),temp.isDeletable()));
+					temp.getReceivables(),temp.getPaybles(),temp.getSalesman(),temp.isDeletable()));
 		}
 		
 		return result;

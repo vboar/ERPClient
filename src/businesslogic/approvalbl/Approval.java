@@ -5,12 +5,18 @@
 
 package businesslogic.approvalbl;
 
+import java.util.ArrayList;
+
 import po.CustomerPO;
 import util.ResultMessage;
+import vo.MessageVO;
+import vo.TransferLineItemVO;
 import businesslogic.accountbl.MockLog;
-
+import businesslogic.messagebl.MessageController;
+import businesslogic.paymentbl.PaymentController;
+//审批通过后：1、发消息到收件箱  2、修改相应数据
 public class Approval {
-	
+	MessageController mc=new MessageController();
 	public ResultMessage createLog(String content){
 		MockLog log = new MockLog(content);
 		return log.add();	
@@ -39,9 +45,14 @@ public class Approval {
 	}
 	
 	public ResultMessage sendMessage(String content){
-		MockMessage mm=new MockMessage();
-		
-		return mm.sendMessage(content);
+		//TODO
+		//mc.send(new MessageVO());
+		return ResultMessage.SUCCESS;
 	}
 
+	public ResultMessage approvePayment(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
+		PaymentController p=new PaymentController();
+		return p.update(transferlist,id,customerId,total);
+	}
+	
 }

@@ -12,7 +12,7 @@ import vo.CustomerVO;
 import businesslogicservice.customerblservice.CustomerBLService;
 
 public class CustomerController implements CustomerBLService {
-
+	Customer c=new Customer();
 	@Override
 	public ResultMessage add(CustomerVO vo) {
 		// TODO Auto-generated method stub
@@ -29,6 +29,11 @@ public class CustomerController implements CustomerBLService {
 	public ResultMessage update(CustomerVO vo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	//方法重载，由于收款单审批通过引起的更新
+	public ResultMessage update(String customerId,double total){
+		return c.update(customerId,total);
 	}
 
 	@Override

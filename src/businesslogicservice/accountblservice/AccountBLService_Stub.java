@@ -49,7 +49,7 @@ public class AccountBLService_Stub implements AccountBLService {
 	}
 
 	@Override
-	public ArrayList<AccountVO> findByAccount(String account) {
+	public AccountVO findByAccount(String account) {
 		// TODO 自动生成的方法存根
 		return null;
 	}

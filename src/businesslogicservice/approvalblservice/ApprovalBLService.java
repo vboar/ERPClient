@@ -7,6 +7,7 @@ package businesslogicservice.approvalblservice;
 
 import util.ResultMessage;
 import vo.DocumentVO;
+import vo.PaymentVO;
 
 public interface ApprovalBLService {
 	/**
@@ -15,5 +16,11 @@ public interface ApprovalBLService {
 	 * @return 审批结果的消息
 	 */
 	public ResultMessage approve(DocumentVO vo);
-
+	
+	/**
+	 * 审批付款单
+	 * @param vo
+	 * @return
+	 */
+	public ResultMessage approvePayment(PaymentVO vo);
 }

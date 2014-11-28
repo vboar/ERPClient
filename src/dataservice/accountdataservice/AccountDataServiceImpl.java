@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.AccountPO;
+import vo.AccountVO;
 
 public class AccountDataServiceImpl extends UnicastRemoteObject implements AccountDataService {
 
@@ -21,29 +22,29 @@ public class AccountDataServiceImpl extends UnicastRemoteObject implements Accou
 	}
 
 	@Override
-	public void insert(AccountPO po) throws RemoteException {
+	public void insert(AccountPO po) {
 	}
 
 	@Override
-	public void delete(AccountPO po) throws RemoteException {
+	public void delete(AccountPO po) {
 	}
 
 	@Override
-	public void update(AccountPO po) throws RemoteException {
+	public void update(AccountPO po) {
 	}
 
 	@Override
-	public ArrayList<AccountPO> findByName(String name) throws RemoteException {
+	public ArrayList<AccountPO> findByName(String name) {
 		return null;
 	}
 
 	@Override
-	public AccountPO findByAccount(String account) throws RemoteException {
+	public AccountPO findByAccount(String account) {
 		return null;
 	}
 
 	@Override
-	public ArrayList<AccountPO> show() throws RemoteException {
+	public ArrayList<AccountPO> show() {
 		return null;
 	}
 

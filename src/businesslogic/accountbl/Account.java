@@ -6,13 +6,12 @@
 package businesslogic.accountbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
-import businesslogic.logbl.Log;
-import dataservice.datafactoryservice.DataFactoryImpl;
 import po.AccountPO;
 import util.ResultMessage;
 import vo.AccountVO;
+import businesslogic.logbl.Log;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 //oneoneO
 public class Account {
@@ -23,37 +22,69 @@ public class Account {
 		return log.add();		
 	}
 	
-	public ResultMessage add(AccountVO vo) throws RemoteException{
-		if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
-			l.add("Add account failed:account exists");
-			return ResultMessage.EXIST;
-		}else{
-			DataFactoryImpl.getInstance().getAccountData().insert(new AccountPO(vo.name,vo.account,vo.balance));
+	public ResultMessage add(AccountVO vo){
+		try {
+			if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
+				l.add("Add account failed:account exists");
+				return ResultMessage.EXIST;
+			}else{
+				DataFactoryImpl.getInstance().getAccountData().insert(new AccountPO(vo.name,vo.account,vo.balance));
+			}
+			l.add("Add account successfully");
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+			
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage delete(AccountVO vo){
+		try {
+			if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
+				l.add("Delete account failed:account doesn't exists");
+				return ResultMessage.FAILED;
+			}else{
+				DataFactoryImpl.getInstance().getAccountData().delete(new AccountPO(vo.name,vo.account,vo.balance));
+			}
+			
+			l.add("Delete account successfully");
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 		}
 		
-		l.add("Add account successfully");
+		
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage delete(AccountVO vo) throws RemoteException{
-		if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
-			l.add("Delete account failed:account doesn't exists");
-			return ResultMessage.FAILED;
-		}else{
-			DataFactoryImpl.getInstance().getAccountData().delete(new AccountPO(vo.name,vo.account,vo.balance));
+	public ResultMessage update(AccountPO po){
+		try {
+			DataFactoryImpl.getInstance().getAccountData().update(po);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
+	public AccountVO findByAccount(String account){
+		AccountVO result=new AccountVO("","",0);
+		try {
+		 result=poToVo(DataFactoryImpl.getInstance().getAccountData().findByAccount(account));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 		}
 		
-		l.add("Delete account successfully");
-		return ResultMessage.SUCCESS;
+		return result;
 	}
 	
-	public ResultMessage update(AccountPO po) throws RemoteException{
-		DataFactoryImpl.getInstance().getAccountData().update(po);
-		return ResultMessage.SUCCESS;
-	}
-	
-	public AccountPO findByAccount(String account) throws RemoteException{
-		AccountPO result=DataFactoryImpl.getInstance().getAccountData().findByAccount(account);
+	public AccountVO poToVo(AccountPO po){
+		AccountVO result =new AccountVO("","",0);
+		result.account=po.getAccount();
+		result.balance=po.getBalance();
+		result.name=po.getName();
 		return result;
 	}
 }
