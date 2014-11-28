@@ -8,6 +8,7 @@ package ui.userui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -58,6 +59,7 @@ public class UserInfoDialog extends JDialog{
 	
 	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
 		super(frame,true);
+		((JComponent) this.getContentPane()).setOpaque(true);
 		this.setTitle("用户信息");
 		this.isAdd = isAdd;
 		this.panel = panel;

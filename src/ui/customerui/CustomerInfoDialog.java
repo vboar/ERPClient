@@ -132,7 +132,17 @@ public class CustomerInfoDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				CustomerVO vo = new CustomerVO(null, );
+				int category = categoryBox.getSelectedIndex();
+				int level = levelBox.getSelectedIndex();
+				String name = nameTxt.getText();
+				String phoneNumber = phoneNumberTxt.getText();
+				String address = addressTxt.getText();
+				String postalCode = postalCodeTxt.getText();
+				String email = emailTxt.getText();
+				Double creditLimit = Double.parseDouble(creditLimitTxt.getText());
+				String salesman = salesmanTxt.getText();
+				CustomerVO vo = new CustomerVO(null, category, level, name, phoneNumber, address,
+						postalCode, email, creditLimit, 0, 0, salesman, true);
 			}
 			
 		});
@@ -168,5 +178,27 @@ public class CustomerInfoDialog extends JDialog {
 	
 	private void initComboBoxes(Element ele) {
 		
+		this.categoryBox = new MyComboBox(ele.element("category"));
+		this.categoryBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(categoryBox.getSelectedIndex() == 0) {
+					levelBox.setEnabled(false);
+				} else {
+					levelBox.setEnabled(true);
+				}
+			}
+			
+		});
+		
+		this.levelBox = new MyComboBox(ele.element("level"));
+		
+		if(categoryBox.getSelectedIndex() == 0) {
+			levelBox.setEnabled(false);
+		}
+		
+		this.add(categoryBox);
+		this.add(levelBox);
 	}
 }
