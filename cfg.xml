@@ -73,6 +73,22 @@
 		</panel>
 		<panel className="ui.userui.CustomerPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
+			<tablepane className="ui.customerui.CustomerTablePane" width="730"
+				height="376" x="210" y="75">
+				<columnnames>
+					<columnname name="客户编号" />
+					<columnname name="姓名" />
+					<columnname name="类别" />
+					<columnname name="VIP等级" />
+					<columnname name="地址" />
+					<columnname name="邮编" />
+					<columnname name="邮箱" />
+					<columnname name="应收额度" />
+					<columnname name="应收" />
+					<columnname name="应付" />
+					<columnname name="默认业务员" />
+				</columnnames>
+			</tablepane>
 		</panel>
 	</frame>
 	<userinfodialog width="500" height="280" x="230" y="180">
