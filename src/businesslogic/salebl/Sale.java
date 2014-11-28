@@ -169,7 +169,7 @@ public class Sale {
 		ArrayList<CommodityLineItemPO> saleList = Utility
 				.voListToPOList(vo.saleList);
 		ArrayList<PresentLineItemPO> giftList = Utility
-				.presentVOListToVOlist(vo.giftList);
+				.presentVOListToPOlist(vo.giftList);
 		double totalBeforeDiscount = vo.totalBeforeDiscount;
 		double discount = vo.discount;
 		double voucher = vo.voucher;

@@ -1,3 +1,8 @@
+/**
+ * 用户信息表格面板
+ * @author JaneLDQ
+ * @date 2014/11/25
+ */
 package ui.userui;
 
 import java.util.ArrayList;

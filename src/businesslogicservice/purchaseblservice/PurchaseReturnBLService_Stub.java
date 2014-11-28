@@ -12,7 +12,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 
 	@Override
 	public ResultMessage add(PurchaseVO vo) {
-		if(vo.name == null)
+		if(vo.time == null)
 			return ResultMessage.FAILED;
 		
 		return ResultMessage.SUCCESS;
@@ -24,7 +24,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,-20,-1000,"自提"));
 	    ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
-	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodity,-1750,
+	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",time2, commodity,-1750,
 	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -35,7 +35,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,-20,-1000,"自提"));
 	    ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
-	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodity,-1750,
+	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodityName, commodity,-1750,
 	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -46,7 +46,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,-20,-1000,"自提"));
 	    ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
-	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodity,-1750,
+	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",customer, commodity,-1750,
 	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -57,7 +57,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,-20,-1000,"自提"));
 	    ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
-	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodity,-1750,
+	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",salesman, commodity,-1750,
 	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -68,7 +68,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,-20,-1000,"自提"));
 	    ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
-	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodity,-1750,
+	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",Storage, commodity,-1750,
 	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;
@@ -80,7 +80,7 @@ public class PurchaseReturnBLService_Stub implements PurchaseBLService{
 		ArrayList<CommodityLineItemVO> commodity=new ArrayList<CommodityLineItemVO>();
 		commodity.add(new CommodityLineItemVO("00001-00001-00001-00001","飞利浦吊灯","FLP01",50,-20,-1000,"自提"));
 	    ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
-	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",commodity,-1750,
+	    list.add(new PurchaseVO("JHD-20141023-00001","00002","雷神托尔","XS001-浩克","1",null, commodity,-1750,
 	    		"自提",DocumentStatus.NONCHECKED,false,DocumentType.SALE));
 	 
 	    return list;

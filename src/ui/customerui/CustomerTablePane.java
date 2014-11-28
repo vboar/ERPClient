@@ -2,9 +2,9 @@ package ui.customerui;
 
 import java.util.ArrayList;
 
-import config.TableConfig;
 import ui.util.TablePanel;
-import vo.UserVO;
+import vo.CustomerVO;
+import config.TableConfig;
 
 public class CustomerTablePane extends TablePanel {
 
@@ -13,7 +13,7 @@ public class CustomerTablePane extends TablePanel {
 		
 	}
 
-	protected void initTable(ArrayList<UserVO> list) {
+	protected void initTable(ArrayList<CustomerVO> list) {
 		// TODO Auto-generated method stub
 		
 	}

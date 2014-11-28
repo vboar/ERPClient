@@ -22,13 +22,8 @@ public class TotalGiftVO {
 	/**
 	 * 赠品的列表
 	 */
-	public ArrayList<CommodityLineItemVO> giftInfo;
-	
-	/**
-	 * 价格折让
-	 */
-	public double discount;
-	
+	public ArrayList<PresentLineItemVO> giftInfo;
+		
 	/**
 	 * 代金券
 	 */
@@ -49,12 +44,11 @@ public class TotalGiftVO {
 	 */
 	public boolean valid;
 	
-	public TotalGiftVO(String id,double total,ArrayList<CommodityLineItemVO> giftInfo,
-			double discount,double voucher,String startTime,String endTime,boolean valid){
+	public TotalGiftVO(String id,double total,ArrayList<PresentLineItemVO> giftInfo,
+			double voucher,String startTime,String endTime,boolean valid){
 		this.id=id;
 		this.total=total;
 		this.giftInfo=giftInfo;
-		this.discount=discount;
 		this.voucher=voucher;
 		this.startTime=startTime;
 		this.endTime=endTime;

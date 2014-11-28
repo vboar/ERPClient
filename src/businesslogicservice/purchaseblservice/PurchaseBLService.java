@@ -1,5 +1,6 @@
 package businesslogicservice.purchaseblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.ResultMessage;
@@ -10,8 +11,9 @@ public interface PurchaseBLService {
 	/**
 	 * 添加进货类单据
 	 * @param vo
+	 * @throws RemoteException 
 	 */
-	public ResultMessage add(PurchaseVO vo);
+	public ResultMessage add(PurchaseVO vo) throws RemoteException;
 
 	
 	/**
@@ -19,8 +21,9 @@ public interface PurchaseBLService {
 	 * @param time1
 	 * @param time2
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ArrayList<PurchaseVO> findByTime(String time1,String time2);
+	public ArrayList<PurchaseVO> findByTime(String time1,String time2) throws RemoteException;
 	
 	/**
 	 * 按商品名称筛选单据
@@ -33,8 +36,9 @@ public interface PurchaseBLService {
 	 * 按客户筛选单据
 	 * @param customer
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ArrayList<PurchaseVO> findByCustomer(String customer);
+	public ArrayList<PurchaseVO> findByCustomer(String customer) throws RemoteException;
 	
 	/**
 	 * 按业务员筛选单据
@@ -47,8 +51,9 @@ public interface PurchaseBLService {
 	 * 按仓库筛选单据
 	 * @param Storage
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ArrayList<PurchaseVO> findByStorage(String Storage);
+	public ArrayList<PurchaseVO> findByStorage(String Storage) throws RemoteException;
 
 	
 	/**
@@ -56,8 +61,9 @@ public interface PurchaseBLService {
 	 * @param time1
 	 * @param time2
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ArrayList<PurchaseVO> show();
+	public ArrayList<PurchaseVO> show() throws RemoteException;
 	
 	public ResultMessage updateCommodityByPurchase(ArrayList<CommodityLineItemVO> list);
 }

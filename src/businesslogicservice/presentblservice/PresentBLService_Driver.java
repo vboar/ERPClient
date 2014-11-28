@@ -21,7 +21,7 @@ public class PresentBLService_Driver {
 		list2.add(new PresentLineItemVO("00001-00001", "飞利浦吊灯", "FLP01", 50));
 		ResultMessage result = presentBLService.create(
 				new PresentVO("ZSD-20141023-00001", "21:29:32","00001",
-						"金刚狼", list2, DocumentStatus.NONCHECKED, false));
+						"金刚狼", list2, DocumentStatus.NONCHECKED, null, false));
 		if (result == ResultMessage.SUCCESS) System.out.println("创建赠送单成功！\n");
 		else System.out.println("创建赠送单失败！\n");
 		
@@ -42,7 +42,7 @@ public class PresentBLService_Driver {
 		list2.add(new PresentLineItemVO("00001-00001", "飞利浦吊灯", "FLP01", 50));
 		result = presentBLService.update(
 				new PresentVO("ZSD-20141023-00002", "21:29:32", "00001",
-						"金刚狼",list2, DocumentStatus.NONCHECKED, false));
+						"金刚狼",list2, DocumentStatus.NONCHECKED, null, false));
 		if (result == ResultMessage.SUCCESS) System.out.println("更新赠送单成功！\n");
 		else System.out.println("更新赠送单失败！\n");
 		

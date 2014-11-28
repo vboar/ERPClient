@@ -31,6 +31,9 @@ public class MyButton extends JButton{
 			this.setBorderPainted(false);
 			this.setContentAreaFilled(false);
 		}
+		if(ele.attributeValue("pathroll")!=null){
+			this.setRolloverIcon(new ImageIcon(ele.attributeValue("pathroll")));
+		}
 		this.setFocusPainted(false);
 	}
 	

@@ -43,20 +43,24 @@
 		<panel className="ui.userui.UserPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
 			<buttons>
-				<add text="" w="80" h="32" x="380" y="40" path="img\adduser.png"/>
-				<delete text="" w="80" h="32" x="480" y="40" path="img\deluser.png"/>
-				<modify text="" w="80" h="32" x="580" y="40" path="img\upduser.png"/>
-				<find text="查找" w="60" h="30" x="875" y="40" />
+				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<modify text=""  w="80" h="32" x="530" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<showall text=""  w="100" h="30" x="610" y="37" path="img\show.png"  pathroll="img\show1.png"/>
+				<find text=""  w="24" h="24" x="910" y="40" path="img\search.png"  pathroll="img\search1.png"/>
+				<usermanage text="" w="100" h="40" x="" y="" />
 			</buttons>
 			<labels>
-				<userlist text="" w="120" h="32" x="220" y="36" path="img\userlist1.png"/>
-				<find text="" w="200" h="30" x="260" y="50" />
+				<userlist text="" w="120" h="32" x="220" y="35" path="img\userlist.png"/>
+				<modulename text="" w="120" h="30" x="205" y="2" path="img\usermanage.png"/>
+				<admin text="" w="150" h="30" x="25" y="2" path="img\admin.png"/>
+				<usermanagebtn text="" w="150" h="32" x="35" y="60" path="img\usermanagebtn.png"/>
 			</labels>
 			<textfields>
-				<findinput w="200" h="30" x="670" y="40" />
+				<findinput w="175" h="28" x="725" y="38" />
 			</textfields>
 			<tablepane className="ui.userui.UserTablePane" width="730"
-				height="400" x="210" y="75">
+				height="376" x="210" y="75">
 				<columnnames>
 					<columnname name="ID" />
 					<columnname name="用户名" />
@@ -74,7 +78,7 @@
 	<userinfodialog width="500" height="280" x="230" y="180">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" ></cancel>
 		</buttons>
 		<labels>
 			<id text="用户名" w="40" h="30" x="30" y="20" />
@@ -119,8 +123,26 @@
 			<salesman text="默认业务员" w="40" h="30" x="240" y="140" />
 		</labels>
 		<textfields>
-			
+			<name w="40" h="30" x="30" y="80" />
+			<phonenumber w="40" h="30" x="30" y="140" />
+			<address w="40" h="30" x="240" y="140" />
+			<postalcode w="40" h="30" x="240" y="140" />
+			<email w="40" h="30" x="240" y="140" />
+			<creditlimit w="40" h="30" x="240" y="140" />
+			<salesman w="40" h="30" x="240" y="140" />
 		</textfields>
-		<comboboxes></comboboxes>
+		<comboboxes>
+			<type w="130" h="30" x="80" y="140">
+				<string str="供应商" />
+				<string str="销售商" />
+			</type>
+			<type w="130" h="30" x="80" y="140">
+				<string str="VIP1" />
+				<string str="VIP2" />
+				<string str="VIP3" />
+				<string str="VIP4" />
+				<string str="VIP5" />
+			</type>
+		</comboboxes>
 	</customerinfodialog>
 </erp>

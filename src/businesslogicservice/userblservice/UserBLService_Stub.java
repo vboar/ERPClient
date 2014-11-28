@@ -51,7 +51,6 @@ public class UserBLService_Stub implements UserBLService {
 		return volist;
 	}
 
-	@Override
 	public ArrayList<UserVO> findByid(String id) {
 		ArrayList<UserVO> volist=new ArrayList<>();
 		UserVO  vo1=new UserVO("xs001", "123456", UserType.MANAGER, 0, "金刚狼");

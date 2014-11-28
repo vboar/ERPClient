@@ -23,6 +23,7 @@ import ui.util.MyTextField;
 import util.ResultMessage;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.loginbl.LoginController;
+import businesslogic.utilitybl.Utility;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -116,8 +117,8 @@ public class LoginPanel extends JPanel{
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("h")));
 		this.passwordTxt.setLocation(Integer.parseInt(cfg.getTextFields().element("password").attributeValue("x")),
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("y")));
-		this.idTxt.setText("admin");
-		this.passwordTxt.setText("1");
+		this.idTxt.setText("a0015");
+		this.passwordTxt.setText("123456");
 		this.add(this.idTxt);
 		this.add(this.passwordTxt);
 		
@@ -136,8 +137,20 @@ public class LoginPanel extends JPanel{
 			// 事件处理
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ResultMessage loginresult = loginController.login(usertype.getSelectedIndex(),idTxt.getText(), 
-						String.valueOf(passwordTxt.getPassword()));
+				// 对输入进行基本的合法非法判断
+				String id = idTxt.getText();
+				String passwd = String.valueOf(passwordTxt.getPassword());
+				ResultMessage idResult = Utility.checkInputValid(id,4,14,false);
+				ResultMessage passwdResult = Utility.checkInputValid(passwd,6,14,false);
+				if(idResult != ResultMessage.SUCCESS) {
+					MyOptionPane.showMessageDialog(null, "输入的用户名" + idResult.toFriendlyString() + "!");
+					return;
+				} else if(passwdResult != ResultMessage.SUCCESS) {
+					MyOptionPane.showMessageDialog(null, "输入的密码" + passwdResult.toFriendlyString() + "!");
+					return;
+				}
+				// 登录验证
+				ResultMessage loginresult = loginController.login(usertype.getSelectedIndex(),id,passwd);
 				if(loginresult == ResultMessage.SUCCESS){
 					new HomeUI(loginController);
 					frame.dispose();

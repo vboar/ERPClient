@@ -51,7 +51,7 @@ public class PromotionBLService_Stub implements PromotionBLService {
 	@Override
 	public ArrayList<TotalGiftVO> findByPrice() {
 		ArrayList<TotalGiftVO> voList=new ArrayList<TotalGiftVO>();
-		voList.add(new TotalGiftVO("00002",10000.0,null,10.0,10.0,"2014/10/23","2014/10/25",false));
+		voList.add(new TotalGiftVO("00002",10000.0,null,10.0,"2014/10/23","2014/10/25",false));
 		return voList;
 	}
 

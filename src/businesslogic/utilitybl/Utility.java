@@ -28,10 +28,8 @@ public class Utility {
 	 */
 	public static ResultMessage checkInputValid(String input, int min, int max,
 			boolean Chinese) {
-		if (input.length() > max) {
-			return ResultMessage.TOO_LONG;
-		} else if (input.length() < min) {
-			return ResultMessage.TOO_SHORT;
+		if(input.length() == 0) {
+			return ResultMessage.NULL;
 		}
 		char[] inputList = input.toCharArray();
 		for (char i : inputList) {
@@ -43,6 +41,11 @@ public class Utility {
 			} else {
 				return ResultMessage.UNVALID;
 			}
+		}
+		if (input.length() > max) {
+			return ResultMessage.TOO_LONG;
+		} else if (input.length() < min) {
+			return ResultMessage.TOO_SHORT;
 		}
 		return ResultMessage.SUCCESS;
 	}
@@ -148,7 +151,7 @@ public static ArrayList<PresentLineItemVO> presentPOListToVOList(ArrayList<Prese
 	return voList;
 }
 
-public static ArrayList<PresentLineItemPO> presentVOListToVOlist(ArrayList<PresentLineItemVO> voList){
+public static ArrayList<PresentLineItemPO> presentVOListToPOlist(ArrayList<PresentLineItemVO> voList){
 	ArrayList<PresentLineItemPO> poList=new ArrayList<PresentLineItemPO>();
 	for(PresentLineItemVO vo:voList){
 		String id=vo.id;

@@ -25,12 +25,12 @@ public class PresentVO implements DocumentVO {
 	/**
 	 * 客户编号
 	 */
-	public String clientId;
+	public String customerId;
 	
 	/**
 	 * 客户姓名
 	 */
-	public String clientName;
+	public String customerName;
 	
 	/**
 	 * 赠品列表
@@ -40,12 +40,12 @@ public class PresentVO implements DocumentVO {
 	/**
 	 * 审批状态
 	 */
-	public DocumentStatus status;
+	public DocumentStatus documentStatus;
 	
 	/**
 	 * 单据类型
 	 */
-	public DocumentType type;
+	public DocumentType documentType;
 	
 	/**
 	 * 是否为红冲单据
@@ -63,22 +63,23 @@ public class PresentVO implements DocumentVO {
 	 * @param type
 	 * @param isWriteoff
 	 */
-	public PresentVO(String id, String time, String clientId,
-			String clientName, ArrayList<PresentLineItemVO> list,
-			DocumentStatus status,boolean isWriteoff) {
+	public PresentVO(String id, String time, String customerId,
+			String customerName, ArrayList<PresentLineItemVO> list,
+			DocumentStatus documentStatus,DocumentType documentType,boolean isWriteoff) {
 		super();
 		this.id = id;
 		this.time = time;
-		this.clientId = clientId;
-		this.clientName = clientName;
+		this.customerId = customerId;
+		this.customerName = customerName;
 		this.list = list;
-		this.status = status;
+		this.documentStatus = documentStatus;
+		this.documentType=documentType;
 		this.isWriteoff = isWriteoff;
 	}
 	
 	public PresentVO(String time, String clientName){
 		this.time = time;
-		this.clientName = clientName;
+		this.customerName = clientName;
 	}
 	
 }

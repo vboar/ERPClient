@@ -1,8 +1,14 @@
+/**
+ * 添加/修改用户信息面板
+ * @author JaneLDQ
+ * @date 2014/11/26
+ */
 package ui.userui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -49,10 +55,12 @@ public class UserInfoDialog extends JDialog{
 	
 	public UserPanel panel;
 	
-	private Boolean isAdd;
+	private boolean isAdd;
 	
 	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
-		super(frame);
+		super(frame,true);
+		((JComponent) this.getContentPane()).setOpaque(true);
+		this.setTitle("用户信息");
 		this.isAdd = isAdd;
 		this.panel = panel;
 		this.cfg = cfg;
@@ -63,13 +71,12 @@ public class UserInfoDialog extends JDialog{
 		this.initComponent();
 		this.initButtons(this.cfg.getButtons());
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public UserInfoDialog(InfoDialogConfig userinfo_DIALOG_CONFIG,
 			JFrame homeframe, UserPanel userPanel, Boolean isAdd,UserVO vo) {
 		this(userinfo_DIALOG_CONFIG,homeframe,userPanel,isAdd);
 		this.idTxt.setText(vo.id);
-		this.idTxt.enable(false);
+		this.idTxt.setEnabled(false);
 		this.nameTxt.setText(vo.name);
 		this.passwordTxt.setText(vo.password);
 		this.typebox.setSelectedIndex(vo.type.ordinal());
@@ -111,12 +118,10 @@ public class UserInfoDialog extends JDialog{
 							if(panel.addUser(vo)==ResultMessage.SUCCESS){
 								MyOptionPane.showMessageDialog(null, "添加成功！");
 								UserInfoDialog.this.dispose();
-								panel.setHasADialog(false);
 							}else	MyOptionPane.showMessageDialog(null, "填写信息错误，添加失败！");	
 						}else{
 							if(panel.updateUser(vo)==ResultMessage.SUCCESS){
 								MyOptionPane.showMessageDialog(null, "修改成功！");
-								panel.setHasADialog(false);
 								UserInfoDialog.this.dispose();
 							}else	MyOptionPane.showMessageDialog(null, "填写信息错误，请重新填写！");	
 						}
@@ -132,7 +137,6 @@ public class UserInfoDialog extends JDialog{
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result==MyOptionPane.YES_OPTION){
 					UserInfoDialog.this.dispose();
-					panel.setHasADialog(false);
 				}
 			}	
 		});
@@ -151,8 +155,23 @@ public class UserInfoDialog extends JDialog{
 	
 	private void initComboBoxes(Element ele){
 		this.typebox = new MyComboBox(ele.element("type"));
+		this.typebox.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())){
+					permissionbox.setEnabled(false);
+				}else{
+					permissionbox.setEnabled(true);
+				}
+			}		
+		});
 		this.permissionbox = new MyComboBox(ele.element("permission"));
+		if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())){
+			this.permissionbox.setEnabled(false);
+		}
 		this.add(this.typebox);
 		this.add(this.permissionbox);
 	}
+	
+	
 }

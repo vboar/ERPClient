@@ -50,6 +50,5 @@ public class UserVO {
 		this.permission=permission;
 		this.name=name;
 	}
-
 	
 }

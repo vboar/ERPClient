@@ -17,12 +17,12 @@ import javax.swing.JPanel;
 import org.dom4j.Element;
 
 import ui.util.MyButton;
-import ui.util.MyFindComboBox;
 import ui.util.MyLabel;
-import config.ERPConfig;
-import config.PanelConfig;
+import ui.util.MySpecialTextField;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.customerbl.CustomerController;
+import config.ERPConfig;
+import config.PanelConfig;
 
 @SuppressWarnings("serial")
 public class CustomerPanel extends JPanel {
@@ -37,7 +37,7 @@ public class CustomerPanel extends JPanel {
 	
 	private MyLabel customerList;
 	
-	private MyFindComboBox findBox;
+	private MySpecialTextField findBox;
 	
 	private CustomerTablePane customerTable;
 	

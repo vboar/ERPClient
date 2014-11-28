@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -16,11 +18,11 @@ import javax.swing.JPanel;
 
 import org.dom4j.Element;
 
-import ui.util.FindTextListener;
+import ui.util.FuzzySearch;
 import ui.util.MyButton;
-import ui.util.MyFindComboBox;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import ui.util.MySpecialTextField;
 import util.ResultMessage;
 import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -30,7 +32,7 @@ import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class UserPanel extends JPanel implements FindTextListener{
+public class UserPanel extends JPanel implements FuzzySearch{
 
 	private MyButton addbtn;
 	
@@ -40,8 +42,8 @@ public class UserPanel extends JPanel implements FindTextListener{
 	
 	private MyButton findbtn;
 	
-	private MyFindComboBox findbox;
-	
+	private MyButton showAll;
+
 	private MyLabel userlist;
 	
 	private Image bg;
@@ -52,14 +54,13 @@ public class UserPanel extends JPanel implements FindTextListener{
 	
 	private JFrame homeframe;
 	
-	private Boolean hasADialog;
+	private MySpecialTextField userfindbox;
 	
 	private PanelConfig pcfg;
 	
 	private UserController userController;
 		
 	public UserPanel(JFrame frame){
-		this.hasADialog = false;
 		this.homeframe = frame;
 		this.userController = ControllerFactoryImpl.getInstance().getUserController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -90,12 +91,15 @@ public class UserPanel extends JPanel implements FindTextListener{
 	}
 
 	private void initFindComboBox(Element textfields) {
-		this.findbox = new MyFindComboBox(textfields.element("findinput"),this);
-		this.add(this.findbox);
+		this.userfindbox = new MySpecialTextField(textfields.element("findinput"),this);
+		this.add(this.userfindbox);
 	}
 
 	private void initLabels(Element labels) {
 		this.userlist = new MyLabel(labels.element("userlist"));
+		this.add(new MyLabel(labels.element("modulename")));
+		this.add(new MyLabel(labels.element("admin")));
+		this.add(new MyLabel(labels.element("usermanagebtn")));
 		this.add(this.userlist);
 	}
 
@@ -104,19 +108,48 @@ public class UserPanel extends JPanel implements FindTextListener{
 		this.initDeleteBtn(buttons.element("delete"));
 		this.initUpdateBtn(buttons.element("modify"));
 		this.initFindBtn(buttons.element("find"));
+		this.initShowAllBtn(buttons.element("showall"));
 		this.add(this.addbtn);
 		this.add(this.deletebtn);
 		this.add(this.modifybtn);
 		this.add(this.findbtn);
 	}
 	
+	private void initShowAllBtn(Element ele) {
+		this.showAll = new MyButton(ele);
+		this.showAll.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				userTable.showFindTable(userController.show());
+				userTable.updateUI();
+			}		
+		});
+		this.add(this.showAll);
+	}
+
 	private void initFindBtn(Element find){
 		this.findbtn = new MyButton(find);
 		this.findbtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				findUser(findbox.getSelectedItem().toString());
+				findUser(userfindbox.getText());
 			}	
+		});
+		this.findbtn.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					findUser(userfindbox.getText());
+				}
+			}
+			
 		});
 	}
 	
@@ -125,9 +158,7 @@ public class UserPanel extends JPanel implements FindTextListener{
 		this.addbtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(!hasADialog){
-					showUserDialog();
-				}
+					showUserDialog();			
 			}		
 		});
 	}
@@ -171,7 +202,6 @@ public class UserPanel extends JPanel implements FindTextListener{
 	}
 	
 	private void showUserDialog(){
-		this.hasADialog = true;
 		this.userInfoDiaglog = new UserInfoDialog(ERPConfig.getUSERINFO_DIALOG_CONFIG(),
 				this.homeframe,this,true);
 		this.userInfoDiaglog.setVisible(true);
@@ -219,22 +249,14 @@ public class UserPanel extends JPanel implements FindTextListener{
 	}
 
 	@Override
-	public void showFindResult(String str) {
+	public ArrayList<String> getFuzzyResult(String str) {
 		ArrayList<UserVO> result = this.userController.findById(str);
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<result.size(); ++i){
 			UserVO vo = result.get(i);
 			strs.add(vo.id);
 		}
-		this.findbox.addItems(strs);
-	}
-
-	public Boolean getHasADialog() {
-		return hasADialog;
-	}
-
-	public void setHasADialog(Boolean hasADialog) {
-		this.hasADialog = hasADialog;
+		return strs;
 	}
 
 	public JFrame getHomeframe() {
