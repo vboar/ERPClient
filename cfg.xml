@@ -5,8 +5,8 @@
 		<panel className="ui.loginui.LoginPanel" width="540" height="360"
 			x="0" y="0" bg="img/login.jpg">
 			<buttons>
-				<login text="登录" w="80" h="40" x="320" y="260" />
-				<quit text="退出" w="80" h="40" x="400" y="260" />
+				<login text="登录" w="80" h="30" x="315" y="240" />
+				<quit text="退出" w="80" h="30" x="415" y="240" />
 				<setting text="设置" w="80" h="30" x="440" y="15" />
 			</buttons>
 			<labels>
@@ -42,15 +42,15 @@
 			<labels>
 				<username w="100" h="30" x="80" y="15" />
 				<id w="100" h="30" x="80" y="35" />
-				<img text="" w="240" h="30" x="700" y="0" path="img\1.jpg" />
+				<img text="" w="240" h="30" x="20" y="20" path="img\1.jpg" />
 			</labels>
 		</panel>
 		
 		<!-- 时间显示面板 -->>
 		<panel className="ui.homeui.TimePanel" width="960"
-			height="90" x="0" y="0" bg="img/title.jpg">
+			height="20" x="0" y="0" bg="img/bottomline.jpg">
 			<labels>
-				<timelab text="" w="960" h="20" x="0" y="500" path="img\bottomline.jpg" />
+				<timelab text="" w="240" h="20" x="500" y="0"/>
 			</labels>
 		</panel>
 		
@@ -89,22 +89,6 @@
 		<!-- 客户管理面板 -->>
 		<panel className="ui.userui.CustomerPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
-			<tablepane className="ui.customerui.CustomerTablePane" width="730"
-				height="376" x="210" y="75">
-				<columnnames>
-					<columnname name="客户编号" />
-					<columnname name="姓名" />
-					<columnname name="类别" />
-					<columnname name="VIP等级" />
-					<columnname name="地址" />
-					<columnname name="邮编" />
-					<columnname name="邮箱" />
-					<columnname name="应收额度" />
-					<columnname name="应收" />
-					<columnname name="应付" />
-					<columnname name="默认业务员" />
-				</columnnames>
-			</tablepane>
 		</panel>
 	</frame>
 	
@@ -116,8 +100,14 @@
 		</buttons>
 		<labels>
 			<id text="用户名" w="40" h="30" x="30" y="20" />
-			<name text="真实姓名" w="60" h="30" x="240" y="20" />
+			<idtip text="请输入2-14位内数字或英文字符" w="200" h="30" x="80" y="46" 
+				 font="微软雅黑" fontsize="11"  color="true" r="255" g="100" b="10"/>
+			<name text="真实姓名" w="80" h="30" x="240" y="20" />
+			<nametip text="请输入2-14位内中英文字符" w="200" h="30" x="300" y="46" 
+		    	font="微软雅黑" fontsize="11"  color="true" r="255" g="100" b="10" />
 			<password text="密码" w="40" h="30" x="30" y="80" />
+			<passwordtip text="请输入6-14位内数字或英文字符" w="200" h="30" x="290" y="80" 
+				font="微软雅黑" fontsize="11"  color="true" r="255" g="100" b="10"/>
 			<type text="类型" w="40" h="30" x="30" y="140" />
 			<permission text="权限" w="40" h="30" x="240" y="140" />
 		</labels>

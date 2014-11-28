@@ -7,6 +7,8 @@ package ui.userui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -25,13 +27,19 @@ import vo.UserVO;
 import config.InfoDialogConfig;
 
 @SuppressWarnings("serial")
-public class UserInfoDialog extends JDialog{
+public class UserInfoDialog extends JDialog {
 
 	private MyLabel idLab;
 	
+	private MyLabel idTip;
+	
 	private MyLabel nameLab;
 	
+	private MyLabel nameTip;
+	
 	private MyLabel passwordLab;
+	
+	private MyLabel passwordTip;
 	
 	private MyLabel typeLab;
 	
@@ -96,11 +104,20 @@ public class UserInfoDialog extends JDialog{
 		this.passwordLab = new MyLabel(ele.element("password"));
 		this.typeLab = new MyLabel(ele.element("type"));
 		this.permissionLab = new MyLabel(ele.element("permission"));
+		this.idTip = new MyLabel(ele.element("idtip"));
+		this.idTip.setVisible(false);
+		this.nameTip = new MyLabel(ele.element("nametip"));
+		this.nameTip.setVisible(false);
+		this.passwordTip = new MyLabel(ele.element("passwordtip"));
+		this.passwordTip.setVisible(false);
 		this.add(this.idLab);
 		this.add(this.nameLab);
 		this.add(this.passwordLab);
 		this.add(this.typeLab);
 		this.add(this.permissionLab);
+		this.add(this.idTip);
+		this.add(this.nameTip);
+		this.add(this.passwordTip);
 	}
 	
 	private void initButtons(Element ele){
@@ -108,6 +125,7 @@ public class UserInfoDialog extends JDialog{
 		this.commit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(UserType.check(typebox.getSelectedItem().toString()));
 				UserVO vo = new UserVO(idTxt.getText(),passwordTxt.getText(),
 						UserType.check(typebox.getSelectedItem().toString()),
 						permissionbox.getSelectedIndex(),nameTxt.getText());
@@ -146,8 +164,47 @@ public class UserInfoDialog extends JDialog{
 	
 	private void initTextFields(Element ele){
 		this.idTxt = new MyTextField(ele.element("id"));
+		this.idTxt.addKeyListener(new KeyListener(){
+			@Override
+			public void keyTyped(KeyEvent e) {
+				idTip.setVisible(true);
+				nameTip.setVisible(false);
+				passwordTip.setVisible(false);
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			
+		});
 		this.nameTxt = new MyTextField(ele.element("name"));
+		this.nameTxt.addKeyListener(new KeyListener(){
+			@Override
+			public void keyTyped(KeyEvent e) {
+				idTip.setVisible(false);
+				nameTip.setVisible(true);
+				passwordTip.setVisible(false);
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			
+		});
 		this.passwordTxt = new MyTextField(ele.element("password"));
+		this.passwordTxt.addKeyListener(new KeyListener(){
+			@Override
+			public void keyTyped(KeyEvent e) {
+				idTip.setVisible(false);
+				nameTip.setVisible(false);
+				passwordTip.setVisible(true);
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			
+		});
 		this.add(this.idTxt);
 		this.add(this.nameTxt);
 		this.add(this.passwordTxt);
@@ -172,6 +229,4 @@ public class UserInfoDialog extends JDialog{
 		this.add(this.typebox);
 		this.add(this.permissionbox);
 	}
-	
-	
 }

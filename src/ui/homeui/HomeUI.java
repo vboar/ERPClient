@@ -34,8 +34,8 @@ public class HomeUI extends JFrame{
 		this.getContentPane().setLayout(null);
 		// 初始化组件
 		this.addUserInfoPanel(lc);
-		this.addMainPanel(lc);
 		this.addTimePanel();
+		this.addMainPanel(lc);
 		// 显示
 		this.setVisible(true);
 	}

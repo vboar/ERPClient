@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -138,35 +140,7 @@ public class LoginPanel extends JPanel{
 			// 事件处理
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 对输入进行基本的合法非法判断
-				String id = idTxt.getText();
-				String passwd = String.valueOf(passwordTxt.getPassword());
-				ResultMessage idResult = Utility.checkInputValid(id,4,14,false);
-				ResultMessage passwdResult = Utility.checkInputValid(passwd,6,14,false);
-				if(idResult != ResultMessage.SUCCESS) {
-					MyOptionPane.showMessageDialog(null, "输入的用户名" + idResult.toFriendlyString() + "!");
-					return;
-				} else if(passwdResult != ResultMessage.SUCCESS) {
-					MyOptionPane.showMessageDialog(null, "输入的密码" + passwdResult.toFriendlyString() + "!");
-					return;
-				}
-				// 登录验证
-				ResultMessage loginresult = loginController.login(usertype.getSelectedIndex(),id,passwd);
-				if(loginresult == ResultMessage.SUCCESS){
-					new HomeUI(loginController);
-					frame.dispose();
-				}else{
-					if(loginresult==ResultMessage.WRONG_ID){
-						MyOptionPane.showMessageDialog(null, "用户名错误！");
-						idTxt.setText("");
-						passwordTxt.setText("");
-					} else if(loginresult==ResultMessage.WRONG_PASSWD) {
-						MyOptionPane.showMessageDialog(null, "密码错误！");
-						passwordTxt.setText("");
-					} else {
-						MyOptionPane.showMessageDialog(null, "服务器未开启！");
-					}
-				}
+				checkLogin();
 			}
 		});
 	}
@@ -189,5 +163,37 @@ public class LoginPanel extends JPanel{
 
 	private void initSetBtn(PanelConfig cfg){
 		this.setBtn = new MyButton(cfg.getButtons().element("setting"));
+	}
+	
+	private void checkLogin(){
+		// 对输入进行基本的合法非法判断
+		String id = idTxt.getText();
+		String passwd = String.valueOf(passwordTxt.getPassword());
+		ResultMessage idResult = Utility.checkInputValid(id,4,14,false);
+		ResultMessage passwdResult = Utility.checkInputValid(passwd,6,14,false);
+		if(idResult != ResultMessage.SUCCESS) {
+			MyOptionPane.showMessageDialog(null, "输入的用户名" + idResult.toFriendlyString() + "!");
+			return;
+		} else if(passwdResult != ResultMessage.SUCCESS) {
+			MyOptionPane.showMessageDialog(null, "输入的密码" + passwdResult.toFriendlyString() + "!");
+			return;
+		}
+		// 登录验证
+		ResultMessage loginresult = loginController.login(usertype.getSelectedIndex(),id,passwd);
+		if(loginresult == ResultMessage.SUCCESS){
+			new HomeUI(loginController);
+			frame.dispose();
+		}else{
+			if(loginresult==ResultMessage.WRONG_ID){
+				MyOptionPane.showMessageDialog(null, "用户名错误！");
+				idTxt.setText("");
+				passwordTxt.setText("");
+			} else if(loginresult==ResultMessage.WRONG_PASSWD) {
+				MyOptionPane.showMessageDialog(null, "密码错误！");
+				passwordTxt.setText("");
+			} else {
+				MyOptionPane.showMessageDialog(null, "服务器未开启！");
+			}
+		}
 	}
 }
