@@ -12,6 +12,9 @@ public class ERPConfig {
 	private static FrameConfig LOGINFRAME_CONFIG = null;
 	
 	private static InfoDialogConfig USERINFO_DIALOG_CONFIG = null;
+	
+	private static InfoDialogConfig CUSTOMERINFO_DIALOG_CONFIG = null;
+	
 	static{
 		try {
 			// 创建XML读取器
@@ -24,8 +27,10 @@ public class ERPConfig {
 			LOGINFRAME_CONFIG = new FrameConfig(erp.element("loginframe"));
 			// 创建主界面配置对象
 			HOMEFRAME_CONFIG = new FrameConfig(erp.element("frame"));
-			// 创建添加用户对话框配置对象
+			// 创建添加/修改用户对话框配置对象
 			USERINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("userinfodialog"));
+			// 创建添加/修改客户对话框配置对象
+			CUSTOMERINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("customerinfodialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -41,6 +46,10 @@ public class ERPConfig {
 
 	public static InfoDialogConfig getUSERINFO_DIALOG_CONFIG() {
 		return USERINFO_DIALOG_CONFIG;
-	}	
+	}
+
+	public static InfoDialogConfig getCUSTOMERINFO_DIALOG_CONFIG() {
+		return CUSTOMERINFO_DIALOG_CONFIG;
+	}
 	
 }
