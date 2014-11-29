@@ -27,8 +27,7 @@ public class AccountController implements AccountBLService {
 
 	@Override
 	public ArrayList<AccountVO> show() {
-		// TODO
-		return null;
+		return account.show();
 	}
 
 	@Override

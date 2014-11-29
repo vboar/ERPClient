@@ -1,6 +1,8 @@
 package ui.accountui;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -11,7 +13,9 @@ import org.dom4j.Element;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
+import util.ResultMessage;
 import vo.AccountVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.accountblservice.AccountBLService;
@@ -35,6 +39,8 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 	private MySpecialTextField findBox;
 	
 	private AccountTablePane accountTable;
+	
+	private AccountInfoDialog accountInfoDialog;
 	
 	private JFrame frame;
 	
@@ -96,17 +102,67 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 
 	private void initAddBtn(Element element) {
 		this.addBtn = new MyButton(element);
-		
+		this.addBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showAddDialog();
+			}
+		});
+	}
+
+	private void showAddDialog() {
+		this.accountInfoDialog = new AccountInfoDialog(ERPConfig.getACCOUNTINFO_DIALOG_CONFIG(),
+				frame, this, true);
+		this.accountInfoDialog.setVisible(true);
+	}
+	
+	private void showUpdateDialog() {
+		AccountVO vo = this.accountTable.getSelectedVO();
+		this.accountInfoDialog = new AccountInfoDialog(ERPConfig.getACCOUNTINFO_DIALOG_CONFIG(),
+				frame, this, false, vo);
+		this.accountInfoDialog.setVisible(true);
 	}
 
 	private void initDeleteBtn(Element element) {
 		this.deleteBtn = new MyButton(element);
-		
+		this.deleteBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(accountTable.isSelected()) {
+					int result = MyOptionPane.showConfirmDialog(null, "确认删除该账户信息？","删除账户",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION) {
+						ResultMessage delResult = deleteAccount();
+						if(delResult == ResultMessage.SUCCESS) {
+							MyOptionPane.showMessageDialog(null, "删除成功！");
+						} else {
+							MyOptionPane.showMessageDialog(null, "删除失败！","提示信息", 
+									MyOptionPane.ERROR_MESSAGE, null);
+						}
+					}
+				} else {
+					MyOptionPane.showMessageDialog(null, "请选择要删除的账户信息！");
+				}
+			}
+			
+		});
 	}
 
 	private void initUpdateBtn(Element element) {
 		this.updateBtn = new MyButton(element);
-		
+		this.updateBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(accountTable.isSelected()) {
+					showUpdateDialog();
+				} else {
+					MyOptionPane.showMessageDialog(null, "请选择要修改的账户信息！");
+				}
+			}
+			
+		});
 	}
 
 	private void initFindBtn(Element element) {
@@ -119,7 +175,34 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 		
 	}
 	
+	public ResultMessage addAccount(AccountVO vo) {
+		ResultMessage result = this.accountController.add(vo);
+		if(result == ResultMessage.SUCCESS) {
+			this.accountTable.addRow(vo);
+		}
+		return result;
+	}
 	
+	public ResultMessage deleteAccount() {
+		AccountVO vo = this.accountTable.getSelectedVO();
+		ResultMessage result = this.accountController.delete(vo);
+		if(result == ResultMessage.SUCCESS) {
+			this.accountTable.deleteRow();
+		}
+		return result;
+	}
+	
+	public ResultMessage updateAccount(AccountVO vo) {
+		ResultMessage result = this.accountController.update(vo);
+		if(result == ResultMessage.SUCCESS) {
+			this.accountTable.updateRow(vo);
+		}
+		return result;
+	}
+	
+	public void findAccount(String keyWord) {
+		this.accountTable.showFindTable(accountController.fuzzyFind(keyWord));
+	}
 
 	public JFrame getFrame() {
 		return frame;

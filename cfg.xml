@@ -273,4 +273,20 @@
 		</textfields>
 		<comboboxes></comboboxes>
 	</categoryinfodialog>
+	
+	<!-- 账户信息对话框 -->
+	<accountinfodialog width="500" height="280" x="230" y="180">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<account text="银行账户" w="80" h="30" x="20" y="20" />
+			<name text="账户名称" w="80" h="30" x="20" y="50"/>
+		</labels>
+		<textfields>
+			<account w="320" h="30" x="120" y="20" />
+			<name w="320" h="30" x="120" y="50" />
+		</textfields>
+	</accountinfodialog>
 </erp>

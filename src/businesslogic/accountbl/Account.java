@@ -6,6 +6,7 @@
 package businesslogic.accountbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.AccountPO;
 import util.ResultMessage;
@@ -66,6 +67,19 @@ public class Account {
 			e.printStackTrace();
 		}
 		return ResultMessage.SUCCESS;
+	}
+	
+	public ArrayList<AccountVO> show() {
+		ArrayList<AccountVO> lists = new ArrayList<AccountVO>();
+		try {
+			ArrayList<AccountPO> list2 = DataFactoryImpl.getInstance().getAccountData().show();
+			for(AccountPO po: list2) {
+				lists.add(this.poToVo(po));
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return lists;
 	}
 	
 	public AccountVO findByAccount(String account){

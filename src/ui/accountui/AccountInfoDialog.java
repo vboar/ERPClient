@@ -1,5 +1,8 @@
 package ui.accountui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -8,14 +11,16 @@ import org.dom4j.Element;
 
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import ui.util.MyTextField;
+import util.ResultMessage;
 import vo.AccountVO;
 import config.InfoDialogConfig;
 
 @SuppressWarnings("serial")
 public class AccountInfoDialog extends JDialog {
 
-	private MyButton submit;
+	private MyButton commit;
 	
 	private MyButton cancel;
 	
@@ -60,14 +65,63 @@ public class AccountInfoDialog extends JDialog {
 		this.initTextFields(this.cfg.getTextFields());
 	}
 	
-	private void initTextFields(Element textFields) {
-		// TODO Auto-generated method stub
-		
+	private void initTextFields(Element ele) {
+		this.accountTxt = new MyTextField(ele.element("account"));
+		this.nameTxt = new MyTextField(ele.element("name"));
+		this.add(accountTxt);
+		this.add(nameTxt);
 	}
 
-	private void initButtons(Element buttons) {
-		// TODO Auto-generated method stub
+	private void initButtons(Element ele) {
+		this.commit = new MyButton(ele.element("commit"));
+		this.add(commit);
+		this.commit.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String account = accountTxt.getText();
+				String name = nameTxt.getText();
+				AccountVO vo = new AccountVO(account, name, 0);
+				int result = MyOptionPane.showConfirmDialog(null, "确认提交？", "确认提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+				if(result == MyOptionPane.YES_OPTION){
+					if(isAdd) {
+						if(panel.addAccount(vo)== ResultMessage.SUCCESS) {
+							MyOptionPane.showMessageDialog(null, "添加成功！");
+							dispose();
+						} else {
+							MyOptionPane.showMessageDialog(null, "填写信息错误，添加失败！");
+						}
+					} else {
+						if(panel.updateAccount(vo) == ResultMessage.SUCCESS) {
+							MyOptionPane.showMessageDialog(null, "修改成功！");
+							dispose();
+						} else {
+							MyOptionPane.showMessageDialog(null, "填写信息错误，修改失败！");
+						}
+					}
+					
+				}
+			}
+			
+		});
 		
+		this.cancel = new MyButton(ele.element("cancel"));
+		this.cancel.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int result = MyOptionPane.showConfirmDialog(null, "确认取消？","确认提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+				if(result==MyOptionPane.YES_OPTION){
+					dispose();
+				}
+				
+			}
+			
+		});
+		this.add(cancel);
 	}
 
 	private void initLabels(Element ele) {
