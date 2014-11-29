@@ -33,25 +33,13 @@ public class CommodityController implements CommodityBLService {
 	}
 
 	@Override
-	public ArrayList<CommodityVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<CommodityVO> findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<CommodityVO> findByModel(String model) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<CommodityVO> show() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<CommodityVO> fuzzyFind(String keyWord) {
 		// TODO Auto-generated method stub
 		return null;
 	}

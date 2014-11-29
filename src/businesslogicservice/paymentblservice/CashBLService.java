@@ -27,13 +27,6 @@ public interface CashBLService {
 	 * @return
 	 */
 	public ArrayList<CashVO> show(String time1, String time2);
-	
-	/**
-	 * 更新现金费用单审批状态
-	 * @param vo
-	 * @return
-	 */
-	public ResultMessage update(CashVO vo);
 
 	/**
 	 * 根据审批状态查找单据
@@ -41,14 +34,5 @@ public interface CashBLService {
 	 * @return
 	 */
 	public ArrayList<CashVO> findByStatus(DocumentStatus status);
-	
-	/**
-	 * 根据编号模糊查找单据
-	 * @param id
-	 * @return
-	 */
-	public ArrayList<CashVO> findById(String id);
-	
-
 
 }

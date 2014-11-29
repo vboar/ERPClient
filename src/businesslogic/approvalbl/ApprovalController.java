@@ -5,31 +5,99 @@
 
 package businesslogic.approvalbl;
 
-import util.DocumentStatus;
+import java.util.ArrayList;
+
 import util.ResultMessage;
-import vo.DocumentVO;
+import vo.CashVO;
+import vo.ExceptionVO;
 import vo.PaymentVO;
-import businesslogic.messagebl.MessageController;
+import vo.PresentVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
 import businesslogicservice.approvalblservice.ApprovalBLService;
 
 public class ApprovalController implements ApprovalBLService{
-	Approval a=new Approval();
+	
+	Approval approval = new Approval();
 
 	@Override
-	public ResultMessage approve(DocumentVO vo) {
+	public ArrayList<PresentVO> findPresent(int way, int status, String time1,
+			String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<PurchaseVO> findPurchase(int way, int status,
+			String time1, String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<SaleVO> findSale(int way, int status, String time1,
+			String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findPayment(int way, int status, String time1,
+			String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ExceptionVO> findException(int way, int status,
+			String time1, String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<CashVO> Cash(int way, int status, String time1,
+			String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approvePresent(PresentVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approvePurchase(PurchaseVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveSale(SaleVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ResultMessage approvePayment(PaymentVO vo) {
-		if(vo.approvalState==DocumentStatus.PASSED){
-		a.sendMessage("单据"+vo.id+"审批通过！");
-		}else{
-			a.sendMessage("单据"+vo.id+"审批未通过！");
-		}
-		
-		return a.approvePayment(vo.transferList,vo.id,vo.customerId,vo.total);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public ResultMessage approveException(ExceptionVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveCashVO(CashVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }
