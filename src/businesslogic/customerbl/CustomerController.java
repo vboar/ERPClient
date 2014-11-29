@@ -23,12 +23,12 @@ public class CustomerController implements CustomerBLService {
 
 	@Override
 	public ResultMessage delete(CustomerVO vo) {
-		return delete(vo);
+		return customer.delete(vo);
 	}
 
 	@Override
 	public ResultMessage update(CustomerVO vo) {
-		return update(vo);
+		return customer.update(vo);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class CustomerController implements CustomerBLService {
 
 	@Override
 	public ArrayList<CustomerVO> show() {
-		return show();
+		return customer.show();
 	}
 
 }

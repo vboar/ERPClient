@@ -192,17 +192,17 @@
 			<salesman w="40" h="30" x="240" y="140" />
 		</textfields>
 		<comboboxes>
-			<type w="130" h="30" x="80" y="140">
+			<category w="130" h="30" x="80" y="140">
 				<string str="供应商" />
 				<string str="销售商" />
-			</type>
-			<type w="130" h="30" x="80" y="140">
+			</category>
+			<level w="130" h="30" x="80" y="140">
 				<string str="VIP1" />
 				<string str="VIP2" />
 				<string str="VIP3" />
 				<string str="VIP4" />
 				<string str="VIP5" />
-			</type>
+			</level>
 		</comboboxes>
 	</customerinfodialog>
 </erp>

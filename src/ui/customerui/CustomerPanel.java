@@ -110,10 +110,12 @@ public class CustomerPanel extends JPanel implements FuzzySearch {
 		this.add(deleteBtn);
 		this.add(updateBtn);
 		this.add(findBtn);
+		this.add(showBtn);
 	}
 	
 	private void initFindComboBox(Element textfields) {
 		this.findBox = new MySpecialTextField(textfields.element("findinput"),this);
+		this.add(findBox);
 	}
 	
 	private void initAddBtn(Element add) {

@@ -9,6 +9,7 @@ package ui.customerui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -74,6 +75,7 @@ public class CustomerInfoDialog extends JDialog {
 	
 	public CustomerInfoDialog(InfoDialogConfig cfg, JFrame frame, CustomerPanel panel, boolean isAdd) {
 		super(frame, true);
+		((JComponent) this.getContentPane()).setOpaque(true);
 		this.cfg = cfg;
 		this.setTitle("客户信息");
 		this.panel = panel;
@@ -169,6 +171,7 @@ public class CustomerInfoDialog extends JDialog {
 			}
 			
 		});
+		this.add(commit);
 		
 		this.cancel = new MyButton(ele.element("cancel"));
 		this.cancel.addActionListener(new ActionListener(){
@@ -185,6 +188,7 @@ public class CustomerInfoDialog extends JDialog {
 			}
 			
 		});
+		this.add(cancel);
 	}
 	
 	private void initTextFields(Element ele) {

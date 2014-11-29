@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import ui.customerui.CustomerPanel;
 import ui.userui.UserPanel;
 import ui.util.FrameUtil;
-import util.UserType;
 import businesslogic.loginbl.LoginController;
 import config.ERPConfig;
 import config.FrameConfig;
