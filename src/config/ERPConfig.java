@@ -12,12 +12,10 @@ public class ERPConfig {
 	private static FrameConfig LOGINFRAME_CONFIG = null;
 	
 	private static InfoDialogConfig USERINFO_DIALOG_CONFIG = null;
-	
-<<<<<<< HEAD
+
 	private static InfoDialogConfig CATEGORYINFO_DIALOG_CONFIG = null;
-=======
+	
 	private static InfoDialogConfig CUSTOMERINFO_DIALOG_CONFIG = null;
->>>>>>> c64ab488bab5387be8c5f679556a1362b1e5c98b
 	
 	static{
 		try {
@@ -33,13 +31,10 @@ public class ERPConfig {
 			HOMEFRAME_CONFIG = new FrameConfig(erp.element("frame"));
 			// 创建添加/修改用户对话框配置对象
 			USERINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("userinfodialog"));
-<<<<<<< HEAD
 			// 创建添加商品分类对话框配置对象
 			CATEGORYINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("categoryinfodialog"));
-=======
 			// 创建添加/修改客户对话框配置对象
 			CUSTOMERINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("customerinfodialog"));
->>>>>>> c64ab488bab5387be8c5f679556a1362b1e5c98b
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -57,14 +52,12 @@ public class ERPConfig {
 		return USERINFO_DIALOG_CONFIG;
 	}
 
-<<<<<<< HEAD
 	public static InfoDialogConfig getCATEGORYINFO_DIALOG_CONFIG() {
 		return CATEGORYINFO_DIALOG_CONFIG;
 	}	
-=======
+
 	public static InfoDialogConfig getCUSTOMERINFO_DIALOG_CONFIG() {
 		return CUSTOMERINFO_DIALOG_CONFIG;
 	}
->>>>>>> c64ab488bab5387be8c5f679556a1362b1e5c98b
 	
 }
