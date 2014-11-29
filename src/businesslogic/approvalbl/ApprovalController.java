@@ -56,7 +56,7 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
-	public ArrayList<CashVO> Cash(int way, int status, String time1,
+	public ArrayList<CashVO> findCash(int way, int status, String time1,
 			String time2) {
 		// TODO Auto-generated method stub
 		return null;
@@ -93,11 +93,10 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
-	public ResultMessage approveCashVO(CashVO vo) {
+	public ResultMessage approveCash(CashVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 
 }

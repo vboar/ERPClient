@@ -35,7 +35,7 @@ public interface ApprovalBLService {
 	
 	public ArrayList<ExceptionVO> findException(int way, int status, String time1, String time2);
 	
-	public ArrayList<CashVO> Cash(int way, int status, String time1, String time2);
+	public ArrayList<CashVO> findCash(int way, int status, String time1, String time2);
 	
 	/**
 	 * 审批单据
@@ -52,7 +52,6 @@ public interface ApprovalBLService {
 	
 	public ResultMessage approveException(ExceptionVO vo);
 	
-	public ResultMessage approveCashVO(CashVO vo);
-	
+	public ResultMessage approveCash(CashVO vo);
 	
 }

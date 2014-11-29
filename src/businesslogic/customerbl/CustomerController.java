@@ -41,5 +41,9 @@ public class CustomerController implements CustomerBLService {
 	public ArrayList<CustomerVO> show() {
 		return customer.show();
 	}
+	
+	public ResultMessage updatePaybles(String customerId,double total){
+		return customer.updatePaybles(customerId, total);
+	}
 
 }

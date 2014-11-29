@@ -58,9 +58,9 @@ public class Account {
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage update(AccountPO po){
+	public ResultMessage update(AccountVO vo){
 		try {
-			DataFactoryImpl.getInstance().getAccountData().update(po);
+			DataFactoryImpl.getInstance().getAccountData().update(new AccountPO(vo.name,vo.account,vo.balance));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

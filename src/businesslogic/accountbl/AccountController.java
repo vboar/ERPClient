@@ -12,25 +12,22 @@ public class AccountController implements AccountBLService {
 
 	@Override
 	public ResultMessage add(AccountVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		return account.add(vo);
 	}
 
 	@Override
 	public ResultMessage delete(AccountVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		return account.delete(vo);
 	}
 
 	@Override
 	public ResultMessage update(AccountVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		return account.update(vo);
 	}
 
 	@Override
 	public ArrayList<AccountVO> show() {
-		// TODO 自动生成的方法存根
+		// TODO
 		return null;
 	}
 
@@ -39,6 +36,5 @@ public class AccountController implements AccountBLService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
+	
 }
