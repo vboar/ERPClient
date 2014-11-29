@@ -45,4 +45,11 @@ public interface CommodityBLService {
 	 * @return 所有商品
 	 */
 	public ArrayList<CommodityVO> show();
+	
+	
+	/**
+	 * 获取分类商品组合
+	 * @return 所有商品分类组合
+	 */
+	public ArrayList<CommodityVO> bigShow();
 }
