@@ -61,9 +61,9 @@ public class SalePO implements Serializable {
 	private ArrayList<CommodityLineItemPO> saleList;
 	
 	/**
-	* 赠品列表
+	* 赠品ID
 	*/
-	private ArrayList<PresentLineItemPO> giftList;
+	private String presentId;
 	   
 	/**
 	* 折让前总额
@@ -107,7 +107,7 @@ public class SalePO implements Serializable {
 	
 	public SalePO(String id,String time,String customerId,String customerName,int customerVIP,String salesman,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,
-			ArrayList<PresentLineItemPO> giftList,double totalBeforeDiscount,
+			String presentId,double totalBeforeDiscount,
 			double discount,double voucher,double totalAfterDiscount,String remark,
 			int documentStatus,boolean isWriteOff,int documentType){
 		this.id=id;
@@ -119,7 +119,7 @@ public class SalePO implements Serializable {
 		this.operatorId=operatorId;
 		this.storage=storage;
 		this.saleList=saleList;
-		this.giftList=giftList;
+		this.presentId=presentId;
 		this.totalBeforeDiscount=totalBeforeDiscount;
 		this.discount=discount;
 		this.voucher=voucher;
@@ -206,8 +206,8 @@ public class SalePO implements Serializable {
 		return customerVIP;
 	}
 
-	public ArrayList<PresentLineItemPO> getGiftList() {
-		return giftList;
+	public String getPresentId() {
+		return presentId;
 	}
 	
 }
