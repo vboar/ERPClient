@@ -138,6 +138,12 @@
 		</panel>
 	</frame>
 	
+	<!-- 账户管理面板 -->
+	<panel className="ui.accountui.AccountPanel" width="960" height="510"
+		x="0" y="90" bg="img/mainpanel.jpg">
+	
+	</panel>
+	
 	<!-- 用户信息对话框 -->
 	<userinfodialog width="500" height="280" x="230" y="180">
 		<buttons>
