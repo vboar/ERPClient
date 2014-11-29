@@ -27,27 +27,40 @@ public class CustomerGiftPromotion {
 		}
 		return list2;		
 	}
-	public ResultMessage add(CustomerGiftVO vo) throws RemoteException{
+	public ResultMessage add(CustomerGiftVO vo) {
 		CustomerGiftPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
-		DataFactoryImpl.getInstance().getCustomerGiftData().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getCustomerGiftData().insert(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 	
 	
-	public ResultMessage update(CustomerGiftVO vo) throws RemoteException{
+	public ResultMessage update(CustomerGiftVO vo) {
 		CustomerGiftPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
-		DataFactoryImpl.getInstance().getCustomerGiftData().update(po);
+		try {
+			DataFactoryImpl.getInstance().getCustomerGiftData().update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ArrayList<CustomerGiftVO> show() throws RemoteException{
-		ArrayList<CustomerGiftPO> poList=DataFactoryImpl.getInstance().getCustomerGiftData().show();
+	public ArrayList<CustomerGiftVO> show() {
+		ArrayList<CustomerGiftPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCustomerGiftData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<CustomerGiftVO> voList=new ArrayList<CustomerGiftVO>();
 		for(CustomerGiftPO po:poList){
 			if(!po.isValid()){
@@ -79,14 +92,14 @@ public class CustomerGiftPromotion {
 		//(String id,int VIP,ArrayList<CombinationCommodityLineItemVO> giftInfo
 			//	,double discount,double voucher,String startTime,String endTime,boolean valid
 	String id;
-		if(vo.id=="0000"){//要跟ui商量好
+		if(vo.id==null){//要跟ui商量好
 		id="";
 		//TODO
 	}else  id=vo.id;
 		
 		int VIP=vo.vip;
-		ArrayList<PresentLineItemPO> giftInfo=null;//vo.giftInfo;
-		//TODO
+		ArrayList<PresentLineItemPO> giftInfo=Utility.presentVOListToPOlist(vo.giftInfo);
+		
 		double discount=vo.discount;
 		double voucher=vo.voucher;
 		String startTime=vo.startTime;
@@ -99,8 +112,8 @@ public class CustomerGiftPromotion {
 	private CustomerGiftVO poToVo(CustomerGiftPO po){
 		String id=po.getId();
 		int VIP=po.getVIP();
-		ArrayList<PresentLineItemVO> giftInfo=null;//vo
-		//TODO
+		ArrayList<PresentLineItemVO> giftInfo=Utility.presentPOListToVOList(po.getGiftInfo());
+		
 		
 		double discount=po.getDiscount();
 		double voucher=po.getVoucher();

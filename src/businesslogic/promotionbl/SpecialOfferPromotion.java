@@ -14,26 +14,39 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class SpecialOfferPromotion {
 	
-	public ResultMessage add(SpecialOfferVO vo) throws RemoteException{
+	public ResultMessage add(SpecialOfferVO vo) {
 		SpecialOfferPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
-		DataFactoryImpl.getInstance().getSpecialOfferData().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getSpecialOfferData().insert(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage update(SpecialOfferVO vo) throws RemoteException{
+	public ResultMessage update(SpecialOfferVO vo) {
 		SpecialOfferPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
-		DataFactoryImpl.getInstance().getSpecialOfferData().update(po);
+		try {
+			DataFactoryImpl.getInstance().getSpecialOfferData().update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ArrayList<SpecialOfferVO> show() throws RemoteException{
-		ArrayList<SpecialOfferPO> poList=DataFactoryImpl.getInstance().getSpecialOfferData().show();
+	public ArrayList<SpecialOfferVO> show() {
+		ArrayList<SpecialOfferPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getSpecialOfferData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<SpecialOfferVO> voList=new ArrayList<SpecialOfferVO>();
 		for(SpecialOfferPO po:poList){
 			if(!po.isValid()){
@@ -72,14 +85,13 @@ public class SpecialOfferPromotion {
 		//String id,ArrayList<CombinationCommodityLineItemVO> commodityList
 			//	,double total,String startTime,String endTime, boolean valid){
 	String id;
-		if(vo.id=="0000"){//要跟ui商量好
+		if(vo.id==null){
 		id="";
 		//TODO
 	}else  id=vo.id;
 		
 		
-		ArrayList<CommodityLineItemPO> giftInfo=null;//vo.giftInfo;
-		//TODO
+		ArrayList<CommodityLineItemPO> giftInfo=Utility.voListToPOList(vo.commodityList);
 		double total=vo.total;
 		String startTime=vo.startTime;
 		String endTime=vo.endTime;
@@ -91,8 +103,7 @@ public class SpecialOfferPromotion {
 	private SpecialOfferVO poToVo(SpecialOfferPO po){
 		String id=po.getId();
 		
-		ArrayList<CommodityLineItemVO> giftInfo=null;//vo
-		//TODO
+		ArrayList<CommodityLineItemVO> giftInfo=Utility.poListToVOList(po.getCommodityList());
 		
 		
 		double total=po.getTotal();

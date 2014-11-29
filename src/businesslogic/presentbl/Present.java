@@ -43,6 +43,16 @@ public class Present {
 		return ResultMessage.SUCCESS;
 	}
 	
+//	private PresentPO getById(String id){
+//		PresentPO po=null;
+//		try {
+//			po = DataFactoryImpl.getInstance().getPresentData().getById(id);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		return po;
+//	}
+	
 	public ArrayList<PresentVO> findById(String id){
 		try {
 			ArrayList<PresentPO> poList=DataFactoryImpl.getInstance().getPresentData().findById(id);
@@ -100,8 +110,13 @@ public class Present {
 		// ArrayList<PresentLineItemPO> list, int documentStatus, int
 		// documentType,
 		// boolean isWriteoff
-
-		String id = vo.id;
+		String id=null;
+		if( vo.id==null){
+			 id="";
+			//TODO
+		}else{
+		 id = vo.id;
+		}
 		String time = vo.time;
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
@@ -119,7 +134,7 @@ public class Present {
 		String id = po.getId();
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
-		;
+		
 		String customerName = po.getCustomerId();
 		ArrayList<PresentLineItemVO> list = Utility.presentPOListToVOList(po
 				.getList());

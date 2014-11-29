@@ -13,26 +13,41 @@ import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class TotalGiftPromotion {
-	public ResultMessage add(TotalGiftVO vo) throws RemoteException {
+	public ResultMessage add(TotalGiftVO vo)  {
 		TotalGiftPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
-		DataFactoryImpl.getInstance().getTotalGiftData().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getTotalGiftData().insert(po);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 
-	public ResultMessage update(TotalGiftVO vo) throws RemoteException {
+	public ResultMessage update(TotalGiftVO vo)  {
 		TotalGiftPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
-		DataFactoryImpl.getInstance().getTotalGiftData().update(po);
+		try {
+			DataFactoryImpl.getInstance().getTotalGiftData().update(po);
+		} catch (RemoteException e) {
+		
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 
-	public ArrayList<TotalGiftVO> show() throws RemoteException {
-		ArrayList<TotalGiftPO> poList=DataFactoryImpl.getInstance().getTotalGiftData().show();
+	public ArrayList<TotalGiftVO> show()  {
+		ArrayList<TotalGiftPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getTotalGiftData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<TotalGiftVO> voList=new ArrayList<TotalGiftVO>();
 		for(TotalGiftPO po:poList){
 			if(!po.isValid()){
@@ -62,7 +77,7 @@ public class TotalGiftPromotion {
 		//String id,double total,ArrayList<CommodityLineItemVO> giftInfo,
 		//double discount,double voucher,String startTime,String endTime,boolean valid)
 		String id;
-		if(vo.id.equals("0000")){
+		if(vo.id==null){
 			id="";
 			//TODO 新生成的单子，id还没有生成
 		}

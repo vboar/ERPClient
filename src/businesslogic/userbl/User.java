@@ -63,7 +63,7 @@ public class User {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage addUser(UserVO vo) throws RemoteException {
+	public ResultMessage addUser(UserVO vo)  {
 		UserPO po = userVOToUserPO(vo);
 		if (existPO(po.getId())) {
 			return ResultMessage.EXIST;
@@ -78,7 +78,11 @@ public class User {
 		if (result != ResultMessage.SUCCESS) {
 			return result;
 		}
-		DataFactoryImpl.getInstance().getUserData().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getUserData().insert(po);
+		} catch (RemoteException e) {
+						e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 
@@ -90,16 +94,21 @@ public class User {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage delete(UserVO vo) throws RemoteException {
+	public ResultMessage delete(UserVO vo)  {
 		UserPO po = userVOToUserPO(vo);
 		if (!existPO(po.getId())) {
 			return ResultMessage.NOT_FOUND;
 		}
-		DataFactoryImpl.getInstance().getUserData().delete(po);
+		try {
+			DataFactoryImpl.getInstance().getUserData().delete(po);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 
-	public ResultMessage update(UserVO vo) throws RemoteException {
+	public ResultMessage update(UserVO vo)  {
 		UserPO po = userVOToUserPO(vo);
 		ResultMessage result = Utility.checkInputValid(po.getName(), 2, 14,
 				true);
@@ -113,7 +122,12 @@ public class User {
 			return result;
 		}
 
-		DataFactoryImpl.getInstance().getUserData().update(po);
+		try {
+			DataFactoryImpl.getInstance().getUserData().update(po);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 
@@ -123,9 +137,15 @@ public class User {
 	 * @return 用户的id中与输入的id正则匹配
 	 * @throws RemoteException
 	 */
-	public ArrayList<UserVO> findById(String id) throws RemoteException {
-		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
-				.findById(id);
+	public ArrayList<UserVO> findById(String id)  {
+		ArrayList<UserPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getUserData()
+					.findById(id);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<UserVO> voList = new ArrayList<UserVO>();
 		for (UserPO po : poList) {
 			voList.add(userPOToUservo(po));
@@ -140,9 +160,15 @@ public class User {
 	 * @return 用户的name与输入的name正则匹配
 	 * @throws RemoteException
 	 */
-	public ArrayList<UserVO> findByName(String name) throws RemoteException {
-		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
-				.findByName(name);
+	public ArrayList<UserVO> findByName(String name)  {
+		ArrayList<UserPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getUserData()
+					.findByName(name);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<UserVO> voList = new ArrayList<UserVO>();
 		for (UserPO po : poList) {
 			voList.add(userPOToUservo(po));
@@ -156,9 +182,15 @@ public class User {
 	 * @return 输入的类型的所有用户
 	 * @throws RemoteException
 	 */
-	public ArrayList<UserVO> findByType(UserType type) throws RemoteException {
-		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
-				.findByType(type.ordinal());
+	public ArrayList<UserVO> findByType(UserType type)  {
+		ArrayList<UserPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getUserData()
+					.findByType(type.ordinal());
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<UserVO> voList = new ArrayList<UserVO>();
 		for (UserPO po : poList) {
 			voList.add(userPOToUservo(po));
@@ -173,9 +205,15 @@ public class User {
 	 * @return poList
 	 * @throws RemoteException
 	 */
-	public ArrayList<UserVO> show() throws RemoteException {
-		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
-				.show();
+	public ArrayList<UserVO> show()  {
+		ArrayList<UserPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getUserData()
+					.show();
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<UserVO> voList = new ArrayList<UserVO>();
 		for (UserPO po : poList) {
 			voList.add(userPOToUservo(po));
@@ -192,7 +230,7 @@ public class User {
 	 * @return
 	 * @throws RemoteException
 	 */
-	private boolean existPO(String id) throws RemoteException {
+	private boolean existPO(String id)  {
 		ArrayList<UserVO> voList = show();
 		for (UserVO voCheck : voList) {
 			if (voCheck.id.equals(id)) {
