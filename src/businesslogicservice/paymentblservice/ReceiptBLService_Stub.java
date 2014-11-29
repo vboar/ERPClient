@@ -74,8 +74,9 @@ public class ReceiptBLService_Stub implements PaymentBLService {
 	}
 
 	@Override
-	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist)
-			throws RemoteException {
+	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist,
+			String id, String customerId, double total) throws RemoteException {
+		// TODO 自动生成的方法存根
 		return ResultMessage.SUCCESS;
 	}
 

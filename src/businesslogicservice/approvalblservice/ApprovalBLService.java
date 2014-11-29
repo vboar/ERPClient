@@ -8,7 +8,6 @@ package businesslogicservice.approvalblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import vo.DocumentVO;
 import vo.PaymentVO;
 import vo.PresentVO;
 
@@ -23,13 +22,6 @@ public interface ApprovalBLService {
 	 * @return
 	 */
 	public ArrayList<PresentVO> findPresent(int way, int status, String time1, String time2);
-	
-	/**
-	 * 单据审批
-	 * @param vo
-	 * @return 审批结果的消息
-	 */
-	public ResultMessage approve(DocumentVO vo);
 	
 	/**
 	 * 审批付款单

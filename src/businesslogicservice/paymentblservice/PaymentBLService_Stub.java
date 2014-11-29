@@ -73,8 +73,8 @@ public class PaymentBLService_Stub implements PaymentBLService {
 	}
 
 	@Override
-	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist)
-			throws RemoteException {
+	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist,
+			String id, String customerId, double total) throws RemoteException {
 		return ResultMessage.SUCCESS;
 	}
 

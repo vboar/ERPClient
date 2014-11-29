@@ -8,7 +8,7 @@ import businesslogicservice.accountblservice.AccountBLService;
 
 public class AccountController implements AccountBLService {
 	
-	Account account = new Account();
+	Account a = new Account();
 
 	@Override
 	public ResultMessage add(AccountVO vo) {
@@ -40,5 +40,8 @@ public class AccountController implements AccountBLService {
 		return null;
 	}
 
-
+	public AccountVO findByAccount(String account){
+		return a.findByAccount(account);
+	}
+	
 }

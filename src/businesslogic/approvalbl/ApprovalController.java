@@ -5,21 +5,16 @@
 
 package businesslogic.approvalbl;
 
+import java.util.ArrayList;
+
 import util.DocumentStatus;
 import util.ResultMessage;
-import vo.DocumentVO;
 import vo.PaymentVO;
-import businesslogic.messagebl.MessageController;
+import vo.PresentVO;
 import businesslogicservice.approvalblservice.ApprovalBLService;
 
 public class ApprovalController implements ApprovalBLService{
 	Approval a=new Approval();
-
-	@Override
-	public ResultMessage approve(DocumentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ResultMessage approvePayment(PaymentVO vo) {
@@ -30,6 +25,13 @@ public class ApprovalController implements ApprovalBLService{
 		}
 		
 		return a.approvePayment(vo.transferList,vo.id,vo.customerId,vo.total);
+	}
+
+	@Override
+	public ArrayList<PresentVO> findPresent(int way, int status, String time1,
+			String time2) {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }

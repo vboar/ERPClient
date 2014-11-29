@@ -92,7 +92,7 @@ public class Customer {
 	}
 	
 	//因为审批付款单引起的更新
-	public ResultMessage update(String customerId,double total){
+	public ResultMessage updatePaybles(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
 			cpo.setPaybles(cpo.getPaybles()-total);

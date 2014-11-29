@@ -66,12 +66,7 @@ public class Payment {
 
 		//???
 		Log l=new Log();
-		try {
-			l.add("Add payment successfully");
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+		l.add("Add payment successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -87,7 +82,7 @@ public class Payment {
 		temp.balance=temp.balance-transferlist.get(i).account;
 		}
 		
-		c.update(customerId,total);
+		c.updatePaybles(customerId, total);
 		return ResultMessage.SUCCESS;
 	}
 	

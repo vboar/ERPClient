@@ -30,7 +30,7 @@ public class PaymentBLService_Driver {
 		else System.out.println("付款单创建失败！\n");
 		
 		System.out.println("更新付款单返回信息：");
-		result = paymentBLService.update(transferList);
+		result = paymentBLService.update(transferList,"","",0);
 		if (result == ResultMessage.SUCCESS) System.out.println("付款单删除成功！\n");
 		else System.out.println("付款单删除失败！\n");
 		

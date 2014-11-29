@@ -29,7 +29,7 @@ public class ReceiptBLService_Driver {
 		else System.out.println("收款单创建失败！\n");
 		
 		System.out.println("更新收款单返回信息：");
-		result = receiptBLService.update(transferList);
+		result = receiptBLService.update(transferList,"","",0);
 		if (result == ResultMessage.SUCCESS) System.out.println("收款单更新成功！\n");
 		else System.out.println("收款单更新失败！\n");
 		

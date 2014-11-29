@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import po.CustomerPO;
 import util.ResultMessage;
-import vo.MessageVO;
 import vo.TransferLineItemVO;
 import businesslogic.accountbl.MockLog;
 import businesslogic.messagebl.MessageController;
