@@ -1,4 +1,4 @@
-package ui.commodityui;
+package ui.commodityui.categoryui;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,7 +16,9 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.dom4j.Element;
 
+import ui.util.BasicOperation;
 import ui.util.MyOptionPane;
+import ui.util.MyPopMenu;
 import util.ResultMessage;
 import vo.CategoryVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -26,7 +28,7 @@ import config.PanelConfig;
 
 
 @SuppressWarnings("serial")
-public class CategoryTreePane extends JPanel {
+public class CategoryTreePane extends JPanel implements BasicOperation{
 
 	private JTree tree;
 
@@ -34,7 +36,7 @@ public class CategoryTreePane extends JPanel {
 
 	private DefaultTreeModel dtm;
 	
-	private CategoryPopMenu popmenu;
+	private MyPopMenu popmenu;
 
 	private JScrollPane jsp;
 
@@ -60,7 +62,7 @@ public class CategoryTreePane extends JPanel {
 		this.jsp.getViewport().add(this.tree);
 		this.setLayout(null);
 		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());
-		this.popmenu = new CategoryPopMenu(this);
+		this.popmenu = new MyPopMenu(this);
 		this.add(popmenu);
 		this.add(this.jsp);
 		this.setVisible(true);
@@ -92,7 +94,7 @@ public class CategoryTreePane extends JPanel {
 		this.createTree(this.controller.show());
 	}
 
-	public void deleteCategory(){
+	public void delete(){
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		int result = MyOptionPane.showConfirmDialog(null, "确认删除？",
 				"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
@@ -148,12 +150,12 @@ public class CategoryTreePane extends JPanel {
 		}
 	}
 	
-	public void showAddCategoryDialog() {
+	public void showAddDialog() {
 		this.categoryInfo = new CategoryInfoDialog(ERPConfig.getCATEGORYINFO_DIALOG_CONFIG(),frame,this);
 		this.categoryInfo.setVisible(true);
 	}
 	
-	public void showUpdateCategoryDialog() {
+	public void showUpdDialog() {
 		CategoryVO vo = (CategoryVO)((DefaultMutableTreeNode) tree.getLastSelectedPathComponent()).getUserObject();
 		this.categoryInfo = new CategoryInfoDialog(ERPConfig.getCATEGORYINFO_DIALOG_CONFIG(),frame,this,vo);
 		this.categoryInfo.setVisible(true);
@@ -162,19 +164,18 @@ public class CategoryTreePane extends JPanel {
 	private void createTree(ArrayList<CategoryVO> list) {
 		boolean isExist = false;
 		if(list!=null){
-		for (int i = 0; i < list.size(); ++i) {
-			CategoryVO vo = list.get(i);
-			isExist = checkNodes(this.root, vo);
-			if (!isExist) {
-				this.insertNode(this.root, vo);
+			for (int i = 0; i < list.size(); ++i) {
+				CategoryVO vo = list.get(i);
+				isExist = checkNodes(this.root, vo);
+				if (!isExist) {
+					this.insertNode(this.root, vo);
+				}
 			}
-		}
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
 	private void insertNode(DefaultMutableTreeNode node, CategoryVO vo) {
-		System.out.println(node.getChildCount());
 		if (node.getChildCount() == 0) {
 			node.add(new DefaultMutableTreeNode(vo));
 			this.tree.updateUI();

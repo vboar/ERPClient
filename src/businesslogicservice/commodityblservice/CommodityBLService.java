@@ -8,6 +8,7 @@ package businesslogicservice.commodityblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
+import vo.CategoryCommodityVO;
 import vo.CommodityVO;
 
 public interface CommodityBLService {
@@ -51,5 +52,5 @@ public interface CommodityBLService {
 	 * 获取分类商品组合
 	 * @return 所有商品分类组合
 	 */
-	public ArrayList<CommodityVO> bigShow();
+	public ArrayList<CategoryCommodityVO> bigShow();
 }

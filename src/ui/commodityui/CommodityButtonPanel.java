@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import ui.commodityui.categoryui.CategoryPanel;
+import ui.commodityui.commodityui.CommodityPanel;
 import ui.homeui.HomeUI;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -58,6 +60,14 @@ public class CommodityButtonPanel extends JPanel{
 			}
 		});
 		this.commodityManageBtn = new MyButton(pcfg.getButtons().element("commodity"));
+		this.commodityManageBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.add(new CommodityPanel(frame));
+			}
+			
+		});
 		this.presentBtn = new MyButton(pcfg.getButtons().element("present"));
 		this.stockBtn = new MyButton(pcfg.getButtons().element("stock"));
 		this.stockCheckBtn = new MyButton(pcfg.getButtons().element("stockcheck"));

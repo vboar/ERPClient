@@ -1,4 +1,4 @@
-package ui.commodityui;
+package ui.commodityui.categoryui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

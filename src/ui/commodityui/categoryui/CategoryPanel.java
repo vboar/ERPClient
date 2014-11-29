@@ -1,4 +1,4 @@
-package ui.commodityui;
+package ui.commodityui.categoryui;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,6 +6,7 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -13,6 +14,12 @@ import config.PanelConfig;
 public class CategoryPanel extends JPanel{
 	
 	private JFrame homeframe;
+	
+	private MyLabel title;
+	
+	private MyLabel category;
+	
+	private MyLabel tip;
 	
 	private PanelConfig pcfg;
 	
@@ -41,6 +48,12 @@ public class CategoryPanel extends JPanel{
 	private void initComponent(PanelConfig pcfg) {
 		this.treepane = new CategoryTreePane(pcfg.getTree(),homeframe);
 		this.add(this.treepane);
+		this.title = new MyLabel(pcfg.getLabels().element("title"));
+		this.category = new MyLabel(pcfg.getLabels().element("category"));
+		this.tip = new MyLabel(pcfg.getLabels().element("tip"));
+		this.add(this.title);
+		this.add(this.category);
+		this.add(this.tip);
 	}
 
 }

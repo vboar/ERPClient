@@ -1,0 +1,168 @@
+package ui.commodityui.commodityui;
+
+import java.util.ArrayList;
+
+import org.jdesktop.swingx.treetable.AbstractTreeTableModel;
+
+import vo.CategoryCommodityVO;
+
+public class CommodityTreeTableModel extends AbstractTreeTableModel {
+
+	private MyTreeNode root;
+
+	private ArrayList<CategoryCommodityVO> list;
+
+	private static int COLUMN_COUNT = 7;
+
+	public CommodityTreeTableModel(ArrayList<CategoryCommodityVO> list) {
+		this.list = list;
+		this.createTree();
+	}
+
+	@Override
+	public int getColumnCount() {
+		return COLUMN_COUNT;
+	}
+
+	@Override
+	public String getColumnName(int column) {
+		switch (column) {
+		case 0:
+			return "名称";
+		case 1:
+			return "型号";
+		case 2:
+			return "库存数量";
+		case 3:
+			return "进价";
+		case 4:
+			return "零售价";
+		case 5:
+			return "最近进价";
+		case 6:
+			return "最近零售价";
+		default:
+			return "unknown";
+		}
+	}
+
+	@Override
+	public Object getValueAt(Object node, int column) {
+		MyTreeNode treenode = (MyTreeNode) node;
+		if (treenode.isCategory()) {
+			switch (column) {
+			case 0:
+				return "商品分类："+treenode.getCategoryvo().name;
+			default:
+				return null;
+			}
+		} else {
+			switch (column) {
+			case 0:
+				return treenode.getCommodityvo().name;
+			case 1:
+				return treenode.getCommodityvo().model;
+			case 2:
+				return treenode.getCommodityvo().number;
+			case 3:
+				return treenode.getCommodityvo().purchasePrice;
+			case 4:
+				return treenode.getCommodityvo().salePrice;
+			case 5:
+				return treenode.getCommodityvo().recentPurchasePrice;
+			case 6:
+				return treenode.getCommodityvo().recentSalePrice;
+			default:
+				return null;
+			}
+		}
+	}
+
+	@Override
+	public Object getChild(Object node, int index) {
+		MyTreeNode treenode = (MyTreeNode) node;
+		return treenode.getChildren().get(index);
+	}
+
+	@Override
+	public int getChildCount(Object parent) {
+		MyTreeNode treenode = (MyTreeNode) parent;
+		return treenode.getChildren().size();
+	}
+
+	@Override
+	public int getIndexOfChild(Object parent, Object child) {
+		MyTreeNode treenode = (MyTreeNode) parent;
+		for (int i = 0; i < treenode.getChildren().size(); i++) {
+			if (treenode.getChildren().get(i) == child) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	public boolean isLeaf(Object node) {
+		MyTreeNode treenode = (MyTreeNode) node;
+		if (treenode.getChildren().size() > 0) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Object getRoot() {
+		return root;
+	}
+
+	private void createTree() {
+		boolean isExist = false;
+		this.root = new MyTreeNode(null, null, null);
+		if (list != null) {
+			for (int i = 0; i < list.size(); ++i) {
+				CategoryCommodityVO vo = list.get(i);
+				isExist = this.checkNodes(root, vo);
+				if (!isExist) {
+					this.insertNode(this.root, vo);
+				}
+			}
+		}
+	}
+
+	private void insertNode(MyTreeNode node, CategoryCommodityVO vo) {
+		if (node.getChildrenCount() == 0) {
+			node.getChildren().add(
+					new MyTreeNode(vo.id, vo.Categoryvo, vo.commodityvo));
+			return;
+		} else {
+			ArrayList<MyTreeNode> list = node.getChildren();
+			for (MyTreeNode nextNode : list) {
+				String childId = nextNode.getId();
+				if ((childId.compareTo(vo.id) < 0)
+						&& (childId.length() < vo.id.length())) {
+					if (childId.compareTo(vo.id.substring(0, childId.length())) < 0) {
+						continue;
+					} else
+						this.insertNode(nextNode, vo);
+				} else {
+					node.getChildren()
+							.add(new MyTreeNode(vo.id, vo.Categoryvo,
+									vo.commodityvo));
+					return;
+				}
+			}
+		}
+	}
+
+	private boolean checkNodes(MyTreeNode node, CategoryCommodityVO vo) {
+		if ((node.getId() != null) && (node.getId().equals(vo.id))) {
+			return true;
+		}
+		if (node.getChildrenCount() >= 0) {
+			ArrayList<MyTreeNode> list = node.getChildren();
+			for (MyTreeNode treeNode : list) {
+				checkNodes(treeNode, vo);
+			}
+		}
+		return false;
+	}
+}

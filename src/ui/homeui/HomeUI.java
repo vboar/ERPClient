@@ -8,8 +8,8 @@ package ui.homeui;
 import javax.swing.JFrame;
 
 import ui.accountui.AccountPanel;
-import ui.commodityui.CategoryPanel;
 import ui.commodityui.CommodityButtonPanel;
+import ui.commodityui.commodityui.CommodityPanel;
 import ui.customerui.CustomerPanel;
 import ui.userui.UserPanel;
 import ui.util.FrameUtil;
@@ -58,7 +58,7 @@ public class HomeUI extends JFrame{
 			break;
 		case STOCKKEEPER:
 			this.add(new CommodityButtonPanel(this));
-			this.add(new CategoryPanel(this));
+			this.add(new CommodityPanel(this));
 			break;
 		case COUNTER:
 			this.add(new AccountPanel(this));

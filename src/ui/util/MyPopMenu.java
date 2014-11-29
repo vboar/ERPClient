@@ -1,4 +1,4 @@
-package ui.commodityui;
+package ui.util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +7,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 @SuppressWarnings("serial")
-public class CategoryPopMenu extends JPopupMenu {
+public class MyPopMenu extends JPopupMenu {
 
 	private JMenuItem add;
 
@@ -15,10 +15,10 @@ public class CategoryPopMenu extends JPopupMenu {
 
 	private JMenuItem upd;
 
-	public CategoryPopMenu(final CategoryTreePane panel) {
-		add = new JMenuItem("添加子分类");
-		upd = new JMenuItem("修改分类信息");
-		del = new JMenuItem("删除该分类");
+	public MyPopMenu(final BasicOperation panel) {
+		add = new JMenuItem("添加");
+		upd = new JMenuItem("修改");
+		del = new JMenuItem("删除");
 		this.add(add);
 		this.addSeparator();
 		this.add(upd);
@@ -27,19 +27,19 @@ public class CategoryPopMenu extends JPopupMenu {
 		this.del.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel.deleteCategory();
+				panel.delete();
 			}
 		});
 		this.upd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel.showUpdateCategoryDialog();
+				panel.showUpdDialog();
 			}
 		});
 		this.add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel.showAddCategoryDialog();
+				panel.showAddDialog();
 			}
 		});
 		this.setVisible(false);

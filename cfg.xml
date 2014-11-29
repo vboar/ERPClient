@@ -105,10 +105,37 @@
 		</panel>
 		
 		<!-- 商品分类管理面板 -->
-		<panel className="ui.commodityui.CategoryPanel" width="760" height="510"
+		<panel className="ui.commodityui.categoryui.CategoryPanel" width="760" height="510"
 			x="200" y="90" bg="img/rightpanel.png">
 			<buttons></buttons>
-			<labels></labels>
+			<labels>
+				<title  text="商品分类管理" w="200" h="30" x="10" y="2" />
+				<tip  text="操作提示：请在分类节点上单击鼠标右键进行分类管理操作。" w="440" h="30" x="180" y="45"
+				font="微软雅黑" fontsize="15"  color="true" r="255" g="100" b="10" />
+				<category  text="商品分类浏览" w="160" h="40" x="20" y="36" 
+				font="微软雅黑" fontsize="20"  color="true" r="40" g="40" b="40"/>
+			</labels>
+			<textfields></textfields>
+			<tree width="730" height="380" x="10" y="80" rootname="ERP"/>
+		</panel>
+		
+		<!-- 商品管理面板 -->
+		<panel className="ui.commodityui.commodityui.CommodityPanel" width="760" height="510"
+			x="200" y="90" bg="img/rightpanel.png">
+			<buttons>
+				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<modify text=""  w="80" h="32" x="530" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<showall text=""  w="100" h="30" x="610" y="37" path="img\show.png"  pathroll="img\show1.png"/>
+				<find text=""  w="24" h="24" x="910" y="40" path="img\search.png"  pathroll="img\search1.png"/>
+			</buttons>
+			<labels>
+				<title  text="商品管理" w="200" h="30" x="10" y="2" />
+				<tip  text="操作提示：请在节点上单击鼠标右键进行分类管理操作。" w="440" h="30" x="180" y="45"
+				font="微软雅黑" fontsize="15"  color="true" r="255" g="100" b="10" />
+				<category  text="商品浏览" w="160" h="40" x="20" y="36" 
+				font="微软雅黑" fontsize="20"  color="true" r="40" g="40" b="40"/>
+			</labels>
 			<textfields></textfields>
 			<tree width="730" height="380" x="10" y="80" rootname="ERP"/>
 		</panel>
