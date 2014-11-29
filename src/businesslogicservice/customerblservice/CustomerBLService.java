@@ -33,18 +33,11 @@ public interface CustomerBLService {
 	public ResultMessage update(CustomerVO vo);
 	
 	/**
-	 * 按照姓名查找客户
-	 * @param name
-	 * @return 客户列表
+	 * 模糊查找（ID和姓名）
+	 * @param keyWord
+	 * @return
 	 */
-	public ArrayList<CustomerVO> findByName(String name);
-	
-	/**
-	 * 按照id查找客户
-	 * @param Id
-	 * @return 客户列表
-	 */
-	public ArrayList<CustomerVO> findById(String Id);
+	public ArrayList<CustomerVO> fuzzyFind(String keyWord);
 	
 	/**
 	 * 显示客户列表

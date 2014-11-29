@@ -106,7 +106,6 @@ public class UserTablePane extends TablePanel{
 		for(int i=0; i<COLUMN_NUM;++i){
 			names.add(columnName[i]);
 		}
-		System.out.println(list.size());
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){
 			UserVO vo = list.get(i);
