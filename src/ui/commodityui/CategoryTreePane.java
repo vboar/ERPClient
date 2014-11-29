@@ -15,13 +15,13 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.dom4j.Element;
 
-import config.ERPConfig;
-import config.PanelConfig;
 import ui.util.MyOptionPane;
 import util.ResultMessage;
 import vo.CategoryVO;
 import businesslogic.commoditybl.CategoryController;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
+import config.ERPConfig;
+import config.PanelConfig;
 
 @SuppressWarnings("serial")
 public class CategoryTreePane extends JPanel {
@@ -40,6 +40,7 @@ public class CategoryTreePane extends JPanel {
 	
 	private CategoryController controller;
 	
+	@SuppressWarnings("unused")
 	private PanelConfig pcfg;
 
 	public CategoryTreePane(Element ele, JFrame frame) {

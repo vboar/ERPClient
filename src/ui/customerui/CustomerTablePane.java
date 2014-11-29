@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.CustomerVO;
-import businesslogic.customerbl.CustomerController;
+import businesslogicservice.customerblservice.CustomerBLService;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
@@ -28,7 +28,7 @@ public class CustomerTablePane extends TablePanel {
 
 	private DefaultTableModel dtm;
 
-	public CustomerTablePane(TableConfig cfg, CustomerController controller) {
+	public CustomerTablePane(TableConfig cfg, CustomerBLService controller) {
 		super(cfg);
 		this.initTable(controller.show());
 		this.initComponent();

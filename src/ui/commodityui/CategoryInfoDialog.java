@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JTree;
 
 import org.dom4j.Element;
 

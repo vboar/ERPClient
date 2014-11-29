@@ -23,7 +23,6 @@ import businesslogic.salebl.SaleController;
 import businesslogic.stockbl.StockController;
 import businesslogic.userbl.UserController;
 import businesslogicservice.accountblservice.AccountBLService;
-import businesslogicservice.commodityblservice.CategoryBLService;
 import businesslogicservice.commodityblservice.CommodityBLService;
 import businesslogicservice.controllerfactoryblservice.ControllerFactory;
 import businesslogicservice.customerblservice.CustomerBLService;
@@ -59,11 +58,7 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	}
 
 	@Override
-<<<<<<< f04e48507f537e2ff2ef7542110d1deea21c80e0
 	public CategoryController getCategoryController() {
-=======
-	public CategoryBLService getCategoryController() {
->>>>>>> c4814e2bb3704fa240d881edba572c01c4c76c1a
 		return new CategoryController();
 	}
 
