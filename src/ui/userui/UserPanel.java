@@ -139,7 +139,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 			public void actionPerformed(ActionEvent e) {
 				userTable.showFindTable(userController.show());
 				userTable.updateUI();
-			}		
+			}
 		});
 		this.add(this.showAll);
 	}
@@ -150,7 +150,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				findUser(userfindbox.getText());
-			}	
+			}
 		});
 		
 	}

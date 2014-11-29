@@ -18,53 +18,52 @@ import vo.PurchaseVO;
 import vo.SaleVO;
 import businesslogic.salebl.MockCommodity;
 import businesslogic.utilitybl.Utility;
-import businesslogicservice.purchaseblservice.PurchaseBLService;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
-public class Purchase implements PurchaseBLService {
+public class Purchase {
 
-	@Override
-	public ResultMessage add(PurchaseVO vo) throws RemoteException {
+	public ResultMessage add(PurchaseVO vo) {
 
 		PurchasePO po = poToVO(vo);
-		DataFactoryImpl.getInstance().getPurchaseData().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
+		} catch (RemoteException e) {
+
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 
 	}
 
-	@Override
-	public ArrayList<PurchaseVO> findByTime(String time1, String time2)
-			throws RemoteException {
-		ArrayList<PurchasePO> poList = DataFactoryImpl.getInstance()
-				.getPurchaseData().findByTime(time1, time2);
+	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByTime(time1, time2);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<PurchaseVO> voList = poListToVoList(poList);
 		return voList;
 
 	}
 
-	@Override
 	public ArrayList<PurchaseVO> findByCommodityName(String commodityName) {
-		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
-	public ArrayList<PurchaseVO> findByCustomer(String customer)
-			throws RemoteException {
-		ArrayList<PurchasePO> poList = DataFactoryImpl.getInstance()
-				.getPurchaseData().findByCustomer(customer);
+	public ArrayList<PurchaseVO> findByCustomer(String customer) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByCustomer(customer);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<PurchaseVO> voList = poListToVoList(poList);
 		return voList;
 	}
 
-	@Override
-	public ArrayList<PurchaseVO> findBySalesman(String salesman) {
-		// TODO
-		return null;
-
-	}
-
-	@Override
 	public ArrayList<PurchaseVO> findByStorage(String Storage)
 			throws RemoteException {
 		ArrayList<PurchasePO> poList = DataFactoryImpl.getInstance()
@@ -73,18 +72,25 @@ public class Purchase implements PurchaseBLService {
 		return voList;
 	}
 
-	@Override
-	public ArrayList<PurchaseVO> show() throws RemoteException {
-		ArrayList<PurchasePO> poList = DataFactoryImpl.getInstance()
-				.getPurchaseData().show();
+	public ArrayList<PurchaseVO> show() {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<PurchaseVO> voList = poListToVoList(poList);
 		return voList;
 
 	}
 
-	public ResultMessage update(PurchaseVO vo) throws RemoteException {
+	public ResultMessage update(PurchaseVO vo) {
 		PurchasePO po = poToVO(vo);
-		DataFactoryImpl.getInstance().getPurchaseData().update(po);
+		try {
+			DataFactoryImpl.getInstance().getPurchaseData().update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 
 	}
@@ -153,7 +159,6 @@ public class Purchase implements PurchaseBLService {
 
 	// ---------------------------------------------------------------------------------------------------
 
-	@Override
 	public ResultMessage updateCommodityByPurchase(
 			ArrayList<CommodityLineItemVO> list) {
 		MockCommodity mc = new MockCommodity();

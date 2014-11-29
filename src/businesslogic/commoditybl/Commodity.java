@@ -57,7 +57,7 @@ public class Commodity {
 		return vo;
 	}
 
-	public ResultMessage add(CommodityVO vo) throws RemoteException {
+	public ResultMessage add(CommodityVO vo)  {
 
 		CommodityPO po = commodityVOToCommodityPO(vo);
 		if (existPO(po.getId())) {
@@ -68,14 +68,18 @@ public class Commodity {
 		if (nameCheck != ResultMessage.SUCCESS) {
 			return nameCheck;
 		}
-		DataFactoryImpl.getInstance().getCommodityData().insert(po);
-		changeCategory(vo.category, 1);
+		try {
+			DataFactoryImpl.getInstance().getCommodityData().insert(po);
+			changeCategory(vo.category, 1);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 		return ResultMessage.SUCCESS;
 
 	}
 
-	public ResultMessage delete(CommodityVO vo) throws RemoteException {
+	public ResultMessage delete(CommodityVO vo)  {
 		CommodityPO po = commodityVOToCommodityPO(vo);
 		if (!existPO(vo.id)) {
 			return ResultMessage.NOT_FOUND;
@@ -83,15 +87,19 @@ public class Commodity {
 		if (vo.isTrade) {
 			return ResultMessage.IS_TRADE;
 		}
-		DataFactoryImpl.getInstance().getCommodityData().delete(po);
+		try {
+			DataFactoryImpl.getInstance().getCommodityData().delete(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 
 	}
 
-	public ResultMessage update(CommodityVO vo) throws RemoteException {
+	public ResultMessage update(CommodityVO vo)  {
 		CommodityPO po = commodityVOToCommodityPO(vo);
 		if (!existPO(po.getId())) {
-			return ResultMessage.EXIST;
+			return ResultMessage.NOT_FOUND;
 		}
 
 		ResultMessage nameCheck = Utility.checkInputValid(po.getName(), 2, 14,
@@ -105,13 +113,22 @@ public class Commodity {
 			return nameCheck2;
 		}
 
-		DataFactoryImpl.getInstance().getCommodityData().update(po);
+		try {
+			DataFactoryImpl.getInstance().getCommodityData().update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 
 	}
 
-	public ArrayList<CommodityVO> findById(String id) throws RemoteException {
-		 ArrayList<CommodityPO> poList= DataFactoryImpl.getInstance().getCommodityData().findById(id);
+	public ArrayList<CommodityVO> findById(String id)  {
+		 ArrayList<CommodityPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCommodityData().findById(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		 ArrayList<CommodityVO> voList=new ArrayList<CommodityVO>();
 		 for(CommodityPO po:poList){
 			 voList.add(commodityPOToCommodityVO(po));
@@ -119,8 +136,25 @@ public class Commodity {
 		 return voList;
 	}
 	
-	public ArrayList<CommodityVO> findByName(String name) throws RemoteException {
-		 ArrayList<CommodityPO> poList= DataFactoryImpl.getInstance().getCommodityData().findByName(name);
+//	private CommodityPO getById(String id){
+//		CommodityPO po=null;
+//		try {
+//			po = DataFactoryImpl.getInstance().getCommodityData().getById(id);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		return po;
+//		
+//	}
+	//TODO
+	
+	public ArrayList<CommodityVO> findByName(String name)  {
+		 ArrayList<CommodityPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCommodityData().findByName(name);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		 ArrayList<CommodityVO> voList=new ArrayList<CommodityVO>();
 		 for(CommodityPO po:poList){
 			 voList.add(commodityPOToCommodityVO(po));
@@ -128,8 +162,13 @@ public class Commodity {
 		 return voList;
 	}
 	
-	public ArrayList<CommodityVO> findByModel(String model) throws RemoteException {
-		 ArrayList<CommodityPO> poList= DataFactoryImpl.getInstance().getCommodityData().findByModel(model);
+	public ArrayList<CommodityVO> findByModel(String model)  {
+		 ArrayList<CommodityPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCommodityData().findByModel(model);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		 ArrayList<CommodityVO> voList=new ArrayList<CommodityVO>();
 		 for(CommodityPO po:poList){
 			 voList.add(commodityPOToCommodityVO(po));
@@ -139,8 +178,13 @@ public class Commodity {
 
 
 
-	public ArrayList<CommodityVO> show() throws RemoteException {
-		ArrayList<CommodityPO> poList= DataFactoryImpl.getInstance().getCommodityData().show();
+	public ArrayList<CommodityVO> show()  {
+		ArrayList<CommodityPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCommodityData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		 ArrayList<CommodityVO> voList=new ArrayList<CommodityVO>();
 		 for(CommodityPO po:poList){
 			 voList.add(commodityPOToCommodityVO(po));
@@ -149,7 +193,7 @@ public class Commodity {
 
 	}
 
-	private boolean existPO(String id) throws RemoteException {
+	private boolean existPO(String id)  {
 		ArrayList<CommodityVO> voList = show();
 		for (CommodityVO voCheck : voList) {
 			if (voCheck.id.equals(id)) {

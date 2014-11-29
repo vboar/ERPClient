@@ -6,6 +6,7 @@
 package businesslogic.salebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import po.CommodityLineItemPO;
@@ -17,9 +18,11 @@ import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.CustomerGiftVO;
 import vo.PresentLineItemVO;
+import vo.PresentVO;
 import vo.SaleVO;
 import vo.SpecialOfferVO;
 import vo.TotalGiftVO;
+import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.CustomerGiftPromotion;
 import businesslogic.promotionbl.SpecialOfferPromotion;
 import businesslogic.promotionbl.TotalGiftPromotion;
@@ -32,16 +35,33 @@ public class Sale {
 
 		SalePO po = SaleVOToSalePO(vo);
 		DataFactoryImpl.getInstance().getSaleDataService().insert(po);
-		// 创建赠品单
-		// TODO
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String time = df.toString();
+		String customerId = vo.customerId;
+		String customerName = vo.customerName;
+		ArrayList<PresentLineItemVO> list = vo.giftList;
+		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
+		DocumentType documentType = DocumentType.PRESENT;
+
+		PresentVO presentVO = new PresentVO(null, time, customerId,
+				customerName, list, documentStatus, documentType, false);
+		Present pr = new Present();
+		pr.create(presentVO);
 
 		return ResultMessage.SUCCESS;
+
 	}
 
 	public ArrayList<SaleVO> findByTime(String time1, String time2)
-			throws RemoteException {
-		ArrayList<SalePO> poList = DataFactoryImpl.getInstance()
-				.getSaleDataService().findByTime(time1, time2);
+			 {
+		ArrayList<SalePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getSaleDataService().findByTime(time1, time2);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<SaleVO> voList = poListToVoList(poList);
 		return voList;
 
@@ -54,33 +74,56 @@ public class Sale {
 	}
 
 	public ArrayList<SaleVO> findByCustomer(String customer)
-			throws RemoteException {
-		ArrayList<SalePO> poList = DataFactoryImpl.getInstance()
-				.getSaleDataService().findByCustomer(customer);
+			 {
+		ArrayList<SalePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getSaleDataService().findByCustomer(customer);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<SaleVO> voList = poListToVoList(poList);
 		return voList;
 	}
 
 	public ArrayList<SaleVO> findBySalesman(String salesman)
-			throws RemoteException {
-		ArrayList<SalePO> poList = DataFactoryImpl.getInstance()
-				.getSaleDataService().findBySalesman(salesman);
+			 {
+		ArrayList<SalePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getSaleDataService().findBySalesman(salesman);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<SaleVO> voList = poListToVoList(poList);
 		return voList;
 	}
 
 	public ArrayList<SaleVO> findByStorage(String Storage)
-			throws RemoteException {
-		ArrayList<SalePO> poList = DataFactoryImpl.getInstance()
-				.getSaleDataService().findByStorage(Storage);
+			 {
+		ArrayList<SalePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getSaleDataService().findByStorage(Storage);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<SaleVO> voList = poListToVoList(poList);
 		return voList;
 
 	}
 
-	public ResultMessage update(SaleVO vo) throws RemoteException {
+	public ResultMessage update(SaleVO vo)  {
 		SalePO po = SaleVOToSalePO(vo);
-		DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 
@@ -102,15 +145,22 @@ public class Sale {
 		return vo;
 	}
 
-	public ArrayList<SaleVO> show() throws RemoteException {
+	public ArrayList<SaleVO> show()  {
 
-		ArrayList<SalePO> poList = DataFactoryImpl.getInstance()
-				.getSaleDataService().show();
+		ArrayList<SalePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getSaleDataService().show();
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		ArrayList<SaleVO> voList = poListToVoList(poList);
 		return voList;
 
 	}
-//TODO
+
+	// TODO
 	public ResultMessage approveSale(SaleVO vo) {
 		return null;
 
@@ -132,8 +182,7 @@ public class Sale {
 		int customerVIP = po.getCustomerVIP();
 
 		String salesman = po.getSalesman();
-		String operatorName = "";
-		//TODO
+		
 		String operatorId = po.getOperatorId();
 		String storage = po.getStorage();
 		ArrayList<CommodityLineItemVO> saleList = Utility.poListToVOList(po
@@ -150,9 +199,10 @@ public class Sale {
 		boolean isWriteOff = po.isWriteOff();
 		DocumentType receiptType = DocumentType.values()[po.getDocumentType()];
 		SaleVO vo = new SaleVO(id, time, customerId, customerName, customerVIP,
-				salesman, operatorName, operatorId, storage, saleList, giftList,
-				totalBeforeDiscount, discount, voucher, totalAfterDiscount,
-				remark, approvalState, isWriteOff, receiptType);
+				salesman, operatorId, storage, saleList,
+				giftList, totalBeforeDiscount, discount, voucher,
+				totalAfterDiscount, remark, approvalState, isWriteOff,
+				receiptType);
 		return vo;
 
 	}
@@ -179,10 +229,9 @@ public class Sale {
 		boolean isWriteOff = vo.isWriteOff;
 		int receiptType = vo.receiptType.ordinal();
 		SalePO po = new SalePO(id, time, customerId, customerName, customerVIP,
-				salesman, operatorId, storage, saleList,
-				giftList, totalBeforeDiscount, discount, voucher,
-				totalAfterDiscount, remark, approvalState, isWriteOff,
-				receiptType);
+				salesman, operatorId, storage, saleList, giftList,
+				totalBeforeDiscount, discount, voucher, totalAfterDiscount,
+				remark, approvalState, isWriteOff, receiptType);
 		return po;
 
 	}

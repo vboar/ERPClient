@@ -15,20 +15,31 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 //oneoneO
 public class Log {
-		public ResultMessage add(String content) throws RemoteException{
+		public ResultMessage add(String content) {
 			String time=Time.getCurrentTime();
 			
 			String id=getLogId();
 			
 			String operator=getOperator();
 			
-			DataFactoryImpl.getInstance().getLogData().insert(new LogPO(time,id,operator,content));
+			try {
+				DataFactoryImpl.getInstance().getLogData().insert(new LogPO(time,id,operator,content));
+			} catch (RemoteException e) {
+				
+				e.printStackTrace();
+			}
 			
 			return ResultMessage.SUCCESS;
 		}
 		
-		public ArrayList<LogPO> show() throws RemoteException{
-			return DataFactoryImpl.getInstance().getLogData().show();
+		public ArrayList<LogPO> show() {
+			try {
+				return DataFactoryImpl.getInstance().getLogData().show();
+			} catch (RemoteException e) {
+				
+				e.printStackTrace();
+			}
+			return null;
 		}
 		
 		//TODO

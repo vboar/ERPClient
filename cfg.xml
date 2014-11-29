@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <erp>
-	<!-- 登录窗口 -->>
+	<!-- 登录窗口 -->
 	<loginframe width="540" height="360" windowUp="20">
 		<panel className="ui.loginui.LoginPanel" width="540" height="360"
 			x="0" y="0" bg="img/login.jpg">
@@ -21,8 +21,8 @@
 			<comboboxes>
 				<usertype w="145" h="30" x="350" y="80">
 					<string str="库存管理人员" />
-					<string str="进货销售人员" />
 					<string str="财务人员" />
+					<string str="进货销售人员" />
 					<string str="总经理" />
 					<string str="系统管理员" />
 				</usertype>
@@ -30,7 +30,7 @@
 		</panel>
 	</loginframe>
 	
-	<!-- 主窗口 -->>
+	<!-- 主窗口 -->
 	<frame title="ERP企业进销存管理系统" width="960" height="600" windowUp="20">
 	
 		<!-- 当前登录用户信息面板 -->>
@@ -46,7 +46,7 @@
 			</labels>
 		</panel>
 		
-		<!-- 时间显示面板 -->>
+		<!-- 时间显示面板 -->
 		<panel className="ui.homeui.TimePanel" width="960"
 			height="20" x="0" y="0" bg="img/bottomline.jpg">
 			<labels>
@@ -54,7 +54,7 @@
 			</labels>
 		</panel>
 		
-		<!-- 用户管理面板 -->>
+		<!-- 用户管理面板 -->
 		<panel className="ui.userui.UserPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
 			<buttons>
@@ -86,13 +86,47 @@
 			</tablepane>
 		</panel>
 		
-		<!-- 客户管理面板 -->>
-		<panel className="ui.userui.CustomerPanel" width="960" height="510"
+		<!-- 客户管理面板 -->
+		<panel className="ui.customerui.CustomerPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
+			<buttons>
+				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<update text=""  w="80" h="32" x="530" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<show text=""  w="100" h="30" x="610" y="37" path="img\show.png"  pathroll="img\show1.png"/>
+				<find text=""  w="24" h="24" x="910" y="40" path="img\search.png"  pathroll="img\search1.png"/>
+				<customermanage text="" w="100" h="40" x="" y="" />
+			</buttons>
+			<labels>
+				<customerlist text="" w="120" h="32" x="220" y="35" path="img\userlist.png"/>
+				<modulename text="" w="120" h="30" x="205" y="2" path="img\usermanage.png"/>
+				<salesman text="" w="150" h="30" x="25" y="2" path="img\admin.png"/>
+				<customermanagebtn text="" w="150" h="32" x="35" y="60" path="img\usermanagebtn.png"/>
+			</labels>
+			<textfields>
+				<findinput w="175" h="28" x="725" y="38" />
+			</textfields>
+			<tablepane className="ui.customerui.CustomerTablePane" width="730"
+				height="376" x="210" y="75">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="姓名" />
+					<columnname name="类别" />
+					<columnname name="VIP等级" />
+					<columnname name="电话" />
+					<columnname name="地址" />
+					<columnname name="邮编" />
+					<columnname name="邮箱" />
+					<columnname name="应收额度" />
+					<columnname name="应收" />
+					<columnname name="应付" />
+					<columnname name="默认业务员" />
+				</columnnames>
+			</tablepane>
 		</panel>
 	</frame>
 	
-	<!-- 用户信息对话框 -->>
+	<!-- 用户信息对话框 -->
 	<userinfodialog width="500" height="280" x="230" y="180">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="150" y="210" />
@@ -131,7 +165,7 @@
 		</comboboxes>
 	</userinfodialog>
 	
-	<!-- 客户信息对话框 -->>
+	<!-- 客户信息对话框 -->
 	<customerinfodialog width="500" height="280" x="230" y="180">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="150" y="210" />
@@ -158,17 +192,17 @@
 			<salesman w="40" h="30" x="240" y="140" />
 		</textfields>
 		<comboboxes>
-			<type w="130" h="30" x="80" y="140">
+			<category w="130" h="30" x="80" y="140">
 				<string str="供应商" />
 				<string str="销售商" />
-			</type>
-			<type w="130" h="30" x="80" y="140">
+			</category>
+			<level w="130" h="30" x="80" y="140">
 				<string str="VIP1" />
 				<string str="VIP2" />
 				<string str="VIP3" />
 				<string str="VIP4" />
 				<string str="VIP5" />
-			</type>
+			</level>
 		</comboboxes>
 	</customerinfodialog>
 </erp>

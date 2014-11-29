@@ -12,46 +12,34 @@ import vo.CustomerVO;
 import businesslogicservice.customerblservice.CustomerBLService;
 
 public class CustomerController implements CustomerBLService {
-	Customer c=new Customer();
+
+	Customer customer = new Customer();
+
 	@Override
 	public ResultMessage add(CustomerVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return customer.add(vo);
+
 	}
 
 	@Override
 	public ResultMessage delete(CustomerVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return customer.delete(vo);
 	}
 
 	@Override
 	public ResultMessage update(CustomerVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	//方法重载，由于收款单审批通过引起的更新
-	public ResultMessage update(String customerId,double total){
-		return c.update(customerId,total);
+		return customer.update(vo);
 	}
 
 	@Override
-	public ArrayList<CustomerVO> findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<CustomerVO> findById(String Id) {
+	public ArrayList<CustomerVO> fuzzyFind(String keyWord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<CustomerVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return customer.show();
 	}
 
 }
