@@ -7,6 +7,7 @@ package ui.homeui;
 
 import javax.swing.JFrame;
 
+import ui.commodityui.CategoryPanel;
 import ui.customerui.CustomerPanel;
 import ui.userui.UserPanel;
 import ui.util.FrameUtil;
@@ -52,6 +53,9 @@ public class HomeUI extends JFrame{
 			break;
 		case SALESMAN:
 			this.add(new CustomerPanel(this));
+			break;
+		case STOCKKEEPER:
+			this.add(new CategoryPanel(this));
 			break;
 		default:
 			

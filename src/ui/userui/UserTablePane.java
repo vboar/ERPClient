@@ -14,7 +14,7 @@ import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.UserType;
 import vo.UserVO;
-import businesslogic.userbl.UserController;
+import businesslogicservice.userblservice.UserBLService;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
@@ -28,7 +28,7 @@ public class UserTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
-	public UserTablePane(TableConfig cfg, UserController controller) {
+	public UserTablePane(TableConfig cfg, UserBLService controller) {
 		super(cfg);
 		this.initTable(controller.show());
 		this.initComponent();

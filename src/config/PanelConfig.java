@@ -35,6 +35,8 @@ public class PanelConfig extends ComponentConfig{
 	
 	private Element tablepane;
 	
+	private Element tree;
+	
 	private Image bg;
 	
 	public PanelConfig(Element panel) {
@@ -53,6 +55,7 @@ public class PanelConfig extends ComponentConfig{
 		this.y = Integer.parseInt(panel.attributeValue("y"));
 		this.bg = new ImageIcon(panel.attributeValue("bg")).getImage();
 		this.tablepane = panel.element("tablepane");
+		this.tree = panel.element("tree");
 	}	
 
 
@@ -82,6 +85,10 @@ public class PanelConfig extends ComponentConfig{
 
 	public Element getTablepane() {
 		return tablepane;
+	}
+
+	public Element getTree() {
+		return tree;
 	}
 
 }

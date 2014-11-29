@@ -34,18 +34,11 @@ public interface CategoryBLService {
 	public ResultMessage update(CategoryVO vo);
 	
 	/**
-	 * 根据分类编号模糊查找分类
-	 * @param id
-	 * @return 分类列表
-	 */
-	public ArrayList<CategoryVO> findById(String id);
-	
-	/**
 	 * 根据分类名称模糊查找分类
 	 * @param name
 	 * @return 分类列表
 	 */
-	public ArrayList<CategoryVO> findByName(String name);
+	public ArrayList<CategoryVO> fuzzyFind(String name);
 	
 	/**
 	 * 获取所有分类

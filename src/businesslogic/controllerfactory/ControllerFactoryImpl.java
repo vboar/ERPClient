@@ -13,13 +13,33 @@ import businesslogic.loginbl.LoginController;
 import businesslogic.messagebl.MessageController;
 import businesslogic.paymentbl.CashController;
 import businesslogic.paymentbl.PaymentController;
+import businesslogic.paymentbl.ReceiptController;
 import businesslogic.presentbl.PresentController;
-import businesslogic.promotionbl.PromotionController;
+import businesslogic.promotionbl.CustomerGiftController;
+import businesslogic.promotionbl.SpecialOfferController;
+import businesslogic.promotionbl.TotalGiftController;
 import businesslogic.purchasebl.PurchaseController;
 import businesslogic.salebl.SaleController;
 import businesslogic.stockbl.StockController;
 import businesslogic.userbl.UserController;
+import businesslogicservice.accountblservice.AccountBLService;
+import businesslogicservice.commodityblservice.CommodityBLService;
 import businesslogicservice.controllerfactoryblservice.ControllerFactory;
+import businesslogicservice.customerblservice.CustomerBLService;
+import businesslogicservice.exceptionblservice.ExceptionBLService;
+import businesslogicservice.exceptionblservice.WarningBLService;
+import businesslogicservice.initialblservice.InitialBLService;
+import businesslogicservice.logblservice.LogBLService;
+import businesslogicservice.messageblservice.MessageBLService;
+import businesslogicservice.paymentblservice.CashBLService;
+import businesslogicservice.paymentblservice.PaymentBLService;
+import businesslogicservice.presentblservice.PresentBLService;
+import businesslogicservice.promotionblservice.CustomerGiftBLService;
+import businesslogicservice.promotionblservice.SpecialOfferBLService;
+import businesslogicservice.promotionblservice.TotalGiftBLService;
+import businesslogicservice.purchaseblservice.PurchaseBLService;
+import businesslogicservice.saleblservice.SaleBLService;
+import businesslogicservice.stockblservice.StockBLService;
 
 public class ControllerFactoryImpl implements ControllerFactory{
 
@@ -33,9 +53,8 @@ public class ControllerFactoryImpl implements ControllerFactory{
 		private static ControllerFactoryImpl controllerFactory = new ControllerFactoryImpl();
 	}
 	@Override
-	public AccountController getAccountController() {
-		// TODO Auto-generated method stub
-		return null;
+	public AccountBLService getAccountController() {
+		return new AccountController();
 	}
 
 	@Override
@@ -44,98 +63,73 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	}
 
 	@Override
-	public CommodityController getCommodityController() {
-		// TODO Auto-generated method stub
-		return null;
+	public CommodityBLService getCommodityController() {
+		return new CommodityController();
 	}
 
 	@Override
-	public CustomerController getCustomerController() {
+	public CustomerBLService getCustomerController() {
 		return new CustomerController();
 	}
 
 	@Override
-	public LossController getLossController() {
-		// TODO Auto-generated method stub
-		return null;
+	public ExceptionBLService getLossController() {
+		return new LossController();
 	}
 
 	@Override
-	public OverflowController getOverflowController() {
-		// TODO Auto-generated method stub
-		return null;
+	public ExceptionBLService getOverflowController() {
+		return new OverflowController();
 	}
 
 	@Override
-	public WarningController getWarningController() {
-		// TODO Auto-generated method stub
-		return null;
+	public WarningBLService getWarningController() {
+		return new WarningController();
 	}
 
 	@Override
-	public InitialController getInitialController() {
-		// TODO Auto-generated method stub
-		return null;
+	public InitialBLService getInitialController() {
+		return new InitialController();
 	}
 
 	@Override
-	public LogController getLogController() {
-		// TODO Auto-generated method stub
-		return null;
+	public LogBLService getLogController() {
+		return new LogController();
 	}
 
 	@Override
-	public MessageController getMessageController() {
-		// TODO Auto-generated method stub
-		return null;
+	public MessageBLService getMessageController() {
+		return new MessageController();
 	}
 
 	@Override
-	public CashController getCashController() {
-		// TODO Auto-generated method stub
-		return null;
+	public CashBLService getCashController() {
+		return new CashController();
 	}
 
 	@Override
-	public PaymentController getPaymentController() {
-		// TODO Auto-generated method stub
-		return null;
+	public PaymentBLService getPaymentController() {
+		return new PaymentController();
 	}
 
 	@Override
-	public PresentController getPresentController() {
-		// TODO Auto-generated method stub
-		return null;
+	public PresentBLService getPresentController() {
+		return new PresentController();
 	}
 
 	@Override
-	public CustomerController getCustomerGiftController() {
-		// TODO Auto-generated method stub
-		return null;
+	public PurchaseBLService getPurchaseController() {
+		return new PurchaseController();
 	}
 
 	@Override
-	public PromotionController getTotalGiftController() {
-		// TODO Auto-generated method stub
-		return null;
+	public SaleBLService getSaleController() {
+		return new SaleController();
 	}
 
 	@Override
-	public PurchaseController getPurchaseController() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SaleController getSaleController() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public StockController getStockController() {
-		// TODO Auto-generated method stub
-		return null;
+	public StockBLService getStockController() {
+		return new StockController();
 	}
 
 	@Override
@@ -146,6 +140,26 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	@Override
 	public LoginController getLoginController() {
 		return new LoginController();
+	}
+
+	@Override
+	public PaymentBLService getReceiptController() {
+		return new ReceiptController();
+	}
+
+	@Override
+	public CustomerGiftBLService getCustomerGiftController() {
+		return new CustomerGiftController();
+	}
+
+	@Override
+	public SpecialOfferBLService getSpecialOfferController() {
+		return new SpecialOfferController();
+	}
+
+	@Override
+	public TotalGiftBLService getTotalGiftController() {
+		return new TotalGiftController();
 	}
 
 }

@@ -28,12 +28,6 @@ public class LossController implements ExceptionBLService {
 	}
 
 	@Override
-	public ArrayList<ExceptionVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<ExceptionVO> findByStatus(DocumentStatus status) {
 		// TODO Auto-generated method stub
 		return null;

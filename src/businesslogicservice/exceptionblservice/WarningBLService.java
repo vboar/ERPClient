@@ -27,11 +27,4 @@ public interface WarningBLService {
 	 */
 	public ArrayList<WarningVO> show(String time1, String time2);
 	
-	/**
-	 * 根据编号查找报警单
-	 * @param id
-	 * @return 报警单列表
-	 */
-	public ArrayList<WarningVO> findById(String id);
-	
 }

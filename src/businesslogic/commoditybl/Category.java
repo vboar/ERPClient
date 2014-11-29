@@ -8,6 +8,7 @@ package businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import po.CategoryPO;
 import util.ResultMessage;
@@ -139,6 +140,7 @@ public class Category {
 		return voList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<CategoryVO> show() {
 		ArrayList<CategoryPO> poList = null;
 		try {
@@ -150,9 +152,12 @@ public class Category {
 		for (CategoryPO po : poList) {
 			voList.add(CategoryPOToCategoryVO(po));
 		}
+		Collections.sort(voList,new SortById());		
 		return voList;
 
 	}
+	
+	 
 
 	private boolean existPO(String id) {
 		ArrayList<CategoryVO> voList = show();

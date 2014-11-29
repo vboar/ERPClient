@@ -29,24 +29,10 @@ public interface PresentBLService {
 	public ArrayList<PresentVO> show(String time1, String time2);
 	
 	/**
-	 * 根据编号查找赠送单
-	 * @param id
-	 * @return 赠送单列表
-	 */
-	public ArrayList<PresentVO> findById(String id);
-	
-	/**
 	 * 根据单据状态查找赠送单
 	 * @param status
 	 * @return 赠送单列表
 	 */
 	public ArrayList<PresentVO> findByStatus(DocumentStatus status);
-	
-	/**
-	 * 更新赠送单
-	 * @param vo
-	 * @return 更新与否消息
-	 */
-	public ResultMessage update(PresentVO vo);
 	
 }

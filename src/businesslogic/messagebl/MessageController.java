@@ -26,4 +26,10 @@ public class MessageController implements MessageBLService {
 		return null;
 	}
 
+	@Override
+	public ArrayList<MessageVO> findByStatus(int status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

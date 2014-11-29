@@ -15,13 +15,14 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.dom4j.Element;
 
-import config.ERPConfig;
-import config.PanelConfig;
 import ui.util.MyOptionPane;
 import util.ResultMessage;
 import vo.CategoryVO;
 import businesslogic.commoditybl.CategoryController;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
+import config.ERPConfig;
+import config.PanelConfig;
+
 
 @SuppressWarnings("serial")
 public class CategoryTreePane extends JPanel {
@@ -40,6 +41,7 @@ public class CategoryTreePane extends JPanel {
 	
 	private CategoryController controller;
 	
+	@SuppressWarnings("unused")
 	private PanelConfig pcfg;
 
 	public CategoryTreePane(Element ele, JFrame frame) {
@@ -54,24 +56,12 @@ public class CategoryTreePane extends JPanel {
 		this.jsp = new JScrollPane();
 		this.jsp.getViewport().add(this.tree);
 		this.setLayout(null);
-		this.add(this.jsp);
-		this.setVisible(true);
-
-	}
-
-	public CategoryTreePane() {
-		this.setSize(600, 400);
-		this.controller = ControllerFactoryImpl.getInstance()
-				.getCategoryController();
-		this.initTree("ERP");
-		this.jsp = new JScrollPane();
-		this.jsp.getViewport().add(this.tree);
-		this.setLayout(null);
 		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.popmenu = new CategoryPopMenu(this);
 		this.add(popmenu);
 		this.add(this.jsp);
 		this.setVisible(true);
+
 	}
 
 	private void initTree(String rootname) {
@@ -128,7 +118,9 @@ public class CategoryTreePane extends JPanel {
 	}
 	
 	public void showUpdateCategoryDialog() {
-		
+		CategoryVO vo = (CategoryVO)((DefaultMutableTreeNode) tree.getLastSelectedPathComponent()).getUserObject();
+		this.categoryInfo = new CategoryInfoDialog(ERPConfig.getCATEGORYINFO_DIALOG_CONFIG(),frame,this,vo);
+		this.categoryInfo.setVisible(true);
 	}
 
 	private void createTree(ArrayList<CategoryVO> list) {
