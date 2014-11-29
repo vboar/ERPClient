@@ -247,12 +247,12 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	}
 	
 	public void findUser(String id){
-		this.userTable.showFindTable(userController.findById(id));
+		this.userTable.showFindTable(userController.fuzzyFind(id));
 	}
 
 	@Override
 	public ArrayList<String> getFuzzyResult(String str) {
-		ArrayList<UserVO> result = this.userController.findById(str);
+		ArrayList<UserVO> result = this.userController.fuzzyFind(str);
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<result.size(); ++i){
 			UserVO vo = result.get(i);

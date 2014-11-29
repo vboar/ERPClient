@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JTree;
 
 import org.dom4j.Element;
 
@@ -43,9 +42,9 @@ public class CategoryInfoDialog extends JDialog{
 		this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());	
 	}
 	
-	public CategoryInfoDialog(InfoDialogConfig userinfo_DIALOG_CONFIG,
+	public CategoryInfoDialog(InfoDialogConfig categoryinfo_DIALOG_CONFIG,
 			JFrame homeframe, CategoryTreePane panel,CategoryVO vo) {
-		this(userinfo_DIALOG_CONFIG,homeframe,panel);
+		this(categoryinfo_DIALOG_CONFIG,homeframe,panel);
 		this.nameTxt.setText(vo.name);
 	}
 	
