@@ -21,8 +21,8 @@
 			<comboboxes>
 				<usertype w="145" h="30" x="350" y="80">
 					<string str="库存管理人员" />
-					<string str="进货销售人员" />
 					<string str="财务人员" />
+					<string str="进货销售人员" />
 					<string str="总经理" />
 					<string str="系统管理员" />
 				</usertype>
@@ -86,8 +86,8 @@
 			</tablepane>
 		</panel>
 		
-		<!-- 客户管理面板 -->>
-		<panel className="ui.userui.CustomerPanel" width="960" height="510"
+		<!-- 客户管理面板 -->
+		<panel className="ui.customerui.CustomerPanel" width="960" height="510"
 			x="0" y="90" bg="img/mainpanel.jpg">
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>

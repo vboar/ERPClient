@@ -47,8 +47,11 @@ public class CustomerTablePane extends TablePanel {
 	}
 	
 	public void initData(ArrayList<CustomerVO> list) {
-		this.data = new Object[list.size()][COLUMN_NUM];
-		for(int i=0; i<list.size(); ++i){
+		int size;
+		if(list == null) size = 0;
+		else size = list.size();
+		this.data = new Object[size][COLUMN_NUM];
+		for(int i=0; i<size; ++i){
 			CustomerVO vo = list.get(i);
 			this.createRow(data[i], vo);
 		}

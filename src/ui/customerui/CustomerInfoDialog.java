@@ -19,6 +19,7 @@ import ui.util.MyComboBox;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
+import util.ResultMessage;
 import vo.CustomerVO;
 import config.InfoDialogConfig;
 
@@ -148,11 +149,20 @@ public class CustomerInfoDialog extends JDialog {
 				int result = MyOptionPane.showConfirmDialog(null, "确认提交？", "确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
-					// TODO
 					if(isAdd) {
-						
+						if(panel.addCustomer(vo) == ResultMessage.SUCCESS) {
+							MyOptionPane.showMessageDialog(null, "添加成功！");
+							dispose();
+						} else {
+							MyOptionPane.showMessageDialog(null, "填写信息错误，添加失败！");
+						}
 					} else {
-						
+						if(panel.updateCustomer(vo) == ResultMessage.SUCCESS) {
+							MyOptionPane.showMessageDialog(null, "修改成功！");
+							dispose();
+						} else {
+							MyOptionPane.showMessageDialog(null, "填写信息错误，修改失败！");
+						}
 					}
 					
 				}

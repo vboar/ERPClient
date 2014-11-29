@@ -7,6 +7,7 @@ package ui.homeui;
 
 import javax.swing.JFrame;
 
+import ui.customerui.CustomerPanel;
 import ui.userui.UserPanel;
 import ui.util.FrameUtil;
 import util.UserType;
@@ -45,9 +46,16 @@ public class HomeUI extends JFrame{
 	}
 	
 	private void addMainPanel(LoginController lc){
-		if(lc.getUserType() == UserType.ADMINISTRATOR){
-			this.add(new LoginUserInfoPanel(lc));
+		this.add(new LoginUserInfoPanel(lc));
+		switch(lc.getUserType()) {
+		case ADMINISTRATOR:
 			this.add(new UserPanel(this));
+			break;
+		case SALESMAN:
+			this.add(new CustomerPanel(this));
+			break;
+		default:
+			
 		}
 	}
 	
