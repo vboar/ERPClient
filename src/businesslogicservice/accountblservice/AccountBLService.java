@@ -11,15 +11,6 @@ import util.ResultMessage;
 import vo.AccountVO;
 
 public interface AccountBLService {
-
-	/**
-	 * 根据姓名模糊查找账户
-	 * @param name
-	 * @return
-	 */
-	public ArrayList<AccountVO> find(String name);
-	
-	public AccountVO findByAccount(String account);
 	
 	/**
 	 * 增加账户
@@ -47,5 +38,12 @@ public interface AccountBLService {
 	 * @return
 	 */
 	public ArrayList<AccountVO> show();
+	
+	/**
+	 * 模糊查找（账号和名称）
+	 * @param keyWord
+	 * @return
+	 */
+	public ArrayList<AccountVO> fuzzyFind(String keyWord);
 	
 }

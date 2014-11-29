@@ -36,25 +36,11 @@ public interface UserBLService {
 	public ResultMessage update(UserVO vo);
 	
 	/**
-	 * 根据姓名模糊查找用户
-	 * @param name
-	 * @return 用户列表
+	 * 模糊查找（用户名、姓名）
+	 * @param keyWord
+	 * @return
 	 */
-    public ArrayList<UserVO> findByName(String name);
-    
-    /**
-     * 根据用户类型查找用户
-     * @param type
-     * @return 用户列表
-     */
-    public ArrayList<UserVO> findByType(UserType type);
-    
-    /**
-     * 根据用户id查找用户
-     * @param id
-     * @return 用户列表
-     */
-    public  ArrayList<UserVO> findById(String id);
+	public ArrayList<UserVO> fuzzyFind(String keyWord);
     
     /**
      * 显示用户列表
