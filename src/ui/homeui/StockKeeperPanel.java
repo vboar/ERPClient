@@ -1,4 +1,4 @@
-package ui.commodityui;
+package ui.homeui;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -9,14 +9,13 @@ import javax.swing.JPanel;
 
 import ui.commodityui.categoryui.CategoryPanel;
 import ui.commodityui.commodityui.CommodityPanel;
-import ui.homeui.HomeUI;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
 
 @SuppressWarnings("serial")
-public class CommodityButtonPanel extends JPanel{
+public class StockKeeperPanel extends JPanel{
 
 	private MyButton categoryManageBtn;
 
@@ -30,6 +29,10 @@ public class CommodityButtonPanel extends JPanel{
 	
 	private MyButton exceptionBtn;
 	
+	private CommodityPanel commodityPanel;
+	
+	private CategoryPanel categoryPanel;
+	
 	private PanelConfig pcfg;
 	
 	private MyLabel title;
@@ -38,7 +41,7 @@ public class CommodityButtonPanel extends JPanel{
 	
 	private HomeUI frame;
 	
-	public CommodityButtonPanel(HomeUI frame){
+	public StockKeeperPanel(HomeUI frame){
 		this.frame = frame;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.bg = pcfg.getBg();
@@ -56,7 +59,15 @@ public class CommodityButtonPanel extends JPanel{
 		this.categoryManageBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.add(new CategoryPanel(frame));
+				if(categoryPanel == null) {
+					categoryPanel = new CategoryPanel(frame);
+					add(categoryPanel);
+				}
+				if(commodityPanel != null) {
+					remove(commodityPanel);
+					commodityPanel = null;
+				}
+				repaint();
 			}
 		});
 		this.commodityManageBtn = new MyButton(pcfg.getButtons().element("commodity"));
@@ -64,7 +75,16 @@ public class CommodityButtonPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.add(new CommodityPanel(frame));
+				if(commodityPanel == null) {
+					commodityPanel = new CommodityPanel(frame);
+					add(commodityPanel);
+				}
+				if(categoryPanel != null) {
+					remove(categoryPanel);
+					categoryPanel = null;
+				}
+				repaint();
+				
 			}
 			
 		});
@@ -78,6 +98,7 @@ public class CommodityButtonPanel extends JPanel{
 		this.add(this.stockBtn);
 		this.add(this.stockCheckBtn);
 		this.add(this.exceptionBtn);
+
 	}
 	
 	@Override

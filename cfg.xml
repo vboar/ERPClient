@@ -87,8 +87,8 @@
 		</panel>
 		
 		
-		<!-- 商品管理按钮面板 -->
-		<panel className="ui.commodityui.CommodityButtonPanel" width="205" height="490"
+		<!-- 库存管理人员面板 -->
+		<panel className="ui.homeui.StockKeeperPanel" width="960" height="490"
 			x="0" y="90" bg="img/leftpanel.png">
 			<buttons>
 				<category text="商品分类管理" w="160" h="40" x="20" y="50" />
@@ -99,14 +99,14 @@
 				<exception text="库存异常处理" w="160" h="40" x="20" y="300" />
 			</buttons>
 			<labels>
-				<title  text="商品管理" w="200" h="30" x="0" y="0" />
+				<title text="商品管理" w="200" h="30" x="0" y="0" />
 			</labels>
 			<textfields></textfields>
 		</panel>
 		
 		<!-- 商品分类管理面板 -->
 		<panel className="ui.commodityui.categoryui.CategoryPanel" width="760" height="510"
-			x="200" y="90" bg="img/rightpanel.png">
+			x="200" y="0" bg="img/rightpanel.png">
 			<buttons></buttons>
 			<labels>
 				<title  text="商品分类管理" w="200" h="30" x="10" y="2" />
@@ -121,7 +121,7 @@
 		
 		<!-- 商品管理面板 -->
 		<panel className="ui.commodityui.commodityui.CommodityPanel" width="760" height="510"
-			x="200" y="90" bg="img/rightpanel.png">
+			x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
 				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
