@@ -56,9 +56,15 @@ public class Customer {
 	}
 	
 	public ResultMessage update(CustomerVO vo) throws RemoteException{
+		//chencheng change
+		CustomerPO po=DataFactoryImpl.getInstance().getCustomerData().getById(vo.id);
+		if(po==null){
+			return ResultMessage.NOT_FOUND;
+		}
+		
 		DataFactoryImpl.getInstance().getCustomerData().update(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
-					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
-					vo.salesman,vo.isDeletable));
+					vo.postalCode,vo.email,vo.creditLimit,po.getReceivables(),po.getPaybles(),
+					vo.salesman,po.isDeletable()));
 		
 		l.add("Update customer successfully");
 		return ResultMessage.SUCCESS;

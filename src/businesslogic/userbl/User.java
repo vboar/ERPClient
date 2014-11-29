@@ -38,7 +38,7 @@ public class User {
 		return po;
 
 	}
-	
+
 	/**
 	 * @author chengcheng vo转po
 	 * @param vo
@@ -47,7 +47,7 @@ public class User {
 	private UserVO userPOToUservo(UserPO po) {
 		String id = po.getId();
 		String password = po.getPassword();
-		UserType type =UserType.values()[po.getType()];
+		UserType type = UserType.values()[po.getType()];
 		int permission = po.getPermission();
 		String name = po.getName();
 		UserVO vo = new UserVO(id, password, type, permission, name);
@@ -69,11 +69,12 @@ public class User {
 			return ResultMessage.EXIST;
 		}
 
-		ResultMessage result = Utility.checkInputValid(po.getName(),2,14,true);
+		ResultMessage result = Utility.checkInputValid(po.getName(), 2, 14,
+				true);
 		if (result != ResultMessage.SUCCESS) {
 			return result;
 		}
-		result = Utility.checkInputValid(po.getPassword(),6,14,false);
+		result = Utility.checkInputValid(po.getPassword(), 6, 14, false);
 		if (result != ResultMessage.SUCCESS) {
 			return result;
 		}
@@ -100,19 +101,21 @@ public class User {
 
 	public ResultMessage update(UserVO vo) throws RemoteException {
 		UserPO po = userVOToUserPO(vo);
-		ResultMessage result = Utility.checkInputValid(po.getName(),2,14,true);
+		ResultMessage result = Utility.checkInputValid(po.getName(), 2, 14,
+				true);
 		if (result != ResultMessage.SUCCESS) {
-			
+
 			return result;
 		}
-		result = Utility.checkInputValid(po.getPassword(),6,14,false);
+
+		result = Utility.checkInputValid(po.getPassword(), 6, 14, false);
 		if (result != ResultMessage.SUCCESS) {
 			return result;
 		}
 
 		DataFactoryImpl.getInstance().getUserData().update(po);
 		return ResultMessage.SUCCESS;
-		}
+	}
 
 	/**
 	 * @author chengcheng 按id查找用户
@@ -121,12 +124,13 @@ public class User {
 	 * @throws RemoteException
 	 */
 	public ArrayList<UserVO> findById(String id) throws RemoteException {
-		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().findById(id);
-		 ArrayList<UserVO> voList=new ArrayList<UserVO>();
-		 for(UserPO po:poList){
-			 voList.add(userPOToUservo(po));
-		 }
-		 return voList;
+		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
+				.findById(id);
+		ArrayList<UserVO> voList = new ArrayList<UserVO>();
+		for (UserPO po : poList) {
+			voList.add(userPOToUservo(po));
+		}
+		return voList;
 
 	}
 
@@ -137,12 +141,13 @@ public class User {
 	 * @throws RemoteException
 	 */
 	public ArrayList<UserVO> findByName(String name) throws RemoteException {
-		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().findByName(name);
-		 ArrayList<UserVO> voList=new ArrayList<UserVO>();
-		 for(UserPO po:poList){
-			 voList.add(userPOToUservo(po));
-		 }
-		 return voList;
+		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
+				.findByName(name);
+		ArrayList<UserVO> voList = new ArrayList<UserVO>();
+		for (UserPO po : poList) {
+			voList.add(userPOToUservo(po));
+		}
+		return voList;
 	}
 
 	/**
@@ -152,12 +157,13 @@ public class User {
 	 * @throws RemoteException
 	 */
 	public ArrayList<UserVO> findByType(UserType type) throws RemoteException {
-		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().findByType(type.ordinal());
-		 ArrayList<UserVO> voList=new ArrayList<UserVO>();
-		 for(UserPO po:poList){
-			 voList.add(userPOToUservo(po));
-		 }
-		 return voList;
+		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
+				.findByType(type.ordinal());
+		ArrayList<UserVO> voList = new ArrayList<UserVO>();
+		for (UserPO po : poList) {
+			voList.add(userPOToUservo(po));
+		}
+		return voList;
 
 	}
 
@@ -168,12 +174,13 @@ public class User {
 	 * @throws RemoteException
 	 */
 	public ArrayList<UserVO> show() throws RemoteException {
-		ArrayList<UserPO> poList= DataFactoryImpl.getInstance().getUserData().show();
-		 ArrayList<UserVO> voList=new ArrayList<UserVO>();
-		 for(UserPO po:poList){
-			 voList.add(userPOToUservo(po));
-		 }
-		 return voList;
+		ArrayList<UserPO> poList = DataFactoryImpl.getInstance().getUserData()
+				.show();
+		ArrayList<UserVO> voList = new ArrayList<UserVO>();
+		for (UserPO po : poList) {
+			voList.add(userPOToUservo(po));
+		}
+		return voList;
 
 	}
 
@@ -195,7 +202,5 @@ public class User {
 
 		return false;
 	}
-
-	
 
 }
