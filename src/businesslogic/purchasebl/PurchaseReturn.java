@@ -1,7 +1,7 @@
 /**
  * PurchaseReturn
- * @author oenoenO
- * @date 2014/11/14
+ * author oenoenO
+ * date 2014/11/14
  */
 package businesslogic.purchasebl;
 
@@ -10,53 +10,48 @@ import java.util.ArrayList;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
-import businesslogicservice.purchaseblservice.PurchaseBLService;
+import vo.SaleVO;
 
-public class PurchaseReturn implements PurchaseBLService{
-
-	@Override
+public class PurchaseReturn {
+Purchase purchase=new Purchase();
+	
 	public ResultMessage add(PurchaseVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+	return purchase.add(vo);
 	}
-
-	@Override
+	
+	public ResultMessage update(PurchaseVO vo){
+		return purchase.update(vo);
+	}
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		// TODO 自动生成的方法存根
-		return null;
+		return purchase.findByTime2(time1, time2);
 	}
-
-	@Override
+	
 	public ArrayList<PurchaseVO> findByCommodityName(String commodityName) {
-		// TODO 自动生成的方法存根
-		return null;
+	return purchase.findByCommodityName2(commodityName);
 	}
-
-	@Override
+	
 	public ArrayList<PurchaseVO> findByCustomer(String customer) {
-		// TODO 自动生成的方法存根
-		return null;
+		return purchase.findByCustomer2(customer);
 	}
-
-	@Override
-	public ArrayList<PurchaseVO> findBySalesman(String salesman) {
-		// TODO 自动生成的方法存根
-		return null;
+	
+	public ArrayList<PurchaseVO> findByStorage(String Storage){
+		return purchase.findByStorage2(Storage);
 	}
-
-	@Override
-	public ArrayList<PurchaseVO> findByStorage(String Storage) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	@Override
+	
+	
 	public ArrayList<PurchaseVO> show() {
-		// TODO 自动生成的方法存根
+		return purchase.show2();
+	}
+	//TODO
+	public ResultMessage approveSale(SaleVO vo) {
 		return null;
+
 	}
 
-	@Override
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
 	public ResultMessage updateCommodityByPurchase(
 			ArrayList<CommodityLineItemVO> list) {
 		MockCommodity mc=new MockCommodity();

@@ -12,22 +12,24 @@ import vo.SaleVO;
 import businesslogicservice.saleblservice.SaleBLService;
 
 public class SaleReturnController implements SaleBLService {
+	
+	SaleReturn sr=new SaleReturn();
 
 	@Override
 	public ResultMessage add(SaleVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sr.add(vo);
 	}
 
 	@Override
 	public ArrayList<SaleVO> findByTime(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sr.findByTime(time1, time2);
 	}
 
 	@Override
 	public ArrayList<SaleVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sr.show();
 	}
 }
