@@ -7,6 +7,7 @@ package ui.userui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -143,8 +144,7 @@ public class UserInfoDialog extends JDialog {
 								UserInfoDialog.this.dispose();
 							}else	MyOptionPane.showMessageDialog(null, "填写信息错误，请重新填写！");	
 						}
-					}
-				
+					}	
 			}			
 		});
 		this.cancel = new MyButton(ele.element("cancel"));
@@ -164,46 +164,30 @@ public class UserInfoDialog extends JDialog {
 	
 	private void initTextFields(Element ele){
 		this.idTxt = new MyTextField(ele.element("id"));
-		this.idTxt.addKeyListener(new KeyListener(){
+		this.idTxt.addKeyListener(new  KeyAdapter(){
 			@Override
 			public void keyTyped(KeyEvent e) {
 				idTip.setVisible(true);
 				nameTip.setVisible(false);
 				passwordTip.setVisible(false);
 			}
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			
 		});
 		this.nameTxt = new MyTextField(ele.element("name"));
-		this.nameTxt.addKeyListener(new KeyListener(){
+		this.nameTxt.addKeyListener(new KeyAdapter(){
 			@Override
 			public void keyTyped(KeyEvent e) {
 				idTip.setVisible(false);
 				nameTip.setVisible(true);
 				passwordTip.setVisible(false);
-			}
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			
-		});
+			}});
 		this.passwordTxt = new MyTextField(ele.element("password"));
-		this.passwordTxt.addKeyListener(new KeyListener(){
+		this.passwordTxt.addKeyListener(new KeyAdapter(){
 			@Override
 			public void keyTyped(KeyEvent e) {
 				idTip.setVisible(false);
 				nameTip.setVisible(false);
 				passwordTip.setVisible(true);
 			}
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			
 		});
 		this.add(this.idTxt);
 		this.add(this.nameTxt);

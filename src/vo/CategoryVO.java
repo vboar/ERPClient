@@ -38,4 +38,15 @@ public class CategoryVO {
 		this.father=father;
 	}
 	
+	public CategoryVO(String id, String name, int number) {
+		this.name = name;
+		this.number = number;
+		this.id = id;
+	}
+	
+	@Override
+	public String toString(){
+		return this.name;
+	}
+	
 }

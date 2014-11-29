@@ -28,8 +28,7 @@ public class CategoryController implements CategoryBLService {
 
 	@Override
 	public ResultMessage update(CategoryVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
@@ -46,8 +45,18 @@ public class CategoryController implements CategoryBLService {
 
 	@Override
 	public ArrayList<CategoryVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CategoryVO> list = new ArrayList<CategoryVO>();
+		list.add(new CategoryVO("0001","a",4));
+		list.add(new CategoryVO("0001-0001","aa",0));
+		list.add(new CategoryVO("0001-0002","bb",0));
+		list.add(new CategoryVO("0001-0002-00001","bbb",0));
+		list.add(new CategoryVO("0001-0003","cc",0));
+		list.add(new CategoryVO("0001-0004","dd",0));
+		list.add(new CategoryVO("0003","e",0));
+		list.add(new CategoryVO("0003-0001","ff",0));
+		list.add(new CategoryVO("0003-0002","gg",0));
+
+		return list;
 	}
 
 }

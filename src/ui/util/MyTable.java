@@ -11,6 +11,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -42,7 +43,6 @@ public class MyTable extends JTable {
 			}
 		});
 		this.setBackground(new Color(240,240,255));
-		//this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		this.setWidth(this, containerW);
 	}
 	
@@ -71,4 +71,13 @@ public class MyTable extends JTable {
         }
 	}
 	
+	public void setUnvisibleColumn(int column){
+		TableColumn tc = this.getTableHeader().getColumnModel().getColumn(column);
+        tc.setMaxWidth(0);
+        tc.setPreferredWidth(0);
+        tc.setWidth(0);
+        tc.setMinWidth(0);
+        this.getTableHeader().getColumnModel().getColumn(column).setMaxWidth(0);
+        this.getTableHeader().getColumnModel().getColumn(column).setMinWidth(0);
+	}
 }

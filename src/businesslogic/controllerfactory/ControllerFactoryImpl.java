@@ -40,8 +40,7 @@ public class ControllerFactoryImpl implements ControllerFactory{
 
 	@Override
 	public CategoryController getCategoryController() {
-		// TODO Auto-generated method stub
-		return null;
+		return new CategoryController();
 	}
 
 	@Override

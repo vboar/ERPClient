@@ -44,6 +44,7 @@ public class UserTablePane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setUnvisibleColumn(2);
 	}
 	
 	public void initData(ArrayList<UserVO> list){
