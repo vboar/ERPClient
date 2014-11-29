@@ -85,7 +85,7 @@ public class Account {
 	public AccountVO findByAccount(String account){
 		AccountVO result=new AccountVO("","",0);
 		try {
-		 result=poToVo(DataFactoryImpl.getInstance().getAccountData().findByAccount(account));
+		 result=poToVo(DataFactoryImpl.getInstance().getAccountData().getByAccount(account));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

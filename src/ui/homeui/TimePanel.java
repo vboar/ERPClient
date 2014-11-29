@@ -30,6 +30,7 @@ public class TimePanel extends JPanel {
 		this.bg = pcfg.getBg();
 		this.initTimeLabel();
 		this.repaint();
+		new TimeThread().start();
 	}
 	
 	@Override
@@ -44,6 +45,26 @@ public class TimePanel extends JPanel {
 		String nowtime = dateFormat.format(now);
 		this.timeLab.setText(nowtime);
 		this.add(this.timeLab);
+	}
+	
+	/**
+	 * 时间刷新线程
+	 */
+	private class TimeThread extends Thread {
+		
+		@Override
+		public void run() {
+			while(true) {
+				try {
+					timeLab.setText(new SimpleDateFormat("yyyy年MM月dd日  EEEE  HH:mm:ss").format(new Date()));
+					repaint();
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 	}
 	
 }
