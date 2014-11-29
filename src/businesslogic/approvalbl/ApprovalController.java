@@ -7,12 +7,6 @@ package businesslogic.approvalbl;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-import util.DocumentStatus;
-import util.ResultMessage;
-import vo.PaymentVO;
-import vo.PresentVO;
-=======
 import util.ResultMessage;
 import vo.CashVO;
 import vo.ExceptionVO;
@@ -20,7 +14,6 @@ import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
->>>>>>> 5626d0c5d1d8d64aeb29b891bf67c57aa5c818bf
 import businesslogicservice.approvalblservice.ApprovalBLService;
 
 public class ApprovalController implements ApprovalBLService{
@@ -56,8 +49,6 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
-<<<<<<< HEAD
-=======
 	public ArrayList<ExceptionVO> findException(int way, int status,
 			String time1, String time2) {
 		// TODO Auto-generated method stub
@@ -65,7 +56,7 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
-	public ArrayList<CashVO> Cash(int way, int status, String time1,
+	public ArrayList<CashVO> findCash(int way, int status, String time1,
 			String time2) {
 		// TODO Auto-generated method stub
 		return null;
@@ -90,33 +81,22 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
->>>>>>> 5626d0c5d1d8d64aeb29b891bf67c57aa5c818bf
 	public ResultMessage approvePayment(PaymentVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-<<<<<<< HEAD
-	public ArrayList<PresentVO> findPresent(int way, int status, String time1,
-			String time2) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-=======
 	public ResultMessage approveException(ExceptionVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage approveCashVO(CashVO vo) {
+	public ResultMessage approveCash(CashVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-
->>>>>>> 5626d0c5d1d8d64aeb29b891bf67c57aa5c818bf
 }

@@ -8,11 +8,8 @@ package businesslogicservice.approvalblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-<<<<<<< HEAD
-=======
 import vo.CashVO;
 import vo.ExceptionVO;
->>>>>>> 5626d0c5d1d8d64aeb29b891bf67c57aa5c818bf
 import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
@@ -30,10 +27,6 @@ public interface ApprovalBLService {
 	 */
 	public ArrayList<PresentVO> findPresent(int way, int status, String time1, String time2);
 	
-<<<<<<< HEAD
-	/**
-	 * 审批付款单
-=======
 	public ArrayList<PurchaseVO> findPurchase(int way, int status, String time1, String time2);
 	
 	public ArrayList<SaleVO> findSale(int way, int status, String time1, String time2);
@@ -42,11 +35,10 @@ public interface ApprovalBLService {
 	
 	public ArrayList<ExceptionVO> findException(int way, int status, String time1, String time2);
 	
-	public ArrayList<CashVO> Cash(int way, int status, String time1, String time2);
+	public ArrayList<CashVO> findCash(int way, int status, String time1, String time2);
 	
 	/**
 	 * 审批单据
->>>>>>> 5626d0c5d1d8d64aeb29b891bf67c57aa5c818bf
 	 * @param vo
 	 * @return
 	 */
@@ -60,7 +52,6 @@ public interface ApprovalBLService {
 	
 	public ResultMessage approveException(ExceptionVO vo);
 	
-	public ResultMessage approveCashVO(CashVO vo);
-	
+	public ResultMessage approveCash(CashVO vo);
 	
 }

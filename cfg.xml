@@ -139,9 +139,11 @@
 	</frame>
 	
 	<!-- 账户管理面板 -->
-	<panel className="ui.accountui.AccountPanel" width="960" height="510"
-		x="0" y="90" bg="img/mainpanel.jpg">
-	
+	<panel className="ui.accountui.AccountPanel" width="760" height="487"
+		x="205" y="125" bg="img/panel.png">
+		<buttons>
+			<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+		</buttons>
 	</panel>
 	
 	<!-- 用户信息对话框 -->
