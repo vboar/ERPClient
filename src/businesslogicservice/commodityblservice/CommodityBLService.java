@@ -34,25 +34,11 @@ public interface CommodityBLService {
 	public ResultMessage update(CommodityVO vo);
 	
 	/**
-	 * 根据商品编号查找商品
-	 * @param id
-	 * @return 商品列表
+	 * 模糊查找（名称、型号）
+	 * @param keyWord
+	 * @return
 	 */
-	public ArrayList<CommodityVO> findById(String id);
-	
-	/**
-	 * 根据商品名称查找商品
-	 * @param name
-	 * @return 商品列表
-	 */
-	public ArrayList<CommodityVO> findByName(String name);
-	
-	/**
-	 * 根据商品型号查找商品
-	 * @param name
-	 * @return 商品列表
-	 */
-	public ArrayList<CommodityVO> findByModel(String model);
+	public ArrayList<CommodityVO> fuzzyFind(String keyWord);
 	
 	/**
 	 * 获得所有商品

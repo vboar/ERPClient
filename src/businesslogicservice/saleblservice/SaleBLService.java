@@ -3,7 +3,6 @@ package businesslogicservice.saleblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import vo.CommodityLineItemVO;
 import vo.SaleVO;
 
 public interface SaleBLService {
@@ -21,36 +20,7 @@ public interface SaleBLService {
 	 * @return
 	 */
 	public ArrayList<SaleVO> findByTime(String time1,String time2);
-	
-	/**
-	 * 按商品名称筛选单据
-	 * @param commodityName
-	 * @return
-	 */
-	public ArrayList<SaleVO> findByCommodityName(String commodityName);
-	
-	/**
-	 * 按客户筛选单据
-	 * @param customer
-	 * @return
-	 */
-	public ArrayList<SaleVO> findByCustomer(String customer);
-	
-	/**
-	 * 按业务员筛选单据
-	 * @param salesman
-	 * @return
-	 */
-	public ArrayList<SaleVO> findBySalesman(String salesman);
-	
-	/**
-	 * 按仓库筛选单据
-	 * @param Storage
-	 * @return
-	 */
-	public ArrayList<SaleVO> findByStorage(String Storage);
 
-	
 	/**
 	 * 显示全部销售类单据
 	 * @param time1
@@ -59,12 +29,4 @@ public interface SaleBLService {
 	 */
 	public ArrayList<SaleVO> show();
 	
-	/**
-	 * 审批后修改商品信息
-	 * @param list
-	 * @return
-	 */
-	public ResultMessage updateCommodityBySale(ArrayList<CommodityLineItemVO> list);
-	
-	public ResultMessage updateAccountBySale(String name,double total);
 }

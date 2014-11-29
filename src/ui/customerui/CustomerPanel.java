@@ -25,7 +25,7 @@ import ui.util.MySpecialTextField;
 import util.ResultMessage;
 import vo.CustomerVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogic.customerbl.CustomerController;
+import businesslogicservice.customerblservice.CustomerBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
@@ -57,7 +57,7 @@ public class CustomerPanel extends JPanel implements FuzzySearch {
 	
 	private PanelConfig pcfg;
 	
-	private CustomerController customerController;
+	private CustomerBLService customerController;
 
 	public CustomerPanel(JFrame frame) {
 		this.frame = frame;

@@ -1,65 +1,70 @@
 package businesslogicservice.controllerfactoryblservice;
 
-import businesslogic.accountbl.AccountController;
-import businesslogic.commoditybl.CategoryController;
-import businesslogic.commoditybl.CommodityController;
-import businesslogic.customerbl.CustomerController;
-import businesslogic.exceptionbl.LossController;
-import businesslogic.exceptionbl.OverflowController;
-import businesslogic.exceptionbl.WarningController;
-import businesslogic.initialbl.InitialController;
-import businesslogic.logbl.LogController;
-import businesslogic.loginbl.LoginController;
-import businesslogic.messagebl.MessageController;
-import businesslogic.paymentbl.CashController;
-import businesslogic.paymentbl.PaymentController;
-import businesslogic.presentbl.PresentController;
-import businesslogic.promotionbl.PromotionController;
-import businesslogic.purchasebl.PurchaseController;
-import businesslogic.salebl.SaleController;
-import businesslogic.stockbl.StockController;
-import businesslogic.userbl.UserController;
+import businesslogicservice.accountblservice.AccountBLService;
+import businesslogicservice.commodityblservice.CategoryBLService;
+import businesslogicservice.commodityblservice.CommodityBLService;
+import businesslogicservice.customerblservice.CustomerBLService;
+import businesslogicservice.exceptionblservice.ExceptionBLService;
+import businesslogicservice.exceptionblservice.WarningBLService;
+import businesslogicservice.initialblservice.InitialBLService;
+import businesslogicservice.logblservice.LogBLService;
+import businesslogicservice.loginblservice.LoginBLService;
+import businesslogicservice.messageblservice.MessageBLService;
+import businesslogicservice.paymentblservice.CashBLService;
+import businesslogicservice.paymentblservice.PaymentBLService;
+import businesslogicservice.presentblservice.PresentBLService;
+import businesslogicservice.promotionblservice.CustomerGiftBLService;
+import businesslogicservice.promotionblservice.SpecialOfferBLService;
+import businesslogicservice.promotionblservice.TotalGiftBLService;
+import businesslogicservice.purchaseblservice.PurchaseBLService;
+import businesslogicservice.saleblservice.SaleBLService;
+import businesslogicservice.stockblservice.StockBLService;
+import businesslogicservice.userblservice.UserBLService;
 
 public interface ControllerFactory {
 
-	public AccountController getAccountController() ;
+	public AccountBLService getAccountController() ;
 	
-	public CategoryController getCategoryController() ;
+	public CategoryBLService getCategoryController() ;
 	
-	public CommodityController getCommodityController() ;
+	public CommodityBLService getCommodityController() ;
 	
-	public CustomerController getCustomerController() ;
+	public CustomerBLService getCustomerController() ;
 	
-	public LossController getLossController() ;
+	public ExceptionBLService getLossController() ;
 	
-	public OverflowController getOverflowController() ;
+	public ExceptionBLService getOverflowController() ;
 	
-	public WarningController getWarningController() ;
+	public WarningBLService getWarningController() ;
 	
-	public InitialController getInitialController() ;
+	public InitialBLService getInitialController() ;
 	
-	public LogController getLogController() ;
+	public LogBLService getLogController() ;
 	
-	public MessageController getMessageController() ;
+	public MessageBLService getMessageController() ;
 	
-	public CashController getCashController() ;
+	public CashBLService getCashController() ;
 	
-	public PaymentController getPaymentController() ;
+	public PaymentBLService getPaymentController() ;
 	
-	public PresentController getPresentController() ;
+	public PaymentBLService getReceiptController();
 	
-	public CustomerController getCustomerGiftController() ;
+	public PresentBLService getPresentController() ;
 	
-	public PromotionController getTotalGiftController();
+	public CustomerGiftBLService getCustomerGiftController() ;
 	
-	public PurchaseController getPurchaseController();
+	public SpecialOfferBLService getSpecialOfferController();
 	
-	public SaleController getSaleController();
+	public TotalGiftBLService getTotalGiftController();
 	
-	public StockController getStockController();
+	public PurchaseBLService getPurchaseController();
 	
-	public UserController getUserController();
+	public SaleBLService getSaleController();
 	
-	public LoginController getLoginController();
+	public StockBLService getStockController();
+	
+	public UserBLService getUserController();
+	
+	public LoginBLService getLoginController();
 	
 }

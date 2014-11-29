@@ -9,7 +9,6 @@ package businesslogicservice.userblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import util.UserType;
 import vo.UserVO;
 
 public interface UserBLService {

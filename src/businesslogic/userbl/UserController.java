@@ -46,8 +46,8 @@ public class UserController implements UserBLService {
 
 	@Override
 	public ArrayList<UserVO> fuzzyFind(String keyWord) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return user.fuzzyFind(keyWord);
 	}
 
 }

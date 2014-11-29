@@ -198,6 +198,23 @@ public class User {
 		return voList;
 
 	}
+	
+	public ArrayList<UserVO> fuzzyFind(String keyWord){
+		ArrayList<UserVO> voList1=findByName(keyWord);
+		ArrayList<UserVO> voList2=findById(keyWord);
+		ArrayList<UserVO> voList=voList1;
+	loop:	for(UserVO vo2:voList1){
+			for(UserVO vo1:voList2){
+				if(vo1.id.equals(vo2.id)){
+					continue loop;
+				}
+			}
+			voList.add(vo2);
+		}
+
+		return voList;
+	}
+	
 
 	/**
 	 * @author chengcheng 查询所有的 userpo

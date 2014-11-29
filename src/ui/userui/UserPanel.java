@@ -26,7 +26,7 @@ import ui.util.MySpecialTextField;
 import util.ResultMessage;
 import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogic.userbl.UserController;
+import businesslogicservice.userblservice.UserBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
@@ -58,7 +58,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	
 	private PanelConfig pcfg;
 	
-	private UserController userController;
+	private UserBLService userController;
 		
 	public UserPanel(JFrame frame){
 		this.homeframe = frame;
@@ -246,6 +246,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		return result;
 	}
 	
+<<<<<<< HEAD
 	public void findUser(String id){
 		this.userTable.showFindTable(userController.fuzzyFind(id));
 	}
@@ -253,6 +254,15 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	@Override
 	public ArrayList<String> getFuzzyResult(String str) {
 		ArrayList<UserVO> result = this.userController.fuzzyFind(str);
+=======
+	public void findUser(String keyword){
+		this.userTable.showFindTable(userController.fuzzyFind(keyword));
+	}
+
+	@Override
+	public ArrayList<String> getFuzzyResult(String keyword) {
+		ArrayList<UserVO> result = this.userController.fuzzyFind(keyword);
+>>>>>>> ce11db6bc3b9203c0207b5988efc45a71a9f04f1
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<result.size(); ++i){
 			UserVO vo = result.get(i);

@@ -26,10 +26,4 @@ public class WarningController implements WarningBLService {
 		return null;
 	}
 
-	@Override
-	public ArrayList<WarningVO> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -21,6 +21,10 @@ import vo.CategoryVO;
 import businesslogic.commoditybl.CategoryController;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import config.ERPConfig;
+<<<<<<< HEAD
+=======
+import config.PanelConfig;
+>>>>>>> ce11db6bc3b9203c0207b5988efc45a71a9f04f1
 
 @SuppressWarnings("serial")
 public class CategoryTreePane extends JPanel {
@@ -38,6 +42,12 @@ public class CategoryTreePane extends JPanel {
 	private JFrame frame;
 	
 	private CategoryController controller;
+<<<<<<< HEAD
+=======
+	
+	@SuppressWarnings("unused")
+	private PanelConfig pcfg;
+>>>>>>> ce11db6bc3b9203c0207b5988efc45a71a9f04f1
 
 	public CategoryTreePane(Element ele, JFrame frame) {
 		this.frame =frame;

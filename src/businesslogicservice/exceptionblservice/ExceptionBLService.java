@@ -29,13 +29,6 @@ public interface ExceptionBLService {
 	public ArrayList<ExceptionVO> show(String time1, String time2);
 	
 	/**
-	 * 根据编号查找报溢报损单
-	 * @param id
-	 * @return 报溢报损单列表
-	 */
-	public ArrayList<ExceptionVO> findById(String id);
-	
-	/**
 	 * 根据单据状态查找报溢报损单
 	 * @param status
 	 * @return 报溢报损单列表
