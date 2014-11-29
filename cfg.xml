@@ -31,7 +31,7 @@
 	</loginframe>
 	
 	<!-- 主窗口 -->
-	<frame title="ERP企业进销存管理系统" width="960" height="600" windowUp="20">
+	<frame title="ERP企业进销存管理系统" width="960" height="635" windowUp="20">
 	
 		<!-- 当前登录用户信息面板 -->>
 		<panel className="ui.homeui.LoginUserInfoPanel" width="960"
@@ -95,7 +95,7 @@
 			</labels>
 			<textfields>
 			</textfields>
-			<tree width="760" height="510" x="10" y="10" rootname="ERP"/>
+			<tree width="740" height="380" x="205" y="80" rootname="ERP"/>
 		</panel>
 
 		<!-- 客户管理面板 -->
@@ -223,18 +223,18 @@
 			</level>
 		</comboboxes>
 	</customerinfodialog>
-	<categoryinfodialog width="500" height="280" x="230" y="180">
+	<categoryinfodialog width="480" height="165" x="230" y="240">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
+			<commit text="提交" w="80" h="30" x="260" y="80" />
+			<cancel text="取消" w="80" h="30" x="360" y="80" />
 		</buttons>
 		<labels>
-			<name text="真实姓名" w="80" h="30" x="240" y="20" />
-			<nametip text="请输入2-14位内中英文字符" w="200" h="30" x="300" y="46" 
+			<name text="商品分类名称" w="80" h="30" x="20" y="20" />
+			<nametip text="请输入2-14位内中英文字符" w="200" h="30" x="120" y="46" 
 		    	font="微软雅黑" fontsize="11"  color="true" r="255" g="100" b="10" />
 		</labels>		
 		<textfields>
-			<name w="40" h="30" x="30" y="80" />
+			<name w="320" h="30" x="120" y="20" />
 		</textfields>
 		<comboboxes></comboboxes>
 	</categoryinfodialog>

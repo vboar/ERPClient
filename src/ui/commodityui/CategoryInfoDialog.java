@@ -11,6 +11,7 @@ import org.dom4j.Element;
 
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import vo.CategoryVO;
 import config.InfoDialogConfig;
@@ -28,30 +29,38 @@ public class CategoryInfoDialog extends JDialog{
 	
 	private MyButton cancel;
 
+	private boolean isAdd;
+	
+	private CategoryTreePane tree;
+	
 	private InfoDialogConfig cfg;
 	
-	public CategoryInfoDialog(InfoDialogConfig cfg,JFrame frame, CategoryTreePane panel){
+	public CategoryInfoDialog(InfoDialogConfig cfg,JFrame frame, CategoryTreePane tree){
 		super(frame,true);
 		this.cfg = cfg;
+		this.tree = tree;
+		this.isAdd = true;
 		((JComponent) this.getContentPane()).setOpaque(true);
-		this.setTitle("用户信息");
+		this.setTitle("商品分类信息");
 		this.cfg = cfg;
 		this.setSize(this.cfg.getW(), this.cfg.getH());
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());	
+		this.initComponent();
 	}
 	
 	public CategoryInfoDialog(InfoDialogConfig categoryinfo_DIALOG_CONFIG,
 			JFrame homeframe, CategoryTreePane panel,CategoryVO vo) {
 		this(categoryinfo_DIALOG_CONFIG,homeframe,panel);
 		this.nameTxt.setText(vo.name);
+		this.isAdd = false;
 	}
 	
-	public void initComponent(Element ele){
-		this.initComponent(ele.element("lables"));
-		this.initTextfields(ele.element("textfield"));
-		this.initButtons(ele.element("buttons"));
+	public void initComponent(){
+		this.initLabels(cfg.getLabels());
+		this.initTextfields(cfg.getTextFields());
+		this.initButtons(cfg.getButtons());
 	}
 	
 	public void initLabels(Element ele){
@@ -71,10 +80,24 @@ public class CategoryInfoDialog extends JDialog{
 		this.commit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if(isAdd){
+					tree.addCategory(nameTxt.getText());
+				}else{
+					tree.updateCatagory(nameTxt.getText());
+				}
 			}		
 		});
 		this.cancel = new MyButton(ele.element("cancel"));
+		this.cancel.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = MyOptionPane.showConfirmDialog(null, "确认取消？",
+						"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
+				if(result==MyOptionPane.YES_OPTION){
+					CategoryInfoDialog.this.dispose();
+				}
+			}		
+		});
 		this.add(this.commit);
 		this.add(this.cancel);
 	}

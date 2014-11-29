@@ -16,14 +16,14 @@ public class CategoryController implements CategoryBLService {
 
 	@Override
 	public ResultMessage add(CategoryVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage delete(CategoryVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override

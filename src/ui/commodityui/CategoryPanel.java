@@ -1,12 +1,11 @@
 package ui.commodityui;
 
+import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import businesslogic.commoditybl.CategoryController;
-import businesslogic.controllerfactory.ControllerFactoryImpl;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -19,13 +18,10 @@ public class CategoryPanel extends JPanel{
 	
 	private CategoryTreePane treepane;
 	
-	private CategoryController controller;
-	
 	private Image bg;
 		
 	public CategoryPanel(JFrame frame){
 		this.homeframe = frame;
-		this.controller = ControllerFactoryImpl.getInstance().getCategoryController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
@@ -36,6 +32,12 @@ public class CategoryPanel extends JPanel{
 		this.setVisible(true);
 	}
 
+	
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
+	}
+	
 	private void initComponent(PanelConfig pcfg) {
 		this.treepane = new CategoryTreePane(pcfg.getTree(),homeframe);
 		this.add(this.treepane);
