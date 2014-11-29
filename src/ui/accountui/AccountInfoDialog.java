@@ -56,6 +56,8 @@ public class AccountInfoDialog extends JDialog {
 			AccountVO vo) {
 		this(cfg, frame, panel, isAdd);
 		this.accountTxt.setText(vo.account);
+		// 禁止改动
+		this.accountTxt.setEnabled(false);
 		this.nameTxt.setText(vo.name);
 	}
 	
@@ -81,7 +83,7 @@ public class AccountInfoDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String account = accountTxt.getText();
 				String name = nameTxt.getText();
-				AccountVO vo = new AccountVO(account, name, 0);
+				AccountVO vo = new AccountVO(name, account, 0);
 				int result = MyOptionPane.showConfirmDialog(null, "确认提交？", "确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){

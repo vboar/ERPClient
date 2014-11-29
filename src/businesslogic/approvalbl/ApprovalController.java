@@ -35,7 +35,21 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
+	public ArrayList<PurchaseVO> findPurchaseReturn(int way, int status,
+			String time1, String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public ArrayList<SaleVO> findSale(int way, int status, String time1,
+			String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<SaleVO> findSaleReturn(int way, int status, String time1,
 			String time2) {
 		// TODO Auto-generated method stub
 		return null;
@@ -49,8 +63,22 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
-	public ArrayList<ExceptionVO> findException(int way, int status,
+	public ArrayList<PaymentVO> findReceipt(int way, int status, String time1,
+			String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ExceptionVO> findOverflow(int way, int status,
 			String time1, String time2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1,
+			String time2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -75,7 +103,19 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
+	public ResultMessage approvePurchaseReturn(PurchaseVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public ResultMessage approveSale(SaleVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveSaleReturn(SaleVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -87,7 +127,19 @@ public class ApprovalController implements ApprovalBLService{
 	}
 
 	@Override
-	public ResultMessage approveException(ExceptionVO vo) {
+	public ResultMessage approveReceipt(PaymentVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveOverflow(ExceptionVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage approveLoss(ExceptionVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -97,6 +149,5 @@ public class ApprovalController implements ApprovalBLService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

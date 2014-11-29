@@ -81,7 +81,7 @@ public class AccountTablePane extends TablePanel {
 		String account = this.table.getValueAt(row, 0).toString();
 		String name = this.table.getValueAt(row, 1).toString();
 		double balance = (double)this.table.getValueAt(row, 2);
-		return new AccountVO(account, name, balance);
+		return new AccountVO(name, account, balance);
 	}
 	
 	public void showFindTable(ArrayList<AccountVO> list) {

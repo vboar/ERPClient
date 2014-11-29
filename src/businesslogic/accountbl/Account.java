@@ -25,7 +25,7 @@ public class Account {
 	
 	public ResultMessage add(AccountVO vo){
 		try {
-			if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
+			if(DataFactoryImpl.getInstance().getAccountData().findByAccount(vo.account) != null){
 				l.add("Add account failed:account exists");
 				return ResultMessage.EXIST;
 			}else{
@@ -42,7 +42,7 @@ public class Account {
 	
 	public ResultMessage delete(AccountVO vo){
 		try {
-			if(DataFactoryImpl.getInstance().getAccountData().findByName(vo.name).size()==0){
+			if(DataFactoryImpl.getInstance().getAccountData().findByAccount(vo.account) == null){
 				l.add("Delete account failed:account doesn't exists");
 				return ResultMessage.FAILED;
 			}else{

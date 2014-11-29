@@ -29,11 +29,19 @@ public interface ApprovalBLService {
 	
 	public ArrayList<PurchaseVO> findPurchase(int way, int status, String time1, String time2);
 	
+	public ArrayList<PurchaseVO> findPurchaseReturn(int way, int status, String time1, String time2);
+	
 	public ArrayList<SaleVO> findSale(int way, int status, String time1, String time2);
+	
+	public ArrayList<SaleVO> findSaleReturn(int way, int status, String time1, String time2);
 	
 	public ArrayList<PaymentVO> findPayment(int way, int status, String time1, String time2);
 	
-	public ArrayList<ExceptionVO> findException(int way, int status, String time1, String time2);
+	public ArrayList<PaymentVO> findReceipt(int way, int status, String time1, String time2);
+	
+	public ArrayList<ExceptionVO> findOverflow(int way, int status, String time1, String time2);
+	
+	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1, String time2);
 	
 	public ArrayList<CashVO> findCash(int way, int status, String time1, String time2);
 	
@@ -46,11 +54,19 @@ public interface ApprovalBLService {
 	
 	public ResultMessage approvePurchase(PurchaseVO vo);
 	
+	public ResultMessage approvePurchaseReturn(PurchaseVO vo);
+	
 	public ResultMessage approveSale(SaleVO vo);
+	
+	public ResultMessage approveSaleReturn(SaleVO vo);
 	
 	public ResultMessage approvePayment(PaymentVO vo);
 	
-	public ResultMessage approveException(ExceptionVO vo);
+	public ResultMessage approveReceipt(PaymentVO vo);
+	
+	public ResultMessage approveOverflow(ExceptionVO vo);
+	
+	public ResultMessage approveLoss(ExceptionVO vo);
 	
 	public ResultMessage approveCash(CashVO vo);
 	
