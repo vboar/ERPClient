@@ -13,22 +13,23 @@ import businesslogicservice.saleblservice.SaleBLService;
 
 public class SaleController implements SaleBLService {
 
+	Sale sale=new Sale();
 	@Override
 	public ResultMessage add(SaleVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sale.add(vo);
 	}
 
 	@Override
 	public ArrayList<SaleVO> findByTime(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sale.findByTime(time1, time2);
 	}
 
 	@Override
 	public ArrayList<SaleVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sale.show();
 	}
 
 }

@@ -43,7 +43,13 @@ public class Purchase {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList);
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==6){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
 		return voList;
 
 	}
@@ -60,15 +66,33 @@ public class Purchase {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList);
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==6){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+		
 		return voList;
 	}
 
-	public ArrayList<PurchaseVO> findByStorage(String Storage)
-			throws RemoteException {
-		ArrayList<PurchasePO> poList = DataFactoryImpl.getInstance()
-				.getPurchaseData().findByStorage(Storage);
-		ArrayList<PurchaseVO> voList = poListToVoList(poList);
+	public ArrayList<PurchaseVO> findByStorage(String Storage) {
+		ArrayList<PurchasePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getPurchaseData().findByStorage(Storage);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==6){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
 		return voList;
 	}
 
@@ -79,10 +103,19 @@ public class Purchase {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList);
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==6){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
 		return voList;
 
 	}
+	
+	
 
 	public ResultMessage update(PurchaseVO vo) {
 		PurchasePO po = poToVO(vo);
@@ -100,6 +133,98 @@ public class Purchase {
 		return null;
 
 	}
+	
+	//下面是purchasereturn专用方法
+	// ---------------------------------------------------------------------------------------------------
+	protected ArrayList<PurchaseVO> findByTime2(String time1, String time2) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByTime(time1, time2);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==7){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+
+	}
+//TODO
+	
+	protected ArrayList<PurchaseVO> findByCommodityName2(String commodityName) {
+		return null;
+	}
+
+	protected ArrayList<PurchaseVO> findByCustomer2(String customer) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByCustomer(customer);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==7){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+	}
+
+	protected ArrayList<PurchaseVO> findByStorage2(String Storage) {
+		ArrayList<PurchasePO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance()
+					.getPurchaseData().findByStorage(Storage);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==7){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+	}
+
+	protected ArrayList<PurchaseVO> show2() {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
+		for(PurchasePO po:poList){
+			if(po.getDocumentType()==7){
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+	}
+
+	
+	
+
+	
+	// ---------------------------------------------------------------------------------------------------
+
+
 
 	private PurchaseVO poToVO(PurchasePO po) {
 		// String id,String time,String customerId,String customerName,

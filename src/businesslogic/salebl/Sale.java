@@ -31,10 +31,15 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Sale {
 
-	public ResultMessage add(SaleVO vo) throws RemoteException {
+	public ResultMessage add(SaleVO vo)  {
 
 		SalePO po = SaleVOToSalePO(vo);
-		DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+		try {
+			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time = df.toString();
 		String customerId = vo.customerId;
@@ -52,9 +57,9 @@ public class Sale {
 
 	}
 
-	public ArrayList<SaleVO> findByTime(String time1, String time2)
-			 {
+	public ArrayList<SaleVO> findByTime(String time1, String time2){
 		ArrayList<SalePO> poList=null;
+		
 		try {
 			poList = DataFactoryImpl.getInstance()
 					.getSaleDataService().findByTime(time1, time2);
@@ -62,7 +67,13 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
-		ArrayList<SaleVO> voList = poListToVoList(poList);
+		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
+		for(SalePO po:poList){
+			if(po.getDocumentType()==4){
+				poList2.add(po);
+			}
+		}
+		ArrayList<SaleVO> voList = poListToVoList(poList2);
 		return voList;
 
 	}
@@ -83,7 +94,13 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
-		ArrayList<SaleVO> voList = poListToVoList(poList);
+		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
+		for(SalePO po:poList){
+			if(po.getDocumentType()==4){
+				poList2.add(po);
+			}
+		}
+		ArrayList<SaleVO> voList = poListToVoList(poList2);
 		return voList;
 	}
 
@@ -97,7 +114,14 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
-		ArrayList<SaleVO> voList = poListToVoList(poList);
+		
+		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
+		for(SalePO po:poList){
+			if(po.getDocumentType()==4){
+				poList2.add(po);
+			}
+		}
+		ArrayList<SaleVO> voList = poListToVoList(poList2);
 		return voList;
 	}
 
@@ -111,7 +135,14 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
-		ArrayList<SaleVO> voList = poListToVoList(poList);
+		
+		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
+		for(SalePO po:poList){
+			if(po.getDocumentType()==4){
+				poList2.add(po);
+			}
+		}
+		ArrayList<SaleVO> voList = poListToVoList(poList2);
 		return voList;
 
 	}
@@ -119,7 +150,7 @@ public class Sale {
 	public ResultMessage update(SaleVO vo)  {
 		SalePO po = SaleVOToSalePO(vo);
 		try {
-			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+			DataFactoryImpl.getInstance().getSaleDataService().update(po);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -155,7 +186,14 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
-		ArrayList<SaleVO> voList = poListToVoList(poList);
+		
+		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
+		for(SalePO po:poList){
+			if(po.getDocumentType()==4){
+				poList2.add(po);
+			}
+		}
+		ArrayList<SaleVO> voList = poListToVoList(poList2);
 		return voList;
 
 	}
@@ -166,7 +204,7 @@ public class Sale {
 
 	}
 
-	private SaleVO SalePOToSaleVO(SalePO po) {
+	public SaleVO SalePOToSaleVO(SalePO po) {
 		// String id,String time,String customerId,String customerName,int
 		// customerVIP,String salesman,
 		// String operatorId,String storage,ArrayList<CommodityLineItemPO>
@@ -207,7 +245,7 @@ public class Sale {
 
 	}
 
-	private SalePO SaleVOToSalePO(SaleVO vo) {
+	public SalePO SaleVOToSalePO(SaleVO vo) {
 		String id = vo.id;
 		String time = vo.time;
 		String customerId = vo.customerId;
@@ -236,7 +274,7 @@ public class Sale {
 
 	}
 
-	private ArrayList<SaleVO> poListToVoList(ArrayList<SalePO> poList) {
+	public  ArrayList<SaleVO> poListToVoList(ArrayList<SalePO> poList) {
 		ArrayList<SaleVO> voList = new ArrayList<SaleVO>();
 		for (SalePO po : poList) {
 			SaleVO vo = SalePOToSaleVO(po);
@@ -244,8 +282,9 @@ public class Sale {
 		}
 		return voList;
 	}
-
-	// /////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	public ResultMessage updateCommodityBySale(
 			ArrayList<CommodityLineItemVO> list) {
 		MockCommodity mc = new MockCommodity();

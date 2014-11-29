@@ -13,22 +13,20 @@ import businesslogicservice.purchaseblservice.PurchaseBLService;
 
 public class PurchaseReturnController implements PurchaseBLService {
 
+	PurchaseReturn pr=new PurchaseReturn();
 	@Override
 	public ResultMessage add(PurchaseVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return pr.add(vo);
 	}
 
 	@Override
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return pr.findByTime(time1, time2);
+		}
 
 	@Override
 	public ArrayList<PurchaseVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return pr.show();
 	}
 
 }
