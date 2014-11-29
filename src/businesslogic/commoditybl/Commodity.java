@@ -8,9 +8,11 @@ package businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import po.CommodityPO;
 import util.ResultMessage;
+import vo.CategoryCommodityVO;
 import vo.CategoryVO;
 import vo.CommodityVO;
 import businesslogic.utilitybl.Utility;
@@ -191,6 +193,26 @@ public class Commodity {
 		 }
 		 return voList;
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<CategoryCommodityVO> bigShow(){
+		ArrayList<CategoryCommodityVO> voList=new ArrayList<CategoryCommodityVO>();
+		
+		ArrayList<CategoryVO> caList=new Category().show();
+		for(CategoryVO cavo:caList ){
+			CategoryCommodityVO cacovo=new CategoryCommodityVO(cavo.id, cavo, null);
+			voList.add(cacovo);
+		}
+		
+		ArrayList<CommodityVO> coList=new Commodity().show();
+		for(CommodityVO covo:coList ){
+			CategoryCommodityVO cacovo=new CategoryCommodityVO(covo.id, null, covo);
+			voList.add(cacovo);
+		}
+		Collections.sort(voList, new SortByIdForBig());
+		
+		return voList;
 	}
 
 	private boolean existPO(String id)  {

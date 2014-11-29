@@ -164,9 +164,24 @@ public static ArrayList<PresentLineItemPO> presentVOListToPOlist(ArrayList<Prese
 	return poList;
 }
 
+
+
+
+//@SuppressWarnings("unchecked")
+//public static void test(){
+//	ArrayList<CategoryCommodityVO> voList=new  ArrayList<CategoryCommodityVO>();
+//	voList.add(new CategoryCommodityVO("0001-0002", null, null));
+//	voList.add(new CategoryCommodityVO("0001-0001", null, null));
+//	voList.add(new CategoryCommodityVO("0001-0001-0001", null, null));
+//	voList.add(new CategoryCommodityVO("0002-0002", null, null));
+//	Collections.sort(voList,new SortByIdForBig());
+//	System.out.println(voList.get(2).id);
+//}
+//
 //	public static void main(String[] args) {
 //		// java.util.Date nowdate=new java.util.Date();
-//		System.out.println(inTime("2014/11/26","2014/12/15"));
+//		//System.out.println(inTime("2014/11/26","2014/12/15"));
+//		test();
 //	}
 
 }

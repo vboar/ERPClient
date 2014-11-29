@@ -53,9 +53,14 @@ public class SaleVO {
 	public ArrayList<CommodityLineItemVO> saleList;
 
 	/**
-	 * 入库商品列表
+	 * 赠品列表
 	 */
 	public ArrayList<PresentLineItemVO> giftList;
+	
+	/**
+	 * 赠品单编号
+	 */
+	public String presentId;
 
 	/**
 	 * 折让前总额
@@ -118,7 +123,7 @@ public class SaleVO {
 	public SaleVO(String id, String time, String customerId,
 			String customerName, int customerVIP, String salesman,
 			String operatorId, String storage,
-			ArrayList<CommodityLineItemVO> saleList,
+			ArrayList<CommodityLineItemVO> saleList,String presentId,
 			ArrayList<PresentLineItemVO> giftList, double totalBeforeDiscount,
 			double discount, double voucher, double totalAfterDiscount,
 			String remark, DocumentStatus approvalState, boolean isWriteOff,
@@ -133,6 +138,7 @@ public class SaleVO {
 		this.operatorId = operatorId;
 		this.storage = storage;
 		this.saleList = saleList;
+		this.presentId=presentId;
 		this.giftList = giftList;
 		this.totalBeforeDiscount = totalBeforeDiscount;
 		this.discount = discount;

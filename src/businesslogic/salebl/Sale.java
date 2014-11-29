@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import po.CommodityLineItemPO;
 import po.PresentLineItemPO;
+import po.PresentPO;
 import po.SalePO;
 import util.DocumentStatus;
 import util.DocumentType;
@@ -225,8 +226,15 @@ public class Sale {
 		String storage = po.getStorage();
 		ArrayList<CommodityLineItemVO> saleList = Utility.poListToVOList(po
 				.getSaleList());
-		ArrayList<PresentLineItemVO> giftList = Utility
-				.presentPOListToVOList(po.getGiftList());
+		String PresentId=po.getPresentId();
+		
+		
+		Present presentTemp=new Present();
+		PresentPO po2=presentTemp.getById(PresentId);
+		ArrayList<PresentLineItemPO> prPOList=po2.getList();
+		ArrayList<PresentLineItemVO> giftList=Utility.presentPOListToVOList(prPOList);
+		
+		
 		double totalBeforeDiscount = po.getTotalBeforeDiscount();
 		double discount = po.getDiscount();
 		double voucher = po.getVoucher();
@@ -238,7 +246,7 @@ public class Sale {
 		DocumentType receiptType = DocumentType.values()[po.getDocumentType()];
 		SaleVO vo = new SaleVO(id, time, customerId, customerName, customerVIP,
 				salesman, operatorId, storage, saleList,
-				giftList, totalBeforeDiscount, discount, voucher,
+				PresentId,giftList, totalBeforeDiscount, discount, voucher,
 				totalAfterDiscount, remark, approvalState, isWriteOff,
 				receiptType);
 		return vo;
@@ -256,8 +264,7 @@ public class Sale {
 		String storage = vo.storage;
 		ArrayList<CommodityLineItemPO> saleList = Utility
 				.voListToPOList(vo.saleList);
-		ArrayList<PresentLineItemPO> giftList = Utility
-				.presentVOListToPOlist(vo.giftList);
+		String presentId=vo.presentId;
 		double totalBeforeDiscount = vo.totalBeforeDiscount;
 		double discount = vo.discount;
 		double voucher = vo.voucher;
@@ -267,7 +274,7 @@ public class Sale {
 		boolean isWriteOff = vo.isWriteOff;
 		int receiptType = vo.receiptType.ordinal();
 		SalePO po = new SalePO(id, time, customerId, customerName, customerVIP,
-				salesman, operatorId, storage, saleList, giftList,
+				salesman, operatorId, storage, saleList, presentId,
 				totalBeforeDiscount, discount, voucher, totalAfterDiscount,
 				remark, approvalState, isWriteOff, receiptType);
 		return po;

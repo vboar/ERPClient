@@ -226,7 +226,7 @@ public class Purchase {
 
 
 
-	private PurchaseVO poToVO(PurchasePO po) {
+	public PurchaseVO poToVO(PurchasePO po) {
 		// String id,String time,String customerId,String customerName,
 		// String operatorId,String storage,ArrayList<CommodityLineItemPO>
 		// saleList,double total,
@@ -252,7 +252,7 @@ public class Purchase {
 
 	}
 
-	private PurchasePO poToVO(PurchaseVO vo) {
+	public PurchasePO poToVO(PurchaseVO vo) {
 		String id = vo.id;
 		String time = vo.time;
 		String customerId = vo.customerId;
@@ -273,7 +273,7 @@ public class Purchase {
 
 	}
 
-	private ArrayList<PurchaseVO> poListToVoList(ArrayList<PurchasePO> poList) {
+	public ArrayList<PurchaseVO> poListToVoList(ArrayList<PurchasePO> poList) {
 		ArrayList<PurchaseVO> voList = new ArrayList<PurchaseVO>();
 		for (PurchasePO po : poList) {
 			PurchaseVO vo = poToVO(po);

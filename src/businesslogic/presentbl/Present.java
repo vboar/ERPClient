@@ -43,15 +43,15 @@ public class Present {
 		return ResultMessage.SUCCESS;
 	}
 	
-//	private PresentPO getById(String id){
-//		PresentPO po=null;
-//		try {
-//			po = DataFactoryImpl.getInstance().getPresentData().getById(id);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-//		return po;
-//	}
+	public PresentPO getById(String id){
+		PresentPO po=null;
+		try {
+			po = DataFactoryImpl.getInstance().getPresentData().getById(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
 	
 	public ArrayList<PresentVO> findById(String id){
 		try {
