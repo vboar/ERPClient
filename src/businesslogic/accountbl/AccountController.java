@@ -8,29 +8,26 @@ import businesslogicservice.accountblservice.AccountBLService;
 
 public class AccountController implements AccountBLService {
 	
-	Account a = new Account();
+	Account account = new Account();
 
 	@Override
 	public ResultMessage add(AccountVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		return account.add(vo);
 	}
 
 	@Override
 	public ResultMessage delete(AccountVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		return account.delete(vo);
 	}
 
 	@Override
 	public ResultMessage update(AccountVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		return account.update(vo);
 	}
 
 	@Override
 	public ArrayList<AccountVO> show() {
-		// TODO 自动生成的方法存根
+		// TODO
 		return null;
 	}
 
@@ -38,10 +35,6 @@ public class AccountController implements AccountBLService {
 	public ArrayList<AccountVO> fuzzyFind(String keyWord) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public AccountVO findByAccount(String account){
-		return a.findByAccount(account);
 	}
 	
 }

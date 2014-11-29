@@ -11,9 +11,9 @@ public interface FuzzySearch {
 
 	/**
 	 * 返回模糊查找结果
-	 * @param str 
+	 * @param keyword 
 	 * @return 
 	 */
-	public ArrayList<String> getFuzzyResult(String str);
+	public ArrayList<String> getFuzzyResult(String keyword);
 	
 }

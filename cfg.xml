@@ -136,15 +136,33 @@
 				</columnnames>
 			</tablepane>
 		</panel>
+		
+		<!-- 账户管理面板 -->
+		<panel className="ui.accountui.AccountPanel" width="760" height="487" x="205" y="90" bg="img/panel.png">
+			<buttons>
+				<add text="" w="80" h="32" x="180" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<delete text="" w="80" h="32" x="260" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<update text=""  w="80" h="32" x="340" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<show text=""  w="100" h="30" x="420" y="36" path="img\show.png"  pathroll="img\show1.png"/>
+				<find text=""  w="24" h="24" x="700" y="40" path="img\search.png"  pathroll="img\search1.png"/>
+			</buttons>
+			<labels>
+				<accountlist text="" w="120" h="32" x="0" y="35" path="img\userlist.png"/>
+				<modulename text="" w="120" h="30" x="0" y="2" path="img\usermanage.png"/>
+				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png"/>
+			</labels>
+			<textfields>
+				<findinput w="175" h="28" x="525" y="38" />
+			</textfields>
+			<tablepane className="ui.accountui.AccountTablePane" width="730" height="376" x="10" y="75">
+				<columnnames>
+					<columnname name="银行账号" />
+					<columnname name="账户名称" />
+					<columnname name="金额" />
+				</columnnames>
+			</tablepane>
+		</panel>
 	</frame>
-	
-	<!-- 账户管理面板 -->
-	<panel className="ui.accountui.AccountPanel" width="760" height="487"
-		x="205" y="125" bg="img/panel.png">
-		<buttons>
-			<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
-		</buttons>
-	</panel>
 	
 	<!-- 用户信息对话框 -->
 	<userinfodialog width="500" height="280" x="230" y="180">
