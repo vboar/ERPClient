@@ -23,48 +23,69 @@ public class Customer {
 		return log.add();	
 	}
 	//客户名唯一
-	public ResultMessage add(CustomerVO vo) throws RemoteException{
-		if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).size()==0){
-			l.add("Customer Add Error:customer exists");
-			return ResultMessage.EXIST;
-		}else{
-			//todo
-			String id=createId();
-			DataFactoryImpl.getInstance().getCustomerData().insert(new CustomerPO(id,
-					vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
-					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
-					vo.salesman,vo.isDeletable));
+	public ResultMessage add(CustomerVO vo) {
+		try {
+			if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).size()==0){
+				l.add("Customer Add Error:customer exists");
+				return ResultMessage.EXIST;
+			}else{
+				//TODO
+				String id=createId();
+				DataFactoryImpl.getInstance().getCustomerData().insert(new CustomerPO(id,
+						vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
+						vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
+						vo.salesman,vo.isDeletable));
+			}
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
 		}
 		
 		l.add("Add customer Successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage delete(CustomerVO vo) throws RemoteException{
-		if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).get(0).isDeletable()){
-			DataFactoryImpl.getInstance().getCustomerData().delete(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
-					vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
-					vo.salesman,vo.isDeletable));
-		}else{
-			//该客户不能删除
-			l.add("Fail to delete customer:customer is undeletable");
-			return ResultMessage.FAILED;
+	public ResultMessage delete(CustomerVO vo) {
+		try {
+			if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).get(0).isDeletable()){
+				DataFactoryImpl.getInstance().getCustomerData().delete(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
+						vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
+						vo.salesman,vo.isDeletable));
+			}else{
+				//该客户不能删除
+				l.add("Fail to delete customer:customer is undeletable");
+				return ResultMessage.FAILED;
+			}
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
 		}
 		
 		l.add("Delete customer successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage update(CustomerVO vo) throws RemoteException{
+	public ResultMessage update(CustomerVO vo) {
 		//chencheng change
-		CustomerPO po=DataFactoryImpl.getInstance().getCustomerData().getById(vo.id);
+		CustomerPO po=null;
+		try {
+			po = DataFactoryImpl.getInstance().getCustomerData().getById(vo.id);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		if(po==null){
 			return ResultMessage.NOT_FOUND;
 		}
 		
-		DataFactoryImpl.getInstance().getCustomerData().update(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
-					vo.postalCode,vo.email,vo.creditLimit,po.getReceivables(),po.getPaybles(),
-					vo.salesman,po.isDeletable()));
+		try {
+			DataFactoryImpl.getInstance().getCustomerData().update(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
+						vo.postalCode,vo.email,vo.creditLimit,po.getReceivables(),po.getPaybles(),
+						vo.salesman,po.isDeletable()));
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		
 		l.add("Update customer successfully");
 		return ResultMessage.SUCCESS;
@@ -77,41 +98,59 @@ public class Customer {
 			cpo.setPaybles(cpo.getPaybles()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
+			
 			e.printStackTrace();
 		}
 		
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ArrayList<CustomerVO> findByname(String name) throws RemoteException{
+	public ArrayList<CustomerVO> findByname(String name) {
 		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
-		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().findByName(name);
+		ArrayList<CustomerPO> po=null;
+		try {
+			po = DataFactoryImpl.getInstance().getCustomerData().findByName(name);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		result=poToVo(po);
 		
 		l.add("Find customer by name successfully");
 		return result;
 	}
 	
-	public ArrayList<CustomerVO> findById(String id) throws RemoteException{
+	public ArrayList<CustomerVO> findById(String id) {
 		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
-		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().findById(id);
+		ArrayList<CustomerPO> po=null;
+		try {
+			po = DataFactoryImpl.getInstance().getCustomerData().findById(id);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		result=poToVo(po);
 		
 		l.add("Find customer by id successfully");
 		return result;
 	}
 	
-	public ArrayList<CustomerVO> show() throws RemoteException{
+	public ArrayList<CustomerVO> show() {
 		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
-		ArrayList<CustomerPO> po=DataFactoryImpl.getInstance().getCustomerData().show();
+		ArrayList<CustomerPO> po=null;
+		try {
+			po = DataFactoryImpl.getInstance().getCustomerData().show();
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		result=poToVo(po);
 		
 		l.add("show successfully");
 		return result;
 	}
 	
-	//todo
+	//TODO
 	public String createId(){
 		return null;
 	}
