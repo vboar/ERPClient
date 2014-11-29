@@ -1,5 +1,6 @@
 package ui.homeui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.text.SimpleDateFormat;
@@ -25,8 +26,10 @@ public class TimePanel extends JPanel {
 		this.setLayout(null);
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
+		this.setBackground(Color.RED);
 		this.bg = pcfg.getBg();
 		this.initTimeLabel();
+		this.repaint();
 	}
 	
 	@Override

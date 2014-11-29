@@ -31,7 +31,7 @@
 	</loginframe>
 	
 	<!-- 主窗口 -->
-	<frame title="ERP企业进销存管理系统" width="960" height="635" windowUp="20">
+	<frame title="ERP企业进销存管理系统" width="960" height="630" windowUp="20">
 	
 		<!-- 当前登录用户信息面板 -->>
 		<panel className="ui.homeui.LoginUserInfoPanel" width="960"
@@ -48,9 +48,9 @@
 		
 		<!-- 时间显示面板 -->
 		<panel className="ui.homeui.TimePanel" width="960"
-			height="20" x="0" y="0" bg="img/bottomline.jpg">
+			height="25" x="0" y="570" bg="img/bottomline.png">
 			<labels>
-				<timelab text="" w="240" h="20" x="500" y="0"/>
+				<timelab text="" w="240" h="20" x="700" y="0"/>
 			</labels>
 		</panel>
 		
@@ -86,21 +86,36 @@
 			</tablepane>
 		</panel>
 		
-		<!-- 分类管理面板 -->
-		<panel className="ui.commodityui.CategoryPanel" width="960" height="510"
-			x="0" y="90" bg="img/mainpanel.jpg">
+		
+		<!-- 商品管理按钮面板 -->
+		<panel className="ui.commodityui.CommodityButtonPanel" width="205" height="490"
+			x="0" y="90" bg="img/leftpanel.png">
 			<buttons>
+				<category text="商品分类管理" w="160" h="40" x="20" y="50" />
+				<commodity text="商品管理" w="160" h="40" x="20" y="100" />
+				<present text="赠品发放" w="160" h="40" x="20" y="150"/>
+				<stock text="库存查看" w="160" h="40" x="20" y="200" />
+				<stockcheck text="库存盘点" w="160" h="40" x="20" y="250" />
+				<exception text="库存异常处理" w="160" h="40" x="20" y="300" />
 			</buttons>
 			<labels>
+				<title  text="商品管理" w="200" h="30" x="0" y="0" />
 			</labels>
-			<textfields>
-			</textfields>
-			<tree width="740" height="380" x="205" y="80" rootname="ERP"/>
+			<textfields></textfields>
+		</panel>
+		
+		<!-- 商品分类管理面板 -->
+		<panel className="ui.commodityui.CategoryPanel" width="760" height="510"
+			x="200" y="90" bg="img/rightpanel.png">
+			<buttons></buttons>
+			<labels></labels>
+			<textfields></textfields>
+			<tree width="730" height="380" x="10" y="80" rootname="ERP"/>
 		</panel>
 
 		<!-- 客户管理面板 -->
-		<panel className="ui.customerui.CustomerPanel" width="960" height="510"
-			x="0" y="90" bg="img/mainpanel.jpg">
+		<panel className="ui.customerui.CustomerPanel" width="760" height="510"
+			x="200" y="90" bg="img/rightpanel.png">
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
 				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
