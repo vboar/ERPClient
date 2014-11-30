@@ -20,9 +20,6 @@ Purchase purchase=new Purchase();
 	public ResultMessage add(PurchaseVO vo) {
 		
 		ArrayList<CommodityLineItemVO> voListTemp=vo.saleList;
-		for(CommodityLineItemVO covotemp:voListTemp){
-			covotemp.number=0-covotemp.number;
-		}
 		vo.saleList=voListTemp;
 		PurchasePO po = purchase.poToVO(vo);
 		try {
