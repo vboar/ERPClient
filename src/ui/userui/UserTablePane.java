@@ -84,13 +84,6 @@ public class UserTablePane extends TablePanel{
 		row[4]=vo.permission;
 	}
 	
-	public boolean isSelected(){
-		if(this.table.getSelectedRow()!=-1)		
-			return true;
-		else	
-			return false;
-	}
-	
 	public UserVO getSelectedVO(){
 		int row = this.table.getSelectedRow();
 		String id = this.table.getValueAt(row, 0).toString();

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import ui.commodityui.categoryui.CategoryPanel;
 import ui.commodityui.commodityui.CommodityPanel;
+import ui.presentui.PresentPanel;
 import ui.stockui.stockinfo.StockInfoPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
@@ -33,6 +34,8 @@ public class StockKeeperPanel extends MyMainPanel {
 	private CommodityPanel commodityPanel;
 	
 	private CategoryPanel categoryPanel;
+	
+	private PresentPanel presentPanel;
 	
 	private StockInfoPanel stockInfoPanel;
 	
@@ -85,6 +88,29 @@ public class StockKeeperPanel extends MyMainPanel {
 			
 		});
 		this.presentBtn = new MyButton(pcfg.getButtons().element("present"));
+		this.presentBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(presentPanel == null) {
+					presentPanel = new PresentPanel();
+					add(presentPanel);
+				}
+				if(categoryPanel != null) {
+					remove(categoryPanel);
+					categoryPanel = null;
+				}
+				if(stockInfoPanel != null) {
+					remove(stockInfoPanel);
+					stockInfoPanel = null;
+				}
+				if(commodityPanel != null) {
+					remove(commodityPanel);
+					commodityPanel = null;
+				}
+				repaint();
+			}
+		});
 		this.stockBtn = new MyButton(pcfg.getButtons().element("stock"));
 		this.stockBtn.addActionListener(new ActionListener() {
 			

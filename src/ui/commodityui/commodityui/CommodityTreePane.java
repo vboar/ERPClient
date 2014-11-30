@@ -133,7 +133,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			if(this.controller.add(vo)==ResultMessage.SUCCESS){
 				// 新增的节点中id为空
 				node.addChild(new MyTreeNode(null,null,vo,node));
-				this.initTreeTable();
+				//this.initTreeTable();
 				this.treeTable.updateUI();
 				this.infodialog.dispose();
 				MyOptionPane.showMessageDialog(null, "添加成功！");
