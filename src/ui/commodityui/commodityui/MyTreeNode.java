@@ -24,6 +24,21 @@ public class MyTreeNode {
 		this.parent = parent;
 	}
 	
+	public MyTreeNode findChild(String key){
+		if(this.isCategory()){
+			for(int i=0; i<children.size(); ++i){
+				if(!children.get(i).isCategory()){
+					MyTreeNode node = children.get(i);
+					if((node.getCommodityvo().name+
+							node.getCommodityvo().model).equals(key)){
+						return node;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public String toString(){
 		if(this.categoryvo!=null){

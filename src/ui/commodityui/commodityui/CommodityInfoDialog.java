@@ -73,7 +73,7 @@ public class CommodityInfoDialog extends JDialog {
 	private void initComponent() {
 		this.initButtons(this.cfg.getButtons());
 		this.initLabels(cfg.getLabels());
-		this.initButtons(cfg.getTextFields());
+		this.initTextfields(cfg.getTextFields());
 	}
 	
 	public void initLabels(Element ele){
@@ -88,7 +88,15 @@ public class CommodityInfoDialog extends JDialog {
 	
 	public void initTextfields(Element ele){
 		this.nameTxt = new MyTextField(ele.element("name"));
+		this.modelTxt = new MyTextField(ele.element("model"));
+		this.purchasePriceTxt = new MyTextField(ele.element("purchaseprice"));
+		this.salePriceTxt = new MyTextField(ele.element("saleprice"));
+		this.warningNumTxt = new MyTextField(ele.element("warningnum"));
 		this.add(this.nameTxt);
+		this.add(this.modelTxt );
+		this.add(this.purchasePriceTxt);
+		this.add(this.salePriceTxt);
+		this.add(this.warningNumTxt);
 	}
 	
 	public void initButtons(Element ele){
@@ -96,20 +104,24 @@ public class CommodityInfoDialog extends JDialog {
 		this.commit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			int result = MyOptionPane.showConfirmDialog(null, "确认添加？",
-					"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-			if(result==MyOptionPane.YES_OPTION){
-				if(isAdd){
-					tree.addCommodity(nameTxt.getText(),modelTxt.getText(),
-							Double.parseDouble(purchasePriceTxt.getText()),
-							Double.parseDouble(salePriceTxt.getText()),
-							Integer.parseInt(warningNumTxt.getText()));
-				}else{
-					tree.updateCommodity(nameTxt.getText(),modelTxt.getText(),
-							Double.parseDouble(purchasePriceTxt.getText()),
-							Double.parseDouble(salePriceTxt.getText()),
-							Integer.parseInt(warningNumTxt.getText()));
+				try{
+					double purchasePrice = Double.parseDouble(purchasePriceTxt.getText());
+					double salePrice = Double.parseDouble(salePriceTxt.getText());
+					int warningNum = Integer.parseInt(warningNumTxt.getText());
+					int result = MyOptionPane.showConfirmDialog(null, "确认操作？",
+							"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
+					if(result==MyOptionPane.YES_OPTION){
+						if(isAdd){
+							tree.addCommodity(nameTxt.getText(),modelTxt.getText(),
+									purchasePrice, salePrice,warningNum);
+						}else{
+							tree.updateCommodity(nameTxt.getText(),modelTxt.getText(),
+									purchasePrice, salePrice,warningNum);
+						}
 					}
+				}catch(NumberFormatException ex){
+					MyOptionPane.showMessageDialog(null, "请按正确格式输入数据！",
+							"错误提示",MyOptionPane.ERROR_MESSAGE);
 				}
 			}		
 		});

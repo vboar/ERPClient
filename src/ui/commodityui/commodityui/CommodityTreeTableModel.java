@@ -12,14 +12,17 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 
 	private ArrayList<CategoryCommodityVO> list;
 
-	private static int COLUMN_COUNT = 7;
+	private static int COLUMN_COUNT = 8;
 
 	public CommodityTreeTableModel(ArrayList<CategoryCommodityVO> list) {
 		this.list = list;
 		this.createTree();
 	}
 
-	@Override
+	public MyTreeNode findNode(String key){
+		return null;
+	}
+	
 	public int getColumnCount() {
 		return COLUMN_COUNT;
 	}
@@ -41,6 +44,8 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 			return "最近进价";
 		case 6:
 			return "最近零售价";
+		case 7:
+			return "警戒数量";
 		default:
 			return "unknown";
 		}
@@ -72,6 +77,8 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 				return treenode.getCommodityvo().recentPurchasePrice;
 			case 6:
 				return treenode.getCommodityvo().recentSalePrice;
+			case 7:
+				return treenode.getCommodityvo().warningNumber;
 			default:
 				return null;
 			}

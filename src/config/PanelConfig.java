@@ -37,6 +37,8 @@ public class PanelConfig extends ComponentConfig{
 	
 	private Element tree;
 	
+	private Element datepicker;
+	
 	private Image bg;
 	
 	public PanelConfig(Element panel) {
@@ -56,6 +58,7 @@ public class PanelConfig extends ComponentConfig{
 		this.bg = new ImageIcon(panel.attributeValue("bg")).getImage();
 		this.tablepane = panel.element("tablepane");
 		this.tree = panel.element("tree");
+		this.datepicker = panel.element("datepicker");
 	}	
 
 
@@ -89,6 +92,10 @@ public class PanelConfig extends ComponentConfig{
 
 	public Element getTree() {
 		return tree;
+	}
+
+	public Element getDatepicker() {
+		return datepicker;
 	}
 
 }

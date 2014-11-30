@@ -18,20 +18,10 @@ import config.PanelConfig;
 @SuppressWarnings("serial")
 public class CommodityPanel extends JPanel{
 	
-	private MyButton addbtn;
-	
-	private MyButton deletebtn;
-	
-	private MyButton updatebtn;
-	
 	private MyButton findbtn;
 	
 	private MyButton showAll;
 
-	private MyLabel commoditylist;
-	
-	private MyLabel title;
-	
 	private CommodityTreePane treepane;
 	
 	private Image bg;
@@ -39,12 +29,9 @@ public class CommodityPanel extends JPanel{
 	private JFrame frame;
 	
 	private PanelConfig pcfg;
-	
-	private CommodityBLService controller;
 		
 	public CommodityPanel(JFrame frame){
 		this.frame = frame;
-		this.controller = ControllerFactoryImpl.getInstance().getCommodityController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
@@ -72,33 +59,14 @@ public class CommodityPanel extends JPanel{
 
 
 	private void initLabels(Element labels) {
-		this.title = new MyLabel(labels.element("title"));
-		this.add(this.title);
-		this.commoditylist = new MyLabel(labels.element("commoditylist"));
-		this.add(this.commoditylist);
+		this.add(new MyLabel(labels.element("title")));
+		this.add(new MyLabel(labels.element("commoditylist")));
+		this.add(new MyLabel(labels.element("tip")));
 	}
 
 	private void initButtons(Element buttons) {
-		this.initAddBtn(buttons.element("add"));
-		this.initDeleteBtn(buttons.element("delete"));
-		this.initUpdateBtn(buttons.element("update"));
 		this.initFindBtn(buttons.element("find"));
-		this.initShowAllBtn(buttons.element("showall"));
-	}
-
-	private void initAddBtn(Element element) {
-		this.addbtn = new MyButton(element);
-		this.add(this.addbtn);
-	}
-
-	private void initDeleteBtn(Element element) {
-		this.deletebtn = new MyButton(element);
-		this.add(this.deletebtn);
-	}
-	
-	private void initUpdateBtn(Element element){
-		this.updatebtn = new MyButton(element);
-		this.add(this.updatebtn);
+		//this.initShowAllBtn(buttons.element("showall"));
 	}
 
 	private void initFindBtn(Element element) {

@@ -22,8 +22,11 @@ public class MyTable extends JTable {
 	
 	private int padding = 20;
 	
+	private int containerW;
+	
 	public MyTable(TableModel dtm, int containerW) {
 		super(dtm);
+		this.containerW = containerW;
 		this.getTableHeader().setReorderingAllowed(false);
 		this.sorter = new TableRowSorter<TableModel>(dtm);
 		this.setRowSorter(sorter);
@@ -46,28 +49,28 @@ public class MyTable extends JTable {
 		this.setWidth(this, containerW);
 	}
 	
-	public void setWidth(JTable jg_table, int containerW){
+	public void setWidth(JTable table, int containerW){
 		//计算表格总体宽度 getTable().
-        int allwidth = jg_table.getIntercellSpacing().width;
-        for (int j = 0; j < jg_table.getColumnCount(); j++) {
+        int allwidth = table.getIntercellSpacing().width;
+        for (int j = 0; j < table.getColumnCount(); j++) {
             //计算该列中最长的宽度
             int max = 0;
             //计算表头的宽度
-            int headerwidth = jg_table.getTableHeader().
+            int headerwidth = table.getTableHeader().
               getDefaultRenderer().getTableCellRendererComponent(
-                      jg_table, jg_table.getColumnModel().
+                      table, table.getColumnModel().
               getColumn(j).getIdentifier(), false, false,
               -1, j).getPreferredSize().width;
             //列宽至少应为列头宽度
             max += headerwidth+2*padding;
             //设置列宽
-            jg_table.getColumnModel().
+            table.getColumnModel().
               getColumn(j).setPreferredWidth(max);
             //给表格的整体宽度赋值，记得要加上单元格之间的线条宽度1个像素
-            allwidth += max + jg_table.getIntercellSpacing().width;
+            allwidth += max + table.getIntercellSpacing().width;
         }
         if (allwidth > containerW) {
-            jg_table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         }
 	}
 	
@@ -77,7 +80,9 @@ public class MyTable extends JTable {
         tc.setPreferredWidth(0);
         tc.setWidth(0);
         tc.setMinWidth(0);
+        this.updateUI();
         this.getTableHeader().getColumnModel().getColumn(column).setMaxWidth(0);
         this.getTableHeader().getColumnModel().getColumn(column).setMinWidth(0);
 	}
+
 }

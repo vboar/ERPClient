@@ -17,8 +17,9 @@ public class StockController implements StockBLService {
 
 	@Override
 	public ArrayList<StockInfoVO> showStockInfo(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<StockInfoVO> list = new ArrayList<StockInfoVO>();
+		list.add(new StockInfoVO("00001-00001-00001","a","a1",10,200,10,300));
+		return list;
 	}
 
 	@Override

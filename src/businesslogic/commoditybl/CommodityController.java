@@ -20,7 +20,7 @@ public class CommodityController implements CommodityBLService {
 	@Override
 	public ResultMessage add(CommodityVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class CommodityController implements CommodityBLService {
 	@Override
 	public ResultMessage update(CommodityVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override

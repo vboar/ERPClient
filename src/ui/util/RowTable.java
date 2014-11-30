@@ -26,7 +26,7 @@ public class RowTable extends JTable {
 		setModel(new RowHeaderModel(table.getModel()));
 		setRowHeight(table.getRowHeight());
 		setEnabled(false);
-		setPreferredScrollableViewportSize(new Dimension(20,0));
+		setPreferredScrollableViewportSize(new Dimension(40,0));
 		this.setDefaultRenderer(Object.class, new RowHeaderRenderer(table,this));
 	}
 

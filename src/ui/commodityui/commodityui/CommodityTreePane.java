@@ -113,7 +113,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 		CommodityVO vo = node.getCommodityvo();
 		this.infodialog = new CommodityInfoDialog(ERPConfig.getCOMMODITYINFO_DIALOG_CONFIG(), 
-				frame, this, true,vo);
+				frame, this, false, vo);
 		this.infodialog.setVisible(true);
 	}
 
@@ -127,11 +127,18 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			double salePrice, int warningNum) {
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 		if(node.isCategory()){
-			CommodityVO vo=new CommodityVO(null,name,model,0,purchasePrice,salePrice,0.0,0.0,
+			CommodityVO vo=new CommodityVO(node.getId()+Integer.toString((node.getChildrenCount()+1)),
+					name,model,0,purchasePrice,salePrice,0.0,0.0,
 					warningNum,false,node.getCategoryvo());
 			if(this.controller.add(vo)==ResultMessage.SUCCESS){
 				// 新增的节点中id为空
-				node.addChild(new MyTreeNode(null,node.getCategoryvo(),vo,node));
+				node.addChild(new MyTreeNode(null,null,vo,node));
+				this.initTreeTable();
+				this.treeTable.updateUI();
+				this.infodialog.dispose();
+				MyOptionPane.showMessageDialog(null, "添加成功！");
+			}else{
+				MyOptionPane.showMessageDialog(null, "添加失败！");
 			}
 		}
 		
@@ -139,6 +146,26 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	
 	public void updateCommodity(String name, String model, double purchasePrice, 
 			double salePrice, int warningNum){
-		
+		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
+		if(!node.isCategory()){
+			CommodityVO vo= node.getCommodityvo();
+			vo.name = name;
+			vo.model = model;
+			vo.purchasePrice = purchasePrice;
+			vo.salePrice = salePrice;
+			vo.warningNumber = warningNum;
+			if(this.controller.update(vo)==ResultMessage.SUCCESS){
+				node.setCommodityvo(vo);
+				this.infodialog.dispose();
+				MyOptionPane.showMessageDialog(null, "修改成功！");
+				this.treeTable.updateUI();
+			}else{
+				MyOptionPane.showMessageDialog(null, "修改失败！");
+			}
+		}
+	}
+	
+	public void findCommodity(String key){
+
 	}
 }

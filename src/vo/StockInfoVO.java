@@ -56,7 +56,7 @@ public class StockInfoVO {
 	 * @param outMoney
 	 */
 	public StockInfoVO(String id, String name, String model, int inNumber,
-			int outNumber, double inMoney, double outMoney) {
+			 double inMoney, int outNumber, double outMoney) {
 		this.id = id;
 		this.name = name;
 		this.model = model;

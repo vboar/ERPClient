@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import ui.commodityui.categoryui.CategoryPanel;
 import ui.commodityui.commodityui.CommodityPanel;
+import ui.stockui.stockinfo.StockInfoPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
 
@@ -33,6 +34,8 @@ public class StockKeeperPanel extends MyMainPanel {
 	
 	private CategoryPanel categoryPanel;
 	
+	private StockInfoPanel stockInfoPanel;
+	
 	public StockKeeperPanel(HomeUI frame){
 		super(frame);
 	}
@@ -52,6 +55,10 @@ public class StockKeeperPanel extends MyMainPanel {
 					remove(commodityPanel);
 					commodityPanel = null;
 				}
+				if(stockInfoPanel != null) {
+					remove(stockInfoPanel);
+					stockInfoPanel = null;
+				}
 				repaint();
 			}
 		});
@@ -68,6 +75,10 @@ public class StockKeeperPanel extends MyMainPanel {
 					remove(categoryPanel);
 					categoryPanel = null;
 				}
+				if(stockInfoPanel != null) {
+					remove(stockInfoPanel);
+					stockInfoPanel = null;
+				}
 				repaint();
 				
 			}
@@ -75,6 +86,26 @@ public class StockKeeperPanel extends MyMainPanel {
 		});
 		this.presentBtn = new MyButton(pcfg.getButtons().element("present"));
 		this.stockBtn = new MyButton(pcfg.getButtons().element("stock"));
+		this.stockBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(stockInfoPanel == null) {
+					stockInfoPanel = new StockInfoPanel();
+					add(stockInfoPanel);
+				}
+				if(categoryPanel != null) {
+					remove(categoryPanel);
+					categoryPanel = null;
+				}
+				if(commodityPanel != null) {
+					remove(commodityPanel);
+					commodityPanel = null;
+				}
+				repaint();
+			}
+			
+		});
 		this.stockCheckBtn = new MyButton(pcfg.getButtons().element("stockcheck"));
 		this.exceptionBtn = new MyButton(pcfg.getButtons().element("exception"));
 		this.add(this.categoryManageBtn);

@@ -19,8 +19,6 @@ public abstract class TablePanel extends JPanel{
 	
 	protected MyTable table;
 	
-	protected RowTable rowheader;
-	
 	protected TableConfig cfg;
 	
 	public TablePanel(TableConfig cfg){	
@@ -35,7 +33,7 @@ public abstract class TablePanel extends JPanel{
 		this.rollpane = new RowTableScrollPane(this.table);
 		this.rollpane.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()-5));
 		this.rollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.add(this.rollpane);
 	}
 
