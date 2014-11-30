@@ -8,7 +8,6 @@ package businesslogic.commoditybl;
 
 import java.util.ArrayList;
 
-import ui.commodityui.commodityui.CommodityTreeTableModel;
 import util.ResultMessage;
 import vo.CategoryCommodityVO;
 import vo.CategoryVO;

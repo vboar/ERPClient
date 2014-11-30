@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import po.PurchasePO;
 import util.ResultMessage;
-import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
@@ -18,9 +17,6 @@ public class PurchaseReturn {
 Purchase purchase=new Purchase();
 	
 	public ResultMessage add(PurchaseVO vo) {
-		
-		ArrayList<CommodityLineItemVO> voListTemp=vo.saleList;
-		vo.saleList=voListTemp;
 		PurchasePO po = purchase.poToVO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
