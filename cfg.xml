@@ -88,7 +88,7 @@
 		
 		
 		<!-- 库存管理人员面板 -->
-		<panel className="ui.homeui.StockKeeperPanel" width="960" height="490"
+		<panel className="ui.homeui.StockKeeperPanel" width="960" height="480"
 			x="0" y="90" bg="img/leftpanel.png">
 			<buttons>
 				<category text="商品分类管理" w="160" h="40" x="20" y="50" />

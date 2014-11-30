@@ -7,17 +7,26 @@ package ui.homeui;
 
 import javax.swing.JFrame;
 
-import ui.accountui.AccountPanel;
-import ui.customerui.CustomerPanel;
-import ui.userui.UserPanel;
 import ui.util.FrameUtil;
+import ui.util.MyMainPanel;
 import businesslogic.loginbl.LoginController;
 import config.ERPConfig;
 import config.FrameConfig;
 
 @SuppressWarnings("serial")
-public class HomeUI extends JFrame{
-		
+public class HomeUI extends JFrame {
+	
+	private MyMainPanel stockKeeperPanel;
+	
+	private MyMainPanel salesmanPanel;
+	
+	private MyMainPanel counterPanel;
+	
+	private MyMainPanel managerPanel;
+	
+	private MyMainPanel adminPanel;
+	
+	
 	public HomeUI(LoginController lc){
 		// 获得窗口配置
 		FrameConfig fcfg = ERPConfig.getHOMEFRAME_CONFIG();
@@ -34,38 +43,37 @@ public class HomeUI extends JFrame{
 		// 设置为自由布局
 		this.getContentPane().setLayout(null);
 		// 初始化组件
-		this.addTimePanel();
-		this.addUserInfoPanel(lc);
+		this.add(new TimePanel());
+		this.getContentPane().add(new LoginUserInfoPanel(lc));
 		this.addMainPanel(lc);
 		// 显示
 		this.setVisible(true);
 	}
 	
-	private void addUserInfoPanel(LoginController lc){
-		this.getContentPane().add(new LoginUserInfoPanel(lc));
-	}
-	
 	private void addMainPanel(LoginController lc){
-		this.add(new LoginUserInfoPanel(lc));
 		switch(lc.getUserType()) {
 		case ADMINISTRATOR:
-			this.add(new UserPanel(this));
+			adminPanel = new AdminPanel(this);
+			this.add(adminPanel);
 			break;
 		case SALESMAN:
-			this.add(new CustomerPanel(this));
+			salesmanPanel = new SalesmanPanel(this);
+			this.add(salesmanPanel);
 			break;
 		case STOCKKEEPER:
-			this.add(new StockKeeperPanel(this));
+			stockKeeperPanel = new StockKeeperPanel(this);
+			this.add(stockKeeperPanel);
 			break;
 		case COUNTER:
-			this.add(new AccountPanel(this));
+			counterPanel = new CounterPanel(this);
+			this.add(counterPanel);
 			break;
+		case MANAGER:
+			managerPanel = new ManagerPanel(this);
+			this.add(managerPanel);
 		default:
 			
 		}
 	}
 	
-	private void addTimePanel(){
-		this.add(new TimePanel());
-	}
 }
