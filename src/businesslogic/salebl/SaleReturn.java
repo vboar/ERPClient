@@ -8,6 +8,7 @@ package businesslogic.salebl;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import businesslogic.presentbl.Present;
 import po.SalePO;
@@ -39,8 +40,10 @@ public class SaleReturn {
 			
 			e.printStackTrace();
 		}
-		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time = df.toString();
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+		String time=myFmt.format(date);
+
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
 		
@@ -80,7 +83,7 @@ public class SaleReturn {
 
 	
 	
-	protected ArrayList<SaleVO> findByTime(String time1, String time2){
+	public ArrayList<SaleVO> findByTime(String time1, String time2){
 		ArrayList<SalePO> poList=null;
 		
 		try {
@@ -102,12 +105,12 @@ public class SaleReturn {
 	}
 
 	// TODO
-	protected ArrayList<SaleVO> findByCommodityName(String commodityName) {
+	public ArrayList<SaleVO> findByCommodityName(String commodityName) {
 
 		return null;
 	}
 
-	protected ArrayList<SaleVO> findByCustomer(String customer)
+	public ArrayList<SaleVO> findByCustomer(String customer)
 			 {
 		ArrayList<SalePO> poList=null;
 		try {
@@ -127,7 +130,7 @@ public class SaleReturn {
 		return voList;
 	}
 
-	protected ArrayList<SaleVO> findBySalesman(String salesman)
+	public ArrayList<SaleVO> findBySalesman(String salesman)
 			 {
 		ArrayList<SalePO> poList=null;
 		try {
@@ -148,7 +151,7 @@ public class SaleReturn {
 		return voList;
 	}
 
-	protected ArrayList<SaleVO> findByStorage(String Storage)
+	public ArrayList<SaleVO> findByStorage(String Storage)
 			 {
 		ArrayList<SalePO> poList=null;
 		try {
@@ -170,7 +173,7 @@ public class SaleReturn {
 
 	}
 	
-	protected ArrayList<SaleVO> show()  {
+	public ArrayList<SaleVO> show()  {
 
 		ArrayList<SalePO> poList=null;
 		try {
@@ -191,6 +194,13 @@ public class SaleReturn {
 		return voList;
 
 	}
+	
+	//TODO
+	public ResultMessage approveSale(SaleVO vo) {
+		return null;
+
+	}
+
 	
 	
 	

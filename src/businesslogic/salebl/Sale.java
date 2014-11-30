@@ -8,6 +8,7 @@ package businesslogic.salebl;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.CommodityLineItemPO;
 import po.PresentLineItemPO;
@@ -41,8 +42,10 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
-		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time = df.toString();
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+		String time=myFmt.format(date);
+
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
 		ArrayList<PresentLineItemVO> list = vo.giftList;
