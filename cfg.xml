@@ -60,7 +60,7 @@
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
 				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
-				<modify text=""  w="80" h="32" x="530" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<update text=""  w="80" h="32" x="530" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
 				<showall text=""  w="100" h="30" x="610" y="37" path="img\show.png"  pathroll="img\show1.png"/>
 				<find text=""  w="24" h="24" x="910" y="40" path="img\search.png"  pathroll="img\search1.png"/>
 				<usermanage text="" w="100" h="40" x="" y="" />
@@ -123,17 +123,15 @@
 		<panel className="ui.commodityui.commodityui.CommodityPanel" width="760" height="510"
 			x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
-				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
-				<modify text=""  w="80" h="32" x="530" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
-				<showall text=""  w="100" h="30" x="610" y="37" path="img\show.png"  pathroll="img\show1.png"/>
-				<find text=""  w="24" h="24" x="910" y="40" path="img\search.png"  pathroll="img\search1.png"/>
+				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<update text=""  w="80" h="32" x="330" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<showall text=""  w="100" h="30" x="410" y="37" path="img\show.png"  pathroll="img\show1.png"/>
+				<find text=""  w="24" h="24" x="710" y="40" path="img\search.png"  pathroll="img\search1.png"/>
 			</buttons>
 			<labels>
 				<title  text="商品管理" w="200" h="30" x="10" y="2" />
-				<tip  text="操作提示：请在节点上单击鼠标右键进行分类管理操作。" w="440" h="30" x="180" y="45"
-				font="微软雅黑" fontsize="15"  color="true" r="255" g="100" b="10" />
-				<category  text="商品浏览" w="160" h="40" x="20" y="36" 
+				<commoditylist  text="商品浏览" w="160" h="40" x="20" y="36" 
 				font="微软雅黑" fontsize="20"  color="true" r="40" g="40" b="40"/>
 			</labels>
 			<textfields></textfields>
@@ -207,7 +205,7 @@
 	</frame>
 	
 	<!-- 用户信息对话框 -->
-	<userinfodialog width="500" height="280" x="230" y="180">
+	<userinfodialog width="500" height="280" x="230" y="180" title="用户信息">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="150" y="210" />
 			<cancel text="取消" w="80" h="30" x="270" y="210" ></cancel>
@@ -246,7 +244,7 @@
 	</userinfodialog>
 	
 	<!-- 客户信息对话框 -->
-	<customerinfodialog width="500" height="280" x="230" y="180">
+	<customerinfodialog width="500" height="280" x="230" y="180" title="客户信息">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="150" y="210" />
 			<cancel text="取消" w="80" h="30" x="270" y="210" />
@@ -285,7 +283,9 @@
 			</level>
 		</comboboxes>
 	</customerinfodialog>
-	<categoryinfodialog width="480" height="165" x="230" y="240">
+	
+	<!-- 商品分类信息对话框 -->
+	<categoryinfodialog width="480" height="165" x="230" y="240" title="商品分类信息">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="260" y="80" />
 			<cancel text="取消" w="80" h="30" x="360" y="80" />
@@ -302,7 +302,7 @@
 	</categoryinfodialog>
 	
 	<!-- 账户信息对话框 -->
-	<accountinfodialog width="500" height="280" x="230" y="180">
+	<accountinfodialog width="500" height="280" x="230" y="180" title="账户信息">
 		<buttons>
 			<commit text="提交" w="80" h="30" x="150" y="210" />
 			<cancel text="取消" w="80" h="30" x="270" y="210" />

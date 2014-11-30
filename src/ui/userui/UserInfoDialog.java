@@ -65,7 +65,7 @@ public class UserInfoDialog extends JDialog {
 	
 	private boolean isAdd;
 	
-	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,Boolean isAdd){
+	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,boolean isAdd){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.setTitle("用户信息");
@@ -77,7 +77,6 @@ public class UserInfoDialog extends JDialog {
 		this.setResizable(false);
 		this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());
 		this.initComponent();
-		this.initButtons(this.cfg.getButtons());
 	}
 
 	public UserInfoDialog(InfoDialogConfig userinfo_DIALOG_CONFIG,
@@ -95,7 +94,7 @@ public class UserInfoDialog extends JDialog {
 		this.initLabels(this.cfg.getLabels());
 		this.initTextFields(this.cfg.getTextFields());
 		this.initComboBoxes(this.cfg.getComboboxes());
-
+		this.initButtons(this.cfg.getButtons());
 	}
 	
 	private void initLabels(Element ele){

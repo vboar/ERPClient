@@ -38,7 +38,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	
 	private MyButton deletebtn;
 	
-	private MyButton modifybtn;
+	private MyButton updatebtn;
 	
 	private MyButton findbtn;
 	
@@ -123,13 +123,9 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	private void initButtons(Element buttons) {
 		this.initAddBtn(buttons.element("add"));
 		this.initDeleteBtn(buttons.element("delete"));
-		this.initUpdateBtn(buttons.element("modify"));
+		this.initUpdateBtn(buttons.element("update"));
 		this.initFindBtn(buttons.element("find"));
 		this.initShowAllBtn(buttons.element("showall"));
-		this.add(this.addbtn);
-		this.add(this.deletebtn);
-		this.add(this.modifybtn);
-		this.add(this.findbtn);
 	}
 	
 	private void initShowAllBtn(Element ele) {
@@ -152,7 +148,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 				findUser(userfindbox.getText());
 			}
 		});
-		
+		this.add(this.findbtn);
 	}
 	
 	private void initAddBtn(Element add){
@@ -163,6 +159,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 					showUserDialog();			
 			}		
 		});
+		this.add(this.addbtn);
 	}
 	
 	private void initDeleteBtn(Element delete){
@@ -187,11 +184,12 @@ public class UserPanel extends JPanel implements FuzzySearch{
 				}
 			}
 		});
+		this.add(this.deletebtn);
 	}
 	
 	private void initUpdateBtn(Element modify){
-		this.modifybtn = new MyButton(modify);
-		this.modifybtn.addActionListener(new ActionListener(){
+		this.updatebtn = new MyButton(modify);
+		this.updatebtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(userTable.isSelected()){
@@ -201,6 +199,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 				}
 			}
 		});
+		this.add(this.updatebtn);
 	}
 	
 	private void showUserDialog(){

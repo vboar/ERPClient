@@ -13,12 +13,65 @@ public class MyTreeNode {
 	
 	private CategoryVO categoryvo;
 	
+	private MyTreeNode parent;
+	
 	private ArrayList<MyTreeNode> children = new ArrayList<MyTreeNode>();
 	
-	public MyTreeNode(String id, CategoryVO catevo, CommodityVO comvo){
+	public MyTreeNode(String id, CategoryVO catevo, CommodityVO comvo, MyTreeNode parent){
 		this.id = id;
 		this.commodityvo = comvo;
 		this.categoryvo = catevo;
+		this.parent = parent;
+	}
+	
+	@Override
+	public String toString(){
+		if(this.categoryvo!=null){
+			return categoryvo.name;
+		}else if(this.commodityvo!=null){
+			return commodityvo.name;
+		}
+		return "ERP";
+	}
+	
+	public void removeChild(MyTreeNode child){
+		int index = this.getIndexOfChild(child);
+		this.children.remove(index);
+	}
+	
+	public void addChild(MyTreeNode child){
+		this.children.add(child);
+	}
+	
+	public int getIndexOfChild(MyTreeNode child){
+		for (int i = 0; i < this.getChildren().size(); i++) {
+			if (this.getChildren().get(i) == child) {
+				return i;
+			}
+		}
+		return 0;
+	}
+	
+	public boolean isCategory(){
+		if((commodityvo==null)&&(categoryvo!=null)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean isLastCategory(){
+		if(isCategory()){
+			if(this.children.size()>0){
+				for(int i=0; i<this.children.size();++i){
+					if(this.children.get(i).isCategory()){
+						return false;
+					}
+				}return true;
+			}
+			else return true;
+		}
+		return false;
 	}
 	
 	public CommodityVO getCommodityvo() {
@@ -53,12 +106,8 @@ public class MyTreeNode {
 		return id;
 	}
 
-	public boolean isCategory(){
-		if((commodityvo==null)&&(categoryvo!=null)){
-			return true;
-		}else{
-			return false;
-		}
+	public MyTreeNode getParent() {
+		return parent;
 	}
-	
+
 }

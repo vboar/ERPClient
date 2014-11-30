@@ -83,9 +83,9 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 				if (path == null) 	return;
 				tree.setSelectionPath(path);
 				if(((DefaultMutableTreeNode)tree.getLastSelectedPathComponent()).isRoot()){
-					popmenu.enableItem(false);
+					popmenu.unableDelUpdItem();
 				}else	
-					popmenu.enableItem(true);
+					popmenu.setAllItenEnable(true);
 				if (e.getButton() == 3) {
 					popmenu.show(e.getComponent(), e.getX(), e.getY());
 				}

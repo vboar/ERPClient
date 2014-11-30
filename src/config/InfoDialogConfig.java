@@ -5,6 +5,10 @@ import org.dom4j.Element;
 public class InfoDialogConfig extends ComponentConfig{
 
 	/**
+	 * 标题
+	 */
+	private String title;
+	/**
 	 * 按钮配置
 	 */
 	private Element buttons;
@@ -29,6 +33,7 @@ public class InfoDialogConfig extends ComponentConfig{
 		this.labels = info.element("labels");
 		this.textFields = info.element("textfields");
 		this.comboboxes = info.element("comboboxes");
+		this.title = info.attributeValue("title");
 		this.w = Integer.parseInt(info.attributeValue("width"));
 		this.h = Integer.parseInt(info.attributeValue("height"));
 		this.x = Integer.parseInt(info.attributeValue("x"));

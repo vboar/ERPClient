@@ -52,14 +52,14 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 		if (treenode.isCategory()) {
 			switch (column) {
 			case 0:
-				return "商品分类："+treenode.getCategoryvo().name;
+				return treenode;
 			default:
 				return null;
 			}
 		} else {
 			switch (column) {
 			case 0:
-				return treenode.getCommodityvo().name;
+				return treenode;
 			case 1:
 				return treenode.getCommodityvo().model;
 			case 2:
@@ -93,12 +93,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 	@Override
 	public int getIndexOfChild(Object parent, Object child) {
 		MyTreeNode treenode = (MyTreeNode) parent;
-		for (int i = 0; i < treenode.getChildren().size(); i++) {
-			if (treenode.getChildren().get(i) == child) {
-				return i;
-			}
-		}
-		return 0;
+		return treenode.getIndexOfChild((MyTreeNode)child);
 	}
 
 	public boolean isLeaf(Object node) {
@@ -116,7 +111,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 
 	private void createTree() {
 		boolean isExist = false;
-		this.root = new MyTreeNode(null, null, null);
+		this.root = new MyTreeNode(null, null, null,null);
 		if (list != null) {
 			for (int i = 0; i < list.size(); ++i) {
 				CategoryCommodityVO vo = list.get(i);
@@ -131,7 +126,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 	private void insertNode(MyTreeNode node, CategoryCommodityVO vo) {
 		if (node.getChildrenCount() == 0) {
 			node.getChildren().add(
-					new MyTreeNode(vo.id, vo.Categoryvo, vo.commodityvo));
+					new MyTreeNode(vo.id, vo.Categoryvo, vo.commodityvo,node));
 			return;
 		} else {
 			ArrayList<MyTreeNode> list = node.getChildren();
@@ -146,7 +141,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 				} else {
 					node.getChildren()
 							.add(new MyTreeNode(vo.id, vo.Categoryvo,
-									vo.commodityvo));
+									vo.commodityvo,node));
 					return;
 				}
 			}

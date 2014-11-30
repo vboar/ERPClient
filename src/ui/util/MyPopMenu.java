@@ -45,8 +45,22 @@ public class MyPopMenu extends JPopupMenu {
 		this.setVisible(false);
 	}
 
-	public void enableItem(boolean isable){
+	public void setAllItenEnable(boolean isable){
+		this.add.setEnabled(isable);
 		this.del.setEnabled(isable);
 		this.upd.setEnabled(isable);
+		this.updateUI();
+	}
+	
+	public void unableDelUpdItem(){
+		this.add.setEnabled(true);
+		this.del.setEnabled(false);
+		this.upd.setEnabled(false);
+		this.updateUI();
+	}
+	
+	public void unableAddItem(){
+		this.add.setEnabled(false);
+		this.updateUI();
 	}
 }

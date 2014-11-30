@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import org.dom4j.Element;
 import org.jdesktop.swingx.JXTreeTable;
 
 import ui.util.BasicOperation;
+import ui.util.MyOptionPane;
 import ui.util.MyPopMenu;
+import util.ResultMessage;
 import vo.CategoryCommodityVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CommodityBLService;
@@ -61,6 +62,25 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		ArrayList<CategoryCommodityVO> list = this.controller.bigShow();
 		this.treeTableModel = new CommodityTreeTableModel(list);
 		this.treeTable = new JXTreeTable(this.treeTableModel);
+		this.treeTable.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent e) {
+				TreePath path = treeTable.getPathForLocation(e.getX(), e.getY());
+				MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
+				if (path == null) 	return;
+				if (e.getButton() == 3) {
+					if(node.isCategory()){
+						if(node.isLastCategory()){
+							popmenu.unableDelUpdItem();
+						}else	popmenu.setAllItenEnable(false);;
+					}else{
+						popmenu.setAllItenEnable(true);
+						popmenu.unableAddItem();
+					}
+					popmenu.show(e.getComponent(), e.getX(), e.getY());
+				}
+			}
+		});
 		this.jsp = new JScrollPane();
 		this.jsp.getViewport().add(this.treeTable);
 		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());	
@@ -68,8 +88,20 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 
 	@Override
 	public void delete() {
-		MyTreeNode node = (MyTreeNode)this.treeTable.getModel().getValueAt(this.treeTable.getSelectedRow(), 0);
-		System.out.println(node.getId());
+		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
+		if(!node.isCategory()){
+			int result = MyOptionPane.showConfirmDialog(null, "确认删除？","确认提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+			if(result == MyOptionPane.YES_OPTION){
+				if(this.controller.delete(node.getCommodityvo())==ResultMessage.SUCCESS){
+					MyOptionPane.showMessageDialog(null, "删除成功！");
+					node.getParent().removeChild(node);
+					this.treeTable.updateUI();			
+				}else{
+					MyOptionPane.showConfirmDialog(null, "删除失败！");
+				}
+			}
+		}
 	}
 
 	@Override

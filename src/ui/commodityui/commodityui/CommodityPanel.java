@@ -22,13 +22,15 @@ public class CommodityPanel extends JPanel{
 	
 	private MyButton deletebtn;
 	
-	private MyButton modifybtn;
+	private MyButton updatebtn;
 	
 	private MyButton findbtn;
 	
 	private MyButton showAll;
 
 	private MyLabel commoditylist;
+	
+	private MyLabel title;
 	
 	private CommodityTreePane treepane;
 	
@@ -70,28 +72,43 @@ public class CommodityPanel extends JPanel{
 
 
 	private void initLabels(Element labels) {
+		this.title = new MyLabel(labels.element("title"));
+		this.add(this.title);
+		this.commoditylist = new MyLabel(labels.element("commoditylist"));
+		this.add(this.commoditylist);
 	}
 
 	private void initButtons(Element buttons) {
 		this.initAddBtn(buttons.element("add"));
 		this.initDeleteBtn(buttons.element("delete"));
-		this.initDeleteBtn(buttons.element("modify"));
+		this.initUpdateBtn(buttons.element("update"));
 		this.initFindBtn(buttons.element("find"));
-		this.add(this.addbtn);
-		this.add(this.deletebtn);
-		this.add(this.findbtn);
-	}
-	
-	private void initFindBtn(Element element) {
-		this.findbtn = new MyButton(element);
-	}
-
-	private void initDeleteBtn(Element element) {
-		this.deletebtn = new MyButton(element);
+		this.initShowAllBtn(buttons.element("showall"));
 	}
 
 	private void initAddBtn(Element element) {
 		this.addbtn = new MyButton(element);
+		this.add(this.addbtn);
+	}
+
+	private void initDeleteBtn(Element element) {
+		this.deletebtn = new MyButton(element);
+		this.add(this.deletebtn);
+	}
+	
+	private void initUpdateBtn(Element element){
+		this.updatebtn = new MyButton(element);
+		this.add(this.updatebtn);
+	}
+
+	private void initFindBtn(Element element) {
+		this.findbtn = new MyButton(element);
+		this.add(this.findbtn);
+	}
+	
+	private void initShowAllBtn(Element element) {
+		this.showAll = new MyButton(element);
+		this.add(this.showAll);
 	}
 
 }
