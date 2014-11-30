@@ -5,28 +5,28 @@
  */
 package businesslogic.paymentbl;
 
+import java.util.ArrayList;
+
 import util.ResultMessage;
-import businesslogic.accountbl.MockLog;
+import vo.AccountVO;
+import vo.TransferLineItemVO;
+import businesslogic.accountbl.Account;
+import businesslogic.customerbl.Customer;
 
 public class Receipt {
 	
-	MockCustomer customer;
-	
-	MockAccount account;
-	
-	public Receipt(MockCustomer customer, MockAccount account){
-		this.customer = customer;
-		this.account = account;	
-	}
-	
-	public ResultMessage update(double money){
-		this.customer.updateRec(-money);
-		this.account.updateAccount(money);
+	public ResultMessage approve(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
+		Account a=new Account();
+		Customer c=new Customer();
+		
+		for(int i=0;i<transferlist.size();i++){
+			AccountVO temp;
+			temp = a.findByAccount(transferlist.get(i).bankAccount);
+			temp.balance=temp.balance+transferlist.get(i).account;
+			a.update(temp);
+		}
+		
+		c.updateByReceipt(customerId, total);
 		return ResultMessage.SUCCESS;
-	}
-
-	public ResultMessage createLog(String content){	
-		MockLog log = new MockLog(content);
-		return log.add();	
-	}
+	} 
 }

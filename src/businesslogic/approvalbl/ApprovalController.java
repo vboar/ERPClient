@@ -110,38 +110,32 @@ public class ApprovalController implements ApprovalBLService{
 
 	@Override
 	public ResultMessage approveSale(SaleVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approveSale(vo);
 	}
 
 	@Override
 	public ResultMessage approveSaleReturn(SaleVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approveSaleReturn(vo);
 	}
 
 	@Override
 	public ResultMessage approvePayment(PaymentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approvePayment(vo.transferList, vo.id, vo.customerId, vo.total);
 	}
 
 	@Override
 	public ResultMessage approveReceipt(PaymentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approveReceipt(vo.transferList,vo.id,vo.customerId,vo.total);
 	}
 
 	@Override
 	public ResultMessage approveOverflow(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approveOverflow(vo);
 	}
 
 	@Override
 	public ResultMessage approveLoss(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approveLoss(vo);
 	}
 
 	@Override

@@ -12,15 +12,13 @@ import po.UserPO;
 import util.ResultMessage;
 import util.UserType;
 import vo.UserVO;
-import businesslogic.accountbl.MockLog;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class User {
 	public ResultMessage createLog(String content) {
-
-		MockLog log = new MockLog(content);
-		return log.add();
+		//TODO
+		return null;
 	}
 
 	/**

@@ -126,31 +126,10 @@ Purchase purchase=new Purchase();
 
 			return voList;
 		}
-
-		
-		
-
-	
-	
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	
-	public ResultMessage updateCommodityByPurchase(
-			ArrayList<CommodityLineItemVO> list) {
-		MockCommodity mc=new MockCommodity();
-		
-		return mc.updateCommodityByPurchase(list);
-	}
-	
-	public ResultMessage updateCustomerByPurchase(String name,double total){
-		MockCustomer mc=new MockCustomer();
-		
-		return mc.updateCustomerByPurchase(name, total);
-	}
 	
 	public ResultMessage addLog(String content){
-		MockLog ml=new MockLog();
-		
-		return ml.addLog(content);
+		//TODO
+		return null;
 	}
 
 }

@@ -293,23 +293,8 @@ public class Sale {
 		return voList;
 	}
 	
-	
-	
-	public ResultMessage updateCommodityBySale(
-			ArrayList<CommodityLineItemVO> list) {
-		MockCommodity mc = new MockCommodity();
-
-		return mc.updateCommodityBySale(list);
-	}
-
-	public ResultMessage updateCustomerBySale(String name, double total) {
-		MockCustomer ma = new MockCustomer();
-
-		return ma.updateCustomerBySale(name, total);
-	}
-
 	public ResultMessage addlog(String content) {
-		MockLog ml = new MockLog();
-		return ml.addlog(content);
+		//TODO
+		return null;
 	}
 }

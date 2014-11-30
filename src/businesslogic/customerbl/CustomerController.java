@@ -42,8 +42,8 @@ public class CustomerController implements CustomerBLService {
 		return customer.show();
 	}
 	
-	public ResultMessage updatePaybles(String customerId,double total){
-		return customer.updatePaybles(customerId, total);
+	public ResultMessage updateByPayment(String customerId,double total){
+		return customer.updateByPayment(customerId, total);
 	}
 
 }

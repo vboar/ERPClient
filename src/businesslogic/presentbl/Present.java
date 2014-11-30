@@ -156,24 +156,4 @@ public class Present {
 		return voList;
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-	private MockCommodity mc;
-
-	public Present() {
-	}
-
-	public Present(MockCommodity mc) {
-		this.mc = mc;
-	}
-
-	public ResultMessage afterApproval(int number) {
-		return mc.updateNum(number);
-	}
-
-	public ResultMessage createLog(String content) {
-		MockLog ml = new MockLog(content);
-		return ml.create();
-	}
-
 }

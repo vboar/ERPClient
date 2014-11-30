@@ -15,7 +15,6 @@ import util.DocumentType;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
-import businesslogic.salebl.MockCommodity;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
@@ -128,9 +127,8 @@ public class Purchase {
 	}
 
 	// TODO
-	public ResultMessage approve(Purchase vo) {
+	public ResultMessage approve(PurchaseVO vo) {
 		return null;
-
 	}
 	
 	//下面是purchasereturn专用方法
@@ -281,25 +279,9 @@ public class Purchase {
 		return voList;
 	}
 
-	// ---------------------------------------------------------------------------------------------------
-
-	public ResultMessage updateCommodityByPurchase(
-			ArrayList<CommodityLineItemVO> list) {
-		MockCommodity mc = new MockCommodity();
-
-		return mc.updateCommodityBySale(list);
-	}
-
-	public ResultMessage updateCustomerByPurchase(String name, double total) {
-		MockCustomer mc = new MockCustomer();
-
-		return mc.updateCustomerByPurchase(name, total);
-	}
-
 	public ResultMessage addLog(String content) {
-		MockLog ml = new MockLog();
-
-		return ml.addLog(content);
+		//TODO
+		return null;
 	}
 
 }

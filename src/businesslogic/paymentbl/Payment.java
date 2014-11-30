@@ -17,8 +17,7 @@ import util.Time;
 import vo.AccountVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
-import businesslogic.accountbl.AccountController;
-import businesslogic.accountbl.MockLog;
+import businesslogic.accountbl.Account;
 import businesslogic.customerbl.CustomerController;
 import businesslogic.logbl.Log;
 import businesslogic.loginbl.Login;
@@ -26,23 +25,10 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 //oneoneO
 public class Payment {
-
-	MockCustomer customer;
-	
-	MockAccount account;
-	
-	public Payment(MockCustomer customer, MockAccount account){
-		this.customer = customer;
-		this.account = account;	
-	}
-	
-	public Payment(){
-		
-	}
 	
 	public ResultMessage createLog(String content){	
-		MockLog log = new MockLog(content);
-		return log.add();
+		//TODO
+		return null;
 	}
 	
 	//真逻辑开始
@@ -70,19 +56,19 @@ public class Payment {
 		return ResultMessage.SUCCESS;
 	}
 	
-	//审批通过引起的更新
-	public ResultMessage update(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){	
+	public ResultMessage approve(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){	
 		//修改公司账户金额，修改客户应收应付
-		AccountController acc=new AccountController();
+		Account acc=new Account();
 		CustomerController c=new CustomerController();
 		
 		for(int i=0;i<transferlist.size();i++){
 		AccountVO temp;
 		temp =acc.findByAccount(transferlist.get(i).bankAccount);
 		temp.balance=temp.balance-transferlist.get(i).account;
+		acc.update(temp);
 		}
 		
-		c.updatePaybles(customerId, total);
+		c.updateByPayment(customerId, total);
 		return ResultMessage.SUCCESS;
 	}
 	

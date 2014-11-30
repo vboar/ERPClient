@@ -19,8 +19,8 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 public class Category {
 
 	public ResultMessage createLog(String content) {
-		MockLog ml = new MockLog(content);
-		return ml.create();
+		//TODO
+		return null;
 	}
 
 	private CategoryPO CategoryVOToCategoryPO(CategoryVO vo) {

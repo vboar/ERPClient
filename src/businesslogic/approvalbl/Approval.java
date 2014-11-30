@@ -7,51 +7,64 @@ package businesslogic.approvalbl;
 
 import java.util.ArrayList;
 
-import po.CustomerPO;
 import util.ResultMessage;
+import vo.ExceptionVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
 import vo.TransferLineItemVO;
-import businesslogic.accountbl.MockLog;
-import businesslogic.messagebl.MessageController;
-import businesslogic.paymentbl.PaymentController;
+import businesslogic.exceptionbl.Loss;
+import businesslogic.exceptionbl.Overflow;
+import businesslogic.paymentbl.Payment;
+import businesslogic.paymentbl.Receipt;
+import businesslogic.purchasebl.Purchase;
+import businesslogic.purchasebl.PurchaseReturn;
+import businesslogic.salebl.Sale;
+import businesslogic.salebl.SaleReturn;
 //审批通过后：1、发消息到收件箱  2、修改相应数据
 public class Approval {
-	MessageController mc=new MessageController();
-	public ResultMessage createLog(String content){
-		MockLog log = new MockLog(content);
-		return log.add();	
-	}
-	
-	public double approve(double money,CustomerPO po){
-		MockCustomer mcc=new MockCustomer();
-				return (mcc.recieveChange(po, money));
-	}
-	
-	public ResultMessage updateAccountByApproval(String name,String account,double total){
-		MockAccount ma=new MockAccount();
-		return ma.updateAccountByApproval(name, account, total);
-	}
-	
-	public ResultMessage updateCommodityBySale(String id,int number,double recentSalePrice){
-		MockCommodity mc=new MockCommodity();
-		
-		return mc.updateComodityBySale(id, number, recentSalePrice);
-	}
-	
-	public ResultMessage updateCommodityByPurchase(String id,int number,double recentPurchasePrice){
-		MockCommodity mc=new MockCommodity();
-		
-		return mc.updateCommodityByPurchase(id, number, recentPurchasePrice);
-	}
 	
 	public ResultMessage sendMessage(String content){
 		//TODO
-		//mc.send(new MessageVO());
 		return ResultMessage.SUCCESS;
 	}
 
 	public ResultMessage approvePayment(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
-		PaymentController p=new PaymentController();
-		return p.update(transferlist,id,customerId,total);
+		Payment p=new Payment();
+		return p.approve(transferlist,id,customerId,total);
 	}
 	
+	public ResultMessage approveReceipt(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
+		Receipt r=new Receipt();
+		return r.approve(transferlist, id, customerId, total);
+	}
+	
+	public ResultMessage approveSale(SaleVO vo){
+		Sale s=new Sale();
+		return s.approve(vo);
+	}
+	
+	public ResultMessage approveSaleReturn(SaleVO vo){
+		SaleReturn sr=new SaleReturn();
+		return sr.approve(vo);
+	}
+	
+	public ResultMessage approvePurchase(PurchaseVO vo){
+		Purchase p=new Purchase();
+		return p.approve(vo);
+	}
+	
+	public ResultMessage approvePurchaseReturn(PurchaseVO vo){
+		PurchaseReturn pr=new PurchaseReturn();
+		return pr.approve(vo);
+	}
+	
+	public ResultMessage approveOverflow(ExceptionVO vo){
+		Overflow of=new Overflow();
+		return of.approve(vo);
+	}
+	
+	public ResultMessage approveLoss(ExceptionVO vo){
+		Loss l=new Loss();
+		return l.approve(vo);
+	}
 }

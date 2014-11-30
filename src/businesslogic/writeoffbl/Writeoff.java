@@ -16,17 +16,6 @@ public class Writeoff {
 
 	private ArrayList<CanWriteOff> bls;
 	
-	public Writeoff(){
-		bls = new ArrayList<CanWriteOff>();
-		bls.add(new MockPresent());
-		bls.add(new MockOver());
-		bls.add(new MockCash());
-		bls.add(new MockPayment());
-		bls.add(new MockPurchase());
-		bls.add(new MockSale());
-		bls.add(new MockLoss());
-	}
-	
 	public ResultMessage autoCreate(DocumentType type, String id) {
 		for(int i=0; i<bls.size(); i++){
 			if(bls.get(i).getType() == type){

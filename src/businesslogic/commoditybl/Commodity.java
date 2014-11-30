@@ -15,14 +15,15 @@ import util.ResultMessage;
 import vo.CategoryCommodityVO;
 import vo.CategoryVO;
 import vo.CommodityVO;
+import vo.ExceptionVO;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Commodity {
 
 	public ResultMessage createLog(String content) {
-		MockLog ml = new MockLog(content);
-		return ml.create();
+		//TODO
+		return null;
 	}
 
 	private CommodityPO commodityVOToCommodityPO(CommodityVO vo) {
@@ -233,4 +234,20 @@ public class Commodity {
 		cat.update(vo);
 	}
 
+	//报溢报损单通过审批，修改商品数量
+	public ResultMessage approveException(ExceptionVO vo){
+		for(int i=0;i<vo.list.size();i++){
+				try {
+					CommodityPO temp=DataFactoryImpl.getInstance().getCommodityData().getById(vo.list.get(i).id);
+					temp.setNumber(vo.list.get(i).actualNumber);
+					DataFactoryImpl.getInstance().getCommodityData().update(temp);
+				} catch (RemoteException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
+	}	
+		
+		return ResultMessage.SUCCESS;
+	}
+	
 }

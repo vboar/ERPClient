@@ -11,8 +11,8 @@ import util.ResultMessage;
 public class Initial {
 	
 	public ResultMessage createLog(String content) {
-		MockLog ml = new MockLog(content);
-		return ml.create();
+		//TODO
+		return null;
 	}
 	
 }
