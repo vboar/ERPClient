@@ -200,13 +200,16 @@ public class User {
 	public ArrayList<UserVO> fuzzyFind(String keyWord){
 		ArrayList<UserVO> voList1=findByName(keyWord);
 		ArrayList<UserVO> voList2=findById(keyWord);
-		ArrayList<UserVO> voList=voList1;
-	loop:	for(UserVO vo2:voList1){
-			for(UserVO vo1:voList2){
+		ArrayList<UserVO> voList=new ArrayList<UserVO>();
+		voList.addAll(voList1);
+		for(UserVO vo2:voList2){
+			boolean add=true;
+			for(UserVO vo1:voList1){
 				if(vo1.id.equals(vo2.id)){
-					continue loop;
+					add=false;
 				}
 			}
+			if(add)
 			voList.add(vo2);
 		}
 
