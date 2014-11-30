@@ -1,5 +1,6 @@
 package ui.paymentui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -48,11 +49,13 @@ public class CreateReceiptPanel extends JPanel {
 		this.setLayout(null);
 		this.initComponent(pcfg);
 		this.repaint();
+		this.setBackground(Color.WHITE);
 	}
 
 	@Override
 	public void paintComponent(Graphics g){
-		g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(),pcfg.getH(),null);
+		// TODO
+//		g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(),pcfg.getH(),null);
 		g.drawLine(10, 50, 720, 50);
 	}
 	

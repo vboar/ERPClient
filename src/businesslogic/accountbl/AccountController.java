@@ -33,7 +33,7 @@ public class AccountController implements AccountBLService {
 	@Override
 	public ArrayList<AccountVO> fuzzyFind(String keyWord) {
 		// TODO Auto-generated method stub
-		return null;
+		return account.show();
 	}
 	
 }
