@@ -166,6 +166,6 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	}
 	
 	public void findCommodity(String key){
-
+	//	this.treeTable.expandPath(new TreePath(root));
 	}
 }

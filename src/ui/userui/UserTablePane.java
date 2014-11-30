@@ -96,6 +96,7 @@ public class UserTablePane extends TablePanel{
 	}
 	
 	public void showFindTable(ArrayList<UserVO> list){
+		System.out.println("findList"+list.size());
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
 			names.add(columnName[i]);
@@ -112,6 +113,7 @@ public class UserTablePane extends TablePanel{
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
+		this.table.setUnvisibleColumn(2);
 		this.updateUI();
 		
 	}

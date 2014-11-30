@@ -56,32 +56,29 @@
 		</panel>
 
 		<!-- 用户管理面板 -->
-		<panel className="ui.userui.UserPanel" width="960" height="510"
-			x="0" y="90" bg="img/mainpanel.jpg">
+		<panel className="ui.userui.UserPanel" width="760" height="510"
+			x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png"
+				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png"
 					pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"
+				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"
 					pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="530" y="36" path="img\upduser.png"
+				<update text="" w="80" h="32" x="330" y="36" path="img\upduser.png"
 					pathroll="img\upduser1.png" />
-				<showall text="" w="100" h="30" x="610" y="37" path="img\show.png"
+				<showall text="" w="100" h="30" x="410" y="37" path="img\show.png"
 					pathroll="img\show1.png" />
-				<find text="" w="24" h="24" x="910" y="40" path="img\search.png"
+				<find text="" w="30" h="30" x="700" y="30" path="img\search1.png"
 					pathroll="img\search1.png" />
-				<usermanage text="" w="100" h="40" x="" y="" />
 			</buttons>
 			<labels>
-				<userlist text="" w="120" h="32" x="220" y="35"
+				<userlist text="" w="120" h="32" x="20" y="35"
 					path="img\userlist.png" />
-				<modulename text="" w="120" h="30" x="205" y="2"
+				<modulename text="" w="120" h="30" x="5" y="2"
 					path="img\usermanage.png" />
 				<admin text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
-				<usermanagebtn text="" w="150" h="32" x="35" y="60"
-					path="img\usermanagebtn.png" />
 			</labels>
 			<textfields>
-				<findinput w="175" h="28" x="725" y="38" />
+				<findinput w="175" h="28" x="525" y="38" />
 			</textfields>
 			<tablepane className="ui.userui.UserTablePane" width="730"
 				height="390" x="10" y="80">
@@ -94,7 +91,18 @@
 				</columnnames>
 			</tablepane>
 		</panel>
-
+		
+		<!-- 系统管理员面板 -->
+		<panel className="ui.homeui.AdminPanel" width="960"
+			height="480" x="0" y="90" bg="img/leftpanel.png">
+			<buttons>
+				<usermanage text="系统用户管理" w="160" h="40" x="20" y="50" />
+			</buttons>
+			<labels>
+				<title text="用户管理" w="200" h="30" x="0" y="0" />
+			</labels>
+			<textfields></textfields>
+		</panel>
 
 		<!-- 库存管理人员面板 -->
 		<panel className="ui.homeui.StockKeeperPanel" width="960"
@@ -132,10 +140,12 @@
 		<!-- 商品分类管理面板 -->
 		<panel className="ui.commodityui.categoryui.CategoryPanel"
 			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
-			<buttons></buttons>
+			<buttons>
+				<showall text="展开所有节点" w="120" h="30" x="610" y="42"/>
+			</buttons>
 			<labels>
 				<title text="商品分类管理" w="200" h="30" x="10" y="2" />
-				<tip text="操作提示：请在分类节点上单击鼠标右键进行分类管理操作。" w="440" h="30" x="180"
+				<tip text="操作提示：请在分类节点上单击鼠标右键进行分类管理操作。" w="440" h="30" x="160"
 					y="45" font="微软雅黑" fontsize="15" color="true" r="255" g="100" b="10" />
 				<category text="商品分类浏览" w="160" h="40" x="20" y="36" font="微软雅黑"
 					fontsize="20" color="true" r="40" g="40" b="40" />
@@ -148,25 +158,18 @@
 		<panel className="ui.commodityui.commodityui.CommodityPanel"
 			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png"
-					pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"
-					pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="330" y="36" path="img\upduser.png"
-					pathroll="img\upduser1.png" />
-				<showall text="" w="100" h="30" x="410" y="37" path="img\show.png"
-					pathroll="img\show1.png" />
-				<find text="" w="24" h="24" x="710" y="40" path="img\search.png"
-					pathroll="img\search1.png" />
+				<find text="搜索" w="60" h="30" x="680" y="45"  />
 			</buttons>
 			<labels>
-				<tip text="操作提示：请选中节点单击鼠标右键进行商品的增、删、改操作。" w="440" h="30" x="180"
-					y="45" font="微软雅黑" fontsize="15" color="true" r="255" g="100" b="10" />
+				<tip text="操作提示：请选中节点单击鼠标右键进行商品的增、删、改操作。" w="400" h="30" x="120"
+					y="45" font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10" />
 				<title text="商品管理" w="200" h="30" x="10" y="2" />
 				<commoditylist text="商品浏览" w="160" h="40" x="20" y="36"
 					font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
 			</labels>
-			<textfields></textfields>
+			<textfields>
+				<find w="180" h="30" x="490" y="45"/>
+			</textfields>
 			<tree width="730" height="380" x="10" y="80" rootname="ERP" />
 		</panel>
 		
@@ -370,8 +373,8 @@
 	<userinfodialog width="500" height="280" x="230" y="180"
 		title="用户信息">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210"></cancel>
+			<commit text="提交" w="80" h="30" x="150" y="195" />
+			<cancel text="取消" w="80" h="30" x="270" y="195" />
 		</buttons>
 		<labels>
 			<id text="用户名" w="40" h="30" x="30" y="20" />

@@ -56,17 +56,11 @@ public class MySpecialTextField extends MyTextField {
 	}
 
 	public void initTextField() {
-
 		// 添加键盘监听器
 		this.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				setAdjusting(true);
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if (box.isPopupVisible()) {
-						e.setKeyCode(KeyEvent.VK_ENTER);
-					}
-				}
 				if (e.getKeyCode() == KeyEvent.VK_ENTER|| e.getKeyCode() == KeyEvent.VK_UP
 						|| e.getKeyCode() == KeyEvent.VK_DOWN) {
 					e.setSource(box);
@@ -79,7 +73,7 @@ public class MySpecialTextField extends MyTextField {
 					}
 				}
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					box.setPopupVisible(false);
+					box.setPopupVisible(true);
 				}
 				setAdjusting(false);
 			}
@@ -107,6 +101,7 @@ public class MySpecialTextField extends MyTextField {
 				setAdjusting(true);
 				String input = MySpecialTextField.this.getText();
 				addItems(listener.getFuzzyResult(input));
+				System.out.println("input: "+input);
 				box.setPopupVisible(model.getSize()!=0);
 				setAdjusting(false);
 			}
@@ -126,6 +121,7 @@ public class MySpecialTextField extends MyTextField {
 
 	@SuppressWarnings("unchecked")
 	public void addItems(ArrayList<String> strs) {
+		System.out.println("addItem:"+strs.size());
 		this.box.removeAllItems();
 		for (int i = 0; i < strs.size(); ++i) {
 			this.box.addItem(strs.get(i));

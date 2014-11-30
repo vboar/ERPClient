@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -152,6 +153,28 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 		this.categoryInfo.setVisible(true);
 	}
 
+	public void expandNode(){
+		this.expandAllNode(tree, new TreePath(root), true);
+	}
+	
+	private void expandAllNode(JTree tree, TreePath parent, boolean expand) {
+	    // Traverse children
+	    TreeNode node = (TreeNode) parent.getLastPathComponent();
+	    if (node.getChildCount() >= 0) {
+	        for (Enumeration<?> e = node.children(); e.hasMoreElements();) {
+	            TreeNode n = (TreeNode) e.nextElement();
+	            TreePath path = parent.pathByAddingChild(n);
+	            expandAllNode(tree, path, expand);
+	        }
+	    }
+	 
+	    if (expand) {
+	        tree.expandPath(parent);
+	    } else {
+	        tree.collapsePath(parent);
+	    }
+	}
+	
 	private void createTree(ArrayList<CategoryVO> list) {
 		boolean isExist = false;
 		if(list!=null){
@@ -205,5 +228,7 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 		}
 		return false;
 	}
+	
+	
 
 }

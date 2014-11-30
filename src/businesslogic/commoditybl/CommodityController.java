@@ -43,7 +43,21 @@ public class CommodityController implements CommodityBLService {
 
 	@Override
 	public ArrayList<CommodityVO> fuzzyFind(String keyWord) {
-		// TODO Auto-generated method stub
+		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
+
+		if(keyWord.equals("00")){
+			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
+			list.add(new CommodityVO("002-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
+			return list;
+		}else if(keyWord.equals("0")){
+			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
+			list.add(new CommodityVO("002-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
+			list.add(new CommodityVO("013-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
+			return list;
+		}else if(keyWord.equals("001")){
+			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
+			return list;
+		}
 		return null;
 	}
 

@@ -9,7 +9,7 @@ import vo.CategoryCommodityVO;
 public class CommodityTreeTableModel extends AbstractTreeTableModel {
 
 	private MyTreeNode root;
-
+	
 	private ArrayList<CategoryCommodityVO> list;
 
 	private static int COLUMN_COUNT = 8;
@@ -19,7 +19,16 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 		this.createTree();
 	}
 
-	public MyTreeNode findNode(String key){
+	public MyTreeNode findNode(MyTreeNode node, String key){
+		if ((node.getId() != null) && (node.getId().equals(key))) {
+			return node;
+		}
+		if (node.getChildrenCount() >= 0) {
+			ArrayList<MyTreeNode> list = node.getChildren();
+			for (MyTreeNode treeNode : list) {
+				findNode(treeNode,key);
+			}
+		}
 		return null;
 	}
 	

@@ -62,6 +62,10 @@ public class StockKeeperPanel extends MyMainPanel {
 					remove(stockInfoPanel);
 					stockInfoPanel = null;
 				}
+				if(presentPanel != null){
+					remove(presentPanel);
+					presentPanel = null;
+				}
 				repaint();
 			}
 		});
@@ -81,6 +85,10 @@ public class StockKeeperPanel extends MyMainPanel {
 				if(stockInfoPanel != null) {
 					remove(stockInfoPanel);
 					stockInfoPanel = null;
+				}
+				if(presentPanel != null){
+					remove(presentPanel);
+					presentPanel = null;
 				}
 				repaint();
 				
@@ -127,6 +135,10 @@ public class StockKeeperPanel extends MyMainPanel {
 				if(commodityPanel != null) {
 					remove(commodityPanel);
 					commodityPanel = null;
+				}
+				if(presentPanel != null){
+					remove(presentPanel);
+					presentPanel = null;
 				}
 				repaint();
 			}

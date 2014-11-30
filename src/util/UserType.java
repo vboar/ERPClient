@@ -19,7 +19,7 @@ public enum UserType {
 		case COUNTER:
 			return "财务人员";
 		case SALESMAN:
-			return "销售人员";
+			return "进货销售人员";
 		case MANAGER:
 			return "总经理";
 		case ADMINISTRATOR:
@@ -35,7 +35,7 @@ public enum UserType {
 			return STOCKKEEPER;
 		case "财务人员":
 			return COUNTER;
-		case "销售人员":
+		case "进货销售人员":
 			return SALESMAN;
 		case "总经理":
 			return MANAGER;

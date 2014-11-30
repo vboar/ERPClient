@@ -2,10 +2,13 @@ package ui.commodityui.categoryui;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.MyButton;
 import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
@@ -20,6 +23,8 @@ public class CategoryPanel extends JPanel{
 	private MyLabel category;
 	
 	private MyLabel tip;
+	
+	private MyButton showAll;
 	
 	private PanelConfig pcfg;
 	
@@ -51,9 +56,18 @@ public class CategoryPanel extends JPanel{
 		this.title = new MyLabel(pcfg.getLabels().element("title"));
 		this.category = new MyLabel(pcfg.getLabels().element("category"));
 		this.tip = new MyLabel(pcfg.getLabels().element("tip"));
+		this.showAll = new MyButton(pcfg.getButtons().element("showall"));
+		this.showAll.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				treepane.expandNode();
+			}
+		});
 		this.add(this.title);
 		this.add(this.category);
 		this.add(this.tip);
+		this.add(this.showAll);
 	}
 
 }

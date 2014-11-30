@@ -108,7 +108,6 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		this.userlist = new MyLabel(labels.element("userlist"));
 		this.add(new MyLabel(labels.element("modulename")));
 		this.add(new MyLabel(labels.element("admin")));
-		this.add(new MyLabel(labels.element("usermanagebtn")));
 		this.add(this.userlist);
 	}
 
@@ -238,7 +237,10 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	}
 	
 	public void findUser(String keyword){
-		this.userTable.showFindTable(userController.fuzzyFind(keyword));
+		System.out.println("keyword:"+keyword);
+		ArrayList<UserVO> list = userController.fuzzyFind(keyword);
+		System.out.println(list.size());
+		this.userTable.showFindTable(list);
 	}
 
 	@Override
@@ -247,6 +249,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<result.size(); ++i){
 			UserVO vo = result.get(i);
+			System.out.println("get:"+vo.id);
 			strs.add(vo.id);
 		}
 		return strs;

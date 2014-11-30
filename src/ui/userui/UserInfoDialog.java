@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -76,7 +78,11 @@ public class UserInfoDialog extends JDialog {
 		this.idTxt.setEnabled(false);
 		this.nameTxt.setText(vo.name);
 		this.passwordTxt.setText(vo.password);
-		this.typebox.setSelectedIndex(vo.type.ordinal());
+		if(vo.type.ordinal()<=1){
+			this.typebox.setSelectedIndex(vo.type.ordinal());
+		}else{
+			this.typebox.setSelectedIndex(0);
+		}
 		this.permissionbox.setSelectedIndex(vo.permission);
 	}
 
@@ -109,7 +115,6 @@ public class UserInfoDialog extends JDialog {
 		this.commit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(UserType.check(typebox.getSelectedItem().toString()));
 				UserVO vo = new UserVO(idTxt.getText(),passwordTxt.getText(),
 						UserType.check(typebox.getSelectedItem().toString()),
 						permissionbox.getSelectedIndex(),nameTxt.getText());
@@ -117,15 +122,21 @@ public class UserInfoDialog extends JDialog {
 							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
 						if(isAdd){
-							if(panel.addUser(vo)==ResultMessage.SUCCESS){
-								MyOptionPane.showMessageDialog(null, "添加成功！");
-								UserInfoDialog.this.dispose();
-							}else	MyOptionPane.showMessageDialog(null, "填写信息错误，添加失败！");	
+							ResultMessage addResult = panel.addUser(vo);
+							switch(addResult){
+								case SUCCESS:
+									MyOptionPane.showMessageDialog(null, "添加成功！");
+									UserInfoDialog.this.dispose(); return;
+								case EXIST:
+									MyOptionPane.showMessageDialog(null, "该用户ID已存在！");return;
+								default:
+									MyOptionPane.showMessageDialog(null, "填写信息不符合要求，请重新填写！");
+							}	
 						}else{
 							if(panel.updateUser(vo)==ResultMessage.SUCCESS){
 								MyOptionPane.showMessageDialog(null, "修改成功！");
 								UserInfoDialog.this.dispose();
-							}else	MyOptionPane.showMessageDialog(null, "填写信息错误，请重新填写！");	
+							}else	MyOptionPane.showMessageDialog(null, "填写信息不符合要求，请重新填写！");	
 						}
 					}	
 			}			
@@ -147,26 +158,26 @@ public class UserInfoDialog extends JDialog {
 	
 	private void initTextFields(Element ele){
 		this.idTxt = new MyTextField(ele.element("id"));
-		this.idTxt.addKeyListener(new  KeyAdapter(){
+		this.idTxt.addMouseListener(new  MouseAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
+			public void mouseClicked(MouseEvent e){
 				idTip.setVisible(true);
 				nameTip.setVisible(false);
 				passwordTip.setVisible(false);
 			}
 		});
 		this.nameTxt = new MyTextField(ele.element("name"));
-		this.nameTxt.addKeyListener(new KeyAdapter(){
+		this.nameTxt.addMouseListener(new MouseAdapter(){
 			@Override
-			public void keyTyped(KeyEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				idTip.setVisible(false);
 				nameTip.setVisible(true);
 				passwordTip.setVisible(false);
 			}});
 		this.passwordTxt = new MyTextField(ele.element("password"));
-		this.passwordTxt.addKeyListener(new KeyAdapter(){
+		this.passwordTxt.addMouseListener(new MouseAdapter(){
 			@Override
-			public void keyTyped(KeyEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				idTip.setVisible(false);
 				nameTip.setVisible(false);
 				passwordTip.setVisible(true);
