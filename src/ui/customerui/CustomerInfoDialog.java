@@ -26,24 +26,6 @@ import config.InfoDialogConfig;
 
 @SuppressWarnings("serial")
 public class CustomerInfoDialog extends JDialog {
-
-	private MyLabel categoryLabel;
-	
-	private MyLabel levelLabel;
-	
-	private MyLabel nameLabel;
-	
-	private MyLabel phoneNumberLabel;
-	
-	private MyLabel addressLabel;
-	
-	private MyLabel postalCodeLabel;
-	
-	private MyLabel emailLabel;
-	
-	private MyLabel creditLimitLabel;
-	
-	private MyLabel salesmanLabel;
 	
 	private MyTextField nameTxt;
 	
@@ -77,7 +59,7 @@ public class CustomerInfoDialog extends JDialog {
 		super(frame, true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.cfg = cfg;
-		this.setTitle("客户信息");
+		this.setTitle(cfg.getTitle());
 		this.panel = panel;
 		this.isAdd = isAdd;
 		this.setSize(this.cfg.getW(), this.cfg.getH());
@@ -109,24 +91,15 @@ public class CustomerInfoDialog extends JDialog {
 	}
 	
 	private void initLabels(Element ele) {
-		this.categoryLabel = new MyLabel(ele.element("category"));
-		this.levelLabel = new MyLabel(ele.element("level"));
-		this.nameLabel = new  MyLabel(ele.element("name"));
-		this.phoneNumberLabel = new MyLabel(ele.element("phonenumber"));
-		this.addressLabel = new MyLabel(ele.element("address"));
-		this.postalCodeLabel = new MyLabel(ele.element("postalcode"));
-		this.emailLabel = new MyLabel(ele.element("email"));
-		this.creditLimitLabel = new MyLabel(ele.element("creditlimit"));
-		this.salesmanLabel = new MyLabel(ele.element("salesman"));
-		this.add(categoryLabel);
-		this.add(levelLabel);
-		this.add(nameLabel);
-		this.add(phoneNumberLabel);
-		this.add(addressLabel);
-		this.add(postalCodeLabel);
-		this.add(emailLabel);
-		this.add(creditLimitLabel);
-		this.add(salesmanLabel);
+		this.add(new MyLabel(ele.element("category")));
+		this.add(new MyLabel(ele.element("level")));
+		this.add(new  MyLabel(ele.element("name")));
+		this.add(new MyLabel(ele.element("phonenumber")));
+		this.add(new MyLabel(ele.element("address")));
+		this.add(new MyLabel(ele.element("postalcode")));
+		this.add(new MyLabel(ele.element("email")));
+		this.add(new MyLabel(ele.element("creditlimit")));
+		this.add(new MyLabel(ele.element("salesman")));
 	}
 	
 	private void initButtons(Element ele){

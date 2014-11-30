@@ -28,22 +28,12 @@ import config.InfoDialogConfig;
 
 @SuppressWarnings("serial")
 public class UserInfoDialog extends JDialog {
-
-	private MyLabel idLab;
 	
 	private MyLabel idTip;
 	
-	private MyLabel nameLab;
-	
 	private MyLabel nameTip;
 	
-	private MyLabel passwordLab;
-	
 	private MyLabel passwordTip;
-	
-	private MyLabel typeLab;
-	
-	private MyLabel permissionLab;
 
 	private MyTextField idTxt;
 	
@@ -68,7 +58,7 @@ public class UserInfoDialog extends JDialog {
 	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,boolean isAdd){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
-		this.setTitle("用户信息");
+		this.setTitle(cfg.getTitle());
 		this.isAdd = isAdd;
 		this.panel = panel;
 		this.cfg = cfg;
@@ -98,22 +88,17 @@ public class UserInfoDialog extends JDialog {
 	}
 	
 	private void initLabels(Element ele){
-		this.idLab = new MyLabel(ele.element("id"));
-		this.nameLab = new MyLabel(ele.element("name"));
-		this.passwordLab = new MyLabel(ele.element("password"));
-		this.typeLab = new MyLabel(ele.element("type"));
-		this.permissionLab = new MyLabel(ele.element("permission"));
 		this.idTip = new MyLabel(ele.element("idtip"));
 		this.idTip.setVisible(false);
 		this.nameTip = new MyLabel(ele.element("nametip"));
 		this.nameTip.setVisible(false);
 		this.passwordTip = new MyLabel(ele.element("passwordtip"));
 		this.passwordTip.setVisible(false);
-		this.add(this.idLab);
-		this.add(this.nameLab);
-		this.add(this.passwordLab);
-		this.add(this.typeLab);
-		this.add(this.permissionLab);
+		this.add(new MyLabel(ele.element("id")));
+		this.add(new MyLabel(ele.element("name")));
+		this.add(new MyLabel(ele.element("password")));
+		this.add(new MyLabel(ele.element("type")));
+		this.add(new MyLabel(ele.element("permission")));
 		this.add(this.idTip);
 		this.add(this.nameTip);
 		this.add(this.passwordTip);

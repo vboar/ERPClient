@@ -112,42 +112,33 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 	
 	public void updateCatagory(String string){
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();	
-		int result = MyOptionPane.showConfirmDialog(null, "确认修改？",
-				"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-		if(result==MyOptionPane.YES_OPTION){
-			CategoryVO vo = (CategoryVO)node.getUserObject();
-			vo.name = string;
-			if(this.controller.update(vo)==ResultMessage.SUCCESS){
-				MyOptionPane.showMessageDialog(null, "修改成功！");
-			}else{
-				MyOptionPane.showMessageDialog(null, "修改失败！");
-			}
-			this.tree.updateUI();
-			this.categoryInfo.dispose();
+		CategoryVO vo = (CategoryVO)node.getUserObject();
+		vo.name = string;
+		if(this.controller.update(vo)==ResultMessage.SUCCESS){
+			MyOptionPane.showMessageDialog(null, "修改成功！");
+		}else{
+			MyOptionPane.showMessageDialog(null, "修改失败！");
 		}
+		this.tree.updateUI();
+		this.categoryInfo.dispose();
 	}
 
 	public void addCategory(String name){
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();	
-		int result = MyOptionPane.showConfirmDialog(null, "确认添加？",
-				"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-		if(result==MyOptionPane.YES_OPTION){
-			CategoryVO father;
-			if(node.isRoot()) father = null;
-			else	father = (CategoryVO)node.getUserObject();
-			CategoryVO newChild = new CategoryVO(name,0,father);
-			if(this.controller.add(newChild)==ResultMessage.SUCCESS){
-				MyOptionPane.showMessageDialog(null, "添加成功！");
-				DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newChild);
-				node.add(newNode);
-				tree.scrollPathToVisible(new TreePath(newNode.getPath()));
-				this.tree.updateUI();
-			}else{
-				MyOptionPane.showMessageDialog(null, "添加失败！");
+		CategoryVO father;
+		if(node.isRoot()) father = null;
+		else	father = (CategoryVO)node.getUserObject();
+		CategoryVO newChild = new CategoryVO(name,0,father);
+		if(this.controller.add(newChild)==ResultMessage.SUCCESS){
+			MyOptionPane.showMessageDialog(null, "添加成功！");
+			DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newChild);
+			node.add(newNode);
+			tree.scrollPathToVisible(new TreePath(newNode.getPath()));
+			this.tree.updateUI();
+		}else{
+			MyOptionPane.showMessageDialog(null, "添加失败！");
 			}
-			this.categoryInfo.dispose();
-
-		}
+		this.categoryInfo.dispose();
 	}
 	
 	public void showAddDialog() {

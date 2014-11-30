@@ -18,8 +18,6 @@ import config.InfoDialogConfig;
 
 @SuppressWarnings("serial")
 public class CategoryInfoDialog extends JDialog{
-
-	private MyLabel nameLab;
 	
 	private MyLabel nameTip;
 	
@@ -41,7 +39,7 @@ public class CategoryInfoDialog extends JDialog{
 		this.tree = tree;
 		this.isAdd = true;
 		((JComponent) this.getContentPane()).setOpaque(true);
-		this.setTitle("商品分类信息");
+		this.setTitle(cfg.getTitle());
 		this.cfg = cfg;
 		this.setSize(this.cfg.getW(), this.cfg.getH());
 		this.setLayout(null);
@@ -64,9 +62,9 @@ public class CategoryInfoDialog extends JDialog{
 	}
 	
 	public void initLabels(Element ele){
-		this.nameLab = new MyLabel(ele.element("name"));
 		this.nameTip = new MyLabel(ele.element("nametip"));
-		this.add(this.nameLab);
+		this.nameTip.setVisible(false);
+		this.add(new MyLabel(ele.element("name")));
 		this.add(this.nameTip);
 	}
 	
@@ -81,9 +79,17 @@ public class CategoryInfoDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isAdd){
-					tree.addCategory(nameTxt.getText());
+					int result = MyOptionPane.showConfirmDialog(null, "确认添加？",
+							"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);						
+					if(result==MyOptionPane.YES_OPTION){
+						tree.addCategory(nameTxt.getText());
+					}
 				}else{
-					tree.updateCatagory(nameTxt.getText());
+					int result = MyOptionPane.showConfirmDialog(null, "确认修改？",
+							"确认提示", MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);						
+					if(result==MyOptionPane.YES_OPTION){
+						tree.updateCatagory(nameTxt.getText());
+					}
 				}
 			}		
 		});

@@ -55,5 +55,9 @@ public class InfoDialogConfig extends ComponentConfig{
 	public Element getComboboxes() {
 		return comboboxes;
 	}
+
+	public String getTitle() {
+		return title;
+	}
 	
 }

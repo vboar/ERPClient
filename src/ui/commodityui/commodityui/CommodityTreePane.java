@@ -12,11 +12,13 @@ import javax.swing.tree.TreePath;
 import org.dom4j.Element;
 import org.jdesktop.swingx.JXTreeTable;
 
+import config.ERPConfig;
 import ui.util.BasicOperation;
 import ui.util.MyOptionPane;
 import ui.util.MyPopMenu;
 import util.ResultMessage;
 import vo.CategoryCommodityVO;
+import vo.CommodityVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CommodityBLService;
 
@@ -30,6 +32,8 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	private CommodityTreeTableModel treeTableModel;;
 	
 	private JXTreeTable treeTable;
+	
+	private CommodityInfoDialog infodialog;
 	
 	private JFrame frame;
 	
@@ -106,11 +110,35 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 
 	@Override
 	public void showUpdDialog() {
-		
+		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
+		CommodityVO vo = node.getCommodityvo();
+		this.infodialog = new CommodityInfoDialog(ERPConfig.getCOMMODITYINFO_DIALOG_CONFIG(), 
+				frame, this, true,vo);
+		this.infodialog.setVisible(true);
 	}
 
 	@Override
 	public void showAddDialog() {
+		this.infodialog = new CommodityInfoDialog(ERPConfig.getCOMMODITYINFO_DIALOG_CONFIG(), frame, this, true);
+		this.infodialog.setVisible(true);
+	}
+
+	public void addCommodity(String name, String model, double purchasePrice, 
+			double salePrice, int warningNum) {
+		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
+		if(node.isCategory()){
+			CommodityVO vo=new CommodityVO(null,name,model,0,purchasePrice,salePrice,0.0,0.0,
+					warningNum,false,node.getCategoryvo());
+			if(this.controller.add(vo)==ResultMessage.SUCCESS){
+				// 新增的节点中id为空
+				node.addChild(new MyTreeNode(null,node.getCategoryvo(),vo,node));
+			}
+		}
+		
+	}
+	
+	public void updateCommodity(String name, String model, double purchasePrice, 
+			double salePrice, int warningNum){
 		
 	}
 }
