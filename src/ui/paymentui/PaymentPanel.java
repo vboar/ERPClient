@@ -53,8 +53,8 @@ public class PaymentPanel extends JPanel {
 
 	private void initComponent(PanelConfig cfg) {
 		
-		createPaymentPanel = new CreatePaymentPanel(frame);
-		this.add(createPaymentPanel);
+		createReceiptPanel = new CreateReceiptPanel(frame);
+		this.add(createReceiptPanel);
 		
 		createPaymentBtn = new MyButton(cfg.getButtons().element("createpayment"));
 		createPaymentBtn.addActionListener(new ActionListener() {

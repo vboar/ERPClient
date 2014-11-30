@@ -110,19 +110,6 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 		});
 	}
 
-	private void showAddDialog() {
-		this.accountInfoDialog = new AccountInfoDialog(ERPConfig.getACCOUNTINFO_DIALOG_CONFIG(),
-				frame, this, true);
-		this.accountInfoDialog.setVisible(true);
-	}
-	
-	private void showUpdateDialog() {
-		AccountVO vo = this.accountTable.getSelectedVO();
-		this.accountInfoDialog = new AccountInfoDialog(ERPConfig.getACCOUNTINFO_DIALOG_CONFIG(),
-				frame, this, false, vo);
-		this.accountInfoDialog.setVisible(true);
-	}
-
 	private void initDeleteBtn(Element element) {
 		this.deleteBtn = new MyButton(element);
 		this.deleteBtn.addActionListener(new ActionListener() {
@@ -167,12 +154,42 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 
 	private void initFindBtn(Element element) {
 		this.findBtn = new MyButton(element);
+		this.findBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
 		
 	}
 
 	private void initShowBtn(Element element) {
 		this.showBtn = new MyButton(element);
+		this.showBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				accountTable.showFindTable(accountController.show());
+				accountTable.updateUI();
+			}
+			
+		});
 		
+	}
+	
+	private void showAddDialog() {
+		this.accountInfoDialog = new AccountInfoDialog(ERPConfig.getACCOUNTINFO_DIALOG_CONFIG(),
+				frame, this, true);
+		this.accountInfoDialog.setVisible(true);
+	}
+	
+	private void showUpdateDialog() {
+		AccountVO vo = this.accountTable.getSelectedVO();
+		this.accountInfoDialog = new AccountInfoDialog(ERPConfig.getACCOUNTINFO_DIALOG_CONFIG(),
+				frame, this, false, vo);
+		this.accountInfoDialog.setVisible(true);
 	}
 	
 	public ResultMessage addAccount(AccountVO vo) {

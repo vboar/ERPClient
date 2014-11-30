@@ -112,9 +112,6 @@
 			</labels>
 			<textfields></textfields>
 		</panel>
-<<<<<<< HEAD
-
-=======
 		
 		<!-- 财务人员面板 -->
 		<panel className="ui.homeui.CounterPanel" width="960" height="480"
@@ -132,7 +129,6 @@
 			<textfields></textfields>
 		</panel>
 		
->>>>>>> d0cfd13dbd7f9f0477c3857ab797e1ec87d18b8b
 		<!-- 商品分类管理面板 -->
 		<panel className="ui.commodityui.categoryui.CategoryPanel"
 			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
@@ -207,13 +203,8 @@
 		</panel>
 
 		<!-- 客户管理面板 -->
-<<<<<<< HEAD
-		<panel className="ui.customerui.CustomerPanel" width="760"
-			height="510" x="200" y="90" bg="img/rightpanel.png">
-=======
 		<panel className="ui.customerui.CustomerPanel" width="760" height="510"
 			x="200" y="0" bg="img/rightpanel.png">
->>>>>>> d0cfd13dbd7f9f0477c3857ab797e1ec87d18b8b
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png"
 					pathroll="img\adduser1.png" />
@@ -259,12 +250,7 @@
 		</panel>
 
 		<!-- 账户管理面板 -->
-<<<<<<< HEAD
-		<panel className="ui.accountui.AccountPanel" width="760" height="487"
-			x="205" y="90" bg="img/panel.png">
-=======
 		<panel className="ui.accountui.AccountPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
->>>>>>> d0cfd13dbd7f9f0477c3857ab797e1ec87d18b8b
 			<buttons>
 				<add text="" w="80" h="32" x="180" y="36" path="img\adduser.png"
 					pathroll="img\adduser1.png" />
@@ -313,7 +299,7 @@
 		</panel>
 		
 		<!-- 收付款面板中的制定收款单面板 -->
-		<panel className="ui.paymentui.CreatePaymentPanel" width="760" height="420" x="0" y="70" bg="img/panel.png">
+		<panel className="ui.paymentui.CreateReceiptPanel" width="760" height="420" x="0" y="70" bg="img/panel.png">
 			<buttons>
 				<add text="" w="80" h="32" x="500" y="110" path="img\adduser.png" pathroll="img\adduser1.png"/>
 				<delete text="" w="80" h="32" x="600" y="110" path="img\deluser.png"  pathroll="img\deluser1.png"/>
