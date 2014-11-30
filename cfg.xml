@@ -112,7 +112,27 @@
 			</labels>
 			<textfields></textfields>
 		</panel>
+<<<<<<< HEAD
 
+=======
+		
+		<!-- 财务人员面板 -->
+		<panel className="ui.homeui.CounterPanel" width="960" height="480"
+			x="0" y="90" bg="img/leftpanel.png">
+			<buttons>
+				<account text="账户管理" w="160" h="40" x="20" y="50" />
+				<payment text="收款/付款" w="160" h="40" x="20" y="100" />
+				<condition text="经营状况查看" w="160" h="40" x="20" y="150"/>
+				<log text="系统日志查询" w="160" h="40" x="20" y="200" />
+				<initial text="期初建账" w="160" h="40" x="20" y="250" />
+			</buttons>
+			<labels>
+				<title text="财务管理" w="200" h="30" x="0" y="0" />
+			</labels>
+			<textfields></textfields>
+		</panel>
+		
+>>>>>>> d0cfd13dbd7f9f0477c3857ab797e1ec87d18b8b
 		<!-- 商品分类管理面板 -->
 		<panel className="ui.commodityui.categoryui.CategoryPanel"
 			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
@@ -187,8 +207,13 @@
 		</panel>
 
 		<!-- 客户管理面板 -->
+<<<<<<< HEAD
 		<panel className="ui.customerui.CustomerPanel" width="760"
 			height="510" x="200" y="90" bg="img/rightpanel.png">
+=======
+		<panel className="ui.customerui.CustomerPanel" width="760" height="510"
+			x="200" y="0" bg="img/rightpanel.png">
+>>>>>>> d0cfd13dbd7f9f0477c3857ab797e1ec87d18b8b
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png"
 					pathroll="img\adduser1.png" />
@@ -234,8 +259,12 @@
 		</panel>
 
 		<!-- 账户管理面板 -->
+<<<<<<< HEAD
 		<panel className="ui.accountui.AccountPanel" width="760" height="487"
 			x="205" y="90" bg="img/panel.png">
+=======
+		<panel className="ui.accountui.AccountPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
+>>>>>>> d0cfd13dbd7f9f0477c3857ab797e1ec87d18b8b
 			<buttons>
 				<add text="" w="80" h="32" x="180" y="36" path="img\adduser.png"
 					pathroll="img\adduser1.png" />
@@ -267,6 +296,49 @@
 				</columnnames>
 			</tablepane>
 		</panel>
+		
+		<!-- 收付款面板 -->
+		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
+			<buttons>
+				<createreceipt text="" w="80" h="32" x="180" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<createpayment text="" w="80" h="32" x="260" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<createcash text=""  w="80" h="32" x="340" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<show text=""  w="100" h="30" x="420" y="36" path="img\show.png"  pathroll="img\show1.png"/>
+			</buttons>
+			<labels>
+				<accountlist text="" w="120" h="32" x="0" y="35" path="img\userlist.png"/>
+				<modulename text="" w="120" h="30" x="0" y="2" path="img\usermanage.png"/>
+				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png"/>
+			</labels>
+		</panel>
+		
+		<!-- 收付款面板中的制定收款单面板 -->
+		<panel className="ui.paymentui.CreatePaymentPanel" width="760" height="420" x="0" y="70" bg="img/panel.png">
+			<buttons>
+				<add text="" w="80" h="32" x="500" y="110" path="img\adduser.png" pathroll="img\adduser1.png"/>
+				<delete text="" w="80" h="32" x="600" y="110" path="img\deluser.png"  pathroll="img\deluser1.png"/>
+				<commit text=""  w="80" h="32" x="300" y="350" path="img\upduser.png"  pathroll="img\upduser1.png"/>
+				<cancel text=""  w="100" h="30" x="400" y="350" path="img\show.png"  pathroll="img\show1.png"/>
+			</buttons>
+			<labels>
+				<title text="收款单" w="120" h="30" x="10" y="10" />
+				<documentid text="单据编号：" w="120" h="30" x="500" y="10" />
+				<customer text="客户：" w="120" h="30" x="10" y="60" />
+				<list text="转账列表" w="120" h="30" x="10" y="110" />
+				<operator text="操作员：" w="120" h="30" x="650" y="60" />
+			</labels>
+			<textfields>
+				<customer w="250" h="30" x="200" y="60" />
+			</textfields>
+			<tablepane className="ui.accountui.AccountTablePane" width="730" height="376" x="10" y="75">
+				<columnnames>
+					<columnname name="银行账号" />
+					<columnname name="账户名称" />
+					<columnname name="金额" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
 	</frame>
 
 	<!-- 用户信息对话框 -->
