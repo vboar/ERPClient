@@ -1,5 +1,6 @@
 package ui.paymentui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.MyButton;
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.paymentblservice.CashBLService;
-import businesslogicservice.paymentblservice.PaymentBLService;
+import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -91,6 +90,8 @@ public class PaymentPanel extends JPanel {
 			}
 		});
 		this.add(showBtn);
+		
+		this.add(new MyLabel(cfg.getLabels().element("title")));
 		
 	}
 

@@ -37,4 +37,15 @@ public abstract class TablePanel extends JPanel{
 		this.add(this.rollpane);
 	}
 
+	public boolean isSelected(){
+		if(this.table.getSelectedRow()!=-1)		
+			return true;
+		else	
+			return false;
+	}
+
+	public MyTable getTable() {
+		return table;
+	}
+	
 }

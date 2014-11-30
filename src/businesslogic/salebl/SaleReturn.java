@@ -26,13 +26,7 @@ public class SaleReturn {
 	Sale sale=new Sale();
 	
 	
-	public ResultMessage add(SaleVO vo) {
-		ArrayList<CommodityLineItemVO> voListTemp=vo.saleList;
-		for(CommodityLineItemVO covotemp:voListTemp){
-			covotemp.number=0-covotemp.number;
-		}
-		vo.saleList=voListTemp;
-		
+	public ResultMessage add(SaleVO vo) {		
 		SalePO po = sale.SaleVOToSalePO(vo);
 		try {
 			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
@@ -48,12 +42,10 @@ public class SaleReturn {
 		String customerName = vo.customerName;
 		
 		ArrayList<PresentLineItemVO> list = vo.giftList;
-		for(PresentLineItemVO votemp :list){
-			votemp.number=0-votemp.number;
-		}
+		
 		
 		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
-		DocumentType documentType = DocumentType.PRESENT;
+		DocumentType documentType = DocumentType.PRESENTRETURN;
 
 		PresentVO presentVO = new PresentVO(null, time, customerId,
 				customerName, list, documentStatus, documentType, false);

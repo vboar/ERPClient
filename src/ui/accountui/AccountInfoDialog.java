@@ -88,7 +88,7 @@ public class AccountInfoDialog extends JDialog {
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
 					if(isAdd) {
-						if(panel.addAccount(vo)== ResultMessage.SUCCESS) {
+						if(panel.addAccount(vo) == ResultMessage.SUCCESS) {
 							MyOptionPane.showMessageDialog(null, "添加成功！");
 							dispose();
 						} else {

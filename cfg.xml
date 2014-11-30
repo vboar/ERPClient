@@ -170,6 +170,47 @@
 			<tree width="730" height="380" x="10" y="80" rootname="ERP" />
 		</panel>
 		
+		<!-- 赠品发放面板 -->
+		<panel className="ui.presentui.PresentPanel" 
+			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+				<createpresent text="创建赠送单" w="160" h="30" x="10" y="45"/>
+			</buttons>
+			<labels>
+				<title text="赠品发放" w="120" h="30" x="10" y="2" />
+			</labels>
+		</panel>
+		
+		<!-- 赠品发放面板中的赠送单面板 -->
+		<panel className="ui.presentui.CreatePresentPanel"
+			width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
+			<buttons>
+				<add text="增加商品" w="80" h="32" x="500" y="90" />
+				<delete text="删除商品" w="80" h="32" x="600" y="90" />
+				<commit text="提交"  w="100" h="30" x="260" y="350"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="350"/>
+			</buttons>
+			<labels>
+				<title text="赠送单" w="120" h="30" x="20" y="10" />
+				<documentid text="单据编号：" w="120" h="30" x="400" y="10" />
+				<customerid text="客户ID：" w="80" h="30" x="20" y="50" />
+				<customername text="客户名：" w="80" h="30" x="340" y="50" />
+				<presentlist text="赠品列表：" w="120" h="30" x="10" y="90" />
+			</labels>
+			<textfields>
+				<customerid w="200" h="30" x="100" y="60" />
+				<customername w="250" h="30" x="460" y="60" />
+			</textfields>
+			<tablepane className="ui.accountui.PresentTablePane" width="730" height="200" x="10" y="130">
+				<columnnames>
+					<columnname name="商品编号" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="数量" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
 		<!-- 库存查看面板 -->
 		<panel className="ui.stockui.stockinfo.StockInfoPanel" width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
@@ -286,25 +327,23 @@
 		<!-- 收付款面板 -->
 		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
 			<buttons>
-				<createreceipt text="" w="80" h="32" x="180" y="36" path="img\adduser.png" pathroll="img\adduser1.png"/>
-				<createpayment text="" w="80" h="32" x="260" y="36" path="img\deluser.png"  pathroll="img\deluser1.png"/>
-				<createcash text=""  w="80" h="32" x="340" y="36" path="img\upduser.png"  pathroll="img\upduser1.png"/>
-				<show text=""  w="100" h="30" x="420" y="36" path="img\show.png"  pathroll="img\show1.png"/>
+				<createreceipt text="制定收款单" w="150" h="32" x="20" y="36" />
+				<createpayment text="制定付款单" w="150" h="32" x="200" y="36" />
+				<createcash text="制定现金费用单"  w="150" h="32" x="370" y="36" />
+				<show text="单据查看"  w="150" h="30" x="540" y="36" />
 			</buttons>
 			<labels>
-				<accountlist text="" w="120" h="32" x="0" y="35" path="img\userlist.png"/>
-				<modulename text="" w="120" h="30" x="0" y="2" path="img\usermanage.png"/>
-				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png"/>
+				<title text="收付款" w="120" h="32" x="10" y="5" />
 			</labels>
 		</panel>
 		
 		<!-- 收付款面板中的制定收款单面板 -->
 		<panel className="ui.paymentui.CreateReceiptPanel" width="760" height="420" x="0" y="70" bg="img/panel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="500" y="110" path="img\adduser.png" pathroll="img\adduser1.png"/>
-				<delete text="" w="80" h="32" x="600" y="110" path="img\deluser.png"  pathroll="img\deluser1.png"/>
-				<commit text=""  w="80" h="32" x="300" y="350" path="img\upduser.png"  pathroll="img\upduser1.png"/>
-				<cancel text=""  w="100" h="30" x="400" y="350" path="img\show.png"  pathroll="img\show1.png"/>
+				<add text="添加账户" w="120" h="32" x="450" y="110" />
+				<delete text="删除选中账户" w="120" h="32" x="600" y="110" />
+				<commit text="提交"  w="100" h="32" x="300" y="350" />
+				<cancel text="取消"  w="100" h="30" x="400" y="350" />
 			</buttons>
 			<labels>
 				<title text="收款单" w="120" h="30" x="10" y="10" />
@@ -316,7 +355,7 @@
 			<textfields>
 				<customer w="250" h="30" x="200" y="60" />
 			</textfields>
-			<tablepane className="ui.accountui.AccountTablePane" width="730" height="376" x="10" y="75">
+			<tablepane className="ui.paymentui.AccountTablePane" width="730" height="376" x="10" y="75">
 				<columnnames>
 					<columnname name="银行账号" />
 					<columnname name="账户名称" />

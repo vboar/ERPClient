@@ -22,11 +22,8 @@ public class MyTable extends JTable {
 	
 	private int padding = 20;
 	
-	private int containerW;
-	
 	public MyTable(TableModel dtm, int containerW) {
 		super(dtm);
-		this.containerW = containerW;
 		this.getTableHeader().setReorderingAllowed(false);
 		this.sorter = new TableRowSorter<TableModel>(dtm);
 		this.setRowSorter(sorter);

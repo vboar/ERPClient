@@ -42,7 +42,7 @@ public class ERPConfig {
 			// 创建添加/修改账户对话框配置对象
 			ACCOUNTINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("accountinfodialog"));
 			// 创建添加/修改商品对话框配置对象
-//			COMMODITYINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("commodityinfodialog"));
+			COMMODITYINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("commodityinfodialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}

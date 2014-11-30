@@ -16,5 +16,6 @@ public enum DocumentType {
 	PURCHASERETURN, // 进货退货单
 	RECEIPT, // 收款单
 	PAYMENT, // 付款单
-	CASH // 现金费用单
+	CASH, // 现金费用单
+	PRESENTRETURN//赠品退货单
 }
