@@ -3,6 +3,8 @@ package ui.accountui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -79,6 +81,22 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 	private void initFindComboBox(Element textFields) {
 		this.findBox = new MySpecialTextField(textFields.element("findinput"),this);
 		this.add(findBox);
+		this.findBox.addKeyListener(new KeyListener(){
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					findAccount(findBox.getText());
+				}
+			}
+			
+		});
 	}
 
 	private void initLabels(Element labels) {
@@ -158,7 +176,7 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				findAccount(findBox.getText());
 			}
 			
 		});
