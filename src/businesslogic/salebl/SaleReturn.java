@@ -196,7 +196,7 @@ public class SaleReturn {
 	}
 	
 	//TODO
-	public ResultMessage approveSale(SaleVO vo) {
+	public ResultMessage approve(SaleVO vo) {
 		return null;
 
 	}

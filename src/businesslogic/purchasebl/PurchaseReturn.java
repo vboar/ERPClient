@@ -9,11 +9,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.PurchasePO;
-import dataservice.datafactoryservice.DataFactoryImpl;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
-import vo.SaleVO;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class PurchaseReturn {
 Purchase purchase=new Purchase();
@@ -39,7 +38,7 @@ Purchase purchase=new Purchase();
 		return purchase.update(vo);
 	}
 		//TODO
-	public ResultMessage approveSale(SaleVO vo) {
+	public ResultMessage approve(PurchaseVO vo) {
 		return null;
 
 	}

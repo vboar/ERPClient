@@ -15,7 +15,6 @@ import util.DocumentType;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
-import vo.SaleVO;
 import businesslogic.salebl.MockCommodity;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
@@ -129,7 +128,7 @@ public class Purchase {
 	}
 
 	// TODO
-	public ResultMessage approveSale(SaleVO vo) {
+	public ResultMessage approve(Purchase vo) {
 		return null;
 
 	}
