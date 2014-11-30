@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import util.DocumentStatus;
-import util.ResultMessage;
+import util.DocumentType;
 import vo.CommodityLineItemVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
@@ -19,6 +19,7 @@ import vo.PurchaseVO;
 import vo.SaleVO;
 import vo.StockInfoVO;
 import vo.StockVO;
+import businesslogic.commoditybl.Commodity;
 import businesslogic.presentbl.Present;
 import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
@@ -51,7 +52,6 @@ public class Stock {
 
 		ArrayList<CommodityLineItemVO> inList = new ArrayList<CommodityLineItemVO>();
 		ArrayList<CommodityLineItemVO> outList = new ArrayList<CommodityLineItemVO>();
-		ArrayList<PresentLineItemVO> listUnknown=new ArrayList<PresentLineItemVO>();
 
 		for (SaleVO salevo : saleList) {
 			if (salevo.approvalState != DocumentStatus.PASSED) {
@@ -62,55 +62,98 @@ public class Stock {
 		for (SaleVO salevo : saleReturnList) {
 			if (salevo.approvalState != DocumentStatus.PASSED) {
 				saleReturnList.remove(salevo);
-				
+
 			}
 		}
 		for (PurchaseVO purchasevo : purchaseList) {
 			if (purchasevo.documentStatus != DocumentStatus.PASSED) {
 				purchaseList.remove(purchasevo);
-				
+
 			}
 		}
 		for (PurchaseVO purchasevo : purchaseReturnList) {
 			if (purchasevo.documentStatus != DocumentStatus.PASSED) {
 				purchaseReturnList.remove(purchasevo);
-				
+
 			}
 		}
 		for (PresentVO presentvo : presentList) {
 			if (presentvo.documentStatus != DocumentStatus.PASSED) {
 				presentList.remove(presentvo);
-				
+
 			}
 		}
-		for(PresentVO presentVO:presentList){
-			listUnknown.addAll(presentVO.list);
+		for (PresentVO presentVO : presentList) {
+			ArrayList<PresentLineItemVO> preList = presentVO.list;
+			boolean present=true;
+			if(presentVO.documentType==DocumentType.PRESENTRETURN){
+				present=false;
+			}
+			for (PresentLineItemVO presentvo : preList) {
+				// TODO 换成getbyid
+				double money = new Commodity().findById(presentvo.id).get(0).purchasePrice;
+				CommodityLineItemVO clivo = new CommodityLineItemVO(
+						presentvo.id, presentvo.name, presentvo.model, presentvo.number, money,
+						presentvo.number * money, null);
+				if(present)outList.add(clivo);
+				else inList.add(clivo);
+
+			}
+
 		}
-		for(SaleVO salevo:saleList){
+		for (SaleVO salevo : saleList) {
 			outList.addAll(salevo.saleList);
 		}
-		for(SaleVO salereturnvo:saleReturnList){
+		for (SaleVO salereturnvo : saleReturnList) {
 			inList.addAll(salereturnvo.saleList);
 		}
-		
-		for(PurchaseVO purchasevo:purchaseList){
+
+		for (PurchaseVO purchasevo : purchaseList) {
 			inList.addAll(purchasevo.saleList);
 		}
-		for(PurchaseVO purchasereturnvo:purchaseReturnList){
+		for (PurchaseVO purchasereturnvo : purchaseReturnList) {
 			outList.addAll(purchasereturnvo.saleList);
 		}
 		
-
-		
-
-
-		return null;
+		ArrayList<StockInfoVO> result=new ArrayList<StockInfoVO>();
+		while(!inList.isEmpty()){
+		CommodityLineItemVO invo =inList.get(0);
+		StockInfoVO vo=new StockInfoVO(invo.id, invo.name, invo.model, invo.number, invo.total, 0, 0);
+		inList.remove(0);
+		for(CommodityLineItemVO vo1:inList){
+			if(vo1.id.equals(invo.id)){
+				vo.inNumber+=vo1.number;
+				vo.inMoney+=vo1.total;
+				inList.remove(vo1);
+			}
+		}
+		for(CommodityLineItemVO vo2:outList){
+			if(vo2.id.equals(invo.id)){
+				vo.outNumber+=vo2.number;
+				vo.outMoney+=vo2.total;
+				outList.remove(vo2);
+			}
+		}
+		result.add(vo);
+		}
+		while(!outList.isEmpty()){
+			CommodityLineItemVO outvo =outList.get(0);
+			StockInfoVO vo=new StockInfoVO(outvo.id, outvo.name, outvo.model, 0, 0, outvo.number, outvo.total);
+			outList.remove(0);
+		for(CommodityLineItemVO vo2:outList){
+			if(vo2.id.equals(outvo.id)){
+				vo.outNumber+=vo2.number;
+				vo.outMoney+=vo2.total;
+				outList.remove(vo2);
+			}
+		}
+		result.add(vo);
+		}	
+		return result;
 	}
 
 	public ArrayList<StockVO> showCheck() {
 		return null;
 	}
-
-	
 
 }
