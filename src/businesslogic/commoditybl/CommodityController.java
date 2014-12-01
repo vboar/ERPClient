@@ -42,20 +42,17 @@ public class CommodityController implements CommodityBLService {
 	public ArrayList<CommodityVO> fuzzyFind(String keyWord) {
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
 
-		if(keyWord.equals("00")){
+		if(keyWord.equals("aa")){
 			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			list.add(new CommodityVO("002-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			return list;
-		}else if(keyWord.equals("0")){
+			list.add(new CommodityVO("002-0001","aab","s01",10,5,10,5,10,0,false,new CategoryVO("0001","b",10)));
+		}else if(keyWord.equals("a")){
 			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			list.add(new CommodityVO("002-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			list.add(new CommodityVO("013-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			return list;
-		}else if(keyWord.equals("001")){
-			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			return list;
+			list.add(new CommodityVO("002-0001","abb","s01",10,5,10,5,10,0,false,new CategoryVO("0001","b",10)));
+			list.add(new CommodityVO("010-0001","acc","s01",10,5,10,5,10,0,false,new CategoryVO("0001","c",10)));
+		}else if(keyWord.equals("ab")){
+			list.add(new CommodityVO("002-0001","abb","s01",10,5,10,5,10,0,false,new CategoryVO("0002","b",10)));
 		}
-		return null;
+		return list;
 	}
 
 	@Override

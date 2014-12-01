@@ -3,17 +3,23 @@ package ui.presentui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import ui.util.MyPopMenu;
 import ui.util.MySpecialTextField;
-import ui.util.TablePanel;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
 import vo.CustomerVO;
 import vo.PresentLineItemVO;
+import vo.PresentVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.customerblservice.CustomerBLService;
 import businesslogicservice.presentblservice.PresentBLService;
@@ -34,7 +40,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private MyLabel documentId;
 	
-	private TablePanel presentTable;
+	private PresentTablePane presentTable;
 	
 	private MySpecialTextField customeridTxt;
 	
@@ -42,13 +48,20 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private ArrayList<PresentLineItemVO> commoditylist;
 	
+	private HashMap<String,CustomerVO> customerlist;
+	
 	private PanelConfig pcfg;
+	
+	private JFrame frame;
 	
 	private PresentBLService presentController;
 	
 	private CustomerBLService customerController;
 
-	public CreatePresentPanel() {
+	public CreatePresentPanel(JFrame frame) {
+		this.frame = frame;
+		this.commoditylist = new ArrayList<PresentLineItemVO>();
+		this.customerlist = new HashMap<String,CustomerVO>();
 		this.presentController = ControllerFactoryImpl.getInstance().getPresentController();
 		this.customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -80,13 +93,36 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private void initButtons(){
 		this.addBtn = new MyButton(pcfg.getButtons().element("add"));
+		this.addBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddPresentCommodityDialog(CreatePresentPanel.this,frame);
+			}
+			
+		});
 		this.deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
+		this.deleteBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(presentTable.isSelected()){
+					int result = MyOptionPane.showConfirmDialog(null, "确认删除该赠品？","删除赠品",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						delCommodity();
+					}
+				}else{
+					MyOptionPane.showMessageDialog(null, "请选择要删除的赠品！");
+				}
+			}
+			
+		});
 		this.commitBtn = new MyButton(pcfg.getButtons().element("commit"));
 		this.commitBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int result = MyOptionPane.showConfirmDialog(null, "确认创建？","确认提示",
-						MyOptionPane.YES_NO_CANCEL_OPTION, MyOptionPane.QUESTION_MESSAGE);
+						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
 					createPresent();
 				}
@@ -100,24 +136,34 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	}
 	
 	public void createPresent(){
-		String documentId = this.documentId.getText();
-		String customerId = this.customeridTxt.getText();
-		String customerName = this.customeridTxt.getText();
-		int presentNum = this.presentTable.getTable().getRowCount();
-		ArrayList<PresentLineItemVO> list = new ArrayList<PresentLineItemVO>();
-		for(int i=0; i<presentNum; i++){
-			
+		CustomerVO customer = this.customerlist.get(this.customeridTxt.getText());
+		ResultMessage result = this.presentController.create(new PresentVO(null,null,customer.id,customer.name,
+				this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
+		if(result == ResultMessage.SUCCESS){
+			MyOptionPane.showMessageDialog(null, "赠送单提交成功！");
+		}else{
+			MyOptionPane.showMessageDialog(null, "赠送单提交失败！");
 		}
-		this.presentTable.getTable().getRowCount();
 	}
 	
+	public void delCommodity(){
+		this.presentTable.deleteRow();
+	}
+	
+	public void addCommodity(PresentLineItemVO vo){
+		this.commoditylist.add(vo);
+		this.presentTable.addRow(vo);
+	}
+
 	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
 		ArrayList<CustomerVO> list = this.customerController.fuzzyFind(keyword);
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<list.size(); ++i){
 			CustomerVO vo = list.get(i);
-			strs.add(vo.id);
+			String str = vo.id+"-"+vo.name;
+			strs.add(str);
+			this.customerlist.put(str, vo);
 		}
 		return strs;
 	}

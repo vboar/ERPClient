@@ -180,8 +180,8 @@
 		<panel className="ui.presentui.CreatePresentPanel"
 			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
 			<buttons>
-				<add text="增加商品" w="80" h="32" x="500" y="90" />
-				<delete text="删除商品" w="80" h="32" x="600" y="90" />
+				<add text="增加商品" w="80" h="25" x="500" y="95" />
+				<delete text="删除商品" w="80" h="25" x="600" y="95" />
 				<commit text="提交"  w="100" h="30" x="260" y="350"/>
 				<cancel text="取消"  w="100" h="30" x="400" y="350"/>
 			</buttons>
@@ -190,11 +190,11 @@
 				<documentid text="单据编号：" w="120" h="30" x="400" y="10" />
 				<customerid text="客户ID：" w="80" h="30" x="20" y="50" />
 				<customername text="客户名：" w="80" h="30" x="340" y="50" />
-				<presentlist text="赠品列表：" w="120" h="30" x="10" y="90" />
+				<presentlist text="赠品列表：" w="120" h="30" x="20" y="90" />
 			</labels>
 			<textfields>
-				<customerid w="200" h="30" x="100" y="60" />
-				<customername w="250" h="30" x="460" y="60" />
+				<customerid w="200" h="30" x="100" y="50" />
+				<customername w="250" h="30" x="460" y="50" />
 			</textfields>
 			<tablepane className="ui.accountui.PresentTablePane" width="730" height="200" x="10" y="130">
 				<columnnames>
@@ -498,27 +498,27 @@
 	</commodityinfodialog>
 
 	<!-- 赠品发放创建赠送单添加赠品对话框 -->
-	<addpresentcommodityinfodialog width="480" height="280" x="280"
+	<addpresentcommodityinfodialog width="480" height="280" x="240"
 								   y="200" title="添加赠品">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="260" y="200" />
-			<cancel text="取消" w="80" h="30" x="360" y="200" />
+			<add text="添加" w="80" h="30" x="360" y="30" />
+			<commit text="确认" w="80" h="30" x="270" y="180" />
+			<cancel text="取消" w="80" h="30" x="360" y="180" />
 		</buttons>
 		<labels>
-			<nametip text="* 商品名称及型号请输入2-14位内数字或中、英文字符" w="300" h="20" x="100" y="8"
-					 font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
-			<name text="商品名称" w="100" h="30" x="20" y="30" />
-			<model text="商品型号" w="100" h="30" x="20" y="70" />
-			<purchaseprice text="默认进价" w="100" h="30" x="20" y="110" />
-			<saleprice text="默认售价" w="100" h="30" x="240" y="110" />
-			<warningnum text="警戒数量" w="100" h="30" x="20" y="150" />
+			<currentid text="" w="300" h="30" x="100" y="70" />
+			<currentname text="" w="300" h="30" x="100" y="100" />
+			<currentmodel text="" w="300" h="30" x="100" y="130" />
+			<tip text="请输入商品关键字" w="120" h="30" x="20" y="2" 
+			font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
+			<id text="商品编号：" w="80" h="30" x="20" y="70" />
+			<name text="商品名称：" w="80" h="30" x="20" y="100" />
+			<model text="商品型号：" w="80" h="30" x="20" y="130" />
+			<number text="赠送数量：" w="80" h="30" x="20" y="170" />
 		</labels>
 		<textfields>
-			<name  w="320" h="30" x="100" y="30" />
-			<model  w="320" h="30" x="100" y="70" />
-			<purchaseprice  w="120" h="30" x="100" y="110" />
-			<saleprice  w="120" h="30" x="300" y="110" />
-			<warningnum  w="120" h="30" x="100" y="150" />
+			<commodity  w="320" h="30" x="20" y="30" />
+			<number  w="100" h="30" x="100" y="170" />
 		</textfields>
 	</addpresentcommodityinfodialog>
 

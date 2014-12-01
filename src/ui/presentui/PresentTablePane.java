@@ -4,7 +4,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.util.MyTable;
 import ui.util.TablePanel;
-import vo.CommodityVO;
+import vo.PresentLineItemVO;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
@@ -31,13 +31,13 @@ public class PresentTablePane extends TablePanel {
 		this.table = new MyTable(this.dtm,this.getWidth());
 	}
 	
-	public void addRow(CommodityVO vo){
+	public void addRow(PresentLineItemVO vo){
 		Object[] newPresent= new Object[COLUMN_NUM];
 		this.createRow(newPresent,vo);
 		this.dtm.addRow(newPresent);
 	}
 
-	private void createRow(Object[] row, CommodityVO vo){
+	private void createRow(Object[] row, PresentLineItemVO vo){
 		row[0]=vo.id;
 		row[1]=vo.name;
 		row[2]=vo.model;

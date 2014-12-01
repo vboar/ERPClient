@@ -101,7 +101,7 @@ public class StockKeeperPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(presentPanel == null) {
-					presentPanel = new PresentPanel();
+					presentPanel = new PresentPanel(frame);
 					add(presentPanel);
 				}
 				if(categoryPanel != null) {
