@@ -23,15 +23,13 @@ public class ApprovalController implements ApprovalBLService{
 	@Override
 	public ArrayList<PresentVO> findPresent(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findPresent(way,status,time1,time2);
 	}
 
 	@Override
 	public ArrayList<PurchaseVO> findPurchase(int way, int status,
 			String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findPurchase(way, status, time1, time2);
 	}
 
 	@Override

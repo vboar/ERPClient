@@ -7,8 +7,10 @@ package businesslogic.approvalbl;
 
 import java.util.ArrayList;
 
+import util.DocumentStatus;
 import util.ResultMessage;
 import vo.ExceptionVO;
+import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
 import vo.TransferLineItemVO;
@@ -16,6 +18,7 @@ import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
 import businesslogic.paymentbl.Payment;
 import businesslogic.paymentbl.Receipt;
+import businesslogic.presentbl.Present;
 import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
@@ -66,5 +69,37 @@ public class Approval {
 	public ResultMessage approveLoss(ExceptionVO vo){
 		Loss l=new Loss();
 		return l.approve(vo);
+	}
+	
+	public ArrayList<PresentVO> findPresent(int way,int status,String time1,String time2){
+		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
+		Present p=new Present();
+		switch(way){
+		case 0:
+			result=p.show();
+			break;
+		case 1:
+			result=p.findByStatus(DocumentStatus.values()[status]);
+			break;
+		case 2:
+			result=p.findByTime(time1, time2);
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<PurchaseVO> findPurchase(int way,int status,String time1,String time2){
+		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+		Purchase p=new Purchase();
+		switch(way){
+		case 0:
+			result=p.show();
+		case 1:
+			result=p.findByStatus(status);
+		case 2:
+			result=p.findByTime(time1, time2);
+		}
+		
+		return result;
 	}
 }

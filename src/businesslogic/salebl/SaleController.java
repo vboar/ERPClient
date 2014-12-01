@@ -7,7 +7,9 @@ package businesslogic.salebl;
 
 import java.util.ArrayList;
 
+import util.DocumentStatus;
 import util.ResultMessage;
+import vo.PurchaseVO;
 import vo.SaleVO;
 import businesslogicservice.saleblservice.SaleBLService;
 
@@ -30,6 +32,18 @@ public class SaleController implements SaleBLService {
 	public ArrayList<SaleVO> show() {
 		
 		return sale.show();
+	}
+
+	@Override
+	public ArrayList<PurchaseVO> findByStatus(DocumentStatus status) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ArrayList<PurchaseVO> findByCustomer(String customer) {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }

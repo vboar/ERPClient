@@ -18,7 +18,6 @@ public class CustomerController implements CustomerBLService {
 	@Override
 	public ResultMessage add(CustomerVO vo) {
 		return customer.add(vo);
-
 	}
 
 	@Override

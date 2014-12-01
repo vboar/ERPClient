@@ -22,7 +22,7 @@ public class Purchase {
 
 	public ResultMessage add(PurchaseVO vo) {
 
-		PurchasePO po = poToVO(vo);
+		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
 		} catch (RemoteException e) {
@@ -93,6 +93,23 @@ public class Purchase {
 
 		return voList;
 	}
+	
+	public ArrayList<PurchaseVO> findByStatus(int status){
+		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+		ArrayList<PurchasePO> temp=new ArrayList<PurchasePO>();
+		
+		try {
+			temp=DataFactoryImpl.getInstance().getPurchaseData().findByStatus(status);
+			for(int i=0;i<temp.size();i++){
+				result.add(poToVO(temp.get(i)));
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return result;
+	} 
 
 	public ArrayList<PurchaseVO> show() {
 		ArrayList<PurchasePO> poList = null;
@@ -116,7 +133,7 @@ public class Purchase {
 	
 
 	public ResultMessage update(PurchaseVO vo) {
-		PurchasePO po = poToVO(vo);
+		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().update(po);
 		} catch (RemoteException e) {
@@ -249,7 +266,7 @@ public class Purchase {
 
 	}
 
-	public PurchasePO poToVO(PurchaseVO vo) {
+	public PurchasePO voToPO(PurchaseVO vo) {
 		String id = vo.id;
 		String time = vo.time;
 		String customerId = vo.customerId;

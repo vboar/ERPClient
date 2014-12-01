@@ -78,6 +78,7 @@ public class Present {
 		}
 		return null;
 	}
+	
 	public ArrayList<PresentVO> findByCustomerId(String customerId){
 		ArrayList<PresentPO> poList=null;
 	try {
@@ -99,7 +100,31 @@ public class Present {
 	ArrayList<PresentVO> voList=poListToVOList(poList);
 	return voList;
 	}
-	
+
+	public ArrayList<PresentVO> show(){
+		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
+		ArrayList<PresentPO> temp=new ArrayList<PresentPO>();
+		try {
+			temp=DataFactoryImpl.getInstance().getPresentData().findByStatus(DocumentStatus.FAILED.ordinal());
+			for(int i=0;i<temp.size();i++){
+				result.add(poToVO(temp.get(i)));
+			}
+			
+			temp=DataFactoryImpl.getInstance().getPresentData().findByStatus(DocumentStatus.PASSED.ordinal());
+			for(int i=0;i<temp.size();i++){
+				result.add(poToVO(temp.get(i)));
+			}
+			
+			temp=DataFactoryImpl.getInstance().getPresentData().findByStatus(DocumentStatus.NONCHECKED.ordinal());
+			for(int i=0;i<temp.size();i++){
+				result.add(poToVO(temp.get(i)));
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	public ResultMessage approve(PresentVO vo){
 	return null;
