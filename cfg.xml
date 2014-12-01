@@ -325,18 +325,20 @@
 			<buttons>
 				<add text="添加账户" w="120" h="32" x="450" y="110" />
 				<delete text="删除选中账户" w="120" h="32" x="600" y="110" />
-				<commit text="提交"  w="100" h="32" x="300" y="350" />
-				<cancel text="取消"  w="100" h="30" x="400" y="350" />
+				<commit text="提交" w="100" h="32" x="300" y="350" />
+				<cancel text="取消" w="100" h="30" x="400" y="350" />
+				<addcustomer text="添加" w="100" h="30" x="320" y="60" />
 			</buttons>
 			<labels>
 				<title text="收款单" w="120" h="30" x="10" y="10" />
 				<documentid text="单据编号：" w="120" h="30" x="500" y="10" />
-				<customer text="客户：" w="120" h="30" x="10" y="60" />
+				<customer text="客户：" w="60" h="30" x="10" y="60" />
+				<customername text="客户姓名：" w="120" h="30" x="480" y="60" />
 				<list text="转账列表" w="120" h="30" x="10" y="110" />
-				<operator text="操作员：" w="120" h="30" x="650" y="60" />
+				<operator text="操作员：" w="120" h="30" x="600" y="60" />
 			</labels>
 			<textfields>
-				<customerfind w="250" h="30" x="200" y="60" />
+				<customerfind w="150" h="30" x="150" y="60" />
 			</textfields>
 			<tablepane className="ui.paymentui.ReceiptTable" width="730" height="200" x="10" y="150">
 				<columnnames>
@@ -576,18 +578,21 @@
 	<addreceiptaccountinfodialog width="500" height="280" x="230"
 								 y="180" title="账户信息">
 		<buttons>
+			<addaccount text="添加" w="80" h="30" x="400" y="20" />
 			<commit text="提交" w="80" h="30" x="150" y="210" />
 			<cancel text="取消" w="80" h="30" x="270" y="210" />
 		</buttons>
 		<labels>
 			<account text="银行账户" w="80" h="30" x="20" y="20" />
-			<money text="转账金额" w="80" h="30" x="20" y="50" />
-			<remark text="备注" w="80" h="30" x="20" y="80" />
+			<accountnum text="银行卡号" w="80" h="30" x="20" y="50" />
+			<name text="账户名称" w="80" h="30" x="20" y="80" />
+			<money text="转账金额" w="80" h="30" x="20" y="110" />
+			<remark text="备注" w="80" h="30" x="20" y="140" />
 		</labels>
 		<textfields>
 			<account w="320" h="30" x="120" y="20" />
-			<money w="320" h="30" x="120" y="50" />
-			<remark w="320" h="30" x="120" y="80" />
+			<money w="320" h="30" x="120" y="110" />
+			<remark w="320" h="30" x="120" y="140" />
 		</textfields>
 	</addreceiptaccountinfodialog>
 

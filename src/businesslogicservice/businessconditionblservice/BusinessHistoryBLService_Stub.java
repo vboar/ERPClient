@@ -5,15 +5,13 @@
  */
 package businesslogicservice.businessconditionblservice;
 
-import java.util.ArrayList;
-
-import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
-import vo.CashVO;
 import vo.ClauseLineItemVO;
 import vo.DocumentVO;
 import vo.RequirementVO;
+
+import java.util.ArrayList;
 
 public class BusinessHistoryBLService_Stub implements DetailHistoryBLService{
 
@@ -23,8 +21,8 @@ public class BusinessHistoryBLService_Stub implements DetailHistoryBLService{
 		if(vo.type!=DocumentType.CASH) return list;
 		ArrayList<ClauseLineItemVO> clauseList = new ArrayList<ClauseLineItemVO>();
 		clauseList.add(new ClauseLineItemVO("浩克",700,"无"));
-		list.add(new CashVO("XJFYD-20141024-00001","金刚狼","工商银行账户1",
-				clauseList,700,DocumentStatus.PASSED));
+//		list.add(new CashVO("XJFYD-20141024-00001","金刚狼","工商银行账户1",
+//				clauseList,700,DocumentStatus.PASSED));
 		return list;
 	}
 
