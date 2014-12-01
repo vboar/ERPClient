@@ -5,20 +5,15 @@
  */
 package ui.homeui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-
-import javax.swing.JPanel;
-
-import org.dom4j.Element;
-
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import businesslogic.loginbl.LoginController;
+import businesslogicservice.loginblservice.LoginBLService;
 import config.ERPConfig;
 import config.PanelConfig;
+import org.dom4j.Element;
+import ui.util.MyButton;
+import ui.util.MyLabel;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class LoginUserInfoPanel extends JPanel {
@@ -33,11 +28,11 @@ public class LoginUserInfoPanel extends JPanel {
 	
 	private PanelConfig pcfg;
 	
-	private LoginController lc;
+	private LoginBLService lc;
 	
 	private Image bg;
 	
-	public LoginUserInfoPanel(LoginController lc){
+	public LoginUserInfoPanel(LoginBLService lc){
 		this.lc = lc;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setLayout(null);

@@ -11,5 +11,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/LDQ/beautyeye_lnf.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

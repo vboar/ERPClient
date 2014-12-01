@@ -24,7 +24,7 @@ import ui.util.MyTextField;
 import util.ResultMessage;
 import util.UserType;
 import vo.UserVO;
-import config.InfoDialogConfig;
+import config.DialogConfig;
 
 @SuppressWarnings("serial")
 public class UserInfoDialog extends JDialog {
@@ -49,13 +49,13 @@ public class UserInfoDialog extends JDialog {
 	
 	private MyButton cancel;
 	
-	private InfoDialogConfig cfg;
+	private DialogConfig cfg;
 	
 	public UserPanel panel;
 	
 	private boolean isAdd;
 	
-	public UserInfoDialog(InfoDialogConfig cfg, JFrame frame, UserPanel panel,boolean isAdd){
+	public UserInfoDialog(DialogConfig cfg, JFrame frame, UserPanel panel,boolean isAdd){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.setTitle(cfg.getTitle());
@@ -69,7 +69,7 @@ public class UserInfoDialog extends JDialog {
 		this.initComponent();
 	}
 
-	public UserInfoDialog(InfoDialogConfig userinfo_DIALOG_CONFIG,
+	public UserInfoDialog(DialogConfig userinfo_DIALOG_CONFIG,
 			JFrame homeframe, UserPanel userPanel, Boolean isAdd,UserVO vo) {
 		this(userinfo_DIALOG_CONFIG,homeframe,userPanel,isAdd);
 		this.idTxt.setText(vo.id);

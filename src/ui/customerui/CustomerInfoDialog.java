@@ -22,7 +22,7 @@ import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
 import vo.CustomerVO;
-import config.InfoDialogConfig;
+import config.DialogConfig;
 
 @SuppressWarnings("serial")
 public class CustomerInfoDialog extends JDialog {
@@ -49,13 +49,13 @@ public class CustomerInfoDialog extends JDialog {
 	
 	private MyButton cancel;
 
-	private InfoDialogConfig cfg;
+	private DialogConfig cfg;
 	
 	public CustomerPanel panel;
 	
 	private boolean isAdd;
 	
-	public CustomerInfoDialog(InfoDialogConfig cfg, JFrame frame, CustomerPanel panel, boolean isAdd) {
+	public CustomerInfoDialog(DialogConfig cfg, JFrame frame, CustomerPanel panel, boolean isAdd) {
 		super(frame, true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.cfg = cfg;
@@ -69,7 +69,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.initComponent();
 	}
 	
-	public CustomerInfoDialog(InfoDialogConfig cfg, JFrame frame, CustomerPanel panel, 
+	public CustomerInfoDialog(DialogConfig cfg, JFrame frame, CustomerPanel panel, 
 			boolean isAdd, CustomerVO vo) {
 		this(cfg, frame, panel, isAdd);
 		this.addressTxt.setText(vo.address);

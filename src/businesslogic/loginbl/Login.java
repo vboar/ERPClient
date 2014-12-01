@@ -12,7 +12,7 @@ public class Login {
 	private static String currentUserName;
 	
 	public static String currentUserId;
-	
+
 	private UserType currentUserType;
 	
 	private int type;

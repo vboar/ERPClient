@@ -2,7 +2,7 @@ package ui.paymentui;
 
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.accountblservice.AccountBLService;
-import config.InfoDialogConfig;
+import config.DialogConfig;
 import org.dom4j.Element;
 import ui.util.*;
 import vo.AccountVO;
@@ -30,11 +30,11 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
 
     private CreateReceiptPanel panel;
 
-    private InfoDialogConfig cfg;
+    private DialogConfig cfg;
 
     private AccountBLService accountController;
 
-    public AddReceiptAccountDialog(InfoDialogConfig cfg, JFrame frame, CreateReceiptPanel panel) {
+    public AddReceiptAccountDialog(DialogConfig cfg, JFrame frame, CreateReceiptPanel panel) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
         accountController = ControllerFactoryImpl.getInstance().getAccountController();

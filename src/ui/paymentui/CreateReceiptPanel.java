@@ -178,7 +178,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	}
 
 	private void showAddDialog() {
-		addDialog= new AddReceiptAccountDialog(ERPConfig.getAddreceiptaccountDialogConfig(), frame, this);
+		addDialog= new AddReceiptAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(), frame, this);
 		this.addDialog.setVisible(true);
 	}
 
@@ -189,8 +189,9 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 		for(TransferLineItemVO vo: lists) {
 			total += vo.account;
 		}
-		PaymentVO vo = new PaymentVO(id, customerId, customerName, operatorId,
-				lists, total, DocumentStatus.NONCHECKED, DocumentType.RECEIPT);
+		// TODO time
+		PaymentVO vo = new PaymentVO(id, null, customerId, customerName, operatorId,
+				lists, total, DocumentStatus.NONCHECKED, false, DocumentType.RECEIPT);
 		return vo;
 	}
 

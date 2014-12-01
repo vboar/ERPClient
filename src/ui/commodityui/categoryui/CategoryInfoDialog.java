@@ -19,7 +19,7 @@ import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import vo.CategoryVO;
-import config.InfoDialogConfig;
+import config.DialogConfig;
 
 @SuppressWarnings("serial")
 public class CategoryInfoDialog extends JDialog{
@@ -36,9 +36,9 @@ public class CategoryInfoDialog extends JDialog{
 	
 	private CategoryTreePane tree;
 	
-	private InfoDialogConfig cfg;
+	private DialogConfig cfg;
 	
-	public CategoryInfoDialog(InfoDialogConfig cfg,JFrame frame, CategoryTreePane tree){
+	public CategoryInfoDialog(DialogConfig cfg,JFrame frame, CategoryTreePane tree){
 		super(frame,true);
 		this.cfg = cfg;
 		this.tree = tree;
@@ -53,7 +53,7 @@ public class CategoryInfoDialog extends JDialog{
 		this.initComponent();
 	}
 	
-	public CategoryInfoDialog(InfoDialogConfig categoryinfo_DIALOG_CONFIG,
+	public CategoryInfoDialog(DialogConfig categoryinfo_DIALOG_CONFIG,
 			JFrame homeframe, CategoryTreePane panel,CategoryVO vo) {
 		this(categoryinfo_DIALOG_CONFIG,homeframe,panel);
 		this.nameTxt.setText(vo.name);

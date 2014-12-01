@@ -55,70 +55,11 @@
 			</labels>
 		</panel>
 
-		<!-- 用户管理面板 -->
-		<panel className="ui.userui.UserPanel" width="760" height="510"
-			x="200" y="0" bg="img/rightpanel.png">
-			<buttons>
-				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png"
-					pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"
-					pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="330" y="36" path="img\upduser.png"
-					pathroll="img\upduser1.png" />
-				<showall text="" w="100" h="30" x="410" y="37" path="img\show.png"
-					pathroll="img\show1.png" />
-				<find text="" w="30" h="30" x="700" y="30" path="img\search1.png"
-					pathroll="img\search1.png" />
-			</buttons>
-			<labels>
-				<userlist text="" w="120" h="32" x="20" y="35"
-					path="img\userlist.png" />
-				<modulename text="" w="120" h="30" x="5" y="2"
-					path="img\usermanage.png" />
-				<admin text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
-			</labels>
-			<textfields>
-				<findinput w="175" h="28" x="525" y="38" />
-			</textfields>
-			<tablepane className="ui.userui.UserTablePane" width="730"
-				height="390" x="10" y="80">
-				<columnnames>
-					<columnname name="ID" />
-					<columnname name="用户名" />
-					<columnname name="密码" />
-					<columnname name="类型" />
-					<columnname name="权限" />
-				</columnnames>
-			</tablepane>
-		</panel>
-		
-		<!-- 系统管理员面板 -->
-		<panel className="ui.homeui.AdminPanel" width="960"
-			height="480" x="0" y="90" bg="img/leftpanel.png">
-			<buttons>
-				<usermanage text="系统用户管理" w="160" h="40" x="20" y="50" />
-			</buttons>
-			<labels>
-				<title text="用户管理" w="200" h="30" x="0" y="0" />
-			</labels>
-			<textfields></textfields>
-		</panel>
 
-		<!-- 销售人员面板 -->
-		<panel className="ui.homeui.SalesmanPanel" width="960"
-			   height="480" x="0" y="90" bg="img/leftpanel.png">
-			<buttons>
-				<customermanage text="客户管理" w="160" h="40" x="20" y="50" />
-			</buttons>
-			<labels>
-				<title text="客户管理" w="200" h="30" x="0" y="0" />
-			</labels>
-			<textfields></textfields>
-		</panel>
 
 		<!-- 库存管理人员面板 -->
 		<panel className="ui.homeui.StockKeeperPanel" width="960"
-			height="480" x="0" y="90" bg="img/leftpanel.png">
+			   height="480" x="0" y="90" bg="img/leftpanel.png">
 			<buttons>
 				<category text="商品分类管理" w="160" h="40" x="20" y="50" />
 				<commodity text="商品管理" w="160" h="40" x="20" y="100" />
@@ -128,9 +69,22 @@
 				<exception text="库存异常处理" w="160" h="40" x="20" y="300" />
 			</buttons>
 			<labels>
-				<title text="商品管理" w="200" h="30" x="0" y="0" />
+				<title text="商品库存管理" w="200" h="30" x="0" y="0" />
 			</labels>
-			<textfields></textfields>
+		</panel>
+
+		<!-- 销售人员面板 -->
+		<panel className="ui.homeui.SalesmanPanel" width="960"
+			   height="480" x="0" y="90" bg="img/leftpanel.png">
+			<buttons>
+				<sale text="商品销售" w="160" h="40" x="20" y="50" />
+				<purchase text="商品进货" w="160" h="40" x="20" y="100" />
+				<present text="赠品发放" w="160" h="40" x="20" y="150" />
+				<customermanage text="客户管理" w="160" h="40" x="20" y="200" />
+			</buttons>
+			<labels>
+				<title text="进货销售管理" w="200" h="30" x="0" y="0" />
+			</labels>
 		</panel>
 		
 		<!-- 财务人员面板 -->
@@ -146,21 +100,47 @@
 			<labels>
 				<title text="财务管理" w="200" h="30" x="0" y="0" />
 			</labels>
-			<textfields></textfields>
 		</panel>
-		
+
+		<!-- 总经理面板 -->
+		<panel className="ui.homeui.ManagerPanel" width="960" height="480"
+			   x="0" y="90" bg="img/leftpanel.png">
+			<buttons>
+				<approval text="单据审批" w="160" h="40" x="20" y="50" />
+				<promotion text="促销策略制定" w="160" h="40" x="20" y="100" />
+				<condition text="经营状况查看" w="160" h="40" x="20" y="150"/>
+				<log text="系统日志查询" w="160" h="40" x="20" y="200" />
+			</buttons>
+			<labels>
+				<title text="总经理事务" w="200" h="30" x="0" y="0" />
+			</labels>
+		</panel>
+
+		<!-- 系统管理员面板 -->
+		<panel className="ui.homeui.AdminPanel" width="960"
+			   height="480" x="0" y="90" bg="img/leftpanel.png">
+			<buttons>
+				<usermanage text="系统用户管理" w="160" h="40" x="20" y="50" />
+			</buttons>
+			<labels>
+				<title text="用户管理" w="200" h="30" x="0" y="0" />
+			</labels>
+		</panel>
+
+
+
 		<!-- 商品分类管理面板 -->
 		<panel className="ui.commodityui.categoryui.CategoryPanel"
-			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
 				<showall text="展开所有节点" w="120" h="30" x="610" y="42"/>
 			</buttons>
 			<labels>
 				<title text="商品分类管理" w="200" h="30" x="10" y="2" />
 				<tip text="操作提示：请在分类节点上单击鼠标右键进行分类管理操作。" w="440" h="30" x="160"
-					y="45" font="微软雅黑" fontsize="15" color="true" r="255" g="100" b="10" />
+					 y="45" font="微软雅黑" fontsize="15" color="true" r="255" g="100" b="10" />
 				<category text="商品分类浏览" w="160" h="40" x="20" y="36" font="微软雅黑"
-					fontsize="20" color="true" r="40" g="40" b="40" />
+						  fontsize="20" color="true" r="40" g="40" b="40" />
 			</labels>
 			<textfields></textfields>
 			<tree width="730" height="380" x="10" y="80" rootname="ERP" />
@@ -168,26 +148,26 @@
 
 		<!-- 商品管理面板 -->
 		<panel className="ui.commodityui.commodityui.CommodityPanel"
-			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
 				<find text="搜索" w="60" h="30" x="680" y="45"  />
 			</buttons>
 			<labels>
 				<tip text="操作提示：请选中节点单击鼠标右键进行商品的增、删、改操作。" w="400" h="30" x="120"
-					y="45" font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10" />
+					 y="45" font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10" />
 				<title text="商品管理" w="200" h="30" x="10" y="2" />
 				<commoditylist text="商品浏览" w="160" h="40" x="20" y="36"
-					font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
+							   font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
 			</labels>
 			<textfields>
 				<find w="180" h="30" x="490" y="45"/>
 			</textfields>
 			<tree width="730" height="380" x="10" y="80" rootname="ERP" />
 		</panel>
-		
+
 		<!-- 赠品发放面板 -->
-		<panel className="ui.presentui.PresentPanel" 
-			width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+		<panel className="ui.presentui.PresentPanel"
+			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
 				<createpresent text="创建赠送单" w="160" h="30" x="10" y="45"/>
 			</buttons>
@@ -195,10 +175,10 @@
 				<title text="赠品发放" w="120" h="30" x="10" y="2" />
 			</labels>
 		</panel>
-		
+
 		<!-- 赠品发放面板中的赠送单面板 -->
 		<panel className="ui.presentui.CreatePresentPanel"
-			width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
+			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
 			<buttons>
 				<add text="增加商品" w="80" h="32" x="500" y="90" />
 				<delete text="删除商品" w="80" h="32" x="600" y="90" />
@@ -225,7 +205,7 @@
 				</columnnames>
 			</tablepane>
 		</panel>
-		
+
 		<!-- 库存查看面板 -->
 		<panel className="ui.stockui.stockinfo.StockInfoPanel" width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
@@ -235,7 +215,7 @@
 			<labels>
 				<title text="库存查看" w="200" h="30" x="10" y="2" />
 				<stocklist text="库存列表" w="160" h="40" x="20" y="36"
-					font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
+						   font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
 				<start text="起始日期" w="120" h="30" x="160" y="45" />
 				<end text="截止日期" w="120" h="30" x="360" y="45" />
 			</labels>
@@ -244,7 +224,7 @@
 				<end w="120" h="30" x="420" y="45"/>
 			</datepicker>
 			<tablepane className="ui.stockui.StockTablePane"
-				width="730" height="395" x="10" y="80">
+					   width="730" height="395" x="10" y="80">
 				<columnnames>
 					<columnname name="编号" />
 					<columnname name="商品名称" />
@@ -258,36 +238,51 @@
 			</tablepane>
 		</panel>
 
+
+		<!-- 商品销售面板 -->
+		<panel className="ui.saleui.SalePanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
+		<!-- 商品进货面板 -->
+		<panel className="ui.purchaseui.PurchasePanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
 		<!-- 客户管理面板 -->
 		<panel className="ui.customerui.CustomerPanel" width="760" height="510"
-			x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
 				<add text="" w="80" h="32" x="370" y="36" path="img\adduser.png"
-					pathroll="img\adduser1.png" />
+					 pathroll="img\adduser1.png" />
 				<delete text="" w="80" h="32" x="450" y="36" path="img\deluser.png"
-					pathroll="img\deluser1.png" />
+						pathroll="img\deluser1.png" />
 				<update text="" w="80" h="32" x="530" y="36" path="img\upduser.png"
-					pathroll="img\upduser1.png" />
+						pathroll="img\upduser1.png" />
 				<show text="" w="100" h="30" x="610" y="37" path="img\show.png"
-					pathroll="img\show1.png" />
+					  pathroll="img\show1.png" />
 				<find text="" w="24" h="24" x="910" y="40" path="img\search.png"
-					pathroll="img\search1.png" />
+					  pathroll="img\search1.png" />
 				<customermanage text="" w="100" h="40" x="" y="" />
 			</buttons>
 			<labels>
 				<customerlist text="" w="120" h="32" x="220" y="35"
-					path="img\userlist.png" />
+							  path="img\userlist.png" />
 				<modulename text="" w="120" h="30" x="205" y="2"
-					path="img\usermanage.png" />
+							path="img\usermanage.png" />
 				<salesman text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
 				<customermanagebtn text="" w="150" h="32" x="35"
-					y="60" path="img\usermanagebtn.png" />
+								   y="60" path="img\usermanagebtn.png" />
 			</labels>
 			<textfields>
 				<findinput w="175" h="28" x="725" y="38" />
 			</textfields>
 			<tablepane className="ui.customerui.CustomerTablePane"
-				width="730" height="395" x="10" y="80">
+					   width="730" height="395" x="10" y="80">
 				<columnnames>
 					<columnname name="编号" />
 					<columnname name="姓名" />
@@ -305,40 +300,7 @@
 			</tablepane>
 		</panel>
 
-		<!-- 账户管理面板 -->
-		<panel className="ui.accountui.AccountPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
-			<buttons>
-				<add text="" w="80" h="32" x="180" y="36" path="img\adduser.png"
-					pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="260" y="36" path="img\deluser.png"
-					pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="340" y="36" path="img\upduser.png"
-					pathroll="img\upduser1.png" />
-				<show text="" w="100" h="30" x="420" y="36" path="img\show.png"
-					pathroll="img\show1.png" />
-				<find text="" w="24" h="24" x="700" y="40" path="img\search.png"
-					pathroll="img\search1.png" />
-			</buttons>
-			<labels>
-				<accountlist text="" w="120" h="32" x="0" y="35"
-					path="img\userlist.png" />
-				<modulename text="" w="120" h="30" x="0" y="2"
-					path="img\usermanage.png" />
-				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
-			</labels>
-			<textfields>
-				<findinput w="175" h="28" x="525" y="38" />
-			</textfields>
-			<tablepane className="ui.accountui.AccountTablePane" width="730"
-				height="390" x="10" y="80">
-				<columnnames>
-					<columnname name="银行账号" />
-					<columnname name="账户名称" />
-					<columnname name="金额" />
-				</columnnames>
-			</tablepane>
-		</panel>
-		
+
 		<!-- 收付款面板 -->
 		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
 			<buttons>
@@ -351,7 +313,7 @@
 				<title text="收付款" w="120" h="32" x="10" y="5" />
 			</labels>
 		</panel>
-		
+
 		<!-- 收付款面板中的制定收款单面板 -->
 		<panel className="ui.paymentui.CreateReceiptPanel" width="760" height="420" x="0" y="70" bg="img/panel.png">
 			<buttons>
@@ -379,8 +341,267 @@
 				</columnnames>
 			</tablepane>
 		</panel>
-		
+
+		<!-- 经营状况查看面板 -->
+		<panel className="ui.conditionui.ConditionPanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
+		<!-- 系统日志查询面板 -->
+		<panel className="ui.logui.LogPanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
+		<!-- 期初建账面板 -->
+		<panel className="ui.initialui.InitialPanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
+		<!-- 账户管理面板 -->
+		<panel className="ui.accountui.AccountPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
+			<buttons>
+				<add text="" w="80" h="32" x="180" y="36" path="img\adduser.png"
+					 pathroll="img\adduser1.png" />
+				<delete text="" w="80" h="32" x="260" y="36" path="img\deluser.png"
+						pathroll="img\deluser1.png" />
+				<update text="" w="80" h="32" x="340" y="36" path="img\upduser.png"
+						pathroll="img\upduser1.png" />
+				<show text="" w="100" h="30" x="420" y="36" path="img\show.png"
+					  pathroll="img\show1.png" />
+				<find text="" w="24" h="24" x="700" y="40" path="img\search.png"
+					  pathroll="img\search1.png" />
+			</buttons>
+			<labels>
+				<accountlist text="" w="120" h="32" x="0" y="35"
+							 path="img\userlist.png" />
+				<modulename text="" w="120" h="30" x="0" y="2"
+							path="img\usermanage.png" />
+				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
+			</labels>
+			<textfields>
+				<findinput w="175" h="28" x="525" y="38" />
+			</textfields>
+			<tablepane className="ui.accountui.AccountTablePane" width="730"
+					   height="390" x="10" y="80">
+				<columnnames>
+					<columnname name="银行账号" />
+					<columnname name="账户名称" />
+					<columnname name="金额" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
+
+		<!-- 单据审批面板 -->
+		<panel className="ui.approvalui.ApprovalPanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
+		<!-- 促销策略制定面板 -->
+		<panel className="ui.promotionui.PromotionPanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+		</panel>
+
+
+		<!-- 用户管理面板 -->
+		<panel className="ui.userui.UserPanel" width="760" height="510"
+			   x="200" y="0" bg="img/rightpanel.png">
+			<buttons>
+				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png"
+					 pathroll="img\adduser1.png" />
+				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"
+						pathroll="img\deluser1.png" />
+				<update text="" w="80" h="32" x="330" y="36" path="img\upduser.png"
+						pathroll="img\upduser1.png" />
+				<showall text="" w="100" h="30" x="410" y="37" path="img\show.png"
+						 pathroll="img\show1.png" />
+				<find text="" w="30" h="30" x="700" y="30" path="img\search1.png"
+					  pathroll="img\search1.png" />
+			</buttons>
+			<labels>
+				<userlist text="" w="120" h="32" x="20" y="35"
+						  path="img\userlist.png" />
+				<modulename text="" w="120" h="30" x="5" y="2"
+							path="img\usermanage.png" />
+				<admin text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
+			</labels>
+			<textfields>
+				<findinput w="175" h="28" x="525" y="38" />
+			</textfields>
+			<tablepane className="ui.userui.UserTablePane" width="730"
+					   height="390" x="10" y="80">
+				<columnnames>
+					<columnname name="ID" />
+					<columnname name="用户名" />
+					<columnname name="密码" />
+					<columnname name="类型" />
+					<columnname name="权限" />
+				</columnnames>
+			</tablepane>
+		</panel>
 	</frame>
+
+
+
+	<!-- 商品分类信息对话框 -->
+	<categoryinfodialog width="480" height="165" x="230"
+						y="240" title="商品分类信息">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="260" y="80" />
+			<cancel text="取消" w="80" h="30" x="360" y="80" />
+		</buttons>
+		<labels>
+			<name text="商品分类名称" w="80" h="30" x="20" y="20" />
+			<nametip text="请输入2-14位内中英文字符" w="200" h="30" x="120" y="46"
+					 font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
+		</labels>
+		<textfields>
+			<name w="320" h="30" x="120" y="20" />
+		</textfields>
+		<comboboxes></comboboxes>
+	</categoryinfodialog>
+
+	<!-- 商品信息对话框 -->
+	<commodityinfodialog width="480" height="280" x="280"
+						 y="200" title="商品信息">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="260" y="200" />
+			<cancel text="取消" w="80" h="30" x="360" y="200" />
+		</buttons>
+		<labels>
+			<nametip text="* 商品名称及型号请输入2-14位内数字或中、英文字符" w="300" h="20" x="100" y="8"
+					 font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
+			<name text="商品名称" w="100" h="30" x="20" y="30" />
+			<model text="商品型号" w="100" h="30" x="20" y="70" />
+			<purchaseprice text="默认进价" w="100" h="30" x="20" y="110" />
+			<saleprice text="默认售价" w="100" h="30" x="240" y="110" />
+			<warningnum text="警戒数量" w="100" h="30" x="20" y="150" />
+		</labels>
+		<textfields>
+			<name  w="320" h="30" x="100" y="30" />
+			<model  w="320" h="30" x="100" y="70" />
+			<purchaseprice  w="120" h="30" x="100" y="110" />
+			<saleprice  w="120" h="30" x="300" y="110" />
+			<warningnum  w="120" h="30" x="100" y="150" />
+		</textfields>
+		<comboboxes></comboboxes>
+	</commodityinfodialog>
+
+	<!-- 赠品发放创建赠送单添加赠品对话框 -->
+	<addpresentcommodityinfodialog width="480" height="280" x="280"
+								   y="200" title="添加赠品">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="260" y="200" />
+			<cancel text="取消" w="80" h="30" x="360" y="200" />
+		</buttons>
+		<labels>
+			<nametip text="* 商品名称及型号请输入2-14位内数字或中、英文字符" w="300" h="20" x="100" y="8"
+					 font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
+			<name text="商品名称" w="100" h="30" x="20" y="30" />
+			<model text="商品型号" w="100" h="30" x="20" y="70" />
+			<purchaseprice text="默认进价" w="100" h="30" x="20" y="110" />
+			<saleprice text="默认售价" w="100" h="30" x="240" y="110" />
+			<warningnum text="警戒数量" w="100" h="30" x="20" y="150" />
+		</labels>
+		<textfields>
+			<name  w="320" h="30" x="100" y="30" />
+			<model  w="320" h="30" x="100" y="70" />
+			<purchaseprice  w="120" h="30" x="100" y="110" />
+			<saleprice  w="120" h="30" x="300" y="110" />
+			<warningnum  w="120" h="30" x="100" y="150" />
+		</textfields>
+	</addpresentcommodityinfodialog>
+
+
+	<!-- 客户信息对话框 -->
+	<customerinfodialog width="500" height="280" x="230"
+						y="180" title="客户信息">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<category text="客户类别" w="40" h="30" x="30" y="20" />
+			<level text="客户级别" w="60" h="30" x="240" y="20" />
+			<name text="姓名" w="40" h="30" x="30" y="80" />
+			<phonenumber text="电话" w="40" h="30" x="30" y="140" />
+			<address text="地址" w="40" h="30" x="240" y="140" />
+			<postalcode text="邮编" w="40" h="30" x="240" y="140" />
+			<email text="电子邮箱" w="40" h="30" x="240" y="140" />
+			<creditlimit text="应收额度" w="40" h="30" x="240" y="140" />
+			<salesman text="默认业务员" w="40" h="30" x="240" y="140" />
+		</labels>
+		<textfields>
+			<name w="40" h="30" x="30" y="80" />
+			<phonenumber w="40" h="30" x="30" y="140" />
+			<address w="40" h="30" x="240" y="140" />
+			<postalcode w="40" h="30" x="240" y="140" />
+			<email w="40" h="30" x="240" y="140" />
+			<creditlimit w="40" h="30" x="240" y="140" />
+			<salesman w="40" h="30" x="240" y="140" />
+		</textfields>
+		<comboboxes>
+			<category w="130" h="30" x="80" y="140">
+				<string str="供应商" />
+				<string str="销售商" />
+			</category>
+			<level w="130" h="30" x="80" y="140">
+				<string str="VIP1" />
+				<string str="VIP2" />
+				<string str="VIP3" />
+				<string str="VIP4" />
+				<string str="VIP5" />
+			</level>
+		</comboboxes>
+	</customerinfodialog>
+
+
+	<!-- 收付款中收款添加账户对话框 -->
+	<addreceiptaccountinfodialog width="500" height="280" x="230"
+								 y="180" title="账户信息">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<account text="银行账户" w="80" h="30" x="20" y="20" />
+			<money text="转账金额" w="80" h="30" x="20" y="50" />
+			<remark text="备注" w="80" h="30" x="20" y="80" />
+		</labels>
+		<textfields>
+			<account w="320" h="30" x="120" y="20" />
+			<money w="320" h="30" x="120" y="50" />
+			<remark w="320" h="30" x="120" y="80" />
+		</textfields>
+	</addreceiptaccountinfodialog>
+
+	<!-- 账户信息对话框 -->
+	<accountinfodialog width="500" height="280" x="230"
+					   y="180" title="账户信息">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<account text="银行账户" w="80" h="30" x="20" y="20" />
+			<name text="账户名称" w="80" h="30" x="20" y="50" />
+		</labels>
+		<textfields>
+			<account w="320" h="30" x="120" y="20" />
+			<name w="320" h="30" x="120" y="50" />
+		</textfields>
+	</accountinfodialog>
+
 
 	<!-- 用户信息对话框 -->
 	<userinfodialog width="500" height="280" x="230" y="180"
@@ -421,127 +642,5 @@
 			</permission>
 		</comboboxes>
 	</userinfodialog>
-
-	<!-- 客户信息对话框 -->
-	<customerinfodialog width="500" height="280" x="230"
-		y="180" title="客户信息">
-		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
-		</buttons>
-		<labels>
-			<category text="客户类别" w="40" h="30" x="30" y="20" />
-			<level text="客户级别" w="60" h="30" x="240" y="20" />
-			<name text="姓名" w="40" h="30" x="30" y="80" />
-			<phonenumber text="电话" w="40" h="30" x="30" y="140" />
-			<address text="地址" w="40" h="30" x="240" y="140" />
-			<postalcode text="邮编" w="40" h="30" x="240" y="140" />
-			<email text="电子邮箱" w="40" h="30" x="240" y="140" />
-			<creditlimit text="应收额度" w="40" h="30" x="240" y="140" />
-			<salesman text="默认业务员" w="40" h="30" x="240" y="140" />
-		</labels>
-		<textfields>
-			<name w="40" h="30" x="30" y="80" />
-			<phonenumber w="40" h="30" x="30" y="140" />
-			<address w="40" h="30" x="240" y="140" />
-			<postalcode w="40" h="30" x="240" y="140" />
-			<email w="40" h="30" x="240" y="140" />
-			<creditlimit w="40" h="30" x="240" y="140" />
-			<salesman w="40" h="30" x="240" y="140" />
-		</textfields>
-		<comboboxes>
-			<category w="130" h="30" x="80" y="140">
-				<string str="供应商" />
-				<string str="销售商" />
-			</category>
-			<level w="130" h="30" x="80" y="140">
-				<string str="VIP1" />
-				<string str="VIP2" />
-				<string str="VIP3" />
-				<string str="VIP4" />
-				<string str="VIP5" />
-			</level>
-		</comboboxes>
-	</customerinfodialog>
-
-	<!-- 商品分类信息对话框 -->
-	<categoryinfodialog width="480" height="165" x="230"
-		y="240" title="商品分类信息">
-		<buttons>
-			<commit text="提交" w="80" h="30" x="260" y="80" />
-			<cancel text="取消" w="80" h="30" x="360" y="80" />
-		</buttons>
-		<labels>
-			<name text="商品分类名称" w="80" h="30" x="20" y="20" />
-			<nametip text="请输入2-14位内中英文字符" w="200" h="30" x="120" y="46"
-				font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
-		</labels>
-		<textfields>
-			<name w="320" h="30" x="120" y="20" />
-		</textfields>
-		<comboboxes></comboboxes>
-	</categoryinfodialog>
-
-	<!-- 商品信息对话框 -->
-	<commodityinfodialog width="480" height="280" x="280"
-		y="200" title="商品信息">
-		<buttons>
-			<commit text="提交" w="80" h="30" x="260" y="200" />
-			<cancel text="取消" w="80" h="30" x="360" y="200" />
-		</buttons>
-		<labels>
-			<nametip text="* 商品名称及型号请输入2-14位内数字或中、英文字符" w="300" h="20" x="100" y="8"
-				font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
-			<name text="商品名称" w="100" h="30" x="20" y="30" />
-			<model text="商品型号" w="100" h="30" x="20" y="70" />
-			<purchaseprice text="默认进价" w="100" h="30" x="20" y="110" />
-			<saleprice text="默认售价" w="100" h="30" x="240" y="110" />
-			<warningnum text="警戒数量" w="100" h="30" x="20" y="150" />
-		</labels>
-		<textfields>
-			<name  w="320" h="30" x="100" y="30" />
-			<model  w="320" h="30" x="100" y="70" />
-			<purchaseprice  w="120" h="30" x="100" y="110" />
-			<saleprice  w="120" h="30" x="300" y="110" />
-			<warningnum  w="120" h="30" x="100" y="150" />
-		</textfields>
-		<comboboxes></comboboxes>
-	</commodityinfodialog>
-	
-	<!-- 账户信息对话框 -->
-	<accountinfodialog width="500" height="280" x="230"
-		y="180" title="账户信息">
-		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
-		</buttons>
-		<labels>
-			<account text="银行账户" w="80" h="30" x="20" y="20" />
-			<name text="账户名称" w="80" h="30" x="20" y="50" />
-		</labels>
-		<textfields>
-			<account w="320" h="30" x="120" y="20" />
-			<name w="320" h="30" x="120" y="50" />
-		</textfields>
-	</accountinfodialog>
-
-	<!-- 收付款中收款添加账户对话框 -->
-	<addreceiptaccountinfodialog width="500" height="280" x="230"
-					   y="180" title="账户信息">
-		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
-		</buttons>
-		<labels>
-			<account text="银行账户" w="80" h="30" x="20" y="20" />
-			<money text="转账金额" w="80" h="30" x="20" y="50" />
-			<remark text="备注" w="80" h="30" x="20" y="80" />
-		</labels>
-		<textfields>
-			<account w="320" h="30" x="120" y="20" />
-			<money w="320" h="30" x="120" y="50" />
-			<remark w="320" h="30" x="120" y="80" />
-		</textfields>
-	</addreceiptaccountinfodialog>
 
 </erp>
