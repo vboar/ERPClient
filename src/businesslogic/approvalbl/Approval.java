@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import util.DocumentStatus;
 import util.ResultMessage;
+import vo.CashVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
 import vo.PresentVO;
@@ -17,6 +18,7 @@ import vo.SaleVO;
 import vo.TransferLineItemVO;
 import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
+import businesslogic.paymentbl.Cash;
 import businesslogic.paymentbl.Payment;
 import businesslogic.paymentbl.Receipt;
 import businesslogic.presentbl.Present;
@@ -70,6 +72,11 @@ public class Approval {
 	public ResultMessage approveLoss(ExceptionVO vo){
 		Loss l=new Loss();
 		return l.approve(vo);
+	}
+	
+	public ResultMessage approveCash(CashVO vo){
+		Cash c=new Cash();
+		return c.approve(vo);
 	}
 	
 	public ArrayList<PresentVO> findPresent(int way,int status,String time1,String time2){
@@ -194,6 +201,24 @@ public class Approval {
 			break;
 		}
 		
+		return result;
+	}
+	
+	public ArrayList<CashVO> fingCash(int way,int status,String time1,String time2){
+		ArrayList<CashVO> result=new ArrayList<CashVO>();
+		Cash c=new Cash();
+		switch(way){
+		case 0:
+			result=c.show();
+			break;
+		case 1:
+			result=c.findByStatus(status);
+			break;
+		case 2:
+			result=c.findByTime(time1, time2);
+			break;
+		}
+
 		return result;
 	}
 }

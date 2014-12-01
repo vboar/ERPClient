@@ -5,7 +5,7 @@
  */
 package ui.homeui;
 
-import businesslogic.loginbl.LoginController;
+import businesslogicservice.loginblservice.LoginBLService;
 import config.ERPConfig;
 import config.FrameConfig;
 import ui.util.FrameUtil;
@@ -27,7 +27,7 @@ public class HomeUI extends JFrame {
 	private MyMainPanel adminPanel;
 	
 	
-	public HomeUI(LoginController lc){
+	public HomeUI(LoginBLService lc){
 		// 获得窗口配置
 		FrameConfig fcfg = ERPConfig.getHOMEFRAME_CONFIG();
 		// 设置标题
@@ -50,7 +50,7 @@ public class HomeUI extends JFrame {
 		this.setVisible(true);
 	}
 	
-	private void addMainPanel(LoginController lc){
+	private void addMainPanel(LoginBLService lc){
 		switch(lc.getUserType()) {
 		case ADMINISTRATOR:
 			adminPanel = new AdminPanel(this);

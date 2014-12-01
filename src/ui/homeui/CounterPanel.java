@@ -6,9 +6,8 @@
 
 package ui.homeui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogic.loginbl.Login;
 import ui.accountui.AccountPanel;
 import ui.conditionui.ConditionPanel;
 import ui.initialui.InitialPanel;
@@ -16,8 +15,11 @@ import ui.logui.LogPanel;
 import ui.messageui.MessagePanel;
 import ui.paymentui.PaymentPanel;
 import ui.util.MyButton;
-import ui.util.MyLabel;
 import ui.util.MyMainPanel;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class CounterPanel extends MyMainPanel {
@@ -44,15 +46,15 @@ public class CounterPanel extends MyMainPanel {
 	
 	private MessagePanel messagePanel;
 	
-	public CounterPanel(HomeUI frame) {
+	public CounterPanel(JFrame frame) {
 		super(frame);
 	}
 
+	@Override
 	public void initComponent() {
 		
-		MyLabel title = new MyLabel(this.pcfg.getLabels().element("title"));
-		this.add(title);
-		
+		super.initComponent();
+
 		this.accountManageBtn = new MyButton(pcfg.getButtons().element("account"));
 		this.accountManageBtn.addActionListener(new ActionListener() {
 
@@ -63,6 +65,11 @@ public class CounterPanel extends MyMainPanel {
 			
 		});
 		this.add(accountManageBtn);
+		// 非最高权限不可用
+		if(ControllerFactoryImpl.getInstance().getUserController().
+				getById(Login.currentUserId).permission == 0) {
+			accountManageBtn.setEnabled(false);
+		}
 		
 		this.paymentBtn = new MyButton(pcfg.getButtons().element("payment"));
 		this.paymentBtn.addActionListener(new ActionListener() {
@@ -74,6 +81,33 @@ public class CounterPanel extends MyMainPanel {
 			
 		});
 		this.add(paymentBtn);
+
+		conditionBtn = new MyButton(pcfg.getButtons().element("condition"));
+		add(conditionBtn);
+		conditionBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showCondition();
+			}
+		});
+
+		logBtn = new MyButton(pcfg.getButtons().element("log"));
+		add(logBtn);
+		logBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showLog();
+			}
+		});
+
+		initialBtn = new MyButton(pcfg.getButtons().element("initial"));
+		add(initialBtn);
+		initialBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showInitial();
+			}
+		});
 		
 	}
 	
@@ -90,18 +124,22 @@ public class CounterPanel extends MyMainPanel {
 		this.add(paymentPanel);
 		repaint();
 	}
+
+	public void showCondition() {
+		//TODO
+	}
 	
 	public void showLog() {
-		
+		// TODO
 	}
 	
 	public void showInitial() {
-		
+		// TODO
 	}
 
 	@Override
 	public void showMesssage() {
-		
+		// TODO
 	}
 	
 	private void removeAllPanel() {

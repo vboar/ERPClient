@@ -54,10 +54,10 @@ public class Category {
 	 * @param id
 	 * @return
 	 */
-	private boolean existPO(String id) {
+	private boolean existPO(String name) {
 		ArrayList<CategoryVO> voList = show();
 		for (CategoryVO voCheck : voList) {
-			if (voCheck.id.equals(id)) {
+			if (voCheck.name.equals(name)) {
 				return true;
 			}
 		}
@@ -99,7 +99,7 @@ public class Category {
 		CategoryPO po = CategoryVOToCategoryPO(vo);
 		CategoryVO father = vo.father;
 		// 检查是否存在
-		if (existPO(po.getId())) {
+		if (existPO(po.getName())) {
 			return ResultMessage.EXIST;
 		}
 		// 检查输入合法
@@ -138,7 +138,7 @@ public class Category {
 		CategoryPO po = CategoryVOToCategoryPO(vo);
 		CategoryVO father = vo.father;
 		// 检查是否不存在
-		if (!existPO(vo.id)) {
+		if (!existPO(vo.name)) {
 			return ResultMessage.NOT_FOUND;
 		}
 		// 是否存在子女

@@ -5,14 +5,11 @@
  */
 package ui.util;
 
-import java.awt.Graphics;
-import java.awt.Image;
-
-import javax.swing.JPanel;
-
-import ui.homeui.HomeUI;
 import config.ERPConfig;
 import config.PanelConfig;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public abstract class MyMainPanel extends JPanel {
@@ -23,9 +20,9 @@ public abstract class MyMainPanel extends JPanel {
 	
 	private Image bg;
 	
-	public HomeUI frame;
+	public JFrame frame;
 	
-	public MyMainPanel(HomeUI frame) {
+	public MyMainPanel(JFrame frame) {
 		this.frame = frame;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.bg = pcfg.getBg();

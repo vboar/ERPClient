@@ -19,8 +19,8 @@ public class Account {
 	Log l=new Log();
 	
 	public ResultMessage createLog(String content){	
-		MockLog log = new MockLog(content);
-		return log.add();		
+		//TODO
+		return null;		
 	}
 	
 	public ResultMessage add(AccountVO vo){

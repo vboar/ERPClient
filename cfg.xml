@@ -91,11 +91,11 @@
 		<panel className="ui.homeui.CounterPanel" width="960" height="480"
 			x="0" y="90" bg="img/leftpanel.png">
 			<buttons>
-				<payment text="收款/付款" w="160" h="40" x="20" y="50" />
-				<condition text="经营状况查看" w="160" h="40" x="20" y="100"/>
-				<log text="系统日志查询" w="160" h="40" x="20" y="150" />
-				<initial text="期初建账" w="160" h="40" x="20" y="200" />
-				<account text="账户管理" w="160" h="40" x="20" y="250" />
+				<account text="账户管理" w="160" h="40" x="20" y="50" />
+				<payment text="收款/付款" w="160" h="40" x="20" y="100" />
+				<condition text="经营状况查看" w="160" h="40" x="20" y="150"/>
+				<log text="系统日志查询" w="160" h="40" x="20" y="200" />
+				<initial text="期初建账" w="160" h="40" x="20" y="250" />
 			</buttons>
 			<labels>
 				<title text="财务管理" w="200" h="30" x="0" y="0" />

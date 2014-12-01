@@ -52,6 +52,17 @@ public class User {
 		return vo;
 
 	}
+	
+	public UserVO getById(String id){
+		UserPO po=null;
+		try {
+			po = DataFactoryImpl.getInstance().getUserData().getById(id);
+		} catch (RemoteException e) {
+						e.printStackTrace();
+		}
+		UserVO vo=userPOToUservo(po);
+		return vo;
+	}
 
 	/**
 	 * 增加用户

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import vo.ClauseLineItemVO;
 import util.DocumentStatus;
+import util.DocumentType;
 
 public class CashVO implements DocumentVO{
 	
@@ -41,6 +42,21 @@ public class CashVO implements DocumentVO{
 	 * 审批状态
 	 */
 	public DocumentStatus approvalState;
+	
+	/**
+	 * 是否为红冲单据
+	 */
+	public boolean isWriteOff;
+	
+	/**
+	 * 单据类型
+	 */
+	public DocumentType documentType;
+	
+	/**
+	 * 时间
+	 */
+	public String time;
 
 	/**
 	 * 构造方法
@@ -51,9 +67,9 @@ public class CashVO implements DocumentVO{
 	 * @param total
 	 * @param approvalState
 	 */
-	public CashVO(String id, String operator, String bankAccount,
+	public CashVO(String id, String operator, String bankAccount,String time,
 			ArrayList<ClauseLineItemVO> clauseList, double total,
-			DocumentStatus approvalState) {
+			DocumentStatus approvalState,boolean isWriteOff,DocumentType documentType) {
 		super();
 		this.id = id;
 		this.operator = operator;
@@ -61,10 +77,10 @@ public class CashVO implements DocumentVO{
 		this.clauseList = clauseList;
 		this.total = total;
 		this.approvalState = approvalState;
+		this.documentType=documentType;
+		this.isWriteOff=isWriteOff;
+		this.time=time;
 	}
 
-	public CashVO(){
-		
-	}
 	
 }

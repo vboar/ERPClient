@@ -7,7 +7,9 @@
 package businesslogic.presentbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.PresentLineItemPO;
 import po.PresentPO;
@@ -21,6 +23,17 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Present {
 
+	
+	public String createId(){
+	Date date=new Date();
+	SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd");
+	String time=myFmt.format(date);
+		ArrayList<PresentVO> presentList=show();
+		if(presentList.isEmpty()){
+			return "ZPD"+time+"00000";
+		}
+		return  null;
+	}
 	public ResultMessage create(PresentVO vo) {
 		PresentPO po = voToPO(vo);
 		try {
