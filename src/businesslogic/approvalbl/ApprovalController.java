@@ -65,21 +65,21 @@ public class ApprovalController implements ApprovalBLService{
 	@Override
 	public ArrayList<ExceptionVO> findOverflow(int way, int status,
 			String time1, String time2) {
+		//TODO
 		return null;
 	}
 
 	@Override
 	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 
 	@Override
 	public ArrayList<CashVO> findCash(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.fingCash(way, status, time1, time2);
 	}
 
 	@Override
@@ -132,8 +132,7 @@ public class ApprovalController implements ApprovalBLService{
 
 	@Override
 	public ResultMessage approveCash(CashVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approveCash(vo);
 	}
 
 }
