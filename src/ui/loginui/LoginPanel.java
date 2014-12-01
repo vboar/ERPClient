@@ -5,27 +5,19 @@
  */
 package ui.loginui;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-
-import ui.homeui.HomeUI;
-import ui.util.MyButton;
-import ui.util.MyComboBox;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MyTextField;
-import util.ResultMessage;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogic.loginbl.LoginController;
 import businesslogic.utilitybl.Utility;
+import businesslogicservice.loginblservice.LoginBLService;
 import config.ERPConfig;
 import config.PanelConfig;
+import ui.homeui.HomeUI;
+import ui.util.*;
+import util.ResultMessage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel{
@@ -54,7 +46,7 @@ public class LoginPanel extends JPanel{
 	
 	private PanelConfig pcfg;
 	
-	private LoginController loginController;
+	private LoginBLService loginController;
 	
 	public LoginPanel(LoginUI frame){
 		this.loginController = ControllerFactoryImpl.getInstance().getLoginController();

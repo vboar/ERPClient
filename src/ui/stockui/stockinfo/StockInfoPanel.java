@@ -1,25 +1,22 @@
 package ui.stockui.stockinfo;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.swing.JPanel;
-
-import org.dom4j.Element;
-
-import ui.util.MyButton;
-import ui.util.MyDatePicker;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.stockblservice.StockBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
+import org.dom4j.Element;
+import ui.util.MyButton;
+import ui.util.MyDatePicker;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class StockInfoPanel extends JPanel {
@@ -40,7 +37,7 @@ public class StockInfoPanel extends JPanel {
 	
 	private Image bg;
 
-	public StockInfoPanel(){
+	public StockInfoPanel(JFrame frame){
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.controller = ControllerFactoryImpl.getInstance().getStockController();
 		this.setSize(cfg.getW(), cfg.getH());

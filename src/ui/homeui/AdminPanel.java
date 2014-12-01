@@ -6,19 +6,22 @@
 
 package ui.homeui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import ui.messageui.MessagePanel;
 import ui.userui.UserPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class AdminPanel extends MyMainPanel {
 
 	private MyButton userManageBtn;
 	
-	private UserPanel userpanel;
+	private UserPanel userPanel;
+
+	private MessagePanel messagePanel;
 	
 	public AdminPanel(HomeUI frame) {
 		super(frame);
@@ -31,18 +34,31 @@ public class AdminPanel extends MyMainPanel {
 		this.userManageBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				userpanel = new UserPanel(frame);
-				add(userpanel);
+				userPanel = new UserPanel(frame);
+				add(userPanel);
 				repaint();
 			}
 		});
 		this.add(this.userManageBtn);
 	}
 
+	public void showUser() {
+		removeAllPanel();
+		userPanel = new UserPanel(frame);
+		add(userPanel);
+		repaint();
+	}
+
 	@Override
 	public void showMesssage() {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	private void removeAllPanel() {
+		if(userPanel != null) remove(userPanel); userPanel = null;
+		if(messagePanel != null) remove(messagePanel); messagePanel = null;
 	}
 
 }

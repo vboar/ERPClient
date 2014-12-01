@@ -6,10 +6,10 @@
 
 package businesslogicservice.userblservice;
 
-import java.util.ArrayList;
-
 import util.ResultMessage;
 import vo.UserVO;
+
+import java.util.ArrayList;
 
 public interface UserBLService {
 	
@@ -46,9 +46,12 @@ public interface UserBLService {
      * @return 用户列表
      */
     public ArrayList<UserVO> show();
-    
-    public UserVO getById(String id);
 
-
+	/**
+	 * 根据ID准确查找用户
+	 * @param id
+	 * @return
+	 */
+	public UserVO getById(String id);
 
 }

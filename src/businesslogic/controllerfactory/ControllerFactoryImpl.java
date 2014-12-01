@@ -30,6 +30,7 @@ import businesslogicservice.exceptionblservice.ExceptionBLService;
 import businesslogicservice.exceptionblservice.WarningBLService;
 import businesslogicservice.initialblservice.InitialBLService;
 import businesslogicservice.logblservice.LogBLService;
+import businesslogicservice.loginblservice.LoginBLService;
 import businesslogicservice.messageblservice.MessageBLService;
 import businesslogicservice.paymentblservice.CashBLService;
 import businesslogicservice.paymentblservice.PaymentBLService;
@@ -40,6 +41,7 @@ import businesslogicservice.promotionblservice.TotalGiftBLService;
 import businesslogicservice.purchaseblservice.PurchaseBLService;
 import businesslogicservice.saleblservice.SaleBLService;
 import businesslogicservice.stockblservice.StockBLService;
+import businesslogicservice.userblservice.UserBLService;
 
 public class ControllerFactoryImpl implements ControllerFactory{
 
@@ -133,12 +135,12 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	}
 
 	@Override
-	public UserController getUserController() {
+	public UserBLService getUserController() {
 		return new UserController();
 	}
 
 	@Override
-	public LoginController getLoginController() {
+	public LoginBLService getLoginController() {
 		return new LoginController();
 	}
 

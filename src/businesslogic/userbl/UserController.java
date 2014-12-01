@@ -5,11 +5,11 @@
 
 package businesslogic.userbl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.userblservice.UserBLService;
 import util.ResultMessage;
 import vo.UserVO;
-import businesslogicservice.userblservice.UserBLService;
+
+import java.util.ArrayList;
 
 public class UserController implements UserBLService {
 
@@ -42,6 +42,11 @@ public class UserController implements UserBLService {
 	@Override
 	public ArrayList<UserVO> show() {
 		return user.show();
+	}
+
+	@Override
+	public UserVO getById(String id) {
+		return user.getById(id);
 	}
 
 	@Override
