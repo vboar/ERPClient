@@ -35,4 +35,17 @@ public interface PresentBLService {
 	 */
 	public ArrayList<PresentVO> findByStatus(DocumentStatus status);
 	
+	/**
+	 * 精确查找
+	 * @param id
+	 * @return po
+	 */
+	public PresentVO getById(String id);
+	
+	/**
+	 * 创建id
+	 * @return
+	 */
+	public String createId();
+	
 }

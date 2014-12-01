@@ -33,4 +33,10 @@ public class SpecialOfferController implements SpecialOfferBLService {
 		return null;
 	}
 
+	@Override
+	public String createId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

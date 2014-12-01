@@ -33,4 +33,16 @@ public class PresentController implements PresentBLService {
 		return null;
 	}
 
+	@Override
+	public PresentVO getById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String createId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

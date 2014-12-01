@@ -54,4 +54,8 @@ public interface PurchaseBLService {
 	 */
 	public ArrayList<PurchaseVO> show();
 	
+	public String createId();
+	
+	public PurchaseVO getById(String id);
+	
 }

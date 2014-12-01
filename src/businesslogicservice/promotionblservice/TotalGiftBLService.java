@@ -15,4 +15,6 @@ public interface TotalGiftBLService {
 	
 	public ResultMessage update(TotalGiftVO vo);
 	
+	public String createId();
+	
 }

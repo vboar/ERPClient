@@ -48,4 +48,16 @@ public class PurchaseController implements PurchaseBLService {
 		return null;
 	}
 
+	@Override
+	public String createId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PurchaseVO getById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
