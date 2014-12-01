@@ -104,6 +104,18 @@
 			<textfields></textfields>
 		</panel>
 
+		<!-- 销售人员面板 -->
+		<panel className="ui.homeui.SalesmanPanel" width="960"
+			   height="480" x="0" y="90" bg="img/leftpanel.png">
+			<buttons>
+				<customermanage text="客户管理" w="160" h="40" x="20" y="50" />
+			</buttons>
+			<labels>
+				<title text="客户管理" w="200" h="30" x="0" y="0" />
+			</labels>
+			<textfields></textfields>
+		</panel>
+
 		<!-- 库存管理人员面板 -->
 		<panel className="ui.homeui.StockKeeperPanel" width="960"
 			height="480" x="0" y="90" bg="img/leftpanel.png">
@@ -356,13 +368,14 @@
 				<operator text="操作员：" w="120" h="30" x="650" y="60" />
 			</labels>
 			<textfields>
-				<customer w="250" h="30" x="200" y="60" />
+				<customerfind w="250" h="30" x="200" y="60" />
 			</textfields>
-			<tablepane className="ui.paymentui.AccountTablePane" width="730" height="376" x="10" y="75">
+			<tablepane className="ui.paymentui.ReceiptTable" width="730" height="200" x="10" y="150">
 				<columnnames>
-					<columnname name="银行账号" />
 					<columnname name="账户名称" />
+					<columnname name="账户卡号" />
 					<columnname name="金额" />
+					<columnname name="备注" />
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -511,4 +524,24 @@
 			<name w="320" h="30" x="120" y="50" />
 		</textfields>
 	</accountinfodialog>
+
+	<!-- 收付款中收款添加账户对话框 -->
+	<addreceiptaccountinfodialog width="500" height="280" x="230"
+					   y="180" title="账户信息">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="210" />
+			<cancel text="取消" w="80" h="30" x="270" y="210" />
+		</buttons>
+		<labels>
+			<account text="银行账户" w="80" h="30" x="20" y="20" />
+			<money text="转账金额" w="80" h="30" x="20" y="50" />
+			<remark text="备注" w="80" h="30" x="20" y="80" />
+		</labels>
+		<textfields>
+			<account w="320" h="30" x="120" y="20" />
+			<money w="320" h="30" x="120" y="50" />
+			<remark w="320" h="30" x="120" y="80" />
+		</textfields>
+	</addreceiptaccountinfodialog>
+
 </erp>

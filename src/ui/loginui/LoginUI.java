@@ -45,16 +45,16 @@ public class LoginUI extends JFrame {
 //		WebLookAndFeel.globalTextFont = new Font("微软雅黑", Font.PLAIN, 12);
 //		WebLookAndFeel.install ();
 		
-		Font font = new Font("微软雅黑", Font.PLAIN, 13);   
+		Font font = new Font("微软雅黑", Font.PLAIN, 13);
 		@SuppressWarnings("rawtypes")
-		java.util.Enumeration keys = UIManager.getDefaults().keys();   
+		java.util.Enumeration keys = UIManager.getDefaults().keys();
 		while (keys.hasMoreElements()) {
-			Object key = keys.nextElement();   
-		    Object value = UIManager.get(key);    
+			Object key = keys.nextElement();
+		    Object value = UIManager.get(key);
 		    if (value instanceof javax.swing.plaf.FontUIResource) {
-		    	UIManager.put(key, font);     
-		    } 
-		} 
+		    	UIManager.put(key, font);
+		    }
+		}
 		
 		try {
 //			UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
@@ -63,7 +63,7 @@ public class LoginUI extends JFrame {
 			System.setProperty("sun.java2d.noddraw", "true");
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

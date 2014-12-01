@@ -1,3 +1,8 @@
+/**
+ * 商品分类树形面板
+ * @author JaneLDQ
+ * @date 2014/11/27
+ */
 package ui.commodityui.categoryui;
 
 import java.awt.event.MouseAdapter;
@@ -26,7 +31,6 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CategoryBLService;
 import config.ERPConfig;
 import config.PanelConfig;
-
 
 @SuppressWarnings("serial")
 public class CategoryTreePane extends JPanel implements BasicOperation{
@@ -158,7 +162,6 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 	}
 	
 	private void expandAllNode(JTree tree, TreePath parent, boolean expand) {
-	    // Traverse children
 	    TreeNode node = (TreeNode) parent.getLastPathComponent();
 	    if (node.getChildCount() >= 0) {
 	        for (Enumeration<?> e = node.children(); e.hasMoreElements();) {

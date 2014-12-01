@@ -22,7 +22,10 @@ public enum ResultMessage {
 	TIME_ERROR,//时间前后错误
 	
 	WRONG_ID, // 错误用户ID
-	WRONG_PASSWD; //错误用户密码
+	WRONG_PASSWD,//错误用户密码
+	
+	HAS_COMMODITY,//父分类下已经存在商品，不能添加子尚品
+	HAS_CATEGORY;//父分类下已存在子分类，不能添加商品
 
 	public String toFriendlyString() {
 		switch (this) {

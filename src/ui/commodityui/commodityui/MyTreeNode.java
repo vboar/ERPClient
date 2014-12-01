@@ -13,14 +13,29 @@ import vo.CommodityVO;
 @SuppressWarnings({ "serial", "unchecked" })
 public class MyTreeNode extends DefaultMutableTreeNode implements TreeTableNode{
 	
+	/**
+	 * 结点ID
+	 */
 	private String id;
 
+	/**
+	 * 商品信息VO
+	 */
 	private CommodityVO commodityvo;
 	
+	/**
+	 * 商品分类VO
+	 */
 	private CategoryVO categoryvo;
 	
+	/**
+	 * 父节点
+	 */
 	private MyTreeNode myparent;
 	
+	/**
+	 * 子节点列表
+	 */
 	private ArrayList<MyTreeNode> mychildren = new ArrayList<MyTreeNode>();
 	
 	public MyTreeNode(String id, CategoryVO catevo, CommodityVO comvo, MyTreeNode parent){

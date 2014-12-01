@@ -14,32 +14,37 @@ import businesslogicservice.commodityblservice.CategoryBLService;
 
 public class CategoryController implements CategoryBLService {
 
+	Category category=new Category();
 	@Override
 	public ResultMessage add(CategoryVO vo) {
+		return category.add(vo);
 		
-		return ResultMessage.SUCCESS;
 	}
-
+	
+	@Override
+	public String createId(String fatherId){
+		return category.createId(fatherId);
+	}
+	
 	@Override
 	public ResultMessage delete(CategoryVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		
+		return category.delete(vo);
 	}
 
 	@Override
 	public ResultMessage update(CategoryVO vo) {
-		return ResultMessage.SUCCESS;
+		return category.update(vo);
 	}
 
 	@Override
 	public ArrayList<CategoryVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return category.show();
 	}
 
-	public ArrayList<CategoryVO> fuzzyFind(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CategoryVO> fuzzyFind(String keyword) {
+		return category.fuzzyFind(keyword);
+				
 	}
 
 }

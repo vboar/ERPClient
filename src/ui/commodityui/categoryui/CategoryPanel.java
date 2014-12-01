@@ -1,3 +1,8 @@
+/**
+ * 商品分类管理面板
+ * @author JaneLDQ
+ * @date 2014/11/27
+ */
 package ui.commodityui.categoryui;
 
 import java.awt.Graphics;
@@ -44,7 +49,6 @@ public class CategoryPanel extends JPanel{
 		this.setVisible(true);
 	}
 
-	
 	@Override
 	public void paintComponent(Graphics g){
 		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);

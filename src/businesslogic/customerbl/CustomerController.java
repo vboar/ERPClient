@@ -5,11 +5,11 @@
 
 package businesslogic.customerbl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.customerblservice.CustomerBLService;
 import util.ResultMessage;
 import vo.CustomerVO;
-import businesslogicservice.customerblservice.CustomerBLService;
+
+import java.util.ArrayList;
 
 public class CustomerController implements CustomerBLService {
 
@@ -32,8 +32,7 @@ public class CustomerController implements CustomerBLService {
 
 	@Override
 	public ArrayList<CustomerVO> fuzzyFind(String keyWord) {
-		// TODO Auto-generated method stub
-		return null;
+		return customer.show();
 	}
 
 	@Override

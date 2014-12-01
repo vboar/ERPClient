@@ -20,6 +20,8 @@ public class ERPConfig {
 	private static InfoDialogConfig ACCOUNTINFO_DIALOG_CONFIG = null;
 	
 	private static InfoDialogConfig COMMODITYINFO_DIALOG_CONFIG = null;
+
+	private static InfoDialogConfig ADDRECEIPTACCOUNT_DIALOG_CONFIG = null;
 	
 	static{
 		try {
@@ -43,6 +45,8 @@ public class ERPConfig {
 			ACCOUNTINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("accountinfodialog"));
 			// 创建添加/修改商品对话框配置对象
 			COMMODITYINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("commodityinfodialog"));
+			// 创建添加收款账户账户对话框配置对象
+			ADDRECEIPTACCOUNT_DIALOG_CONFIG = new InfoDialogConfig(erp.element("addreceiptaccountinfodialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -75,5 +79,8 @@ public class ERPConfig {
 	public static InfoDialogConfig getCOMMODITYINFO_DIALOG_CONFIG() {
 		return COMMODITYINFO_DIALOG_CONFIG;
 	}
-	
+
+	public static InfoDialogConfig getAddreceiptaccountDialogConfig() {
+		return ADDRECEIPTACCOUNT_DIALOG_CONFIG;
+	}
 }

@@ -67,9 +67,9 @@ public class CommodityController implements CommodityBLService {
 		list.add(new CategoryCommodityVO("0001-0001",new CategoryVO("0001-0001","a",10),null));
 		list.add(new CategoryCommodityVO("0001-0001-0001",null,
 				new CommodityVO("0001-0001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001-0001","a",10))));
-		list.add(new CategoryCommodityVO("0001-0002",null,
-				new CommodityVO("0001-0002","bb","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10))));
 		list.add(new CategoryCommodityVO("0002",new CategoryVO("0002","b",10),null));
+		list.add(new CategoryCommodityVO("0002-0001",null,
+				new CommodityVO("0002-0001","bb","s01",10,5,10,5,10,0,false,new CategoryVO("0002","a",10))));
 		list.add(new CategoryCommodityVO("0003",new CategoryVO("0003","c",10),null));
 		list.add(new CategoryCommodityVO("0003-0001",null,
 				new CommodityVO("0003-0001","cc","s01",10,5,10,5,10,0,false,new CategoryVO("0003","c",10))));

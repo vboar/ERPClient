@@ -1,3 +1,8 @@
+/**
+ * 商品管理面板
+ * @author JaneLDQ
+ * @date 2014/11/30
+ */
 package ui.commodityui.commodityui;
 
 import java.awt.Graphics;
@@ -37,8 +42,6 @@ public class CommodityPanel extends JPanel implements FuzzySearch{
 	private PanelConfig pcfg;
 	
 	private CommodityBLService controller;
-	
-	private ArrayList<CommodityVO> list;
 		
 	public CommodityPanel(JFrame frame){
 		this.frame = frame;
@@ -63,8 +66,6 @@ public class CommodityPanel extends JPanel implements FuzzySearch{
 		this.findbtn.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				list = controller.fuzzyFind(findTxt.getText());
-				
 				treepane.findCommodity(findTxt.getText());
 			}
 		});
@@ -80,8 +81,6 @@ public class CommodityPanel extends JPanel implements FuzzySearch{
 		this.add(new MyLabel(labels.element("commoditylist")));
 		this.add(new MyLabel(labels.element("tip")));
 	}
-	
-	
 	
 	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
