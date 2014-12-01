@@ -101,6 +101,7 @@ public class Purchase {
 		try {
 			temp=DataFactoryImpl.getInstance().getPurchaseData().findByStatus(status);
 			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()==DocumentType.PURCHASE.ordinal())
 				result.add(poToVO(temp.get(i)));
 			}
 		} catch (RemoteException e) {

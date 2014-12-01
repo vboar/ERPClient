@@ -35,42 +35,36 @@ public class ApprovalController implements ApprovalBLService{
 	@Override
 	public ArrayList<PurchaseVO> findPurchaseReturn(int way, int status,
 			String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findPurchaseReturn(way,status,time1,time2);
 	}
 
 	@Override
 	public ArrayList<SaleVO> findSale(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findSale(way,status,time1,time2);
 	}
 
 	@Override
 	public ArrayList<SaleVO> findSaleReturn(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findSaleReturn(way,status,time1,time2);
 	}
 
 	@Override
 	public ArrayList<PaymentVO> findPayment(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findPayment(way,status,time1,time2);
 	}
 
 	@Override
 	public ArrayList<PaymentVO> findReceipt(int way, int status, String time1,
 			String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.findReceipt(way,status,time1,time2);
 	}
 
 	@Override
 	public ArrayList<ExceptionVO> findOverflow(int way, int status,
 			String time1, String time2) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

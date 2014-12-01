@@ -72,18 +72,20 @@ public class PaymentVO implements DocumentVO {
 	 * @param approvalState
 	 * @param documentType
 	 */
-	public PaymentVO(String id, String customerId, String customerName,
+	public PaymentVO(String id,String time, String customerId, String customerName,
 			String operatorId, ArrayList<TransferLineItemVO> transferList,
-			double total, DocumentStatus approvalState,
+			double total, DocumentStatus approvalState,boolean isWriteOff,
 			DocumentType documentType) {
 		super();
 		this.id = id;
+		this.time = time;
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.operatorId = operatorId;
 		this.transferList = transferList;
 		this.total = total;
 		this.approvalState = approvalState;
+		this.isWriteOff = isWriteOff;
 		this.documentType = documentType;
 	}
 	

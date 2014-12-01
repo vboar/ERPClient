@@ -164,6 +164,25 @@ public class SaleReturn {
 
 	}
 	
+	public ArrayList<SaleVO> findByStatus(int status){
+		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
+		ArrayList<SalePO> temp=new ArrayList<SalePO>();
+		Sale s=new Sale();
+		try {
+			temp=DataFactoryImpl.getInstance().getSaleDataService().findByStatus(status);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<temp.size();i++){
+			if(temp.get(i).getDocumentType()==DocumentType.SALERETURN.ordinal())
+			result.add(s.SalePOToSaleVO(temp.get(i)));
+		}
+		
+		return result;
+	}
+	
 	public ArrayList<SaleVO> show()  {
 
 		ArrayList<SalePO> poList=null;

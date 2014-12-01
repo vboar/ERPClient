@@ -31,7 +31,6 @@ public class Payment {
 		return null;
 	}
 	
-	//真逻辑开始
 	public ResultMessage create(PaymentVO vo) {
 		String time=Time.getCurrentTime();
 		ArrayList<TransferLineItemPO> transferlist=new ArrayList<TransferLineItemPO>();
@@ -86,6 +85,10 @@ public class Payment {
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		try {
 			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findById(id));
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentType!=DocumentType.PAYMENT)
+					result.remove(i);
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -94,12 +97,19 @@ public class Payment {
 
 	public ArrayList<PaymentVO> findByTime(String time1,String time2){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2));
+			temp=DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2);
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()!=DocumentType.PAYMENT.ordinal())
+					temp.remove(i);
+			}
+			result=poToVo(temp);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
+		
 		return result;
 	}
 	
@@ -107,6 +117,10 @@ public class Payment {
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		try {
 			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByCustomer(customerId));
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentType!=DocumentType.PAYMENT)
+					result.remove(i);
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -118,6 +132,10 @@ public class Payment {
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		try {
 			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByStatus(status));
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentType!=DocumentType.PAYMENT)
+					result.remove(i);
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -130,6 +148,10 @@ public class Payment {
 		
 		try {
 			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByOperator(operator));
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentType!=DocumentType.PAYMENT)
+					result.remove(i);
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -147,7 +169,9 @@ public class Payment {
 				temp.add(new TransferLineItemVO(t.getBankAccount(),t.getAccount(),t.getRemark()));
 			}
 			PaymentPO temp2=po.get(i);
-			result.add(new PaymentVO(temp2.getId(),temp2.getCustomerId(),temp2.getCustomerName(),temp2.getOperatorId(),temp,temp2.getTotal(),DocumentStatus.values()[temp2.getApprovalStatus()],DocumentType.values()[temp2.getDocumentType()]));
+			result.add(new PaymentVO(temp2.getId(),temp2.getTime(),temp2.getCustomerId(),temp2.getCustomerName(),temp2.getOperatorId(),
+					temp,temp2.getTotal(),DocumentStatus.values()[temp2.getApprovalStatus()],
+					temp2.getIsWriteOff(),DocumentType.values()[temp2.getDocumentType()]));
 		}
 		
 		return result;

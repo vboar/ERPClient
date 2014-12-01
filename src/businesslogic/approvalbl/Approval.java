@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.ExceptionVO;
+import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
@@ -83,6 +84,7 @@ public class Approval {
 			break;
 		case 2:
 			result=p.findByTime(time1, time2);
+			break;
 		}
 		
 		return result;
@@ -94,10 +96,102 @@ public class Approval {
 		switch(way){
 		case 0:
 			result=p.show();
+			break;
 		case 1:
 			result=p.findByStatus(status);
+			break;
 		case 2:
 			result=p.findByTime(time1, time2);
+			break;
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<PurchaseVO> findPurchaseReturn(int way,int status,String time1,String time2){
+		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+		PurchaseReturn pr=new PurchaseReturn();
+		switch(way){
+		case 0:
+			result=pr.show();
+			break;
+		case 1:
+			result=pr.findByStatus(status);
+			break;
+		case 2:
+			result=pr.findByTime(time1, time2);
+			break;
+			}
+		return result;
+	}
+	
+	public ArrayList<SaleVO> findSale(int way,int status,String time1,String time2){
+		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
+		Sale s=new Sale();
+		switch(way){
+		case 0:
+			result=s.show();
+			break;
+		case 1:
+			result=s.findByStatus(status);
+			break;
+		case 2:
+			result=s.findByTime(time1, time2);
+			break;
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<SaleVO> findSaleReturn(int way,int status,String time1,String time2){
+		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
+		SaleReturn sr=new SaleReturn();
+		switch(way){
+		case 0:
+			result=sr.show();
+			break;
+		case 1:
+			result=sr.findByStatus(status);
+			break;
+		case 2:
+			result=sr.findByTime(time1, time2);
+			break;
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<PaymentVO> findPayment(int way,int status,String time1,String time2){
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		Payment p=new Payment();
+		switch(way){
+		case 0:
+			result=p.show();
+			break;
+		case 1:
+			result=p.findByStatus(status);
+			break;
+		case 2:
+			result=p.findByTime(time1, time2);
+			break;
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<PaymentVO> findReceipt(int way,int status,String time1,String time2){
+		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		Receipt r=new Receipt();
+		switch(way){
+		case 0:
+			result=r.show();
+			break;
+		case 1:
+			result=r.findByStatus(status);
+			break;
+		case 2:
+			result=r.findByTime(time1, time2);
+			break;
 		}
 		
 		return result;

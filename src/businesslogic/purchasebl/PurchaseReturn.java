@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.PurchasePO;
+import util.DocumentType;
 import util.ResultMessage;
 import vo.PurchaseVO;
 import dataservice.datafactoryservice.DataFactoryImpl;
@@ -17,7 +18,7 @@ public class PurchaseReturn {
 Purchase purchase=new Purchase();
 	
 	public ResultMessage add(PurchaseVO vo) {
-		PurchasePO po = purchase.poToVO(vo);
+		PurchasePO po = purchase.voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
 		} catch (RemoteException e) {
@@ -101,7 +102,25 @@ Purchase purchase=new Purchase();
 
 			return voList;
 		}
-
+		
+		public ArrayList<PurchaseVO> findByStatus(int status) {
+			ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+			ArrayList<PurchasePO> temp=new ArrayList<PurchasePO>();
+			Purchase p=new Purchase();
+			try {
+				temp=DataFactoryImpl.getInstance().getPurchaseData().findByStatus(status);
+				for(int i=0;i<temp.size();i++){
+					if(temp.get(i).getDocumentType()==DocumentType.PURCHASERETURN.ordinal()){
+						result.add(p.poToVO(temp.get(i)));
+					}
+				}
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
 		public ArrayList<PurchaseVO> show() {
 			ArrayList<PurchasePO> poList = null;
 			try {

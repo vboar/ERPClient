@@ -150,6 +150,23 @@ public class Sale {
 		return voList;
 
 	}
+	
+	public ArrayList<SaleVO> findByStatus(int status){
+		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
+		ArrayList<SalePO> temp=new ArrayList<SalePO>();
+		try {
+			temp=DataFactoryImpl.getInstance().getSaleDataService().findByStatus(status);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		for(int i=0;i<temp.size();i++){
+			if(temp.get(i).getDocumentType()==DocumentType.SALE.ordinal())
+			result.add(SalePOToSaleVO(temp.get(i)));
+		}
+		
+		return result;
+	}
 
 	public ResultMessage update(SaleVO vo)  {
 		SalePO po = SaleVOToSalePO(vo);
