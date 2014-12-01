@@ -1,15 +1,10 @@
 package util;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 class CountLines {
 	public static void main(String[] args) throws FileNotFoundException {
@@ -70,8 +65,6 @@ class CountLines {
 			}
 		} catch (FileNotFoundException e4) {
 			e4.printStackTrace();
-		} catch (@SuppressWarnings("hiding") IOException e1) {
-			e1.printStackTrace();
 		}
 		return codeSum;
 	}
