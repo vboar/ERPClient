@@ -11,17 +11,19 @@ public class ERPConfig {
 	
 	private static FrameConfig LOGINFRAME_CONFIG = null;
 	
-	private static InfoDialogConfig USERINFO_DIALOG_CONFIG = null;
+	private static DialogConfig USERINFO_DIALOG_CONFIG = null;
 
-	private static InfoDialogConfig CATEGORYINFO_DIALOG_CONFIG = null;
+	private static DialogConfig CATEGORYINFO_DIALOG_CONFIG = null;
 	
-	private static InfoDialogConfig CUSTOMERINFO_DIALOG_CONFIG = null;
+	private static DialogConfig CUSTOMERINFO_DIALOG_CONFIG = null;
 	
-	private static InfoDialogConfig ACCOUNTINFO_DIALOG_CONFIG = null;
+	private static DialogConfig ACCOUNTINFO_DIALOG_CONFIG = null;
 	
-	private static InfoDialogConfig COMMODITYINFO_DIALOG_CONFIG = null;
+	private static DialogConfig COMMODITYINFO_DIALOG_CONFIG = null;
 
-	private static InfoDialogConfig ADDRECEIPTACCOUNT_DIALOG_CONFIG = null;
+	private static DialogConfig ADDRECEIPTACCOUNT_DIALOG_CONFIG = null;
+	
+	private static DialogConfig ADDPRESENTCOMMODITY_DIALOG_CONFIG = null;
 	
 	static{
 		try {
@@ -36,17 +38,19 @@ public class ERPConfig {
 			// 创建主界面配置对象
 			HOMEFRAME_CONFIG = new FrameConfig(erp.element("frame"));
 			// 创建添加/修改用户对话框配置对象
-			USERINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("userinfodialog"));
+			USERINFO_DIALOG_CONFIG = new DialogConfig(erp.element("userinfodialog"));
 			// 创建添加商品分类对话框配置对象
-			CATEGORYINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("categoryinfodialog"));
+			CATEGORYINFO_DIALOG_CONFIG = new DialogConfig(erp.element("categoryinfodialog"));
 			// 创建添加/修改客户对话框配置对象
-			CUSTOMERINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("customerinfodialog"));
+			CUSTOMERINFO_DIALOG_CONFIG = new DialogConfig(erp.element("customerinfodialog"));
 			// 创建添加/修改账户对话框配置对象
-			ACCOUNTINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("accountinfodialog"));
+			ACCOUNTINFO_DIALOG_CONFIG = new DialogConfig(erp.element("accountinfodialog"));
 			// 创建添加/修改商品对话框配置对象
-			COMMODITYINFO_DIALOG_CONFIG = new InfoDialogConfig(erp.element("commodityinfodialog"));
+			COMMODITYINFO_DIALOG_CONFIG = new DialogConfig(erp.element("commodityinfodialog"));
 			// 创建添加收款账户账户对话框配置对象
-			ADDRECEIPTACCOUNT_DIALOG_CONFIG = new InfoDialogConfig(erp.element("addreceiptaccountinfodialog"));
+			ADDRECEIPTACCOUNT_DIALOG_CONFIG = new DialogConfig(erp.element("addreceiptaccountinfodialog"));
+			// 创建添加赠送单商品对话框配置对象
+			ADDPRESENTCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addpresentcommodityinfodialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -60,27 +64,35 @@ public class ERPConfig {
 		return LOGINFRAME_CONFIG;
 	}
 
-	public static InfoDialogConfig getUSERINFO_DIALOG_CONFIG() {
+	public static DialogConfig getUSERINFO_DIALOG_CONFIG() {
 		return USERINFO_DIALOG_CONFIG;
 	}
 
-	public static InfoDialogConfig getCATEGORYINFO_DIALOG_CONFIG() {
+	public static DialogConfig getCATEGORYINFO_DIALOG_CONFIG() {
 		return CATEGORYINFO_DIALOG_CONFIG;
 	}	
 
-	public static InfoDialogConfig getCUSTOMERINFO_DIALOG_CONFIG() {
+	public static DialogConfig getCUSTOMERINFO_DIALOG_CONFIG() {
 		return CUSTOMERINFO_DIALOG_CONFIG;
 	}
 
-	public static InfoDialogConfig getACCOUNTINFO_DIALOG_CONFIG() {
+	public static DialogConfig getACCOUNTINFO_DIALOG_CONFIG() {
 		return ACCOUNTINFO_DIALOG_CONFIG;
 	}
 
-	public static InfoDialogConfig getCOMMODITYINFO_DIALOG_CONFIG() {
+	public static DialogConfig getCOMMODITYINFO_DIALOG_CONFIG() {
 		return COMMODITYINFO_DIALOG_CONFIG;
 	}
 
-	public static InfoDialogConfig getAddreceiptaccountDialogConfig() {
+	public static DialogConfig getAddreceiptaccountDialogConfig() {
 		return ADDRECEIPTACCOUNT_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDRECEIPTACCOUNT_DIALOG_CONFIG() {
+		return ADDRECEIPTACCOUNT_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDPRESENTCOMMODITY_DIALOG_CONFIG() {
+		return ADDPRESENTCOMMODITY_DIALOG_CONFIG;
 	}
 }

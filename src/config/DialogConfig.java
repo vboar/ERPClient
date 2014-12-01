@@ -2,7 +2,7 @@ package config;
 
 import org.dom4j.Element;
 
-public class InfoDialogConfig extends ComponentConfig{
+public class DialogConfig extends ComponentConfig{
 
 	/**
 	 * 标题
@@ -28,7 +28,7 @@ public class InfoDialogConfig extends ComponentConfig{
 	 */
 	private Element comboboxes;
 	
-	public InfoDialogConfig(Element info){
+	public DialogConfig(Element info){
 		this.buttons = info.element("buttons");
 		this.labels = info.element("labels");
 		this.textFields = info.element("textfields");

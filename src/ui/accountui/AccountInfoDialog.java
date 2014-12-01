@@ -15,7 +15,7 @@ import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
 import vo.AccountVO;
-import config.InfoDialogConfig;
+import config.DialogConfig;
 
 @SuppressWarnings("serial")
 public class AccountInfoDialog extends JDialog {
@@ -32,13 +32,13 @@ public class AccountInfoDialog extends JDialog {
 	
 	private MyTextField nameTxt;
 	
-	private InfoDialogConfig cfg;
+	private DialogConfig cfg;
 	
 	private AccountPanel panel;
 	
 	private boolean isAdd;
 	
-	public AccountInfoDialog(InfoDialogConfig cfg, JFrame frame, AccountPanel panel, boolean isAdd) {
+	public AccountInfoDialog(DialogConfig cfg, JFrame frame, AccountPanel panel, boolean isAdd) {
 		super(frame, true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.cfg = cfg;
@@ -52,7 +52,7 @@ public class AccountInfoDialog extends JDialog {
 		this.initComponent();
 	}
 	
-	public AccountInfoDialog(InfoDialogConfig cfg, JFrame frame, AccountPanel panel, boolean isAdd, 
+	public AccountInfoDialog(DialogConfig cfg, JFrame frame, AccountPanel panel, boolean isAdd, 
 			AccountVO vo) {
 		this(cfg, frame, panel, isAdd);
 		this.accountTxt.setText(vo.account);

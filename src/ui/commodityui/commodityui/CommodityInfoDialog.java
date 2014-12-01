@@ -19,7 +19,7 @@ import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import vo.CommodityVO;
-import config.InfoDialogConfig;
+import config.DialogConfig;
 
 @SuppressWarnings("serial")
 public class CommodityInfoDialog extends JDialog {
@@ -44,9 +44,9 @@ public class CommodityInfoDialog extends JDialog {
 	
 	private CommodityTreePane tree;
 	
-	private InfoDialogConfig cfg;
+	private DialogConfig cfg;
 
-	public CommodityInfoDialog(InfoDialogConfig cfg, JFrame frame, CommodityTreePane tree, boolean isAdd) {
+	public CommodityInfoDialog(DialogConfig cfg, JFrame frame, CommodityTreePane tree, boolean isAdd) {
 		super(frame, true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.setTitle(cfg.getTitle());
@@ -60,7 +60,7 @@ public class CommodityInfoDialog extends JDialog {
 		this.initComponent();
 	}
 	
-	public CommodityInfoDialog(InfoDialogConfig cfg, JFrame frame, CommodityTreePane tree, boolean isAdd,
+	public CommodityInfoDialog(DialogConfig cfg, JFrame frame, CommodityTreePane tree, boolean isAdd,
 			CommodityVO vo){
 		this(cfg, frame,tree,isAdd);
 		this.nameTxt.setText(vo.name);
