@@ -78,10 +78,10 @@ public class Commodity {
 	 * @param id
 	 * @return
 	 */
-	private boolean existPO(String id) {
+	private boolean existPO(String name,String model) {
 		ArrayList<CommodityVO> voList = show();
 		for (CommodityVO voCheck : voList) {
-			if (voCheck.id.equals(id)) {
+			if (voCheck.name.equals(name)&&voCheck.model.equals(model)) {
 				return true;
 			}
 		}
@@ -115,7 +115,7 @@ public class Commodity {
 
 		CommodityPO po = commodityVOToCommodityPO(vo);
 		// 已经存在
-		if (existPO(po.getId())) {
+		if (existPO(po.getName(),po.getModel())) {
 			return ResultMessage.EXIST;
 		}
 		// 输入非法
@@ -150,7 +150,7 @@ public class Commodity {
 	 */
 	public ResultMessage delete(CommodityVO vo) {
 		CommodityPO po = commodityVOToCommodityPO(vo);
-		if (!existPO(vo.id)) {
+		if (!existPO(vo.name,vo.model)) {
 			return ResultMessage.NOT_FOUND;
 		}
 		if (vo.isTrade) {
@@ -196,7 +196,7 @@ public class Commodity {
 			po = commodityVOToCommodityPO(vo);
 		}
 		// 检查是否存在
-		if (!existPO(po.getId())) {
+		if (!existPO(po.getId(),po.getModel())) {
 			return ResultMessage.NOT_FOUND;
 		}
 

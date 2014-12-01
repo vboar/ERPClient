@@ -46,6 +46,8 @@ public interface UserBLService {
      * @return 用户列表
      */
     public ArrayList<UserVO> show();
+    
+    public UserVO getById(String id);
 
 
 
