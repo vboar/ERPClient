@@ -16,28 +16,26 @@ import businesslogicservice.commodityblservice.CommodityBLService;
 
 public class CommodityController implements CommodityBLService {
 
+	Commodity commodity=new Commodity();
 	@Override
 	public ResultMessage add(CommodityVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		return 	commodity.add(vo);
 	}
 
 	@Override
 	public ResultMessage delete(CommodityVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		return commodity.delete(vo);
+		
 	}
 
 	@Override
 	public ResultMessage update(CommodityVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		return commodity.update(vo);
 	}
 
 	@Override
 	public ArrayList<CommodityVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return commodity.show();
 	}
 
 	@Override
