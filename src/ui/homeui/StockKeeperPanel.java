@@ -78,7 +78,6 @@ public class StockKeeperPanel extends MyMainPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				if(presentPanel == null) {
 					presentPanel = new PresentPanel(frame);
 					add(presentPanel);
@@ -96,9 +95,7 @@ public class StockKeeperPanel extends MyMainPanel {
 					commodityPanel = null;
 				}
 				repaint();
-=======
 				showPresent();
->>>>>>> f6ec2aaba589eddf7abc806fc3e4194651baeaa6
 			}
 		});
 		this.stockBtn = new MyButton(pcfg.getButtons().element("stock"));
