@@ -40,7 +40,7 @@ public class Category {
 	 * @param po
 	 * @return
 	 */
-	private CategoryVO CategoryPOToCategoryVO(CategoryPO po) {
+	protected CategoryVO CategoryPOToCategoryVO(CategoryPO po) {
 		String id = po.getId();
 		String name = po.getName();
 		int number = po.getNumber();
@@ -167,13 +167,17 @@ public class Category {
 	 * @return
 	 */
 	public ResultMessage update(CategoryVO vo) {
+		CategoryPO newPO=null;
+		if(vo.father==null){
 		// 得到原来的
 		CategoryPO oldPO = getById(vo.id);
 		CategoryVO oldVO = CategoryPOToCategoryVO(oldPO);
 		// 把名字改了
 		oldVO.name = vo.name;
-		CategoryPO newPO = CategoryVOToCategoryPO(oldVO);
-
+		 newPO = CategoryVOToCategoryPO(oldVO);
+		}else{
+			 newPO = CategoryVOToCategoryPO(vo);
+		}
 		// 检查名字是否合法
 		ResultMessage nameCheck = Utility.checkInputValid(vo.name, 2, 14, true);
 		if (nameCheck != ResultMessage.SUCCESS) {
@@ -208,7 +212,7 @@ public class Category {
 	 * @param id
 	 * @return
 	 */
-	private ArrayList<CategoryVO> findById(String id) {
+	protected ArrayList<CategoryVO> findById(String id) {
 		ArrayList<CategoryPO> poList = null;
 		try {
 			poList = DataFactoryImpl.getInstance().getCategoryData()
@@ -293,6 +297,6 @@ public class Category {
 //	public static void main(String[] args) {
 //		String id=new Category().createId("00000-00000");
 //		System.out.println(id);
-//	}
+	// }
 
 }
