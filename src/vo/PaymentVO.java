@@ -5,10 +5,10 @@
  */
 package vo;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.DocumentType;
+
+import java.util.ArrayList;
 
 public class PaymentVO implements DocumentVO {
 	/**
@@ -66,7 +66,7 @@ public class PaymentVO implements DocumentVO {
 	 * @param id
 	 * @param customerId
 	 * @param customerName
-	 * @param operator
+	 * @param operatorId
 	 * @param transferList
 	 * @param total
 	 * @param approvalState
