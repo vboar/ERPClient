@@ -1,18 +1,18 @@
 package businesslogic.paymentbl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.paymentblservice.PaymentBLService;
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.PaymentVO;
-import businesslogicservice.paymentblservice.PaymentBLService;
+
+import java.util.ArrayList;
 
 public class ReceiptController implements PaymentBLService {
 
 	@Override
 	public ResultMessage create(PaymentVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override

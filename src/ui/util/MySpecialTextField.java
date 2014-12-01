@@ -1,18 +1,16 @@
 package ui.util;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import org.dom4j.Element;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import org.dom4j.Element;
 
 @SuppressWarnings("serial")
 public class MySpecialTextField extends MyTextField {
@@ -101,7 +99,6 @@ public class MySpecialTextField extends MyTextField {
 				setAdjusting(true);
 				String input = MySpecialTextField.this.getText();
 				addItems(listener.getFuzzyResult(input));
-				System.out.println("input: "+input);
 				box.setPopupVisible(model.getSize()!=0);
 				setAdjusting(false);
 			}
@@ -121,7 +118,6 @@ public class MySpecialTextField extends MyTextField {
 
 	@SuppressWarnings("unchecked")
 	public void addItems(ArrayList<String> strs) {
-		System.out.println("addItem:"+strs.size());
 		this.box.removeAllItems();
 		for (int i = 0; i < strs.size(); ++i) {
 			this.box.addItem(strs.get(i));

@@ -5,13 +5,13 @@
  */
 package ui.homeui;
 
-import javax.swing.JFrame;
-
-import ui.util.FrameUtil;
-import ui.util.MyMainPanel;
 import businesslogic.loginbl.LoginController;
 import config.ERPConfig;
 import config.FrameConfig;
+import ui.util.FrameUtil;
+import ui.util.MyMainPanel;
+
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class HomeUI extends JFrame {
@@ -75,5 +75,5 @@ public class HomeUI extends JFrame {
 			
 		}
 	}
-	
+
 }
