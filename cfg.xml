@@ -180,23 +180,29 @@
 		<panel className="ui.presentui.CreatePresentPanel"
 			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
 			<buttons>
-				<add text="增加商品" w="80" h="25" x="500" y="95" />
-				<delete text="删除商品" w="80" h="25" x="600" y="95" />
-				<commit text="提交"  w="100" h="30" x="260" y="350"/>
-				<cancel text="取消"  w="100" h="30" x="400" y="350"/>
+				<addcustomer text="添加客户信息" w="100" h="30" x="460" y="50" />
+				<add text="增加商品" w="80" h="25" x="500" y="120" />
+				<delete text="删除商品" w="80" h="25" x="600" y="120" />
+				<commit text="提交"  w="100" h="30" x="260" y="360"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
 			</buttons>
 			<labels>
 				<title text="赠送单" w="120" h="30" x="20" y="10" />
 				<documentid text="单据编号：" w="120" h="30" x="400" y="10" />
-				<customerid text="客户ID：" w="80" h="30" x="20" y="50" />
-				<customername text="客户名：" w="80" h="30" x="340" y="50" />
-				<presentlist text="赠品列表：" w="120" h="30" x="20" y="90" />
+				<documentidlab text="" w="120" h="30" x="400" y="10" />				
+				<customerinfo text="客户信息" w="80" h="30" x="20" y="50" />
+				<tip text="请输入客户信息关键字" w="180" h="30" x="100" y="50" 
+				font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
+				<customerid text="客户ID：" w="80" h="30" x="20" y="85" />
+				<customeridlab text="" w="80" h="30" x="120" y="85" />
+				<customername text="客户名：" w="80" h="30" x="260" y="85" />
+				<customernamelab text="" w="80" h="30" x="360" y="85" />
+				<presentlist text="赠品列表" w="120" h="40" x="20" y="120" />				
 			</labels>
 			<textfields>
-				<customerid w="200" h="30" x="100" y="50" />
-				<customername w="250" h="30" x="460" y="50" />
+				<customerinfo w="200" h="30" x="230" y="50" />
 			</textfields>
-			<tablepane className="ui.accountui.PresentTablePane" width="730" height="200" x="10" y="130">
+			<tablepane className="ui.accountui.PresentTablePane" width="730" height="200" x="10" y="150">
 				<columnnames>
 					<columnname name="商品编号" />
 					<columnname name="商品名称" />

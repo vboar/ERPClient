@@ -91,9 +91,7 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(commodityTxt.getText());
 				if(commodityTxt.getText()!=null){
-					System.out.println("get:"+vomap.get(commodityTxt.getText()));
 					addCommodityVO = vomap.get(commodityTxt.getText());
 					if(addCommodityVO!=null){
 						currentId.setText(addCommodityVO.id);
@@ -105,6 +103,7 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 				}
 			}
 		});
+		this.add(this.add);
 		this.commit = new MyButton(this.cfg.getButtons().element("commit"));
 		this.commit.addActionListener(new ActionListener() {
 			
@@ -127,6 +126,7 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 			}
 			
 		});
+		this.add(this.commit);
 		this.cancel = new MyButton(this.cfg.getButtons().element("cancel"));
 		this.cancel.addActionListener(new ActionListener() {	
 			
@@ -140,8 +140,6 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 			}
 			
 		});
-		this.add(this.add);
-		this.add(this.commit);
 		this.add(this.cancel);
 	}
 	

@@ -12,7 +12,6 @@ import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
-import ui.util.MyPopMenu;
 import ui.util.MySpecialTextField;
 import util.DocumentStatus;
 import util.DocumentType;
@@ -38,13 +37,19 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private MyButton cancelBtn;
 	
+	private MyButton addCustomer;
+	
 	private MyLabel documentId;
+	
+	private MyLabel customerIdLab;
+	
+	private MyLabel customerNameLab;
 	
 	private PresentTablePane presentTable;
 	
-	private MySpecialTextField customeridTxt;
+	private MySpecialTextField customerTxt;
 	
-	private MySpecialTextField customernameTxt;
+	private CustomerVO customerVO;
 	
 	private ArrayList<PresentLineItemVO> commoditylist;
 	
@@ -77,18 +82,29 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.initButtons();
 		this.presentTable = new PresentTablePane(new TableConfig(pcfg.getTablepane()));
 		this.add(this.presentTable);
-		this.customeridTxt = new MySpecialTextField(pcfg.getTextFields().element("customerid"),this);
-		this.add(this.customeridTxt);
+		this.customerTxt = new MySpecialTextField(pcfg.getTextFields().element("customerinfo"),this);
+		this.add(this.customerTxt);
 		
 	}
 	
 	private void initLabels(){
+		this.customerIdLab = new MyLabel(pcfg.getLabels().element("customeridlab"));
+		this.customerNameLab = new MyLabel(pcfg.getLabels().element("customernamelab"));
+		this.documentId = new MyLabel(pcfg.getLabels().element("documentidlab"));
+	//	this.documentId.setText(this.presentController);
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.add(new MyLabel(pcfg.getLabels().element("documentid")));
 		this.add(new MyLabel(pcfg.getLabels().element("customerid")));
+		this.add(new MyLabel(pcfg.getLabels().element("customerinfo")));
 		this.add(new MyLabel(pcfg.getLabels().element("customername")));
+		this.add(new MyLabel(pcfg.getLabels().element("customeridlab")));
+		this.add(new MyLabel(pcfg.getLabels().element("customernamelab")));
+		this.add(new MyLabel(pcfg.getLabels().element("tip")));
 		this.add(new MyLabel(pcfg.getLabels().element("presentlist")));
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
+		this.add(this.documentId);
+		this.add(this.customerIdLab);
+		this.add(this.customerNameLab);
 	}
 	
 	private void initButtons(){
@@ -100,7 +116,27 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 			}
 			
 		});
+		this.add(this.addBtn);
+		this.addCustomer = new MyButton(pcfg.getButtons().element("addcustomer"));
+		this.addCustomer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(customerTxt.getText()!=null){
+					customerVO = customerlist.get(customerTxt.getText());
+					System.out.println(customerVO);
+					if(customerVO!=null){
+						customerIdLab.setText(customerVO.id);
+						customerNameLab.setText(customerVO.name);
+					}else{
+						MyOptionPane.showMessageDialog(null, "请重新选择客户！");
+					}
+				}
+			}
+		});
+		this.add(this.addCustomer);
 		this.deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
+		this.add(this.deleteBtn);
 		this.deleteBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -129,15 +165,12 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 			}
 		});
 		this.cancelBtn = new MyButton(pcfg.getButtons().element("cancel"));
-		this.add(this.addBtn);
-		this.add(this.deleteBtn);
 		this.add(this.commitBtn);
 		this.add(this.cancelBtn);
 	}
 	
 	public void createPresent(){
-		CustomerVO customer = this.customerlist.get(this.customeridTxt.getText());
-		ResultMessage result = this.presentController.create(new PresentVO(null,null,customer.id,customer.name,
+		ResultMessage result = this.presentController.create(new PresentVO(null,null,customerVO.id,customerVO.name,
 				this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
 		if(result == ResultMessage.SUCCESS){
 			MyOptionPane.showMessageDialog(null, "赠送单提交成功！");
@@ -147,6 +180,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	}
 	
 	public void delCommodity(){
+		this.commoditylist.remove(this.presentTable.getTable().getSelectedRow());
 		this.presentTable.deleteRow();
 	}
 	
