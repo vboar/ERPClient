@@ -527,6 +527,31 @@
 		<comboboxes></comboboxes>
 	</commodityinfodialog>
 	
+	<addpresentcommodityinfodialog width="480" height="280" x="280"
+		y="200" title="添加赠品">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="260" y="200" />
+			<cancel text="取消" w="80" h="30" x="360" y="200" />
+		</buttons>
+		<labels>
+			<nametip text="* 商品名称及型号请输入2-14位内数字或中、英文字符" w="300" h="20" x="100" y="8"
+				font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
+			<name text="商品名称" w="100" h="30" x="20" y="30" />
+			<model text="商品型号" w="100" h="30" x="20" y="70" />
+			<purchaseprice text="默认进价" w="100" h="30" x="20" y="110" />
+			<saleprice text="默认售价" w="100" h="30" x="240" y="110" />
+			<warningnum text="警戒数量" w="100" h="30" x="20" y="150" />
+		</labels>
+		<textfields>
+			<name  w="320" h="30" x="100" y="30" />
+			<model  w="320" h="30" x="100" y="70" />
+			<purchaseprice  w="120" h="30" x="100" y="110" />
+			<saleprice  w="120" h="30" x="300" y="110" />
+			<warningnum  w="120" h="30" x="100" y="150" />
+		</textfields>
+
+	</addpresentcommodityinfodialog>
+	
 	<!-- 账户信息对话框 -->
 	<accountinfodialog width="500" height="280" x="230"
 		y="180" title="账户信息">

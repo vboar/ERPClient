@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
+import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
 import ui.util.MyTextField;
@@ -28,6 +29,12 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 	private MyButton commit;
 	
 	private MyButton cancel;
+	
+	private MyLabel id;
+	
+	private MyLabel name;
+	
+	private MyLabel model;
 	
 	private DialogConfig cfg;
 	
@@ -65,6 +72,12 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 			}
 		});
 		this.cancel = new MyButton(this.cfg.getButtons().element("cancel"));
+		this.id = new MyLabel(this.cfg.getLabels().element("id"));
+		this.name = new MyLabel(this.cfg.getLabels().element("name"));
+		this.model = new MyLabel(this.cfg.getLabels().element("model"));
+		this.add(this.id);
+		this.add(this.name);
+		this.add(this.model);
 		this.add(this.commit);
 		this.add(this.cancel);
 		this.add(this.commodityTxt);
