@@ -20,6 +20,14 @@ public interface CategoryBLService {
 	public ResultMessage add(CategoryVO vo);
 	
 	/**
+	 * 创建新的分类时获得id
+	 * @param fatherId
+	 * @return 新的分类的id
+	 */
+	public String createId(String fatherId);
+
+	
+	/**
 	 * 删除分类
 	 * @param vo
 	 * @return 删除成功与否消息
