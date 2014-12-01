@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
+import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.StockInfoVO;
@@ -86,7 +87,7 @@ public class StockTablePane extends TablePanel{
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		this.table.setWidth(this.table, this.getWidth());
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
 		this.updateUI();
 		
 	}

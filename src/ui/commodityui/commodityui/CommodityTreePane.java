@@ -1,3 +1,8 @@
+/**
+ * 商品树表面板
+ * @author JaneLDQ
+ * @date 2014/11/30
+ */
 package ui.commodityui.commodityui;
 
 import java.awt.Color;
@@ -10,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.tree.TreePath;
 
 import org.dom4j.Element;
@@ -17,6 +23,7 @@ import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
 import ui.util.BasicOperation;
+import ui.util.FrameUtil;
 import ui.util.MyOptionPane;
 import ui.util.MyPopMenu;
 import util.ResultMessage;
@@ -29,19 +36,50 @@ import config.ERPConfig;
 @SuppressWarnings("serial")
 public class CommodityTreePane extends JPanel implements BasicOperation{
 	
+	/**
+	 * 右键菜单
+	 */
 	private MyPopMenu popmenu;
 
+	/**
+	 * 滚动条面板
+	 */
 	private JScrollPane jsp;
 
+	/**
+	 * 商品树表模型
+	 */
 	private CommodityTreeTableModel treeTableModel;;
 	
+	/**
+	 * 商品树表
+	 */
 	private JXTreeTable treeTable;
 	
+	/**
+	 * 添加商品对话框
+	 */
 	private CommodityInfoDialog infodialog;
 	
+	/**
+	 * 主窗口
+	 */
 	private JFrame frame;
 	
+	/**
+	 * 商品管理控制器
+	 */
 	private CommodityBLService controller;
+	
+	/**
+	 * 商品信息VO列表
+	 */
+	ArrayList<CategoryCommodityVO> list;
+	
+	/**
+	 * 树表是否初始属性
+	 */
+	private boolean isInit = true;
 	
 	public CommodityTreePane(Element ele, JFrame frame) {
 		// 获得商品管理控制器
@@ -66,10 +104,17 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 
 	}
 
+	/**
+	 * 初始树表
+	 */
 	private void initTreeTable() {
-		ArrayList<CategoryCommodityVO> list = this.controller.bigShow();
+		// 获得商品信息
+		this.list = this.controller.bigShow();
+		// 根据数据创建树表模型
 		this.treeTableModel = new CommodityTreeTableModel(list);
+		// 创建树表
 		this.treeTable = new JXTreeTable(this.treeTableModel);
+		// 增加树表监听
 		this.treeTable.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -89,10 +134,16 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				}
 			}
 		});
+		this.treeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.treeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		this.treeTable.setDefaultRenderer(Object.class, new MyTreeTableRenderer());
+		// 创建滚动条面板
 		this.jsp = new JScrollPane();
-		this.jsp.getViewport().add(this.treeTable);
 		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());	
+		this.jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		this.jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		// 将树表添加到滚动条面板上
+		this.jsp.getViewport().add(this.treeTable);
 	}
 
 	@Override
@@ -128,6 +179,14 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		this.infodialog.setVisible(true);
 	}
 
+	/**
+	 * 添加商品
+	 * @param name 商品名
+	 * @param model 型号
+	 * @param purchasePrice 默认进价
+	 * @param salePrice 默认售价
+	 * @param warningNum 警戒数量
+	 */
 	public void addCommodity(String name, String model, double purchasePrice, 
 			double salePrice, int warningNum) {
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
@@ -149,6 +208,14 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		
 	}
 	
+	/**
+	 * 修改商品
+	 * @param name 商品名称
+	 * @param model 商品型号
+	 * @param purchasePrice 默认进价
+	 * @param salePrice 默认售价
+	 * @param warningNum 警戒数量
+	 */
 	public void updateCommodity(String name, String model, double purchasePrice, 
 			double salePrice, int warningNum){
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
@@ -169,23 +236,28 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			}
 		}
 	}
-	
+
+	/**
+	 * 查找商品
+	 * @param key 关键字
+	 */
 	public void findCommodity(String key){
 		this.treeTableModel.setIsfound(false);
 		MyTreeNode node = this.treeTableModel.findNode((MyTreeNode)this.treeTableModel.getRoot(), key);
-		System.out.println("node:" + node);
 		if(node!=null){
-			System.out.println("find!"+node.getPath());
 			TreePath path = new TreePath(node.getPath());
-			int row = this.treeTable.getRowForPath(path);
-			System.out.println(row);
 			this.treeTable.scrollPathToVisible(path);
-			this.treeTable.setRowSelectionInterval(node.getPath().length,node.getPath().length);
-			this.treeTable.updateUI();
+			int row = this.treeTable.getRowForPath(path);
+			this.treeTable.setRowSelectionInterval(row,row);
 			this.repaint();
 		}
 	}
 	
+	/**
+	 * 树表渲染器
+	 * @author JanelDQ
+	 *
+	 */
 	private class MyTreeTableRenderer extends  DefaultTableRenderer{
 		
 		@Override
@@ -193,7 +265,13 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				boolean isSelected, boolean hasFocus, int row, int column) {
 			Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			if(isSelected){
-				comp.setBackground(new Color(105,20,20));
+				comp.setBackground(new Color(205,220,240));
+				comp.setForeground(new Color(40,40,40));
+			}
+			if(isInit){
+				FrameUtil.setTableColumnWidth(table, CommodityTreePane.this.getWidth(),20);
+	            table.getColumnModel().getColumn(0).setMinWidth(200);
+				isInit = false;
 			}
 			return comp;
 		}

@@ -72,7 +72,7 @@ public class CommodityTreeTableModel extends DefaultTreeTableModel {
 	@Override
 	public Object getValueAt(Object node, int column) {
 		MyTreeNode treenode = (MyTreeNode) node;
-		if (treenode.isCategory()) {
+		if (treenode.isCategory()||treenode.isRoot()) {
 			switch (column) {
 			case 0:
 				return treenode;
@@ -133,9 +133,14 @@ public class CommodityTreeTableModel extends DefaultTreeTableModel {
 		return root;
 	}
 
+	@Override
+	public boolean isCellEditable(Object node, int column) {
+		return false;
+	}
+	
 	private void createTree() {
 		boolean isExist = false;
-		this.root = new MyTreeNode(null, null, null,null);
+		this.root = new MyTreeNode("ERP", null, null,null);
 		if (list != null) {
 			for (int i = 0; i < list.size(); ++i) {
 				CategoryCommodityVO vo = list.get(i);

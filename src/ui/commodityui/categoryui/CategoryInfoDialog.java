@@ -1,3 +1,8 @@
+/**
+ * 添加分类信息对话框
+ * @author JaneLDQ
+ * @date 2014/11/27
+ */
 package ui.commodityui.categoryui;
 
 import java.awt.event.ActionEvent;
