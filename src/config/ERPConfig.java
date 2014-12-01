@@ -84,10 +84,6 @@ public class ERPConfig {
 		return COMMODITYINFO_DIALOG_CONFIG;
 	}
 
-	public static DialogConfig getAddreceiptaccountDialogConfig() {
-		return ADDRECEIPTACCOUNT_DIALOG_CONFIG;
-	}
-
 	public static DialogConfig getADDRECEIPTACCOUNT_DIALOG_CONFIG() {
 		return ADDRECEIPTACCOUNT_DIALOG_CONFIG;
 	}

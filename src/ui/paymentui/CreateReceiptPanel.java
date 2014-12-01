@@ -178,7 +178,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	}
 
 	private void showAddDialog() {
-		addDialog= new AddReceiptAccountDialog(ERPConfig.getAddreceiptaccountDialogConfig(), frame, this);
+		addDialog= new AddReceiptAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(), frame, this);
 		this.addDialog.setVisible(true);
 	}
 
