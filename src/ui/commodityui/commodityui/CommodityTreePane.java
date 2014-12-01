@@ -1,5 +1,7 @@
 package ui.commodityui.commodityui;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -7,12 +9,13 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.tree.TreePath;
 
 import org.dom4j.Element;
 import org.jdesktop.swingx.JXTreeTable;
+import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
-import config.ERPConfig;
 import ui.util.BasicOperation;
 import ui.util.MyOptionPane;
 import ui.util.MyPopMenu;
@@ -21,6 +24,7 @@ import vo.CategoryCommodityVO;
 import vo.CommodityVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CommodityBLService;
+import config.ERPConfig;
 
 @SuppressWarnings("serial")
 public class CommodityTreePane extends JPanel implements BasicOperation{
@@ -85,6 +89,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				}
 			}
 		});
+		this.treeTable.setDefaultRenderer(Object.class, new MyTreeTableRenderer());
 		this.jsp = new JScrollPane();
 		this.jsp.getViewport().add(this.treeTable);
 		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());	
@@ -127,7 +132,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			double salePrice, int warningNum) {
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 		if(node.isCategory()){
-			CommodityVO vo=new CommodityVO(node.getId()+Integer.toString((node.getChildrenCount()+1)),
+			CommodityVO vo=new CommodityVO(node.getId()+Integer.toString((node.getChildCount()+1)),
 					name,model,0,purchasePrice,salePrice,0.0,0.0,
 					warningNum,false,node.getCategoryvo());
 			if(this.controller.add(vo)==ResultMessage.SUCCESS){
@@ -166,6 +171,31 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	}
 	
 	public void findCommodity(String key){
-	//	this.treeTable.expandPath(new TreePath(root));
+		this.treeTableModel.setIsfound(false);
+		MyTreeNode node = this.treeTableModel.findNode((MyTreeNode)this.treeTableModel.getRoot(), key);
+		System.out.println("node:" + node);
+		if(node!=null){
+			System.out.println("find!"+node.getPath());
+			TreePath path = new TreePath(node.getPath());
+			int row = this.treeTable.getRowForPath(path);
+			System.out.println(row);
+			this.treeTable.scrollPathToVisible(path);
+			this.treeTable.setRowSelectionInterval(node.getPath().length,node.getPath().length);
+			this.treeTable.updateUI();
+			this.repaint();
+		}
+	}
+	
+	private class MyTreeTableRenderer extends  DefaultTableRenderer{
+		
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value,
+				boolean isSelected, boolean hasFocus, int row, int column) {
+			Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			if(isSelected){
+				comp.setBackground(new Color(105,20,20));
+			}
+			return comp;
+		}
 	}
 }

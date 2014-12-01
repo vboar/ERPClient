@@ -2,10 +2,16 @@ package ui.commodityui.commodityui;
 
 import java.util.ArrayList;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
+
+import org.jdesktop.swingx.treetable.TreeTableNode;
+
 import vo.CategoryVO;
 import vo.CommodityVO;
 
-public class MyTreeNode {
+@SuppressWarnings({ "serial", "unchecked" })
+public class MyTreeNode extends DefaultMutableTreeNode implements TreeTableNode{
 	
 	private String id;
 
@@ -13,32 +19,17 @@ public class MyTreeNode {
 	
 	private CategoryVO categoryvo;
 	
-	private MyTreeNode parent;
+	private MyTreeNode myparent;
 	
-	private ArrayList<MyTreeNode> children = new ArrayList<MyTreeNode>();
+	private ArrayList<MyTreeNode> mychildren = new ArrayList<MyTreeNode>();
 	
 	public MyTreeNode(String id, CategoryVO catevo, CommodityVO comvo, MyTreeNode parent){
 		this.id = id;
 		this.commodityvo = comvo;
 		this.categoryvo = catevo;
-		this.parent = parent;
+		this.myparent = parent;
 	}
-	
-	public MyTreeNode findChild(String key){
-		if(this.isCategory()){
-			for(int i=0; i<children.size(); ++i){
-				if(!children.get(i).isCategory()){
-					MyTreeNode node = children.get(i);
-					if((node.getCommodityvo().name+
-							node.getCommodityvo().model).equals(key)){
-						return node;
-					}
-				}
-			}
-		}
-		return null;
-	}
-	
+
 	@Override
 	public String toString(){
 		if(this.categoryvo!=null){
@@ -49,22 +40,68 @@ public class MyTreeNode {
 		return "ERP";
 	}
 	
-	public void removeChild(MyTreeNode child){
-		int index = this.getIndexOfChild(child);
-		this.children.remove(index);
-	}
-	
-	public void addChild(MyTreeNode child){
-		this.children.add(child);
-	}
-	
-	public int getIndexOfChild(MyTreeNode child){
+	@Override
+	public int getIndex(TreeNode child){
 		for (int i = 0; i < this.getChildren().size(); i++) {
 			if (this.getChildren().get(i) == child) {
 				return i;
 			}
 		}
 		return 0;
+	}
+	
+	@Override
+	public TreeTableNode getChildAt(int i){
+		if(this.mychildren.size()>0){
+			return this.mychildren.get(i);
+		}else{
+			return null;
+		}
+	}
+	
+	@Override
+	public int getChildCount(){
+		if(mychildren!=null){
+			return mychildren.size();
+		}
+		return 0;
+	}
+
+	@Override
+	public MyTreeNode getParent() {
+		return myparent;
+	}
+	
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Object getValueAt(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEditable(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setValueAt(Object arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void removeChild(MyTreeNode child){
+		int index = this.getIndex(child);
+		this.mychildren.remove(index);
+	}
+	
+	public void addChild(MyTreeNode child){
+		this.mychildren.add(child);
 	}
 	
 	public boolean isCategory(){
@@ -77,9 +114,9 @@ public class MyTreeNode {
 	
 	public boolean isLastCategory(){
 		if(isCategory()){
-			if(this.children.size()>0){
-				for(int i=0; i<this.children.size();++i){
-					if(this.children.get(i).isCategory()){
+			if(this.mychildren.size()>0){
+				for(int i=0; i<this.mychildren.size();++i){
+					if(this.mychildren.get(i).isCategory()){
 						return false;
 					}
 				}return true;
@@ -87,6 +124,14 @@ public class MyTreeNode {
 			else return true;
 		}
 		return false;
+	}
+
+	public void setChildren(ArrayList<MyTreeNode> children) {
+		this.mychildren = children;
+	}
+	
+	public String getId() {
+		return id;
 	}
 	
 	public CommodityVO getCommodityvo() {
@@ -106,23 +151,24 @@ public class MyTreeNode {
 	}
 
 	public ArrayList<MyTreeNode> getChildren() {
-		return children;
+		return mychildren;
 	}
 	
-	public int getChildrenCount(){
-		return children.size();
+	public MyTreeNode findChild(String key){
+		if(this.isCategory()){
+			for(int i=0; i<mychildren.size(); ++i){
+				if(!mychildren.get(i).isCategory()){
+					MyTreeNode node = mychildren.get(i);
+					if((node.getCommodityvo().name+
+							node.getCommodityvo().model).equals(key)){
+						return node;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
-	public void setChildren(ArrayList<MyTreeNode> children) {
-		this.children = children;
-	}
-	
-	public String getId() {
-		return id;
-	}
 
-	public MyTreeNode getParent() {
-		return parent;
-	}
 
 }

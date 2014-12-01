@@ -2,16 +2,19 @@ package ui.commodityui.commodityui;
 
 import java.util.ArrayList;
 
-import org.jdesktop.swingx.treetable.AbstractTreeTableModel;
+import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
+import org.jdesktop.swingx.treetable.TreeTableNode;
 
 import vo.CategoryCommodityVO;
 
-public class CommodityTreeTableModel extends AbstractTreeTableModel {
+public class CommodityTreeTableModel extends DefaultTreeTableModel {
 
 	private MyTreeNode root;
 	
 	private ArrayList<CategoryCommodityVO> list;
 
+	private boolean isfound = false;
+	
 	private static int COLUMN_COUNT = 8;
 
 	public CommodityTreeTableModel(ArrayList<CategoryCommodityVO> list) {
@@ -20,16 +23,22 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 	}
 
 	public MyTreeNode findNode(MyTreeNode node, String key){
-		if ((node.getId() != null) && (node.getId().equals(key))) {
-			return node;
+		MyTreeNode findnode = null;
+		System.out.println(node+" iscategory: "+node.isCategory());
+		if ((node.getCommodityvo()!= null) && (node.getCommodityvo().name.equals(key))) {
+			this.isfound = true;
+			findnode = node;
 		}
-		if (node.getChildrenCount() >= 0) {
+		if (node.getChildCount() >= 0) {
+		
 			ArrayList<MyTreeNode> list = node.getChildren();
 			for (MyTreeNode treeNode : list) {
-				findNode(treeNode,key);
+				if(!this.isfound){
+					findnode = findNode(treeNode,key);
+				}
 			}
 		}
-		return null;
+		return findnode;
 	}
 	
 	public int getColumnCount() {
@@ -109,7 +118,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 	@Override
 	public int getIndexOfChild(Object parent, Object child) {
 		MyTreeNode treenode = (MyTreeNode) parent;
-		return treenode.getIndexOfChild((MyTreeNode)child);
+		return treenode.getIndex((MyTreeNode)child);
 	}
 
 	public boolean isLeaf(Object node) {
@@ -120,8 +129,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 		return true;
 	}
 
-	@Override
-	public Object getRoot() {
+	public TreeTableNode getRoot() {
 		return root;
 	}
 
@@ -140,7 +148,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 	}
 
 	private void insertNode(MyTreeNode node, CategoryCommodityVO vo) {
-		if (node.getChildrenCount() == 0) {
+		if (node.getChildCount() == 0) {
 			node.getChildren().add(
 					new MyTreeNode(vo.id, vo.Categoryvo, vo.commodityvo,node));
 			return;
@@ -168,7 +176,7 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 		if ((node.getId() != null) && (node.getId().equals(vo.id))) {
 			return true;
 		}
-		if (node.getChildrenCount() >= 0) {
+		if (node.getChildCount() >= 0) {
 			ArrayList<MyTreeNode> list = node.getChildren();
 			for (MyTreeNode treeNode : list) {
 				checkNodes(treeNode, vo);
@@ -176,4 +184,10 @@ public class CommodityTreeTableModel extends AbstractTreeTableModel {
 		}
 		return false;
 	}
+
+	public void setIsfound(boolean isfound) {
+		this.isfound = isfound;
+	}
+	
+	
 }

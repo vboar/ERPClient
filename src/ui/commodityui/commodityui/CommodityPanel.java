@@ -64,6 +64,8 @@ public class CommodityPanel extends JPanel implements FuzzySearch{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				list = controller.fuzzyFind(findTxt.getText());
+				
+				treepane.findCommodity(findTxt.getText());
 			}
 		});
 		this.add(this.findbtn);
