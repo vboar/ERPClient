@@ -149,8 +149,6 @@ public class Purchase {
 		return null;
 	}
 	
-	//下面是purchasereturn专用方法
-	// ---------------------------------------------------------------------------------------------------
 	protected ArrayList<PurchaseVO> findByTime2(String time1, String time2) {
 		ArrayList<PurchasePO> poList = null;
 		try {
