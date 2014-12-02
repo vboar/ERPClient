@@ -112,11 +112,12 @@ public class Category {
 			return nameCheck;
 		}
 		//是否有商品
+		if(father!=null){
 		ArrayList<CommodityVO> commodity=new Commodity().findById(father.id);
 		if(!commodity.isEmpty()){
 			return ResultMessage.HAS_COMMODITY;
 		}
-		if(father!=null){
+		
 		// 改父分类的number
 		CategoryPO fatherPO = getById(father.id);
 		CategoryVO fatherVO = CategoryPOToCategoryVO(fatherPO);
