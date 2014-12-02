@@ -73,12 +73,12 @@ public class Present {
 	String time=myFmt.format(date);
 		ArrayList<PresentVO> presentList=show();
 		if(presentList.isEmpty()){
-			return "ZPD-"+time+"-00000";
+			return "ZPD-"+time+"-00001";
 		}else{
 			String max=presentList.get(presentList.size()-1).id;
 			String day=max.substring(4,max.length()-5);
 			if(day.compareTo(time)<0){
-			    return "ZPD-"+time+"-00000";
+			    return "ZPD-"+time+"-00001";
 			}
 			String oldMax=max.substring(max.length()-5);
 			int maxInt=Integer.parseInt(oldMax);
