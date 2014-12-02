@@ -44,8 +44,11 @@ public class Category {
 		String id = po.getId();
 		String name = po.getName();
 		int number = po.getNumber();
-		CategoryVO vo = new CategoryVO(name, number, findById(id).get(0));
-
+		CategoryVO vo = new CategoryVO(id,name, number, null);
+		if(id.length()>6){
+			String fatherId=id.substring(0, id.length()-6);
+		 vo = new CategoryVO(id,name, number, CategoryPOToCategoryVO(getById(fatherId)));
+		}
 		return vo;
 	}
 
@@ -122,6 +125,7 @@ public class Category {
 		CategoryPO fatherPO = getById(father.id);
 		CategoryVO fatherVO = CategoryPOToCategoryVO(fatherPO);
 		fatherVO.number++;
+		//System.out.println("hhhhhh");
 		update(fatherVO);
 		}
 		// 添加到data
@@ -219,6 +223,7 @@ public class Category {
 	 * @return
 	 */
 	protected ArrayList<CategoryVO> findById(String id) {
+		System.out.println(id);
 		ArrayList<CategoryPO> poList = null;
 		try {
 			poList = DataFactoryImpl.getInstance().getCategoryData()
