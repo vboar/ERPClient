@@ -15,4 +15,22 @@ public static String getCurrentTime(){
 	
 	return time;
 }
+
+public static String getCurrentYear(){
+	Calendar c=Calendar.getInstance();
+	String year=String.valueOf(c.get(Calendar.YEAR));
+	return year;
+}
+
+public static String getCurrentMonth(){
+	Calendar c=Calendar.getInstance();
+	String month=String.valueOf(c.get(Calendar.MONTH));
+	return month;
+}
+
+public static String getCurrentDay(){
+	Calendar c=Calendar.getInstance();
+	String date=String.valueOf(c.get(Calendar.DATE));
+	return date;
+}
 }

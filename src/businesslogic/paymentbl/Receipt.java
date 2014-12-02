@@ -6,7 +6,9 @@
 package businesslogic.paymentbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.PaymentPO;
 import po.TransferLineItemPO;
@@ -14,13 +16,37 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.AccountVO;
+import vo.CashVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
 import businesslogic.accountbl.Account;
 import businesslogic.customerbl.Customer;
 
 public class Receipt {
+	
+	public String createId(){
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");
+		String time=myFmt.format(date);
+			ArrayList<PaymentVO> presentList=show();
+			if(presentList.isEmpty()){
+				return "SKD-"+time+"-00001";
+			}else{
+				String max=presentList.get(presentList.size()-1).id;
+				String day=max.substring(4,max.length()-5);
+				if(day.compareTo(time)<0){
+				    return "SKD-"+time+"-00001";
+				}
+				String oldMax=max.substring(max.length()-5);
+				int maxInt=Integer.parseInt(oldMax);
+				String pattern="00000";
+				 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+				 String maxStr=df.format(maxInt+1);
+				 return "SKD-"+time+"-"+maxStr;
+			}
+	}
 	
 	public ResultMessage add(PaymentVO vo){
 		try {

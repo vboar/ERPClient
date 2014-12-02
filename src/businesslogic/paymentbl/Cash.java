@@ -6,21 +6,45 @@
 package businesslogic.paymentbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import businesslogic.accountbl.Account;
 import po.CashPO;
 import po.ClauseLineItemPO;
-import dataservice.datafactoryservice.DataFactoryImpl;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.AccountVO;
 import vo.CashVO;
 import vo.ClauseLineItemVO;
+import businesslogic.accountbl.Account;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Cash {
 
+	public String createId(){
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");
+		String time=myFmt.format(date);
+			ArrayList<CashVO> presentList=show();
+			if(presentList.isEmpty()){
+				return "XJFYD-"+time+"-00001";
+			}else{
+				String max=presentList.get(presentList.size()-1).id;
+				String day=max.substring(4,max.length()-5);
+				if(day.compareTo(time)<0){
+				    return "XJFYD-"+time+"-00001";
+				}
+				String oldMax=max.substring(max.length()-5);
+				int maxInt=Integer.parseInt(oldMax);
+				String pattern="00000";
+				 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+				 String maxStr=df.format(maxInt+1);
+				 return "XJFYD-"+time+"-"+maxStr;
+			}
+	}
+	
 	public ResultMessage createLog(String content){	
 		//TODO
 		return null;	
