@@ -5,11 +5,19 @@
  */
 package businesslogic.paymentbl;
 
+<<<<<<< HEAD
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+=======
 import businesslogic.accountbl.Account;
 import businesslogic.customerbl.CustomerController;
 import businesslogic.logbl.Log;
 import businesslogic.loginbl.Login;
 import dataservice.datafactoryservice.DataFactoryImpl;
+>>>>>>> 6275ba12eb616a62397dd90e1269c313bcd49b2e
 import po.PaymentPO;
 import po.TransferLineItemPO;
 import util.DocumentStatus;
@@ -25,6 +33,28 @@ import java.util.ArrayList;
 
 //oneoneO
 public class Payment {
+	
+	public String createId(){
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");
+		String time=myFmt.format(date);
+			ArrayList<PaymentVO> presentList=show();
+			if(presentList.isEmpty()){
+				return "FKD-"+time+"-00001";
+			}else{
+				String max=presentList.get(presentList.size()-1).id;
+				String day=max.substring(4,max.length()-5);
+				if(day.compareTo(time)<0){
+				    return "FKD-"+time+"-00001";
+				}
+				String oldMax=max.substring(max.length()-5);
+				int maxInt=Integer.parseInt(oldMax);
+				String pattern="00000";
+				 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+				 String maxStr=df.format(maxInt+1);
+				 return "FKD-"+time+"-"+maxStr;
+			}
+	}
 	
 	public ResultMessage createLog(String content){	
 		//TODO
@@ -73,8 +103,14 @@ public class Payment {
 	
 	public ArrayList<PaymentVO> show(){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
+
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().show());
+			temp=DataFactoryImpl.getInstance().getPaymentData().show();
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+					result.add(poToVo(temp.get(i)));
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -83,11 +119,12 @@ public class Payment {
 
 	public ArrayList<PaymentVO> findById(String id){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findById(id));
-			for(int i=0;i<result.size();i++){
-				if(result.get(i).documentType!=DocumentType.PAYMENT)
-					result.remove(i);
+			temp=DataFactoryImpl.getInstance().getPaymentData().findById(id);
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+					result.add(poToVo(temp.get(i)));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -101,10 +138,10 @@ public class Payment {
 		try {
 			temp=DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2);
 			for(int i=0;i<temp.size();i++){
-				if(temp.get(i).getDocumentType()!=DocumentType.PAYMENT.ordinal())
-					temp.remove(i);
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+					result.add(poToVo(temp.get(i)));
 			}
-			result=poToVo(temp);
+			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -115,11 +152,12 @@ public class Payment {
 	
 	public ArrayList<PaymentVO> findByCustomer(String customerId){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByCustomer(customerId));
-			for(int i=0;i<result.size();i++){
-				if(result.get(i).documentType!=DocumentType.PAYMENT)
-					result.remove(i);
+			temp=DataFactoryImpl.getInstance().getPaymentData().findByCustomer(customerId);
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+					result.add(poToVo(temp.get(i)));
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -130,11 +168,12 @@ public class Payment {
 	
 	public ArrayList<PaymentVO> findByStatus(int status){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByStatus(status));
-			for(int i=0;i<result.size();i++){
-				if(result.get(i).documentType!=DocumentType.PAYMENT)
-					result.remove(i);
+			temp=DataFactoryImpl.getInstance().getPaymentData().findByStatus(status);
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+					result.add(poToVo(temp.get(i)));
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -145,12 +184,13 @@ public class Payment {
 	
 	public ArrayList<PaymentVO> findByOperator(String operator){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
-		
+		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().findByOperator(operator));
-			for(int i=0;i<result.size();i++){
-				if(result.get(i).documentType!=DocumentType.PAYMENT)
-					result.remove(i);
+			temp=DataFactoryImpl.getInstance().getPaymentData().findByOperator(operator);
+			
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+					result.add(poToVo(temp.get(i)));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -159,20 +199,24 @@ public class Payment {
 		return result;
 	}
 	
-	public ArrayList<PaymentVO> poToVo(ArrayList<PaymentPO> po){
-		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
-		for(int i=0;i<po.size();i++){
+	public PaymentVO poToVo(PaymentPO po){
 			ArrayList<TransferLineItemVO> temp=new ArrayList<TransferLineItemVO>();
+<<<<<<< HEAD
+			ArrayList<TransferLineItemPO> p=po.getTransferList();
+			for(int i=0;i<p.size();i++){
+				TransferLineItemPO t=p.get(i);
+				temp.add(new TransferLineItemVO(t.getBankAccount(),t.getAccount(),t.getRemark()));
+=======
 			ArrayList<TransferLineItemPO> p=po.get(i).getTransferList();
 			for(int j=0;j<p.size();j++){
 				TransferLineItemPO t=p.get(j);
 				temp.add(new TransferLineItemVO(null, t.getBankAccount(),t.getAccount(),t.getRemark()));
+>>>>>>> 6275ba12eb616a62397dd90e1269c313bcd49b2e
 			}
-			PaymentPO temp2=po.get(i);
-			result.add(new PaymentVO(temp2.getId(),temp2.getTime(),temp2.getCustomerId(),temp2.getCustomerName(),temp2.getOperatorId(),
-					temp,temp2.getTotal(),DocumentStatus.values()[temp2.getApprovalStatus()],
-					temp2.getIsWriteOff(),DocumentType.values()[temp2.getDocumentType()]));
-		}
+			
+			PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),po.getCustomerName(),po.getOperatorId(),
+					temp,po.getTotal(),DocumentStatus.values()[po.getApprovalStatus()],
+					po.getIsWriteOff(),DocumentType.values()[po.getDocumentType()]);
 		
 		return result;
 	}

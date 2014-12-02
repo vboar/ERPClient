@@ -8,7 +8,8 @@ import vo.CashVO;
 import businesslogicservice.paymentblservice.CashBLService;
 
 public class CashController implements CashBLService {
-
+	Cash c=new Cash();
+	
 	@Override
 	public ResultMessage create(CashVO vo) {
 		// TODO Auto-generated method stub
@@ -26,5 +27,8 @@ public class CashController implements CashBLService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public String createId(){
+		return c.createId();
+	}
 }

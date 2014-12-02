@@ -8,7 +8,8 @@ import vo.PaymentVO;
 import java.util.ArrayList;
 
 public class ReceiptController implements PaymentBLService {
-
+	Receipt r=new Receipt();
+	
 	@Override
 	public ResultMessage create(PaymentVO vo) {
 		// TODO Auto-generated method stub
@@ -27,4 +28,7 @@ public class ReceiptController implements PaymentBLService {
 		return null;
 	}
 	
+	public String createId(){
+		return r.createId();
+	}
 }

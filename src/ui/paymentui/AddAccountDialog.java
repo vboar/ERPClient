@@ -1,24 +1,34 @@
 package ui.paymentui;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.accountblservice.AccountBLService;
-import config.DialogConfig;
-import org.dom4j.Element;
-import ui.util.*;
-import vo.AccountVO;
-import vo.TransferLineItemVO;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
+import org.dom4j.Element;
+
+import ui.presentui.CreatePanel;
+import ui.util.FuzzySearch;
+import ui.util.MyButton;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import ui.util.MySpecialTextField;
+import ui.util.MyTextField;
+import vo.AccountVO;
+import vo.TransferLineItemVO;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.accountblservice.AccountBLService;
+import config.DialogConfig;
+
 /**
  * 创建收款单添加账户框
  * Created by Vboar on 2014/12/1.
  */
-public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
+public class AddAccountDialog extends JDialog implements FuzzySearch {
 
     private MyButton commit;
 
@@ -36,7 +46,7 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
 
     private MyLabel currentName;
 
-    private CreateReceiptPanel panel;
+    private CreatePanel panel;
 
     private DialogConfig cfg;
 
@@ -48,7 +58,7 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
 
     private HashMap<String, AccountVO> vomap;
 
-    public AddReceiptAccountDialog(DialogConfig cfg, JFrame frame, CreateReceiptPanel panel) {
+    public AddAccountDialog(DialogConfig cfg, JFrame frame, CreatePanel panel) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
         accountController = ControllerFactoryImpl.getInstance().getAccountController();

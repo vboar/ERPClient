@@ -29,6 +29,8 @@ public class PaymentController implements PaymentBLService{
 		return null;
 	}
 	
-
+	public String createId(){
+		return payment.createId();
+	}
 
 }
