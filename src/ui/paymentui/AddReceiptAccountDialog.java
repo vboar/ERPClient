@@ -6,11 +6,13 @@ import config.DialogConfig;
 import org.dom4j.Element;
 import ui.util.*;
 import vo.AccountVO;
+import vo.TransferLineItemVO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 创建收款单添加账户框
@@ -30,24 +32,35 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
 
     private MyTextField remarkTxt;
 
+    private MyLabel currentAccount;
+
+    private MyLabel currentName;
+
     private CreateReceiptPanel panel;
 
     private DialogConfig cfg;
 
+    private AccountVO addAccountVO;
+
+    private TransferLineItemVO transferLineItemVO;
+
     private AccountBLService accountController;
+
+    private HashMap<String, AccountVO> vomap;
 
     public AddReceiptAccountDialog(DialogConfig cfg, JFrame frame, CreateReceiptPanel panel) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
         accountController = ControllerFactoryImpl.getInstance().getAccountController();
         this.cfg = cfg;
-        this.setTitle("账户信息");
         this.panel = panel;
+        vomap = new HashMap<String, AccountVO>();
         this.setSize(this.cfg.getW(), this.cfg.getH());
         this.setLayout(null);
         this.setResizable(false);
         this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());
         this.initComponent();
+        this.setVisible(true);
     }
 
     private void initComponent() {
@@ -63,7 +76,13 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
         addAccount.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                addAccountVO = vomap.get(accountTxt.getText());
+                if(addAccountVO!=null){
+                    currentAccount.setText(addAccountVO.account);
+                    currentName.setText(addAccountVO.name);
+                }else{
+                    MyOptionPane.showMessageDialog(null, "请重新选择商品！");
+                }
             }
         });
 
@@ -72,7 +91,17 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
         commit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                int result = MyOptionPane.showConfirmDialog(null, "确认添加该账户？","确认提示",
+                        MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+                if(result==MyOptionPane.YES_OPTION){
+                    try{
+                        // TODO 没有逻辑
+                        dispose();
+                    }catch(NumberFormatException ex){
+                        MyOptionPane.showMessageDialog(null, "请正确输入数据！","错误提示",
+                                MyOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
 
@@ -81,17 +110,25 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                int result = MyOptionPane.showConfirmDialog(null, "确认取消？","确认提示",
+                        MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+                if(result == MyOptionPane.YES_OPTION){
+                    dispose();
+                }
             }
         });
     }
 
     private void initLabels(Element element) {
         add(new MyLabel(element.element("account")));
-        add(new MyLabel(element.element("accountnum")));
         add(new MyLabel(element.element("name")));
         add(new MyLabel(element.element("money")));
         add(new MyLabel(element.element("remark")));
+        add(new MyLabel(element.element("tip")));
+        currentAccount = new MyLabel(element.element("currentaccount"));
+        currentName = new MyLabel(element.element("currentname"));
+        add(currentAccount);
+        add(currentName);
     }
 
     private void initTextFields(Element element) {
@@ -105,13 +142,24 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
         add(remarkTxt);
     }
 
+    public void addAccount(String key, int num) {
+        if(addAccount != null) {
+            transferLineItemVO = new TransferLineItemVO(addAccountVO.name, addAccountVO.account,
+                    addAccountVO.balance, remarkTxt.getText());
+            panel.addAccount(transferLineItemVO);
+        } else {
+            MyOptionPane.showMessageDialog(null, "请选择账户信息！");
+        }
+    }
+
     @Override
     public ArrayList<String> getFuzzyResult(String keyword) {
         ArrayList<AccountVO> result = this.accountController.fuzzyFind(keyword);
         ArrayList<String> strs = new ArrayList<String>();
         for(int i = 0; i < result.size(); ++i){
-            AccountVO vo = result.get(i);
-            strs.add(vo.name + "  " + vo.account);
+            String str = result.get(i).name+"-"+result.get(i).account;
+            strs.add(str);
+            vomap.put(str, result.get(i));
         }
         return strs;
     }
