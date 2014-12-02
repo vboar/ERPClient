@@ -71,8 +71,7 @@ public class ApprovalController implements ApprovalBLService{
 	@Override
 	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1,
 			String time2) {
-		//TODO
-		return null;
+		return approval.findLoss(way, status, time1, time2);
 	}
 
 	@Override
@@ -83,20 +82,17 @@ public class ApprovalController implements ApprovalBLService{
 
 	@Override
 	public ResultMessage approvePresent(PresentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approvePresent(vo);
 	}
 
 	@Override
 	public ResultMessage approvePurchase(PurchaseVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approvePurchase(vo);
 	}
 
 	@Override
 	public ResultMessage approvePurchaseReturn(PurchaseVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return approval.approvePurchaseReturn(vo);
 	}
 
 	@Override

@@ -79,6 +79,11 @@ public class Approval {
 		return c.approve(vo);
 	}
 	
+	public ResultMessage approvePresent(PresentVO vo){
+		Present p=new Present();
+		return p.approve(vo);
+	}
+	
 	public ArrayList<PresentVO> findPresent(int way,int status,String time1,String time2){
 		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
 		Present p=new Present();

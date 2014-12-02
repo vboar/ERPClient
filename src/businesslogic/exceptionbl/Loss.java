@@ -52,7 +52,7 @@ public class Loss {
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
 		ArrayList<ExceptionPO> temp=new ArrayList<ExceptionPO>();
 		try {
-			temp=DataFactoryImpl.getInstance().getExceptionData().getById(id);
+			temp=DataFactoryImpl.getInstance().getExceptionData().findById(id);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -83,6 +83,7 @@ public class Loss {
 	}
 	
 	public ResultMessage approve(ExceptionVO vo){
+		//修改单据状态
 		try {
 			DataFactoryImpl.getInstance().getExceptionData().update(voToPo(vo));
 		} catch (RemoteException e) {
