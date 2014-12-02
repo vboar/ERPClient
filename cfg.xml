@@ -433,44 +433,125 @@
 			</buttons>
 		</panel>
 
+
 		<!-- 促销策略制定面板 -->
 		<panel className="ui.promotionui.PromotionPanel" width="760" height="510"
 			   x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
+				<customer text="针对客户级别" w="180" h="32" x="10" y="40"/>
+				<totalgift text="针对总价" w="180" h="32" x="190" y="40"/>
+				<specialoffer  text="特价包" w="80" h="32" x="370" y="40"/>
 			</buttons>
+			<labels>
+				<title text="促销策略制定" w="200" h="30" x="10" y="2" />
+			</labels>
 		</panel>
 
+		<!-- 客户级别促销策略制定面板 -->
+		<panel className="ui.promotionui.CustomerPanel" width="760" height="420"
+			   x="0" y="70" bg="img/rightpanel.png">
+			<buttons>
+				<add text="添加" w="80" h="30" x="460" y="10"/>
+				<update text="修改" w="80" h="30" x="550" y="10"/>
+				<unable  text="停用" w="80" h="30" x="640" y="10"/>
+			</buttons>
+			<labels>
+				<list text="针对客户级别制定的促销策略列表" w="220" h="30" x="20" y="10"/>
+			</labels>
+			<tablepane className="ui.promotionui.CustomerTablePane" width="730"
+					   height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="客户级别" />
+					<columnname name="赠品列表" />
+					<columnname name="折让" />
+					<columnname name="代金券" />
+					<columnname name="起始时间" />
+					<columnname name="结束时间" />
+					<columnname name="是否生效" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
+		<!-- 总价包促销策略制定面板 -->
+		<panel className="ui.promotionui.TotalGiftPanel" width="760" height="420"
+			   x="0" y="70" bg="img/rightpanel.png">
+			<buttons>
+				<add text="添加" w="80" h="30" x="460" y="10"/>
+				<update text="修改" w="80" h="30" x="550" y="10"/>
+				<unable  text="停用" w="80" h="30" x="640" y="10"/>
+			</buttons>
+			<labels>
+				<list text="针对总价制定的促销策略列表" w="220" h="30" x="20" y="10"/>
+			</labels>
+			<tablepane className="ui.promotionui.TotalGiftTablePane" width="730"
+					   height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="总价" />
+					<columnname name="赠品列表" />
+					<columnname name="代金券" />
+					<columnname name="起始时间" />
+					<columnname name="结束时间" />
+					<columnname name="是否生效" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
+		<!-- 特价包促销策略制定面板 -->
+		<panel className="ui.promotionui.SpecialOfferPanel" width="760" height="420"
+			   x="0" y="70" bg="img/rightpanel.png">
+			<buttons>
+				<add text="添加" w="80" h="30" x="460" y="10"/>
+				<update text="修改" w="80" h="30" x="550" y="10"/>
+				<unable  text="停用" w="80" h="30" x="640" y="10"/>
+			</buttons>
+			<labels>
+				<list text="特价包促销策略列表" w="220" h="30" x="20" y="10"/>
+			</labels>
+			<tablepane className="ui.promotionui.SpecialOfferTablePane" width="730"
+					   height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="商品列表" />
+					<columnname name="总价" />
+					<columnname name="起始时间" />
+					<columnname name="结束时间" />
+					<columnname name="是否生效" />
+				</columnnames>
+			</tablepane>
+		</panel>
 
 		<!-- 用户管理面板 -->
 		<panel className="ui.userui.UserPanel" width="760" height="510"
 			   x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png"
+				<add text="" w="80" h="32" x="170" y="40" path="img\adduser.png"
 					 pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"
+				<delete text="" w="80" h="32" x="250" y="40" path="img\deluser.png"
 						pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="330" y="36" path="img\upduser.png"
+				<update text="" w="80" h="32" x="330" y="40" path="img\upduser.png"
 						pathroll="img\upduser1.png" />
-				<showall text="" w="100" h="30" x="410" y="37" path="img\show.png"
+				<showall text="" w="100" h="30" x="410" y="40" path="img\show.png"
 						 pathroll="img\show1.png" />
-				<find text="" w="30" h="30" x="700" y="30" path="img\search1.png"
+				<find text="" w="30" h="30" x="700" y="45" path="img\search1.png"
 					  pathroll="img\search1.png" />
 			</buttons>
 			<labels>
-				<userlist text="" w="120" h="32" x="20" y="35"
+				<userlist text="" w="120" h="32" x="20" y="40"
 						  path="img\userlist.png" />
 				<modulename text="" w="120" h="30" x="5" y="2"
 							path="img\usermanage.png" />
 				<admin text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
 			</labels>
 			<textfields>
-				<findinput w="175" h="28" x="525" y="38" />
+				<findinput w="175" h="28" x="525" y="45" />
 			</textfields>
 			<tablepane className="ui.userui.UserTablePane" width="730"
 					   height="390" x="10" y="80">
 				<columnnames>
 					<columnname name="ID" />
-					<columnname name="用户名" />
+					<columnname name="姓名" />
 					<columnname name="密码" />
 					<columnname name="类型" />
 					<columnname name="权限" />
