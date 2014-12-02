@@ -28,6 +28,8 @@ public abstract class TablePanel extends JPanel{
 		this.setOpaque(false);
 	}
 
+	protected abstract void initTable();
+	
 	protected void initComponent() {
 		//创建滚动条面板
 		this.rollpane = new RowTableScrollPane(this.table);

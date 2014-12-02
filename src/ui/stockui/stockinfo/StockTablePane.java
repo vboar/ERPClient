@@ -23,13 +23,16 @@ public class StockTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
+	private ArrayList<StockInfoVO> list;
+	
 	public StockTablePane(TableConfig cfg, StockBLService controller) {
 		super(cfg);
-		this.initTable(controller.showStockInfo(null, null));
+		this.list = controller.showStockInfo(null, null);
+		this.initTable();
 		this.initComponent();
 	}
 	
-	protected void initTable(ArrayList<StockInfoVO> list){
+	protected void initTable(){
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){

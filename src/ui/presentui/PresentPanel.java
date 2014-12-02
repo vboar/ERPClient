@@ -18,6 +18,8 @@ public class PresentPanel extends JPanel {
 
 	private MyButton addPresent;
 	
+	private MyButton show;
+	
 	private CreatePresentPanel createPanel;
 	
 	private Image bg;
@@ -43,9 +45,9 @@ public class PresentPanel extends JPanel {
 	}
 	
 	private void initComponent() {
-		this.addPresent = new MyButton(pcfg.getButtons().element("createpresent"));
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.createPanel = new CreatePresentPanel(this.frame);
+		this.addPresent = new MyButton(pcfg.getButtons().element("createpresent"));
 		this.add(this.addPresent);
 		this.addPresent.addActionListener(new ActionListener() {
 			
@@ -53,6 +55,14 @@ public class PresentPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				add(createPanel);
 				repaint();
+			}
+		});
+		this.show = new MyButton(pcfg.getButtons().element("show"));
+		this.show.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 	}

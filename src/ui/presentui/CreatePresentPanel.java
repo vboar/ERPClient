@@ -45,7 +45,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private MyLabel customerNameLab;
 	
-	private PresentTablePane presentTable;
+	private PresentCommodityTablePane presentTable;
 	
 	private MySpecialTextField customerTxt;
 	
@@ -80,7 +80,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	private void initComponent() {
 		this.initLabels();
 		this.initButtons();
-		this.presentTable = new PresentTablePane(new TableConfig(pcfg.getTablepane()));
+		this.presentTable = new PresentCommodityTablePane(new TableConfig(pcfg.getTablepane()));
 		this.add(this.presentTable);
 		this.customerTxt = new MySpecialTextField(pcfg.getTextFields().element("customerinfo"),this);
 		this.add(this.customerTxt);
@@ -91,7 +91,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.customerIdLab = new MyLabel(pcfg.getLabels().element("customeridlab"));
 		this.customerNameLab = new MyLabel(pcfg.getLabels().element("customernamelab"));
 		this.documentId = new MyLabel(pcfg.getLabels().element("documentidlab"));
-	//	this.documentId.setText(this.presentController);
+		this.documentId.setText(this.presentController.createId());
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.add(new MyLabel(pcfg.getLabels().element("documentid")));
 		this.add(new MyLabel(pcfg.getLabels().element("customerid")));
@@ -108,15 +108,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	}
 	
 	private void initButtons(){
-		this.addBtn = new MyButton(pcfg.getButtons().element("add"));
-		this.addBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new AddPresentCommodityDialog(CreatePresentPanel.this,frame);
-			}
-			
-		});
-		this.add(this.addBtn);
+		// 添加客户按钮
 		this.addCustomer = new MyButton(pcfg.getButtons().element("addcustomer"));
 		this.addCustomer.addActionListener(new ActionListener() {
 			
@@ -135,8 +127,18 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 			}
 		});
 		this.add(this.addCustomer);
+		// 添加赠品按钮
+		this.addBtn = new MyButton(pcfg.getButtons().element("add"));
+		this.addBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddPresentCommodityDialog(CreatePresentPanel.this,frame);
+			}
+			
+		});
+		this.add(this.addBtn);
+		// 删除赠品按钮
 		this.deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
-		this.add(this.deleteBtn);
 		this.deleteBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -153,6 +155,8 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 			}
 			
 		});
+		this.add(this.deleteBtn);
+		// 提交按钮
 		this.commitBtn = new MyButton(pcfg.getButtons().element("commit"));
 		this.commitBtn.addActionListener(new ActionListener() {		
 			@Override
@@ -164,6 +168,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 				}
 			}
 		});
+		// 取消按钮
 		this.cancelBtn = new MyButton(pcfg.getButtons().element("cancel"));
 		this.add(this.commitBtn);
 		this.add(this.cancelBtn);

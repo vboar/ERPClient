@@ -27,14 +27,17 @@ public class CustomerTablePane extends TablePanel {
 	private Object[][] data;
 
 	private DefaultTableModel dtm;
+	
+	private ArrayList<CustomerVO> list;
 
 	public CustomerTablePane(TableConfig cfg, CustomerBLService controller) {
 		super(cfg);
-		this.initTable(controller.show());
+		this.list = controller.show();
+		this.initTable();
 		this.initComponent();
 	}
 
-	protected void initTable(ArrayList<CustomerVO> list) {
+	protected void initTable() {
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){

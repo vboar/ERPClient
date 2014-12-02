@@ -169,7 +169,8 @@
 		<panel className="ui.presentui.PresentPanel"
 			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<createpresent text="创建赠送单" w="160" h="30" x="10" y="45"/>
+				<createpresent text="查看赠送单" w="160" h="30" x="10" y="45"/>
+				<show text="创建赠送单" w="160" h="30" x="200" y="45"/>
 			</buttons>
 			<labels>
 				<title text="赠品发放" w="120" h="30" x="10" y="2" />
@@ -188,15 +189,15 @@
 			</buttons>
 			<labels>
 				<title text="赠送单" w="120" h="30" x="20" y="10" />
-				<documentid text="单据编号：" w="120" h="30" x="400" y="10" />
-				<documentidlab text="" w="120" h="30" x="400" y="10" />				
+				<documentid text="单据编号：" w="80" h="30" x="480" y="10" />
+				<documentidlab text="" w="200" h="30" x="550" y="10" />				
 				<customerinfo text="客户信息" w="80" h="30" x="20" y="50" />
 				<tip text="请输入客户信息关键字" w="180" h="30" x="100" y="50" 
 				font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
 				<customerid text="客户ID：" w="80" h="30" x="20" y="85" />
-				<customeridlab text="" w="80" h="30" x="120" y="85" />
+				<customeridlab text="" w="140" h="30" x="100" y="85" />
 				<customername text="客户名：" w="80" h="30" x="260" y="85" />
-				<customernamelab text="" w="80" h="30" x="360" y="85" />
+				<customernamelab text="" w="140" h="30" x="330" y="85" />
 				<presentlist text="赠品列表" w="120" h="40" x="20" y="120" />				
 			</labels>
 			<textfields>

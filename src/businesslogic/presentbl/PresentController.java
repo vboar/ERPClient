@@ -15,16 +15,16 @@ import businesslogicservice.presentblservice.PresentBLService;
 
 public class PresentController implements PresentBLService {
 
+	private Present present = new Present();
+	
 	@Override
 	public ResultMessage create(PresentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return present.create(vo);
 	}
 
 	@Override
 	public ArrayList<PresentVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return present.findByTime(time1, time2);
 	}
 
 	@Override
@@ -41,8 +41,7 @@ public class PresentController implements PresentBLService {
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		return present.createId();
 	}
 
 }
