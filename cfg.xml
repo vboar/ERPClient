@@ -311,10 +311,10 @@
 		<!-- 收付款面板 -->
 		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
 			<buttons>
-				<createreceipt text="制定收款单" w="150" h="32" x="20" y="36" />
-				<createpayment text="制定付款单" w="150" h="32" x="200" y="36" />
-				<createcash text="制定现金费用单"  w="150" h="32" x="370" y="36" />
-				<show text="单据查看"  w="150" h="30" x="540" y="36" />
+				<createreceipt text="制定收款单" w="150" h="32" x="200" y="36" />
+				<createpayment text="制定付款单" w="150" h="32" x="370" y="36" />
+				<createcash text="制定现金费用单"  w="150" h="32" x="540" y="36" />
+				<show text="单据查看"  w="150" h="30" x="20" y="36" />
 			</buttons>
 			<labels>
 				<title text="收付款" w="120" h="32" x="10" y="5" />
