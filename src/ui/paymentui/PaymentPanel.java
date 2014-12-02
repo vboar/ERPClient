@@ -10,6 +10,7 @@ import config.ERPConfig;
 import config.PanelConfig;
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,15 +55,15 @@ public class PaymentPanel extends JPanel {
 	}
 
 	private void initComponent(PanelConfig cfg) {
-		
-		createReceiptPanel = new CreateReceiptPanel(frame);
-		this.add(createReceiptPanel);
+
+		// TODO  暂时这样先显示创建收款单
+		showCreateReceipt();
 		
 		createPaymentBtn = new MyButton(cfg.getButtons().element("createpayment"));
 		createPaymentBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				showCreatePayment();
 			}
 		});
 		this.add(createPaymentBtn);
@@ -71,7 +72,7 @@ public class PaymentPanel extends JPanel {
 		createReceiptBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				showCreateReceipt();
 			}
 		});
 		this.add(createReceiptBtn);
@@ -80,7 +81,9 @@ public class PaymentPanel extends JPanel {
 		createCashBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				// TODO
+				MyOptionPane.showMessageDialog(null, "功能正在开发中...");
+//				showCreateCash();
 			}
 		});
 		this.add(createCashBtn);
@@ -89,13 +92,50 @@ public class PaymentPanel extends JPanel {
 		showBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				// TODO
+				MyOptionPane.showMessageDialog(null, "功能正在开发中...");
+//				showShow();
 			}
 		});
 		this.add(showBtn);
 		
 		this.add(new MyLabel(cfg.getLabels().element("title")));
 		
+	}
+
+	public void showCreateReceipt() {
+		removeAllPanel();
+		createReceiptPanel = new CreateReceiptPanel(frame);
+		add(createReceiptPanel);
+		repaint();
+	}
+
+	public void showCreatePayment() {
+		removeAllPanel();
+		createPaymentPanel = new CreatePaymentPanel(frame);
+		add(createPaymentPanel);
+		repaint();
+	}
+
+	public void showCreateCash() {
+		removeAllPanel();
+		createCashPanel = new CreateCashPanel(frame);
+		add(createCashPanel);
+		repaint();
+	}
+
+	public void showShow() {
+		removeAllPanel();
+		showPanel = new ShowPanel(frame);
+		add(showPanel);
+		repaint();
+	}
+
+	private void removeAllPanel() {
+		if(createReceiptPanel != null) remove(createReceiptPanel); createReceiptPanel = null;
+		if(createPaymentPanel != null) remove(createPaymentPanel); createPaymentPanel = null;
+		if(createCashPanel != null) remove(createCashPanel); createCashPanel = null;
+		if(showPanel != null) remove(showPanel); showPanel = null;
 	}
 
 }

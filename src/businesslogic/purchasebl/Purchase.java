@@ -6,7 +6,9 @@
 package businesslogic.purchasebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.CommodityLineItemPO;
 import po.PurchasePO;
@@ -20,232 +22,7 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Purchase {
 
-	public ResultMessage add(PurchaseVO vo) {
-
-		PurchasePO po = voToPO(vo);
-		try {
-			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
-		} catch (RemoteException e) {
-
-			e.printStackTrace();
-		}
-		return ResultMessage.SUCCESS;
-
-	}
-
-	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		ArrayList<PurchasePO> poList = null;
-		try {
-			poList = DataFactoryImpl.getInstance().getPurchaseData()
-					.findByTime(time1, time2);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==6){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-		return voList;
-
-	}
-
-	public ArrayList<PurchaseVO> findByCommodityName(String commodityName) {
-		return null;
-	}
-
-	public ArrayList<PurchaseVO> findByCustomer(String customer) {
-		ArrayList<PurchasePO> poList = null;
-		try {
-			poList = DataFactoryImpl.getInstance().getPurchaseData()
-					.findByCustomer(customer);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==6){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-		
-		return voList;
-	}
-
-	public ArrayList<PurchaseVO> findByStorage(String Storage) {
-		ArrayList<PurchasePO> poList=null;
-		try {
-			poList = DataFactoryImpl.getInstance()
-					.getPurchaseData().findByStorage(Storage);
-		} catch (RemoteException e) {
-			
-			e.printStackTrace();
-		}ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==6){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-
-		return voList;
-	}
-	
-	public ArrayList<PurchaseVO> findByStatus(int status){
-		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
-		ArrayList<PurchasePO> temp=new ArrayList<PurchasePO>();
-		
-		try {
-			temp=DataFactoryImpl.getInstance().getPurchaseData().findByStatus(status);
-			for(int i=0;i<temp.size();i++){
-				if(temp.get(i).getDocumentType()==DocumentType.PURCHASE.ordinal())
-				result.add(poToVO(temp.get(i)));
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		
-		return result;
-	} 
-
-	public ArrayList<PurchaseVO> show() {
-		ArrayList<PurchasePO> poList = null;
-		try {
-			poList = DataFactoryImpl.getInstance().getPurchaseData().show();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==6){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-
-		return voList;
-
-	}
-	
-	
-
-	public ResultMessage update(PurchaseVO vo) {
-		PurchasePO po = voToPO(vo);
-		try {
-			DataFactoryImpl.getInstance().getPurchaseData().update(po);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return ResultMessage.SUCCESS;
-
-	}
-
-	// TODO
-	public ResultMessage approve(PurchaseVO vo) {
-		return null;
-	}
-	
-	//下面是purchasereturn专用方法
-	// ---------------------------------------------------------------------------------------------------
-	protected ArrayList<PurchaseVO> findByTime2(String time1, String time2) {
-		ArrayList<PurchasePO> poList = null;
-		try {
-			poList = DataFactoryImpl.getInstance().getPurchaseData()
-					.findByTime(time1, time2);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==7){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-
-		return voList;
-
-	}
-//TODO
-	
-	protected ArrayList<PurchaseVO> findByCommodityName2(String commodityName) {
-		return null;
-	}
-
-	protected ArrayList<PurchaseVO> findByCustomer2(String customer) {
-		ArrayList<PurchasePO> poList = null;
-		try {
-			poList = DataFactoryImpl.getInstance().getPurchaseData()
-					.findByCustomer(customer);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==7){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-
-		return voList;
-	}
-
-	protected ArrayList<PurchaseVO> findByStorage2(String Storage) {
-		ArrayList<PurchasePO> poList=null;
-		try {
-			poList = DataFactoryImpl.getInstance()
-					.getPurchaseData().findByStorage(Storage);
-		} catch (RemoteException e) {
-			
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==7){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-
-		return voList;
-	}
-
-	protected ArrayList<PurchaseVO> show2() {
-		ArrayList<PurchasePO> poList = null;
-		try {
-			poList = DataFactoryImpl.getInstance().getPurchaseData().show();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		ArrayList<PurchasePO> poList2 =new ArrayList<PurchasePO>();
-		for(PurchasePO po:poList){
-			if(po.getDocumentType()==7){
-				poList2.add(po);
-			}
-		}
-		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
-
-		return voList;
-	}
-
-	
-	
-
-	
-	// ---------------------------------------------------------------------------------------------------
-
-
-
 	public PurchaseVO poToVO(PurchasePO po) {
-		// String id,String time,String customerId,String customerName,
-		// String operatorId,String storage,ArrayList<CommodityLineItemPO>
-		// saleList,double total,
-		// String remark,int documentStatus,boolean isWriteOff,int documentType
 		String id = po.getId();
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
@@ -297,8 +74,194 @@ public class Purchase {
 		return voList;
 	}
 
-	public ResultMessage addLog(String content) {
-		//TODO
+	public String createId() {
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyyMMdd");
+		String time = myFmt.format(date);
+		ArrayList<PurchaseVO> presentList = bigShow();
+		if (presentList.isEmpty()) {
+			return "JHD-" + time + "-00001";
+		} else {
+			String max = presentList.get(presentList.size() - 1).id;
+			String day = max.substring(4, max.length() - 5);
+			if (day.compareTo(time) < 0) {
+				return "JHD-" + time + "-00001";
+			}
+			String oldMax = max.substring(max.length() - 5);
+			int maxInt = Integer.parseInt(oldMax);
+			String pattern = "00000";
+			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+			String maxStr = df.format(maxInt + 1);
+			return "JHD-" + time + "-" + maxStr;
+		}
+	}
+
+	public ResultMessage add(PurchaseVO vo) {
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
+		String time = myFmt.format(date);
+		vo.time = time;
+		PurchasePO po = voToPO(vo);
+		try {
+			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
+		} catch (RemoteException e) {
+
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+
+	}
+
+	public ResultMessage update(PurchaseVO vo) {
+		String time=getById(vo.id).time;
+		vo.time=time;
+		PurchasePO po = voToPO(vo);
+		try {
+			DataFactoryImpl.getInstance().getPurchaseData().update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+
+	}
+
+	public PurchaseVO getById(String id) {
+		PurchasePO po = null;
+		try {
+			po = DataFactoryImpl.getInstance().getPurchaseData().getById(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		PurchaseVO vo = poToVO(po);
+		return vo;
+	}
+
+	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByTime(time1, time2);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 = new ArrayList<PurchasePO>();
+		for (PurchasePO po : poList) {
+			if (po.getDocumentType() == 6) {
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+		return voList;
+
+	}
+
+	public ArrayList<PurchaseVO> findByCommodityName(String commodityName) {
+		ArrayList<PurchaseVO> voList = show();
+		ArrayList<PurchaseVO> result = new ArrayList<PurchaseVO>();
+
+		for (PurchaseVO vo : voList) {
+			for (CommodityLineItemVO commodity : vo.saleList) {
+				if (commodity.name.equals(commodityName)) {
+					result.add(vo);
+				}
+			}
+		}
+		return result;
+	}
+
+	public ArrayList<PurchaseVO> findByCustomer(String customer) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByCustomer(customer);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 = new ArrayList<PurchasePO>();
+		for (PurchasePO po : poList) {
+			if (po.getDocumentType() == 6) {
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+	}
+
+	public ArrayList<PurchaseVO> findByStorage(String Storage) {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByStorage(Storage);
+		} catch (RemoteException e) {
+
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 = new ArrayList<PurchasePO>();
+		for (PurchasePO po : poList) {
+			if (po.getDocumentType() == 6) {
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+	}
+
+	public ArrayList<PurchaseVO> findByStatus(int status) {
+		ArrayList<PurchaseVO> result = new ArrayList<PurchaseVO>();
+		ArrayList<PurchasePO> temp = new ArrayList<PurchasePO>();
+
+		try {
+			temp = DataFactoryImpl.getInstance().getPurchaseData()
+					.findByStatus(status);
+			for (int i = 0; i < temp.size(); i++) {
+				if (temp.get(i).getDocumentType() == DocumentType.PURCHASE
+						.ordinal())
+					result.add(poToVO(temp.get(i)));
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public ArrayList<PurchaseVO> show() {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchasePO> poList2 = new ArrayList<PurchasePO>();
+		for (PurchasePO po : poList) {
+			if (po.getDocumentType() == 6) {
+				poList2.add(po);
+			}
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList2);
+
+		return voList;
+
+	}
+
+	public ArrayList<PurchaseVO> bigShow() {
+		ArrayList<PurchasePO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPurchaseData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PurchaseVO> voList = poListToVoList(poList);
+
+		return voList;
+
+	}
+
+	// TODO
+	public ResultMessage approve(PurchaseVO vo) {
 		return null;
 	}
 

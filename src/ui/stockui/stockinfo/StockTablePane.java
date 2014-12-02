@@ -23,13 +23,16 @@ public class StockTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
+	private ArrayList<StockInfoVO> list;
+	
 	public StockTablePane(TableConfig cfg, StockBLService controller) {
 		super(cfg);
-		this.initTable(controller.showStockInfo(null, null));
+		this.list = controller.showStockInfo(null, null);
+		this.initTable();
 		this.initComponent();
 	}
 	
-	protected void initTable(ArrayList<StockInfoVO> list){
+	protected void initTable(){
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){
@@ -58,13 +61,6 @@ public class StockTablePane extends TablePanel{
 		row[5]=vo.outNumber;
 		row[6]=vo.outMoney;
 		row[7]=vo.inNumber-vo.outNumber;
-	}
-	
-	public boolean isSelected(){
-		if(this.table.getSelectedRow()!=-1)		
-			return true;
-		else	
-			return false;
 	}
 	
 	public void showFindTable(ArrayList<StockInfoVO> list){

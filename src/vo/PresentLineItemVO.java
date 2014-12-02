@@ -41,4 +41,8 @@ public class PresentLineItemVO {
 		this.number = number;
 	}
 	
+	@Override
+	public String toString(){
+		return id + "-" + name + "-" + model + "-" + number;
+	}
 }

@@ -32,4 +32,10 @@ public class TotalGiftController implements TotalGiftBLService {
 		return null;
 	}
 
+	@Override
+	public String createId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

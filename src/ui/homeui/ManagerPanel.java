@@ -13,6 +13,7 @@ import ui.messageui.MessagePanel;
 import ui.promotionui.PromotionPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
+import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -54,6 +55,8 @@ public class ManagerPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
+//				showApproval();
 			}
 		});
 
@@ -72,6 +75,8 @@ public class ManagerPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
+//				showCondition();
 			}
 		});
 
@@ -81,13 +86,18 @@ public class ManagerPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
+//				showLog();
 			}
 		});
 
 	}
 
 	public void showApproval() {
-		// TODO
+		removeAllPanel();
+		approvalPanel = new ApprovalPanel(frame);
+		add(approvalPanel);
+		repaint();
 	}
 
 	public void showPromotion() {
@@ -98,17 +108,25 @@ public class ManagerPanel extends MyMainPanel {
 	}
 
 	public void showCondition() {
-		// TODO
+		removeAllPanel();
+		conditionPanel = new ConditionPanel(frame);
+		add(conditionPanel);
+		repaint();
 	}
 
 	public void showLog() {
-		// TODO
+		removeAllPanel();
+		logPanel = new LogPanel(frame);
+		add(logPanel);
+		repaint();
 	}
 
 	@Override
 	public void showMesssage() {
-		// TODO Auto-generated method stub
-
+		removeAllPanel();
+		messagePanel = new MessagePanel(frame);
+		add(messagePanel);
+		repaint();
 	}
 
 	private void removeAllPanel() {

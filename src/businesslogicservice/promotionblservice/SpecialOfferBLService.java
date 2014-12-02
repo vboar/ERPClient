@@ -16,4 +16,6 @@ public interface SpecialOfferBLService {
 	
 	public ResultMessage update(CustomerGiftVO vo);
 	
+	public String createId();
+	
 }

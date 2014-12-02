@@ -32,4 +32,10 @@ public class CustomerGiftController implements CustomerGiftBLService {
 		return null;
 	}
 
+	@Override
+	public String createId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -24,22 +24,80 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 public class Present {
 
 	
+	public PresentPO voToPO(PresentVO vo) {
+		
+		String id = vo.id;
+		
+		String time = vo.time;
+		String customerId = vo.customerId;
+		String customerName = vo.customerName;
+		ArrayList<PresentLineItemPO> list = Utility
+				.presentVOListToPOlist(vo.list);
+		int documentStatus = vo.documentStatus.ordinal();
+		int documentType = vo.documentType.ordinal();
+		boolean isWriteoff = vo.isWriteoff;
+		PresentPO po = new PresentPO(id, time, customerId, customerName, list,
+				documentStatus, documentType, isWriteoff);
+		return po;
+	}
+
+	public PresentVO poToVO(PresentPO po) {
+		String id = po.getId();
+		String time = po.getTime();
+		String customerId = po.getCustomerId();
+		
+		String customerName = po.getCustomerId();
+		ArrayList<PresentLineItemVO> list = Utility.presentPOListToVOList(po
+				.getList());
+		DocumentStatus documentStatus = DocumentStatus.values()[po
+				.getDocumentStatus()];
+		DocumentType documentType = DocumentType.values()[po.getDocumentType()];
+		boolean isWriteoff = po.isWriteoff();
+		PresentVO vo = new PresentVO(id, time, customerId, customerName, list,
+				documentStatus, documentType, isWriteoff);
+		return vo;
+	}
+	
+	private ArrayList<PresentVO> poListToVOList(ArrayList<PresentPO> poList){
+		ArrayList<PresentVO> voList=new ArrayList<PresentVO>();
+		for(PresentPO po:poList){
+			PresentVO vo=poToVO(po);
+			voList.add(vo);
+		}
+		return voList;
+	}
+	
 	public String createId(){
 	Date date=new Date();
-	SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd");
+	SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");
 	String time=myFmt.format(date);
 		ArrayList<PresentVO> presentList=show();
 		if(presentList.isEmpty()){
-			return "ZPD"+time+"00000";
+			return "ZPD-"+time+"-00001";
+		}else{
+			String max=presentList.get(presentList.size()-1).id;
+			String day=max.substring(4,max.length()-5);
+			if(day.compareTo(time)<0){
+			    return "ZPD-"+time+"-00001";
+			}
+			String oldMax=max.substring(max.length()-5);
+			int maxInt=Integer.parseInt(oldMax);
+			String pattern="00000";
+			 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+			 String maxStr=df.format(maxInt+1);
+			 return "ZPD-"+time+"-"+maxStr;
 		}
-		return  null;
 	}
+	
 	public ResultMessage create(PresentVO vo) {
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/");
+		String time=myFmt.format(date);
+		vo.time=time;
 		PresentPO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPresentData().insert(po);
 		} catch (RemoteException e) {
-
 			e.printStackTrace();
 		}
 		return ResultMessage.SUCCESS;
@@ -47,6 +105,10 @@ public class Present {
 	}
 
 	public ResultMessage update(PresentVO vo) {
+		String time=getById(vo.id).time;
+		vo.time=time;
+		//会不会出错？
+		//TODO
 		PresentPO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPresentData().update(po);
@@ -56,14 +118,15 @@ public class Present {
 		return ResultMessage.SUCCESS;
 	}
 	
-	public PresentPO getById(String id){
+	public PresentVO getById(String id){
 		PresentPO po=null;
 		try {
 			po = DataFactoryImpl.getInstance().getPresentData().getById(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return po;
+		PresentVO vo=poToVO(po);
+		return vo;
 	}
 	
 	public ArrayList<PresentVO> findById(String id){
@@ -133,65 +196,28 @@ public class Present {
 				result.add(poToVO(temp.get(i)));
 			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		return result;
 	}
 	
 	public ResultMessage approve(PresentVO vo){
+//	if(vo.documentType==DocumentType.PRESENT){
+//			for(PresentLineItemVO present:vo.list){
+//				String id=present.id;
+//				//
+//			}
+//		}
+		//该库存，改商品
 	return null;
 	}
 
-	private PresentPO voToPO(PresentVO vo) {
-		// String id, String time, String customerId, String customerName,
-		// ArrayList<PresentLineItemPO> list, int documentStatus, int
-		// documentType,
-		// boolean isWriteoff
-		String id=null;
-		if( vo.id==null){
-			 id="";
-			//TODO
-		}else{
-		 id = vo.id;
-		}
-		String time = vo.time;
-		String customerId = vo.customerId;
-		String customerName = vo.customerName;
-		ArrayList<PresentLineItemPO> list = Utility
-				.presentVOListToPOlist(vo.list);
-		int documentStatus = vo.documentStatus.ordinal();
-		int documentType = vo.documentType.ordinal();
-		boolean isWriteoff = vo.isWriteoff;
-		PresentPO po = new PresentPO(id, time, customerId, customerName, list,
-				documentStatus, documentType, isWriteoff);
-		return po;
-	}
-
-	private PresentVO poToVO(PresentPO po) {
-		String id = po.getId();
-		String time = po.getTime();
-		String customerId = po.getCustomerId();
-		
-		String customerName = po.getCustomerId();
-		ArrayList<PresentLineItemVO> list = Utility.presentPOListToVOList(po
-				.getList());
-		DocumentStatus documentStatus = DocumentStatus.values()[po
-				.getDocumentStatus()];
-		DocumentType documentType = DocumentType.values()[po.getDocumentType()];
-		boolean isWriteoff = po.isWriteoff();
-		PresentVO vo = new PresentVO(id, time, customerId, customerName, list,
-				documentStatus, documentType, isWriteoff);
-		return vo;
-	}
 	
-	private ArrayList<PresentVO> poListToVOList(ArrayList<PresentPO> poList){
-		ArrayList<PresentVO> voList=new ArrayList<PresentVO>();
-		for(PresentPO po:poList){
-			PresentVO vo=poToVO(po);
-			voList.add(vo);
-		}
-		return voList;
+	
+	
+	public static void main(String[] args) {
+		String id=new Present().createId();
+		System.out.println(id);
 	}
 
 }

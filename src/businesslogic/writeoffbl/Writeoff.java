@@ -5,12 +5,11 @@
  */
 package businesslogic.writeoffbl;
 
-import java.util.ArrayList;
-
-import businesslogic.accountbl.MockLog;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.DocumentVO;
+
+import java.util.ArrayList;
 
 public class Writeoff {
 
@@ -35,8 +34,7 @@ public class Writeoff {
 	}
 	
 	public ResultMessage createLog(String content){	
-		MockLog log = new MockLog(content);
-		return log.add();		
+		return null;
 	}
 
 }

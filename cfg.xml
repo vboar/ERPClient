@@ -169,7 +169,8 @@
 		<panel className="ui.presentui.PresentPanel"
 			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<createpresent text="创建赠送单" w="160" h="30" x="10" y="45"/>
+				<show text="查看赠送单" w="160" h="30" x="20" y="45"/>
+				<createpresent text="创建赠送单" w="160" h="30" x="200" y="45"/>
 			</buttons>
 			<labels>
 				<title text="赠品发放" w="120" h="30" x="10" y="2" />
@@ -180,28 +181,53 @@
 		<panel className="ui.presentui.CreatePresentPanel"
 			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
 			<buttons>
-				<add text="增加商品" w="80" h="32" x="500" y="90" />
-				<delete text="删除商品" w="80" h="32" x="600" y="90" />
-				<commit text="提交"  w="100" h="30" x="260" y="350"/>
-				<cancel text="取消"  w="100" h="30" x="400" y="350"/>
+				<addcustomer text="添加客户信息" w="100" h="30" x="460" y="50" />
+				<add text="增加商品" w="80" h="25" x="500" y="120" />
+				<delete text="删除商品" w="80" h="25" x="600" y="120" />
+				<commit text="提交"  w="100" h="30" x="260" y="360"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
 			</buttons>
 			<labels>
 				<title text="赠送单" w="120" h="30" x="20" y="10" />
-				<documentid text="单据编号：" w="120" h="30" x="400" y="10" />
-				<customerid text="客户ID：" w="80" h="30" x="20" y="50" />
-				<customername text="客户名：" w="80" h="30" x="340" y="50" />
-				<presentlist text="赠品列表：" w="120" h="30" x="10" y="90" />
+				<documentid text="单据编号：" w="80" h="30" x="480" y="10" />
+				<documentidlab text="" w="200" h="30" x="550" y="10" />				
+				<customerinfo text="客户信息" w="80" h="30" x="20" y="50" />
+				<tip text="请输入客户信息关键字" w="180" h="30" x="100" y="50" 
+				font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
+				<customerid text="客户ID：" w="80" h="30" x="20" y="85" />
+				<customeridlab text="" w="140" h="30" x="100" y="85" />
+				<customername text="客户名：" w="80" h="30" x="260" y="85" />
+				<customernamelab text="" w="140" h="30" x="330" y="85" />
+				<presentlist text="赠品列表" w="120" h="40" x="20" y="120" />				
 			</labels>
 			<textfields>
-				<customerid w="200" h="30" x="100" y="60" />
-				<customername w="250" h="30" x="460" y="60" />
+				<customerinfo w="200" h="30" x="230" y="50" />
 			</textfields>
-			<tablepane className="ui.accountui.PresentTablePane" width="730" height="200" x="10" y="130">
+			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="200" x="10" y="150">
 				<columnnames>
 					<columnname name="商品编号" />
 					<columnname name="商品名称" />
 					<columnname name="商品型号" />
 					<columnname name="数量" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
+		<!-- 赠品发放中的查看单据面板 -->
+		<panel className="ui.presentui.ShowPanel"
+			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+			<labels>
+			</labels>
+			<tablepane className="ui.presentui.ShowPanel" width="730" height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="客户编号" />
+					<columnname name="客户名" />
+					<columnname name="赠品列表" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -304,10 +330,10 @@
 		<!-- 收付款面板 -->
 		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
 			<buttons>
-				<createreceipt text="制定收款单" w="150" h="32" x="20" y="36" />
-				<createpayment text="制定付款单" w="150" h="32" x="200" y="36" />
-				<createcash text="制定现金费用单"  w="150" h="32" x="370" y="36" />
-				<show text="单据查看"  w="150" h="30" x="540" y="36" />
+				<createreceipt text="制定收款单" w="150" h="32" x="200" y="36" />
+				<createpayment text="制定付款单" w="150" h="32" x="370" y="36" />
+				<createcash text="制定现金费用单"  w="150" h="32" x="540" y="36" />
+				<show text="单据查看"  w="150" h="30" x="20" y="36" />
 			</buttons>
 			<labels>
 				<title text="收付款" w="120" h="32" x="10" y="5" />
@@ -319,18 +345,20 @@
 			<buttons>
 				<add text="添加账户" w="120" h="32" x="450" y="110" />
 				<delete text="删除选中账户" w="120" h="32" x="600" y="110" />
-				<commit text="提交"  w="100" h="32" x="300" y="350" />
-				<cancel text="取消"  w="100" h="30" x="400" y="350" />
+				<commit text="提交" w="100" h="32" x="300" y="350" />
+				<cancel text="取消" w="100" h="30" x="400" y="350" />
+				<addcustomer text="添加" w="100" h="30" x="320" y="60" />
 			</buttons>
 			<labels>
 				<title text="收款单" w="120" h="30" x="10" y="10" />
 				<documentid text="单据编号：" w="120" h="30" x="500" y="10" />
-				<customer text="客户：" w="120" h="30" x="10" y="60" />
+				<customer text="客户：" w="60" h="30" x="10" y="60" />
+				<customername text="客户姓名：" w="120" h="30" x="480" y="60" />
 				<list text="转账列表" w="120" h="30" x="10" y="110" />
-				<operator text="操作员：" w="120" h="30" x="650" y="60" />
+				<operator text="操作员：" w="120" h="30" x="600" y="60" />
 			</labels>
 			<textfields>
-				<customerfind w="250" h="30" x="200" y="60" />
+				<customerfind w="150" h="30" x="150" y="60" />
 			</textfields>
 			<tablepane className="ui.paymentui.ReceiptTable" width="730" height="200" x="10" y="150">
 				<columnnames>
@@ -498,27 +526,27 @@
 	</commodityinfodialog>
 
 	<!-- 赠品发放创建赠送单添加赠品对话框 -->
-	<addpresentcommodityinfodialog width="480" height="280" x="280"
+	<addpresentcommodityinfodialog width="480" height="280" x="240"
 								   y="200" title="添加赠品">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="260" y="200" />
-			<cancel text="取消" w="80" h="30" x="360" y="200" />
+			<add text="添加" w="80" h="30" x="360" y="30" />
+			<commit text="确认" w="80" h="30" x="270" y="180" />
+			<cancel text="取消" w="80" h="30" x="360" y="180" />
 		</buttons>
 		<labels>
-			<nametip text="* 商品名称及型号请输入2-14位内数字或中、英文字符" w="300" h="20" x="100" y="8"
-					 font="微软雅黑" fontsize="11" color="true" r="255" g="100" b="10" />
-			<name text="商品名称" w="100" h="30" x="20" y="30" />
-			<model text="商品型号" w="100" h="30" x="20" y="70" />
-			<purchaseprice text="默认进价" w="100" h="30" x="20" y="110" />
-			<saleprice text="默认售价" w="100" h="30" x="240" y="110" />
-			<warningnum text="警戒数量" w="100" h="30" x="20" y="150" />
+			<currentid text="" w="300" h="30" x="100" y="70" />
+			<currentname text="" w="300" h="30" x="100" y="100" />
+			<currentmodel text="" w="300" h="30" x="100" y="130" />
+			<tip text="请输入商品关键字" w="120" h="30" x="20" y="2" 
+			font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
+			<id text="商品编号：" w="80" h="30" x="20" y="70" />
+			<name text="商品名称：" w="80" h="30" x="20" y="100" />
+			<model text="商品型号：" w="80" h="30" x="20" y="130" />
+			<number text="赠送数量：" w="80" h="30" x="20" y="170" />
 		</labels>
 		<textfields>
-			<name  w="320" h="30" x="100" y="30" />
-			<model  w="320" h="30" x="100" y="70" />
-			<purchaseprice  w="120" h="30" x="100" y="110" />
-			<saleprice  w="120" h="30" x="300" y="110" />
-			<warningnum  w="120" h="30" x="100" y="150" />
+			<commodity  w="320" h="30" x="20" y="30" />
+			<number  w="100" h="30" x="100" y="170" />
 		</textfields>
 	</addpresentcommodityinfodialog>
 
@@ -570,18 +598,21 @@
 	<addreceiptaccountinfodialog width="500" height="280" x="230"
 								 y="180" title="账户信息">
 		<buttons>
+			<addaccount text="添加" w="80" h="30" x="400" y="20" />
 			<commit text="提交" w="80" h="30" x="150" y="210" />
 			<cancel text="取消" w="80" h="30" x="270" y="210" />
 		</buttons>
 		<labels>
 			<account text="银行账户" w="80" h="30" x="20" y="20" />
-			<money text="转账金额" w="80" h="30" x="20" y="50" />
-			<remark text="备注" w="80" h="30" x="20" y="80" />
+			<accountnum text="银行卡号" w="80" h="30" x="20" y="50" />
+			<name text="账户名称" w="80" h="30" x="20" y="80" />
+			<money text="转账金额" w="80" h="30" x="20" y="110" />
+			<remark text="备注" w="80" h="30" x="20" y="140" />
 		</labels>
 		<textfields>
 			<account w="320" h="30" x="120" y="20" />
-			<money w="320" h="30" x="120" y="50" />
-			<remark w="320" h="30" x="120" y="80" />
+			<money w="320" h="30" x="120" y="110" />
+			<remark w="320" h="30" x="120" y="140" />
 		</textfields>
 	</addreceiptaccountinfodialog>
 

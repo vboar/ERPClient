@@ -118,9 +118,11 @@ public class MySpecialTextField extends MyTextField {
 
 	@SuppressWarnings("unchecked")
 	public void addItems(ArrayList<String> strs) {
-		this.box.removeAllItems();
-		for (int i = 0; i < strs.size(); ++i) {
-			this.box.addItem(strs.get(i));
+		if(strs!=null){
+			this.box.removeAllItems();
+			for (int i = 0; i < strs.size(); ++i) {
+				this.box.addItem(strs.get(i));
+			}
 		}
 		this.box.updateUI();
 	}

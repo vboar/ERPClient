@@ -22,6 +22,8 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
 
     private MyButton cancel;
 
+    private MyButton addAccount;
+
     private MySpecialTextField accountTxt;
 
     private MyTextField moneyTxt;
@@ -55,6 +57,16 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
     }
 
     private void initButtons(Element element) {
+
+        addAccount = new MyButton(element.element("addaccount"));
+        add(addAccount);
+        addAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         commit = new MyButton(element.element("commit"));
         add(commit);
         commit.addActionListener(new ActionListener() {
@@ -76,6 +88,8 @@ public class AddReceiptAccountDialog extends JDialog implements FuzzySearch {
 
     private void initLabels(Element element) {
         add(new MyLabel(element.element("account")));
+        add(new MyLabel(element.element("accountnum")));
+        add(new MyLabel(element.element("name")));
         add(new MyLabel(element.element("money")));
         add(new MyLabel(element.element("remark")));
     }

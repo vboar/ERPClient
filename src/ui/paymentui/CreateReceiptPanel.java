@@ -30,11 +30,15 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	
-	private MyLabel documentId;
+	private MyLabel documentIdLab;
 	
-	private MyLabel customer;
+	private MyLabel customerLab;
 	
-	private MyLabel operator;
+	private MyLabel operatorLab;
+
+	private MyLabel customerNameLab;
+
+	private MyButton addCustomerBtn;
 	
 	private MyButton addBtn;
 	
@@ -67,6 +71,8 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	private String operatorId;
 
 	private ArrayList<TransferLineItemVO> lists;
+
+//	private HashMap<String, CustomerVO> customerList;
 
 	private double total;
 
@@ -107,17 +113,31 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	private void initLabels() {
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.add(new MyLabel(pcfg.getLabels().element("list")));
-		customer = new MyLabel(pcfg.getLabels().element("customer"));
-		this.add(customer);
-		operator = new MyLabel(pcfg.getLabels().element("operator"));
-		operator.setText(operator.getText() + " " + operatorId);
-		this.add(operator);
-		documentId = new MyLabel(pcfg.getLabels().element("documentid"));
-		documentId.setText(documentId.getText() + " " + id);
-		this.add(documentId);
+		customerLab = new MyLabel(pcfg.getLabels().element("customer"));
+		this.add(customerLab);
+		customerNameLab = new MyLabel(pcfg.getLabels().element("customername"));
+		this.add(customerNameLab);
+		operatorLab = new MyLabel(pcfg.getLabels().element("operator"));
+		operatorLab.setText(operatorLab.getText() + " " + operatorId);
+		this.add(operatorLab);
+		documentIdLab = new MyLabel(pcfg.getLabels().element("documentid"));
+		documentIdLab.setText(documentIdLab.getText() + " " + id);
+		this.add(documentIdLab);
 	}
 
 	private void initButtons() {
+		addCustomerBtn = new MyButton(pcfg.getButtons().element("addcustomer"));
+		add(addCustomerBtn);
+		addCustomerBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] customer = customerFind.getText().split(" ");
+				customerId = customer[0];
+				customerName = customer[1];
+				customerNameLab.setText("客户姓名：  " + customerName);
+			}
+		});
+
 		addBtn = new MyButton(pcfg.getButtons().element("add"));
 		this.add(addBtn);
 		addBtn.addActionListener(new ActionListener() {
@@ -170,10 +190,11 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	}
 
 	private void initVO() {
-		// TODO
+		// TODO 获得ID
 		id = "123456";
 		operatorId = Login.currentUserId;
 		lists = new ArrayList<TransferLineItemVO>();
+//		customerList = new HashMap<String, CustomerVO>();
 		total = 0;
 	}
 
@@ -183,9 +204,6 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	}
 
 	private PaymentVO createReceipt() {
-		String[] customer = customerFind.getText().split(" ");
-		customerId = customer[0];
-		customerName = customer[1];
 		for(TransferLineItemVO vo: lists) {
 			total += vo.account;
 		}
@@ -193,6 +211,21 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 		PaymentVO vo = new PaymentVO(id, null, customerId, customerName, operatorId,
 				lists, total, DocumentStatus.NONCHECKED, false, DocumentType.RECEIPT);
 		return vo;
+	}
+
+	public void addAccount(TransferLineItemVO vo) {
+		lists.add(vo);
+		// TODO 表格操作
+	}
+
+	public void deleteAccount(String account) {
+		for(TransferLineItemVO vo: lists) {
+			if(vo.bankAccount.equals(account)) {
+				lists.remove(vo);
+				break;
+			}
+		}
+		// TODO 表格操作
 	}
 
 	@Override

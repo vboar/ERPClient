@@ -15,6 +15,7 @@ import ui.stockui.stockcheck.StockCheckPanel;
 import ui.stockui.stockinfo.StockInfoPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
+import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -75,7 +76,6 @@ public class StockKeeperPanel extends MyMainPanel {
 		});
 		this.presentBtn = new MyButton(pcfg.getButtons().element("present"));
 		this.presentBtn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showPresent();
@@ -94,14 +94,17 @@ public class StockKeeperPanel extends MyMainPanel {
 		stockCheckBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showStockCheck();
+				// TODO
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
+//				showStockCheck();
 			}
 		});
 		this.exceptionBtn = new MyButton(pcfg.getButtons().element("exception"));
 		exceptionBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showException();
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
+//				showException();
 			}
 		});
 		this.add(this.categoryManageBtn);
@@ -142,16 +145,25 @@ public class StockKeeperPanel extends MyMainPanel {
 	}
 
 	public void showStockCheck() {
-		// TODO
+		removeAllPanel();
+		stockCheckPanel = new StockCheckPanel(frame);
+		add(stockCheckPanel);
+		repaint();
 	}
 
 	public void showException() {
-		// TODO
+		removeAllPanel();
+		exceptionPanel = new ExceptionPanel(frame);
+		add(exceptionPanel);
+		repaint();
 	}
 
 	@Override
 	public void showMesssage() {
-		// TODO Auto-generated method stub
+		removeAllPanel();
+		messagePanel = new MessagePanel(frame);
+		add(messagePanel);
+		repaint();
 	}
 
 	private void removeAllPanel() {

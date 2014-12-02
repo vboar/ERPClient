@@ -5,17 +5,16 @@
  */
 package ui.userui;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.swing.table.DefaultTableModel;
-
+import businesslogicservice.userblservice.UserBLService;
+import config.TableConfig;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.UserType;
 import vo.UserVO;
-import businesslogicservice.userblservice.UserBLService;
-import config.TableConfig;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class UserTablePane extends TablePanel{
@@ -28,13 +27,16 @@ public class UserTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
+	private ArrayList<UserVO> list;
+	
 	public UserTablePane(TableConfig cfg, UserBLService controller) {
 		super(cfg);
-		this.initTable(controller.show());
+		this.list = controller.show();
+		this.initTable();
 		this.initComponent();
 	}
 
-	protected void initTable(ArrayList<UserVO> list){
+	protected void initTable() {
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){
@@ -46,7 +48,7 @@ public class UserTablePane extends TablePanel{
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setUnvisibleColumn(2);
 	}
-	
+
 	public void initData(ArrayList<UserVO> list){
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for(int i=0; i<list.size(); ++i){

@@ -15,4 +15,7 @@ public interface CustomerGiftBLService {
 	
 	public ResultMessage update(CustomerGiftVO vo);
 	
+	public String createId();
+	
+	
 }
