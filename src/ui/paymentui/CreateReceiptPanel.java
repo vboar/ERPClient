@@ -13,6 +13,7 @@ import businesslogicservice.paymentblservice.PaymentBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
+import ui.presentui.CreatePanel;
 import ui.util.*;
 import util.DocumentStatus;
 import util.DocumentType;
@@ -22,15 +23,14 @@ import vo.PaymentVO;
 import vo.TransferLineItemVO;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-public class CreateReceiptPanel extends JPanel implements FuzzySearch {
-	
-	private MyLabel customerLab;
+public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePanel {
 	
 	private MyLabel operatorLab;
 
@@ -52,11 +52,11 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 
 	private MySpecialTextField customerFind;
 
-	private ReceiptTable table;
+	private PaymentTable table;
 	
 	private JFrame frame;
 
-	private AddReceiptAccountDialog addDialog;
+	private AddAccountDialog addDialog;
 	
 	private PanelConfig pcfg;
 	
@@ -92,7 +92,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	}
 
 	private void initTable() {
-		table = new ReceiptTable(new TableConfig(pcfg.getTablepane()), this);
+		table = new PaymentTable(new TableConfig(pcfg.getTablepane()));
 		this.add(table);
 	}
 
@@ -185,7 +185,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 	}
 
 	private void showAddDialog() {
-		addDialog= new AddReceiptAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(), frame, this);
+		addDialog= new AddAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(), frame, this);
 		this.addDialog.setVisible(true);
 	}
 
@@ -199,11 +199,11 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 					null, customerVO.id, customerVO.name, operatorLab.getText(), lists, total,
 					DocumentStatus.NONCHECKED, false, DocumentType.RECEIPT));
 			if(result == ResultMessage.SUCCESS) {
-				MyOptionPane.showMessageDialog(null, "付款单提交成功！");
+				MyOptionPane.showMessageDialog(null, "收款单提交成功！");
 				this.setVisible(false);
 				// TODO
 			} else{
-				MyOptionPane.showMessageDialog(null, "付款单提交失败！");
+				MyOptionPane.showMessageDialog(null, "收款单提交失败！");
 			}
 		} else{
 			MyOptionPane.showMessageDialog(null, "请填入完整单据数据！");
@@ -217,10 +217,12 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 		return false;
 	}
 
+	@Override
 	public void addAccount(TransferLineItemVO vo) {
 		// TODO
 	}
 
+	@Override
 	public void deleteAccount() {
 		// TODO
 	}
@@ -238,7 +240,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch {
 		return strs;
 	}
 
-	public ReceiptTable getTable() {
+	public PaymentTable getTable() {
 		return table;
 	}
 
