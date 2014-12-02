@@ -341,24 +341,32 @@
 		</panel>
 
 		<!-- 收付款面板中的制定收款单面板 -->
-		<panel className="ui.paymentui.CreateReceiptPanel" width="760" height="420" x="0" y="70" bg="img/panel.png">
+		<panel className="ui.paymentui.CreateReceiptPanel" width="760" height="400"
+			   x="0" y="80" bg="img/panel.png">
 			<buttons>
-				<add text="添加账户" w="120" h="32" x="450" y="110" />
-				<delete text="删除选中账户" w="120" h="32" x="600" y="110" />
-				<commit text="提交" w="100" h="32" x="300" y="350" />
-				<cancel text="取消" w="100" h="30" x="400" y="350" />
-				<addcustomer text="添加" w="100" h="30" x="320" y="60" />
+				<add text="添加账户" w="80" h="25" x="500" y="120" />
+				<delete text="删除账户" w="80" h="25" x="600" y="120" />
+				<commit text="提交" w="100" h="30" x="260" y="360" />
+				<cancel text="取消" w="100" h="30" x="400" y="360" />
+				<addcustomer text="添加" w="100" h="30" x="460" y="50" />
 			</buttons>
 			<labels>
-				<title text="收款单" w="120" h="30" x="10" y="10" />
-				<documentid text="单据编号：" w="120" h="30" x="500" y="10" />
-				<customer text="客户：" w="60" h="30" x="10" y="60" />
-				<customername text="客户姓名：" w="120" h="30" x="480" y="60" />
-				<list text="转账列表" w="120" h="30" x="10" y="110" />
-				<operator text="操作员：" w="120" h="30" x="600" y="60" />
+				<title text="收款单" w="120" h="30" x="20" y="10" />
+				<documentid text="单据编号：" w="80" h="30" x="480" y="10" />
+				<documentidlab text="" w="200" h="30" x="550" y="10" />
+				<customerinfo text="客户信息" w="80" h="30" x="20" y="50" />
+				<tip text="请输入客户信息关键字" w="180" h="30" x="100" y="50"
+					 font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
+				<customerid text="客户ID：" w="80" h="30" x="20" y="85" />
+				<customeridlab text="" w="140" h="30" x="100" y="85" />
+				<customername text="客户名：" w="80" h="30" x="260" y="85" />
+				<customernamelab text="" w="140" h="30" x="330" y="85" />
+				<list text="转账列表" w="120" h="40" x="20" y="120" />
+				<operator text="操作员：" w="80" h="30" x="500" y="85" />
+				<operatorlab text="" w="120" h="30" x="600" y="85" />
 			</labels>
 			<textfields>
-				<customerfind w="150" h="30" x="150" y="60" />
+				<customerfind w="200" h="30" x="230" y="50" />
 			</textfields>
 			<tablepane className="ui.paymentui.ReceiptTable" width="730" height="200" x="10" y="150">
 				<columnnames>
@@ -433,44 +441,125 @@
 			</buttons>
 		</panel>
 
+
 		<!-- 促销策略制定面板 -->
 		<panel className="ui.promotionui.PromotionPanel" width="760" height="510"
 			   x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
+				<customer text="针对客户级别" w="180" h="32" x="10" y="40"/>
+				<totalgift text="针对总价" w="180" h="32" x="190" y="40"/>
+				<specialoffer  text="特价包" w="80" h="32" x="370" y="40"/>
 			</buttons>
+			<labels>
+				<title text="促销策略制定" w="200" h="30" x="10" y="2" />
+			</labels>
 		</panel>
 
+		<!-- 客户级别促销策略制定面板 -->
+		<panel className="ui.promotionui.CustomerPanel" width="760" height="420"
+			   x="0" y="70" bg="img/rightpanel.png">
+			<buttons>
+				<add text="添加" w="80" h="30" x="460" y="10"/>
+				<update text="修改" w="80" h="30" x="550" y="10"/>
+				<unable  text="停用" w="80" h="30" x="640" y="10"/>
+			</buttons>
+			<labels>
+				<list text="针对客户级别制定的促销策略列表" w="220" h="30" x="20" y="10"/>
+			</labels>
+			<tablepane className="ui.promotionui.CustomerTablePane" width="730"
+					   height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="客户级别" />
+					<columnname name="赠品列表" />
+					<columnname name="折让" />
+					<columnname name="代金券" />
+					<columnname name="起始时间" />
+					<columnname name="结束时间" />
+					<columnname name="是否生效" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
+		<!-- 总价包促销策略制定面板 -->
+		<panel className="ui.promotionui.TotalGiftPanel" width="760" height="420"
+			   x="0" y="70" bg="img/rightpanel.png">
+			<buttons>
+				<add text="添加" w="80" h="30" x="460" y="10"/>
+				<update text="修改" w="80" h="30" x="550" y="10"/>
+				<unable  text="停用" w="80" h="30" x="640" y="10"/>
+			</buttons>
+			<labels>
+				<list text="针对总价制定的促销策略列表" w="220" h="30" x="20" y="10"/>
+			</labels>
+			<tablepane className="ui.promotionui.TotalGiftTablePane" width="730"
+					   height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="总价" />
+					<columnname name="赠品列表" />
+					<columnname name="代金券" />
+					<columnname name="起始时间" />
+					<columnname name="结束时间" />
+					<columnname name="是否生效" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
+		<!-- 特价包促销策略制定面板 -->
+		<panel className="ui.promotionui.SpecialOfferPanel" width="760" height="420"
+			   x="0" y="70" bg="img/rightpanel.png">
+			<buttons>
+				<add text="添加" w="80" h="30" x="460" y="10"/>
+				<update text="修改" w="80" h="30" x="550" y="10"/>
+				<unable  text="停用" w="80" h="30" x="640" y="10"/>
+			</buttons>
+			<labels>
+				<list text="特价包促销策略列表" w="220" h="30" x="20" y="10"/>
+			</labels>
+			<tablepane className="ui.promotionui.SpecialOfferTablePane" width="730"
+					   height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="编号" />
+					<columnname name="商品列表" />
+					<columnname name="总价" />
+					<columnname name="起始时间" />
+					<columnname name="结束时间" />
+					<columnname name="是否生效" />
+				</columnnames>
+			</tablepane>
+		</panel>
 
 		<!-- 用户管理面板 -->
 		<panel className="ui.userui.UserPanel" width="760" height="510"
 			   x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="170" y="36" path="img\adduser.png"
+				<add text="" w="80" h="32" x="170" y="40" path="img\adduser.png"
 					 pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="250" y="36" path="img\deluser.png"
+				<delete text="" w="80" h="32" x="250" y="40" path="img\deluser.png"
 						pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="330" y="36" path="img\upduser.png"
+				<update text="" w="80" h="32" x="330" y="40" path="img\upduser.png"
 						pathroll="img\upduser1.png" />
-				<showall text="" w="100" h="30" x="410" y="37" path="img\show.png"
+				<showall text="" w="100" h="30" x="410" y="40" path="img\show.png"
 						 pathroll="img\show1.png" />
-				<find text="" w="30" h="30" x="700" y="30" path="img\search1.png"
+				<find text="" w="30" h="30" x="700" y="45" path="img\search1.png"
 					  pathroll="img\search1.png" />
 			</buttons>
 			<labels>
-				<userlist text="" w="120" h="32" x="20" y="35"
+				<userlist text="" w="120" h="32" x="20" y="40"
 						  path="img\userlist.png" />
 				<modulename text="" w="120" h="30" x="5" y="2"
 							path="img\usermanage.png" />
 				<admin text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
 			</labels>
 			<textfields>
-				<findinput w="175" h="28" x="525" y="38" />
+				<findinput w="175" h="28" x="525" y="45" />
 			</textfields>
 			<tablepane className="ui.userui.UserTablePane" width="730"
 					   height="390" x="10" y="80">
 				<columnnames>
 					<columnname name="ID" />
-					<columnname name="用户名" />
+					<columnname name="姓名" />
 					<columnname name="密码" />
 					<columnname name="类型" />
 					<columnname name="权限" />
@@ -595,24 +684,27 @@
 
 
 	<!-- 收付款中收款添加账户对话框 -->
-	<addreceiptaccountinfodialog width="500" height="280" x="230"
-								 y="180" title="账户信息">
+	<addreceiptaccountinfodialog width="480" height="280" x="240"
+								 y="200" title="添加账户">
 		<buttons>
-			<addaccount text="添加" w="80" h="30" x="400" y="20" />
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
+			<addaccount text="添加" w="80" h="30" x="360" y="30" />
+			<commit text="提交" w="80" h="30" x="270" y="180" />
+			<cancel text="取消" w="80" h="30" x="360" y="180" />
 		</buttons>
 		<labels>
-			<account text="银行账户" w="80" h="30" x="20" y="20" />
-			<accountnum text="银行卡号" w="80" h="30" x="20" y="50" />
-			<name text="账户名称" w="80" h="30" x="20" y="80" />
-			<money text="转账金额" w="80" h="30" x="20" y="110" />
-			<remark text="备注" w="80" h="30" x="20" y="140" />
+			<account text="银行账户" w="80" h="30" x="20" y="70" />
+			<name text="账户名称" w="80" h="30" x="20" y="100" />
+			<currentaccount text="" w="80" h="30" x="100" y="70"/>
+			<currentname text="" w="80" h="30" x="100" y="100"/>
+			<money text="转账金额" w="80" h="30" x="20" y="130" />
+			<remark text="备注" w="80" h="30" x="20" y="160" />
+			<tip text="请输入账户关键字" w="120" h="30" x="20" y="2"
+				 font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
 		</labels>
 		<textfields>
-			<account w="320" h="30" x="120" y="20" />
-			<money w="320" h="30" x="120" y="110" />
-			<remark w="320" h="30" x="120" y="140" />
+			<account w="320" h="30" x="20" y="30" />
+			<money w="100" h="30" x="100" y="130" />
+			<remark w="100" h="30" x="100" y="160" />
 		</textfields>
 	</addreceiptaccountinfodialog>
 
@@ -632,7 +724,6 @@
 			<name w="320" h="30" x="120" y="50" />
 		</textfields>
 	</accountinfodialog>
-
 
 	<!-- 用户信息对话框 -->
 	<userinfodialog width="500" height="280" x="230" y="180"

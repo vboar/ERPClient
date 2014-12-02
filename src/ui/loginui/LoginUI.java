@@ -5,16 +5,13 @@
  */
 package ui.loginui;
 
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-
-import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
-
-import ui.util.FrameUtil;
 import config.ERPConfig;
 import config.FrameConfig;
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+import ui.util.FrameUtil;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class LoginUI extends JFrame {
@@ -36,15 +33,6 @@ public class LoginUI extends JFrame {
 	
 	public static void main(String[] args){
 		
-//		WebLookAndFeel.globalControlFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.globalTooltipFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.globalAlertFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.globalMenuFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.globalAcceleratorFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.globalTitleFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.globalTextFont = new Font("微软雅黑", Font.PLAIN, 12);
-//		WebLookAndFeel.install ();
-		
 		Font font = new Font("微软雅黑", Font.PLAIN, 13);
 		@SuppressWarnings("rawtypes")
 		java.util.Enumeration keys = UIManager.getDefaults().keys();
@@ -57,15 +45,11 @@ public class LoginUI extends JFrame {
 		}
 		
 		try {
-//			UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
-//			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-//			UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
 			System.setProperty("sun.java2d.noddraw", "true");
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-
+			UIManager.put("RootPane.setupButtonVisible" ,false);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

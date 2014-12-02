@@ -75,7 +75,7 @@ public class UserTablePane extends TablePanel{
 		this.dtm.setValueAt(vo.name, row, 1);
 		this.dtm.setValueAt(vo.password, row, 2);
 		this.dtm.setValueAt(vo.type.toFriendString(), row, 3);
-		this.dtm.setValueAt(vo.permission, row, 4);
+		this.dtm.setValueAt(this.permissionToStr(vo.permission), row, 4);
 	}
 	
 	private void createRow(Object[] row, UserVO vo){
@@ -83,7 +83,7 @@ public class UserTablePane extends TablePanel{
 		row[1]=vo.name;
 		row[2]=vo.password;
 		row[3]=vo.type.toFriendString();
-		row[4]=vo.permission;
+		row[4]=this.permissionToStr(vo.permission);
 	}
 	
 	public UserVO getSelectedVO(){
@@ -92,9 +92,17 @@ public class UserTablePane extends TablePanel{
 		String name = this.table.getValueAt(row, 1).toString();
 		String password = this.table.getValueAt(row, 2).toString();
 		UserType type = UserType.check(this.table.getValueAt(row, 3).toString());
-		int permission = Integer.parseInt(this.table.getValueAt(row, 4).toString());
+		int permission = this.permissionToInt(this.table.getValueAt(row, 4).toString());
 		UserVO vo = new UserVO(id,password,type,permission,name);
 		return vo;
+	}
+	
+	private int permissionToInt(String str){
+		if(str.equals("普通权限")){
+			return 0;
+		}else{
+			return 1;
+		}
 	}
 	
 	public void showFindTable(ArrayList<UserVO> list){
@@ -111,12 +119,19 @@ public class UserTablePane extends TablePanel{
 			row.add(vo.name);
 			row.add(vo.password);
 			row.add(vo.type.toFriendString());
-			row.add(vo.permission);
+			row.add(this.permissionToStr(vo.permission));
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
 		this.table.setUnvisibleColumn(2);
 		this.updateUI();
-		
+	}
+	
+	private String permissionToStr(int permission){
+		if(permission==0){
+			return "普通权限";
+		}else{
+			return "最高权限";
+		}
 	}
 }
