@@ -155,7 +155,7 @@ public class Purchase {
 	}
 
 	public ArrayList<PurchaseVO> findByCommodityName(String commodityName) {
-		ArrayList<PurchaseVO> voList = bigShow();
+		ArrayList<PurchaseVO> voList = show();
 		ArrayList<PurchaseVO> result = new ArrayList<PurchaseVO>();
 
 		for (PurchaseVO vo : voList) {
