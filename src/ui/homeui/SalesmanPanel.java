@@ -13,8 +13,10 @@ import ui.purchaseui.PurchasePanel;
 import ui.saleui.SalePanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
+import ui.util.MyOptionPane;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -53,6 +55,7 @@ public class SalesmanPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showSale();
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
 			}
 		});
 
@@ -62,6 +65,7 @@ public class SalesmanPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showPurchase();
+				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
 			}
 		});
 

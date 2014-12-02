@@ -106,8 +106,7 @@ public class UserPanel extends JPanel implements FuzzySearch{
 
 	private void initLabels(Element labels) {
 		this.userlist = new MyLabel(labels.element("userlist"));
-		this.add(new MyLabel(labels.element("modulename")));
-		this.add(new MyLabel(labels.element("admin")));
+		this.add(new MyLabel(labels.element("title")));
 		this.add(this.userlist);
 	}
 
