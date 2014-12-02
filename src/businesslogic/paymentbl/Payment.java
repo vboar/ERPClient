@@ -5,19 +5,17 @@
  */
 package businesslogic.paymentbl;
 
-<<<<<<< HEAD
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-=======
 import businesslogic.accountbl.Account;
 import businesslogic.customerbl.CustomerController;
 import businesslogic.logbl.Log;
 import businesslogic.loginbl.Login;
 import dataservice.datafactoryservice.DataFactoryImpl;
->>>>>>> 6275ba12eb616a62397dd90e1269c313bcd49b2e
+
 import po.PaymentPO;
 import po.TransferLineItemPO;
 import util.DocumentStatus;
@@ -201,17 +199,12 @@ public class Payment {
 	
 	public PaymentVO poToVo(PaymentPO po){
 			ArrayList<TransferLineItemVO> temp=new ArrayList<TransferLineItemVO>();
-<<<<<<< HEAD
+
 			ArrayList<TransferLineItemPO> p=po.getTransferList();
-			for(int i=0;i<p.size();i++){
-				TransferLineItemPO t=p.get(i);
-				temp.add(new TransferLineItemVO(t.getBankAccount(),t.getAccount(),t.getRemark()));
-=======
-			ArrayList<TransferLineItemPO> p=po.get(i).getTransferList();
+		
 			for(int j=0;j<p.size();j++){
 				TransferLineItemPO t=p.get(j);
 				temp.add(new TransferLineItemVO(null, t.getBankAccount(),t.getAccount(),t.getRemark()));
->>>>>>> 6275ba12eb616a62397dd90e1269c313bcd49b2e
 			}
 			
 			PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),po.getCustomerName(),po.getOperatorId(),
@@ -220,4 +213,5 @@ public class Payment {
 		
 		return result;
 	}
+			
 }
