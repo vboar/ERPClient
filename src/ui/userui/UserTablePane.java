@@ -36,15 +36,7 @@ public class UserTablePane extends TablePanel{
 		this.initComponent();
 	}
 
-<<<<<<< HEAD
-	protected void initTable(){
-=======
 	protected void initTable() {
-
-	}
-
-	protected void initTable(ArrayList<UserVO> list){
->>>>>>> 71d45a845dc0ea557878dc3c4bb6692fd7979cc6
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){
@@ -56,7 +48,7 @@ public class UserTablePane extends TablePanel{
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setUnvisibleColumn(2);
 	}
-	
+
 	public void initData(ArrayList<UserVO> list){
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for(int i=0; i<list.size(); ++i){
