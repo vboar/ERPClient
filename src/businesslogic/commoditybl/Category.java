@@ -113,11 +113,13 @@ public class Category {
 		if(!commodity.isEmpty()){
 			return ResultMessage.HAS_COMMODITY;
 		}
+		if(father!=null){
 		// 改父分类的number
 		CategoryPO fatherPO = getById(father.id);
 		CategoryVO fatherVO = CategoryPOToCategoryVO(fatherPO);
 		fatherVO.number++;
 		update(fatherVO);
+		}
 		// 添加到data
 		try {
 			DataFactoryImpl.getInstance().getCategoryData().insert(po);

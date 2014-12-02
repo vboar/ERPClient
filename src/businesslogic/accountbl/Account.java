@@ -82,6 +82,19 @@ public class Account {
 		return lists;
 	}
 	
+	public ArrayList<AccountVO> fuzzyFind(String keyword){
+		ArrayList<AccountVO> result=show();
+		for(AccountVO vo:result){
+			String key=vo.account+vo.name;
+			if(!key.contains(keyword)){
+				result.remove(vo);
+			}
+		}
+		return result;
+	}
+	
+	
+	
 	public AccountVO findByAccount(String account){
 		AccountVO result=new AccountVO("","",0);
 		try {
