@@ -1,12 +1,15 @@
 package ui.presentui;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
+import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PresentVO;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.presentblservice.PresentBLService;
 import config.TableConfig;
 
@@ -23,19 +26,52 @@ public class PresentListTablePane extends TablePanel{
 	
 	private ArrayList<PresentVO> list;
 	
-	public PresentListTablePane(TableConfig cfg, PresentBLService controller) {
+	private PresentBLService controller;
+	
+	public PresentListTablePane(TableConfig cfg) {
 		super(cfg);
-		this.list = controller.show(null, null);
+		this.controller = ControllerFactoryImpl.getInstance().getPresentController();
 		this.initTable();
 		this.initComponent();
 	}
 
 	protected void initTable() {
 		this.columnName = cfg.getColumnName();
-		this.data = new Object[list.size()][COLUMN_NUM];
-		this.dtm = new DefaultTableModel(this.data,this.columnName);
+		this.initData();
+		this.dtm = new DefaultTableModel(this.data,this.columnName){
+			@Override
+			public boolean isCellEditable(int row, int col){
+				return false;
+			}
+		};
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setRowSorter(null);
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 	}
 
+	private void initData() {
+		this.list = controller.show(null, null);
+		if(list!=null){
+			this.data = new Object[list.size()][COLUMN_NUM];
+			for(int i=0; i<list.size(); ++i){
+				PresentVO temp = list.get(i);	
+				this.createRow(data[i], temp);
+			}
+		}
+	}
+
+	private void createRow(Object[] row, PresentVO vo) {
+		row[0]=vo.id;
+		row[1]=vo.time;
+		row[2]=vo.customerId;
+		row[3]=vo.customerName;
+		row[4]=vo.list.toString();
+		row[5]=vo.documentStatus.toReadableString();
+	}
+
+	public void updateData() {
+		this.initData();
+		this.updateUI();
+	}
+	
 }

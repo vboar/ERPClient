@@ -82,4 +82,12 @@ public class PresentVO implements DocumentVO {
 		this.customerName = clientName;
 	}
 	
+	public String lineItemToString(){
+		String str="";
+		for(int i=0; i<list.size()-1; ++i){
+			str =  str + list.get(i).toString()+"\n";
+		}
+		str = str + list.get(list.size()-1).toString();
+		return str;
+	}
 }

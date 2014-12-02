@@ -27,17 +27,24 @@ public class UserTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
+	private ArrayList<UserVO> list;
+	
 	public UserTablePane(TableConfig cfg, UserBLService controller) {
 		super(cfg);
-		this.initTable(controller.show());
+		this.list = controller.show();
+		this.initTable();
 		this.initComponent();
 	}
 
+<<<<<<< HEAD
+	protected void initTable(){
+=======
 	protected void initTable() {
 
 	}
 
 	protected void initTable(ArrayList<UserVO> list){
+>>>>>>> 71d45a845dc0ea557878dc3c4bb6692fd7979cc6
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){
