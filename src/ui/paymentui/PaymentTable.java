@@ -14,7 +14,7 @@ import vo.TransferLineItemVO;
 import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
-public class PaymentTable extends TablePanel {
+public class ReceiptTable extends TablePanel {
 
 	private String[] columnNames;
 
@@ -26,7 +26,7 @@ public class PaymentTable extends TablePanel {
 
 	private CreateReceiptPanel panel;
 
-	public PaymentTable(TableConfig cfg) {
+	public ReceiptTable(TableConfig cfg, CreateReceiptPanel panel) {
 		super(cfg);
 		initTable();
 		initComponent();
