@@ -114,8 +114,10 @@ public class SalesmanPanel extends MyMainPanel {
 
 	@Override
 	public void showMesssage() {
-		// TODO Auto-generated method stub
-		
+		removeAllPanel();
+		messagePanel = new MessagePanel(frame);
+		add(messagePanel);
+		repaint();
 	}
 
 	private void removeAllPanel() {

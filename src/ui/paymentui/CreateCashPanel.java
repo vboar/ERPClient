@@ -6,8 +6,12 @@
 
 package ui.paymentui;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class CreateCashPanel extends JPanel {
+
+    public CreateCashPanel(JFrame frame) {
+
+    }
 
 }

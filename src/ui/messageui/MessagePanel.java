@@ -1,7 +1,11 @@
 package ui.messageui;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class MessagePanel extends JPanel {
+
+    public MessagePanel(JFrame frame) {
+
+    }
 
 }

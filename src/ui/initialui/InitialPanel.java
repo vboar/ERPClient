@@ -1,7 +1,11 @@
 package ui.initialui;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class InitialPanel extends JPanel {
+
+    public InitialPanel(JFrame frame) {
+
+    }
 
 }

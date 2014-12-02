@@ -5,12 +5,10 @@
  */
 package ui.util;
 
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import config.TableConfig;
+
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public abstract class TablePanel extends JPanel{
@@ -21,7 +19,7 @@ public abstract class TablePanel extends JPanel{
 	
 	protected TableConfig cfg;
 	
-	public TablePanel(TableConfig cfg){	
+	public TablePanel(TableConfig cfg){
 		this.cfg = cfg;
 		this.setSize(cfg.getW(), cfg.getH());
 		this.setLocation(cfg.getX(), cfg.getY());

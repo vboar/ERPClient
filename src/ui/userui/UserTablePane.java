@@ -5,17 +5,16 @@
  */
 package ui.userui;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.swing.table.DefaultTableModel;
-
+import businesslogicservice.userblservice.UserBLService;
+import config.TableConfig;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.UserType;
 import vo.UserVO;
-import businesslogicservice.userblservice.UserBLService;
-import config.TableConfig;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class UserTablePane extends TablePanel{
@@ -37,7 +36,15 @@ public class UserTablePane extends TablePanel{
 		this.initComponent();
 	}
 
+<<<<<<< HEAD
 	protected void initTable(){
+=======
+	protected void initTable() {
+
+	}
+
+	protected void initTable(ArrayList<UserVO> list){
+>>>>>>> 71d45a845dc0ea557878dc3c4bb6692fd7979cc6
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){

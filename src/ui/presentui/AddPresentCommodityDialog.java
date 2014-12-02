@@ -1,25 +1,18 @@
 package ui.presentui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import ui.util.MyTextField;
-import vo.CommodityVO;
-import vo.PresentLineItemVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CommodityBLService;
 import config.DialogConfig;
 import config.ERPConfig;
+import ui.util.*;
+import vo.CommodityVO;
+import vo.PresentLineItemVO;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
@@ -54,6 +47,7 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 	
 	public AddPresentCommodityDialog(CreatePresentPanel panel,JFrame frame){
 		super(frame,true);
+		((JComponent) this.getContentPane()).setOpaque(true);
 		this.panel = panel;
 		this.controller = ControllerFactoryImpl.getInstance().getCommodityController();
 		this.vomap = new HashMap<String,CommodityVO>();
