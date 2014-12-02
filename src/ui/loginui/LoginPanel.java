@@ -109,8 +109,8 @@ public class LoginPanel extends JPanel{
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("h")));
 		this.passwordTxt.setLocation(Integer.parseInt(cfg.getTextFields().element("password").attributeValue("x")),
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("y")));
-		this.idTxt.setText("123456");
-		this.passwordTxt.setText("123456");
+		this.idTxt.setText("admin");
+		this.passwordTxt.setText("admin");
 		this.add(this.idTxt);
 		this.add(this.passwordTxt);
 		
@@ -120,6 +120,7 @@ public class LoginPanel extends JPanel{
 	private void initComboBox(PanelConfig cfg){
 		// 获得复选框配置
 		this.usertype = new MyComboBox(cfg.getComboboxes().element("usertype"));
+		this.usertype.setSelectedIndex(4);
 		this.add(this.usertype);
 	}
 	
@@ -160,7 +161,7 @@ public class LoginPanel extends JPanel{
 		String id = idTxt.getText();
 		String passwd = String.valueOf(passwordTxt.getPassword());
 		ResultMessage idResult = Utility.checkInputValid(id,4,14,false);
-		ResultMessage passwdResult = Utility.checkInputValid(passwd,6,14,false);
+		ResultMessage passwdResult = Utility.checkInputValid(passwd,5,14,false);
 		if(idResult != ResultMessage.SUCCESS) {
 			MyOptionPane.showMessageDialog(null, "输入的用户名" + idResult.toFriendlyString() + "!");
 			return;

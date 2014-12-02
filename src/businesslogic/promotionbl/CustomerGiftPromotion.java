@@ -18,16 +18,25 @@ import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class CustomerGiftPromotion {
-	public ArrayList<CustomerGiftVO> findByVip(int level,ArrayList<CustomerGiftVO> list){
-		ArrayList<CustomerGiftVO> list2 =new ArrayList<CustomerGiftVO>();
-		for(int i=0;i<list.size();i++){
-			if(list.get(i).vip==level){
-				list2.add(list.get(i));
-			}
+	
+	public String createId() {
+		ArrayList<CustomerGiftVO> voList = show();
+
+		if (voList.size() == 0) {
+			return "CUG-00000";
+		} else {
+			String max = voList.get(voList.size() - 1).id;
+			String oldMax = max.substring(max.length() - 5);
+			int maxInt = Integer.parseInt(oldMax);
+			String pattern = "00000";
+			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+			String maxStr = df.format(maxInt + 1);
+			return "CUG-" + maxStr;
 		}
-		return list2;		
+
 	}
-	public ResultMessage add(CustomerGiftVO vo) {
+
+		public ResultMessage add(CustomerGiftVO vo) {
 		CustomerGiftPO po=voToPO(vo);
 		if(Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
@@ -53,6 +62,17 @@ public class CustomerGiftPromotion {
 		}
 		return ResultMessage.SUCCESS;
 	}
+	
+	public ArrayList<CustomerGiftVO> findByVip(int level,ArrayList<CustomerGiftVO> list){
+		ArrayList<CustomerGiftVO> list2 =new ArrayList<CustomerGiftVO>();
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).vip==level){
+				list2.add(list.get(i));
+			}
+		}
+		return list2;		
+	}
+
 	
 	public ArrayList<CustomerGiftVO> show() {
 		ArrayList<CustomerGiftPO> poList=null;
@@ -91,12 +111,8 @@ public class CustomerGiftPromotion {
 	private CustomerGiftPO voToPO(CustomerGiftVO vo){
 		//(String id,int VIP,ArrayList<CombinationCommodityLineItemVO> giftInfo
 			//	,double discount,double voucher,String startTime,String endTime,boolean valid
-	String id;
-		if(vo.id==null){//要跟ui商量好
-		id="";
-		//TODO
-	}else  id=vo.id;
-		
+	String id=vo.id;
+				
 		int VIP=vo.vip;
 		ArrayList<PresentLineItemPO> giftInfo=Utility.presentVOListToPOlist(vo.giftInfo);
 		

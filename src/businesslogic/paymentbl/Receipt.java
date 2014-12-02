@@ -5,14 +5,19 @@
  */
 package businesslogic.paymentbl;
 
+<<<<<<< HEAD
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+=======
+import businesslogic.accountbl.Account;
+import businesslogic.customerbl.Customer;
+import dataservice.datafactoryservice.DataFactoryImpl;
+>>>>>>> 6275ba12eb616a62397dd90e1269c313bcd49b2e
 import po.PaymentPO;
 import po.TransferLineItemPO;
-import dataservice.datafactoryservice.DataFactoryImpl;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
@@ -21,8 +26,9 @@ import vo.AccountVO;
 import vo.CashVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
-import businesslogic.accountbl.Account;
-import businesslogic.customerbl.Customer;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Receipt {
 	
@@ -210,7 +216,7 @@ public class Receipt {
 		ArrayList<TransferLineItemVO> result=new ArrayList<TransferLineItemVO>();
 		for(int i=0;i<transferList.size();i++){
 			TransferLineItemPO temp=transferList.get(i);
-			result.add(new TransferLineItemVO(temp.getBankAccount(),temp.getAccount(),temp.getRemark()));
+			result.add(new TransferLineItemVO(null, temp.getBankAccount(),temp.getAccount(),temp.getRemark()));
 		}
 		return result;
 	}

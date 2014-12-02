@@ -133,7 +133,7 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 		CategoryVO father;
 		if(node.isRoot()) father = null;
 		else	father = (CategoryVO)node.getUserObject();
-		CategoryVO newChild = new CategoryVO(name,0,father);
+		CategoryVO newChild = new CategoryVO( father.id,name,0,father);
 		if(this.controller.add(newChild)==ResultMessage.SUCCESS){
 			MyOptionPane.showMessageDialog(null, "添加成功！");
 			DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newChild);

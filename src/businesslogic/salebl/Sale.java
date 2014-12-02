@@ -116,6 +116,7 @@ public class Sale {
 		Date date=new Date();
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 		String time=myFmt.format(date);
+		vo.time=time;
 		SalePO po = SaleVOToSalePO(vo);
 		try {
 			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
@@ -317,6 +318,8 @@ public class Sale {
 		return voList;
 
 	}
+	
+	
 
 	public SaleVO calPromotion(SaleVO vo1, CustomerGiftVO vo2) {
 		CustomerGiftPromotion cgp = new CustomerGiftPromotion();

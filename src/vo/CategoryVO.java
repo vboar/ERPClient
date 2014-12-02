@@ -32,7 +32,8 @@ public class CategoryVO {
 	 * @param name
 	 * @param number
 	 */
-	public CategoryVO(String name, int number,CategoryVO father) {
+	public CategoryVO(String id, String name, int number,CategoryVO father) {
+		this.id = id;
 		this.name = name;
 		this.number = number;
 		this.father=father;

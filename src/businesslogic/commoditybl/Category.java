@@ -40,7 +40,7 @@ public class Category {
 	 * @param po
 	 * @return
 	 */
-	protected CategoryVO CategoryPOToCategoryVO(CategoryPO po) {
+	public CategoryVO CategoryPOToCategoryVO(CategoryPO po) {
 		String id = po.getId();
 		String name = po.getName();
 		int number = po.getNumber();
@@ -70,6 +70,9 @@ public class Category {
 	 * @return
 	 */
 	public  String createId(String fatherId){
+		if(fatherId==null){
+			return "00000";
+		}
 		ArrayList<CategoryVO> voList= findById(fatherId);
 		if(voList.size()==0){
 			return fatherId+"-00000";
@@ -109,11 +112,12 @@ public class Category {
 			return nameCheck;
 		}
 		//是否有商品
+		if(father!=null){
 		ArrayList<CommodityVO> commodity=new Commodity().findById(father.id);
 		if(!commodity.isEmpty()){
 			return ResultMessage.HAS_COMMODITY;
 		}
-		if(father!=null){
+		
 		// 改父分类的number
 		CategoryPO fatherPO = getById(father.id);
 		CategoryVO fatherVO = CategoryPOToCategoryVO(fatherPO);
