@@ -28,13 +28,16 @@ public class UserTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
+	private ArrayList<UserVO> list;
+	
 	public UserTablePane(TableConfig cfg, UserBLService controller) {
 		super(cfg);
-		this.initTable(controller.show());
+		this.list = controller.show();
+		this.initTable();
 		this.initComponent();
 	}
 
-	protected void initTable(ArrayList<UserVO> list){
+	protected void initTable(){
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){

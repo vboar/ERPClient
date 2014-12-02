@@ -55,7 +55,11 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private HashMap<String,CustomerVO> customerlist;
 	
+	private boolean hasCustomer = false;
+	
 	private PanelConfig pcfg;
+	
+	private PresentPanel panel;
 	
 	private JFrame frame;
 	
@@ -63,8 +67,9 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private CustomerBLService customerController;
 
-	public CreatePresentPanel(JFrame frame) {
+	public CreatePresentPanel(JFrame frame,PresentPanel panel) {
 		this.frame = frame;
+		this.panel = panel;
 		this.commoditylist = new ArrayList<PresentLineItemVO>();
 		this.customerlist = new HashMap<String,CustomerVO>();
 		this.presentController = ControllerFactoryImpl.getInstance().getPresentController();
@@ -74,7 +79,7 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
 		this.initComponent();
-		this.repaint();
+		this.setVisible(true);
 	}
 
 	private void initComponent() {
@@ -116,10 +121,10 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 			public void actionPerformed(ActionEvent e) {
 				if(customerTxt.getText()!=null){
 					customerVO = customerlist.get(customerTxt.getText());
-					System.out.println(customerVO);
 					if(customerVO!=null){
 						customerIdLab.setText(customerVO.id);
 						customerNameLab.setText(customerVO.name);
+						hasCustomer = true;
 					}else{
 						MyOptionPane.showMessageDialog(null, "请重新选择客户！");
 					}
@@ -175,15 +180,30 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	}
 	
 	public void createPresent(){
-		ResultMessage result = this.presentController.create(new PresentVO(null,null,customerVO.id,customerVO.name,
-				this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
-		if(result == ResultMessage.SUCCESS){
-			MyOptionPane.showMessageDialog(null, "赠送单提交成功！");
-		}else{
+		if(this.checkCompleted()){
+			ResultMessage result = this.presentController.create(new PresentVO(this.documentId.getText(),
+					null,customerVO.id,customerVO.name,
+					this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
+			if(result == ResultMessage.SUCCESS){
+				MyOptionPane.showMessageDialog(null, "赠送单提交成功！");
+				this.setVisible(false);
+				this.panel.getListpanel().udpateData();
+				this.panel.getListpanel().setVisible(true);	
+			}else{
 			MyOptionPane.showMessageDialog(null, "赠送单提交失败！");
+			}
+		}else{
+			MyOptionPane.showMessageDialog(null, "请填入完整单据数据！");
 		}
 	}
 	
+	private boolean checkCompleted() {
+		if(hasCustomer&&this.commoditylist.size()>0){
+			return true;
+		}
+		return false;
+	}
+
 	public void delCommodity(){
 		this.commoditylist.remove(this.presentTable.getTable().getSelectedRow());
 		this.presentTable.deleteRow();

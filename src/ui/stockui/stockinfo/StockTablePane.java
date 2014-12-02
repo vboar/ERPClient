@@ -63,13 +63,6 @@ public class StockTablePane extends TablePanel{
 		row[7]=vo.inNumber-vo.outNumber;
 	}
 	
-	public boolean isSelected(){
-		if(this.table.getSelectedRow()!=-1)		
-			return true;
-		else	
-			return false;
-	}
-	
 	public void showFindTable(ArrayList<StockInfoVO> list){
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){

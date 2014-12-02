@@ -169,8 +169,8 @@
 		<panel className="ui.presentui.PresentPanel"
 			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<createpresent text="查看赠送单" w="160" h="30" x="10" y="45"/>
-				<show text="创建赠送单" w="160" h="30" x="200" y="45"/>
+				<show text="查看赠送单" w="160" h="30" x="20" y="45"/>
+				<createpresent text="创建赠送单" w="160" h="30" x="200" y="45"/>
 			</buttons>
 			<labels>
 				<title text="赠品发放" w="120" h="30" x="10" y="2" />
@@ -203,12 +203,31 @@
 			<textfields>
 				<customerinfo w="200" h="30" x="230" y="50" />
 			</textfields>
-			<tablepane className="ui.accountui.PresentTablePane" width="730" height="200" x="10" y="150">
+			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="200" x="10" y="150">
 				<columnnames>
 					<columnname name="商品编号" />
 					<columnname name="商品名称" />
 					<columnname name="商品型号" />
 					<columnname name="数量" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
+		<!-- 赠品发放中的查看单据面板 -->
+		<panel className="ui.presentui.ShowPanel"
+			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
+			<buttons>
+			</buttons>
+			<labels>
+			</labels>
+			<tablepane className="ui.presentui.ShowPanel" width="730" height="360" x="10" y="40">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="客户编号" />
+					<columnname name="客户名" />
+					<columnname name="赠品列表" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>
