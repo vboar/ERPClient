@@ -5,9 +5,11 @@
  */
 package businesslogic.paymentbl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
+import businesslogic.accountbl.Account;
+import businesslogic.customerbl.CustomerController;
+import businesslogic.logbl.Log;
+import businesslogic.loginbl.Login;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import po.PaymentPO;
 import po.TransferLineItemPO;
 import util.DocumentStatus;
@@ -17,11 +19,9 @@ import util.Time;
 import vo.AccountVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
-import businesslogic.accountbl.Account;
-import businesslogic.customerbl.CustomerController;
-import businesslogic.logbl.Log;
-import businesslogic.loginbl.Login;
-import dataservice.datafactoryservice.DataFactoryImpl;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 //oneoneO
 public class Payment {
@@ -166,7 +166,7 @@ public class Payment {
 			ArrayList<TransferLineItemPO> p=po.get(i).getTransferList();
 			for(int j=0;j<p.size();j++){
 				TransferLineItemPO t=p.get(j);
-				temp.add(new TransferLineItemVO(t.getBankAccount(),t.getAccount(),t.getRemark()));
+				temp.add(new TransferLineItemVO(null, t.getBankAccount(),t.getAccount(),t.getRemark()));
 			}
 			PaymentPO temp2=po.get(i);
 			result.add(new PaymentVO(temp2.getId(),temp2.getTime(),temp2.getCustomerId(),temp2.getCustomerName(),temp2.getOperatorId(),

@@ -178,7 +178,10 @@ public class Customer {
 			
 			e.printStackTrace();
 		}
-		result=poToVo(po);
+		
+		for(int i=0;i<po.size();i++){
+			result.add(poToVo(po.get(i)));
+		}
 		
 		l.add("Find customer by name successfully");
 		return result;
@@ -193,9 +196,29 @@ public class Customer {
 			
 			e.printStackTrace();
 		}
-		result=poToVo(po);
+		
+		for(int i=0;i<po.size();i++){
+			result.add(poToVo(po.get(i)));
+		}
 		
 		l.add("Find customer by id successfully");
+		return result;
+	}
+	
+	public ArrayList<CustomerVO> fuzzyFind(String keyword){
+		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
+		ArrayList<CustomerPO> temp=new ArrayList<CustomerPO>();
+		for(int i=0;i<temp.size();i++){
+			CustomerPO t=temp.get(i);
+			String allkeywords=t.getId()+";"+t.getCategory()+";"+String.valueOf(t.getLevel())+";"
+			                   +t.getName()+";"+t.getPhoneNumber()+";"+t.getAddress()+";"
+					           +t.getPostalCode()+";"+t.getEmail()+";"+String.valueOf(t.getCreditLimit())+";"
+			                   +String.valueOf(t.getReceivables())+";"+String.valueOf(t.getPaybles())+";"
+			                   +t.getSalesman();
+			if(allkeywords.contains(keyword))
+				result.add(poToVo(t));
+		}
+		
 		return result;
 	}
 	
@@ -208,7 +231,10 @@ public class Customer {
 			
 			e.printStackTrace();
 		}
-		result=poToVo(po);
+		
+		for(int i=0;i<po.size();i++){
+			result.add(poToVo(po.get(i)));
+		}
 		
 		l.add("show successfully");
 		return result;
@@ -219,16 +245,11 @@ public class Customer {
 		return null;
 	}
 	
-	public ArrayList<CustomerVO> poToVo(ArrayList<CustomerPO> po){
-		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
-	
-		for(int i=0;i<po.size();i++){
-			CustomerPO temp=po.get(i);
-			result.add(new CustomerVO(temp.getId(),temp.getCategory(),temp.getLevel(),
-					temp.getName(),temp.getPhoneNumber(),temp.getAddress(),
-					temp.getPostalCode(),temp.getEmail(),temp.getCreditLimit(),
-					temp.getReceivables(),temp.getPaybles(),temp.getSalesman(),temp.isDeletable()));
-		}
+	public CustomerVO poToVo(CustomerPO po){
+			CustomerVO result=new CustomerVO(po.getId(),po.getCategory(),po.getLevel(),
+					po.getName(),po.getPhoneNumber(),po.getAddress(),
+					po.getPostalCode(),po.getEmail(),po.getCreditLimit(),
+					po.getReceivables(),po.getPaybles(),po.getSalesman(),po.isDeletable());
 		
 		return result;
 	}

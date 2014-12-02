@@ -14,6 +14,7 @@ import po.SalePO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
 import vo.SaleVO;
@@ -25,7 +26,11 @@ public class SaleReturn {
 	Sale sale=new Sale();
 	
 	
-	public ResultMessage add(SaleVO vo) {		
+	public ResultMessage add(SaleVO vo) {	
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		String time=myFmt.format(date);
+		vo.time=time;
 		SalePO po = sale.SaleVOToSalePO(vo);
 		try {
 			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
@@ -33,9 +38,10 @@ public class SaleReturn {
 			
 			e.printStackTrace();
 		}
-		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
-		String time=myFmt.format(date);
+		 date=new Date();
+		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		 time=myFmt2.format(date);
+		 String id=new Present().createId();
 
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
@@ -46,7 +52,7 @@ public class SaleReturn {
 		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
 		DocumentType documentType = DocumentType.PRESENTRETURN;
 
-		PresentVO presentVO = new PresentVO(null, time, customerId,
+		PresentVO presentVO = new PresentVO(id, time, customerId,
 				customerName, list, documentStatus, documentType, false);
 		Present pr = new Present();
 		pr.create(presentVO);
@@ -95,10 +101,20 @@ public class SaleReturn {
 
 	}
 
-	// TODO
+	
 	public ArrayList<SaleVO> findByCommodityName(String commodityName) {
 
-		return null;
+		ArrayList<SaleVO> voList = show();
+		ArrayList<SaleVO> result = new ArrayList<SaleVO>();
+
+		for (SaleVO vo : voList) {
+			for (CommodityLineItemVO commodity : vo.saleList) {
+				if (commodity.name.equals(commodityName)) {
+					result.add(vo);
+				}
+			}
+		}
+		return result;
 	}
 
 	public ArrayList<SaleVO> findByCustomer(String customer)
@@ -171,7 +187,7 @@ public class SaleReturn {
 		try {
 			temp=DataFactoryImpl.getInstance().getSaleDataService().findByStatus(status);
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
+			
 			e.printStackTrace();
 		}
 		

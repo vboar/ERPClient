@@ -1,21 +1,17 @@
 package ui.accountui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
+import config.DialogConfig;
 import org.dom4j.Element;
-
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
 import vo.AccountVO;
-import config.DialogConfig;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class AccountInfoDialog extends JDialog {

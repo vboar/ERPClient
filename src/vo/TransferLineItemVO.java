@@ -6,6 +6,9 @@
 package vo;
 
 public class TransferLineItemVO {
+
+	public String name;
+
 	/**
 	 * 银行账号
 	 */
@@ -27,8 +30,9 @@ public class TransferLineItemVO {
 	 * @param account
 	 * @param remark
 	 */
-	public TransferLineItemVO(String bankAccount, double account, String remark) {
+	public TransferLineItemVO(String name, String bankAccount, double account, String remark) {
 		super();
+		this.name = name;
 		this.bankAccount = bankAccount;
 		this.account = account;
 		this.remark = remark;
