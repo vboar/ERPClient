@@ -65,8 +65,7 @@ public class ApprovalController implements ApprovalBLService{
 	@Override
 	public ArrayList<ExceptionVO> findOverflow(int way, int status,
 			String time1, String time2) {
-		//TODO
-		return null;
+		return approval.findLoss(way, status, time1, time2);
 	}
 
 	@Override

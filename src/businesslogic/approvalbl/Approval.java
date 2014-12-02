@@ -221,4 +221,19 @@ public class Approval {
 
 		return result;
 	}
+	
+	public ArrayList<ExceptionVO> findLoss(int way,int status,String time1,String time2){
+		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		Loss l=new Loss();
+		switch(way){
+		case 0:
+			break;
+		case 1:
+			result=l.show(time1, time2);
+			break;
+		case 2:
+			result=l.findByStatus(status);
+		}
+		return result;
+	}
 }
