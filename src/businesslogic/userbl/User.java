@@ -83,7 +83,7 @@ public class User {
 		if (result != ResultMessage.SUCCESS) {
 			return result;
 		}
-		result = Utility.checkInputValid(po.getPassword(), 6, 14, false);
+		result = Utility.checkInputValid(po.getPassword(), 5, 14, false);
 		if (result != ResultMessage.SUCCESS) {
 			return result;
 		}
