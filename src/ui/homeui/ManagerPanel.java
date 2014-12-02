@@ -65,7 +65,6 @@ public class ManagerPanel extends MyMainPanel {
 		promotionBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
 				showPromotion();
 			}
 		});

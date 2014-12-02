@@ -76,7 +76,6 @@ public class StockKeeperPanel extends MyMainPanel {
 		});
 		this.presentBtn = new MyButton(pcfg.getButtons().element("present"));
 		this.presentBtn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showPresent();
