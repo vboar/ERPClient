@@ -24,9 +24,9 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 public class Present {
 
 	
-	private PresentPO voToPO(PresentVO vo) {
+	public PresentPO voToPO(PresentVO vo) {
 		
-		 String id = vo.id;
+		String id = vo.id;
 		
 		String time = vo.time;
 		String customerId = vo.customerId;
@@ -41,7 +41,7 @@ public class Present {
 		return po;
 	}
 
-	private PresentVO poToVO(PresentPO po) {
+	public PresentVO poToVO(PresentPO po) {
 		String id = po.getId();
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
@@ -91,7 +91,7 @@ public class Present {
 	
 	public ResultMessage create(PresentVO vo) {
 		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/");
 		String time=myFmt.format(date);
 		vo.time=time;
 		PresentPO po = voToPO(vo);
@@ -105,6 +105,8 @@ public class Present {
 	}
 
 	public ResultMessage update(PresentVO vo) {
+		String time=getById(vo.id).time;
+		vo.time=time;
 		//会不会出错？
 		//TODO
 		PresentPO po = voToPO(vo);
@@ -116,14 +118,15 @@ public class Present {
 		return ResultMessage.SUCCESS;
 	}
 	
-	public PresentPO getById(String id){
+	public PresentVO getById(String id){
 		PresentPO po=null;
 		try {
 			po = DataFactoryImpl.getInstance().getPresentData().getById(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return po;
+		PresentVO vo=poToVO(po);
+		return vo;
 	}
 	
 	public ArrayList<PresentVO> findById(String id){

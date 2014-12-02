@@ -6,7 +6,9 @@
 package businesslogic.purchasebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.PurchasePO;
 import util.DocumentType;
@@ -23,6 +25,10 @@ public class PurchaseReturn {
 	}
 
 	public ResultMessage add(PurchaseVO vo) {
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
+		String time = myFmt.format(date);
+		vo.time = time;
 		PurchasePO po = purchase.voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);

@@ -113,6 +113,8 @@ public class Purchase {
 	}
 
 	public ResultMessage update(PurchaseVO vo) {
+		String time=getById(vo.id).time;
+		vo.time=time;
 		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().update(po);
@@ -132,7 +134,6 @@ public class Purchase {
 		}
 		PurchaseVO vo = poToVO(po);
 		return vo;
-
 	}
 
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
