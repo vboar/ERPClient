@@ -74,7 +74,6 @@ public class PurchaseReturn {
 
 	}
 
-
 	public ArrayList<PurchaseVO> findByCommodityName(String commodityName) {
 		ArrayList<PurchaseVO> voList = show();
 		ArrayList<PurchaseVO> result = new ArrayList<PurchaseVO>();
