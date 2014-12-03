@@ -1,5 +1,7 @@
 package ui.presentui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -59,6 +61,8 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 	
 	private PanelConfig pcfg;
 	
+	private Image bg;
+	
 	private PresentPanel panel;
 	
 	private JFrame frame;
@@ -75,13 +79,19 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.presentController = ControllerFactoryImpl.getInstance().getPresentController();
 		this.customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		this.bg = this.pcfg.getBg();
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
 		this.initComponent();
 		this.setVisible(true);
 	}
-
+	
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
+	}
+	
 	private void initComponent() {
 		this.initLabels();
 		this.initButtons();
@@ -97,7 +107,6 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.customerNameLab = new MyLabel(pcfg.getLabels().element("customernamelab"));
 		this.documentId = new MyLabel(pcfg.getLabels().element("documentidlab"));
 		this.documentId.setText(this.presentController.createId());
-		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.add(new MyLabel(pcfg.getLabels().element("documentid")));
 		this.add(new MyLabel(pcfg.getLabels().element("customerid")));
 		this.add(new MyLabel(pcfg.getLabels().element("customerinfo")));
@@ -106,7 +115,6 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.add(new MyLabel(pcfg.getLabels().element("customernamelab")));
 		this.add(new MyLabel(pcfg.getLabels().element("tip")));
 		this.add(new MyLabel(pcfg.getLabels().element("presentlist")));
-		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.add(this.documentId);
 		this.add(this.customerIdLab);
 		this.add(this.customerNameLab);

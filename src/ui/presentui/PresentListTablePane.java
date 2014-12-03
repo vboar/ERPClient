@@ -60,17 +60,23 @@ public class PresentListTablePane extends TablePanel{
 		}
 	}
 
-	private void createRow(Object[] row, PresentVO vo) {
+	private Object[] createRow(Object[] row, PresentVO vo) {
+		System.out.println(vo.customerName);
 		row[0]=vo.id;
 		row[1]=vo.time;
 		row[2]=vo.customerId;
 		row[3]=vo.customerName;
 		row[4]=vo.list.toString();
 		row[5]=vo.documentStatus.toReadableString();
+		return row;
 	}
-
+	
 	public void updateData() {
 		this.initData();
+		System.out.println("upadate!");
+		System.out.println(list.size());
+		this.dtm.setDataVector(data, columnName);
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 		this.updateUI();
 	}
 	

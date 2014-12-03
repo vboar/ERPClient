@@ -46,7 +46,7 @@ public class Present {
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
 		
-		String customerName = po.getCustomerId();
+		String customerName = po.getCustomerName();
 		ArrayList<PresentLineItemVO> list = Utility.presentPOListToVOList(po
 				.getList());
 		DocumentStatus documentStatus = DocumentStatus.values()[po
