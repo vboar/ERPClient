@@ -39,4 +39,10 @@ public class LossController implements ExceptionBLService {
 		return null;
 	}
 
+	@Override
+	public String createId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

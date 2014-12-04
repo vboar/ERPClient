@@ -25,6 +25,8 @@ public class ERPConfig {
 	
 	private static DialogConfig ADDPRESENTCOMMODITY_DIALOG_CONFIG = null;
 	
+	private static DialogConfig ADDEXCEPTIONLINEITEM_DIALOG_CONFIG = null;
+	
 	static{
 		try {
 			// 创建XML读取器
@@ -51,6 +53,8 @@ public class ERPConfig {
 			ADDRECEIPTACCOUNT_DIALOG_CONFIG = new DialogConfig(erp.element("addreceiptaccountinfodialog"));
 			// 创建添加赠送单商品对话框配置对象
 			ADDPRESENTCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addpresentcommodityinfodialog"));
+			// 创建添加库存报溢报损单商品对话框配置对象
+			ADDEXCEPTIONLINEITEM_DIALOG_CONFIG = new DialogConfig(erp.element("addexceptionlineitemdialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -91,4 +95,10 @@ public class ERPConfig {
 	public static DialogConfig getADDPRESENTCOMMODITY_DIALOG_CONFIG() {
 		return ADDPRESENTCOMMODITY_DIALOG_CONFIG;
 	}
+
+	public static DialogConfig getADDEXCEPTIONLINEITEM_DIALOG_CONFIG() {
+		return ADDEXCEPTIONLINEITEM_DIALOG_CONFIG;
+	}
+	
+	
 }

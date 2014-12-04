@@ -101,8 +101,7 @@ public class StockKeeperPanel extends MyMainPanel {
 		exceptionBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showException();
+				showException();
 			}
 		});
 		this.add(this.categoryManageBtn);

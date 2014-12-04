@@ -42,4 +42,10 @@ public interface ExceptionBLService {
 	 */
 	public ResultMessage update(ExceptionVO vo);
 	
+	/**
+	 * 创建单据Id
+	 * @return
+	 */
+	public String createId();
+	
 }
