@@ -66,9 +66,16 @@ public class Commodity {
 		double recentPurchasePrice = po.getRecentPurchasePrice();
 		int warningNumber = po.getWarningNumber();
 		boolean isTrade = po.isTrade();
+
+		String categoryId = id.substring(0, id.length() - 6);
+		System.out.println("commoditybl:71 "+id);
+		CategoryPO categorypo = new Category().getById(categoryId);
+		CategoryVO categoryvo = new Category()
+				.CategoryPOToCategoryVO(categorypo);
+
 		CommodityVO vo = new CommodityVO(id, name, model, number,
 				purchasePrice, salePrice, recentPurchasePrice, recentSalePrice,
-				warningNumber, isTrade, null);
+				warningNumber, isTrade, categoryvo);
 		return vo;
 	}
 
@@ -78,10 +85,10 @@ public class Commodity {
 	 * @param id
 	 * @return
 	 */
-	private boolean existPO(String name,String model) {
+	private boolean existPO(String name, String model) {
 		ArrayList<CommodityVO> voList = show();
 		for (CommodityVO voCheck : voList) {
-			if (voCheck.name.equals(name)&&voCheck.model.equals(model)) {
+			if (voCheck.name.equals(name) && voCheck.model.equals(model)) {
 				return true;
 			}
 		}
@@ -98,6 +105,7 @@ public class Commodity {
 	public String createId(String fatherId) {
 		ArrayList<CommodityVO> voList = findById(fatherId);
 		if (voList.size() == 0) {
+			System.out.println("commoditybl 108 "+fatherId + "-00000");
 			return fatherId + "-00000";
 		} else {
 
@@ -107,6 +115,7 @@ public class Commodity {
 			String pattern = "00000";
 			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
 			String maxStr = df.format(maxInt + 1);
+			System.out.println("commoditybl 118 "+fatherId + "-" + maxStr);
 			return fatherId + "-" + maxStr;
 		}
 	}
@@ -115,7 +124,7 @@ public class Commodity {
 
 		CommodityPO po = commodityVOToCommodityPO(vo);
 		// 已经存在
-		if (existPO(po.getName(),po.getModel())) {
+		if (existPO(po.getName(), po.getModel())) {
 			return ResultMessage.EXIST;
 		}
 		// 输入非法
@@ -124,11 +133,12 @@ public class Commodity {
 		if (nameCheck != ResultMessage.SUCCESS) {
 			return nameCheck;
 		}
-		// 是否有分类
-		ArrayList<CategoryVO> category = new Category()
-				.findById(vo.category.id);
-		if (!category.isEmpty()) {
-			return ResultMessage.HAS_CATEGORY;
+		
+		// 添加到data
+		try {
+			DataFactoryImpl.getInstance().getCommodityData().insert(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
 
 		// 修改分类
@@ -150,7 +160,7 @@ public class Commodity {
 	 */
 	public ResultMessage delete(CommodityVO vo) {
 		CommodityPO po = commodityVOToCommodityPO(vo);
-		if (!existPO(vo.name,vo.model)) {
+		if (!existPO(vo.name, vo.model)) {
 			return ResultMessage.NOT_FOUND;
 		}
 		if (vo.isTrade) {
@@ -196,7 +206,7 @@ public class Commodity {
 			po = commodityVOToCommodityPO(vo);
 		}
 		// 检查是否存在
-		if (!existPO(po.getId(),po.getModel())) {
+		if (!existPO(po.getId(), po.getModel())) {
 			return ResultMessage.NOT_FOUND;
 		}
 
@@ -280,6 +290,7 @@ public class Commodity {
 
 	/**
 	 * 模糊查找
+	 * 
 	 * @param keyword
 	 * @return
 	 */

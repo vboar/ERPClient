@@ -9,9 +9,7 @@ package businesslogic.presentbl;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
-import util.DocumentType;
 import util.ResultMessage;
-import vo.PresentLineItemVO;
 import vo.PresentVO;
 import businesslogicservice.presentblservice.PresentBLService;
 

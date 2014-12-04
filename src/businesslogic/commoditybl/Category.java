@@ -41,7 +41,9 @@ public class Category {
 	 * @return
 	 */
 	public CategoryVO CategoryPOToCategoryVO(CategoryPO po) {
+		
 		String id = po.getId();
+		System.out.println("categorybl: 44 "+id);
 		String name = po.getName();
 		int number = po.getNumber();
 		CategoryVO vo = new CategoryVO(id,name, number, null);
@@ -73,6 +75,7 @@ public class Category {
 	 * @return
 	 */
 	public  String createId(String fatherId){
+		
 		if(fatherId==null){
 			return "00000";
 		}
@@ -184,6 +187,7 @@ public class Category {
 		CategoryVO oldVO = CategoryPOToCategoryVO(oldPO);
 		// 把名字改了
 		oldVO.name = vo.name;
+		oldVO.number=vo.number;
 		 newPO = CategoryVOToCategoryPO(oldVO);
 		}else{
 			 newPO = CategoryVOToCategoryPO(vo);

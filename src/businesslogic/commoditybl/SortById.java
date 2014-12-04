@@ -2,14 +2,14 @@ package businesslogic.commoditybl;
 
 import java.util.Comparator;
 
-import po.CategoryPO;
+import vo.CategoryVO;
 
 @SuppressWarnings("rawtypes")
 public class SortById implements Comparator{
 	 public int compare(Object obj1,Object obj2){
-	  CategoryPO po1=(CategoryPO)obj1;
-	  CategoryPO po2=(CategoryPO)obj2;
-	  int result=po1.getId().compareTo(po2.getId());
+	  CategoryVO po1=(CategoryVO)obj1;
+	  CategoryVO po2=(CategoryVO)obj2;
+	  int result=po1.id.compareTo(po2.id);
 	  return result;
 	 }
 	}

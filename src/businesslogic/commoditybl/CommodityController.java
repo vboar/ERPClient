@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import util.ResultMessage;
 import vo.CategoryCommodityVO;
-import vo.CategoryVO;
 import vo.CommodityVO;
 import businesslogicservice.commodityblservice.CommodityBLService;
 
@@ -40,35 +39,14 @@ public class CommodityController implements CommodityBLService {
 
 	@Override
 	public ArrayList<CommodityVO> fuzzyFind(String keyWord) {
-		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
-
-		if(keyWord.equals("aa")){
-			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			list.add(new CommodityVO("002-0001","aab","s01",10,5,10,5,10,0,false,new CategoryVO("0001","b",10)));
-		}else if(keyWord.equals("a")){
-			list.add(new CommodityVO("001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001","a",10)));
-			list.add(new CommodityVO("002-0001","abb","s01",10,5,10,5,10,0,false,new CategoryVO("0001","b",10)));
-			list.add(new CommodityVO("010-0001","acc","s01",10,5,10,5,10,0,false,new CategoryVO("0001","c",10)));
-		}else if(keyWord.equals("ab")){
-			list.add(new CommodityVO("002-0001","abb","s01",10,5,10,5,10,0,false,new CategoryVO("0002","b",10)));
-		}
-		return list;
+		return commodity.fuzzyFind(keyWord);
+				
 	}
 
 	@Override
 	public ArrayList<CategoryCommodityVO> bigShow() {
-		ArrayList<CategoryCommodityVO> list = new ArrayList<CategoryCommodityVO>();
-		list.add(new CategoryCommodityVO("0001",new CategoryVO("0001","a",10),null));
-		list.add(new CategoryCommodityVO("0001-0001",new CategoryVO("0001-0001","a",10),null));
-		list.add(new CategoryCommodityVO("0001-0001-0001",null,
-				new CommodityVO("0001-0001-0001","aa","s01",10,5,10,5,10,0,false,new CategoryVO("0001-0001","a",10))));
-		list.add(new CategoryCommodityVO("0002",new CategoryVO("0002","b",10),null));
-		list.add(new CategoryCommodityVO("0002-0001",null,
-				new CommodityVO("0002-0001","bb","s01",10,5,10,5,10,0,false,new CategoryVO("0002","a",10))));
-		list.add(new CategoryCommodityVO("0003",new CategoryVO("0003","c",10),null));
-		list.add(new CategoryCommodityVO("0003-0001",null,
-				new CommodityVO("0003-0001","cc","s01",10,5,10,5,10,0,false,new CategoryVO("0003","c",10))));
-		return list;
+		return commodity.bigShow();
+	
 	}
 
 }
