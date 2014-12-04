@@ -53,4 +53,11 @@ public interface CommodityBLService {
 	 * @return 所有商品分类组合
 	 */
 	public ArrayList<CategoryCommodityVO> bigShow();
+
+	/**
+	 * 创建单据编号
+	 * @param fatherId
+	 * @return
+	 */
+	String createId(String fatherId);
 }

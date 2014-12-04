@@ -120,8 +120,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			public void mousePressed(MouseEvent e) {
 				TreePath path = treeTable.getPathForLocation(e.getX(), e.getY());
 				MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
-				if (path == null) 	return;
-				System.out.println(node);
+				if (path == null) return;
 				if (e.getButton() == 3) {
 					if(node.getParent()==null){
 						popmenu.setVisible(false);
@@ -199,13 +198,11 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			double salePrice, int warningNum) {
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 		if(node.isCategory()){
-			CommodityVO vo=new CommodityVO(node.getId()+Integer.toString((node.getChildCount()+1)),
+			CommodityVO vo=new CommodityVO(controller.createId(node.getId()),
 					name,model,0,purchasePrice,salePrice,0.0,0.0,
 					warningNum,false,node.getCategoryvo());
 			if(this.controller.add(vo)==ResultMessage.SUCCESS){
-				// 新增的节点中id为空
-				node.addChild(new MyTreeNode(null,null,vo,node));
-				//this.initTreeTable();
+				node.addChild( new MyTreeNode(null,null,vo,node));
 				this.treeTable.updateUI();
 				this.infodialog.dispose();
 				MyOptionPane.showMessageDialog(null, "添加成功！");

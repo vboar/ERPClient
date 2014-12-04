@@ -46,7 +46,11 @@ public class CommodityController implements CommodityBLService {
 	@Override
 	public ArrayList<CategoryCommodityVO> bigShow() {
 		return commodity.bigShow();
+	}
 	
+	@Override
+	public String createId(String fatherId){
+		return commodity.createId(fatherId);
 	}
 
 }
