@@ -90,8 +90,8 @@ public class Stock {
 				present=false;
 			}
 			for (PresentLineItemVO presentvo : preList) {
-				// TODO 换成getbyid
-				double money = new Commodity().findById(presentvo.id).get(0).purchasePrice;
+				
+				double money = new Commodity().getById(presentvo.id).getPurchasePrice();
 				CommodityLineItemVO clivo = new CommodityLineItemVO(
 						presentvo.id, presentvo.name, presentvo.model, presentvo.number, money,
 						presentvo.number * money, null);
