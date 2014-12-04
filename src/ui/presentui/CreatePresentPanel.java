@@ -107,14 +107,9 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.customerNameLab = new MyLabel(pcfg.getLabels().element("customernamelab"));
 		this.documentId = new MyLabel(pcfg.getLabels().element("documentidlab"));
 		this.documentId.setText(this.presentController.createId());
-		this.add(new MyLabel(pcfg.getLabels().element("documentid")));
-		this.add(new MyLabel(pcfg.getLabels().element("customerid")));
-		this.add(new MyLabel(pcfg.getLabels().element("customerinfo")));
-		this.add(new MyLabel(pcfg.getLabels().element("customername")));
 		this.add(new MyLabel(pcfg.getLabels().element("customeridlab")));
 		this.add(new MyLabel(pcfg.getLabels().element("customernamelab")));
 		this.add(new MyLabel(pcfg.getLabels().element("tip")));
-		this.add(new MyLabel(pcfg.getLabels().element("presentlist")));
 		this.add(this.documentId);
 		this.add(this.customerIdLab);
 		this.add(this.customerNameLab);

@@ -3,7 +3,7 @@
 	<!-- 登录窗口 -->
 	<loginframe width="540" height="360" windowUp="20">
 		<panel className="ui.loginui.LoginPanel" width="540" height="360"
-			x="0" y="0" bg="img/login.jpg">
+			x="0" y="0" bg="img/common/login.jpg">
 			<buttons>
 				<login text="登录" w="80" h="30" x="315" y="240" />
 				<quit text="退出" w="80" h="30" x="415" y="240" />
@@ -36,20 +36,20 @@
 		<!-- 当前登录用户信息面板 -->
 		>
 		<panel className="ui.homeui.LoginUserInfoPanel" width="960"
-			height="90" x="0" y="0" bg="img/title.jpg">
+			height="90" x="0" y="0" bg="img/common/title.jpg">
 			<buttons>
-				<mailbox text="" w="40" h="30" x="190" y="54" path="img/2.png" />
+				<mailbox text="" w="40" h="30" x="190" y="54" path="img/common/2.png" />
 			</buttons>
 			<labels>
 				<username w="100" h="30" x="80" y="15" />
 				<id w="100" h="30" x="80" y="35" />
-				<img text="" w="240" h="30" x="20" y="20" path="img\1.jpg" />
+				<img text="" w="240" h="60" x="20" y="20" path="img/common/1.jpg" />
 			</labels>
 		</panel>
 
 		<!-- 时间显示面板 -->
 		<panel className="ui.homeui.TimePanel" width="960" height="25"
-			x="0" y="570" bg="img/bottomline.png">
+			x="0" y="570" bg="img/common/bottomline.png">
 			<labels>
 				<timelab text="" w="240" h="20" x="700" y="0" />
 			</labels>
@@ -59,7 +59,7 @@
 
 		<!-- 库存管理人员面板 -->
 		<panel className="ui.homeui.StockKeeperPanel" width="960"
-			   height="480" x="0" y="90" bg="img/leftpanel.png">
+			   height="480" x="0" y="90" bg="img/common/leftpanel.png">
 			<buttons>
 				<category text="商品分类管理" w="160" h="40" x="20" y="50" />
 				<commodity text="商品管理" w="160" h="40" x="20" y="100" />
@@ -75,7 +75,7 @@
 
 		<!-- 销售人员面板 -->
 		<panel className="ui.homeui.SalesmanPanel" width="960"
-			   height="480" x="0" y="90" bg="img/leftpanel.png">
+			   height="480" x="0" y="90" bg="img/common/leftpanel.png">
 			<buttons>
 				<sale text="商品销售" w="160" h="40" x="20" y="50" />
 				<purchase text="商品进货" w="160" h="40" x="20" y="100" />
@@ -89,7 +89,7 @@
 		
 		<!-- 财务人员面板 -->
 		<panel className="ui.homeui.CounterPanel" width="960" height="480"
-			x="0" y="90" bg="img/leftpanel.png">
+			x="0" y="90" bg="img/common/leftpanel.png">
 			<buttons>
 				<account text="账户管理" w="160" h="40" x="20" y="50" />
 				<payment text="收款/付款" w="160" h="40" x="20" y="100" />
@@ -104,7 +104,7 @@
 
 		<!-- 总经理面板 -->
 		<panel className="ui.homeui.ManagerPanel" width="960" height="480"
-			   x="0" y="90" bg="img/leftpanel.png">
+			   x="0" y="90" bg="img/common/leftpanel.png">
 			<buttons>
 				<approval text="单据审批" w="160" h="40" x="20" y="50" />
 				<promotion text="促销策略制定" w="160" h="40" x="20" y="100" />
@@ -118,7 +118,7 @@
 
 		<!-- 系统管理员面板 -->
 		<panel className="ui.homeui.AdminPanel" width="960"
-			   height="480" x="0" y="90" bg="img/leftpanel.png">
+			   height="480" x="0" y="90" bg="img/common/leftpanel.png">
 			<buttons>
 				<usermanage text="系统用户管理" w="160" h="40" x="20" y="50" />
 			</buttons>
@@ -131,7 +131,7 @@
 
 		<!-- 商品分类管理面板 -->
 		<panel className="ui.commodityui.categoryui.CategoryPanel"
-			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+			   width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<showall text="展开所有节点" w="120" h="30" x="610" y="42"/>
 			</buttons>
@@ -147,7 +147,7 @@
 
 		<!-- 商品管理面板 -->
 		<panel className="ui.commodityui.commodityui.CommodityPanel"
-			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+			   width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<find text="搜索" w="60" h="30" x="680" y="45"  />
 			</buttons>
@@ -166,7 +166,7 @@
 
 		<!-- 赠品发放面板 -->
 		<panel className="ui.presentui.PresentPanel"
-			   width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+			   width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<show text="查看赠送单" w="160" h="30" x="20" y="45"/>
 				<createpresent text="创建赠送单" w="160" h="30" x="200" y="45"/>
@@ -178,7 +178,7 @@
 
 		<!-- 赠品发放面板中的制定赠送单面板 -->
 		<panel className="ui.presentui.CreatePresentPanel"
-			   width="750" height="400" x="0" y="80" bg="img/zsd.jpg">
+			   width="750" height="400" x="0" y="80" bg="img/document/zsd.jpg">
 			<buttons>
 				<addcustomer text="添加客户信息" w="100" h="30" x="630" y="50" />
 				<add text="增加商品" w="80" h="25" x="560" y="125" />
@@ -187,23 +187,16 @@
 				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
 			</buttons>
 			<labels>
-				<documentid text="单据编号：" w="80" h="30" x="520" y="10" />
-				<documentidlab text="" w="200" h="30" x="590" y="10" />				
-				<customerinfo text="客户信息" w="80" h="30" x="20" y="45" 
-				font="微软雅黑" fontsize="16" color="true" r="40" g="40" b="40"/>
+				<documentidlab text="" w="200" h="30" x="590" y="8" />				
 				<tip text="请输入客户信息关键字" w="180" h="30" x="250" y="50" 
 				font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
-				<customerid text="客户ID：" w="120" h="35" x="20" y="85" />
-				<customeridlab text="_________________________" w="180" h="35" x="80" y="85" />
-				<customername text="客户名：" w="120" h="35" x="290" y="85" />
-				<customernamelab text="________________________" w="180" h="35" x="350" y="85" />
-				<presentlist text="赠品列表" w="120" h="40" x="20" y="120" 
-				font="微软雅黑" fontsize="16" color="true" r="40" g="40" b="40"/>				
+				<customeridlab text="_________________________" w="180" h="35" x="100" y="85" />
+				<customernamelab text="________________________" w="180" h="35" x="370" y="85" />		
 			</labels>
 			<textfields>
 				<customerinfo w="240" h="30" x="380" y="50" />
 			</textfields>
-			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="200" x="10" y="150">
+			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="200" x="10" y="152">
 				<columnnames>
 					<columnname name="商品编号" />
 					<columnname name="商品名称" />
@@ -215,12 +208,22 @@
 
 		<!-- 赠品发放中的查看单据面板 -->
 		<panel className="ui.presentui.ShowPanel"
-			   width="760" height="400" x="0" y="80" bg="img/rightpanel.png">
+			   width="760" height="400" x="0" y="80" bg="img/common/rightpanel.png">
 			<buttons>
+				<find text="查询" w="70" h="30" x="550" y="10" />
+				<showall text="查看所有" w="100" h="30" x="630" y="10"/>
 			</buttons>
 			<labels>
+				<stocklist text="赠送单列表" w="160" h="40" x="20" y="4"
+						   font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
+				<start text="起始日期" w="120" h="30" x="160" y="10" />
+				<end text="截止日期" w="120" h="30" x="360" y="10" />
 			</labels>
-			<tablepane className="ui.presentui.ShowPanel" width="730" height="380" x="10" y="10">
+			<datepicker>
+				<start w="120" h="30" x="220" y="10"/>
+				<end w="120" h="30" x="420" y="10"/>
+			</datepicker>
+			<tablepane className="ui.presentui.ShowPanel" width="730" height="340" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
@@ -233,7 +236,7 @@
 		</panel>
 
 		<!-- 库存查看面板 -->
-		<panel className="ui.stockui.stockinfo.StockInfoPanel" width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+		<panel className="ui.stockui.stockinfo.StockInfoPanel" width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<find text="查询" w="70" h="30" x="550" y="45" />
 				<showall text="查看所有" w="100" h="30" x="630" y="45"/>
@@ -249,7 +252,7 @@
 				<start w="120" h="30" x="220" y="45"/>
 				<end w="120" h="30" x="420" y="45"/>
 			</datepicker>
-			<tablepane className="ui.stockui.StockTablePane"
+			<tablepane className="ui.stockui.stockinfo.StockTablePane"
 					   width="730" height="395" x="10" y="80">
 				<columnnames>
 					<columnname name="编号" />
@@ -264,10 +267,38 @@
 			</tablepane>
 		</panel>
 
-
+		<!-- 库存盘点面板 -->
+		<panel className="ui.stockui.stockcheck.StockCheckPanel" width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
+			<buttons>
+				<show text="查看" w="60" h="30" x="670" y="45" />
+				<createcheck text="生成今日快照" w="120" h="30" x="450" y="440" />
+				<excel text="导出Excel文件" w="140" h="30" x="580" y="440"/>
+			</buttons>
+			<labels>
+				<title text="库存盘点" w="200" h="30" x="10" y="2" />
+				<list text="今日库存信息列表" w="180" h="40" x="20" y="40"
+						   font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40"/>
+				<date text="日期" w="60" h="30" x="500" y="45" />
+			</labels>
+			<datepicker>
+				<date w="120" h="30" x="540" y="45"/>
+			</datepicker>
+			<tablepane className="ui.stockui.stockcheck.StockCheckTablePane"
+					   width="730" height="350" x="10" y="80">
+				<columnnames>
+					<columnname name="批次" />
+					<columnname name="批号" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="库存数量" />
+					<columnname name="库存均价" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
 		<!-- 商品销售面板 -->
 		<panel className="ui.saleui.SalePanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 			</buttons>
 			<labels>
@@ -277,7 +308,7 @@
 
 		<!-- 商品进货面板 -->
 		<panel className="ui.purchaseui.PurchasePanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 			</buttons>
 			<labels>
@@ -287,25 +318,23 @@
 
 		<!-- 客户管理面板 -->
 		<panel className="ui.customerui.CustomerPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="170" y="40" path="img\adduser.png"
-					 pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="250" y="40" path="img\deluser.png"
-						pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="330" y="40" path="img\upduser.png"
-						pathroll="img\upduser1.png" />
-				<show text="" w="100" h="32" x="410" y="40" path="img\show.png"
-						 pathroll="img\show1.png" />
-				<find text="" w="30" h="30" x="702" y="45" path="img\search.png"
-					  pathroll="img\search1.png" />
+				<add text="" w="80" h="32" x="170" y="40" path="img/buttons/adduser.png"
+					 pathroll="img/buttons/adduser1.png" />
+				<delete text="" w="80" h="32" x="250" y="40" path="img/buttons/deluser.png"
+						pathroll="img/buttons/deluser1.png" />
+				<update text="" w="80" h="32" x="330" y="40" path="img/buttons/upduser.png"
+						pathroll="img/buttons/upduser1.png" />
+				<show text="" w="100" h="32" x="410" y="40" path="img/buttons/show.png"
+						 pathroll="img/buttons/show1.png" />
+				<find text="" w="30" h="30" x="702" y="45" path="img/buttons/search.png"
+					  pathroll="img/buttons/search1.png" />
 			</buttons>
 			<labels>
 				<title text="客户管理" w="120" h="30" x="10" y="2" />
 				<customerlist text="" w="120" h="32" x="20" y="40"
 							  path="img\customerlist.png" />
-				<customermanagebtn text="" w="150" h="32" x="35"
-								   y="60" path="img\usermanagebtn.png" />
 			</labels>
 			<textfields>
 				<findinput w="175" h="28" x="525" y="45" />
@@ -331,7 +360,7 @@
 
 
 		<!-- 收付款面板 -->
-		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
+		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<createreceipt text="制定收款单" w="150" h="32" x="200" y="40" />
 				<createpayment text="制定付款单" w="150" h="32" x="370" y="40" />
@@ -459,7 +488,7 @@
 
 		<!-- 经营状况查看面板 -->
 		<panel className="ui.conditionui.ConditionPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 			</buttons>
 			<labels>
@@ -469,7 +498,7 @@
 
 		<!-- 系统日志查询面板 -->
 		<panel className="ui.logui.LogPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 			</buttons>
 			<labels>
@@ -479,7 +508,7 @@
 
 		<!-- 期初建账面板 -->
 		<panel className="ui.initialui.InitialPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 			</buttons>
 			<labels>
@@ -488,25 +517,24 @@
 		</panel>
 
 		<!-- 账户管理面板 -->
-		<panel className="ui.accountui.AccountPanel" width="760" height="510" x="200" y="0" bg="img/panel.png">
+		<panel className="ui.accountui.AccountPanel" width="760" height="510" x="200" y="0" bg="img/common/panel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="180" y="36" path="img\adduser.png"
-					 pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="260" y="36" path="img\deluser.png"
-						pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="340" y="36" path="img\upduser.png"
-						pathroll="img\upduser1.png" />
-				<show text="" w="100" h="30" x="420" y="36" path="img\show.png"
-					  pathroll="img\show1.png" />
-				<find text="" w="24" h="24" x="700" y="40" path="img\search.png"
-					  pathroll="img\search1.png" />
+				<add text="" w="80" h="32" x="180" y="36" path="img/buttons/adduser.png"
+					 pathroll="img/buttons/adduser1.png" />
+				<delete text="" w="80" h="32" x="260" y="36" path="img/buttons/deluser.png"
+						pathroll="img/buttons/deluser1.png" />
+				<update text="" w="80" h="32" x="340" y="36" path="img/buttons/upduser.png"
+						pathroll="img/buttons/upduser1.png" />
+				<show text="" w="100" h="30" x="420" y="36" path="img/buttons/show.png"
+					  pathroll="img/buttons/show1.png" />
+				<find text="" w="24" h="24" x="700" y="40" path="img/buttons/search.png"
+					  pathroll="img/buttons/search1.png" />
 			</buttons>
 			<labels>
 				<title text="账户管理" w="120" h="30" x="10" y="2" />
 				<accountlist text="" w="120" h="32" x="0" y="35"
-							 path="img\userlist.png" />
-				<modulename text="" w="120" h="30" x="0" y="2"
-							path="img\usermanage.png" />
+							 path="img/userlist.png" />
+				<modulename text="账户管理" w="120" h="30" x="0" y="2"/>
 				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
 			</labels>
 			<textfields>
@@ -525,7 +553,7 @@
 
 		<!-- 单据审批面板 -->
 		<panel className="ui.approvalui.ApprovalPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 			</buttons>
 			<labels>
@@ -536,7 +564,7 @@
 
 		<!-- 促销策略制定面板 -->
 		<panel className="ui.promotionui.PromotionPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<customer text="针对客户级别" w="180" h="32" x="10" y="40"/>
 				<totalgift text="针对总价" w="180" h="32" x="190" y="40"/>
@@ -549,7 +577,7 @@
 
 		<!-- 客户级别促销策略制定面板 -->
 		<panel className="ui.promotionui.CustomerPanel" width="760" height="420"
-			   x="0" y="70" bg="img/rightpanel.png">
+			   x="0" y="70" bg="img/common/rightpanel.png">
 			<buttons>
 				<add text="添加" w="80" h="30" x="460" y="10"/>
 				<update text="修改" w="80" h="30" x="550" y="10"/>
@@ -575,7 +603,7 @@
 		
 		<!-- 总价包促销策略制定面板 -->
 		<panel className="ui.promotionui.TotalGiftPanel" width="760" height="420"
-			   x="0" y="70" bg="img/rightpanel.png">
+			   x="0" y="70" bg="img/common/rightpanel.png">
 			<buttons>
 				<add text="添加" w="80" h="30" x="460" y="10"/>
 				<update text="修改" w="80" h="30" x="550" y="10"/>
@@ -600,7 +628,7 @@
 		
 		<!-- 特价包促销策略制定面板 -->
 		<panel className="ui.promotionui.SpecialOfferPanel" width="760" height="420"
-			   x="0" y="70" bg="img/rightpanel.png">
+			   x="0" y="70" bg="img/common/rightpanel.png">
 			<buttons>
 				<add text="添加" w="80" h="30" x="460" y="10"/>
 				<update text="修改" w="80" h="30" x="550" y="10"/>
@@ -624,18 +652,18 @@
 
 		<!-- 用户管理面板 -->
 		<panel className="ui.userui.UserPanel" width="760" height="510"
-			   x="200" y="0" bg="img/rightpanel.png">
+			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="170" y="40" path="img\adduser.png"
-					 pathroll="img\adduser1.png" />
-				<delete text="" w="80" h="32" x="250" y="40" path="img\deluser.png"
-						pathroll="img\deluser1.png" />
-				<update text="" w="80" h="32" x="330" y="40" path="img\upduser.png"
-						pathroll="img\upduser1.png" />
-				<showall text="" w="100" h="32" x="410" y="40" path="img\show.png"
-						 pathroll="img\show1.png" />
-				<find text="" w="30" h="30" x="702" y="45" path="img\search.png"
-					  pathroll="img\search1.png" />
+				<add text="" w="80" h="32" x="170" y="40" path="img/buttons/adduser.png"
+					 pathroll="img/buttons/adduser1.png" />
+				<delete text="" w="80" h="32" x="250" y="40" path="img/buttons/deluser.png"
+						pathroll="img/buttons/deluser1.png" />
+				<update text="" w="80" h="32" x="330" y="40" path="img/buttons/upduser.png"
+						pathroll="img/buttons/upduser1.png" />
+				<showall text="" w="100" h="32" x="410" y="40" path="img/buttons/show.png"
+						 pathroll="img/buttons/show1.png" />
+				<find text="" w="30" h="30" x="702" y="45" path="img/buttons/search.png"
+					  pathroll="img/buttons/search1.png" />
 			</buttons>
 			<labels>
 				<title text="用户管理面板" w="120" h="30" x="10" y="2" />

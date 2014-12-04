@@ -93,10 +93,8 @@ public class StockKeeperPanel extends MyMainPanel {
 		this.stockCheckBtn = new MyButton(pcfg.getButtons().element("stockcheck"));
 		stockCheckBtn.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showStockCheck();
+			public void actionPerformed(ActionEvent e) {			
+				showStockCheck();
 			}
 		});
 		this.exceptionBtn = new MyButton(pcfg.getButtons().element("exception"));

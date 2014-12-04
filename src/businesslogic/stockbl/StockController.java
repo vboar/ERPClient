@@ -30,8 +30,9 @@ public class StockController implements StockBLService {
 
 	@Override
 	public ArrayList<StockVO> showCheck() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO
+		ArrayList<StockVO> list = new ArrayList<StockVO>();
+		return list;
 	}
 
 	@Override

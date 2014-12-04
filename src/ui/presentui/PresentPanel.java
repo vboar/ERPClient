@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -49,6 +50,7 @@ public class PresentPanel extends JPanel {
 	private void initComponent() {
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.listpanel = new ShowPanel();
+		this.listpanel.setVisible(true);
 		this.add(this.listpanel);
 		this.addPresent = new MyButton(pcfg.getButtons().element("createpresent"));
 		this.add(this.addPresent);
@@ -68,9 +70,13 @@ public class PresentPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				listpanel.udpateData();
-				listpanel.setVisible(true);
 				if(createPanel!=null){
-					remove(createPanel);
+					int result = MyOptionPane.showConfirmDialog(null, "是否放弃当前编辑？","确认提示",
+							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						remove(createPanel);
+						listpanel.setVisible(true);
+					}
 				}
 			}
 		});

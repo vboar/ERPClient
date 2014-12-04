@@ -11,7 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -122,9 +121,11 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				TreePath path = treeTable.getPathForLocation(e.getX(), e.getY());
 				MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 				if (path == null) 	return;
+				System.out.println(node);
 				if (e.getButton() == 3) {
 					if(node.getParent()==null){
 						popmenu.setVisible(false);
+						MyOptionPane.showMessageDialog(null, "请选择商品分类或商品进行操作！");
 					}else{
 						popmenu.setVisible(true);
 						if(node.isCategory()){
@@ -165,7 +166,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 					node.getParent().removeChild(node);
 					this.treeTable.updateUI();			
 				}else{
-					MyOptionPane.showConfirmDialog(null, "删除失败！");
+					MyOptionPane.showMessageDialog(null, "删除失败！");
 				}
 			}
 		}
@@ -210,6 +211,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				MyOptionPane.showMessageDialog(null, "添加成功！");
 			}else{
 				MyOptionPane.showMessageDialog(null, "添加失败！");
+				this.treeTable.updateUI();
 			}
 		}
 		
@@ -240,6 +242,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				this.treeTable.updateUI();
 			}else{
 				MyOptionPane.showMessageDialog(null, "修改失败！");
+				this.treeTable.updateUI();
 			}
 		}
 	}

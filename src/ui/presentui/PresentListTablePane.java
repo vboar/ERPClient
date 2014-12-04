@@ -1,7 +1,7 @@
 package ui.presentui;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -73,10 +73,30 @@ public class PresentListTablePane extends TablePanel{
 	
 	public void updateData() {
 		this.initData();
-		System.out.println("upadate!");
-		System.out.println(list.size());
 		this.dtm.setDataVector(data, columnName);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.updateUI();
+	}
+
+	public void showFindTable(String time1, String time2) {
+		Vector<String> names = new Vector<String>(COLUMN_NUM);
+		for(int i=0; i<COLUMN_NUM;++i){
+			names.add(columnName[i]);
+		}
+		Vector<Object> table = new Vector<Object>(list.size());
+		for(int i=0; i<list.size(); ++i){
+			PresentVO vo = list.get(i);
+			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
+			row.add(vo.id);
+			row.add(vo.time);
+			row.add(vo.customerId);
+			row.add(vo.customerName);
+			row.add(vo.list.toString());
+			row.add(vo.documentStatus.toReadableString());
+			table.add(row);
+		}
+		this.dtm.setDataVector(table, names);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
 	}
 	

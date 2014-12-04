@@ -170,11 +170,11 @@ public class MyTreeNode extends DefaultMutableTreeNode implements TreeTableNode{
 	}
 	
 	public MyTreeNode findChild(String key){
-		if(this.isCategory()){
+		if(this.isCategory()||this.parent==null){
 			for(int i=0; i<mychildren.size(); ++i){
 				if(!mychildren.get(i).isCategory()){
 					MyTreeNode node = mychildren.get(i);
-					if((node.getCommodityvo().name+
+					if((node.getCommodityvo().name+"-"+
 							node.getCommodityvo().model).equals(key)){
 						return node;
 					}
