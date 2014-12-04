@@ -32,6 +32,8 @@ public class Stock {
 	}
 
 	public ArrayList<StockInfoVO> showStockInfo(String time1, String time2) {
+		
+		//获得时间
 		if (time1 == null) {
 			time1 = "1970/1/1";
 		}
@@ -40,6 +42,7 @@ public class Stock {
 			SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 			time2 = myFmt.format(date);
 		}
+		//获取初始单据信息
 		ArrayList<PresentVO> presentList = new Present().findByTime(time1,
 				time2);
 		ArrayList<SaleVO> saleList = new Sale().findByTime(time1, time2);
@@ -53,6 +56,7 @@ public class Stock {
 		ArrayList<CommodityLineItemVO> inList = new ArrayList<CommodityLineItemVO>();
 		ArrayList<CommodityLineItemVO> outList = new ArrayList<CommodityLineItemVO>();
 
+		//消去没有被审批的
 		for (SaleVO salevo : saleList) {
 			if (salevo.approvalState != DocumentStatus.PASSED) {
 				saleList.remove(salevo);
@@ -83,6 +87,8 @@ public class Stock {
 
 			}
 		}
+		
+		//把present矫诏变成commodity的样子
 		for (PresentVO presentVO : presentList) {
 			ArrayList<PresentLineItemVO> preList = presentVO.list;
 			boolean present=true;
@@ -101,6 +107,8 @@ public class Stock {
 			}
 
 		}
+		
+		//加到第二级列表中，按照销售和进货分开
 		for (SaleVO salevo : saleList) {
 			outList.addAll(salevo.saleList);
 		}
@@ -115,6 +123,7 @@ public class Stock {
 			outList.addAll(purchasereturnvo.saleList);
 		}
 		
+		//做结果的list
 		ArrayList<StockInfoVO> result=new ArrayList<StockInfoVO>();
 		while(!inList.isEmpty()){
 		CommodityLineItemVO invo =inList.get(0);
@@ -136,6 +145,7 @@ public class Stock {
 		}
 		result.add(vo);
 		}
+		//如果剩下的只有卖的也不能漏下
 		while(!outList.isEmpty()){
 			CommodityLineItemVO outvo =outList.get(0);
 			StockInfoVO vo=new StockInfoVO(outvo.id, outvo.name, outvo.model, 0, 0, outvo.number, outvo.total);
