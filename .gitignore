@@ -1,6 +1,7 @@
 /bin
 /target
 /.idea
+/out
 
 *.class
 *.iml
@@ -9,7 +10,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
