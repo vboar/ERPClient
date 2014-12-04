@@ -24,7 +24,6 @@ public class CommodityTreeTableModel extends DefaultTreeTableModel {
 
 	public MyTreeNode findNode(MyTreeNode node, String key){
 		MyTreeNode findnode = null;
-		System.out.println(node+" iscategory: "+node.isCategory());
 		if ((node.getCommodityvo()!= null) && (node.getCommodityvo().name.equals(key))) {
 			this.isfound = true;
 			findnode = node;

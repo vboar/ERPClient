@@ -731,38 +731,38 @@
 
 
 	<!-- 客户信息对话框 -->
-	<customerinfodialog width="500" height="280" x="230"
+	<customerinfodialog width="560" height="320" x="200"
 						y="180" title="客户信息">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
+			<commit text="提交" w="80" h="30" x="150" y="230" />
+			<cancel text="取消" w="80" h="30" x="270" y="230" />
 		</buttons>
 		<labels>
-			<category text="客户类别" w="40" h="30" x="30" y="20" />
-			<level text="客户级别" w="60" h="30" x="240" y="20" />
-			<name text="姓名" w="40" h="30" x="30" y="80" />
-			<phonenumber text="电话" w="40" h="30" x="30" y="140" />
-			<address text="地址" w="40" h="30" x="240" y="140" />
-			<postalcode text="邮编" w="40" h="30" x="240" y="140" />
-			<email text="电子邮箱" w="40" h="30" x="240" y="140" />
-			<creditlimit text="应收额度" w="40" h="30" x="240" y="140" />
-			<salesman text="默认业务员" w="40" h="30" x="240" y="140" />
+			<category text="类别" w="60" h="30" x="30" y="20" />
+			<level text="客户级别" w="60" h="30" x="250" y="20" />
+			<name text="姓名" w="40" h="30" x="30" y="60" />
+			<phonenumber text="联系电话" w="80" h="30" x="250" y="60" />
+			<address text="地址" w="40" h="30" x="30" y="100" />
+			<postalcode text="邮编" w="40" h="30" x="30" y="140" />
+			<email text="电子邮箱" w="60" h="30" x="250" y="140" />
+			<creditlimit text="应收额度" w="60" h="30" x="250" y="180" />
+			<salesman text="默认业务员" w="80" h="30" x="30" y="180" />
 		</labels>
 		<textfields>
-			<name w="40" h="30" x="30" y="80" />
-			<phonenumber w="40" h="30" x="30" y="140" />
-			<address w="40" h="30" x="240" y="140" />
-			<postalcode w="40" h="30" x="240" y="140" />
-			<email w="40" h="30" x="240" y="140" />
-			<creditlimit w="40" h="30" x="240" y="140" />
-			<salesman w="40" h="30" x="240" y="140" />
+			<name w="140" h="30" x="80" y="60" />
+			<phonenumber w="190" h="30" x="320" y="60" />
+			<address w="430" h="30" x="80" y="100" />
+			<postalcode w="140" h="30" x="80" y="140" />
+			<email w="190" h="30" x="320" y="140" />
+			<creditlimit w="100" h="30" x="320" y="180" />
+			<salesman w="100" h="30" x="120" y="180" />
 		</textfields>
 		<comboboxes>
-			<category w="130" h="30" x="80" y="140">
+			<category w="130" h="30" x="80" y="20">
 				<string str="供应商" />
 				<string str="销售商" />
 			</category>
-			<level w="130" h="30" x="80" y="140">
+			<level w="130" h="30" x="320" y="20">
 				<string str="VIP1" />
 				<string str="VIP2" />
 				<string str="VIP3" />

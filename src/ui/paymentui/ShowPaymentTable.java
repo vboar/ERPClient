@@ -29,6 +29,7 @@ public class ShowPaymentTable extends TablePanel {
         super(cfg);
         list = controller.show(null, null);
         initTable();
+        initComponent();
     }
 
     @Override

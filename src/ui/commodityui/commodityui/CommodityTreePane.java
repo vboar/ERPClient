@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -122,21 +123,27 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 				if (path == null) 	return;
 				if (e.getButton() == 3) {
-					if(node.isCategory()){
-						if(node.isLastCategory()){
-							popmenu.unableDelUpdItem();
-						}else	popmenu.setAllItenEnable(false);;
+					if(node.getParent()==null){
+						popmenu.setVisible(false);
 					}else{
-						popmenu.setAllItenEnable(true);
-						popmenu.unableAddItem();
+						popmenu.setVisible(true);
+						if(node.isCategory()){
+							if(node.isLastCategory()){
+								popmenu.unableDelUpdItem();
+							}else	popmenu.setAllItenEnable(false);;
+						}else{
+							popmenu.setAllItenEnable(true);
+							popmenu.unableAddItem();
+						}
+						popmenu.show(e.getComponent(), e.getX(), e.getY());
 					}
-					popmenu.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
 		});
 		this.treeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.treeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		this.treeTable.setDefaultRenderer(Object.class, new MyTreeTableRenderer());
+		this.treeTable.setRootVisible(true);
 		// 创建滚动条面板
 		this.jsp = new JScrollPane();
 		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());	
@@ -269,7 +276,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				comp.setForeground(new Color(40,40,40));
 			}
 			if(isInit){
-				FrameUtil.setTableColumnWidth(table, CommodityTreePane.this.getWidth(),20);
+				FrameUtil.setTableColumnWidth(table, CommodityTreePane.this.getWidth(),40);
 	            table.getColumnModel().getColumn(0).setMinWidth(200);
 				isInit = false;
 			}
