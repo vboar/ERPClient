@@ -1,4 +1,4 @@
-package ui.presentui;
+package ui.paymentui;
 
 import vo.TransferLineItemVO;
 

@@ -142,7 +142,6 @@
 				<category text="商品分类浏览" w="160" h="40" x="20" y="36" font="微软雅黑"
 						  fontsize="20" color="true" r="40" g="40" b="40" />
 			</labels>
-			<textfields></textfields>
 			<tree width="730" height="380" x="10" y="80" rootname="ERP" />
 		</panel>
 
@@ -177,7 +176,7 @@
 			</labels>
 		</panel>
 
-		<!-- 赠品发放面板中的赠送单面板 -->
+		<!-- 赠品发放面板中的制定赠送单面板 -->
 		<panel className="ui.presentui.CreatePresentPanel"
 			   width="750" height="400" x="0" y="80" bg="img/zsd.jpg">
 			<buttons>
@@ -334,7 +333,7 @@
 		<!-- 收付款面板 -->
 		<panel className="ui.paymentui.PaymentPanel" width="760" height="510" x="200" y="0" bg="img/rightpanel.png">
 			<buttons>
-				<createreceipt text="制定收款单" w="150" h="32" x="200" y="40" ></createreceipt>
+				<createreceipt text="制定收款单" w="150" h="32" x="200" y="40" />
 				<createpayment text="制定付款单" w="150" h="32" x="370" y="40" />
 				<createcash text="制定现金费用单"  w="150" h="32" x="540" y="40" />
 				<show text="单据查看"  w="150" h="30" x="20" y="40" />
@@ -344,9 +343,47 @@
 			</labels>
 		</panel>
 
+		<!-- 收付款面板中的查看单据面板 -->
+		<panel className="ui.paymentui.ShowPanel" width="760" height="400"
+			   x="0" y="80" bg="">
+			<labels>
+				<documenttype text="单据类型" w="60" h="30" x="20" y="20" />
+				<starttime text="起始日期" w="60" h="30" x="220" y="20" />
+				<endtime text="截止日期" w="60" h="30" x="410" y="20" />
+			</labels>
+			<datepicker>
+				<starttime w="100" h="30" x="290" y="20"/>
+				<endtime w="100" h="30" x="480" y="20"/>
+			</datepicker>
+			<comboboxes>
+				<documenttype w="100" h="30" x="90" y="20">
+					<string str="收款单" />
+					<string str="付款单" />
+					<string str="现金费用单" />
+				</documenttype>
+			</comboboxes>
+			<buttons>
+				<find text="查询" w="60" h="25" x="600" y="20" />
+				<show text="查看所有" w="60" h="25" x="680" y="20" />
+			</buttons>
+			<tablepane className="ui.paymentui.ShowPaymentTable"
+					   width="730" height="350" x="10" y="60">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="客户编号" />
+					<columnname name="客户名" />
+					<columnname name="转账列表" />
+					<columnname name="金额汇总" />
+					<columnname name="操作员" />
+					<columnname name="审批状态"/>
+				</columnnames>
+			</tablepane>
+		</panel>
+
 		<!-- 收付款面板中的制定收款单面板 -->
 		<panel className="ui.paymentui.CreateReceiptPanel" width="760" height="400"
-			   x="0" y="80" bg="img/rightpanel.png">
+			   x="0" y="80" bg="">
 			<buttons>
 				<add text="添加账户" w="80" h="25" x="500" y="120" />
 				<delete text="删除账户" w="80" h="25" x="600" y="120" />
@@ -372,7 +409,7 @@
 			<textfields>
 				<customerfind w="200" h="30" x="230" y="50" />
 			</textfields>
-			<tablepane className="ui.paymentui.ReceiptTable" width="730" height="200" x="10" y="150">
+			<tablepane className="ui.paymentui.PaymentTable" width="730" height="200" x="10" y="150">
 				<columnnames>
 					<columnname name="账户名称" />
 					<columnname name="账户卡号" />
@@ -382,9 +419,9 @@
 			</tablepane>
 		</panel>
 		
-				<!-- 收付款面板中的制定付款单面板 -->
+		<!-- 收付款面板中的制定付款单面板 -->
 		<panel className="ui.paymentui.CreatePaymentPanel" width="760" height="400"
-			   x="0" y="80" bg="img/panel.png">
+			   x="0" y="80" bg="">
 			<buttons>
 				<add text="添加账户" w="80" h="25" x="500" y="120" />
 				<delete text="删除账户" w="80" h="25" x="600" y="120" />
@@ -410,7 +447,7 @@
 			<textfields>
 				<customerfind w="200" h="30" x="230" y="50" />
 			</textfields>
-			<tablepane className="ui.paymentui.ReceiptTable" width="730" height="200" x="10" y="150">
+			<tablepane className="ui.paymentui.PaymentTable" width="730" height="200" x="10" y="150">
 				<columnnames>
 					<columnname name="账户名称" />
 					<columnname name="账户卡号" />

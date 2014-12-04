@@ -56,8 +56,7 @@ public class PaymentPanel extends JPanel {
 
 	private void initComponent(PanelConfig cfg) {
 
-		// TODO  暂时这样先显示创建收款单
-		showCreateReceipt();
+		showShow();
 		
 		createPaymentBtn = new MyButton(cfg.getButtons().element("createpayment"));
 		createPaymentBtn.addActionListener(new ActionListener() {
@@ -92,9 +91,7 @@ public class PaymentPanel extends JPanel {
 		showBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "功能正在开发中...");
-//				showShow();
+				showShow();
 			}
 		});
 		this.add(showBtn);

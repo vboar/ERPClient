@@ -6,26 +6,6 @@
 
 package ui.paymentui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import ui.presentui.CreatePanel;
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import util.DocumentStatus;
-import util.DocumentType;
-import util.ResultMessage;
-import vo.CustomerVO;
-import vo.PaymentVO;
-import vo.TransferLineItemVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.loginbl.Login;
 import businesslogicservice.customerblservice.CustomerBLService;
@@ -33,6 +13,20 @@ import businesslogicservice.paymentblservice.PaymentBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
+import ui.util.*;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
+import vo.CustomerVO;
+import vo.PaymentVO;
+import vo.TransferLineItemVO;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePanel {
@@ -88,7 +82,13 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		this.setLayout(null);
 		this.initComponent();
     }
-    
+
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(), pcfg.getH(),null);
+	}
+
+
 	private void initComponent() {
 		initLabels();
 		initButtons();

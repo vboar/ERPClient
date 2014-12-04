@@ -13,7 +13,6 @@ import businesslogicservice.paymentblservice.PaymentBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
-import ui.presentui.CreatePanel;
 import ui.util.*;
 import util.DocumentStatus;
 import util.DocumentType;
@@ -24,6 +23,7 @@ import vo.TransferLineItemVO;
 
 import javax.swing.*;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -82,6 +82,11 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
 		this.initComponent();
+	}
+
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(), pcfg.getH(),null);
 	}
 	
 	private void initComponent() {

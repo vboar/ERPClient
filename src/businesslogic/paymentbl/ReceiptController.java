@@ -8,7 +8,7 @@ import vo.PaymentVO;
 import java.util.ArrayList;
 
 public class ReceiptController implements PaymentBLService {
-	Receipt r=new Receipt();
+	Receipt receipt = new Receipt();
 	
 	@Override
 	public ResultMessage create(PaymentVO vo) {
@@ -24,11 +24,10 @@ public class ReceiptController implements PaymentBLService {
 
 	@Override
 	public ArrayList<PaymentVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		return receipt.findByTime(time1, time2);
 	}
 	
 	public String createId(){
-		return r.createId();
+		return receipt.createId();
 	}
 }
