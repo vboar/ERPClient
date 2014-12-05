@@ -13,6 +13,11 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.exceptionblservice.WarningBLService;
 import config.TableConfig;
 
+/**
+ * 报警单列表面板
+ * @author JanelDQ
+ * @date 2014/12/5
+ */
 @SuppressWarnings("serial")
 public class WarningListTablePane extends TablePanel {
 	
@@ -28,6 +33,10 @@ public class WarningListTablePane extends TablePanel {
 	
 	private WarningBLService controller;
 	
+	/**
+	 * 构造函数
+	 * @param cfg 配置对象
+	 */
 	public WarningListTablePane(TableConfig cfg) {
 		super(cfg);
 		this.controller = ControllerFactoryImpl.getInstance().getWarningController();
@@ -35,6 +44,9 @@ public class WarningListTablePane extends TablePanel {
 		this.initComponent();
 	}
 
+	/**
+	 * 初始化表格
+	 */
 	@Override
 	protected void initTable() {
 		this.columnName = cfg.getColumnName();
@@ -50,6 +62,9 @@ public class WarningListTablePane extends TablePanel {
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 	}
 
+	/**
+	 * 初始化数据
+	 */
 	private void initData() {
 		this.list = controller.show(null, null);
 		if(list!=null){
@@ -61,6 +76,12 @@ public class WarningListTablePane extends TablePanel {
 		}
 	}
 	
+	/**
+	 * 创建行
+	 * @param row
+	 * @param vo
+	 * @return
+	 */
 	private Object[] createRow(Object[] row, WarningVO vo) {
 		row[0]=vo.id;
 		row[1]=vo.time;
@@ -68,6 +89,9 @@ public class WarningListTablePane extends TablePanel {
 		return row;
 	}
 	
+	/**
+	 * 更新数据
+	 */
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
@@ -75,6 +99,11 @@ public class WarningListTablePane extends TablePanel {
 		this.updateUI();
 	}
 
+	/**
+	 * 显示查找结果
+	 * @param time1
+	 * @param time2
+	 */
 	public void showFindTable(String time1, String time2) {
 		if(list==null){
 			return;

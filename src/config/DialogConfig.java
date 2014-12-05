@@ -2,6 +2,11 @@ package config;
 
 import org.dom4j.Element;
 
+/**
+ * 对话框配置对象
+ * @author JanelDQ
+ * @date 2014/11/28
+ */
 public class DialogConfig extends ComponentConfig{
 
 	/**
@@ -27,7 +32,11 @@ public class DialogConfig extends ComponentConfig{
 	 * 复选框配置
 	 */
 	private Element comboboxes;
-	
+
+	/**
+	 * 构造函数
+	 * @param info 配置对象
+	 */
 	public DialogConfig(Element info){
 		this.buttons = info.element("buttons");
 		this.labels = info.element("labels");

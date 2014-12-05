@@ -23,9 +23,14 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 
+/**
+ * 创建报损单面板
+ * @author JanelDQ
+ * @date 2014/12/5
+ */
 @SuppressWarnings("serial")
-public class CreateExceptionPanel extends JPanel{
-
+public class CreateLossPanel extends JPanel implements AddExceptionLineItem{
+	
 	private MyButton addBtn;
 	
 	private MyButton deleteBtn;
@@ -42,32 +47,33 @@ public class CreateExceptionPanel extends JPanel{
 	
 	private Image bg;
 	
-	private ArrayList<ExceptionLineItemVO> commoditylist;
-	
 	private ExceptionPanel panel;
 	
 	private JFrame frame;
 	
-	private boolean isloss = false;
+	private ArrayList<ExceptionLineItemVO> commoditylist;
 	
 	private ExceptionBLService controller;
 	
-	public CreateExceptionPanel(JFrame frame,ExceptionPanel panel, boolean isloss){
+	/**
+	 * 构造函数
+	 * @param frame 主窗口
+	 * @param panel 库存异常处理面板
+	 */
+	public CreateLossPanel(JFrame frame,ExceptionPanel panel){
 		this.frame = frame;
 		this.panel = panel;
-		this.isloss = isloss;
 		this.commoditylist = new ArrayList<ExceptionLineItemVO>();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		if(isloss){
-			this.controller = ControllerFactoryImpl.getInstance().getLossController();
-			this.bg = this.pcfg.getBg();
-		}else{
-			this.controller = ControllerFactoryImpl.getInstance().getOverflowController();
-			this.bg = this.pcfg.getBg1();
-		}		
+		this.controller = ControllerFactoryImpl.getInstance().getLossController();
+		this.bg = this.pcfg.getBg();	
+		
+		// 设置大小、坐标、布局
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
+		
+		//初始化组件
 		this.initComponent();
 		this.setVisible(true);
 	}
@@ -77,11 +83,19 @@ public class CreateExceptionPanel extends JPanel{
 		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
 	}
 	
+	/**
+	 * 初始化组件
+	 */
 	private void initComponent(){
+		// 初始化按钮
 		this.initButtons();
+		
+		// 初始化标签
 		this.documentId = new MyLabel(pcfg.getLabels().element("documentid"));
 		this.documentId.setText(this.controller.createId());
 		this.add(this.documentId);
+		
+		//初始化商品表格面板
 		this.tablepane = new ExceptionTablePane(new TableConfig(this.pcfg.getTablepane()));
 		this.add(this.tablepane);
 	}
@@ -92,7 +106,7 @@ public class CreateExceptionPanel extends JPanel{
 		this.addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddExceptionLineItemDialog(CreateExceptionPanel.this,frame);
+				new AddExceptionLineItemDialog(CreateLossPanel.this,frame);
 			}
 			
 		});
@@ -104,13 +118,13 @@ public class CreateExceptionPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(tablepane.isSelected()){
-					int result = MyOptionPane.showConfirmDialog(null, "确认删除该商品？","删除商品",
+					int result = MyOptionPane.showConfirmDialog(frame, "确认删除该商品？","删除商品",
 							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
 						delCommodity();
 					}
 				}else{
-					MyOptionPane.showMessageDialog(null, "请选择要删除的商品！");
+					MyOptionPane.showMessageDialog(frame, "请选择要删除的商品！");
 				}
 			}
 			
@@ -122,13 +136,13 @@ public class CreateExceptionPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkCompleted()){
-					int result = MyOptionPane.showConfirmDialog(null, "确认创建？","确认提示",
+					int result = MyOptionPane.showConfirmDialog(frame, "确认创建？","确认提示",
 							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
 							createException();
 					}
 				}else{
-					MyOptionPane.showMessageDialog(null, "请填入完整信息！");
+					MyOptionPane.showMessageDialog(frame, "请填入完整信息！");
 				}
 			}
 		});
@@ -138,10 +152,10 @@ public class CreateExceptionPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认取消当前编辑？","确认提示",
+				int result = MyOptionPane.showConfirmDialog(frame, "确认取消当前编辑？","确认提示",
 						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
-					panel.showExceptionList(isloss);
+					panel.showExceptionList(true);
 				}
 			}
 		});
@@ -149,23 +163,26 @@ public class CreateExceptionPanel extends JPanel{
 		this.add(this.cancelBtn);
 	}
 
+	/**
+	 * 创建报损单
+	 */
 	protected void createException() {
-		DocumentType type = DocumentType.OVERFLOW;
-		if(isloss){
-			type = DocumentType.LOSS;
-		}
 		ExceptionVO vo = new ExceptionVO(this.documentId.getText(),null,this.commoditylist,
-				DocumentStatus.NONCHECKED,type,false);
+				DocumentStatus.NONCHECKED,DocumentType.LOSS,false);
 		ResultMessage result = 	this.controller.create(vo);
 		if(result==ResultMessage.SUCCESS){
-			MyOptionPane.showMessageDialog(null, "单据提交成功！");
+			MyOptionPane.showMessageDialog(frame, "单据提交成功！");
 			this.setVisible(false);
-			panel.showExceptionList(isloss);
+			panel.showExceptionList(true);
 		}else{
-			MyOptionPane.showMessageDialog(null, "单据提交失败！");
+			MyOptionPane.showMessageDialog(frame, "单据提交失败！");
 		}
 	}
 
+	/**
+	 * 检查单据是否填写完整
+	 * @return
+	 */
 	private boolean checkCompleted() {
 		if(this.commoditylist.size()>0){
 			return true;
@@ -173,13 +190,20 @@ public class CreateExceptionPanel extends JPanel{
 		return false;
 	}
 
+	/**
+	 * 删除一条商品信息
+	 */
 	public void delCommodity(){
 		this.commoditylist.remove(this.tablepane.getTable().getSelectedRow());
 		this.tablepane.deleteRow();
 	}
 	
-	public void addCommodity(ExceptionLineItemVO vo){
-		this.commoditylist.add(vo);
-		this.tablepane.addRow(vo);
+	/**
+	 * 添加一条商品信息
+	 */
+	@Override
+	public void addLineItem(ExceptionLineItemVO itemVO) {
+		this.commoditylist.add(itemVO);
+		this.tablepane.addRow(itemVO);
 	}
 }

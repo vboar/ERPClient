@@ -29,6 +29,11 @@ public class UserTablePane extends TablePanel{
 	
 	private ArrayList<UserVO> list;
 	
+	/**
+	 * 构造函数
+	 * @param cfg
+	 * @param controller
+	 */
 	public UserTablePane(TableConfig cfg, UserBLService controller) {
 		super(cfg);
 		this.list = controller.show();
@@ -36,6 +41,9 @@ public class UserTablePane extends TablePanel{
 		this.initComponent();
 	}
 
+	/**
+	 * 初始化表格
+	 */
 	protected void initTable() {
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
@@ -49,6 +57,10 @@ public class UserTablePane extends TablePanel{
 		this.table.setUnvisibleColumn(2);
 	}
 
+	/**
+	 * 初始化数据
+	 * @param list
+	 */
 	public void initData(ArrayList<UserVO> list){
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for(int i=0; i<list.size(); ++i){
@@ -57,18 +69,29 @@ public class UserTablePane extends TablePanel{
 		}
 	}
 	
+	/**
+	 * 增加一行
+	 * @param vo
+	 */
 	public void addRow(UserVO vo){
 		Object[] newUser = new Object[COLUMN_NUM];
 		this.createRow(newUser,vo);
 		this.dtm.addRow(newUser);
 	}
 
+	/**
+	 * 删除一行
+	 */
 	public void deleteRow(){
 		if(this.isSelected()){
 			this.dtm.removeRow(this.table.getSelectedRow());
 		}
 	}
 	
+	/**
+	 * 更新一行
+	 * @param vo
+	 */
 	public void updateRow(UserVO vo){
 		int row = this.table.getSelectedRow();
 		this.dtm.setValueAt(vo.id, row, 0);
@@ -78,6 +101,11 @@ public class UserTablePane extends TablePanel{
 		this.dtm.setValueAt(this.permissionToStr(vo.permission), row, 4);
 	}
 	
+	/**
+	 * 创建一行
+	 * @param row
+	 * @param vo
+	 */
 	private void createRow(Object[] row, UserVO vo){
 		row[0]=vo.id;
 		row[1]=vo.name;
@@ -86,6 +114,10 @@ public class UserTablePane extends TablePanel{
 		row[4]=this.permissionToStr(vo.permission);
 	}
 	
+	/**
+	 * 获得所选VO
+	 * @return
+	 */
 	public UserVO getSelectedVO(){
 		int row = this.table.getSelectedRow();
 		String id = this.table.getValueAt(row, 0).toString();
@@ -97,14 +129,10 @@ public class UserTablePane extends TablePanel{
 		return vo;
 	}
 	
-	private int permissionToInt(String str){
-		if(str.equals("普通权限")){
-			return 0;
-		}else{
-			return 1;
-		}
-	}
-	
+	/**
+	 * 显示查找结果
+	 * @param list
+	 */
 	public void showFindTable(ArrayList<UserVO> list){
 		System.out.println("findList"+list.size());
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
@@ -127,6 +155,24 @@ public class UserTablePane extends TablePanel{
 		this.updateUI();
 	}
 	
+	/**
+	 * 将权限由string转为int
+	 * @param str
+	 * @return
+	 */
+	private int permissionToInt(String str){
+		if(str.equals("普通权限")){
+			return 0;
+		}else{
+			return 1;
+		}
+	}
+	
+	/**
+	 * 将权限由int转为string
+	 * @param permission
+	 * @return
+	 */
 	private String permissionToStr(int permission){
 		if(permission==0){
 			return "普通权限";

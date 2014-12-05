@@ -81,6 +81,11 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	 */
 	private boolean isInit = true;
 	
+	/**
+	 * 构造函数
+	 * @param ele 配置对象
+	 * @param frame 主窗口
+	 */
 	public CommodityTreePane(Element ele, JFrame frame) {
 		// 获得商品管理控制器
 		this.controller = ControllerFactoryImpl.getInstance().getCommodityController();
@@ -153,6 +158,9 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		this.jsp.getViewport().add(this.treeTable);
 	}
 
+	/**
+	 * 删除商品
+	 */
 	@Override
 	public void delete() {
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
@@ -171,6 +179,9 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		}
 	}
 
+	/**
+	 * 显示修改对话框
+	 */
 	@Override
 	public void showUpdDialog() {
 		MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
@@ -180,6 +191,9 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		this.infodialog.setVisible(true);
 	}
 
+	/**
+	 * 显示添加对话框
+	 */
 	@Override
 	public void showAddDialog() {
 		this.infodialog = new CommodityInfoDialog(ERPConfig.getCOMMODITYINFO_DIALOG_CONFIG(), frame, this, true);
@@ -265,8 +279,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	 * @author JanelDQ
 	 *
 	 */
-	private class MyTreeTableRenderer extends  DefaultTableRenderer{
-		
+	private class MyTreeTableRenderer extends  DefaultTableRenderer{	
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value,
 				boolean isSelected, boolean hasFocus, int row, int column) {

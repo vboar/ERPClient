@@ -13,6 +13,11 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.exceptionblservice.ExceptionBLService;
 import config.TableConfig;
 
+/**
+ * 报溢报损单列表面板
+ * @author JanelDQ
+ * @date 2014/12/5
+ */
 @SuppressWarnings("serial")
 public class ExceptionListTablePane extends TablePanel{
 
@@ -28,6 +33,11 @@ public class ExceptionListTablePane extends TablePanel{
 
 	private ExceptionBLService controller;
 	
+	/**
+	 * 构造函数
+	 * @param cfg 面板配置对象
+	 * @param isloss true为报损单，false为报溢单
+	 */
 	public ExceptionListTablePane(TableConfig cfg, boolean isloss) {
 		super(cfg);
 		if(isloss){
@@ -35,10 +45,15 @@ public class ExceptionListTablePane extends TablePanel{
 		}else{
 			this.controller = ControllerFactoryImpl.getInstance().getOverflowController();
 		}
+		// 初始化表格
 		this.initTable();
+		// 初始化其他组件
 		this.initComponent();
 	}
 
+	/**
+	 * 初始化表格
+	 */
 	@Override
 	protected void initTable() {
 		this.columnName = cfg.getColumnName();
@@ -50,10 +65,15 @@ public class ExceptionListTablePane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		// 设置不可排序
 		this.table.setRowSorter(null);
+		// 设置表格列宽
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 	}
 
+	/**
+	 * 初始化数据
+	 */
 	private void initData() {
 		this.list = controller.show(null, null);
 		if(list!=null){
@@ -65,6 +85,12 @@ public class ExceptionListTablePane extends TablePanel{
 		}
 	}
 	
+	/**
+	 * 添加一行信息
+	 * @param row
+	 * @param vo
+	 * @return
+	 */
 	private Object[] createRow(Object[] row, ExceptionVO vo) {
 		row[0]=vo.id;
 		row[1]=vo.time;
@@ -72,6 +98,9 @@ public class ExceptionListTablePane extends TablePanel{
 		return row;
 	}
 	
+	/**
+	 * 更新数据
+	 */
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
@@ -79,6 +108,11 @@ public class ExceptionListTablePane extends TablePanel{
 		this.updateUI();
 	}
 
+	/**
+	 * 显示查找到的信息
+	 * @param time1
+	 * @param time2
+	 */
 	public void showFindTable(String time1, String time2) {
 		if(list == null){
 			return;

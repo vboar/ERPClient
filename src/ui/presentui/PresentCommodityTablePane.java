@@ -7,6 +7,11 @@ import ui.util.TablePanel;
 import vo.PresentLineItemVO;
 import config.TableConfig;
 
+/**
+ * 赠送单商品表格
+ * @author JanelDQ
+ * @date 2014/11/27
+ */
 @SuppressWarnings("serial")
 public class PresentCommodityTablePane extends TablePanel {
 
@@ -18,12 +23,19 @@ public class PresentCommodityTablePane extends TablePanel {
 
 	private DefaultTableModel dtm;
 	
+	/**
+	 * 构造函数
+	 * @param cfg
+	 */
 	public PresentCommodityTablePane(TableConfig cfg) {
 		super(cfg);
 		this.initTable();
 		this.initComponent();
 	}
 	
+	/**
+	 * 初始化表格
+	 */
 	protected void initTable(){
 		this.columnName = cfg.getColumnName();
 		this.data = new Object[0][COLUMN_NUM];

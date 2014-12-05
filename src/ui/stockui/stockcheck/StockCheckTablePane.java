@@ -13,6 +13,11 @@ import ui.util.TablePanel;
 import vo.StockVO;
 import config.TableConfig;
 
+/**
+ * 库存盘点表格面板
+ * @author JanelDQ
+ * @date 2014/12/4
+ */
 @SuppressWarnings("serial")
 public class StockCheckTablePane extends TablePanel{
 
@@ -24,21 +29,21 @@ public class StockCheckTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
-	private ArrayList<StockVO> list;
+	private ArrayList<StockVO> mylist;
 	
 	private StockBLService controller;
 	
 	public StockCheckTablePane(TableConfig cfg) {
 		super(cfg);
 		this.controller = ControllerFactoryImpl.getInstance().getStockController();
-		this.list = this.controller.showCheck();
+		this.mylist = this.controller.showCheck();
 		this.initTable();
 		this.initComponent();
 	}
 
 	protected void initTable(){
 		this.columnName = cfg.getColumnName();
-		this.initData(list);
+		this.initData(mylist);
 		this.dtm = new DefaultTableModel(this.data,this.columnName){
 			@Override
 			public boolean isCellEditable(int row, int col){
@@ -87,4 +92,9 @@ public class StockCheckTablePane extends TablePanel{
 		this.updateUI();		
 	}
 
+	public ArrayList<StockVO> getList() {
+		return mylist;
+	}
+
+	
 }

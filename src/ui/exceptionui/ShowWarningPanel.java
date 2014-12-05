@@ -17,6 +17,11 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 
+/**
+ * 查看报警单列表面板
+ * @author JanelDQ
+ * @date 2014/12/5
+ */
 @SuppressWarnings("serial")
 public class ShowWarningPanel extends JPanel{
 	
@@ -32,37 +37,42 @@ public class ShowWarningPanel extends JPanel{
 	
 	private PanelConfig pcfg;
 
-	
+	/**
+	 * 构造函数
+	 */
 	public ShowWarningPanel() {
+		// 获得配置对象
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap()
 				.get(this.getClass().getName());
+		// 设置布局大小坐标
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
+		// 初始化组件
 		this.initComponent();
 		this.setVisible(true);
 	}
 	
+	/**
+	 * 初始化组件
+	 */
 	private void initComponent() {
-		this.initDatePicker(pcfg.getDatepicker());
-		this.initLabels(pcfg.getLabels());
-		this.initButtons(pcfg.getButtons());
-		;
-		this.tablepane = new WarningListTablePane(new TableConfig(pcfg.getTablepane()));
-		this.add(this.tablepane);
-	}
-	
-	private void initDatePicker(Element ele) {
-		this.start = new MyDatePicker(ele.element("start"));
-		this.end = new MyDatePicker(ele.element("end"));
+		// 初始化日期选择器
+		this.start = new MyDatePicker(pcfg.getDatepicker().element("start"));
+		this.end = new MyDatePicker(pcfg.getDatepicker().element("end"));
 		this.add(this.start);
 		this.add(this.end);
-	}
-
-	private void initLabels(Element ele) {
-		this.add(new MyLabel(ele.element("list")));
-		this.add(new MyLabel(ele.element("start")));
-		this.add(new MyLabel(ele.element("end")));
+		
+		// 初始化标签
+		this.add(new MyLabel(pcfg.getLabels().element("list")));
+		this.add(new MyLabel(pcfg.getLabels().element("start")));
+		this.add(new MyLabel(pcfg.getLabels().element("end")));
+		
+		// 初始化按钮
+		this.initButtons(pcfg.getButtons());
+		// 初始化表格
+		this.tablepane = new WarningListTablePane(new TableConfig(pcfg.getTablepane()));
+		this.add(this.tablepane);
 	}
 	
 	private void initButtons(Element ele){

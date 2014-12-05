@@ -12,6 +12,11 @@ import ui.util.MyButton;
 import config.ERPConfig;
 import config.PanelConfig;
 
+/**
+ * 库存异常处理面板
+ * @author JanelDQ
+ * @date 2014/12/5
+ */
 @SuppressWarnings("serial")
 public class ExceptionPanel extends JPanel {
 
@@ -39,18 +44,35 @@ public class ExceptionPanel extends JPanel {
 	
 	private JFrame frame;
 	
+	/**
+	 * 构造函数
+	 * @param frame
+	 */
     public ExceptionPanel(JFrame frame) {
 		this.frame = frame;
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		
+		// 设置大小、坐标及布局
 		this.setSize(cfg.getW(), cfg.getH());
 		this.setLocation(cfg.getX(), cfg.getY());
 		this.setLayout(null);
 		this.bg = cfg.getBg();
+		
+		// 初始化组件
 		this.initComponent();
 		this.repaint();
     }
-    
+
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);
+	}
+	
+    /**
+     * 初始化组件
+     */
 	private void initComponent() {
+		// 显示报溢单按钮
 		this.overListShow = new MyButton(this.cfg.getButtons().element("overlist"));
 		this.overListShow.addActionListener(new ActionListener() {
 			
@@ -60,6 +82,7 @@ public class ExceptionPanel extends JPanel {
 			}
 		});
 		this.add(this.overListShow);
+		// 显示报损单按钮
 		this.lossListShow = new MyButton(this.cfg.getButtons().element("losslist"));
 		this.lossListShow.addActionListener(new ActionListener() {
 			
@@ -69,6 +92,7 @@ public class ExceptionPanel extends JPanel {
 			}
 		});
 		this.add(this.lossListShow);
+		// 显示报警单按钮
 		this.warningListShow = new MyButton(this.cfg.getButtons().element("warning"));
 		this.warningListShow.addActionListener(new ActionListener() {
 			
@@ -78,6 +102,7 @@ public class ExceptionPanel extends JPanel {
 			}
 		});
 		this.add(this.warningListShow);
+		// 创建报损单按钮
 		this.addLoss = new MyButton(this.cfg.getButtons().element("addloss"));
 		this.addLoss.addActionListener(new ActionListener() {
 			
@@ -87,6 +112,7 @@ public class ExceptionPanel extends JPanel {
 			}
 		});
 		this.add(this.addLoss);
+		// 创建报溢单按钮
 		this.addOver = new MyButton(this.cfg.getButtons().element("addover"));
 		this.addOver.addActionListener(new ActionListener() {
 			
@@ -98,25 +124,29 @@ public class ExceptionPanel extends JPanel {
 		this.add(this.addOver);
 	}
 
-	@Override
-	public void paintComponent(Graphics g){
-		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);
-	}
-
+	/**
+	 * 显示报损单面板
+	 */
 	public void showCreateLoss() {
 		removeAllPanel();
-		createLossPanel = new CreateExceptionPanel(frame, ExceptionPanel.this,true);
+		createLossPanel = new CreateLossPanel(frame, ExceptionPanel.this);
 		add(createLossPanel);
 		repaint();
 	}
 
+	/**
+	 * 显示报溢单面板
+	 */
 	public void showCreateOver() {
 		removeAllPanel();
-		createOverPanel = new CreateExceptionPanel(frame, ExceptionPanel.this,false);
+		createOverPanel = new CreateOverPanel(frame, ExceptionPanel.this);
 		add(createOverPanel);
 		repaint();
 	}
 
+	/**
+	 * 显示报警单面板
+	 */
 	public void showWarning() {
 		removeAllPanel();
 		showWarningPanel = new ShowWarningPanel();
@@ -124,6 +154,10 @@ public class ExceptionPanel extends JPanel {
 		repaint();
 	}
 
+	/**
+	 * 显示报溢报损单列表
+	 * @param isloss true为报损单,false为报溢单
+	 */
 	public void showExceptionList(boolean isloss) {
 		removeAllPanel();
 		showOverLossPanel = new ShowOverLossPanel(isloss);
@@ -131,6 +165,9 @@ public class ExceptionPanel extends JPanel {
 		repaint();
 	}
 	
+	/**
+	 * 移除当前所有面板
+	 */
 	private void removeAllPanel() {
 		if(createLossPanel != null) remove(createLossPanel); createLossPanel = null;
 		if(createOverPanel != null) remove(createOverPanel); createOverPanel = null;

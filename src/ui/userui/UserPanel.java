@@ -52,46 +52,56 @@ public class UserPanel extends JPanel implements FuzzySearch{
 	
 	private UserInfoDialog userInfoDiaglog;
 	
-	private JFrame homeframe;
+	private JFrame frame;
 	
 	private MySpecialTextField userfindbox;
 	
-	private PanelConfig pcfg;
+	private PanelConfig cfg;
 	
 	private UserBLService userController;
 		
+	/**
+	 * 构造函数
+	 * @param frame
+	 */
 	public UserPanel(JFrame frame){
-		this.homeframe = frame;
+		this.frame = frame;
 		this.userController = ControllerFactoryImpl.getInstance().getUserController();
-		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		this.setSize(pcfg.getW(), pcfg.getH());
-		this.setLocation(pcfg.getX(), pcfg.getY());
+		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		// 设置面板基础属性
+		this.setSize(cfg.getW(), cfg.getH());
+		this.setLocation(cfg.getX(), cfg.getY());
 		this.setLayout(null);
-		this.bg = pcfg.getBg();
-		this.initComponent(pcfg);
+		this.bg = cfg.getBg();
+		// 初始化组件
+		this.initComponent();
 		this.repaint();
 	}
 
 	@Override
 	public void paintComponent(Graphics g){
-		g.drawImage(bg, 0, 0, pcfg.getW(),pcfg.getH(),null);
+		g.drawImage(bg, 0, 0, cfg.getW(),cfg.getH(),null);
 	}
 	
-	private void initComponent(PanelConfig cfg) {
+	/**
+	 * 初始化组件
+	 * @param cfg
+	 */
+	private void initComponent() {
 		this.initButtons(cfg.getButtons());
 		this.initLabels(cfg.getLabels());
 		this.initFindComboBox(cfg.getTextFields());
-		this.initTable(cfg.getTablepane());
-	}
-
-	private void initTable(Element tablepane) {
-		this.userTable = new UserTablePane(new TableConfig(tablepane), userController);
+		// 初始化用户列表
+		this.userTable = new UserTablePane(new TableConfig(cfg.getTablepane()), userController);
 		this.add(this.userTable);
-
 	}
 
-	private void initFindComboBox(Element textfields) {
-		this.userfindbox = new MySpecialTextField(textfields.element("findinput"),this);
+	/**
+	 * 初始化Combobox
+	 * @param box
+	 */
+	private void initFindComboBox(Element box) {
+		this.userfindbox = new MySpecialTextField(box.element("findinput"),this);
 		this.add(this.userfindbox);
 		this.userfindbox.addKeyListener(new KeyAdapter(){
 			@Override
@@ -104,45 +114,23 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		});
 	}
 
+	/**
+	 * 初始化标签
+	 * @param labels
+	 */
 	private void initLabels(Element labels) {
 		this.userlist = new MyLabel(labels.element("userlist"));
 		this.add(new MyLabel(labels.element("title")));
 		this.add(this.userlist);
 	}
 
+	/**
+	 * 初始化按钮
+	 * @param buttons
+	 */
 	private void initButtons(Element buttons) {
-		this.initAddBtn(buttons.element("add"));
-		this.initDeleteBtn(buttons.element("delete"));
-		this.initUpdateBtn(buttons.element("update"));
-		this.initFindBtn(buttons.element("find"));
-		this.initShowAllBtn(buttons.element("showall"));
-	}
-	
-	private void initShowAllBtn(Element ele) {
-		this.showAll = new MyButton(ele);
-		this.showAll.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				userTable.showFindTable(userController.show());
-				userTable.updateUI();
-			}
-		});
-		this.add(this.showAll);
-	}
-
-	private void initFindBtn(Element find){
-		this.findbtn = new MyButton(find);
-		this.findbtn.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				findUser(userfindbox.getText());
-			}
-		});
-		this.add(this.findbtn);
-	}
-	
-	private void initAddBtn(Element add){
-		this.addbtn = new MyButton(add);
+		//添加按钮
+		this.addbtn = new MyButton(buttons.element("add"));
 		this.addbtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -150,35 +138,8 @@ public class UserPanel extends JPanel implements FuzzySearch{
 			}		
 		});
 		this.add(this.addbtn);
-	}
-	
-	private void initDeleteBtn(Element delete){
-		this.deletebtn = new MyButton(delete);
-		this.deletebtn.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(userTable.isSelected()){
-					int result = MyOptionPane.showConfirmDialog(null, "确认删除该用户信息？","删除用户",
-							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
-					if(result == MyOptionPane.YES_OPTION){
-						ResultMessage delresult = deleteUser();
-						if(delresult == ResultMessage.SUCCESS){
-							MyOptionPane.showMessageDialog(null, "删除成功！");
-						}else{
-							MyOptionPane.showMessageDialog(null, "删除失败！","提示信息", 
-									MyOptionPane.ERROR_MESSAGE, null);
-						}
-					}
-				}else{
-					MyOptionPane.showMessageDialog(null, "请选择要删除的用户信息！");
-				}
-			}
-		});
-		this.add(this.deletebtn);
-	}
-	
-	private void initUpdateBtn(Element modify){
-		this.updatebtn = new MyButton(modify);
+		// 修改按钮
+		this.updatebtn = new MyButton(buttons.element("update"));
 		this.updatebtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -190,26 +151,78 @@ public class UserPanel extends JPanel implements FuzzySearch{
 			}
 		});
 		this.add(this.updatebtn);
+		// 查找按钮
+		this.findbtn = new MyButton(buttons.element("find"));
+		this.findbtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				findUser(userfindbox.getText());
+			}
+		});
+		this.add(this.findbtn);
+		// 显示所有按钮
+		this.showAll = new MyButton(buttons.element("showall"));
+		this.showAll.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				userTable.showFindTable(userController.show());
+				userTable.updateUI();
+			}
+		});
+		this.add(this.showAll);
+		// 删除按钮
+		this.initDeleteBtn(buttons.element("delete"));
 	}
 	
+	private void initDeleteBtn(Element delete){
+		this.deletebtn = new MyButton(delete);
+		this.deletebtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(userTable.isSelected()){
+					int result = MyOptionPane.showConfirmDialog(frame, "确认删除该用户信息？","删除用户",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						ResultMessage delresult = deleteUser();
+						if(delresult == ResultMessage.SUCCESS){
+							MyOptionPane.showMessageDialog(frame, "删除成功！");
+						}else{
+							MyOptionPane.showMessageDialog(frame, "删除失败！","提示信息", 
+									MyOptionPane.ERROR_MESSAGE, null);
+						}
+					}
+				}else{
+					MyOptionPane.showMessageDialog(frame, "请选择要删除的用户信息！");
+				}
+			}
+		});
+		this.add(this.deletebtn);
+	}
+
+	/**
+	 * 显示添加用户信息对话框
+	 */
 	private void showUserDialog(){
 		this.userInfoDiaglog = new UserInfoDialog(ERPConfig.getUSERINFO_DIALOG_CONFIG(),
-				this.homeframe,this,true);
+				this.frame,this,true);
 		this.userInfoDiaglog.setVisible(true);
 	}
 	
-
+	/**
+	 * 显示修改用户信息对话框
+	 */
 	private void showUpdateDialog() {
 		UserVO vo = this.userTable.getSelectedVO();
 		this.userInfoDiaglog = new UserInfoDialog(ERPConfig.getUSERINFO_DIALOG_CONFIG(),
-				this.homeframe,this,false,vo);
+				this.frame,this,false,vo);
 		this.userInfoDiaglog.setVisible(true);
 	}
 
-	public UserTablePane getUserTable(){
-		return userTable;
-	}
-	
+	/**
+	 * 添加用户
+	 * @param vo
+	 * @return
+	 */
 	public ResultMessage addUser(UserVO vo){
 		ResultMessage result = this.userController.add(vo);
 		if(result==ResultMessage.SUCCESS){
@@ -218,6 +231,10 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		return result;
 	}
 	
+	/**
+	 * 删除用户
+	 * @return
+	 */
 	public ResultMessage deleteUser(){
 		UserVO vo = this.userTable.getSelectedVO();
 		ResultMessage result = this.userController.delete(vo);
@@ -227,6 +244,11 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		return result;
 	}
 	
+	/**
+	 * 修改用户
+	 * @param vo
+	 * @return
+	 */
 	public ResultMessage updateUser(UserVO vo){
 		ResultMessage result = this.userController.update(vo);
 		if(result == ResultMessage.SUCCESS){
@@ -235,10 +257,12 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		return result;
 	}
 	
+	/**
+	 * 查找用户
+	 * @param keyword
+	 */
 	public void findUser(String keyword){
-		System.out.println("keyword:"+keyword);
 		ArrayList<UserVO> list = userController.fuzzyFind(keyword);
-		System.out.println(list.size());
 		this.userTable.showFindTable(list);
 	}
 
@@ -248,14 +272,16 @@ public class UserPanel extends JPanel implements FuzzySearch{
 		ArrayList<String> strs = new ArrayList<String>();
 		for(int i=0; i<result.size(); ++i){
 			UserVO vo = result.get(i);
-			System.out.println("get:"+vo.id);
 			strs.add(vo.id);
 		}
 		return strs;
 	}
 
 	public JFrame getHomeframe() {
-		return homeframe;
+		return frame;
 	}
 	
+	public UserTablePane getUserTable(){
+		return userTable;
+	}
 }

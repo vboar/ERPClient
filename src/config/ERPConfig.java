@@ -99,6 +99,5 @@ public class ERPConfig {
 	public static DialogConfig getADDEXCEPTIONLINEITEM_DIALOG_CONFIG() {
 		return ADDEXCEPTIONLINEITEM_DIALOG_CONFIG;
 	}
-	
-	
+
 }

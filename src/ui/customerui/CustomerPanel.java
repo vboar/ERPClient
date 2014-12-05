@@ -94,7 +94,6 @@ public class CustomerPanel extends JPanel implements FuzzySearch {
 	
 	private void initLabels(Element labels) {
 		this.customerList = new MyLabel(labels.element("customerlist"));
-		this.add(new MyLabel(labels.element("customermanagebtn")));
 		this.add(new MyLabel(labels.element("title")));
 		this.add(this.customerList);
 	}

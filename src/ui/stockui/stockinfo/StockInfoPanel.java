@@ -18,6 +18,11 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 库存查看面板
+ * @author JanelDQ
+ * @date 2014/12/2
+ */
 @SuppressWarnings("serial")
 public class StockInfoPanel extends JPanel {
 
@@ -35,9 +40,12 @@ public class StockInfoPanel extends JPanel {
 	
 	private PanelConfig cfg;
 	
+	private JFrame frame;
+	
 	private Image bg;
 
 	public StockInfoPanel(JFrame frame){
+		this.frame = frame;
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.controller = ControllerFactoryImpl.getInstance().getStockController();
 		this.setSize(cfg.getW(), cfg.getH());
@@ -93,7 +101,7 @@ public class StockInfoPanel extends JPanel {
 					time1 = dateFormat.format(day1);
 					time2 = dateFormat.format(day2);
 					if(time1.compareTo(time2)>0){
-						MyOptionPane.showMessageDialog(null, "请输入有效日期！","错误提示",
+						MyOptionPane.showMessageDialog(frame, "请输入有效日期！","错误提示",
 								MyOptionPane.ERROR_MESSAGE);
 					}
 				}else if((day1==null)&&(day2!=null)){

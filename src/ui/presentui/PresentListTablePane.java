@@ -13,6 +13,11 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.presentblservice.PresentBLService;
 import config.TableConfig;
 
+/**
+ * 赠送单列表
+ * @author JanelDQ
+ * @date 2014/11/27
+ */
 @SuppressWarnings("serial")
 public class PresentListTablePane extends TablePanel{
 

@@ -14,6 +14,11 @@ import ui.util.MyOptionPane;
 import config.ERPConfig;
 import config.PanelConfig;
 
+/**
+ * 赠送单面板
+ * @author JanelDQ
+ * @date 2014/11/27
+ */
 @SuppressWarnings("serial")
 public class PresentPanel extends JPanel {
 
@@ -34,10 +39,12 @@ public class PresentPanel extends JPanel {
 	public PresentPanel(JFrame frame){
 		this.frame = frame;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		this.bg = pcfg.getBg();
+		// 设置面板基本属性
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
-		this.bg = pcfg.getBg();
+		// 初始化组件
 		this.initComponent();
 		this.repaint();
 	}
@@ -47,6 +54,9 @@ public class PresentPanel extends JPanel {
 		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
 	}
 	
+	/**
+	 * 初始化组件
+	 */
 	private void initComponent() {
 		this.add(new MyLabel(pcfg.getLabels().element("title")));
 		this.listpanel = new ShowPanel();
@@ -71,7 +81,7 @@ public class PresentPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				listpanel.udpateData();
 				if(createPanel!=null){
-					int result = MyOptionPane.showConfirmDialog(null, "是否放弃当前编辑？","确认提示",
+					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
 							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
 						remove(createPanel);
@@ -86,6 +96,5 @@ public class PresentPanel extends JPanel {
 	public ShowPanel getListpanel() {
 		return listpanel;
 	}
-	
 	
 }

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import ui.util.MyButton;
 import ui.util.MyDatePicker;
+import ui.util.MyJFileChooser;
 import ui.util.MyLabel;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.stockblservice.StockBLService;
@@ -17,6 +18,11 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 
+/**
+ * 库存盘点面板
+ * @author JanelDQ
+ * @date 2014/12/2
+ */
 @SuppressWarnings("serial")
 public class StockCheckPanel extends JPanel {
 
@@ -30,13 +36,18 @@ public class StockCheckPanel extends JPanel {
 	
 	private StockCheckTablePane tablepane;
 	
+	private MyJFileChooser filesaver;
+	
 	private PanelConfig cfg;
 	
 	private Image bg;
 	
+//	private JFrame frame;
+	
 	private StockBLService controller;
 	
     public StockCheckPanel(JFrame frame) {
+ //   	this.frame = frame;
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.controller = ControllerFactoryImpl.getInstance().getStockController();
 		this.setSize(cfg.getW(), cfg.getH());
@@ -53,6 +64,7 @@ public class StockCheckPanel extends JPanel {
 	}
     
 	private void initComponent() {
+		this.filesaver = new MyJFileChooser();
 		this.tablepane = new StockCheckTablePane(new TableConfig(this.cfg.getTablepane()));
 		this.add(this.tablepane);
 		this.date = new MyDatePicker(this.cfg.getDatepicker().element("date"));
@@ -69,8 +81,7 @@ public class StockCheckPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				controller.addCheck(tablepane.getList());
 			}
 		});
 		this.add(this.createCheck);
@@ -80,8 +91,9 @@ public class StockCheckPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				filesaver.showSaveDialog(null);
+				String path = filesaver.getPath();
+				System.out.println(path);
 			}
 		});
 		this.add(this.createExcel);
@@ -96,6 +108,11 @@ public class StockCheckPanel extends JPanel {
 			}
 		});
 		this.add(this.show);
+	}
+
+	public void exportExcel() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

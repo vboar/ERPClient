@@ -51,24 +51,44 @@ public class UserInfoDialog extends JDialog {
 	
 	private DialogConfig cfg;
 	
-	public UserPanel panel;
+	private UserPanel panel;
+	
+	private JFrame frame;
 	
 	private boolean isAdd;
 	
+	/**
+	 * 构造函数
+	 * @param cfg 对话框配置对象
+	 * @param frame 主窗口
+	 * @param panel 用户管理面板
+	 * @param isAdd true为添加，false为修改
+	 */
 	public UserInfoDialog(DialogConfig cfg, JFrame frame, UserPanel panel,boolean isAdd){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.setTitle(cfg.getTitle());
 		this.isAdd = isAdd;
 		this.panel = panel;
+		this.frame = frame;
 		this.cfg = cfg;
+		// 设置基本属性
 		this.setSize(this.cfg.getW(), this.cfg.getH());
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());
+		// 初始化组件
 		this.initComponent();
 	}
 
+	/**
+	 * 修改用户信息时的构造函数
+	 * @param userinfo_DIALOG_CONFIG
+	 * @param homeframe
+	 * @param userPanel
+	 * @param isAdd
+	 * @param vo 待修改用户信息VO
+	 */
 	public UserInfoDialog(DialogConfig userinfo_DIALOG_CONFIG,
 			JFrame homeframe, UserPanel userPanel, Boolean isAdd,UserVO vo) {
 		this(userinfo_DIALOG_CONFIG,homeframe,userPanel,isAdd);
@@ -83,7 +103,10 @@ public class UserInfoDialog extends JDialog {
 		}
 		this.permissionbox.setSelectedIndex(vo.permission);
 	}
-
+ 
+	/**
+	 * 初始化组件
+	 */
 	private void initComponent(){
 		this.initLabels(this.cfg.getLabels());
 		this.initTextFields(this.cfg.getTextFields());
@@ -91,6 +114,10 @@ public class UserInfoDialog extends JDialog {
 		this.initButtons(this.cfg.getButtons());
 	}
 	
+	/**
+	 * 初始化标签
+	 * @param ele
+	 */
 	private void initLabels(Element ele){
 		this.idTip = new MyLabel(ele.element("idtip"));
 		this.idTip.setVisible(false);
@@ -108,6 +135,10 @@ public class UserInfoDialog extends JDialog {
 		this.add(this.passwordTip);
 	}
 	
+	/**
+	 * 初始化按钮
+	 * @param ele
+	 */
 	private void initButtons(Element ele){
 		this.commit = new MyButton(ele.element("commit"));
 		this.commit.addActionListener(new ActionListener(){
@@ -116,25 +147,25 @@ public class UserInfoDialog extends JDialog {
 				UserVO vo = new UserVO(idTxt.getText(),passwordTxt.getText(),
 						UserType.check(typebox.getSelectedItem().toString()),
 						permissionbox.getSelectedIndex(),nameTxt.getText());
-					int result = MyOptionPane.showConfirmDialog(null, "确认提交？", "确认提示",
+					int result = MyOptionPane.showConfirmDialog(frame, "确认提交？", "确认提示",
 							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
 						if(isAdd){
 							ResultMessage addResult = panel.addUser(vo);
 							switch(addResult){
 								case SUCCESS:
-									MyOptionPane.showMessageDialog(null, "添加成功！");
+									MyOptionPane.showMessageDialog(frame, "添加成功！");
 									UserInfoDialog.this.dispose(); return;
 								case EXIST:
-									MyOptionPane.showMessageDialog(null, "该用户ID已存在！");return;
+									MyOptionPane.showMessageDialog(frame, "该用户ID已存在！");return;
 								default:
-									MyOptionPane.showMessageDialog(null, "填写信息不符合要求，请重新填写！");
+									MyOptionPane.showMessageDialog(frame, "填写信息不符合要求，请重新填写！");
 							}	
 						}else{
 							if(panel.updateUser(vo)==ResultMessage.SUCCESS){
-								MyOptionPane.showMessageDialog(null, "修改成功！");
+								MyOptionPane.showMessageDialog(frame, "修改成功！");
 								UserInfoDialog.this.dispose();
-							}else	MyOptionPane.showMessageDialog(null, "填写信息不符合要求，请重新填写！");	
+							}else	MyOptionPane.showMessageDialog(frame, "填写信息不符合要求，请重新填写！");	
 						}
 					}	
 			}			
@@ -143,7 +174,7 @@ public class UserInfoDialog extends JDialog {
 		this.cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认取消操作？","确认提示",
+				int result = MyOptionPane.showConfirmDialog(frame, "确认取消操作？","确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result==MyOptionPane.YES_OPTION){
 					UserInfoDialog.this.dispose();
@@ -154,6 +185,10 @@ public class UserInfoDialog extends JDialog {
 		this.add(this.cancel);
 	}
 	
+	/**
+	 * 初始化输入框
+	 * @param ele
+	 */
 	private void initTextFields(Element ele){
 		this.idTxt = new MyTextField(ele.element("id"));
 		this.idTxt.addMouseListener(new  MouseAdapter() {
@@ -186,6 +221,10 @@ public class UserInfoDialog extends JDialog {
 		this.add(this.passwordTxt);
 	}
 	
+	/**
+	 * 初始化选择框
+	 * @param ele
+	 */
 	private void initComboBoxes(Element ele){
 		this.typebox = new MyComboBox(ele.element("type"));
 		this.typebox.addActionListener(new ActionListener(){

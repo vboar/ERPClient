@@ -308,7 +308,7 @@
 		</panel>
 		
 		<!-- 库存异常处理中的创建报损单面板 -->
-		<panel className="ui.exceptionui.CreateExceptionPanel" width="760" height="400" x="0" y="80" bg="img/document/kcbsd.jpg"
+		<panel className="ui.exceptionui.CreateLossPanel" width="760" height="400" x="0" y="80" bg="img/document/kcbsd.jpg"
 			bg1="img/document/kcbyd.jpg">
 			<buttons>
 				<add text="增加商品" w="80" h="25" x="560" y="50" />
@@ -331,6 +331,29 @@
 			</tablepane>
 		</panel>
 		
+		<!-- 库存异常处理中的创建报溢单面板 -->
+		<panel className="ui.exceptionui.CreateOverPanel" width="760" height="400" x="0" y="80" bg="img/document/kcbyd.jpg"
+			bg1="img/document/kcbyd.jpg">
+			<buttons>
+				<add text="增加商品" w="80" h="25" x="560" y="50" />
+				<delete text="删除商品" w="80" h="25" x="650" y="50" />
+				<commit text="提交"  w="100" h="30" x="260" y="350"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="350"/>
+			</buttons>
+			<labels>
+				<documentid text="" w="200" h="30" x="593" y="10" />	
+			</labels>
+			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="260" x="10" y="80">
+				<columnnames>
+					<columnname name="商品编号" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="系统库存数量" />
+					<columnname name="实际库存数量" />
+					<columnname name="数量差" />
+				</columnnames>
+			</tablepane>
+		</panel>
 		<!-- 查看报溢报损列表面板 -->
 		<panel className="ui.exceptionui.ShowOverLossPanel"
 			   width="760" height="400" x="0" y="80" bg="img/common/rightpanel.png">

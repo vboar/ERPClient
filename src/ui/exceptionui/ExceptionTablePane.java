@@ -7,6 +7,11 @@ import ui.util.TablePanel;
 import vo.ExceptionLineItemVO;
 import config.TableConfig;
 
+/**
+ * 报溢报损单内商品信息列表面板
+ * @author JanelDQ
+ *
+ */
 @SuppressWarnings("serial")
 public class ExceptionTablePane extends TablePanel{
 	
@@ -18,12 +23,19 @@ public class ExceptionTablePane extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
+	/**
+	 * 构造函数
+	 * @param cfg
+	 */
 	public ExceptionTablePane(TableConfig cfg) {
 		super(cfg);
 		this.initTable();
 		this.initComponent();
 	}
 
+	/**
+	 * 初始化表格
+	 */
 	protected void initTable(){
 		this.columnName = cfg.getColumnName();
 		this.data = new Object[0][COLUMN_NUM];
@@ -32,12 +44,21 @@ public class ExceptionTablePane extends TablePanel{
 		this.table.setRowSorter(null);
 	}
 	
+	/**
+	 * 添加行
+	 * @param vo
+	 */
 	public void addRow(ExceptionLineItemVO vo){
 		Object[] newrow= new Object[COLUMN_NUM];
 		this.createRow(newrow,vo);
 		this.dtm.addRow(newrow);
 	}
 
+	/**
+	 * 创造行
+	 * @param row
+	 * @param vo
+	 */
 	private void createRow(Object[] row, ExceptionLineItemVO vo){
 		row[0]=vo.id;
 		row[1]=vo.name;
@@ -47,6 +68,9 @@ public class ExceptionTablePane extends TablePanel{
 		row[5]=vo.actualNumber-vo.systemNumber;
 	}
 	
+	/**
+	 * 删除行
+	 */
 	public void deleteRow(){
 		if(this.isSelected()){
 			this.dtm.removeRow(this.table.getSelectedRow());

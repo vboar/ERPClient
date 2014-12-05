@@ -12,6 +12,11 @@ import vo.StockInfoVO;
 import businesslogicservice.stockblservice.StockBLService;
 import config.TableConfig;
 
+/**
+ * 库存查看表格面板
+ * @author JanelDQ
+ * @date 2014/12/2
+ */
 @SuppressWarnings("serial")
 public class StockTablePane extends TablePanel{
 
