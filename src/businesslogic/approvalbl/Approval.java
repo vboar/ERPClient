@@ -5,6 +5,7 @@
 
 package businesslogic.approvalbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
@@ -26,6 +27,7 @@ import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
+import dataservice.datafactoryservice.DataFactoryImpl;
 //审批通过后：1、发消息到收件箱  2、修改相应数据
 public class Approval {
 	
@@ -240,5 +242,76 @@ public class Approval {
 			result=l.findByStatus(status);
 		}
 		return result;
+	}
+	
+	public Object getById(String id){
+		Object result=new Object();
+		
+		if(id.contains("ZPD")){
+			Present p=new Present();
+			try {
+				result=p.poToVO(DataFactoryImpl.getInstance().getPresentData().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			return result;
+		}
+	
+		if(id.contains("JHD")||id.contains("JHTHD")){
+			Purchase p=new Purchase();
+			try {
+				result=p.poToVO(DataFactoryImpl.getInstance().getPurchaseData().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		if(id.contains("XSD")||id.contains("XSTHD")){
+			Sale s=new Sale();
+			try {
+				result=s.SalePOToSaleVO(DataFactoryImpl.getInstance().getSaleDataService().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		if(id.contains("FKD")||id.contains("SKD")){
+			Payment p=new Payment();
+			try {
+				result=p.poToVo(DataFactoryImpl.getInstance().getPaymentData().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		if(id.contains("XJFYD")){
+			Cash c=new Cash();
+			try {
+				result=c.poToVo(DataFactoryImpl.getInstance().getCashDataService().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		if(id.contains("BYD")||id.contains("BSD")){
+			Loss l=new Loss();
+			try {
+				result=l.poToVo(DataFactoryImpl.getInstance().getExceptionData().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+	
+	return result;	
 	}
 }

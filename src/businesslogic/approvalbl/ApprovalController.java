@@ -129,5 +129,9 @@ public class ApprovalController implements ApprovalBLService{
 	public ResultMessage approveCash(CashVO vo) {
 		return approval.approveCash(vo);
 	}
+	
+	public Object getById(String id){
+		return approval.getById(id);
+	}
 
 }
