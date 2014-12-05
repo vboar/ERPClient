@@ -77,10 +77,21 @@ public class Category {
 	public  String createId(String fatherId){
 		
 		if(fatherId==null){
+			ArrayList<CategoryVO> voList=show();
+			if(voList.isEmpty()){
 			return "00000";
+			}else{
+				String max=voList.get(voList.size()-1).id;
+				String oldMax=max.substring(0,5);
+				int maxInt=Integer.parseInt(oldMax);
+				String pattern="00000";
+				 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+				 String maxStr=df.format(maxInt+1);
+				 return maxStr;
+			}
 		}
 		ArrayList<CategoryVO> voList= findById(fatherId);
-		if(voList.size()==0){
+		if(voList.size()==1){
 			return fatherId+"-00000";
 		}else{
 		

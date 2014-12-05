@@ -370,7 +370,7 @@ public class Sale {
 			
 			
 		}
-		vo.approvalState=DocumentStatus. 
+		
 		return null;
 
 	}
