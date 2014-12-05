@@ -1,4 +1,4 @@
-package ui.exceptionui;
+package ui.util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,22 +9,15 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import ui.util.MyTextField;
 import vo.CommodityVO;
-import vo.ExceptionLineItemVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CommodityBLService;
 import config.DialogConfig;
 import config.ERPConfig;
 
 @SuppressWarnings("serial")
-public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
-
+public class AddCommodityDialog extends JDialog implements FuzzySearch{
+	
 	private MySpecialTextField commodityTxt;
 	
 	private MyTextField numberTxt;
@@ -41,27 +34,20 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 	
 	private MyLabel currentModel;
 	
-	private MyLabel currentSystemNum;
+	private DialogConfig cfg;
 	
 	private CommodityVO addCommodityVO;
 	
-	private ExceptionLineItemVO exceptionLineItemVO;
-	
-	private CreateExceptionPanel panel;
-	
 	private HashMap<String, CommodityVO> vomap;
 	
-	private CommodityBLService commodityController;
+	private CommodityBLService controller;
 	
-	private DialogConfig cfg;
-	
-	public AddExceptionLineItemDialog(CreateExceptionPanel panel, JFrame frame) {
+	public AddCommodityDialog(JFrame frame){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
-		this.panel = panel;
-		this.commodityController = ControllerFactoryImpl.getInstance().getCommodityController();
+		this.controller = ControllerFactoryImpl.getInstance().getCommodityController();
 		this.vomap = new HashMap<String,CommodityVO>();
-		this.cfg = ERPConfig.getADDEXCEPTIONLINEITEM_DIALOG_CONFIG();
+		this.cfg = ERPConfig.getADDPRESENTCOMMODITY_DIALOG_CONFIG();
 		this.setBounds(cfg.getX(), cfg.getW(), cfg.getW(), cfg.getH());
         this.setLayout(null);
         this.setResizable(false);
@@ -77,22 +63,19 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 		this.currentId = new MyLabel(this.cfg.getLabels().element("currentid"));
 		this.currentName = new MyLabel(this.cfg.getLabels().element("currentname"));
 		this.currentModel = new MyLabel(this.cfg.getLabels().element("currentmodel"));
-		this.currentSystemNum = new MyLabel(this.cfg.getLabels().element("currentsystemnum"));
 		this.add(new MyLabel(this.cfg.getLabels().element("id")));
 		this.add(new MyLabel(this.cfg.getLabels().element("name")));
 		this.add(new MyLabel(this.cfg.getLabels().element("model")));
-		this.add(new MyLabel(this.cfg.getLabels().element("systemnumber")));
 		this.add(new MyLabel(this.cfg.getLabels().element("number")));
 		this.add(new MyLabel(this.cfg.getLabels().element("tip")));
 		this.add(this.currentId);
 		this.add(this.currentName);
 		this.add(this.currentModel);
-		this.add(this.currentSystemNum);
 		this.add(this.commodityTxt);
 		this.add(this.numberTxt);
 	}
 
-	private void initButtons() {
+	private void initButtons(){
 		this.add = new MyButton(this.cfg.getButtons().element("add"));
 		this.add.addActionListener(new ActionListener() {
 			
@@ -104,7 +87,6 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 						currentId.setText(addCommodityVO.id);
 						currentName.setText(addCommodityVO.name);
 						currentModel.setText(addCommodityVO.model);
-						currentSystemNum.setText(Integer.toString(addCommodityVO.number));
 					}else{
 						MyOptionPane.showMessageDialog(null, "请重新选择商品！");
 					}
@@ -113,58 +95,14 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 		});
 		this.add(this.add);
 		this.commit = new MyButton(this.cfg.getButtons().element("commit"));
-		this.commit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认添加该商品？","确认提示",
-						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
-				if(result==MyOptionPane.YES_OPTION){
-					try{
-					int num = Integer.parseInt(numberTxt.getText());
-					String info = commodityTxt.getText();
-					// 创建赠品信息
-					addCommodity(info,num);
-					AddExceptionLineItemDialog.this.dispose();
-					}catch(NumberFormatException ex){
-						MyOptionPane.showMessageDialog(null, "请正确输入数据！","错误提示",
-								MyOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-			
-		});
 		this.add(this.commit);
 		this.cancel = new MyButton(this.cfg.getButtons().element("cancel"));
-		this.cancel.addActionListener(new ActionListener() {	
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认取消？","确认提示",
-						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
-				if(result == MyOptionPane.YES_OPTION){
-					AddExceptionLineItemDialog.this.dispose();
-				}
-			}
-			
-		});
 		this.add(this.cancel);
 	}
 
-	protected void addCommodity(String key, int num) {
-		if(addCommodityVO!=null){
-			this.exceptionLineItemVO = new ExceptionLineItemVO(addCommodityVO.id, addCommodityVO.name,
-					addCommodityVO.model, addCommodityVO.number, 
-					num);;
-			this.panel.addCommodity(this.exceptionLineItemVO);
-		}else{
-			MyOptionPane.showMessageDialog(null, "请选择商品信息！");
-		}
-	}
-	
 	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
-		ArrayList<CommodityVO> list = this.commodityController.fuzzyFind(keyword);
+		ArrayList<CommodityVO> list = this.controller.fuzzyFind(keyword);
 		if(list!=null){
 			ArrayList<String> result = new ArrayList<String>();
 			for(int i=0; i<list.size(); ++i){
@@ -176,5 +114,4 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 		}
 		return null;
 	}
-
 }

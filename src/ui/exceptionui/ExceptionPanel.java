@@ -9,14 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.MyButton;
-import businesslogicservice.exceptionblservice.ExceptionBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 
 @SuppressWarnings("serial")
 public class ExceptionPanel extends JPanel {
 
-	private MyButton overLossListShow;
+	private MyButton overListShow;
+	
+	private MyButton lossListShow;
 	
 	private MyButton warningListShow;
 	
@@ -34,8 +35,6 @@ public class ExceptionPanel extends JPanel {
 	
 	private PanelConfig cfg;
 	
-	private ExceptionBLService controller;
-	
 	private Image bg;
 	
 	private JFrame frame;
@@ -52,23 +51,30 @@ public class ExceptionPanel extends JPanel {
     }
     
 	private void initComponent() {
-		this.overLossListShow = new MyButton(this.cfg.getButtons().element("overlosslist"));
-		this.overLossListShow.addActionListener(new ActionListener() {
+		this.overListShow = new MyButton(this.cfg.getButtons().element("overlist"));
+		this.overListShow.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				showExceptionList(false);
 			}
 		});
-		this.add(this.overLossListShow);
+		this.add(this.overListShow);
+		this.lossListShow = new MyButton(this.cfg.getButtons().element("losslist"));
+		this.lossListShow.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showExceptionList(true);
+			}
+		});
+		this.add(this.lossListShow);
 		this.warningListShow = new MyButton(this.cfg.getButtons().element("warning"));
 		this.warningListShow.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				showWarning();				
 			}
 		});
 		this.add(this.warningListShow);
@@ -77,8 +83,7 @@ public class ExceptionPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				showCreateLoss();
 			}
 		});
 		this.add(this.addLoss);
@@ -87,10 +92,7 @@ public class ExceptionPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				createLossPanel = new CreateLossPanel(frame, ExceptionPanel.this);
-				createLossPanel.setVisible(true);
-				add(createLossPanel);
-				
+				showCreateOver();		
 			}
 		});
 		this.add(this.addOver);
@@ -100,6 +102,39 @@ public class ExceptionPanel extends JPanel {
 	public void paintComponent(Graphics g){
 		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);
 	}
-	
 
+	public void showCreateLoss() {
+		removeAllPanel();
+		createLossPanel = new CreateExceptionPanel(frame, ExceptionPanel.this,true);
+		add(createLossPanel);
+		repaint();
+	}
+
+	public void showCreateOver() {
+		removeAllPanel();
+		createOverPanel = new CreateExceptionPanel(frame, ExceptionPanel.this,false);
+		add(createOverPanel);
+		repaint();
+	}
+
+	public void showWarning() {
+		removeAllPanel();
+		showWarningPanel = new ShowWarningPanel();
+		add(showWarningPanel);
+		repaint();
+	}
+
+	public void showExceptionList(boolean isloss) {
+		removeAllPanel();
+		showOverLossPanel = new ShowOverLossPanel(isloss);
+		add(showOverLossPanel);
+		repaint();
+	}
+	
+	private void removeAllPanel() {
+		if(createLossPanel != null) remove(createLossPanel); createLossPanel = null;
+		if(createOverPanel != null) remove(createOverPanel); createOverPanel = null;
+		if(showOverLossPanel != null) remove(showOverLossPanel); showOverLossPanel = null;
+		if(showWarningPanel != null) remove(showWarningPanel);showWarningPanel = null;
+	}
 }

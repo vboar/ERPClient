@@ -300,33 +300,89 @@
 		<panel className="ui.exceptionui.ExceptionPanel" width="760" height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
 				<addloss text="创建报损单" w="120" h="30" x="20" y="45" />
-				<addover text="创建报溢单" w="120" h="30" x="180" y="45" />
-				<warning text="查看报警单" w="120" h="30" x="340" y="45"/>
-				<overlosslist text="查看报溢报损单" w="140" h="30" x="520" y="45"/>
+				<addover text="创建报溢单" w="120" h="30" x="150" y="45" />
+				<warning text="查看报警单" w="120" h="30" x="350" y="45"/>
+				<losslist text="查看报损单" w="120" h="30" x="480" y="45"/>
+				<overlist text="查看报溢单" w="120" h="30" x="610" y="45"/>
 			</buttons>
 		</panel>
 		
 		<!-- 库存异常处理中的创建报损单面板 -->
-				<!-- 库存异常处理面板 -->
-		<panel className="ui.exceptionui.CreateLossPanel" width="760" height="510" x="0" y="80" bg="img/common/rightpanel.png">
+		<panel className="ui.exceptionui.CreateExceptionPanel" width="760" height="400" x="0" y="80" bg="img/document/kcbsd.jpg"
+			bg1="img/document/kcbyd.jpg">
 			<buttons>
-				<add text="增加商品" w="80" h="25" x="560" y="125" />
-				<delete text="删除商品" w="80" h="25" x="650" y="125" />
-				<commit text="提交"  w="100" h="30" x="260" y="360"/>
-				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
+				<add text="增加商品" w="80" h="25" x="560" y="50" />
+				<delete text="删除商品" w="80" h="25" x="650" y="50" />
+				<commit text="提交"  w="100" h="30" x="260" y="350"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="350"/>
 			</buttons>
 			<labels>
-				<documentid text="" w="200" h="30" x="590" y="8" />	
+				<documentid text="" w="200" h="30" x="593" y="10" />	
 			</labels>
-			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="200" x="10" y="152">
+			<tablepane className="ui.presentui.PresentCommodityTablePane" width="730" height="260" x="10" y="80">
 				<columnnames>
 					<columnname name="商品编号" />
 					<columnname name="商品名称" />
 					<columnname name="商品型号" />
-					<columnname name="数量" />
+					<columnname name="系统库存数量" />
+					<columnname name="实际库存数量" />
+					<columnname name="数量差" />
 				</columnnames>
 			</tablepane>
 		</panel>
+		
+		<!-- 查看报溢报损列表面板 -->
+		<panel className="ui.exceptionui.ShowOverLossPanel"
+			   width="760" height="400" x="0" y="80" bg="img/common/rightpanel.png">
+			<buttons>
+				<find text="查询" w="70" h="30" x="550" y="10" />
+				<showall text="查看所有" w="100" h="30" x="630" y="10"/>
+			</buttons>
+			<labels>
+				<list text="" w="160" h="40" x="20" y="4"
+						   font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
+				<start text="起始日期" w="120" h="30" x="160" y="10" />
+				<end text="截止日期" w="120" h="30" x="360" y="10" />
+			</labels>
+			<datepicker>
+				<start w="120" h="25" x="220" y="12"/>
+				<end w="120" h="25" x="420" y="12"/>
+			</datepicker>
+			<tablepane className="ui.exceptionui.ExceptionListTablePane" width="730" height="340" x="10" y="40">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="商品列表" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
+		<!-- 查看报警单列表面板 -->
+		<panel className="ui.exceptionui.ShowWarningPanel"
+			   width="760" height="400" x="0" y="80" bg="img/common/rightpanel.png">
+			<buttons>
+				<find text="查询" w="70" h="30" x="550" y="10" />
+				<showall text="查看所有" w="100" h="30" x="630" y="10"/>
+			</buttons>
+			<labels>
+				<list text="报警单列表" w="160" h="40" x="20" y="4"
+						   font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />
+				<start text="起始日期" w="120" h="30" x="160" y="10" />
+				<end text="截止日期" w="120" h="30" x="360" y="10" />
+			</labels>
+			<datepicker>
+				<start w="120" h="25" x="220" y="12"/>
+				<end w="120" h="25" x="420" y="12"/>
+			</datepicker>
+			<tablepane className="ui.exceptionui.WarningListTablePane" width="730" height="340" x="10" y="40">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="商品列表" />
+				</columnnames>
+			</tablepane>
+		</panel>
+		
 		<!-- 商品销售面板 -->
 		<panel className="ui.saleui.SalePanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
@@ -789,27 +845,29 @@
 	</addpresentcommodityinfodialog>
 
 	<!-- 库存异常处理添加商品对话框 -->
-	<addexceptionlineitemdialog width="480" height="280" x="240"
+	<addexceptionlineitemdialog width="500" height="280" x="280"
 								   y="200" title="添加商品">
 		<buttons>
 			<add text="添加" w="80" h="30" x="360" y="30" />
-			<commit text="确认" w="80" h="30" x="270" y="180" />
-			<cancel text="取消" w="80" h="30" x="360" y="180" />
+			<commit text="确认" w="80" h="30" x="145" y="180" />
+			<cancel text="取消" w="80" h="30" x="265" y="180" />
 		</buttons>
 		<labels>
 			<currentid text="" w="300" h="30" x="100" y="70" />
 			<currentname text="" w="300" h="30" x="100" y="100" />
 			<currentmodel text="" w="300" h="30" x="100" y="130" />
+			<currentsystemnum text="" w="300" h="30" x="340" y="100" />
 			<tip text="请输入商品关键字" w="120" h="30" x="20" y="2" 
 			font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
 			<id text="商品编号：" w="80" h="30" x="20" y="70" />
 			<name text="商品名称：" w="80" h="30" x="20" y="100" />
 			<model text="商品型号：" w="80" h="30" x="20" y="130" />
-			<number text="赠送数量：" w="80" h="30" x="20" y="170" />
+			<systemnumber text="系统库存数量:" w="100" h="30" x="240" y="100"/>
+			<number text="实际库存数量：" w="100" h="30" x="240" y="130" />
 		</labels>
 		<textfields>
 			<commodity  w="320" h="30" x="20" y="30" />
-			<number  w="100" h="30" x="100" y="170" />
+			<number  w="120" h="30" x="340" y="130" />
 		</textfields>
 	</addexceptionlineitemdialog>
 

@@ -9,17 +9,22 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.exceptionblservice.ExceptionBLService;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
 import vo.ExceptionLineItemVO;
+import vo.ExceptionVO;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.exceptionblservice.ExceptionBLService;
 import config.ERPConfig;
 import config.PanelConfig;
+import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class CreateLossPanel extends JPanel{
+public class CreateExceptionPanel extends JPanel{
 
 	private MyButton addBtn;
 	
@@ -43,15 +48,23 @@ public class CreateLossPanel extends JPanel{
 	
 	private JFrame frame;
 	
+	private boolean isloss = false;
+	
 	private ExceptionBLService controller;
 	
-	public CreateLossPanel(JFrame frame,ExceptionPanel panel){
+	public CreateExceptionPanel(JFrame frame,ExceptionPanel panel, boolean isloss){
 		this.frame = frame;
 		this.panel = panel;
+		this.isloss = isloss;
 		this.commoditylist = new ArrayList<ExceptionLineItemVO>();
-		this.controller = ControllerFactoryImpl.getInstance().getLossController();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		//this.bg = this.pcfg.getBg();
+		if(isloss){
+			this.controller = ControllerFactoryImpl.getInstance().getLossController();
+			this.bg = this.pcfg.getBg();
+		}else{
+			this.controller = ControllerFactoryImpl.getInstance().getOverflowController();
+			this.bg = this.pcfg.getBg1();
+		}		
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
 		this.setLayout(null);
@@ -59,21 +72,27 @@ public class CreateLossPanel extends JPanel{
 		this.setVisible(true);
 	}
 	
-//	@Override
-//	public void paintComponent(Graphics g){
-//		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
-//	}
-//	
-	private void initComponent() {
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
+	}
+	
+	private void initComponent(){
+		this.initButtons();
 		this.documentId = new MyLabel(pcfg.getLabels().element("documentid"));
-		this.documentId.setText("00001");
+		this.documentId.setText(this.controller.createId());
 		this.add(this.documentId);
+		this.tablepane = new ExceptionTablePane(new TableConfig(this.pcfg.getTablepane()));
+		this.add(this.tablepane);
+	}
+	
+	private void initButtons() {
 		// 添加商品按钮
 		this.addBtn = new MyButton(pcfg.getButtons().element("add"));
 		this.addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddExceptionLineItemDialog(CreateLossPanel.this,frame);
+				new AddExceptionLineItemDialog(CreateExceptionPanel.this,frame);
 			}
 			
 		});
@@ -106,7 +125,7 @@ public class CreateLossPanel extends JPanel{
 					int result = MyOptionPane.showConfirmDialog(null, "确认创建？","确认提示",
 							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
-							createLoss();
+							createException();
 					}
 				}else{
 					MyOptionPane.showMessageDialog(null, "请填入完整信息！");
@@ -115,12 +134,36 @@ public class CreateLossPanel extends JPanel{
 		});
 		// 取消按钮
 		this.cancelBtn = new MyButton(pcfg.getButtons().element("cancel"));
+		this.cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = MyOptionPane.showConfirmDialog(null, "确认取消当前编辑？","确认提示",
+						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
+				if(result == MyOptionPane.YES_OPTION){
+					panel.showExceptionList(isloss);
+				}
+			}
+		});
 		this.add(this.commitBtn);
 		this.add(this.cancelBtn);
 	}
 
-	protected void createLoss() {
-		
+	protected void createException() {
+		DocumentType type = DocumentType.OVERFLOW;
+		if(isloss){
+			type = DocumentType.LOSS;
+		}
+		ExceptionVO vo = new ExceptionVO(this.documentId.getText(),null,this.commoditylist,
+				DocumentStatus.NONCHECKED,type,false);
+		ResultMessage result = 	this.controller.create(vo);
+		if(result==ResultMessage.SUCCESS){
+			MyOptionPane.showMessageDialog(null, "单据提交成功！");
+			this.setVisible(false);
+			panel.showExceptionList(isloss);
+		}else{
+			MyOptionPane.showMessageDialog(null, "单据提交失败！");
+		}
 	}
 
 	private boolean checkCompleted() {

@@ -1,4 +1,4 @@
-package ui.presentui;
+package ui.exceptionui;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -8,33 +8,38 @@ import javax.swing.table.DefaultTableModel;
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
-import vo.PresentVO;
+import vo.ExceptionVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.presentblservice.PresentBLService;
+import businesslogicservice.exceptionblservice.ExceptionBLService;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class PresentListTablePane extends TablePanel{
+public class ExceptionListTablePane extends TablePanel{
 
 	private String[] columnName;
 	
-	private static int COLUMN_NUM = 6;
+	private static int COLUMN_NUM = 3;
 	
 	private Object[][] data;
 
 	private DefaultTableModel dtm;
 	
-	private ArrayList<PresentVO> list;
+	private ArrayList<ExceptionVO> list;
+
+	private ExceptionBLService controller;
 	
-	private PresentBLService controller;
-	
-	public PresentListTablePane(TableConfig cfg) {
+	public ExceptionListTablePane(TableConfig cfg, boolean isloss) {
 		super(cfg);
-		this.controller = ControllerFactoryImpl.getInstance().getPresentController();
+		if(isloss){
+			this.controller = ControllerFactoryImpl.getInstance().getLossController();
+		}else{
+			this.controller = ControllerFactoryImpl.getInstance().getOverflowController();
+		}
 		this.initTable();
 		this.initComponent();
 	}
 
+	@Override
 	protected void initTable() {
 		this.columnName = cfg.getColumnName();
 		this.initData();
@@ -54,19 +59,16 @@ public class PresentListTablePane extends TablePanel{
 		if(list!=null){
 			this.data = new Object[list.size()][COLUMN_NUM];
 			for(int i=0; i<list.size(); ++i){
-				PresentVO temp = list.get(i);	
+				ExceptionVO temp = list.get(i);	
 				this.createRow(data[i], temp);
 			}
 		}
 	}
-
-	private Object[] createRow(Object[] row, PresentVO vo) {
+	
+	private Object[] createRow(Object[] row, ExceptionVO vo) {
 		row[0]=vo.id;
 		row[1]=vo.time;
-		row[2]=vo.customerId;
-		row[3]=vo.customerName;
-		row[4]=vo.list.toString();
-		row[5]=vo.documentStatus.toReadableString();
+		row[2]=vo.list;
 		return row;
 	}
 	
@@ -78,7 +80,7 @@ public class PresentListTablePane extends TablePanel{
 	}
 
 	public void showFindTable(String time1, String time2) {
-		if(list==null){
+		if(list == null){
 			return;
 		}
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
@@ -87,19 +89,16 @@ public class PresentListTablePane extends TablePanel{
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){
-			PresentVO vo = list.get(i);
+			ExceptionVO vo = list.get(i);
 			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
 			row.add(vo.id);
 			row.add(vo.time);
-			row.add(vo.customerId);
-			row.add(vo.customerName);
-			row.add(vo.list.toString());
-			row.add(vo.documentStatus.toReadableString());
+			row.add(vo.list);
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
 	}
-	
+
 }

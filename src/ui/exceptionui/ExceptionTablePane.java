@@ -44,7 +44,7 @@ public class ExceptionTablePane extends TablePanel{
 		row[2]=vo.model;
 		row[3]=vo.systemNumber;
 		row[4]=vo.actualNumber;
-		row[5]=vo.systemNumber-vo.actualNumber;
+		row[5]=vo.actualNumber-vo.systemNumber;
 	}
 	
 	public void deleteRow(){

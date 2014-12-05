@@ -41,6 +41,8 @@ public class PanelConfig extends ComponentConfig{
 	
 	private Image bg;
 	
+	private Image bg1;
+	
 	public PanelConfig(Element panel) {
 		this.className = panel.attributeValue("className");
 		// 获取按钮属性
@@ -56,6 +58,9 @@ public class PanelConfig extends ComponentConfig{
 		this.x = Integer.parseInt(panel.attributeValue("x"));
 		this.y = Integer.parseInt(panel.attributeValue("y"));
 		this.bg = new ImageIcon(panel.attributeValue("bg")).getImage();
+		if(panel.attributeValue("bg1")!=null){
+			this.bg1 = new ImageIcon(panel.attributeValue("bg1")).getImage();
+		}
 		this.tablepane = panel.element("tablepane");
 		this.tree = panel.element("tree");
 		this.datepicker = panel.element("datepicker");
@@ -96,6 +101,10 @@ public class PanelConfig extends ComponentConfig{
 
 	public Element getDatepicker() {
 		return datepicker;
+	}
+
+	public Image getBg1() {
+		return bg1;
 	}
 
 }
