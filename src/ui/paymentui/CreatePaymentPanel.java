@@ -109,7 +109,6 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		this.documentIdLab = new MyLabel(pcfg.getLabels().element("documentidlab"));
 		// TODO
 		this.documentIdLab.setText("ID");
-		this.add(new MyLabel(pcfg.getLabels().element("tip")));
 		this.add(this.operatorLab);
 		this.add(this.documentIdLab);
 		this.add(this.customerIdLab);
