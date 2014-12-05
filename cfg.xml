@@ -573,6 +573,33 @@
 			</tablepane>
 		</panel>
 
+		<!-- 收付款面板中的制定现金费用单面板 -->
+		<panel className="ui.paymentui.CreateCashPanel" width="760" height="400"
+			   x="0" y="80" bg="">
+			<buttons>
+				<addaccount text="添加" w="80" h="25" x="500" y="120" />
+				<addlineitem text="添加条目" w="80" h="25" x="500" y="120" />
+				<deletelineitem text="删除条目" w="80" h="25" x="500" y="120" />
+				<commit text="提交" w="100" h="30" x="260" y="360" />
+				<cancel text="取消" w="100" h="30" x="400" y="360" />
+			</buttons>
+			<labels>
+				<account text="银行账户" w="120" h="30" x="20" y="10" />
+				<name text="账户名称" w="120" h="30" x="20" y="10" />
+				<accountnumber text="银行卡号" w="120" h="30" x="20" y="10" />
+			</labels>
+			<textfields>
+				<accountfind w="200" h="30" x="230" y="50" />
+			</textfields>
+			<tablepane className="ui.paymentui.CashTable" width="730" height="200" x="10" y="150">
+				<columnnames>
+					<columnname name="条目名" />
+					<columnname name="金额" />
+					<columnname name="备注" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
 		<!-- 经营状况查看面板 -->
 		<panel className="ui.conditionui.ConditionPanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">

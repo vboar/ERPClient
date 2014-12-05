@@ -114,7 +114,7 @@ public class ShowPanel extends JPanel {
     private void initTable() {
         // 默认显示收款单的表格
         receiptTable = new ShowPaymentTable(new TableConfig(cfg.getTablepane()), receiptController);
-        add(receiptTable);
+        this.add(this.receiptTable);
     }
 
 }
