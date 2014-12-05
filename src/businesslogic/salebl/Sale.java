@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import po.CommodityLineItemPO;
+import po.CommodityPO;
 import po.PresentLineItemPO;
 import po.PresentPO;
 import po.SalePO;
@@ -24,6 +25,8 @@ import vo.PresentVO;
 import vo.SaleVO;
 import vo.SpecialOfferVO;
 import vo.TotalGiftVO;
+import businesslogic.commoditybl.Commodity;
+import businesslogic.customerbl.Customer;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.CustomerGiftPromotion;
 import businesslogic.promotionbl.SpecialOfferPromotion;
@@ -318,8 +321,7 @@ public class Sale {
 		return voList;
 
 	}
-	
-	
+		
 
 	public SaleVO calPromotion(SaleVO vo1, CustomerGiftVO vo2) {
 		CustomerGiftPromotion cgp = new CustomerGiftPromotion();
@@ -343,6 +345,32 @@ public class Sale {
 
 	// TODO
 	public ResultMessage approve(SaleVO vo) {
+		//改商品
+		//改客户
+		double total=vo.totalAfterDiscount-vo.voucher;
+
+		Customer cus=new Customer();
+		if(total>0){
+		
+		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
+		cus.updateByPurchase(vo.customerId, vo.totalAfterDiscount);
+		}
+		for(CommodityLineItemVO vo1:vo.saleList){
+			
+			Commodity commodity=new Commodity();
+			CommodityPO commoditypo=commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+			commoditypo.setRecentSalePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+		vo.approvalState=DocumentStatus. 
 		return null;
 
 	}

@@ -31,7 +31,7 @@ public class Commodity {
 	 * @param vo
 	 * @return
 	 */
-	private CommodityPO commodityVOToCommodityPO(CommodityVO vo) {
+	public CommodityPO commodityVOToCommodityPO(CommodityVO vo) {
 		String id = vo.id;
 		String name = vo.name;
 		String model = vo.model;
