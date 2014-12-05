@@ -205,20 +205,18 @@ public class Commodity {
 		} else {
 			po = commodityVOToCommodityPO(vo);
 		}
-		// 检查是否存在
-		if (!existPO(po.getId(), po.getModel())) {
-			return ResultMessage.NOT_FOUND;
-		}
-
+		
 		// 检查输入合法（其实也就是象征性的）
 		ResultMessage nameCheck = Utility.checkInputValid(po.getName(), 2, 14,
 				true);
 		if (nameCheck != ResultMessage.SUCCESS) {
+			System.out.println("commoditybl 218 namecheckfail");
 			return nameCheck;
 		}
 		ResultMessage nameCheck2 = Utility.checkInputValid(po.getModel(), 2,
 				14, true);
 		if (nameCheck2 != ResultMessage.SUCCESS) {
+			System.out.println("commoditybl 224 namecheckfail");
 			return nameCheck2;
 		}
 

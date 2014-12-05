@@ -164,12 +164,13 @@ public class Category {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(father!=null){
 		// 修改父分类的数量
 		CategoryPO fatherPO = getById(father.id);
 		CategoryVO fatherVO = CategoryPOToCategoryVO(fatherPO);
 		fatherVO.number--;
 		update(fatherVO);
-
+		}
 		return ResultMessage.SUCCESS;
 	}
 
