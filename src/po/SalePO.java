@@ -43,7 +43,7 @@ public class SalePO implements Serializable {
 	/**
 	* 业务员
 	*/
-	private String salesman;
+	private String salesmanId;
 	
 	/**
 	* 操作员id
@@ -105,7 +105,7 @@ public class SalePO implements Serializable {
 	*/
 	private int documentType;
 	
-	public SalePO(String id,String time,String customerId,String customerName,int customerVIP,String salesman,
+	public SalePO(String id,String time,String customerId,String customerName,int customerVIP,String salesmanId,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,
 			String presentId,double totalBeforeDiscount,
 			double discount,double voucher,double totalAfterDiscount,String remark,
@@ -115,7 +115,7 @@ public class SalePO implements Serializable {
 		this.customerId=customerId;
 		this.customerName=customerName;
 		this.customerVIP=customerVIP;
-		this.salesman = salesman;
+		this.salesmanId = salesmanId;
 		this.operatorId=operatorId;
 		this.storage=storage;
 		this.saleList=saleList;
@@ -146,8 +146,8 @@ public class SalePO implements Serializable {
 		return customerId;
 	}
 
-	public String getSalesman() {
-		return salesman;
+	public String getSalesmanId() {
+		return salesmanId;
 	}
 
 	public String getStorage() {

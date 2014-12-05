@@ -1,9 +1,9 @@
 package vo;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.DocumentType;
+
+import java.util.ArrayList;
 
 public class SaleVO {
 
@@ -35,7 +35,7 @@ public class SaleVO {
 	/**
 	 * 业务员
 	 */
-	public String salesman;
+	public String salesmanId;
 
 	/**
 	 * 操作员id
@@ -104,11 +104,7 @@ public class SaleVO {
 
 	/**
 	 * 构造方法
-	 * 
-	 * @param receiptId
 	 * @param customerId
-	 * @param name
-	 * @param operator
 	 * @param storage
 	 * @param saleList
 	 * @param totalBeforeDiscount
@@ -121,7 +117,7 @@ public class SaleVO {
 	 * @param receiptType
 	 */
 	public SaleVO(String id, String time, String customerId,
-			String customerName, int customerVIP, String salesman,
+			String customerName, int customerVIP, String salesmanId,
 			String operatorId, String storage,
 			ArrayList<CommodityLineItemVO> saleList,String presentId,
 			ArrayList<PresentLineItemVO> giftList, double totalBeforeDiscount,
@@ -133,7 +129,7 @@ public class SaleVO {
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerVIP = customerVIP;
-		this.salesman = salesman;
+		this.salesmanId = salesmanId;
 
 		this.operatorId = operatorId;
 		this.storage = storage;

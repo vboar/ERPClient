@@ -99,7 +99,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.add(new MyLabel(ele.element("postalcode")));
 		this.add(new MyLabel(ele.element("email")));
 		this.add(new MyLabel(ele.element("creditlimit")));
-		this.add(new MyLabel(ele.element("salesman")));
+		this.add(new MyLabel(ele.element("salesmanId")));
 	}
 	
 	private void initButtons(Element ele){
@@ -171,7 +171,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.nameTxt = new MyTextField(ele.element("name"));
 		this.phoneNumberTxt = new MyTextField(ele.element("phonenumber"));
 		this.postalCodeTxt = new MyTextField(ele.element("postalcode"));
-		this.salesmanTxt = new MyTextField(ele.element("salesman"));
+		this.salesmanTxt = new MyTextField(ele.element("salesmanId"));
 		this.add(addressTxt);
 		this.add(creditLimitTxt);
 		this.add(emailTxt);

@@ -40,7 +40,7 @@ public class Sale {
 		String customerName = po.getCustomerName();
 		int customerVIP = po.getCustomerVIP();
 
-		String salesman = po.getSalesman();
+		String salesman = po.getSalesmanId();
 		
 		String operatorId = po.getOperatorId();
 		String storage = po.getStorage();
@@ -80,7 +80,7 @@ public class Sale {
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
 		int customerVIP = vo.customerVIP;
-		String salesman = vo.salesman;
+		String salesman = vo.salesmanId;
 		String operatorId = vo.operatorId;
 		String storage = vo.storage;
 		ArrayList<CommodityLineItemPO> saleList = Utility
