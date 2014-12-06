@@ -3,7 +3,6 @@ package businesslogic.promotionbl;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import vo.CustomerGiftVO;
 import vo.SpecialOfferVO;
 import businesslogicservice.promotionblservice.SpecialOfferBLService;
 
@@ -28,7 +27,7 @@ public class SpecialOfferController implements SpecialOfferBLService {
 	}
 
 	@Override
-	public ResultMessage update(CustomerGiftVO vo) {
+	public ResultMessage update(SpecialOfferVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

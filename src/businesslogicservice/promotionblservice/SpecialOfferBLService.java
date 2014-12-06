@@ -3,7 +3,6 @@ package businesslogicservice.promotionblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import vo.CustomerGiftVO;
 import vo.SpecialOfferVO;
 
 public interface SpecialOfferBLService {
@@ -14,7 +13,7 @@ public interface SpecialOfferBLService {
 	
 	public ArrayList<SpecialOfferVO> findByValid(boolean valid);
 	
-	public ResultMessage update(CustomerGiftVO vo);
+	public ResultMessage update(SpecialOfferVO vo);
 	
 	public String createId();
 	
