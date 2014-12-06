@@ -4,17 +4,12 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.util.MyTable;
 import ui.util.TablePanel;
-import vo.PresentLineItemVO;
+import vo.CommodityLineItemVO;
 import config.TableConfig;
 
-/**
- * 赠送商品表格
- * @author JanelDQ
- * @date 2014/11/27
- */
 @SuppressWarnings("serial")
-public class PresentCommodityTablePane extends TablePanel {
-
+public class SpecialCommodityTablePane extends TablePanel{
+	
 	private String[] columnName;
 	
 	private static int COLUMN_NUM = 4;
@@ -27,7 +22,7 @@ public class PresentCommodityTablePane extends TablePanel {
 	 * 构造函数
 	 * @param cfg
 	 */
-	public PresentCommodityTablePane(TableConfig cfg) {
+	public SpecialCommodityTablePane(TableConfig cfg) {
 		super(cfg);
 		this.initTable();
 		this.initComponent();
@@ -44,13 +39,13 @@ public class PresentCommodityTablePane extends TablePanel {
 		this.table.setRowSorter(null);
 	}
 	
-	public void addRow(PresentLineItemVO vo){
-		Object[] newPresent= new Object[COLUMN_NUM];
-		this.createRow(newPresent,vo);
-		this.dtm.addRow(newPresent);
+	public void addRow(CommodityLineItemVO vo){
+		Object[] newrow= new Object[COLUMN_NUM];
+		this.createRow(newrow,vo);
+		this.dtm.addRow(newrow);
 	}
 
-	private void createRow(Object[] row, PresentLineItemVO vo){
+	private void createRow(Object[] row, CommodityLineItemVO vo){
 		row[0]=vo.id;
 		row[1]=vo.name;
 		row[2]=vo.model;
@@ -62,5 +57,4 @@ public class PresentCommodityTablePane extends TablePanel {
 			this.dtm.removeRow(this.table.getSelectedRow());
 		}
 	}
-	
 }

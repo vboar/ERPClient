@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+@SuppressWarnings("serial")
 public class MyJFileChooser extends JFileChooser {
 
 	private String path;

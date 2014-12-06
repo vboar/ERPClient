@@ -13,43 +13,33 @@ import ui.util.AddPresentLineItem;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyCheckBox;
-import ui.util.MyComboBox;
 import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
-import vo.CustomerGiftVO;
 import vo.PresentLineItemVO;
+import vo.TotalGiftVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.promotionblservice.CustomerGiftBLService;
+import businesslogicservice.promotionblservice.TotalGiftBLService;
 import config.DialogConfig;
 import config.ERPConfig;
 import config.TableConfig;
 
-/**
- * 添加针对客户级别促销策略对话框
- * @author JanelDQ
- * @date 2014/12/6
- */
 @SuppressWarnings("serial")
-public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineItem{
+public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 
-	private MyComboBox level;
-	
 	private MyDatePicker start;
 	
 	private MyDatePicker end;
 	
 	private MyCheckBox presents;
 	
-	private MyCheckBox discount;
-	
 	private MyCheckBox voucher;
 	
-	private MyTextField discountTxt;
-	
 	private MyTextField voucherTxt;
+	
+	private MyTextField total;
 	
 	private MyButton add;
 	
@@ -69,16 +59,16 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 
 	private ArrayList<PresentLineItemVO> commoditylist = null;
 	
-	private CustomerGiftBLService controller;
+	private TotalGiftBLService controller;
 	
-	public CustomerGiftInfoDialog(JFrame frame, boolean isAdd) {
+	public TotalGiftInfoDialog(JFrame frame, boolean isAdd) {
 		super(frame, true);
 		this.isAdd = isAdd;
 		this.frame = frame;
 		// 获得配置
-		this.cfg = ERPConfig.getLEVEL_GIFT_DIALOG_CONFIG();
+		this.cfg = ERPConfig.getTOTAL_GIFT_DIALOG_CONFIG();
 		// 获得控制器
-		this.controller = ControllerFactoryImpl.getInstance().getCustomerGiftController();
+		this.controller = ControllerFactoryImpl.getInstance().getTotalGiftController();
 		this.commoditylist = new ArrayList<PresentLineItemVO>();
 		// 设置对话框基本属性
 		((JComponent) this.getContentPane()).setOpaque(true);
@@ -92,14 +82,12 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.setVisible(true);
 	}
 	
-	public CustomerGiftInfoDialog(JFrame frame, boolean isAdd, CustomerGiftVO vo){
+	public TotalGiftInfoDialog(JFrame frame, boolean isAdd, TotalGiftVO vo){
 		super(frame,isAdd);
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
-		this.discountTxt.setText(Double.toString(vo.discount));
 		this.voucher.setSelected(true);
-		this.discount.setSelected(true);
 		this.presents.setSelected(true);
 		this.commoditylist = vo.giftInfo;
 		for(int i=0; i<this.commoditylist.size();++i){
@@ -112,11 +100,8 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.initTable();
 		// 添加按钮
 		this.initButtons();
-		// 添加复选框
-		this.level = new MyComboBox(cfg.getComboboxes().element("level"));
-		this.add(this.level);
 		// 添加标签
-		this.add(new MyLabel(cfg.getLabels().element("level")));
+		this.add(new MyLabel(cfg.getLabels().element("total")));
 		this.add(new MyLabel(cfg.getLabels().element("starttime")));
 		this.add(new MyLabel(cfg.getLabels().element("endtime")));
 		// 添加日期选择器
@@ -139,19 +124,7 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 					add.setVisible(false);
 					delete.setVisible(false);
 				}
-				CustomerGiftInfoDialog.this.repaint();
-			}
-		});
-		this.discount = new MyCheckBox(cfg.getCheckBox().element("discount"));
-		this.discount.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(discount.isSelected()){
-					discountTxt.setEditable(true);
-				}else{
-					discountTxt.setEditable(false);
-				}
-				CustomerGiftInfoDialog.this.repaint();
+				TotalGiftInfoDialog.this.repaint();
 			}
 		});
 		this.voucher = new MyCheckBox(cfg.getCheckBox().element("voucher"));
@@ -163,19 +136,17 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 				}else{
 					voucherTxt.setEditable(false);
 				}
-				CustomerGiftInfoDialog.this.repaint();
+				TotalGiftInfoDialog.this.repaint();
 			}
 		});
 		this.add(this.presents);
-		this.add(this.discount);
 		this.add(this.voucher);
 		// 添加输入框
-		this.discountTxt = new MyTextField(cfg.getTextFields().element("discount"));
-		this.discountTxt.setEditable(false);
 		this.voucherTxt = new MyTextField(cfg.getTextFields().element("voucher"));
 		this.voucherTxt.setEditable(false);
-		this.add(this.discountTxt);
+		this.total = new MyTextField(cfg.getTextFields().element("total"));
 		this.add(this.voucherTxt);
+		this.add(this.total);
 	}
 	
 	/**
@@ -208,7 +179,7 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 				int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
 						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
-					CustomerGiftInfoDialog.this.dispose();
+					TotalGiftInfoDialog.this.dispose();
 				}
 			}
 		});
@@ -217,7 +188,7 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.add.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddPresentCommodityDialog(CustomerGiftInfoDialog.this, frame);
+				new AddPresentCommodityDialog(TotalGiftInfoDialog.this, frame);
 			}
 		});
 		this.delete.addActionListener(new ActionListener() {
@@ -246,17 +217,16 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 	 */
 	private void createCustomerGiftVO() {
 		try{
-			int level = this.level.getSelectedIndex();
-			double discount = this.discount.isSelected() ? Double.parseDouble(this.discountTxt.getText()) : 0;
 			double voucher = this.voucher.isSelected() ? Double.parseDouble(this.voucherTxt.getText()) : 0;
 			String startTime = FrameUtil.getFormattedDate(this.start.getDate());
 			String endTime = FrameUtil.getFormattedDate(this.end.getDate());
+			double total = Double.parseDouble(this.total.getText());
 			if(startTime.compareTo(endTime)>0){
 				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 				return;
 			}
-			CustomerGiftVO vo = new CustomerGiftVO(controller.createId(),level,commoditylist,
-					discount,voucher,startTime,endTime,true);
+			TotalGiftVO vo = new TotalGiftVO(controller.createId(),total,commoditylist,
+					voucher,startTime,endTime,true);
 			if(isAdd){
 				ResultMessage result = this.controller.create(vo);
 				if(result == ResultMessage.SUCCESS){
@@ -283,9 +253,9 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 	 * @return
 	 */
 	private boolean checkCompleted() {
-		if((this.start.getDate()!=null)&&(this.end.getDate()!=null)&&
-				(this.commoditylist.size()>0||!this.discount.getText().isEmpty()
-						||!this.voucher.getText().isEmpty())){
+		if((this.start.getDate()!=null)&&(this.end.getDate()!=null)&&(
+				!this.total.getText().isEmpty())&&
+				(this.commoditylist.size()>0||!this.voucherTxt.getText().isEmpty())){
 			return true;
 		}
 		return false;
@@ -307,5 +277,4 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.commoditylist.remove(this.presentsTable.getTable().getSelectedRow());
 		this.presentsTable.deleteRow();
 	}
-	
 }

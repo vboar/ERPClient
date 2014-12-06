@@ -553,7 +553,6 @@
 		<panel className="ui.paymentui.CreatePaymentPanel" width="760" height="400"
 			   x="0" y="80" bg="img/document/fkd.jpg">
 			<buttons>
-<<<<<<< Updated upstream
 				<add text="添加账户" w="80" h="25" x="540" y="125" />
 				<delete text="删除账户" w="80" h="25" x="640" y="125" />
 				<commit text="提交" w="100" h="30" x="260" y="360" />
@@ -568,13 +567,12 @@
 			</labels>
 			<textfields>
 				<customerfind w="270" h="25" x="180" y="50" />
-=======
 				<addcustomer text="添加客户信息" w="100" h="30" x="630" y="50" />
 				<add text="增加账户" w="80" h="25" x="560" y="125" />
 				<delete text="删除账户" w="80" h="25" x="650" y="125" />
 				<commit text="提交"  w="100" h="30" x="260" y="360"/>
 				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
-			</buttons>
+			</textfields>
 			<labels>
 				<operatorlab text="" w="120" h="30" x="576" y="88" />
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
@@ -585,7 +583,6 @@
 			</labels>
 			<textfields>
 				<customerfind w="240" h="30" x="380" y="50" />
->>>>>>> Stashed changes
 			</textfields>
 			<tablepane className="ui.paymentui.PaymentTable" width="730" height="200" x="10" y="152">
 				<columnnames>
@@ -1050,34 +1047,34 @@
 	</userinfodialog>
 	
 	<!-- 针对客户级别的促销策略对话框 -->
-	<customergiftinfodialog  width="600" height="360" x="200" y="100"
-		title="针对客户界别制定促销策略">
+	<customergiftinfodialog  width="640" height="420" x="200" y="100"
+		title="针对客户级别制定促销策略">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="195" />
-			<cancel text="取消" w="80" h="30" x="270" y="195" />
-			<add text="添加商品" w="80" h="30" x="150" y="195" />
-			<delete text="删除商品" w="80" h="30" x="150" y="195" />
+			<commit text="提交" w="80" h="30" x="220" y="340" />
+			<cancel text="取消" w="80" h="30" x="340" y="340" />
+			<add text="添加商品" w="80" h="25" x="430" y="105" />
+			<delete text="删除商品" w="80" h="25" x="530" y="105" />
 		</buttons>
 		<labels>
-			<level text="客户级别" w="40" h="30" x="30" y="20" />
-			<starttime text="开始时间" w="200" h="30" x="80" y="46"/>
-			<endtime text="截止时间" w="80" h="30" x="240" y="20" />
+			<level text="客户级别" w="80" h="30" x="20" y="15" />
+			<starttime text="开始时间" w="80" h="30" x="210" y="15"/>
+			<endtime text="截止时间" w="80" h="30" x="420" y="15" />
 		</labels>
 		<datepicker>
-			<start w="100" h="30" x="290" y="20"/>
-			<end w="100" h="30" x="480" y="20"/>
+			<start w="120" h="25" x="270" y="20"/>
+			<end w="120" h="25" x="480" y="20"/>
 		</datepicker>
 		<textfields>
-			<discount w="130" h="30" x="80" y="20" />
-			<voucher w="200" h="30" x="80" y="80" />
+			<discount w="100" h="30" x="110" y="60" />
+			<voucher w="100" h="30" x="415" y="60" />
 		</textfields>
 		<checkbox>
-			<discount text="折让" w="130" h="30" x="80" y="20"/>
-			<voucher text="代金券" w="130" h="30" x="80" y="20"/>
-			<presents text="赠品列表" w="130" h="30" x="80" y="20"/>
+			<discount text="折让" w="80" h="30" x="20" y="60"/>
+			<voucher text="代金券金额" w="100" h="30" x="300" y="60"/>
+			<presents text="赠品列表" w="100" h="30" x="20" y="100"/>
 		</checkbox>
 		<comboboxes>
-			<level w="130" h="30" x="320" y="20">
+			<level w="100" h="25" x="80" y="20">
 				<string str="VIP1" />
 				<string str="VIP2" />
 				<string str="VIP3" />
@@ -1085,7 +1082,7 @@
 				<string str="VIP5" />
 			</level>	
 		</comboboxes>
-		<tablepane className="ui.promotionui.PresentCommodityTablePane" width="580" height="200" x="10" y="100">
+		<tablepane className="ui.promotionui.PresentCommodityTablePane" width="610" height="200" x="10" y="130">
 			<columnnames>
 				<columnname name="商品编号" />
 				<columnname name="商品名称" />
@@ -1095,4 +1092,96 @@
 		</tablepane>
 	</customergiftinfodialog>
 
+	<!-- 针对总价的促销策略对话框 -->
+	<totalgiftinfodialog  width="640" height="420" x="200" y="100"
+		title="针对总价制定促销策略">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="220" y="340" />
+			<cancel text="取消" w="80" h="30" x="340" y="340" />
+			<add text="添加商品" w="80" h="25" x="430" y="105" />
+			<delete text="删除商品" w="80" h="25" x="530" y="105" />
+		</buttons>
+		<labels>
+			<total text="总价" w="80" h="30" x="30" y="15" />
+			<starttime text="开始时间" w="80" h="30" x="210" y="15"/>
+			<endtime text="截止时间" w="80" h="30" x="420" y="15" />
+		</labels>
+		<datepicker>
+			<start w="120" h="25" x="270" y="20"/>
+			<end w="120" h="25" x="480" y="20"/>
+		</datepicker>
+		<textfields>
+			<total w="100" h="25" x="80" y="20" />
+			<voucher w="100" h="30" x="130" y="60" />
+		</textfields>
+		<checkbox>
+			<voucher text="代金券金额" w="100" h="30" x="20" y="60"/>
+			<presents text="赠品列表" w="100" h="30" x="20" y="100"/>
+		</checkbox>
+		<tablepane className="ui.promotionui.PresentCommodityTablePane" width="610" height="200" x="10" y="130">
+			<columnnames>
+				<columnname name="商品编号" />
+				<columnname name="商品名称" />
+				<columnname name="商品型号" />
+				<columnname name="数量" />
+			</columnnames>
+		</tablepane>
+	</totalgiftinfodialog>
+	
+	<!-- 特价包的促销策略对话框 -->
+	<specialofferinfodialog  width="640" height="400" x="200" y="100"
+		title="特价包制定促销策略">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="220" y="310" />
+			<cancel text="取消" w="80" h="30" x="340" y="310" />
+			<add text="添加商品" w="80" h="25" x="430" y="55" />
+			<delete text="删除商品" w="80" h="25" x="530" y="55" />
+		</buttons>
+		<labels>
+			<list text="组合商品列表" w="140" h="30" x="20" y="55" />
+			<total text="特价包总价" w="100" h="30" x="20" y="15" />
+			<starttime text="开始时间" w="80" h="30" x="220" y="15"/>
+			<endtime text="截止时间" w="80" h="30" x="420" y="15" />
+		</labels>
+		<datepicker>
+			<start w="120" h="25" x="280" y="20"/>
+			<end w="120" h="25" x="480" y="20"/>
+		</datepicker>
+		<textfields>
+			<total w="100" h="25" x="100" y="20" />
+		</textfields>
+		<tablepane className="ui.promotionui.SpecialCommodityTablePane" width="610" height="200" x="10" y="85">
+			<columnnames>
+				<columnname name="商品编号" />
+				<columnname name="商品名称" />
+				<columnname name="商品型号" />
+				<columnname name="数量" />
+			</columnnames>
+		</tablepane>
+	</specialofferinfodialog>
+	
+		<!-- 特价包添加商品对话框 -->
+	<addcommodityinfodialog width="480" height="280" x="240"
+								   y="200" title="添加商品">
+		<buttons>
+			<add text="添加" w="80" h="30" x="360" y="30" />
+			<commit text="确认" w="80" h="30" x="270" y="180" />
+			<cancel text="取消" w="80" h="30" x="360" y="180" />
+		</buttons>
+		<labels>
+			<currentid text="" w="300" h="30" x="100" y="70" />
+			<currentname text="" w="300" h="30" x="100" y="100" />
+			<currentmodel text="" w="300" h="30" x="100" y="130" />
+			<tip text="请输入商品关键字" w="120" h="30" x="20" y="2" 
+			font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
+			<id text="商品编号：" w="80" h="30" x="20" y="70" />
+			<name text="商品名称：" w="80" h="30" x="20" y="100" />
+			<model text="商品型号：" w="80" h="30" x="20" y="130" />
+			<number text="商品数量：" w="80" h="30" x="20" y="170" />
+		</labels>
+		<textfields>
+			<commodity  w="320" h="30" x="20" y="30" />
+			<number  w="100" h="30" x="100" y="170" />
+		</textfields>
+	</addcommodityinfodialog>
 </erp>

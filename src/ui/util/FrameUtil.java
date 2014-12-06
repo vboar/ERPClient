@@ -7,6 +7,9 @@ package ui.util;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -46,5 +49,30 @@ public class FrameUtil {
         if (allwidth > containerW) {
             table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         }
+	}
+	
+	/**
+	 * 将日期转为string
+	 * @param date
+	 * @return
+	 */
+	public static String getFormattedDate(Date date){
+		if(date!=null){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			return dateFormat.format(date);
+		}
+		return null;
+	}
+	
+	public static Date getDateFormStr(String str){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date;
+		try {
+			date = dateFormat.parse(str);
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -66,6 +66,7 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 		this.vomap = new HashMap<String,CommodityVO>();
 		this.cfg = ERPConfig.getADDPRESENTCOMMODITY_DIALOG_CONFIG();
 		// 设置对话框基本属性
+		this.setTitle(cfg.getTitle());
 		this.setBounds(cfg.getX(), cfg.getW(), cfg.getW(), cfg.getH());
         this.setLayout(null);
         this.setResizable(false);

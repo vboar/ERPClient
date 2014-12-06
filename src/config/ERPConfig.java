@@ -25,9 +25,15 @@ public class ERPConfig {
 	
 	private static DialogConfig ADDPRESENTCOMMODITY_DIALOG_CONFIG = null;
 	
+	private static DialogConfig ADDCOMMODITY_DIALOG_CONFIG = null;
+	
 	private static DialogConfig ADDEXCEPTIONLINEITEM_DIALOG_CONFIG = null;
 	
 	private static DialogConfig LEVEL_GIFT_DIALOG_CONFIG = null;
+	
+	private static DialogConfig TOTAL_GIFT_DIALOG_CONFIG = null;
+	
+	private static DialogConfig SPECIAL_OFFER_DIALOG_CONFIG = null;
 	
 	static{
 		try {
@@ -59,6 +65,12 @@ public class ERPConfig {
 			ADDEXCEPTIONLINEITEM_DIALOG_CONFIG = new DialogConfig(erp.element("addexceptionlineitemdialog"));
 			// 创建添加针对客户级别的促销策略对话框配置对象
 			LEVEL_GIFT_DIALOG_CONFIG = new DialogConfig(erp.element("customergiftinfodialog"));
+			// 创建添加针对总价的促销策略对话框配置对象
+			TOTAL_GIFT_DIALOG_CONFIG = new DialogConfig(erp.element("totalgiftinfodialog"));
+			// 创建添加特价包促销策略对话框配置对象
+			SPECIAL_OFFER_DIALOG_CONFIG = new DialogConfig(erp.element("specialofferinfodialog"));
+			// 创建添加组合商品对话框配置对象
+			ADDCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addcommodityinfodialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -106,6 +118,18 @@ public class ERPConfig {
 
 	public static DialogConfig getLEVEL_GIFT_DIALOG_CONFIG() {
 		return LEVEL_GIFT_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getTOTAL_GIFT_DIALOG_CONFIG() {
+		return TOTAL_GIFT_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDCOMMODITY_DIALOG_CONFIG() {
+		return ADDCOMMODITY_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getSPECIAL_OFFER_DIALOG_CONFIG() {
+		return SPECIAL_OFFER_DIALOG_CONFIG;
 	}
 
 }

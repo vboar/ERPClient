@@ -28,7 +28,7 @@ public class TotalGiftVO {
 	 * 代金券
 	 */
 	public double voucher;
-	
+
 	/**
 	 * 起始时间
 	 */

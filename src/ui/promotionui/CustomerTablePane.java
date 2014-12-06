@@ -8,7 +8,6 @@ import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.CustomerGiftVO;
-import vo.SpecialOfferVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.promotionblservice.CustomerGiftBLService;
 import config.TableConfig;
