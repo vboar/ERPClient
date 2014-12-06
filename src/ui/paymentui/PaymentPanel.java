@@ -109,7 +109,7 @@ public class PaymentPanel extends JPanel {
 
 	public void showCreatePayment() {
 		removeAllPanel();
-		createPaymentPanel = new CreatePaymentPanel(frame);
+		createPaymentPanel = new CreatePaymentPanel(frame, this);
 		add(createPaymentPanel);
 		repaint();
 	}

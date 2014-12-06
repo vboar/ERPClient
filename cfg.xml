@@ -553,6 +553,7 @@
 		<panel className="ui.paymentui.CreatePaymentPanel" width="760" height="400"
 			   x="0" y="80" bg="img/document/fkd.jpg">
 			<buttons>
+<<<<<<< Updated upstream
 				<add text="添加账户" w="80" h="25" x="540" y="125" />
 				<delete text="删除账户" w="80" h="25" x="640" y="125" />
 				<commit text="提交" w="100" h="30" x="260" y="360" />
@@ -567,8 +568,26 @@
 			</labels>
 			<textfields>
 				<customerfind w="270" h="25" x="180" y="50" />
+=======
+				<addcustomer text="添加客户信息" w="100" h="30" x="630" y="50" />
+				<add text="增加账户" w="80" h="25" x="560" y="125" />
+				<delete text="删除账户" w="80" h="25" x="650" y="125" />
+				<commit text="提交"  w="100" h="30" x="260" y="360"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
+			</buttons>
+			<labels>
+				<operatorlab text="" w="120" h="30" x="576" y="88" />
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<tip text="请输入客户信息关键字" w="180" h="30" x="250" y="50"
+					 font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
+				<customeridlab text="_________________________" w="180" h="35" x="100" y="88" />
+				<customernamelab text="________________________" w="180" h="35" x="370" y="88" />
+			</labels>
+			<textfields>
+				<customerfind w="240" h="30" x="380" y="50" />
+>>>>>>> Stashed changes
 			</textfields>
-			<tablepane className="ui.paymentui.PaymentTable" width="730" height="200" x="10" y="150">
+			<tablepane className="ui.paymentui.PaymentTable" width="730" height="200" x="10" y="152">
 				<columnnames>
 					<columnname name="账户名称" />
 					<columnname name="账户卡号" />
@@ -948,28 +967,28 @@
 	</customerinfodialog>
 
 
-	<!-- 收付款中收款添加账户对话框 -->
+	<!-- 收付款中收付款添加账户对话框 -->
 	<addreceiptaccountinfodialog width="480" height="280" x="240"
 								 y="200" title="添加账户">
 		<buttons>
 			<addaccount text="添加" w="80" h="30" x="360" y="30" />
-			<commit text="提交" w="80" h="30" x="270" y="180" />
-			<cancel text="取消" w="80" h="30" x="360" y="180" />
+			<commit text="提交" w="80" h="30" x="270" y="190" />
+			<cancel text="取消" w="80" h="30" x="360" y="190" />
 		</buttons>
 		<labels>
-			<account text="银行账户" w="80" h="30" x="20" y="70" />
-			<name text="账户名称" w="80" h="30" x="20" y="100" />
-			<currentaccount text="" w="80" h="30" x="100" y="70"/>
-			<currentname text="" w="80" h="30" x="100" y="100"/>
-			<money text="转账金额" w="80" h="30" x="20" y="130" />
-			<remark text="备注" w="80" h="30" x="20" y="160" />
+			<name text="账户名称：" w="65" h="30" x="20" y="70" />
+			<account text="银行卡号：" w="65" h="30" x="200" y="70" />
+			<currentname text="________________" w="100" h="30" x="86" y="70"/>
+			<currentaccount text="________________" w="175" h="30" x="268" y="70"/>
+			<money text="转账金额" w="80" h="30" x="20" y="110" />
+			<remark text="备注" w="80" h="30" x="20" y="150" />
 			<tip text="请输入账户关键字" w="120" h="30" x="20" y="2"
 				 font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
 		</labels>
 		<textfields>
 			<account w="320" h="30" x="20" y="30" />
-			<money w="100" h="30" x="100" y="130" />
-			<remark w="100" h="30" x="100" y="160" />
+			<money w="100" h="30" x="86" y="110" />
+			<remark w="354" h="30" x="86" y="150" />
 		</textfields>
 	</addreceiptaccountinfodialog>
 

@@ -54,8 +54,6 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 	private PaymentTable table;
 	
 	private JFrame frame;
-
-	private AddAccountDialog addDialog;
 	
 	private PanelConfig pcfg;
 	
@@ -71,8 +69,11 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 
 	private HashMap<String,CustomerVO> customerlist;
 
-    public CreatePaymentPanel(JFrame frame) {
+	private PaymentPanel panel;
+
+    public CreatePaymentPanel(JFrame frame, PaymentPanel panel) {
 		this.frame = frame;
+		this.panel = panel;
 		paymentController = ControllerFactoryImpl.getInstance().getPaymentController();
 		customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		customerlist = new HashMap<String,CustomerVO>();
@@ -87,7 +88,6 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 	public void paintComponent(Graphics g){
 		g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(), pcfg.getH(),null);
 	}
-
 
 	private void initComponent() {
 		initLabels();
@@ -141,7 +141,8 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showAddDialog();
+				new AddAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(),
+						frame, CreatePaymentPanel.this);
 			}
 		});
 
@@ -167,7 +168,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		cancelBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 返回单据查看
+				panel.showShow();
 			}
 		});
 		this.add(cancelBtn);
@@ -176,11 +177,6 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 	private void initCustomerFind() {
 		customerFind = new MySpecialTextField(pcfg.getTextFields().element("customerfind"), this);
 		add(customerFind);
-	}
-	
-	private void showAddDialog() {
-		addDialog= new AddAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(), frame, this);
-		this.addDialog.setVisible(true);
 	}
 
 	public void createPayment() {
@@ -194,8 +190,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 					DocumentStatus.NONCHECKED, false, DocumentType.PAYMENT));
 			if(result == ResultMessage.SUCCESS) {
 				MyOptionPane.showMessageDialog(null, "付款单提交成功！");
-				this.setVisible(false);
-				// TODO
+				panel.showShow();
 			} else{
 				MyOptionPane.showMessageDialog(null, "付款单提交失败！");
 			}
@@ -226,14 +221,14 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 
 	@Override
 	public void addAccount(TransferLineItemVO vo) {
-		// TODO Auto-generated method stub
-		
+		lists.add(vo);
+		table.addRow(vo);
 	}
 
 	@Override
 	public void deleteAccount() {
-		// TODO Auto-generated method stub
-		
+		lists.remove(table.getTable().getSelectedRow());
+		table.deleteRow();
 	}
 	
 	

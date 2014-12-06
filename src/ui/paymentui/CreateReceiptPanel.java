@@ -55,8 +55,6 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 	private PaymentTable table;
 	
 	private JFrame frame;
-
-	private AddAccountDialog addDialog;
 	
 	private PanelConfig pcfg;
 	
@@ -141,7 +139,8 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 		addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showAddDialog();
+				new AddAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(),
+						frame, CreateReceiptPanel.this);
 			}
 		});
 
@@ -176,11 +175,6 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 	private void initCustomerFind() {
 		customerFind = new MySpecialTextField(pcfg.getTextFields().element("customerfind"), this);
 		add(customerFind);
-	}
-
-	private void showAddDialog() {
-		addDialog= new AddAccountDialog(ERPConfig.getADDRECEIPTACCOUNT_DIALOG_CONFIG(), frame, this);
-		this.addDialog.setVisible(true);
 	}
 
 	public void createReceipt() {
