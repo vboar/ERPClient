@@ -74,9 +74,7 @@ public class ManagerPanel extends MyMainPanel {
 		conditionBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showCondition();
+				showCondition();
 			}
 		});
 

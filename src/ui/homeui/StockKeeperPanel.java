@@ -6,6 +6,11 @@
 
 package ui.homeui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
 import ui.commodityui.categoryui.CategoryPanel;
 import ui.commodityui.commodityui.CommodityPanel;
 import ui.exceptionui.ExceptionPanel;
@@ -15,11 +20,6 @@ import ui.stockui.stockcheck.StockCheckPanel;
 import ui.stockui.stockinfo.StockInfoPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
-import ui.util.MyOptionPane;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class StockKeeperPanel extends MyMainPanel {

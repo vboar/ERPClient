@@ -28,8 +28,9 @@ public class MyComboBox extends JComboBox {
 		for (int i = 0; i < strs.size(); ++i) {
 			this.addItem(strs.get(i).attributeValue("str"));
 		}
-		this.setSelectedIndex(0);
-
+		if(this.getItemCount()>0){
+			this.setSelectedIndex(0);
+		}
 	}
 
 	public MyComboBox(Element ele, boolean isFindBox) {
