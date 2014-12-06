@@ -44,4 +44,9 @@ public class CustomerController implements CustomerBLService {
 		return customer.updateByPayment(customerId, total);
 	}
 
+	@Override
+	public String createId() {
+		return customer.createId();
+	}
+
 }

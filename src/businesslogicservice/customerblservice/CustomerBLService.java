@@ -45,6 +45,10 @@ public interface CustomerBLService {
 	 */
 	public ArrayList<CustomerVO> show();
 	
-
+	/**
+	 * 获得客户ID
+	 * @return
+	 */
+	public String createId();
 
 }

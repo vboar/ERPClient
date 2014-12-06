@@ -921,6 +921,7 @@
 			<email text="电子邮箱" w="60" h="30" x="250" y="140" />
 			<creditlimit text="应收额度" w="60" h="30" x="250" y="180" />
 			<salesman text="默认业务员" w="80" h="30" x="30" y="180" />
+			<salesmanid text="默认业务员" w="80" h="30" x="30" y="180" />
 		</labels>
 		<textfields>
 			<name w="140" h="30" x="80" y="60" />
@@ -929,7 +930,7 @@
 			<postalcode w="140" h="30" x="80" y="140" />
 			<email w="190" h="30" x="320" y="140" />
 			<creditlimit w="100" h="30" x="320" y="180" />
-			<salesman w="100" h="30" x="120" y="180" />
+			<salesmanid w="100" h="30" x="120" y="180" />
 		</textfields>
 		<comboboxes>
 			<category w="130" h="30" x="80" y="20">

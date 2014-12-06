@@ -51,7 +51,9 @@ public class CustomerInfoDialog extends JDialog {
 
 	private DialogConfig cfg;
 	
-	public CustomerPanel panel;
+	private CustomerPanel panel;
+	
+	private JFrame frame;
 	
 	private boolean isAdd;
 	
@@ -61,6 +63,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.cfg = cfg;
 		this.setTitle(cfg.getTitle());
 		this.panel = panel;
+		this.frame = frame;
 		this.isAdd = isAdd;
 		this.setSize(this.cfg.getW(), this.cfg.getH());
 		this.setLayout(null);
@@ -99,7 +102,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.add(new MyLabel(ele.element("postalcode")));
 		this.add(new MyLabel(ele.element("email")));
 		this.add(new MyLabel(ele.element("creditlimit")));
-		this.add(new MyLabel(ele.element("salesmanId")));
+		this.add(new MyLabel(ele.element("salesmanid")));
 	}
 	
 	private void initButtons(Element ele){
@@ -118,25 +121,29 @@ public class CustomerInfoDialog extends JDialog {
 				String email = emailTxt.getText();
 				Double creditLimit = Double.parseDouble(creditLimitTxt.getText());
 				String salesman = salesmanTxt.getText();
-				CustomerVO vo = new CustomerVO(null, category, level, name, phoneNumber, address,
-						postalCode, email, creditLimit, 0, 0, salesman, true);
+				CustomerVO vo = new CustomerVO(null, category, level, name, 
+						phoneNumber, address,postalCode, email, creditLimit, 0, 0, salesman, true);
 				
-				int result = MyOptionPane.showConfirmDialog(null, "确认提交？", "确认提示",
+				int result = MyOptionPane.showConfirmDialog(frame, "确认提交？", "确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
 					if(isAdd) {
-						if(panel.addCustomer(vo) == ResultMessage.SUCCESS) {
-							MyOptionPane.showMessageDialog(null, "添加成功！");
-							dispose();
-						} else {
-							MyOptionPane.showMessageDialog(null, "填写信息错误，添加失败！");
+						ResultMessage addResult = panel.addCustomer(vo);
+						switch(addResult){
+						case SUCCESS:
+							MyOptionPane.showMessageDialog(frame, "添加成功！");
+							dispose(); break;
+						case EXIST:
+							MyOptionPane.showMessageDialog(frame, "该客户名已存在！");break;
+						default:
+							MyOptionPane.showMessageDialog(frame, "填写信息错误，修改失败！");break;
 						}
 					} else {
 						if(panel.updateCustomer(vo) == ResultMessage.SUCCESS) {
-							MyOptionPane.showMessageDialog(null, "修改成功！");
+							MyOptionPane.showMessageDialog(frame, "修改成功！");
 							dispose();
 						} else {
-							MyOptionPane.showMessageDialog(null, "填写信息错误，修改失败！");
+							MyOptionPane.showMessageDialog(frame, "填写信息错误，修改失败！");
 						}
 					}
 					
@@ -152,7 +159,7 @@ public class CustomerInfoDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				int result = MyOptionPane.showConfirmDialog(null, "确认取消？","确认提示",
+				int result = MyOptionPane.showConfirmDialog(frame, "确认取消？","确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result==MyOptionPane.YES_OPTION){
 					CustomerInfoDialog.this.dispose();
@@ -171,7 +178,7 @@ public class CustomerInfoDialog extends JDialog {
 		this.nameTxt = new MyTextField(ele.element("name"));
 		this.phoneNumberTxt = new MyTextField(ele.element("phonenumber"));
 		this.postalCodeTxt = new MyTextField(ele.element("postalcode"));
-		this.salesmanTxt = new MyTextField(ele.element("salesmanId"));
+		this.salesmanTxt = new MyTextField(ele.element("salesmanid"));
 		this.add(addressTxt);
 		this.add(creditLimitTxt);
 		this.add(emailTxt);
