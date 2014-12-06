@@ -32,7 +32,22 @@ public class DialogConfig extends ComponentConfig{
 	 * 复选框配置
 	 */
 	private Element comboboxes;
-
+	
+	/**
+	 * 日期选择器配置
+	 */
+	private Element datePicker;
+	
+	/**
+	 * 单选框配置
+	 */
+	private Element checkBox;
+	
+	/**
+	 * 表格配置
+	 */
+	private Element tablepane;
+	
 	/**
 	 * 构造函数
 	 * @param info 配置对象
@@ -42,6 +57,9 @@ public class DialogConfig extends ComponentConfig{
 		this.labels = info.element("labels");
 		this.textFields = info.element("textfields");
 		this.comboboxes = info.element("comboboxes");
+		this.datePicker = info.element("datepicker");
+		this.checkBox = info.element("checkbox");
+		this.tablepane = info.element("tablepane");
 		this.title = info.attributeValue("title");
 		this.w = Integer.parseInt(info.attributeValue("width"));
 		this.h = Integer.parseInt(info.attributeValue("height"));
@@ -67,6 +85,18 @@ public class DialogConfig extends ComponentConfig{
 
 	public String getTitle() {
 		return title;
+	}
+
+	public Element getDatePicker() {
+		return datePicker;
+	}
+
+	public Element getCheckBox() {
+		return checkBox;
+	}
+
+	public Element getTablepane() {
+		return tablepane;
 	}
 	
 }

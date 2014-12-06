@@ -1,4 +1,4 @@
-package ui.presentui;
+package ui.promotionui;
 
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.commodityblservice.CommodityBLService;

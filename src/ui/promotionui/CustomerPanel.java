@@ -1,5 +1,8 @@
 package ui.promotionui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -36,6 +39,12 @@ public class CustomerPanel extends JPanel{
 
 	private void initComponent() {
 		this.add = new MyButton(cfg.getButtons().element("add"));
+		this.add.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CustomerGiftInfoDialog(frame,true);
+			}
+		});
 		this.unable = new MyButton(cfg.getButtons().element("unable"));
 		this.update = new MyButton(cfg.getButtons().element("update"));
 		this.add(new MyLabel(cfg.getLabels().element("list")));

@@ -27,6 +27,8 @@ public class ERPConfig {
 	
 	private static DialogConfig ADDEXCEPTIONLINEITEM_DIALOG_CONFIG = null;
 	
+	private static DialogConfig LEVEL_GIFT_DIALOG_CONFIG = null;
+	
 	static{
 		try {
 			// 创建XML读取器
@@ -55,6 +57,8 @@ public class ERPConfig {
 			ADDPRESENTCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addpresentcommodityinfodialog"));
 			// 创建添加库存报溢报损单商品对话框配置对象
 			ADDEXCEPTIONLINEITEM_DIALOG_CONFIG = new DialogConfig(erp.element("addexceptionlineitemdialog"));
+			// 创建添加针对客户级别的促销策略对话框配置对象
+			LEVEL_GIFT_DIALOG_CONFIG = new DialogConfig(erp.element("customergiftinfodialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -98,6 +102,10 @@ public class ERPConfig {
 
 	public static DialogConfig getADDEXCEPTIONLINEITEM_DIALOG_CONFIG() {
 		return ADDEXCEPTIONLINEITEM_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getLEVEL_GIFT_DIALOG_CONFIG() {
+		return LEVEL_GIFT_DIALOG_CONFIG;
 	}
 
 }

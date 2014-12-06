@@ -10,6 +10,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.AddPresentLineItem;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -34,7 +35,7 @@ import config.TableConfig;
  * @date 2014/11/27
  */
 @SuppressWarnings("serial")
-public class CreatePresentPanel extends JPanel implements FuzzySearch{
+public class CreatePresentPanel extends JPanel implements FuzzySearch, AddPresentLineItem{
 	
 	private MyButton addBtn;
 	
@@ -244,15 +245,6 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 		this.presentTable.deleteRow();
 	}
 	
-	/**
-	 * 添加一个商品
-	 * @param vo
-	 */
-	public void addCommodity(PresentLineItemVO vo){
-		this.commoditylist.add(vo);
-		this.presentTable.addRow(vo);
-	}
-
 	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
 		ArrayList<CustomerVO> list = this.customerController.fuzzyFind(keyword);
@@ -264,6 +256,12 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch{
 			this.customerlist.put(str, vo);
 		}
 		return strs;
+	}
+
+	@Override
+	public void addPresentLineItem(PresentLineItemVO vo) {
+		this.commoditylist.add(vo);
+		this.presentTable.addRow(vo);
 	}
 
 }

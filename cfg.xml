@@ -1029,5 +1029,51 @@
 			</permission>
 		</comboboxes>
 	</userinfodialog>
+	
+	<!-- 针对客户级别的促销策略对话框 -->
+	<customergiftinfodialog  width="600" height="360" x="200" y="100"
+		title="针对客户界别制定促销策略">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="150" y="195" />
+			<cancel text="取消" w="80" h="30" x="270" y="195" />
+			<add text="添加商品" w="80" h="30" x="150" y="195" />
+			<delete text="删除商品" w="80" h="30" x="150" y="195" />
+		</buttons>
+		<labels>
+			<level text="客户级别" w="40" h="30" x="30" y="20" />
+			<starttime text="开始时间" w="200" h="30" x="80" y="46"/>
+			<endtime text="截止时间" w="80" h="30" x="240" y="20" />
+		</labels>
+		<datepicker>
+			<start w="100" h="30" x="290" y="20"/>
+			<end w="100" h="30" x="480" y="20"/>
+		</datepicker>
+		<textfields>
+			<discount w="130" h="30" x="80" y="20" />
+			<voucher w="200" h="30" x="80" y="80" />
+		</textfields>
+		<checkbox>
+			<discount text="折让" w="130" h="30" x="80" y="20"/>
+			<voucher text="代金券" w="130" h="30" x="80" y="20"/>
+			<presents text="赠品列表" w="130" h="30" x="80" y="20"/>
+		</checkbox>
+		<comboboxes>
+			<level w="130" h="30" x="320" y="20">
+				<string str="VIP1" />
+				<string str="VIP2" />
+				<string str="VIP3" />
+				<string str="VIP4" />
+				<string str="VIP5" />
+			</level>	
+		</comboboxes>
+		<tablepane className="ui.promotionui.PresentCommodityTablePane" width="580" height="200" x="10" y="100">
+			<columnnames>
+				<columnname name="商品编号" />
+				<columnname name="商品名称" />
+				<columnname name="商品型号" />
+				<columnname name="数量" />
+			</columnnames>
+		</tablepane>
+	</customergiftinfodialog>
 
 </erp>
