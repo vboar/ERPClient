@@ -6,19 +6,19 @@
 
 package ui.homeui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
 import ui.customerui.CustomerPanel;
 import ui.messageui.MessagePanel;
 import ui.presentui.PresentPanel;
 import ui.purchaseui.PurchasePanel;
-import ui.saleui.SalePanel;
+import ui.saleui.SaleMainPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
 import ui.util.MyOptionPane;
-
-import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class SalesmanPanel extends MyMainPanel {
@@ -31,7 +31,7 @@ public class SalesmanPanel extends MyMainPanel {
 
 	private MyButton customerManageBtn;
 
-	private SalePanel salePanel;
+	private SaleMainPanel salePanel;
 
 	private PurchasePanel purchasePanel;
 
@@ -55,7 +55,6 @@ public class SalesmanPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showSale();
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
 			}
 		});
 
@@ -90,7 +89,7 @@ public class SalesmanPanel extends MyMainPanel {
 
 	public void showSale() {
 		removeAllPanel();
-		salePanel = new SalePanel(frame);
+		salePanel = new SaleMainPanel(frame);
 		add(salePanel);
 		repaint();
 	}

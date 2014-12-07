@@ -15,12 +15,14 @@ import config.TableConfig;
 import ui.util.*;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class ShowPanel extends JPanel {
 
     private MyComboBox documentTypeBox;

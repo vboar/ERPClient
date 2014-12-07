@@ -1,4 +1,4 @@
-package ui.promotionui;
+package ui.util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
