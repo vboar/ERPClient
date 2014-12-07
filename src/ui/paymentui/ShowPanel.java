@@ -169,13 +169,16 @@ public class ShowPanel extends JPanel {
 
     private void initTable() {
         // 默认显示收款单的表格
-        receiptTable = new ShowPaymentTable(new TableConfig(cfg.getTablepane()), receiptController);
+        receiptTable = new ShowPaymentTable(new TableConfig(cfg.getTables().element("payment")),
+                receiptController);
         this.add(this.receiptTable);
         receiptTable.showAllTable();
-        paymentTable = new ShowPaymentTable(new TableConfig(cfg.getTablepane()), paymentController);
+        paymentTable = new ShowPaymentTable(new TableConfig(cfg.getTables().element("payment")),
+                paymentController);
         this.add(this.paymentTable);
         paymentTable.setVisible(false);
-        cashTable = new ShowCashTable(new TableConfig(cfg.getTablepane()), cashController);
+        cashTable = new ShowCashTable(new TableConfig(cfg.getTables().element("cash")),
+                cashController);
         this.add(cashTable);
         cashTable.setVisible(false);
     }

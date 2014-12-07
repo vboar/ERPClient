@@ -574,31 +574,33 @@
 				<find text="查询" w="60" h="30" x="565" y="20" />
 				<show text="查看所有" w="90" h="30" x="640" y="20" />
 			</buttons>
-			<tablepane className="ui.paymentui.ShowPaymentTable"
-					   width="730" height="350" x="10" y="60">
-				<columnnames>
-					<columnname name="单据编号" />
-					<columnname name="创建时间" />
-					<columnname name="客户编号" />
-					<columnname name="客户名" />
-					<columnname name="转账列表" />
-					<columnname name="金额汇总" />
-					<columnname name="操作员" />
-					<columnname name="审批状态"/>
-				</columnnames>
-			</tablepane>
-			<tablepane className="ui.paymentui.ShowCashTable"
-					   width="730" height="350" x="10" y="60">
-				<columnnames>
-					<columnname name="单据编号" />
-					<columnname name="创建时间" />
-					<columnname name="操作员" />
-					<columnname name="银行账户" />
-					<columnname name="条目列表" />
-					<columnname name="总额" />
-					<columnname name="审批状态" />
-				</columnnames>
-			</tablepane>
+			<tables>
+				<payment className="ui.paymentui.ShowPaymentTable"
+						   width="730" height="350" x="10" y="60">
+					<columnnames>
+						<columnname name="单据编号" />
+						<columnname name="创建时间" />
+						<columnname name="客户编号" />
+						<columnname name="客户名" />
+						<columnname name="转账列表" />
+						<columnname name="金额汇总" />
+						<columnname name="操作员" />
+						<columnname name="审批状态"/>
+					</columnnames>
+				</payment>
+				<cash className="ui.paymentui.ShowCashTable"
+						   width="730" height="350" x="10" y="60">
+					<columnnames>
+						<columnname name="单据编号" />
+						<columnname name="创建时间" />
+						<columnname name="操作员" />
+						<columnname name="银行账户" />
+						<columnname name="条目列表" />
+						<columnname name="总额" />
+						<columnname name="审批状态" />
+					</columnnames>
+				</cash>
+			</tables>
 		</panel>
 
 		<!-- 收付款面板中的制定收款单面板 -->
@@ -690,6 +692,7 @@
 				<accountidlab text="______________________" w="180" h="35" x="170" y="80" />
 				<accountnamelab text="______________________" w="180" h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
+				<totallab text="总额" w="120" h="30" x="581" y="306" />
 			</labels>
 			<textfields>
 				<accountfind w="270" h="25" x="180" y="50" />
@@ -710,7 +713,7 @@
 			<textfields>
 				<accountfind w="240" h="30" x="380" y="50" />
 			</textfields>
-			<tablepane className="ui.paymentui.CashTable" width="730" height="200" x="10" y="152">
+			<tablepane className="ui.paymentui.CashTable" width="730" height="130" x="10" y="152">
 				<columnnames>
 					<columnname name="条目名" />
 					<columnname name="金额" />
@@ -1208,6 +1211,25 @@
 			<remark w="354" h="30" x="86" y="150" />
 		</textfields>
 	</addreceiptaccountinfodialog>
+
+	<!-- 收付款中现金费用单添加条目对话框 -->
+	<addcashinfodialog width="480" height="280" x="240"
+								 y="200" title="添加条目">
+		<buttons>
+			<commit text="提交" w="80" h="30" x="270" y="190" />
+			<cancel text="取消" w="80" h="30" x="360" y="190" />
+		</buttons>
+		<labels>
+			<name text="条目名称：" w="80" h="30" x="20" y="30" />
+			<money text="转账金额" w="80" h="30" x="20" y="70" />
+			<remark text="备注" w="80" h="30" x="20" y="110" />
+		</labels>
+		<textfields>
+			<name w="100" h="30" x="86" y="30" />
+			<money w="100" h="30" x="86" y="70" />
+			<remark w="350" h="30" x="86" y="110" />
+		</textfields>
+	</addcashinfodialog>
 
 	<!-- 账户信息对话框 -->
 	<accountinfodialog width="500" height="280" x="230"

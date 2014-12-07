@@ -32,7 +32,7 @@ public class CustomerController implements CustomerBLService {
 
 	@Override
 	public ArrayList<CustomerVO> fuzzyFind(String keyWord) {
-		return customer.show();
+		return customer.fuzzyFind(keyWord);
 	}
 
 	@Override

@@ -34,6 +34,8 @@ public class ERPConfig {
 	private static DialogConfig TOTAL_GIFT_DIALOG_CONFIG = null;
 	
 	private static DialogConfig SPECIAL_OFFER_DIALOG_CONFIG = null;
+
+	private static DialogConfig ADDCASHINFO_DIALOG_CONFIG = null;
 	
 	static{
 		try {
@@ -59,6 +61,8 @@ public class ERPConfig {
 			COMMODITYINFO_DIALOG_CONFIG = new DialogConfig(erp.element("commodityinfodialog"));
 			// 创建添加收款账户账户对话框配置对象
 			ADDRECEIPTACCOUNT_DIALOG_CONFIG = new DialogConfig(erp.element("addreceiptaccountinfodialog"));
+			// 创建现金费用单添加条目对框框配置对象
+			ADDCASHINFO_DIALOG_CONFIG = new DialogConfig(erp.element("addcashinfodialog"));
 			// 创建添加赠送单商品对话框配置对象
 			ADDPRESENTCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addpresentcommodityinfodialog"));
 			// 创建添加库存报溢报损单商品对话框配置对象
@@ -130,6 +134,10 @@ public class ERPConfig {
 
 	public static DialogConfig getSPECIAL_OFFER_DIALOG_CONFIG() {
 		return SPECIAL_OFFER_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDCASHINFO_DIALOG_CONFIG() {
+		return ADDCASHINFO_DIALOG_CONFIG;
 	}
 
 }

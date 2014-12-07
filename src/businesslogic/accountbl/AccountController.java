@@ -1,10 +1,10 @@
 package businesslogic.accountbl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.accountblservice.AccountBLService;
 import util.ResultMessage;
 import vo.AccountVO;
-import businesslogicservice.accountblservice.AccountBLService;
+
+import java.util.ArrayList;
 
 public class AccountController implements AccountBLService {
 	
@@ -32,8 +32,7 @@ public class AccountController implements AccountBLService {
 
 	@Override
 	public ArrayList<AccountVO> fuzzyFind(String keyWord) {
-		// TODO Auto-generated method stub
-		return account.show();
+		return account.fuzzyFind(keyWord);
 	}
 	
 }

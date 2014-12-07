@@ -8,6 +8,7 @@ package ui.paymentui;
 
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.loginbl.Login;
+import businesslogicservice.accountblservice.AccountBLService;
 import businesslogicservice.paymentblservice.CashBLService;
 import config.ERPConfig;
 import config.PanelConfig;
@@ -33,6 +34,8 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
 
     private MyLabel accountIdLab;
 
+    private MyLabel totalLab;
+
     private MyButton addAccountBtn;
 
     private MyButton addBtn;
@@ -55,7 +58,9 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
 
     private ArrayList<ClauseLineItemVO> list;
 
-    private CashBLService controller;
+    private CashBLService cashController;
+
+    private AccountBLService accountController;
 
     private AccountVO accountVO;
 
@@ -63,10 +68,13 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
 
     private HashMap<String,AccountVO> accountList;
 
+    private double total;
+
     public CreateCashPanel(JFrame frame, PaymentPanel panel) {
         this.frame = frame;
         this.panel = panel;
-        controller = ControllerFactoryImpl.getInstance().getCashController();
+        cashController = ControllerFactoryImpl.getInstance().getCashController();
+        accountController = ControllerFactoryImpl.getInstance().getAccountController();
         list = new ArrayList<ClauseLineItemVO>();
         accountList = new HashMap<String, AccountVO>();
         this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -113,17 +121,18 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
             }
         });
 
-        // 添加账户按钮
+        // 添加条目按钮
         addBtn = new MyButton(pcfg.getButtons().element("add"));
         this.add(addBtn);
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                new AddCashDialog(ERPConfig.getADDCASHINFO_DIALOG_CONFIG(), frame,
+                        CreateCashPanel.this);
             }
         });
 
-        // 删除账户按钮
+        // 删除条目按钮
         deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
         this.add(deleteBtn);
         deleteBtn.addActionListener(new ActionListener() {
@@ -172,11 +181,13 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
         this.operatorLab = new MyLabel(pcfg.getLabels().element("operatorlab"));
         operatorLab.setText(Login.currentUserId);
         this.documentIdLab = new MyLabel(pcfg.getLabels().element("documentidlab"));
-        this.documentIdLab.setText(controller.createId());
+        this.documentIdLab.setText(cashController.createId());
+        this.totalLab = new MyLabel(pcfg.getLabels().element("totallab"));
         this.add(this.operatorLab);
         this.add(this.documentIdLab);
         this.add(accountIdLab);
         this.add(accountNameLab);
+        this.add(totalLab);
     }
 
     private void initTable() {
@@ -188,17 +199,42 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
 
     }
 
+    /**
+     * 增加条目
+     * @param vo
+     */
     public void addCash(ClauseLineItemVO vo) {
-
+        list.add(vo);
+        table.addRow(vo);
+        // 更新总额
+        refreshTotal();
     }
 
     public void deleteCash() {
-
+        list.remove(table.getTable().getSelectedRow());
+        table.deleteRow();
+        // 更新总额
+        refreshTotal();
     }
 
+    private void refreshTotal() {
+        total = 0;
+        for(ClauseLineItemVO vo: list) {
+            total += vo.account;
+        }
+        totalLab.setText(Double.toString(total));
+    }
 
     @Override
     public ArrayList<String> getFuzzyResult(String keyword) {
-        return null;
+        ArrayList<AccountVO> result = accountController.fuzzyFind(keyword);
+        ArrayList<String> strs = new ArrayList<String>();
+        for(int i = 0; i < result.size(); ++i){
+            AccountVO vo = result.get(i);
+            String str = vo.account+"-"+vo.name;
+            strs.add(str);
+            this.accountList.put(str, vo);
+        }
+        return strs;
     }
 }

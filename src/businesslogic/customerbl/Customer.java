@@ -5,14 +5,14 @@
 
 package businesslogic.customerbl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
+import businesslogic.logbl.Log;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import po.CustomerPO;
 import util.ResultMessage;
 import vo.CustomerVO;
-import businesslogic.logbl.Log;
-import dataservice.datafactoryservice.DataFactoryImpl;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Customer {
     Log l=new Log();
@@ -207,7 +207,12 @@ public class Customer {
 	
 	public ArrayList<CustomerVO> fuzzyFind(String keyword){
 		ArrayList<CustomerVO> result=new ArrayList<CustomerVO>();
-		ArrayList<CustomerPO> temp=new ArrayList<CustomerPO>();
+		ArrayList<CustomerPO> temp = null;
+		try {
+			temp = DataFactoryImpl.getInstance().getCustomerData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		for(int i=0;i<temp.size();i++){
 			CustomerPO t=temp.get(i);
 			String allkeywords=t.getId()+";"+t.getCategory()+";"+String.valueOf(t.getLevel())+";"

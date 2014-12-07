@@ -6,23 +6,16 @@
 
 package ui.customerui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import config.DialogConfig;
 import org.dom4j.Element;
-
-import ui.util.MyButton;
-import ui.util.MyComboBox;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MyTextField;
+import ui.util.*;
 import util.ResultMessage;
 import vo.CustomerVO;
-import config.DialogConfig;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class CustomerInfoDialog extends JDialog {
@@ -114,6 +107,7 @@ public class CustomerInfoDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				int category = categoryBox.getSelectedIndex();
 				int level = levelBox.getSelectedIndex();
+				String id = ControllerFactoryImpl.getInstance().getCustomerController().createId();
 				String name = nameTxt.getText();
 				String phoneNumber = phoneNumberTxt.getText();
 				String address = addressTxt.getText();
@@ -121,9 +115,8 @@ public class CustomerInfoDialog extends JDialog {
 				String email = emailTxt.getText();
 				Double creditLimit = Double.parseDouble(creditLimitTxt.getText());
 				String salesman = salesmanTxt.getText();
-				CustomerVO vo = new CustomerVO(null, category, level, name, 
+				CustomerVO vo = new CustomerVO(id, category, level, name,
 						phoneNumber, address,postalCode, email, creditLimit, 0, 0, salesman, true);
-				
 				int result = MyOptionPane.showConfirmDialog(frame, "确认提交？", "确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
