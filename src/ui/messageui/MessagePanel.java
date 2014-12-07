@@ -10,10 +10,11 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.messageblservice.MessageBLService;
 import config.ERPConfig;
 import config.PanelConfig;
+import config.TableConfig;
 import org.dom4j.Element;
 import ui.util.MyButton;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,13 +30,9 @@ public class MessagePanel extends JPanel {
 
     private MyButton allBtn;
 
-    private MyButton findBtn;
-
     private MyButton setreadBtn;
 
-    private MyDatePicker start;
-
-    private MyDatePicker end;
+    private MessageTable table;
 
     private JFrame frame;
 
@@ -63,17 +60,16 @@ public class MessagePanel extends JPanel {
         this.initButtons(cfg.getButtons());
         this.initLabels(cfg.getLabels());
         this.initTable(cfg.getTablepane());
-        this.initDatePicker(cfg.getDatepicker());
 
     }
 
     private void initTable(Element element) {
+        table = new MessageTable(new TableConfig(element), controller);
+        add(table);
     }
 
     private void initLabels(Element element) {
         add(new MyLabel(element.element("title")));
-        add(new MyLabel(element.element("start")));
-        add(new MyLabel(element.element("end")));
     }
 
     private void initButtons(Element element) {
@@ -82,7 +78,7 @@ public class MessagePanel extends JPanel {
         nonreadBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                table.showByState(0);
             }
         });
 
@@ -91,7 +87,7 @@ public class MessagePanel extends JPanel {
         readBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                table.showByState(1);
             }
         });
 
@@ -100,16 +96,7 @@ public class MessagePanel extends JPanel {
         allBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        findBtn = new MyButton(element.element("find"));
-        add(findBtn);
-        findBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+                table.showAll();
             }
         });
 
@@ -118,16 +105,12 @@ public class MessagePanel extends JPanel {
         setreadBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                boolean result = table.setRead();
+                if(!result) {
+                    MyOptionPane.showMessageDialog(null, "消息已经读过！");
+                }
             }
         });
-    }
-
-    private void initDatePicker(Element element) {
-        start = new MyDatePicker(element.element("start"));
-        add(start);
-        end = new MyDatePicker(element.element("end"));
-        add(end);
     }
 
 }
