@@ -114,6 +114,29 @@ public class Sale {
 		return voList;
 	}
 
+	
+	public String createId(){
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyyMMdd");
+		String time = myFmt.format(date);
+		ArrayList<SaleVO> presentList = bigShow();
+		if (presentList.isEmpty()) {
+			return "XSD-" + time + "-00001";
+		} else {
+			String max = presentList.get(presentList.size() - 1).id;
+			String day = max.substring(4, max.length() - 5);
+			if (day.compareTo(time) < 0) {
+				return "XSD-" + time + "-00001";
+			}
+			String oldMax = max.substring(max.length() - 5);
+			int maxInt = Integer.parseInt(oldMax);
+			String pattern = "00000";
+			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+			String maxStr = df.format(maxInt + 1);
+			return "XSD-" + time + "-" + maxStr;
+		}
+
+	}
 
 	public ResultMessage add(SaleVO vo)  {
 		Date date=new Date();

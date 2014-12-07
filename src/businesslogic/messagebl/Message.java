@@ -8,6 +8,4 @@ public ResultMessage createLog(String content){
 		return null;	
 		
 	}
-
-
 }

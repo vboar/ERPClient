@@ -26,6 +26,10 @@ public class SaleReturn {
 	Sale sale=new Sale();
 	
 	
+	public String createId(){
+		return sale.createId();
+	}
+	
 	public ResultMessage add(SaleVO vo) {	
 		Date date=new Date();
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");

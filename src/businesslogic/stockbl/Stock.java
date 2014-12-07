@@ -6,13 +6,17 @@
 
 package businesslogic.stockbl;
 
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dataservice.datafactoryservice.DataFactoryImpl;
+import po.StockPO;
 import util.DocumentStatus;
 import util.DocumentType;
 import vo.CommodityLineItemVO;
+import vo.CommodityVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
@@ -162,8 +166,77 @@ public class Stock {
 		return result;
 	}
 
-	public ArrayList<StockVO> showCheck() {
-		return null;
+	private String createBatchNumber(){
+		ArrayList<StockVO> voList=showCheck();
+		if(voList.isEmpty()){
+			return "00001";
+		}
+		String old=voList.get(voList.size()-1).batchNumber;
+		String oldBatch=voList.get(voList.size()-1).batch;
+		String batch=null;
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
+		batch = myFmt.format(date);
+		if(batch!=oldBatch){
+			return "00001";
+		}
+		int maxInt = Integer.parseInt(old);
+		String pattern = "00000";
+		java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+		String maxStr = df.format(maxInt + 1);
+		return  maxStr;
 	}
+	public ArrayList<StockVO> showCheck() {
+		String batch=null;
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
+		batch = myFmt.format(date);
+		
+		String batchNumber=createBatchNumber();
+		
+		ArrayList<CommodityVO> commodityList=new Commodity().show();
+		ArrayList<StockVO> stockList=new ArrayList<StockVO>();
+		for(CommodityVO commodityvo:commodityList){
+			String id =commodityvo.id;
+			double allPrice=0;
+			StockVO stockvo=new StockVO(id, commodityvo.name, commodityvo.model, commodityvo.number, 0, batch, batchNumber);
+			ArrayList<PurchaseVO> purchaseList=new Purchase().findByStatus(DocumentStatus.PASSED.ordinal());
+			for(PurchaseVO purchasevo:purchaseList){
+				
+				if(purchasevo.id.equals(id)){
+					if(purchasevo.receiptType==DocumentType.PURCHASE){
+						allPrice+=purchasevo.total;
+					}else{
+						allPrice-=purchasevo.total;
+					}
+				}
+			}
+			if(commodityvo.number!=0){
+				stockvo.avgPrice=allPrice/stockvo.number;				
+			}
+			stockList.add(stockvo);
+			StockPO po=voToPO(stockvo);
+			try {
+				DataFactoryImpl.getInstance().getStockData().insert(po);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return stockList;
+	}
+	
+	private StockPO voToPO(StockVO vo){
+		String commodityId=vo.commodityId;
+		String commodityName=vo.commodityName;
+		String commodityModel=vo.commodityModel;
+		int number=vo.number;
+		double avgPrice=vo.avgPrice;
+		String batch=vo.batch;
+		String batchNumber=vo.batchNumber;
+		StockPO po=new StockPO(commodityId, commodityName, commodityModel, number, avgPrice, batch, batchNumber);
+		return po;
+	}
+	
 
 }
