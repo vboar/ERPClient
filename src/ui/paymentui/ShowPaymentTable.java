@@ -27,7 +27,7 @@ public class ShowPaymentTable extends TablePanel {
 
     public ShowPaymentTable(TableConfig cfg, PaymentBLService controller) {
         super(cfg);
-        list = controller.show(null, null);
+        list = controller.show();
         initTable();
         initComponent();
     }

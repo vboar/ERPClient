@@ -3,8 +3,8 @@ package businesslogicservice.businessconditionblservice;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import vo.DocumentVO;
 import vo.RequirementVO;
+import vo.SaleDetailsVO;
 
 /**
  * 销售明细表查看接口
@@ -19,7 +19,7 @@ public interface SaleDetailsBLService {
 	 * @param time2
 	 * @return
 	 */
-	public ArrayList<DocumentVO> show(RequirementVO vo);
+	public ArrayList<SaleDetailsVO> show(RequirementVO vo);
 	
 	/**
 	 * 导出Excel文件

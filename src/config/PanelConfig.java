@@ -35,6 +35,8 @@ public class PanelConfig extends ComponentConfig{
 	
 	private Element tablepane;
 	
+	private Element tables;
+	
 	private Element tree;
 	
 	private Element datepicker;
@@ -59,6 +61,7 @@ public class PanelConfig extends ComponentConfig{
 		this.tablepane = panel.element("tablepane");
 		this.tree = panel.element("tree");
 		this.datepicker = panel.element("datepicker");
+		this.tables = panel.element("tables");
 	}	
 
 
@@ -96,6 +99,10 @@ public class PanelConfig extends ComponentConfig{
 
 	public Element getDatepicker() {
 		return datepicker;
+	}
+
+	public Element getTables() {
+		return tables;
 	}
 
 

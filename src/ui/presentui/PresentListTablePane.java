@@ -83,9 +83,7 @@ public class PresentListTablePane extends TablePanel{
 	}
 
 	public void showFindTable(String time1, String time2) {
-		if(list==null){
-			return;
-		}
+		list = controller.show(time1, time2);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
 			names.add(columnName[i]);

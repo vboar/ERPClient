@@ -13,6 +13,7 @@ import ui.util.MyLabel;
 import ui.util.MySpecialTextField;
 import config.ERPConfig;
 import config.PanelConfig;
+import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class SaleDetailsPanel extends JPanel implements FuzzySearch{
@@ -30,6 +31,8 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch{
 	private MyDatePicker end;
 	
 	private MyButton find;
+	
+	private SaleDetailsTablePane table;
 	
 	private JFrame frame;
 	
@@ -50,6 +53,9 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch{
 	}
 
 	private void initComponent() {
+		// 表格面板
+		this.table = new SaleDetailsTablePane(new TableConfig(cfg.getTablepane()));
+		this.add(this.table);
 		// 初始化日期选择器
 		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
 		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));

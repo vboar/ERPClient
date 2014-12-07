@@ -3,14 +3,14 @@ package businesslogic.businessconditionbl;
 import java.util.ArrayList;
 
 import util.ResultMessage;
-import vo.DocumentVO;
 import vo.RequirementVO;
+import vo.SaleDetailsVO;
 import businesslogicservice.businessconditionblservice.SaleDetailsBLService;
 
 public class SaleDetailsController implements SaleDetailsBLService {
 
 	@Override
-	public ArrayList<DocumentVO> show(RequirementVO vo) {
+	public ArrayList<SaleDetailsVO> show(RequirementVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

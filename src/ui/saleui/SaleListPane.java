@@ -1,14 +1,11 @@
-package ui.paymentui;
+package ui.saleui;
 
 import config.TableConfig;
 import ui.util.TablePanel;
 
-/**
- * Created by Vboar on 2014/12/4.
- */
-public class CashTable extends TablePanel{
+public class SaleListPane extends TablePanel{
 
-	public CashTable(TableConfig cfg) {
+	public SaleListPane(TableConfig cfg) {
 		super(cfg);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,4 +15,5 @@ public class CashTable extends TablePanel{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

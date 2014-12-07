@@ -670,6 +670,47 @@
 				<operator text="业务员" w="100" h="25" x="550" y="40"></operator>
 				<store text="仓库" w="100" h="25" x="620" y="10" ></store>		
 			</comboboxes>
+			<tables>
+				<present  width="730" height="300" x="10" y="80">
+					<columnnames>
+						<columnname name="时间" />
+						<columnname name="商品名称" />
+						<columnname name="商品型号" />
+						<columnname name="数量" />
+						<columnname name="单价" />
+						<columnname name="总额 " />
+					</columnnames>
+				</present>
+				<exception  width="730" height="300" x="10" y="80">
+					<columnnames>
+						<columnname name="商品编号" />
+						<columnname name="商品名称" />
+						<columnname name="商品型号" />
+						<columnname name="系统库存数量" />
+						<columnname name="实际库存数量" />
+						<columnname name="数量差" />
+					</columnnames>
+				</exception>
+				<warning width="730" height="300" x="10" y="80" >
+					<columnnames>
+						<columnname name="单据编号" />
+						<columnname name="创建时间" />
+						<columnname name="商品列表" />
+					</columnnames>
+				</warning>
+				<payment width="730" height="300" x="10" y="80" >
+					<columnnames>
+						<columnname name="单据编号" />
+						<columnname name="创建时间" />
+						<columnname name="客户编号" />
+						<columnname name="客户名" />
+						<columnname name="转账列表" />
+						<columnname name="金额汇总" />
+						<columnname name="操作员" />
+						<columnname name="审批状态"/>
+				</columnnames>
+				</payment>
+			</tables>
 		</panel>
 		
 		<!-- 销售明细面板 -->
@@ -700,6 +741,17 @@
 				<operator text="业务员" w="100" h="25" x="440" y="40"></operator>
 				<store text="仓库" w="100" h="25" x="440" y="70" ></store>		
 			</comboboxes>
+			<tablepane className="ui.conditionui.SaleDetailsTablePane" width="730"
+					   height="300" x="10" y="100">
+				<columnnames>
+					<columnname name="时间" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="数量" />
+					<columnname name="单价" />
+					<columnname name="总额 " />
+				</columnnames>
+			</tablepane>
 		</panel>
 		
 		<!-- 系统日志查询面板 -->

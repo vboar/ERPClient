@@ -134,7 +134,6 @@ public class UserTablePane extends TablePanel{
 	 * @param list
 	 */
 	public void showFindTable(ArrayList<UserVO> list){
-		System.out.println("findList"+list.size());
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
 			names.add(columnName[i]);
