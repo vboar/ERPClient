@@ -12,15 +12,14 @@ import businesslogicservice.paymentblservice.PaymentBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
-import ui.util.MyButton;
-import ui.util.MyComboBox;
-import ui.util.MyDatePicker;
-import ui.util.MyLabel;
+import ui.util.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ShowPanel extends JPanel {
 
@@ -97,6 +96,23 @@ public class ShowPanel extends JPanel {
         findBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Date day1 = startPicker.getDate();
+                Date day2 = endPicker.getDate();
+                String time1 = null;
+                String time2 = null;
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                if((day1!=null)&&(day2!=null)){
+                    time1 = dateFormat.format(day1);
+                    time2 = dateFormat.format(day2);
+                    if(time1.compareTo(time2)>0){
+                        MyOptionPane.showMessageDialog(ShowPanel.this, "请输入有效日期！", "错误提示",
+                                MyOptionPane.ERROR_MESSAGE);
+                    }
+                }else if((day1==null)&&(day2!=null)){
+                    time2 = dateFormat.format(day2);
+                }else if(day1!=null){
+                    time1 = dateFormat.format(day1);
+                }
 
             }
         });
@@ -115,6 +131,7 @@ public class ShowPanel extends JPanel {
         // 默认显示收款单的表格
         receiptTable = new ShowPaymentTable(new TableConfig(cfg.getTablepane()), receiptController);
         this.add(this.receiptTable);
+        receiptTable.showAllTable();
     }
 
 }

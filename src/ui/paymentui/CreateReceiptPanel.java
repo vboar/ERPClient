@@ -70,11 +70,15 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 
 	private HashMap<String,CustomerVO> customerlist;
 
-	public CreateReceiptPanel(JFrame frame) {
+	private PaymentPanel panel;
+
+	public CreateReceiptPanel(JFrame frame, PaymentPanel panel) {
+		this.panel = panel;
 		this.frame = frame;
 		receiptController = ControllerFactoryImpl.getInstance().getReceiptController();
 		customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		customerlist = new HashMap<String,CustomerVO>();
+		lists = new ArrayList<TransferLineItemVO>();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
@@ -147,15 +151,30 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 		// 删除账户按钮
 		deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
 		this.add(deleteBtn);
+		deleteBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(table.isSelected()) {
+					int result = MyOptionPane.showConfirmDialog(frame, "确认删除该账户条目？","删除账户条目",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						deleteAccount();
+					}
+				} else {
+					MyOptionPane.showMessageDialog(frame, "请选择要删除的账户条目！");
+				}
+			}
+		});
 
 		// 提交按钮
 		commitBtn = new MyButton(pcfg.getButtons().element("commit"));
 		commitBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认创建该收款单？", "创建收款单",
+				int result = MyOptionPane.showConfirmDialog(null, "确认创建该付款单？", "创建付款单",
 						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-				if (result == MyOptionPane.YES_OPTION) {
+				if(result == MyOptionPane.YES_OPTION) {
+					createReceipt();
 				}
 			}
 		});
@@ -166,7 +185,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 		cancelBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 返回单据查看
+				panel.showShow();
 			}
 		});
 		this.add(cancelBtn);
@@ -187,9 +206,8 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 					null, customerVO.id, customerVO.name, operatorLab.getText(), lists, total,
 					DocumentStatus.NONCHECKED, false, DocumentType.RECEIPT));
 			if(result == ResultMessage.SUCCESS) {
-				MyOptionPane.showMessageDialog(null, "收款单提交成功！");
-				this.setVisible(false);
-				// TODO
+				MyOptionPane.showMessageDialog(null, "付款单提交成功！");
+				panel.showShow();
 			} else{
 				MyOptionPane.showMessageDialog(null, "收款单提交失败！");
 			}
@@ -206,16 +224,6 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 	}
 
 	@Override
-	public void addAccount(TransferLineItemVO vo) {
-		// TODO
-	}
-
-	@Override
-	public void deleteAccount() {
-		// TODO
-	}
-
-	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
 		ArrayList<CustomerVO> result = customerController.fuzzyFind(keyword);
 		ArrayList<String> strs = new ArrayList<String>();
@@ -228,11 +236,21 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 		return strs;
 	}
 
-	public PaymentTable getTable() {
-		return table;
+	@Override
+	public void addAccount(TransferLineItemVO vo) {
+		lists.add(vo);
+		table.addRow(vo);
 	}
 
+	@Override
+	public void deleteAccount() {
+		lists.remove(table.getTable().getSelectedRow());
+		table.deleteRow();
+	}
+
+	@Override
 	public ArrayList<TransferLineItemVO> getLists() {
 		return lists;
 	}
+
 }

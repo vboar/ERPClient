@@ -488,23 +488,23 @@
 			   x="0" y="80" bg="">
 			<labels>
 				<documenttype text="单据类型" w="60" h="30" x="20" y="20" />
-				<starttime text="起始日期" w="60" h="30" x="220" y="20" />
-				<endtime text="截止日期" w="60" h="30" x="410" y="20" />
+				<starttime text="起始日期" w="60" h="30" x="215" y="20" />
+				<endtime text="截止日期" w="60" h="30" x="390" y="20" />
 			</labels>
 			<datepicker>
-				<starttime w="100" h="30" x="290" y="20"/>
-				<endtime w="100" h="30" x="480" y="20"/>
+				<starttime w="100" h="30" x="275" y="20"/>
+				<endtime w="100" h="30" x="450" y="20"/>
 			</datepicker>
 			<comboboxes>
-				<documenttype w="100" h="30" x="90" y="20">
+				<documenttype w="120" h="30" x="80" y="20">
 					<string str="收款单" />
 					<string str="付款单" />
 					<string str="现金费用单" />
 				</documenttype>
 			</comboboxes>
 			<buttons>
-				<find text="查询" w="60" h="25" x="600" y="20" />
-				<show text="查看所有" w="60" h="25" x="680" y="20" />
+				<find text="查询" w="60" h="30" x="565" y="20" />
+				<show text="查看所有" w="90" h="30" x="640" y="20" />
 			</buttons>
 			<tablepane className="ui.paymentui.ShowPaymentTable"
 					   width="730" height="350" x="10" y="60">
