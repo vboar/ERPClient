@@ -506,31 +506,33 @@
 				<find text="查询" w="60" h="30" x="565" y="20" />
 				<show text="查看所有" w="90" h="30" x="640" y="20" />
 			</buttons>
-			<tablepane className="ui.paymentui.ShowPaymentTable"
-					   width="730" height="350" x="10" y="60">
-				<columnnames>
-					<columnname name="单据编号" />
-					<columnname name="创建时间" />
-					<columnname name="客户编号" />
-					<columnname name="客户名" />
-					<columnname name="转账列表" />
-					<columnname name="金额汇总" />
-					<columnname name="操作员" />
-					<columnname name="审批状态"/>
-				</columnnames>
-			</tablepane>
-			<tablepane className="ui.paymentui.ShowCashTable"
-					   width="730" height="350" x="10" y="60">
-				<columnnames>
-					<columnname name="单据编号" />
-					<columnname name="创建时间" />
-					<columnname name="操作员" />
-					<columnname name="银行账户" />
-					<columnname name="条目列表" />
-					<columnname name="总额" />
-					<columnname name="审批状态" />
-				</columnnames>
-			</tablepane>
+			<tables>
+				<payment className="ui.paymentui.ShowPaymentTable"
+						   width="730" height="350" x="10" y="60">
+					<columnnames>
+						<columnname name="单据编号" />
+						<columnname name="创建时间" />
+						<columnname name="客户编号" />
+						<columnname name="客户名" />
+						<columnname name="转账列表" />
+						<columnname name="金额汇总" />
+						<columnname name="操作员" />
+						<columnname name="审批状态"/>
+					</columnnames>
+				</payment>
+				<cash className="ui.paymentui.ShowCashTable"
+						   width="730" height="350" x="10" y="60">
+					<columnnames>
+						<columnname name="单据编号" />
+						<columnname name="创建时间" />
+						<columnname name="操作员" />
+						<columnname name="银行账户" />
+						<columnname name="条目列表" />
+						<columnname name="总额" />
+						<columnname name="审批状态" />
+					</columnnames>
+				</cash>
+			</tables>
 		</panel>
 
 		<!-- 收付款面板中的制定收款单面板 -->
