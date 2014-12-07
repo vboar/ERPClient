@@ -2,13 +2,19 @@ package ui.saleui;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import ui.util.MySpecialTextField;
 import ui.util.MyTextArea;
 import ui.util.MyTextField;
 import businesslogicservice.saleblservice.SaleBLService;
@@ -16,7 +22,7 @@ import config.ERPConfig;
 import config.PanelConfig;
 
 @SuppressWarnings("serial")
-public class CreatePanel extends JPanel {
+public class CreatePanel extends JPanel implements FuzzySearch{
 
 	private MyButton addBtn;
 	
@@ -37,6 +43,8 @@ public class CreatePanel extends JPanel {
 	private MyLabel totalBeforeDiscountLab;
 	
 	private MyLabel totalLab;
+	
+	private MySpecialTextField findCustomer;
 	
 	private MyTextField discountTxt;
 	
@@ -86,6 +94,8 @@ public class CreatePanel extends JPanel {
 		this.add(storage);
 		this.remarkTxt = new MyTextArea(cfg.getTextarea().element("remark"));
 		this.add(remarkTxt);
+		this.findCustomer = new MySpecialTextField(cfg.getTextFields().element("findcustomer"), this);
+		this.add(findCustomer);
 	}
 
 	private void initButtons() {
@@ -94,6 +104,13 @@ public class CreatePanel extends JPanel {
 		this.cancelBtn = new MyButton(cfg.getButtons().element("cancel"));
 		this.commitBtn = new MyButton(cfg.getButtons().element("commit"));
 		this.addCustomer = new MyButton(cfg.getButtons().element("addcustomer"));
+		this.addCustomer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MyOptionPane.showMessageDialog(null, "wrong!");
+			}
+		});
 		this.add(addBtn);
 		this.add(deleteBtn);
 		this.add(cancelBtn);
@@ -112,5 +129,11 @@ public class CreatePanel extends JPanel {
 		this.add(documentId);
 		this.add(totalBeforeDiscountLab);
 		this.add(totalLab);
+	}
+
+	@Override
+	public ArrayList<String> getFuzzyResult(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
