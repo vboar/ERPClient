@@ -31,15 +31,9 @@ public class ShowPaymentTable extends TablePanel {
 
     public ShowPaymentTable(TableConfig cfg, PaymentBLService controller) {
         super(cfg);
-<<<<<<< HEAD
         list = controller.show();
-=======
         this.controller = controller;
-<<<<<<< Updated upstream
->>>>>>> 90b24e01d9eb673d919e121d1ef827f728208bb2
-=======
         list = controller.show();
->>>>>>> Stashed changes
         initTable();
         initComponent();
     }
