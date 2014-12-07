@@ -13,24 +13,41 @@ public class PaymentController implements PaymentBLService{
 
 	@Override
 	public ResultMessage create(PaymentVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return payment.create(vo);
 	}
 
 	@Override
 	public ArrayList<PaymentVO> findByStatus(DocumentStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		return payment.findByStatus(status.ordinal());
 	}
 
 	@Override
-	public ArrayList<PaymentVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<PaymentVO> show() {
+		return payment.show();
 	}
 	
 	public String createId(){
 		return payment.createId();
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findByTime(String time1, String time2) {
+		return payment.findByTime(time1, time2);
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findById(String id) {
+		return payment.findById(id);
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findByCustomer(String customerId) {
+		return payment.findByCustomer(customerId);
+	}
+
+	@Override
+	public ArrayList<PaymentVO> findByOperator(String operator) {
+		return payment.findByOperator(operator);
 	}
 
 }

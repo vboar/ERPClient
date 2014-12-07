@@ -12,23 +12,31 @@ public class CashController implements CashBLService {
 	
 	@Override
 	public ResultMessage create(CashVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return c.add(vo);
 	}
 
 	@Override
-	public ArrayList<CashVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CashVO> show() {
+		return c.show();
 	}
 
 	@Override
 	public ArrayList<CashVO> findByStatus(DocumentStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		return c.findByStatus(status.ordinal());
 	}
 	
 	public String createId(){
 		return c.createId();
 	}
+
+	@Override
+	public ArrayList<CashVO> findByTime(String time1, String time2) {
+		return c.findByTime(time1, time2);
+	}
+
+	@Override
+	public ArrayList<CashVO> findById(String id) {
+		return c.findById(id);
+	}
+
 }

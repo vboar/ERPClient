@@ -32,6 +32,13 @@ public interface PaymentBLService {
 	 * @param time2
 	 * @return
 	 */
-	public ArrayList<PaymentVO> show(String time1,String time2);
-
+	public ArrayList<PaymentVO> findByTime(String time1,String time2);
+	
+	public ArrayList<PaymentVO> findById(String id);
+	
+	public ArrayList<PaymentVO> findByCustomer(String customerId);
+	
+	public ArrayList<PaymentVO> findByOperator(String operator);
+	
+	public ArrayList<PaymentVO> show();
 }

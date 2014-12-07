@@ -26,7 +26,7 @@ public interface CashBLService {
 	 * @param time2
 	 * @return
 	 */
-	public ArrayList<CashVO> show(String time1, String time2);
+	public ArrayList<CashVO> findByTime(String time1,String time2);
 
 	/**
 	 * 根据审批状态查找单据
@@ -34,5 +34,9 @@ public interface CashBLService {
 	 * @return
 	 */
 	public ArrayList<CashVO> findByStatus(DocumentStatus status);
+	
+	public ArrayList<CashVO> findById(String id);
+	
+	public ArrayList<CashVO> show();
 
 }

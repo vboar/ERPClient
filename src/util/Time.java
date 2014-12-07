@@ -11,7 +11,7 @@ public static String getCurrentTime(){
 	String hour=String.valueOf(c.get(Calendar.HOUR_OF_DAY));
 	String minute=String.valueOf(c.get(Calendar.MINUTE));
 	String second=String.valueOf(c.get(Calendar.SECOND));
-	String time=year+"/"+month+"/"+date+" "+hour+":"+minute+":"+second;
+	String time=year+"/"+month+"/"+date+"/"+hour+"/"+minute+"/"+second;
 	
 	return time;
 }
