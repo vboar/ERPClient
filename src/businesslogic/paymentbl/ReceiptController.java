@@ -24,7 +24,8 @@ public class ReceiptController implements PaymentBLService {
 	public ArrayList<PaymentVO> show() {
 		return receipt.show();
 	}
-	
+
+	@Override
 	public String createId(){
 		return receipt.createId();
 	}

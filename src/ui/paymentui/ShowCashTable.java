@@ -1,5 +1,6 @@
 package ui.paymentui;
 
+import businesslogicservice.paymentblservice.CashBLService;
 import config.TableConfig;
 import ui.util.TablePanel;
 
@@ -9,12 +10,24 @@ import ui.util.TablePanel;
  */
 public class ShowCashTable extends TablePanel {
 
-    public  ShowCashTable(TableConfig cfg) {
+    private CashBLService controller;
+
+    public  ShowCashTable(TableConfig cfg, CashBLService controller) {
         super(cfg);
+        this.controller = controller;
     }
 
     @Override
     protected void initTable() {
 
     }
+
+    public void showFindTable(String time1, String time2) {
+
+    }
+
+    public void showAllTable() {
+
+    }
+
 }

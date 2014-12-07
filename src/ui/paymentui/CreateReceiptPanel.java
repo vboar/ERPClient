@@ -109,8 +109,7 @@ public class CreateReceiptPanel extends JPanel implements FuzzySearch, CreatePan
 		this.customerIdLab = new MyLabel(pcfg.getLabels().element("customeridlab"));
 		this.customerNameLab = new MyLabel(pcfg.getLabels().element("customernamelab"));
 		this.documentIdLab = new MyLabel(pcfg.getLabels().element("documentidlab"));
-		// TODO
-		this.documentIdLab.setText("ID");
+		this.documentIdLab.setText(receiptController.createId());
 		this.add(this.operatorLab);
 		this.add(this.documentIdLab);
 		this.add(this.customerIdLab);

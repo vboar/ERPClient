@@ -10,7 +10,6 @@ import config.ERPConfig;
 import config.PanelConfig;
 import ui.util.MyButton;
 import ui.util.MyLabel;
-import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,9 +79,7 @@ public class PaymentPanel extends JPanel {
 		createCashBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "功能正在开发中...");
-//				showCreateCash();
+				showCreateCash();
 			}
 		});
 		this.add(createCashBtn);
@@ -116,7 +113,7 @@ public class PaymentPanel extends JPanel {
 
 	public void showCreateCash() {
 		removeAllPanel();
-		createCashPanel = new CreateCashPanel(frame);
+		createCashPanel = new CreateCashPanel(frame, this);
 		add(createCashPanel);
 		repaint();
 	}

@@ -35,7 +35,11 @@ public class ShowPaymentTable extends TablePanel {
         list = controller.show();
 =======
         this.controller = controller;
+<<<<<<< Updated upstream
 >>>>>>> 90b24e01d9eb673d919e121d1ef827f728208bb2
+=======
+        list = controller.show();
+>>>>>>> Stashed changes
         initTable();
         initComponent();
     }
@@ -79,7 +83,7 @@ public class ShowPaymentTable extends TablePanel {
      * @param time2
      */
     public void showFindTable(String time1, String time2) {
-        list = controller.show(time1, time2);
+        list = controller.findByTime(time1, time2);
         Vector<String> names = new Vector<String>(COLUMN_NUM);
         for(int i=0; i<COLUMN_NUM;++i){
             names.add(columnName[i]);
@@ -108,7 +112,7 @@ public class ShowPaymentTable extends TablePanel {
      * 查看所有单据（逆序）
      */
     public void showAllTable() {
-        list = controller.show(null, null);
+        list = controller.show();
         Vector<String> names = new Vector<String>(COLUMN_NUM);
         for(int i=0; i<COLUMN_NUM;++i){
             names.add(columnName[i]);

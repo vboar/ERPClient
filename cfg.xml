@@ -519,6 +519,18 @@
 					<columnname name="审批状态"/>
 				</columnnames>
 			</tablepane>
+			<tablepane className="ui.paymentui.ShowCashTable"
+					   width="730" height="350" x="10" y="60">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="操作员" />
+					<columnname name="银行账户" />
+					<columnname name="条目列表" />
+					<columnname name="总额" />
+					<columnname name="审批状态" />
+				</columnnames>
+			</tablepane>
 		</panel>
 
 		<!-- 收付款面板中的制定收款单面板 -->
@@ -599,21 +611,38 @@
 		<panel className="ui.paymentui.CreateCashPanel" width="760" height="400"
 			   x="0" y="80" bg="img/document/xjfyd.jpg">
 			<buttons>
-				<addaccount text="添加" w="80" h="25" x="500" y="120" />
-				<addlineitem text="添加条目" w="80" h="25" x="500" y="120" />
-				<deletelineitem text="删除条目" w="80" h="25" x="500" y="120" />
+				<add text="添加条目" w="80" h="25" x="540" y="125" />
+				<delete text="删除条目" w="80" h="25" x="640" y="125" />
 				<commit text="提交" w="100" h="30" x="260" y="360" />
 				<cancel text="取消" w="100" h="30" x="400" y="360" />
+				<addaccount text="添加" w="80" h="25" x="460" y="50" />
 			</buttons>
 			<labels>
-				<account text="银行账户" w="120" h="30" x="20" y="10" />
-				<name text="账户名称" w="120" h="30" x="20" y="10" />
-				<accountnumber text="银行卡号" w="120" h="30" x="20" y="10" />
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<accountidlab text="______________________" w="180" h="35" x="170" y="80" />
+				<accountnamelab text="______________________" w="180" h="35" x="400" y="80" />
+				<operatorlab text="" w="120" h="30" x="640" y="80" />
 			</labels>
 			<textfields>
-				<accountfind w="200" h="30" x="230" y="50" />
+				<accountfind w="270" h="25" x="180" y="50" />
+				<addaccount text="添加账户信息" w="100" h="30" x="630" y="50" />
+				<add text="增加条目" w="80" h="25" x="560" y="125" />
+				<delete text="删除条目" w="80" h="25" x="650" y="125" />
+				<commit text="提交"  w="100" h="30" x="260" y="360"/>
+				<cancel text="取消"  w="100" h="30" x="400" y="360"/>
 			</textfields>
-			<tablepane className="ui.paymentui.CashTable" width="730" height="200" x="10" y="150">
+			<labels>
+				<operatorlab text="" w="120" h="30" x="576" y="88" />
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<tip text="请输入账户信息关键字" w="180" h="30" x="250" y="50"
+					 font="微软雅黑" fontsize="12" color="true" r="255" g="100" b="10"/>
+				<accountidlab text="_________________________" w="180" h="35" x="100" y="88" />
+				<accountnamelab text="________________________" w="180" h="35" x="370" y="88" />
+			</labels>
+			<textfields>
+				<accountfind w="240" h="30" x="380" y="50" />
+			</textfields>
+			<tablepane className="ui.paymentui.CashTable" width="730" height="200" x="10" y="152">
 				<columnnames>
 					<columnname name="条目名" />
 					<columnname name="金额" />

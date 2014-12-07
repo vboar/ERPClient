@@ -1,11 +1,11 @@
 package businesslogic.paymentbl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.paymentblservice.PaymentBLService;
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.PaymentVO;
-import businesslogicservice.paymentblservice.PaymentBLService;
+
+import java.util.ArrayList;
 
 public class PaymentController implements PaymentBLService{
 	
@@ -25,7 +25,8 @@ public class PaymentController implements PaymentBLService{
 	public ArrayList<PaymentVO> show() {
 		return payment.show();
 	}
-	
+
+	@Override
 	public String createId(){
 		return payment.createId();
 	}

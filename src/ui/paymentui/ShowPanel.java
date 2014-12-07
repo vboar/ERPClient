@@ -113,7 +113,26 @@ public class ShowPanel extends JPanel {
                 }else if(day1!=null){
                     time1 = dateFormat.format(day1);
                 }
-
+                // 显示制定类型的单据表格
+                switch (documentTypeBox.getSelectedIndex()) {
+                    case 0:
+                        receiptTable.showFindTable(time1, time2);
+                        receiptTable.setVisible(true);
+                        paymentTable.setVisible(false);
+                        cashTable.setVisible(false);
+                        break;
+                    case 1:
+                        paymentTable.showFindTable(time1, time2);
+                        receiptTable.setVisible(false);
+                        paymentTable.setVisible(true);
+                        cashTable.setVisible(false);
+                        break;
+                    case 2:
+                        cashTable.showFindTable(time1, time2);
+                        receiptTable.setVisible(false);
+                        paymentTable.setVisible(false);
+                        cashTable.setVisible(true);
+                }
             }
         });
 
@@ -122,7 +141,26 @@ public class ShowPanel extends JPanel {
         showBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // 显示指定类型的单据表格
+                switch (documentTypeBox.getSelectedIndex()) {
+                    case 0:
+                        receiptTable.showAllTable();
+                        receiptTable.setVisible(true);
+                        paymentTable.setVisible(false);
+                        cashTable.setVisible(false);
+                        break;
+                    case 1:
+                        paymentTable.showAllTable();
+                        receiptTable.setVisible(false);
+                        paymentTable.setVisible(true);
+                        cashTable.setVisible(false);
+                        break;
+                    case 2:
+                        cashTable.showAllTable();
+                        receiptTable.setVisible(false);
+                        paymentTable.setVisible(false);
+                        cashTable.setVisible(true);
+                }
             }
         });
     }
@@ -132,6 +170,12 @@ public class ShowPanel extends JPanel {
         receiptTable = new ShowPaymentTable(new TableConfig(cfg.getTablepane()), receiptController);
         this.add(this.receiptTable);
         receiptTable.showAllTable();
+        paymentTable = new ShowPaymentTable(new TableConfig(cfg.getTablepane()), paymentController);
+        this.add(this.paymentTable);
+        paymentTable.setVisible(false);
+        cashTable = new ShowCashTable(new TableConfig(cfg.getTablepane()), cashController);
+        this.add(cashTable);
+        cashTable.setVisible(false);
     }
 
 }

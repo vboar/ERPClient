@@ -5,11 +5,11 @@
  */
 package businesslogicservice.paymentblservice;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.CashVO;
+
+import java.util.ArrayList;
 
 public interface CashBLService {
 
@@ -38,5 +38,7 @@ public interface CashBLService {
 	public ArrayList<CashVO> findById(String id);
 	
 	public ArrayList<CashVO> show();
+
+	public String createId();
 
 }

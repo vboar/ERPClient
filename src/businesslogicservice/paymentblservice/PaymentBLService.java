@@ -5,11 +5,11 @@
  */
 package businesslogicservice.paymentblservice;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.PaymentVO;
+
+import java.util.ArrayList;
 
 public interface PaymentBLService {
 	/**
@@ -41,4 +41,6 @@ public interface PaymentBLService {
 	public ArrayList<PaymentVO> findByOperator(String operator);
 	
 	public ArrayList<PaymentVO> show();
+
+	public String createId();
 }
