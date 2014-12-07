@@ -37,6 +37,8 @@ public class ERPConfig {
 
 	private static DialogConfig ADDCASHINFO_DIALOG_CONFIG = null;
 	
+	private static DialogConfig ADDSALE_DIALOG_CONFIG = null;
+	
 	static{
 		try {
 			// 创建XML读取器
@@ -75,6 +77,7 @@ public class ERPConfig {
 			SPECIAL_OFFER_DIALOG_CONFIG = new DialogConfig(erp.element("specialofferinfodialog"));
 			// 创建添加组合商品对话框配置对象
 			ADDCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addcommodityinfodialog"));
+			ADDSALE_DIALOG_CONFIG = new DialogConfig(erp.element("addsaledialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -138,6 +141,10 @@ public class ERPConfig {
 
 	public static DialogConfig getADDCASHINFO_DIALOG_CONFIG() {
 		return ADDCASHINFO_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDSALE_DIALOG_CONFIG() {
+		return ADDSALE_DIALOG_CONFIG;
 	}
 
 }
