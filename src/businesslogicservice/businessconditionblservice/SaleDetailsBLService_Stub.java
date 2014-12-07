@@ -11,7 +11,7 @@ import util.ResultMessage;
 import vo.DocumentVO;
 import vo.RequirementVO;
 
-public class SaleDetailsBLService_Stub implements DetailHistoryBLService {
+public class SaleDetailsBLService_Stub implements HistoryBLService {
 
 	@Override
 	public ArrayList<DocumentVO> show(RequirementVO vo) {

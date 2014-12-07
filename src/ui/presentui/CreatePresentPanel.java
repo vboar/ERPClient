@@ -201,6 +201,16 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch, AddPresen
 		});
 		// 取消按钮
 		this.cancelBtn = new MyButton(pcfg.getButtons().element("cancel"));
+		this.cancelBtn.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
+							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						panel.showList();
+				}
+			}
+		});
 		this.add(this.commitBtn);
 		this.add(this.cancelBtn);
 	}
@@ -260,6 +270,12 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch, AddPresen
 
 	@Override
 	public void addPresentLineItem(PresentLineItemVO vo) {
+		for(int i=0; i<commoditylist.size();++i){
+			if(commoditylist.get(i).id.equals(vo.id)){
+				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
+				return;
+			}
+		}
 		this.commoditylist.add(vo);
 		this.presentTable.addRow(vo);
 	}

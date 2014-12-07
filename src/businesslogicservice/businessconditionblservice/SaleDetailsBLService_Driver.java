@@ -13,7 +13,7 @@ import vo.RequirementVO;
 
 public class SaleDetailsBLService_Driver {
 
-	public void drive(DetailHistoryBLService saleDetailsBLService){
+	public void drive(HistoryBLService saleDetailsBLService){
 		
 		ResultMessage result;
 		

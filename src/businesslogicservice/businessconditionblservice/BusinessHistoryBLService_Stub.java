@@ -13,7 +13,7 @@ import vo.RequirementVO;
 
 import java.util.ArrayList;
 
-public class BusinessHistoryBLService_Stub implements DetailHistoryBLService{
+public class BusinessHistoryBLService_Stub implements HistoryBLService{
 
 	@Override
 	public ArrayList<DocumentVO> show(RequirementVO vo) {

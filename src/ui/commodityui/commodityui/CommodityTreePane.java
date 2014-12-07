@@ -119,6 +119,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		this.treeTableModel = new CommodityTreeTableModel(list);
 		// 创建树表
 		this.treeTable = new JXTreeTable(this.treeTableModel);
+		this.treeTable.setToggleClickCount(1);
 		// 增加树表监听
 		this.treeTable.addMouseListener(new MouseAdapter(){
 			@Override
@@ -126,6 +127,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				TreePath path = treeTable.getPathForLocation(e.getX(), e.getY());
 				MyTreeNode node = (MyTreeNode)treeTable.getModel().getValueAt(treeTable.getSelectedRow(), 0);
 				if (path == null) return;
+				if (node == null) return;
 				if (e.getButton() == 3) {
 					if(node.getParent()==null){
 						popmenu.setVisible(false);
@@ -196,7 +198,8 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	 */
 	@Override
 	public void showAddDialog() {
-		this.infodialog = new CommodityInfoDialog(ERPConfig.getCOMMODITYINFO_DIALOG_CONFIG(), frame, this, true);
+		this.infodialog = new CommodityInfoDialog(ERPConfig.getCOMMODITYINFO_DIALOG_CONFIG(), 
+				frame, this, true);
 		this.infodialog.setVisible(true);
 	}
 

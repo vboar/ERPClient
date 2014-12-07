@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import util.ResultMessage;
 import vo.DocumentVO;
 import vo.RequirementVO;
-import businesslogicservice.businessconditionblservice.DetailHistoryBLService;
+import businesslogicservice.businessconditionblservice.HistoryBLService;
 
-public class BusinessHistoryController implements DetailHistoryBLService {
+public class BusinessHistoryController implements HistoryBLService {
 
 	@Override
 	public ArrayList<DocumentVO> show(RequirementVO vo) {

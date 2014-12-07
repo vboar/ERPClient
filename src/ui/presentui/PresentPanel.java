@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.presentui.ShowPanel;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
@@ -68,10 +69,7 @@ public class PresentPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listpanel.setVisible(false);
-				createPanel = new CreatePresentPanel(frame, PresentPanel.this);
-				add(createPanel);
-				repaint();
+				showCreate();
 			}
 		});
 		this.show = new MyButton(pcfg.getButtons().element("show"));
@@ -84,8 +82,7 @@ public class PresentPanel extends JPanel {
 					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
 							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
-						remove(createPanel);
-						listpanel.setVisible(true);
+						showList();
 					}
 				}
 			}
@@ -93,6 +90,20 @@ public class PresentPanel extends JPanel {
 		this.add(this.show);
 	}
 
+	public void showCreate() {
+		remove(listpanel);
+		createPanel = new CreatePresentPanel(frame,this);
+		add(createPanel);
+		repaint();
+	}
+
+	public void showList() {
+		remove(createPanel);
+		listpanel = new ShowPanel();
+		add(listpanel);
+		repaint();
+	}
+	
 	public ShowPanel getListpanel() {
 		return listpanel;
 	}

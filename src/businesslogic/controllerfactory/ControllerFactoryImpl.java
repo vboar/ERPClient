@@ -1,6 +1,9 @@
 package businesslogic.controllerfactory;
 
 import businesslogic.accountbl.AccountController;
+import businesslogic.businessconditionbl.BusinessConditionController;
+import businesslogic.businessconditionbl.BusinessHistoryController;
+import businesslogic.businessconditionbl.SaleDetailsController;
 import businesslogic.commoditybl.CategoryController;
 import businesslogic.commoditybl.CommodityController;
 import businesslogic.customerbl.CustomerController;
@@ -23,6 +26,9 @@ import businesslogic.salebl.SaleController;
 import businesslogic.stockbl.StockController;
 import businesslogic.userbl.UserController;
 import businesslogicservice.accountblservice.AccountBLService;
+import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
+import businesslogicservice.businessconditionblservice.HistoryBLService;
+import businesslogicservice.businessconditionblservice.SaleDetailsBLService;
 import businesslogicservice.commodityblservice.CommodityBLService;
 import businesslogicservice.controllerfactoryblservice.ControllerFactory;
 import businesslogicservice.customerblservice.CustomerBLService;
@@ -162,6 +168,21 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	@Override
 	public TotalGiftBLService getTotalGiftController() {
 		return new TotalGiftController();
+	}
+
+	@Override
+	public SaleDetailsBLService getSaleDetailsBLService() {
+		return new SaleDetailsController();
+	}
+
+	@Override
+	public HistoryBLService getHistoryBLService() {
+		return new BusinessHistoryController();
+	}
+
+	@Override
+	public BusinessConditionBLService getBusinessConditionBLService() {
+		return new BusinessConditionController();
 	}
 
 }

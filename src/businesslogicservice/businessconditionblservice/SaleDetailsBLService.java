@@ -1,8 +1,3 @@
-/**
- * 销售明细查看和经营历程查看服务接口
- * @author JaneLDQ
- * @date 2014/10/25
- */
 package businesslogicservice.businessconditionblservice;
 
 import java.util.ArrayList;
@@ -11,7 +6,13 @@ import util.ResultMessage;
 import vo.DocumentVO;
 import vo.RequirementVO;
 
-public interface DetailHistoryBLService {
+/**
+ * 销售明细表查看接口
+ * @author JanelDQ
+ * @date 2014/12/6
+ */
+public interface SaleDetailsBLService {
+
 	/**
 	 * 根据筛选条件查看单据
 	 * @param time1
@@ -26,4 +27,5 @@ public interface DetailHistoryBLService {
 	 * @return
 	 */
 	public ResultMessage exportExcel(String path);
+	
 }

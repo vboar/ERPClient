@@ -46,7 +46,7 @@ public class ShowPanel extends JPanel {
 		this.setLayout(null);
 		// 初始化组件
 		this.initComponent();
-		this.setVisible(false);
+		this.setVisible(true);
 	}
 
 	/**

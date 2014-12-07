@@ -1,6 +1,9 @@
 package businesslogicservice.controllerfactoryblservice;
 
 import businesslogicservice.accountblservice.AccountBLService;
+import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
+import businesslogicservice.businessconditionblservice.HistoryBLService;
+import businesslogicservice.businessconditionblservice.SaleDetailsBLService;
 import businesslogicservice.commodityblservice.CategoryBLService;
 import businesslogicservice.commodityblservice.CommodityBLService;
 import businesslogicservice.customerblservice.CustomerBLService;
@@ -66,5 +69,11 @@ public interface ControllerFactory {
 	public UserBLService getUserController();
 	
 	public LoginBLService getLoginController();
+	
+	public SaleDetailsBLService getSaleDetailsBLService();
+	
+	public HistoryBLService getHistoryBLService();
+	
+	public BusinessConditionBLService getBusinessConditionBLService();
 	
 }

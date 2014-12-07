@@ -15,7 +15,7 @@ import vo.RequirementVO;
 
 public class BusinessHistoryBLService_Driver {
 
-	public void drive(DetailHistoryBLService businessHitoryBLService){
+	public void drive(HistoryBLService businessHitoryBLService){
 		
 		ResultMessage result;
 		

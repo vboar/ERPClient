@@ -44,6 +44,8 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 	
 	private PresentLineItemVO presentLineItemVO;
 	
+	private boolean hasCommodity= false;
+	
 	private AddPresentLineItem panel;
 	
 	private JFrame frame;
@@ -117,6 +119,7 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 						currentId.setText(addCommodityVO.id);
 						currentName.setText(addCommodityVO.name);
 						currentModel.setText(addCommodityVO.model);
+						hasCommodity = true;
 					}else{
 						MyOptionPane.showMessageDialog(frame, "请重新选择商品！");
 					}
@@ -130,21 +133,26 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(frame, "确认添加该赠品？","确认提示",
-						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
-				if(result==MyOptionPane.YES_OPTION){
-					try{
-					int num = Integer.parseInt(numberTxt.getText());
-					String info = commodityTxt.getText();
-					// 创建赠品信息
-					addCommodity(info,num);
-					AddPresentCommodityDialog.this.dispose();
-					}catch(NumberFormatException ex){
-						MyOptionPane.showMessageDialog(frame, "请正确输入数据！","错误提示",
+				if(hasCommodity == true){
+					int result = MyOptionPane.showConfirmDialog(frame, "确认添加该赠品？","确认提示",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result==MyOptionPane.YES_OPTION){
+						try{
+							int num = Integer.parseInt(numberTxt.getText());
+							String info = commodityTxt.getText();
+							// 创建赠品信息
+							addCommodity(info,num);
+							AddPresentCommodityDialog.this.dispose();
+						}catch(NumberFormatException ex){
+							MyOptionPane.showMessageDialog(frame, "请正确输入数据！","错误提示",
 								MyOptionPane.ERROR_MESSAGE);
+						}
 					}
+				}else{
+					MyOptionPane.showMessageDialog(frame, "请添加商品信息！","错误提示",
+							MyOptionPane.ERROR_MESSAGE);
 				}
-			}	
+			}
 		});
 		this.add(this.commit);
 		// 取消按钮
