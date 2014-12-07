@@ -14,6 +14,8 @@ import ui.util.MyLabel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class LoginUserInfoPanel extends JPanel {
@@ -31,8 +33,11 @@ public class LoginUserInfoPanel extends JPanel {
 	private LoginBLService lc;
 	
 	private Image bg;
+
+	private HomeUI frame;
 	
-	public LoginUserInfoPanel(LoginBLService lc){
+	public LoginUserInfoPanel(LoginBLService lc, HomeUI frame){
+		this.frame = frame;
 		this.lc = lc;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setLayout(null);
@@ -57,6 +62,28 @@ public class LoginUserInfoPanel extends JPanel {
 	private void initButtons(Element button) {
 		this.mailbox = new MyButton(button.element("mailbox"));
 		this.add(this.mailbox);
+		mailbox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch(lc.getUserType()) {
+					case ADMINISTRATOR:
+						frame.getAdminPanel().showMesssage();
+						break;
+					case SALESMAN:
+						frame.getSalesmanPanel().showMesssage();
+						break;
+					case STOCKKEEPER:
+						frame.getStockKeeperPanel().showMesssage();
+						break;
+					case COUNTER:
+						frame.getCounterPanel().showMesssage();
+						break;
+					case MANAGER:
+						frame.getManagerPanel().showMesssage();
+					default:
+				}
+			}
+		});
 	}
 
 	private void initLabels(Element label) {

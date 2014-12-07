@@ -26,7 +26,6 @@ public class HomeUI extends JFrame {
 	
 	private MyMainPanel adminPanel;
 	
-	
 	public HomeUI(LoginBLService lc){
 		// 获得窗口配置
 		FrameConfig fcfg = ERPConfig.getHOMEFRAME_CONFIG();
@@ -44,7 +43,7 @@ public class HomeUI extends JFrame {
 		this.getContentPane().setLayout(null);
 		// 初始化组件
 		this.add(new TimePanel());
-		this.getContentPane().add(new LoginUserInfoPanel(lc));
+		this.getContentPane().add(new LoginUserInfoPanel(lc, this));
 		this.addMainPanel(lc);
 		// 显示
 		this.setVisible(true);
@@ -76,4 +75,23 @@ public class HomeUI extends JFrame {
 		}
 	}
 
+	public MyMainPanel getStockKeeperPanel() {
+		return stockKeeperPanel;
+	}
+
+	public MyMainPanel getSalesmanPanel() {
+		return salesmanPanel;
+	}
+
+	public MyMainPanel getCounterPanel() {
+		return counterPanel;
+	}
+
+	public MyMainPanel getManagerPanel() {
+		return managerPanel;
+	}
+
+	public MyMainPanel getAdminPanel() {
+		return adminPanel;
+	}
 }
