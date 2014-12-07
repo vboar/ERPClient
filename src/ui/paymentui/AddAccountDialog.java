@@ -1,27 +1,18 @@
 package ui.paymentui;
 
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.accountblservice.AccountBLService;
+import config.DialogConfig;
+import org.dom4j.Element;
+import ui.util.*;
+import vo.AccountVO;
+import vo.TransferLineItemVO;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
-import org.dom4j.Element;
-
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import ui.util.MyTextField;
-import vo.AccountVO;
-import vo.TransferLineItemVO;
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.accountblservice.AccountBLService;
-import config.DialogConfig;
 
 /**
  * 创建收款单添加账户框
@@ -57,6 +48,8 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
 
     private HashMap<String, AccountVO> vomap;
 
+    private boolean hasAccount;
+
     public AddAccountDialog(DialogConfig cfg, JFrame frame, CreatePanel panel) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
@@ -89,6 +82,7 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
                 if(addAccountVO!=null){
                     currentAccount.setText(addAccountVO.account);
                     currentName.setText(addAccountVO.name);
+                    hasAccount = true;
                 }else{
                     MyOptionPane.showMessageDialog(null, "请重新选择商品！");
                 }
@@ -100,11 +94,31 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
         commit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = MyOptionPane.showConfirmDialog(null, "确认添加该账户？","确认提示",
+                int result = MyOptionPane.showConfirmDialog(null, "确认添加该账户条目？","确认提示",
                         MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
                 if(result==MyOptionPane.YES_OPTION){
+                    // 判断账户的选择
+                    if(!hasAccount) {
+                        MyOptionPane.showMessageDialog(null, "请选择账户！","错误提示",
+                                MyOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    // 判断金额的输入
+                    if(moneyTxt.getText().length() == 0 ||
+                            Double.parseDouble(moneyTxt.getText()) <= 0) {
+                        MyOptionPane.showMessageDialog(null, "请正确输入金额！","错误提示",
+                                MyOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    // 判断账户的重复性
+                    if(checkRepeat()) {
+                        MyOptionPane.showMessageDialog(null, "已经存在该账户的条目了！","错误提示",
+                                MyOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    // 添加条目
                     try{
-                        // TODO 没有逻辑
+                        addAccount();
                         dispose();
                     }catch(NumberFormatException ex){
                         MyOptionPane.showMessageDialog(null, "请正确输入数据！","错误提示",
@@ -151,10 +165,10 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
         add(remarkTxt);
     }
 
-    public void addAccount(String key, int num) {
-        if(addAccount != null) {
+    public void addAccount() {
+        if(addAccountVO != null) {
             transferLineItemVO = new TransferLineItemVO(addAccountVO.name, addAccountVO.account,
-                    addAccountVO.balance, remarkTxt.getText());
+                    Double.parseDouble(moneyTxt.getText()), remarkTxt.getText());
             panel.addAccount(transferLineItemVO);
         } else {
             MyOptionPane.showMessageDialog(null, "请选择账户信息！");
@@ -171,5 +185,18 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
             vomap.put(str, result.get(i));
         }
         return strs;
+    }
+
+    /**
+     * 检查账户的重复性
+     * @return
+     */
+    private boolean checkRepeat() {
+        for(TransferLineItemVO vo: panel.getLists()) {
+            if(addAccountVO.account.equals(vo.bankAccount)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

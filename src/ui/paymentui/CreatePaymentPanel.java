@@ -77,6 +77,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		paymentController = ControllerFactoryImpl.getInstance().getPaymentController();
 		customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		customerlist = new HashMap<String,CustomerVO>();
+		lists = new ArrayList<TransferLineItemVO>();
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setSize(pcfg.getW(), pcfg.getH());
 		this.setLocation(pcfg.getX(), pcfg.getY());
@@ -149,6 +150,20 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		// 删除账户按钮
 		deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
 		this.add(deleteBtn);
+		deleteBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(table.isSelected()) {
+					int result = MyOptionPane.showConfirmDialog(frame, "确认删除该账户条目？","删除账户条目",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						deleteAccount();
+					}
+				} else {
+					MyOptionPane.showMessageDialog(frame, "请选择要删除的账户条目！");
+				}
+			}
+		});
 
 		// 提交按钮
 		commitBtn = new MyButton(pcfg.getButtons().element("commit"));
@@ -157,7 +172,8 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 			public void actionPerformed(ActionEvent e) {
 				int result = MyOptionPane.showConfirmDialog(null, "确认创建该付款单？", "创建付款单",
 						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-				if (result == MyOptionPane.YES_OPTION) {
+				if(result == MyOptionPane.YES_OPTION) {
+					createPayment();
 				}
 			}
 		});
@@ -179,6 +195,9 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		add(customerFind);
 	}
 
+	/**
+	 * 创建付款单
+	 */
 	public void createPayment() {
 		if(checkCompleted()) {
 			double total = 0;
@@ -230,7 +249,11 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		lists.remove(table.getTable().getSelectedRow());
 		table.deleteRow();
 	}
-	
-	
+
+	@Override
+	public ArrayList<TransferLineItemVO> getLists() {
+		return lists;
+	}
+
 
 }
