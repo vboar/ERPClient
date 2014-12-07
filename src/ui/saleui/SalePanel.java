@@ -44,62 +44,14 @@ public class SalePanel extends JPanel {
 		this.repaint();
     }
     
+	private void initComponent() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void paintComponent(Graphics g){
 		g.drawImage(bg, 0, 0, pcfg.getW(), pcfg.getH(), null);
 	}
 	
-	/**
-	 * 初始化组件
-	 */
-	private void initComponent() {
-		this.add(new MyLabel(pcfg.getLabels().element("title")));
-		this.showpanel = new ShowPanel();
-		this.showpanel.setVisible(true);
-		this.add(this.showpanel);
-		this.createSale = new MyButton(pcfg.getButtons().element("createsale"));
-		this.add(this.addPresent);
-		this.addPresent.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showCreate();
-			}
-		});
-		this.show = new MyButton(pcfg.getButtons().element("show"));
-		this.show.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				listpanel.udpateData();
-				if(createPanel!=null){
-					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
-							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-					if(result == MyOptionPane.YES_OPTION){
-						showList();
-					}
-				}
-			}
-		});
-		this.add(this.show);
-	}
-
-	public void showCreate() {
-		remove(listpanel);
-		createPanel = new CreatePresentPanel(frame,this);
-		add(createPanel);
-		repaint();
-	}
-
-	public void showList() {
-		remove(createPanel);
-		listpanel = new ShowPanel();
-		add(listpanel);
-		repaint();
-	}
-	
-	public ShowPanel getListpanel() {
-		return listpanel;
-	}
-
 }
