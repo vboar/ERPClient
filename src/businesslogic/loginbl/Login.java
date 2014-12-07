@@ -9,7 +9,7 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Login {
 
-	private static String currentUserName;
+	public static String currentUserName;
 	
 	public static String currentUserId;
 

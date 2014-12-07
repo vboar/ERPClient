@@ -10,20 +10,24 @@ import vo.LogVO;
 
 public interface LogBLService {
 	
-	/**
-	 * 查询系统日志
-	 * @param time1
-	 * @param time2
-	 * @return
-	 */
-	public ArrayList<LogVO> show(String time1,String time2);
+
 	
 	/**
 	 * 添加系统日志
 	 * @param vo
 	 * @return
 	 */
-	public ResultMessage add(LogVO vo);
+	public ResultMessage add(String content);
 	
 
+	
+	/**
+	 * 按时间查询系统日志
+	 * @param time1
+	 * @param time2
+	 * @return
+	 */
+	public ArrayList<LogVO> findByTime(String time1,String time2);
+	
+	public ArrayList<LogVO> show();
 }
