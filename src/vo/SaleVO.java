@@ -145,6 +145,10 @@ public class SaleVO implements DocumentVO {
 		this.isWriteOff = isWriteOff;
 		this.receiptType = receiptType;
 	}
+	
+	public SaleVO(){
+		
+	}
 
 	public SaleVO(String name, double total) {
 		this.customerName = name;

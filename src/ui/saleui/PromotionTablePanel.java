@@ -64,10 +64,9 @@ public class PromotionTablePanel extends TablePanel{
 	}
 
 	private void createRow(Object[] row, PromotionVO vo){
-		row[0]=Boolean.FALSE;
-		row[1]=vo.giftList;
-		row[2]=vo.discount;
-		row[3]=vo.voucher;
+		row[0]=vo.giftList;
+		row[1]=vo.discount;
+		row[2]=vo.voucher;
 	}
 	
 	public void deleteRow(){

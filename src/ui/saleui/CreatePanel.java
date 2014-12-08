@@ -26,7 +26,6 @@ import util.DocumentType;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.CustomerVO;
-import vo.PresentLineItemVO;
 import vo.PromotionVO;
 import vo.SaleVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -75,13 +74,11 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 	
 	private CustomerVO customerVO;	
 	private boolean hasCustomer = false;	
-	private boolean hasPromotion = false;
 	private double totalPrice = 0;	
+	private ArrayList<PromotionVO> promotionlist;
 	private SaleVO saleVo;
 	private HashMap<String,CustomerVO> customerlist;	
-	private ArrayList<CommodityLineItemVO> commoditylist;	
-	private ArrayList<PresentLineItemVO> presentlist;
-	private String presentId;
+	private ArrayList<CommodityLineItemVO> commoditylist;
 	
 	private SaleBLService saleCtrl;	
 	private CustomerBLService customerCtrl;
@@ -89,16 +86,21 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 	public CreatePanel(JFrame frame, CreateSaleDialog dialog){
 		this.frame = frame;	
 		this.dialog = dialog;
-		this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleController();
-		this.customerCtrl = ControllerFactoryImpl.getInstance().getCustomerController();
+		
+		this.saleVo = new SaleVO();
 		this.customerlist = new HashMap<String,CustomerVO>();
 		this.commoditylist = new ArrayList<CommodityLineItemVO>();
-		this.presentlist = new ArrayList<PresentLineItemVO>();
+		this.promotionlist = new ArrayList<PromotionVO>();
+		
+		this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleController();
+		this.customerCtrl = ControllerFactoryImpl.getInstance().getCustomerController();
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.bg = cfg.getBg();
+		
         this.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()));
         this.setLocation(cfg.getX(), cfg.getY());
         this.setLayout(null);
+        
         this.initComponent();
         this.repaint();
         this.setVisible(true);
@@ -224,31 +226,37 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 	}
 
 	protected void showChoosePromotionDialog() {
-		ArrayList<PromotionVO> price = new ArrayList<PromotionVO>();
-		price.add(new PromotionVO(null,10,200));
-		price.add(new PromotionVO(null,5,100));
-		price.add(new PromotionVO(null,5,100));
-		price.add(new PromotionVO(null,5,100));
-		ArrayList<PromotionVO> vip = new ArrayList<PromotionVO>();
-		vip.add(new PromotionVO(null,10,200));
-		vip.add(new PromotionVO(null,4,200));
-		price.add(new PromotionVO(null,5,100));
-		new ShowChoosePromotionDialog(frame,vip,price);
+		ArrayList<PromotionVO> vip = saleCtrl.calCustomerPromotion(customerVO.level);
+		ArrayList<PromotionVO> price = saleCtrl.calTotalGiftPromotion(totalPrice);
+		new ShowChoosePromotionDialog(frame,vip,price,this);
 	}
 
 	protected void createSale() {
 		if(this.checkCompleted()){
 			try{
+				String remark = this.remarkTxt.getArea().getText();
 				double totalBeforeDicount = Double.parseDouble(this.totalBeforeDiscountLab.getText());
 				double total = Double.parseDouble(this.totalLab.getText());
 				double discount = Double.parseDouble(this.discountLab.getText());
-				double voucher = Double.parseDouble(this.voucherTxt.getText());
-				SaleVO vo = new SaleVO(this.documentId.getText(),null,customerVO.id,
-						customerVO.name, customerVO.level,this.salesman.getSelectedItem().toString(),
-						null,this.storage.getSelectedItem().toString(),commoditylist,
-						presentId,presentlist,totalBeforeDicount,discount,voucher,total,
-						this.remarkTxt.getArea().getText(),DocumentStatus.NONCHECKED,false,DocumentType.SALE);
-				ResultMessage result = this.saleCtrl.add(vo);
+				if(voucherBox.isSelected()){
+					double voucher = Double.parseDouble(this.voucherTxt.getText());
+					saleVo.voucher = voucher;
+				}
+				saleVo.id = saleCtrl.createId();
+				saleVo.customer = customerVO.id;
+				saleVo.customerName = customerVO.name;
+				saleVo.customerVIP = customerVO.level;
+				saleVo.salesmanId = this.salesman.getSelectedItem().toString();
+				saleVo.storage = this.storage.getSelectedItem().toString();
+				saleVo.saleList = commoditylist;
+				saleVo.totalBeforeDiscount = totalBeforeDicount;
+				saleVo.discount = discount;
+				saleVo.totalAfterDiscount = total;
+				saleVo.approvalState = DocumentStatus.NONCHECKED;
+				saleVo.isWriteOff = false;
+				saleVo.receiptType = DocumentType.SALE;
+				saleVo.remark = remark;
+				ResultMessage result = this.saleCtrl.add(saleVo);
 				if(result == ResultMessage.SUCCESS){
 					MyOptionPane.showMessageDialog(frame, "销售单提交成功！");
 					dialog.dispose();
@@ -299,6 +307,20 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		this.commodityTable.deleteRow();
 	}
 
+	public void calTotal(){
+		String vipid = null;
+		String priceid = null;
+		if(this.promotionlist.get(0)!=null){
+			vipid = this.promotionlist.get(0).id;
+		}
+		if(this.promotionlist.get(1)!=null){
+			priceid = this.promotionlist.get(1).id;
+		}
+		this.saleVo = saleCtrl.calAfterPrice( vipid,priceid, saleVo);
+		this.discountLab.setText(Double.toString(this.saleVo.discount));
+		this.totalLab.setText(Double.toString(this.saleVo.totalAfterDiscount));
+	}
+	
 	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
 		ArrayList<CustomerVO> list = this.customerCtrl.fuzzyFind(keyword);
@@ -326,5 +348,9 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		this.totalPrice = this.totalPrice + (vo.price * vo.number);
 		this.totalBeforeDiscountLab.setText(Double.toString(this.totalPrice));
 	}
-	
+
+	public ArrayList<PromotionVO> getPromotionlist() {
+		return promotionlist;
+	}
+
 }

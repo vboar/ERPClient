@@ -1558,7 +1558,6 @@
 		<buttons></buttons>
 		<tablepane width="620" height="200" x="50" y="0">
 				<columnnames>
-					<columnname name="选择"/>
 					<columnname name="赠品列表" />
 					<columnname name="折扣"/>
 					<columnname name="赠送代金券"/>
