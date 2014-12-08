@@ -3,31 +3,24 @@
  */
 package businesslogicservice.logblservice;
 
-import java.util.ArrayList;
-
-import util.ResultMessage;
 import vo.LogVO;
 
+import java.util.ArrayList;
+
 public interface LogBLService {
-	
 
-	
 	/**
-	 * 添加系统日志
-	 * @param vo
-	 * @return
-	 */
-	public ResultMessage add(String content);
-	
-
-	
-	/**
-	 * 按时间查询系统日志
+	 * 根据时间和操作员查找，操作员为null时查找全部
 	 * @param time1
 	 * @param time2
+	 * @param operatorId
 	 * @return
 	 */
-	public ArrayList<LogVO> findByTime(String time1,String time2);
-	
+	public ArrayList<LogVO> find(String time1,String time2, String operatorId);
+
+	/**
+	 * 返回所有
+	 * @return
+	 */
 	public ArrayList<LogVO> show();
 }

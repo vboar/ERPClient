@@ -83,9 +83,7 @@ public class ManagerPanel extends MyMainPanel {
 		logBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showLog();
+				showLog();
 			}
 		});
 

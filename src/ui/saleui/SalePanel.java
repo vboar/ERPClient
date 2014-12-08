@@ -57,13 +57,14 @@ public class SalePanel extends JPanel {
 	}
 	
 	public void showCreate() {
-		if(showpanel!=null) {
-			showpanel.setVisible(false);
-			remove(showpanel);
-		}
-		createpanel = new CreatePanel(frame);
-		add(createpanel);
-		repaint();
+//		if(showpanel!=null) {
+//			showpanel.setVisible(false);
+//			remove(showpanel);
+//		}
+//		createpanel = new CreatePanel(frame);
+//		add(createpanel);
+//		repaint();
+		new CreateSaleDialog(frame,this);
 	}
 
 	public void showShow() {

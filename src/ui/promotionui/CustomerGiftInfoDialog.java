@@ -37,9 +37,9 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 
 	private MyComboBox level;
 	
-	//private MyDatePicker start;
+	private MyDatePicker start;
 	
-	//private MyDatePicker end;
+	private MyDatePicker end;
 	
 	private MyCheckBox presents;
 	
@@ -94,8 +94,8 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 	
 	public CustomerGiftInfoDialog(JFrame frame, boolean isAdd, CustomerGiftVO vo){
 		super(frame,isAdd);
-//		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
-//		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
+		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
+		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
 		this.discountTxt.setText(Double.toString(vo.discount));
 		this.voucher.setSelected(true);
@@ -120,10 +120,10 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.add(new MyLabel(cfg.getLabels().element("starttime")));
 		this.add(new MyLabel(cfg.getLabels().element("endtime")));
 		// 添加日期选择器
-//		this.start = new MyDatePicker(cfg.getDatePicker().element("start"));
-//		this.end = new MyDatePicker(cfg.getDatePicker().element("end"));
-//		this.add(this.start);
-//		this.add(this.end);
+		this.start = new MyDatePicker(cfg.getDatePicker().element("start"));
+		this.end = new MyDatePicker(cfg.getDatePicker().element("end"));
+		this.add(this.start);
+		this.add(this.end);
 		// 添加单选框
 		this.presents = new MyCheckBox(cfg.getCheckBox().element("presents"));
 		this.presents.setSelected(true);
@@ -194,11 +194,11 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.commit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				if(checkCompleted()){
-//					createCustomerGiftVO();
-//				}else{
-//					MyOptionPane.showMessageDialog(frame, "请填入完整信息！");
-//				}
+				if(checkCompleted()){
+					createCustomerGiftVO();
+				}else{
+					MyOptionPane.showMessageDialog(frame, "请填入完整信息！");
+				}
 			}
 		});
 		this.cancel = new MyButton(cfg.getButtons().element("cancel"));
@@ -249,47 +249,47 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 			int level = this.level.getSelectedIndex();
 			double discount = this.discount.isSelected() ? Double.parseDouble(this.discountTxt.getText()) : 0;
 			double voucher = this.voucher.isSelected() ? Double.parseDouble(this.voucherTxt.getText()) : 0;
-//			String startTime = FrameUtil.getFormattedDate(this.start.getDate());
-//			String endTime = FrameUtil.getFormattedDate(this.end.getDate());
-//			if(startTime.compareTo(endTime)>0){
-//				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
-//				return;
-//			}
-//			CustomerGiftVO vo = new CustomerGiftVO(controller.createId(),level,commoditylist,
-//					discount,voucher,startTime,endTime,true);
-//			if(isAdd){
-//				ResultMessage result = this.controller.create(vo);
-//				if(result == ResultMessage.SUCCESS){
-//					MyOptionPane.showMessageDialog(frame, "添加成功！");
-//				}else{
-//					MyOptionPane.showMessageDialog(frame, "添加失败！");
-//				}
-//			}else{
-//				ResultMessage result = this.controller.update(vo);
-//				if(result == ResultMessage.SUCCESS){
-//					MyOptionPane.showMessageDialog(frame, "修改成功！");
-//				}else{
-//					MyOptionPane.showMessageDialog(frame, "修改失败！");
-//				}
-//			}
+			String startTime = FrameUtil.getFormattedDate(this.start.getDate());
+			String endTime = FrameUtil.getFormattedDate(this.end.getDate());
+			if(startTime.compareTo(endTime)>0){
+				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
+				return;
+			}
+			CustomerGiftVO vo = new CustomerGiftVO(controller.createId(),level,commoditylist,
+					discount,voucher,startTime,endTime,true);
+			if(isAdd){
+				ResultMessage result = this.controller.create(vo);
+				if(result == ResultMessage.SUCCESS){
+					MyOptionPane.showMessageDialog(frame, "添加成功！");
+				}else{
+					MyOptionPane.showMessageDialog(frame, "添加失败！");
+				}
+			}else{
+				ResultMessage result = this.controller.update(vo);
+				if(result == ResultMessage.SUCCESS){
+					MyOptionPane.showMessageDialog(frame, "修改成功！");
+				}else{
+					MyOptionPane.showMessageDialog(frame, "修改失败！");
+				}
+			}
 		}catch(NumberFormatException ex){
 			MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
 		}
 	}
 	
 	
-//	/**
-//	 * 检查是否填写完整
-//	 * @return
-//	 */
-//	private boolean checkCompleted() {
-//		if((this.start.getDate()!=null)&&(this.end.getDate()!=null)&&
-//				(this.commoditylist.size()>0||!this.discount.getText().isEmpty()
-//						||!this.voucher.getText().isEmpty())){
-//			return true;
-//		}
-//		return false;
-//	}
+	/**
+	 * 检查是否填写完整
+	 * @return
+	 */
+	private boolean checkCompleted() {
+		if((this.start.getDate()!=null)&&(this.end.getDate()!=null)&&
+				(this.commoditylist.size()>0||!this.discount.getText().isEmpty()
+						||!this.voucher.getText().isEmpty())){
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * 添加一个商品
