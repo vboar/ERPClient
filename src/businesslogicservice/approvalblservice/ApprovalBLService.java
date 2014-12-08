@@ -5,15 +5,10 @@
  */
 package businesslogicservice.approvalblservice;
 
-import java.util.ArrayList;
-
 import util.ResultMessage;
-import vo.CashVO;
-import vo.ExceptionVO;
-import vo.PaymentVO;
-import vo.PresentVO;
-import vo.PurchaseVO;
-import vo.SaleVO;
+import vo.*;
+
+import java.util.ArrayList;
 
 public interface ApprovalBLService {
 	
@@ -44,6 +39,8 @@ public interface ApprovalBLService {
 	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1, String time2);
 	
 	public ArrayList<CashVO> findCash(int way, int status, String time1, String time2);
+
+	public DocumentVO show(int status, String time1, String time2);
 	
 	/**
 	 * 审批单据

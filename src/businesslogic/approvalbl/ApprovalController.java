@@ -5,18 +5,13 @@
 
 package businesslogic.approvalbl;
 
+import businesslogicservice.approvalblservice.ApprovalBLService;
+import util.ResultMessage;
+import vo.*;
+
 import java.util.ArrayList;
 
-import util.ResultMessage;
-import vo.CashVO;
-import vo.ExceptionVO;
-import vo.PaymentVO;
-import vo.PresentVO;
-import vo.PurchaseVO;
-import vo.SaleVO;
-import businesslogicservice.approvalblservice.ApprovalBLService;
-
-public class ApprovalController implements ApprovalBLService{
+public class ApprovalController implements ApprovalBLService {
 	
 	Approval approval = new Approval();
 
@@ -88,6 +83,11 @@ public class ApprovalController implements ApprovalBLService{
 			String time2) {
 		approval.addLog("按方法"+way+"查找现金费用单");
 		return approval.fingCash(way, status, time1, time2);
+	}
+
+	@Override
+	public DocumentVO show(int status, String time1, String time2) {
+		return null;
 	}
 
 	@Override
