@@ -1,6 +1,7 @@
 package businesslogic.controllerfactory;
 
 import businesslogic.accountbl.AccountController;
+import businesslogic.approvalbl.ApprovalController;
 import businesslogic.businessconditionbl.BusinessConditionController;
 import businesslogic.businessconditionbl.BusinessHistoryController;
 import businesslogic.businessconditionbl.SaleDetailsController;
@@ -26,6 +27,7 @@ import businesslogic.salebl.SaleController;
 import businesslogic.stockbl.StockController;
 import businesslogic.userbl.UserController;
 import businesslogicservice.accountblservice.AccountBLService;
+import businesslogicservice.approvalblservice.ApprovalBLService;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
 import businesslogicservice.businessconditionblservice.HistoryBLService;
 import businesslogicservice.businessconditionblservice.SaleDetailsBLService;
@@ -183,6 +185,11 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	@Override
 	public BusinessConditionBLService getBusinessConditionBLService() {
 		return new BusinessConditionController();
+	}
+
+	@Override
+	public ApprovalBLService getApprovalBLService() {
+		return new ApprovalController();
 	}
 
 }

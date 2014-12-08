@@ -873,15 +873,35 @@
 				</columnnames>
 			</tablepane>
 		</panel>
-		
+
 		<!-- 系统日志查询面板 -->
 		<panel className="ui.logui.LogPanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
-			<buttons>
-			</buttons>
 			<labels>
-				<title text="系统日志查询" w="120" h="30" x="10" y="2" />
+				<title text="系统日志查询面板" w="120" h="30" x="10" y="2" />
+				<start text="起始日期" w="60" h="30" x="170" y="42" />
+				<end text="截止日期" w="60" h="30" x="360" y="42" />
+				<operator text="操作员" w="50" h="30" x="10" y="42" />
 			</labels>
+			<buttons>
+				<find text="查询" w="80" h="30" x="550" y="42"/>
+				<show text="查看所有" w="80" h="30" x="650" y="42"/>
+			</buttons>
+			<datepicker>
+				<start w="120" h="30" x="230" y="42"/>
+				<end w="120" h="30" x="420" y="42"/>
+			</datepicker>
+			<tablepane className="" width="730"
+					   height="390" x="10" y="80">
+				<columnnames>
+					<columnname name="生成时间" />
+					<columnname name="操作员" />
+					<columnname name="操作内容" />
+				</columnnames>
+			</tablepane>
+			<textfields>
+				<operator w="100" h="30" x="50" y="42"/>
+			</textfields>
 		</panel>
 
 		<!-- 期初建账面板 -->
@@ -933,12 +953,50 @@
 		<panel className="ui.approvalui.ApprovalPanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
+				<noncheck text="待审批单据" w="150" h="32" x="425" y="40"/>
+				<check text="已审批单据" w="150" h="32" x="585" y="40"/>
+				<find text="查找" w="80" h="25" x="655" y="90"/>
+				<pass text="审批通过" w="150" h="30" x="415" y="440"/>
+				<fail text="审批不通过" w="150" h="30" x="585" y="440"/>
 			</buttons>
 			<labels>
 				<title text="单据审批" w="120" h="30" x="10" y="2" />
+				<list text="待审批单据列表" w="120" h="30" x="10" y="40" />
+				<type text="筛选类型" w="60" h="25" x="10" y="90" />
+				<start text="起始日期" w="60" h="25" x="275" y="90" />
+				<end text="截止日期" w="60" h="25" x="465" y="90" />
 			</labels>
+			<datepicker>
+				<start w="120" h="25" x="335" y="90"/>
+				<end w="120" h="25" x="525" y="90"/>
+			</datepicker>
+			<comboboxes>
+				<type w="120" h="25" x="70" y="90">
+					<string str="所有" />
+					<string str="进货单" />
+					<string str="进货退货单" />
+					<string str="销售单" />
+					<string str="销售退货单" />
+					<string str="赠送单" />
+					<string str="收款单" />
+					<string str="付款单" />
+					<string str="现金费用单" />
+					<string str="库存报溢单" />
+					<string str="库存报损单" />
+				</type>
+			</comboboxes>
+			<tablepane className="ui.approvalui.ApprovalTable" width="730"
+					   height="310" x="10" y="120">
+				<columnnames>
+					<columnname name="审批状态" />
+					<columnname name="单据类型" />
+					<columnname name="单据编号" />
+					<columnname name="生成时间" />
+					<columnname name="详细信息" />
+					<columnname name="选择" />
+				</columnnames>
+			</tablepane>
 		</panel>
-
 
 		<!-- 促销策略制定面板 -->
 		<panel className="ui.promotionui.PromotionPanel" width="760" height="510"
@@ -1061,36 +1119,6 @@
 					<columnname name="权限" />
 				</columnnames>
 			</tablepane>
-		</panel>
-
-		<!-- 系统日志查询面板 -->
-		<panel className="ui.logui.LogPanel" width="760" height="510"
-			   x="200" y="0" bg="img/common/rightpanel.png">
-			<labels>
-				<title text="系统日志查询面板" w="120" h="30" x="10" y="2" />
-				<start text="起始日期" w="60" h="30" x="170" y="42" />
-				<end text="截止日期" w="60" h="30" x="360" y="42" />
-				<operator text="操作员" w="50" h="30" x="10" y="42" />
-			</labels>
-			<buttons>
-				<find text="查询" w="80" h="30" x="550" y="42"/>
-				<show text="查看所有" w="80" h="30" x="650" y="42"/>
-			</buttons>
-			<datepicker>
-				<start w="120" h="30" x="230" y="42"/>
-				<end w="120" h="30" x="420" y="42"/>
-			</datepicker>
-			<tablepane className="" width="730"
-					   height="390" x="10" y="80">
-				<columnnames>
-					<columnname name="生成时间" />
-					<columnname name="操作员" />
-					<columnname name="操作内容" />
-				</columnnames>
-			</tablepane>
-			<textfields>
-				<operator w="100" h="30" x="50" y="42"/>
-			</textfields>
 		</panel>
 
 		<!-- 消息面板 -->

@@ -1,6 +1,7 @@
 package businesslogicservice.controllerfactoryblservice;
 
 import businesslogicservice.accountblservice.AccountBLService;
+import businesslogicservice.approvalblservice.ApprovalBLService;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
 import businesslogicservice.businessconditionblservice.HistoryBLService;
 import businesslogicservice.businessconditionblservice.SaleDetailsBLService;
@@ -75,5 +76,7 @@ public interface ControllerFactory {
 	public HistoryBLService getHistoryBLService();
 	
 	public BusinessConditionBLService getBusinessConditionBLService();
+
+	public ApprovalBLService getApprovalBLService();
 	
 }
