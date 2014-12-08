@@ -19,19 +19,19 @@ public class Account {
 	Log l=new Log();
 	
 	public ResultMessage createLog(String content){	
-		//TODO
-		return null;		
+		Log l=new Log();
+		return l.add(content);		
 	}
 	
 	public ResultMessage add(AccountVO vo){
 		try {
 			if(DataFactoryImpl.getInstance().getAccountData().getByAccount(vo.account) != null){
-				l.add("Add account failed:account exists");
+				//l.add("Add account failed:account exists");
 				return ResultMessage.EXIST;
 			}else{
 				DataFactoryImpl.getInstance().getAccountData().insert(new AccountPO(vo.name,vo.account,vo.balance));
 			}
-			l.add("Add account successfully");
+			//l.add("Add account successfully");
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -43,13 +43,13 @@ public class Account {
 	public ResultMessage delete(AccountVO vo){
 		try {
 			if(DataFactoryImpl.getInstance().getAccountData().getByAccount(vo.account) == null){
-				l.add("Delete account failed:account doesn't exists");
+				//l.add("Delete account failed:account doesn't exists");
 				return ResultMessage.FAILED;
 			}else{
 				DataFactoryImpl.getInstance().getAccountData().delete(new AccountPO(vo.name,vo.account,vo.balance));
 			}
 			
-			l.add("Delete account successfully");
+			//l.add("Delete account successfully");
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

@@ -1,30 +1,30 @@
 /**
- * BusinessCondition逻辑类
+ * 查看经营情况
  * @author JaneLDQ
  * @date 2014/11/14
  */
 package businesslogic.businessconditionbl;
 
 public class BusinessCondition {
-
-	/**
-	 * 销售收入
-	 */
+/*
+	
+	  销售收入
+	 
 	private double saleIn;
 	
-	/**
-	 * 商品类收入
-	 */
+	
+	 商品类收入
+	
 	private double commodityIn;
 	
-	/**
-	 * 销售成本
-	 */
+	
+	 销售成本
+	
 	private double cost;
 	
-	/**
-	 * 商品类支出
-	 */
+	
+	 商品类支出
+	
 	private double commodityOut;
 
 	private MockSale ms;
@@ -66,5 +66,5 @@ public class BusinessCondition {
 	public double getProfit(){
 		return this.getCommodityIn()+this.getSaleIn()-this.getCommodityOut()-this.getCost();
 	}
-		
+		*/
 }

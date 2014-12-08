@@ -19,6 +19,7 @@ import vo.SaleVO;
 import vo.TransferLineItemVO;
 import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
+import businesslogic.logbl.Log;
 import businesslogic.paymentbl.Cash;
 import businesslogic.paymentbl.Payment;
 import businesslogic.paymentbl.Receipt;
@@ -36,6 +37,10 @@ public class Approval {
 		return ResultMessage.SUCCESS;
 	}
 
+	public ResultMessage addLog(String content){
+		Log l=new Log();
+		return l.add(content);
+	}
 	public ResultMessage approvePayment(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
 		Payment p=new Payment();
 		return p.approve(transferlist,id,customerId,total);

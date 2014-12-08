@@ -1,5 +1,5 @@
 /**
- * SaleDetails逻辑类
+ * 查看销售明细
  * @author JaneLDQ
  * @date 2014/11/14
  */
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import vo.SaleVO;
 
 public class SaleDetails {
-	
+	/*
 	private MockSale ms;
 
 	private ArrayList<SaleVO> salelist;
@@ -23,5 +23,5 @@ public class SaleDetails {
 		this.salelist = this.ms.findByTime(time1, time2);
 		return this.salelist;
 	}
-	
+	*/
 }

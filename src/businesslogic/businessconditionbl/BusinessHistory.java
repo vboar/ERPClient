@@ -1,5 +1,5 @@
 /**
- * BusinessHistory逻辑类
+ * 查看经营历程
  * @author JaneLDQ
  * @date 2014/11/14
  */
@@ -14,7 +14,7 @@ import vo.PurchaseVO;
 import vo.SaleVO;
 
 public class BusinessHistory {
-	
+	/*
 	private MockPresent mpre;
 	
 	private MockPurchase mpur;
@@ -79,5 +79,5 @@ public class BusinessHistory {
 	public ArrayList<PresentVO> showPresentByTime(String time1, String time2){
 		ArrayList<PresentVO> list = this.mpre.findByTime(time1, time2);
 		return list;
-	}
+	}*/
 }
