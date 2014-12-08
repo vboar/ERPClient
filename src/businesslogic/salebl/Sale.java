@@ -22,11 +22,13 @@ import vo.CommodityLineItemVO;
 import vo.CustomerGiftVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
+import vo.PromotionVO;
 import vo.SaleVO;
 import vo.SpecialOfferVO;
 import vo.TotalGiftVO;
 import businesslogic.commoditybl.Commodity;
 import businesslogic.customerbl.Customer;
+import businesslogic.loginbl.Login;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.CustomerGiftPromotion;
 import businesslogic.promotionbl.SpecialOfferPromotion;
@@ -142,6 +144,7 @@ public class Sale {
 		Date date=new Date();
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 		String time=myFmt.format(date);
+		vo.salesmanId=Login.currentUserId;
 		vo.time=time;
 		SalePO po = SaleVOToSalePO(vo);
 		try {
@@ -370,6 +373,8 @@ public class Sale {
 	public ResultMessage approve(SaleVO vo) {
 		//改商品
 		//改客户
+		//促销的商品？？
+		//TODO
 		double total=vo.totalAfterDiscount-vo.voucher;
 
 		Customer cus=new Customer();
@@ -387,16 +392,42 @@ public class Sale {
 			try {
 				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			
+		}		
+		return null;
+	}
+	public ArrayList<PromotionVO> calCustomerPromotion(int VIP){
+		CustomerGiftPromotion bl=new CustomerGiftPromotion();
+		ArrayList<PromotionVO> result=new ArrayList<PromotionVO>();
+		ArrayList<CustomerGiftVO>voList=bl.show();
+		for(CustomerGiftVO oldVO:voList){
+			if(oldVO.vip<=VIP){
+			PromotionVO vo=new PromotionVO(oldVO.id, oldVO.giftInfo, oldVO.discount, oldVO.voucher);
+			result.add(vo);
+			}
 		}
 		
-		return null;
-
+		return result;
 	}
+	
+	public ArrayList<PromotionVO> calTotalGiftPromotion(double price) {
+		TotalGiftPromotion bl=new TotalGiftPromotion();
+		ArrayList<PromotionVO> result=new ArrayList<PromotionVO>();
+
+		ArrayList<TotalGiftVO> voList=bl.show();
+		for(TotalGiftVO oldVO:voList){
+			if(oldVO.total<=price){
+				PromotionVO vo=new PromotionVO(oldVO.id, oldVO.giftInfo, 1, oldVO.voucher);
+				result.add(vo);
+			}
+		}
+		return result;
+	}
+	
+	
 
 		
 	public ResultMessage addlog(String content) {

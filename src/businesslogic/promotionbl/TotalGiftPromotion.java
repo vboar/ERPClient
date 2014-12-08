@@ -58,7 +58,34 @@ public class TotalGiftPromotion {
 		}
 		return ResultMessage.SUCCESS;
 	}
+	
+	public TotalGiftVO getById(String id){
+		ArrayList<TotalGiftVO> list=showAll();
+		for(TotalGiftVO vo:list){
+			if(vo.id.equals(id)){
+				return vo;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<TotalGiftVO> showAll() {
+		ArrayList<TotalGiftPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getTotalGiftData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<TotalGiftVO> voList = new ArrayList<TotalGiftVO>();
+		for (TotalGiftPO po : poList) {
+			TotalGiftVO vo = poToVo(po);
+			voList.add(vo);
+		}
+		return voList;
 
+	}
+
+	
 	public ArrayList<TotalGiftVO> show() {
 		ArrayList<TotalGiftPO> poList = null;
 		try {

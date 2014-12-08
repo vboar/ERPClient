@@ -72,6 +72,32 @@ public class CustomerGiftPromotion {
 		}
 		return list2;		
 	}
+	
+	public CustomerGiftVO getById(String id){
+		ArrayList<CustomerGiftVO> list=new ArrayList<CustomerGiftVO>();
+		for(CustomerGiftVO vo:list){
+			if(vo.id.equals(id)){
+				return vo;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<CustomerGiftVO> showAll() {
+		ArrayList<CustomerGiftPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCustomerGiftData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<CustomerGiftVO> voList=new ArrayList<CustomerGiftVO>();
+		for(CustomerGiftPO po:poList){
+			CustomerGiftVO vo=poToVo(po);
+			voList.add(vo);
+		}	
+		return voList;
+	}
+
 
 	
 	public ArrayList<CustomerGiftVO> show() {

@@ -3,6 +3,11 @@ package vo;
 import java.util.ArrayList;
 
 public class PromotionVO {
+	
+	/**
+	 * 这个促销策略实际的id
+	 */
+	public String id;
 	/**
 	 * 赠品列表
 	 */
@@ -23,9 +28,10 @@ public class PromotionVO {
 	 * @param discount
 	 * @param voucher
 	 */
-	public PromotionVO(ArrayList<PresentLineItemVO> giftList, double discount,
+	public PromotionVO(String id,ArrayList<PresentLineItemVO> giftList, double discount,
 			double voucher) {
 		super();
+		this.id=id;
 		this.giftList = giftList;
 		this.discount = discount;
 		this.voucher = voucher;

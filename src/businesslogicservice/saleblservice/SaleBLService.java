@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import util.DocumentStatus;
 import util.ResultMessage;
-import vo.PurchaseVO;
+import vo.PromotionVO;
 import vo.SaleVO;
 
 public interface SaleBLService {
@@ -31,7 +31,7 @@ public interface SaleBLService {
 	 * @param status
 	 * @return
 	 */
-	public ArrayList<PurchaseVO> findByStatus(DocumentStatus status);
+	public ArrayList<SaleVO> findByStatus(DocumentStatus status);
 
 	/**
 	 * 按客户筛选单据
@@ -39,7 +39,7 @@ public interface SaleBLService {
 	 * @param customer
 	 * @return
 	 */
-	public ArrayList<PurchaseVO> findByCustomer(String customer);
+	public ArrayList<SaleVO> findByCustomer(String customer);
 
 	/**
 	 * 显示全部销售类单据
@@ -52,6 +52,29 @@ public interface SaleBLService {
 
 	public String createId();
 
-	public PurchaseVO getById(String id);
-
+	public SaleVO getById(String id);
+	
+	/**
+	 * 计算可以选择的vip促销策略
+	 * @param VIP
+	 * @return
+	 */
+	public ArrayList<PromotionVO> calCustomerPromotion(int VIP);
+	
+	
+	/**
+	 * 计算可以选择的总价促销策略
+	 * @param price
+	 * @return
+	 */
+	public ArrayList<PromotionVO> calTotalGiftPromotion(double price);
+	
+	
+	/**
+	 * 计算折让
+	 * @param vo
+	 * @param promotionList
+	 * @return 促销计算后的促销vo
+	 */
+	public SaleVO calAfterPrice(String customerGiftId,String totalGiftId,SaleVO vo);
 }
