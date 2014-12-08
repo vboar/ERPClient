@@ -20,14 +20,14 @@ public class RequirementVO {
 	public String time2 = null;
 	
 	/**
-	 * 商品编号
+	 * 商品 名
 	 */
-	public String commodityId = null;
+	public String commodityName = null;
 	
 	/**
 	 * 客户编号
 	 */
-	public String customerId = null;
+	public String customer = null;
 	
 	/**
 	 * 业务员
@@ -57,22 +57,22 @@ public class RequirementVO {
 	 * @param salesman
 	 * @param storage
 	 */
-	public RequirementVO(String time1,String time2, String commodityId, 
-			String customerId,String salesman, String storage){
+	public RequirementVO(String time1,String time2, String commodityName, 
+			String customer,String salesman, String storage){
 		this.time1 = time1;
 		this.time2 = time2;
-		this.commodityId = commodityId;
-		this.customerId = customerId;
+		this.commodityName = commodityName;
+		this.customer = customer;
 		this.salesman = salesman;
 		this.storage = storage;
 	}
 	
 	public RequirementVO(String time1,String time2, DocumentType type,
-			String customerId,String salesman, String storage, String operator){
+			String customer,String salesman, String storage, String operator){
 		this.time1 = time1;
 		this.time2 = time2;
 		this.type = type;
-		this.customerId = customerId;
+		this.customer = customer;
 		this.salesman = salesman;
 		this.storage = storage;
 		this.operator = operator;
