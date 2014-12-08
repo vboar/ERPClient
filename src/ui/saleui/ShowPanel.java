@@ -31,7 +31,7 @@ public class ShowPanel extends JPanel{
 	}
 
 	private void initComponent() {
-		this.show = new MyButton(cfg.getButtons().element("show"));
+		this.show = new MyButton(cfg.getButtons().element("showAll"));
 		this.add(this.show);
 		this.table = new SaleListPane(new TableConfig(cfg.getTablepane()));
 		this.add(this.table);

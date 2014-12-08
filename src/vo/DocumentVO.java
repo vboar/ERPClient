@@ -5,6 +5,19 @@
  */
 package vo;
 
+import util.DocumentStatus;
+import util.DocumentType;
+
 public interface DocumentVO {
+
+    public String getId();
+
+    public DocumentStatus getStatus();
+
+    public DocumentType getType();
+
+    public boolean isWriteoff();
+
+    public String getTime();
 	
 }

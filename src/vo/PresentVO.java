@@ -5,10 +5,10 @@
  */
 package vo;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.DocumentType;
+
+import java.util.ArrayList;
 
 public class PresentVO implements DocumentVO {
 	
@@ -51,18 +51,7 @@ public class PresentVO implements DocumentVO {
 	 * 是否为红冲单据
 	 */
 	public boolean isWriteoff;
-	
-	/**
-	 * 构造方法
-	 * @param id
-	 * @param time
-	 * @param clientId
-	 * @param clientName
-	 * @param list
-	 * @param status
-	 * @param type
-	 * @param isWriteoff
-	 */
+
 	public PresentVO(String id, String time, String customerId,
 			String customerName, ArrayList<PresentLineItemVO> list,
 			DocumentStatus documentStatus,DocumentType documentType,boolean isWriteoff) {
@@ -89,5 +78,30 @@ public class PresentVO implements DocumentVO {
 		}
 		str = str + list.get(list.size()-1).toString();
 		return str;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return documentStatus;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return documentType;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteoff;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
 	}
 }

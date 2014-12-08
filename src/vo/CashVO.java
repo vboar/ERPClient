@@ -5,11 +5,10 @@
  */
 package vo;
 
-import java.util.ArrayList;
-
-import vo.ClauseLineItemVO;
 import util.DocumentStatus;
 import util.DocumentType;
+
+import java.util.ArrayList;
 
 public class CashVO implements DocumentVO{
 	
@@ -82,5 +81,29 @@ public class CashVO implements DocumentVO{
 		this.time=time;
 	}
 
-	
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return approvalState;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return documentType;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteOff;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
+	}
 }

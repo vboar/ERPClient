@@ -5,10 +5,10 @@
  */
 package vo;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.DocumentType;
+
+import java.util.ArrayList;
 
 public class ExceptionVO implements DocumentVO {
 
@@ -68,5 +68,30 @@ public class ExceptionVO implements DocumentVO {
 	
 	public ExceptionVO(){
 		
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return type;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteoff;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
 	}
 }

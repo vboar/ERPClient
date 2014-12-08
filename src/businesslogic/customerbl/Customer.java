@@ -241,7 +241,7 @@ public class Customer {
 			result.add(poToVo(po.get(i)));
 		}
 		
-		l.add("show successfully");
+		l.add("showAll successfully");
 		return result;
 	}
 	

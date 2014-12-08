@@ -72,7 +72,7 @@ public class PresentPanel extends JPanel {
 				showCreate();
 			}
 		});
-		this.show = new MyButton(pcfg.getButtons().element("show"));
+		this.show = new MyButton(pcfg.getButtons().element("showAll"));
 		this.show.addActionListener(new ActionListener() {
 			
 			@Override

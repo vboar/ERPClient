@@ -5,9 +5,10 @@
  */
 package vo;
 
-import java.util.ArrayList;
-
+import util.DocumentStatus;
 import util.DocumentType;
+
+import java.util.ArrayList;
 
 public class WarningVO implements DocumentVO {
 	
@@ -43,5 +44,29 @@ public class WarningVO implements DocumentVO {
 		this.time = time;
 		this.type = type;
 	}
-	
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return null;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return type;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteoff();
+	}
+
+	@Override
+	public String getTime() {
+		return time;
+	}
 }

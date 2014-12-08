@@ -100,12 +100,12 @@ public class LogPanel extends JPanel implements FuzzySearch {
             }
         });
 
-        showBtn = new MyButton(element.element("show"));
+        showBtn = new MyButton(element.element("showAll"));
         add(showBtn);
         showBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                table.show();
+                table.showAll();
             }
         });
     }

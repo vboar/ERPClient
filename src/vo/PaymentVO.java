@@ -97,4 +97,29 @@ public class PaymentVO implements DocumentVO {
 	public PaymentVO(){
 		
 	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return approvalState;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return documentType;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteOff;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
+	}
 }

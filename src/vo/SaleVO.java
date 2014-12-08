@@ -5,7 +5,7 @@ import util.DocumentType;
 
 import java.util.ArrayList;
 
-public class SaleVO {
+public class SaleVO implements DocumentVO {
 
 	/**
 	 * 单据编号
@@ -149,5 +149,30 @@ public class SaleVO {
 	public SaleVO(String name, double total) {
 		this.customerName = name;
 		this.totalAfterDiscount = total;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return approvalState;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return receiptType;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteOff;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
 	}
 }

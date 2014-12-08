@@ -46,7 +46,7 @@ public class SalePanel extends JPanel {
 			}
 		});
 		this.add(this.createSale);
-		this.show = new MyButton(cfg.getButtons().element("show"));
+		this.show = new MyButton(cfg.getButtons().element("showAll"));
 		this.show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

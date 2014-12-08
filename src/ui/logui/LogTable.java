@@ -66,7 +66,7 @@ public class LogTable extends TablePanel {
         row[2] = vo.content;
     }
 
-    public void show() {
+    public void showAll() {
         list = controller.show();
         initData(list);
         updateUI();

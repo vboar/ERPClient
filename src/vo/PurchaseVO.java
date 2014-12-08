@@ -1,11 +1,11 @@
 package vo;
 
-import java.util.ArrayList;
-
 import util.DocumentStatus;
 import util.DocumentType;
 
-public class PurchaseVO {
+import java.util.ArrayList;
+
+public class PurchaseVO implements DocumentVO {
 
 	/**
 	 * 单据编号
@@ -67,24 +67,6 @@ public class PurchaseVO {
 	 */
 	public DocumentType receiptType;
 
-	/**
-	 * 构造方法
-	 * 
-	 * @param receiptId
-	 * @param customerId
-	 * @param name
-	 * @param operator
-	 * @param storage
-	 * @param saleList
-	 * @param totalBeforeDiscount
-	 * @param discount
-	 * @param voucher
-	 * @param totalAfterDiscount
-	 * @param remark
-	 * @param approvalState
-	 * @param isWriteOff
-	 * @param receiptType
-	 */
 	public PurchaseVO(String id, String time,String customerId, String customerName,
 			String operatorId, String storage,
 			ArrayList<CommodityLineItemVO> saleList, double total,
@@ -107,5 +89,30 @@ public class PurchaseVO {
 	public PurchaseVO(String operator, double total) {
 		this.operatorId = operator;
 		this.total = total;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public DocumentStatus getStatus() {
+		return documentStatus;
+	}
+
+	@Override
+	public DocumentType getType() {
+		return receiptType;
+	}
+
+	@Override
+	public boolean isWriteoff() {
+		return isWriteOff;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
 	}
 }

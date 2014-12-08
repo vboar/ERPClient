@@ -103,7 +103,7 @@ public class CustomerPanel extends JPanel implements FuzzySearch {
 		this.initDeleteBtn(buttons.element("delete"));
 		this.initUpdateBtn(buttons.element("update"));
 		this.initFindBtn(buttons.element("find"));
-		this.initShowBtn(buttons.element("show"));
+		this.initShowBtn(buttons.element("showAll"));
 		this.add(addBtn);
 		this.add(deleteBtn);
 		this.add(updateBtn);

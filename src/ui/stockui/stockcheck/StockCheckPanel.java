@@ -98,7 +98,7 @@ public class StockCheckPanel extends JPanel {
 		});
 		this.add(this.createExcel);
 		
-		this.show = new MyButton(this.cfg.getButtons().element("show"));
+		this.show = new MyButton(this.cfg.getButtons().element("showAll"));
 		this.show.addActionListener(new ActionListener() {
 			
 			@Override
