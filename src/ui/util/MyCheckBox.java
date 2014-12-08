@@ -32,6 +32,6 @@ public class MyCheckBox extends JCheckBox{
 			int b=Integer.parseInt(ele.attributeValue("b"));
 			this.setForeground(new Color(r,g,b));
 		}
-				
+		this.setOpaque(false);			
 	}
 }

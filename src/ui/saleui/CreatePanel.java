@@ -11,11 +11,10 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ui.presentui.PresentCommodityTablePane;
-import ui.util.AddCommodityDialog;
 import ui.util.AddCommodityLineItem;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
+import ui.util.MyCheckBox;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
@@ -28,6 +27,7 @@ import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.CustomerVO;
 import vo.PresentLineItemVO;
+import vo.PromotionVO;
 import vo.SaleVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.customerblservice.CustomerBLService;
@@ -39,66 +39,56 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLineItem{
 
-	private MyButton addBtn;
-	
-	private MyButton deleteBtn;
-	
-	private MyButton commitBtn;
-	
-	private MyButton cancelBtn;
-	
-	private MyButton addCustomer;
-	
-	private MyLabel documentId;
-	
-	private MyLabel customerIdLab;
-	
-	private MyLabel customerNameLab;
-	
-	private MyLabel totalBeforeDiscountLab;
-	
-	private MyLabel totalLab;
-	
-	private MySpecialTextField customerTxt;
-	
-	private MyTextField discountTxt;
-	
-	private MyTextField voucherTxt;
-	
-	private MyTextArea remarkTxt;
-	
-	private MyComboBox storage;
-	
-	private MyComboBox salesman;
-	
-	private CommodityTablePane commodityTable;
-	
-	private PresentCommodityTablePane presentTable;
-	
 	private Image bg;
 	
+	private MyButton addBtn;
+	private MyButton deleteBtn;	
+	private MyButton commitBtn;
+	private MyButton cancelBtn;
+	private MyButton addCustomer;
+	private MyButton showPromotions;
+	
+	private MyLabel documentId;
+	private MyLabel customerIdLab;
+	private MyLabel customerNameLab;
+	private MyLabel totalBeforeDiscountLab;
+	private MyLabel voucherlab;
+	private MyLabel totalLab;
+	private MyLabel discountLab;	
+	
+	private MyComboBox storage;	
+	private MyComboBox salesman;
+	
+	private MyCheckBox voucherBox;
+	
+	private MySpecialTextField customerTxt;	
+	private MyTextField voucherTxt;	
+	private MyTextArea remarkTxt;
+
+	private CommodityTablePane commodityTable;
+	
+	private CreateSaleDialog dialog;
+
 	private JFrame frame;
 	
 	private PanelConfig cfg;
 	
-	private CustomerVO customerVO;
-	
-	private boolean hasCustomer = false;
-	
-	private HashMap<String,CustomerVO> customerlist;
-	
-	private ArrayList<CommodityLineItemVO> commoditylist;
-	
+	private CustomerVO customerVO;	
+	private boolean hasCustomer = false;	
+	private boolean hasPromotion = false;
+	private double totalPrice = 0;	
+	private SaleVO saleVo;
+	private HashMap<String,CustomerVO> customerlist;	
+	private ArrayList<CommodityLineItemVO> commoditylist;	
 	private ArrayList<PresentLineItemVO> presentlist;
-	
 	private String presentId;
 	
-	private SaleBLService saleCtrl;
-	
+	private SaleBLService saleCtrl;	
 	private CustomerBLService customerCtrl;
 	
-	public CreatePanel(JFrame frame){
+	public CreatePanel(JFrame frame, CreateSaleDialog dialog){
 		this.frame = frame;	
+		this.dialog = dialog;
 		this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleController();
 		this.customerCtrl = ControllerFactoryImpl.getInstance().getCustomerController();
 		this.customerlist = new HashMap<String,CustomerVO>();
@@ -106,7 +96,6 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		this.presentlist = new ArrayList<PresentLineItemVO>();
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.bg = cfg.getBg();
-//      this.setSize(cfg.getW(), cfg.getH());
         this.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()));
         this.setLocation(cfg.getX(), cfg.getY());
         this.setLayout(null);
@@ -120,31 +109,50 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);
 	}
 		
-	private void initComponent() {
+	private void initComponent() {		
 		this.initLabels();
 		this.initButtons();
+		this.initComboBoxes();
+		this.voucherBox = new MyCheckBox(cfg.getCheckbox().element("voucher"));
+		this.voucherBox.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(voucherBox.isSelected()){
+					voucherTxt.setFocusable(true);
+				}else{
+					voucherTxt.setText("");
+					voucherTxt.setFocusable(false);
+				}
+			}
+		});
+		this.add(this.voucherBox);
 		this.commodityTable = new CommodityTablePane(new TableConfig(cfg.getTables().element("commodity")));
 		this.add(commodityTable);
-		this.discountTxt = new MyTextField(cfg.getTextFields().element("discount"));
 		this.voucherTxt = new MyTextField(cfg.getTextFields().element("voucher"));
-		this.add(discountTxt);
+		this.voucherTxt.setFocusable(false);
 		this.add(voucherTxt);
-		this.salesman = new MyComboBox(cfg.getComboboxes().element("salesman"));
-		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
-		this.add(salesman);
-		this.add(storage);
 		this.remarkTxt = new MyTextArea(cfg.getTextarea().element("remark"));
 		this.add(remarkTxt);
 		this.customerTxt = new MySpecialTextField(cfg.getTextFields().element("findcustomer"), this);
 		this.add(customerTxt);
 	}
 
+	@SuppressWarnings("unchecked")
+	private void initComboBoxes(){
+		this.salesman = new MyComboBox(cfg.getComboboxes().element("salesman"));
+		this.salesman.addItem("0001");
+		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
+		this.storage.addItem("1号仓库");
+		this.add(salesman);
+		this.add(storage);
+	}
+	
 	private void initButtons() {
 		this.addBtn = new MyButton(cfg.getButtons().element("add"));
 		this.addBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddCommodityDialog(CreatePanel.this,frame);
+				new AddSaleCommodityDialog(CreatePanel.this,frame);
 			}
 		});
 		this.deleteBtn = new MyButton(cfg.getButtons().element("delete"));
@@ -169,7 +177,7 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
 							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
-						//TODO
+						dialog.dispose();
 				}
 			}
 		});
@@ -200,11 +208,32 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 				}
 			}
 		});
+		this.showPromotions = new MyButton(this.cfg.getButtons().element("showpromotion"));
+		this.showPromotions.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showChoosePromotionDialog();
+			}
+		});
 		this.add(addBtn);
 		this.add(deleteBtn);
 		this.add(cancelBtn);
 		this.add(commitBtn);
 		this.add(addCustomer);
+		this.add(showPromotions);
+	}
+
+	protected void showChoosePromotionDialog() {
+		ArrayList<PromotionVO> price = new ArrayList<PromotionVO>();
+		price.add(new PromotionVO(null,10,200));
+		price.add(new PromotionVO(null,5,100));
+		price.add(new PromotionVO(null,5,100));
+		price.add(new PromotionVO(null,5,100));
+		ArrayList<PromotionVO> vip = new ArrayList<PromotionVO>();
+		vip.add(new PromotionVO(null,10,200));
+		vip.add(new PromotionVO(null,4,200));
+		price.add(new PromotionVO(null,5,100));
+		new ShowChoosePromotionDialog(frame,vip,price);
 	}
 
 	protected void createSale() {
@@ -212,7 +241,7 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 			try{
 				double totalBeforeDicount = Double.parseDouble(this.totalBeforeDiscountLab.getText());
 				double total = Double.parseDouble(this.totalLab.getText());
-				double discount = Double.parseDouble(this.discountTxt.getText());
+				double discount = Double.parseDouble(this.discountLab.getText());
 				double voucher = Double.parseDouble(this.voucherTxt.getText());
 				SaleVO vo = new SaleVO(this.documentId.getText(),null,customerVO.id,
 						customerVO.name, customerVO.level,this.salesman.getSelectedItem().toString(),
@@ -222,6 +251,7 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 				ResultMessage result = this.saleCtrl.add(vo);
 				if(result == ResultMessage.SUCCESS){
 					MyOptionPane.showMessageDialog(frame, "销售单提交成功！");
+					dialog.dispose();
 				}else{
 					MyOptionPane.showMessageDialog(frame, "销售单提交失败！");
 				}
@@ -238,10 +268,14 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		this.customerNameLab = new MyLabel(cfg.getLabels().element("customername"));
 		this.documentId = new MyLabel(cfg.getLabels().element("documentid"));
 		this.totalBeforeDiscountLab = new MyLabel(cfg.getLabels().element("totalbefore"));
+		this.discountLab = new MyLabel(cfg.getLabels().element("discount"));
+		this.voucherlab = new MyLabel(cfg.getLabels().element("voucher"));
 		this.totalLab = new MyLabel(cfg.getLabels().element("total"));
 		this.add(customerIdLab);
 		this.add(customerNameLab);
 		this.add(documentId);
+		this.add(discountLab);
+		this.add(voucherlab);
 		this.add(totalBeforeDiscountLab);
 		this.add(totalLab);
 	}
@@ -288,5 +322,9 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		}
 		this.commoditylist.add(vo);
 		this.commodityTable.addRow(vo);
+		// 刷新界面总价
+		this.totalPrice = this.totalPrice + (vo.price * vo.number);
+		this.totalBeforeDiscountLab.setText(Double.toString(this.totalPrice));
 	}
+	
 }

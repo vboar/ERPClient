@@ -43,6 +43,8 @@ public class PanelConfig extends ComponentConfig{
 	
 	private Element textarea;
 	
+	private Element checkbox;
+	
 	private Image bg;
 	
 	public PanelConfig(Element panel) {
@@ -65,6 +67,7 @@ public class PanelConfig extends ComponentConfig{
 		this.datepicker = panel.element("datepicker");
 		this.tables = panel.element("tables");
 		this.textarea = panel.element("textarea");
+		this.checkbox = panel.element("checkbox");
 	}	
 
 
@@ -110,6 +113,10 @@ public class PanelConfig extends ComponentConfig{
 
 	public Element getTextarea() {
 		return textarea;
+	}
+
+	public Element getCheckbox() {
+		return checkbox;
 	}
 
 

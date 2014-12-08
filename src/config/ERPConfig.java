@@ -37,7 +37,11 @@ public class ERPConfig {
 
 	private static DialogConfig ADDCASHINFO_DIALOG_CONFIG = null;
 	
-	private static DialogConfig ADDSALE_DIALOG_CONFIG = null;
+	private static DialogConfig ADDSALE_DIALOG_CONFIG = null;	
+
+	private static DialogConfig ADDSALECOMMODITY_DIALOG_CONFIG = null;
+
+	private static DialogConfig CHOOSEPROMOTION_DIALOG_CONFIG = null;
 	
 	static{
 		try {
@@ -77,7 +81,9 @@ public class ERPConfig {
 			SPECIAL_OFFER_DIALOG_CONFIG = new DialogConfig(erp.element("specialofferinfodialog"));
 			// 创建添加组合商品对话框配置对象
 			ADDCOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addcommodityinfodialog"));
+			ADDSALECOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addsalecommodityinfodialog"));
 			ADDSALE_DIALOG_CONFIG = new DialogConfig(erp.element("addsaledialog"));
+			CHOOSEPROMOTION_DIALOG_CONFIG = new DialogConfig(erp.element("choosepromotiondialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -145,6 +151,14 @@ public class ERPConfig {
 
 	public static DialogConfig getADDSALE_DIALOG_CONFIG() {
 		return ADDSALE_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDSALECOMMODITY_DIALOG_CONFIG() {
+		return ADDSALECOMMODITY_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getCHOOSEPROMOTION_DIALOG_CONFIG() {
+		return CHOOSEPROMOTION_DIALOG_CONFIG;
 	}
 
 }

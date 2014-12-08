@@ -65,4 +65,13 @@ public class CommodityLineItemVO {
     	this.model = model;
     	this.number = number;
     }
+    
+    
+    public CommodityLineItemVO(String id, String name ,String model, int number,double price){
+    	this.id = id;
+    	this.name = name;
+    	this.model = model;
+    	this.number = number;
+    	this.price = price;
+    }
 }

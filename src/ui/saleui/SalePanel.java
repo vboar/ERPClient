@@ -23,8 +23,6 @@ public class SalePanel extends JPanel {
 	
 	private ShowPanel showpanel;
 	
-	private CreatePanel createpanel;
-	
     public SalePanel(JFrame frame) {
 		this.frame = frame;
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -46,7 +44,7 @@ public class SalePanel extends JPanel {
 			}
 		});
 		this.add(this.createSale);
-		this.show = new MyButton(cfg.getButtons().element("showAll"));
+		this.show = new MyButton(cfg.getButtons().element("show"));
 		this.show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -57,21 +55,10 @@ public class SalePanel extends JPanel {
 	}
 	
 	public void showCreate() {
-//		if(showpanel!=null) {
-//			showpanel.setVisible(false);
-//			remove(showpanel);
-//		}
-//		createpanel = new CreatePanel(frame);
-//		add(createpanel);
-//		repaint();
 		new CreateSaleDialog(frame,this);
 	}
 
 	public void showShow() {
-		if(createpanel!=null){
-			createpanel.setVisible(false);
-			remove(createpanel);
-		}
 		showpanel = new ShowPanel(frame);
 		add(showpanel);
 		repaint();
