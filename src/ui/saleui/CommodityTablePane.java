@@ -30,7 +30,6 @@ public class CommodityTablePane extends TablePanel {
 	public CommodityTablePane(TableConfig cfg) {
 		super(cfg);
 		this.initTable();
-		this.getTable().setRowHeight(18);
 		this.initComponent();
 	}
 	

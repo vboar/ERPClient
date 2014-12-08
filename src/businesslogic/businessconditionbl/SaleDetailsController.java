@@ -8,11 +8,12 @@ import vo.SaleDetailsVO;
 import businesslogicservice.businessconditionblservice.SaleDetailsBLService;
 
 public class SaleDetailsController implements SaleDetailsBLService {
-
+	SaleDetails sd=new SaleDetails();
+	
 	@Override
 	public ArrayList<SaleDetailsVO> show(RequirementVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		sd.addLog("查看销售明细");
+		return sd.show(vo);
 	}
 
 	@Override

@@ -456,21 +456,24 @@
 		</panel>
 
 		<!-- 创建销售单面板-->
-		<panel className="ui.saleui.CreatePanel" width="760" height="640"
+		<panel className="ui.saleui.CreatePanel" width="760" height="680"
 			   x="0" y="0" bg="img/document/xsd.jpg">
 			<buttons>
 				<addcustomer text="添加客户" w="80" h="25" x="640" y="75"/>
 				<add text="添加商品" w="80" h="25" x="520" y="115"/>
 				<delete text="删除商品" w="80" h="25" x="620" y="115"/>
-				<commit text="提交" w="80" h="30" x="270" y="525"/>
-				<cancel text="取消" w="80" h="30" x="400" y="525"/>
+				<commit text="提交" w="80" h="30" x="270" y="630"/>
+				<cancel text="取消" w="80" h="30" x="400" y="630"/>
+				<showpromotion text="点击查看" w="80" h="30" x="120" y="370"/>
 			</buttons>
 			<labels>
-				<customerid text="customeid" w="120" h="30" x="90" y="45" />
-				<customername text="customername" w="120" h="30" x="290" y="45" />
-				<documentid text="documentid" w="120" h="30" x="600" y="8" />
-				<totalbefore text="totalb" w="120" h="30" x="120" y="440" />
-				<total text="total" w="120" h="30" x="610" y="480" />
+				<customerid text="" w="120" h="30" x="90" y="47" />
+				<customername text="" w="120" h="30" x="290" y="47" />
+				<documentid text="" w="120" h="30" x="600" y="8" />
+				<totalbefore text="0" w="120" h="30" x="605" y="515" />		
+				<discount text="0" w="100" h="25" x="605" y="540"/>
+				<voucher text="0" w="100" h="25" x="605" y="565"/>
+				<total text="0" w="120" h="30" x="605" y="580" />
 			</labels>
 			<comboboxes>
 				<salesman w="120" h="25" x="85" y="78"></salesman>
@@ -478,14 +481,16 @@
 			</comboboxes>
 			<textfields>
 				<findcustomer w="160" h="25" x="470" y="75"/>
-				<discount w="100" h="25" x="310" y="440"/>
-				<voucher w="100" h="25" x="590" y="440"/>
+				<voucher w="100" h="25" x="130" y="508"/>
 			</textfields>
+			<checkbox>
+				<voucher text="使用代金券" w="100" h="30" x="15" y="505"/>
+			</checkbox>
 			<textarea>
-				<remark w="380" h="50" x="60" y="470" />
+				<remark w="380" h="80" x="60" y="540" />
 			</textarea>
 			<tables>
-				<commodity className="ui.saleui.CommodityTablePane" width="730" height="200" x="10" y="140">
+				<commodity className="ui.saleui.CommodityTablePane" width="730" height="225" x="10" y="140">
 					<columnnames>
 						<columnname name="商品编号" />
 						<columnname name="商品名称" />
@@ -494,14 +499,6 @@
 						<columnname name="单价" />
 					</columnnames>				
 				</commodity>
-				<present width="730" height="80" x="10" y="330">
-					<columnnames >
-						<columnname name="赠品编号" />
-						<columnname name="商品名称" />
-						<columnname name="商品型号" />
-						<columnname name="数量" />
-					</columnnames>
-				</present>
 			</tables>
 		</panel>
 		
@@ -1527,7 +1524,46 @@
 		</textfields>
 	</addcommodityinfodialog>
 	
+	<addsalecommodityinfodialog width="480" height="290" x="240"
+								   y="200" title="添加商品">
+		<buttons>
+			<add text="添加" w="80" h="30" x="360" y="30" />
+			<commit text="确认" w="80" h="30" x="130" y="210" />
+			<cancel text="取消" w="80" h="30" x="240" y="210" />
+		</buttons>
+		<labels>
+			<currentid text="" w="300" h="30" x="100" y="70" />
+			<currentname text="" w="300" h="30" x="100" y="100" />
+			<currentmodel text="" w="300" h="30" x="100" y="130" />
+			<tip text="请输入商品关键字" w="120" h="30" x="20" y="2" 
+			font="微软雅黑" fontsize="13" color="true" r="255" g="100" b="10"/>
+			<id text="商品编号：" w="80" h="30" x="20" y="70" />
+			<name text="商品名称：" w="80" h="30" x="20" y="100" />
+			<model text="商品型号：" w="80" h="30" x="20" y="130" />
+			<number text="商品数量：" w="80" h="30" x="240" y="160" />
+			<price text="商品单价：" w="80" h="30" x="20" y="160" />
+		</labels>
+		<textfields>
+			<commodity  w="320" h="30" x="20" y="30" />
+			<number  w="100" h="30" x="320" y="160" />
+			<price  w="100" h="30" x="100" y="160" />
+		</textfields>
+	</addsalecommodityinfodialog>
+	
 	<addsaledialog width="780" height="600" x="100"  y="5" title="创建销售单">
 		<buttons></buttons>
 	</addsaledialog>
+	
+	<choosepromotiondialog width="640" height="360" x="100"  y="100" title="选择促销策略">
+		<buttons></buttons>
+		<tablepane width="620" height="200" x="50" y="0">
+				<columnnames>
+					<columnname name="选择"/>
+					<columnname name="赠品列表" />
+					<columnname name="折扣"/>
+					<columnname name="赠送代金券"/>
+				</columnnames>
+		</tablepane>
+	</choosepromotiondialog>
+	
 </erp>
