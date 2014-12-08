@@ -1,29 +1,22 @@
 package ui.accountui;
 
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import org.dom4j.Element;
-
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import util.ResultMessage;
-import vo.AccountVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.accountblservice.AccountBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
+import org.dom4j.Element;
+import ui.util.*;
+import util.ResultMessage;
+import vo.AccountVO;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class AccountPanel extends JPanel implements FuzzySearch {

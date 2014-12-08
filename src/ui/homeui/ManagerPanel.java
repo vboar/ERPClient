@@ -13,7 +13,6 @@ import ui.messageui.MessagePanel;
 import ui.promotionui.PromotionPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
-import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -54,9 +53,7 @@ public class ManagerPanel extends MyMainPanel {
 		approvalBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showApproval();
+				showApproval();
 			}
 		});
 
