@@ -20,7 +20,7 @@ public class RequirementVO {
 	public String time2 = null;
 	
 	/**
-	 * 商品 名
+	 * 商品名
 	 */
 	public String commodityName = null;
 	

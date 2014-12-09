@@ -1004,6 +1004,7 @@
 				<find text="查找" w="80" h="25" x="655" y="90"/>
 				<pass text="审批通过" w="150" h="30" x="415" y="440"/>
 				<fail text="审批不通过" w="150" h="30" x="585" y="440"/>
+				<detail text="查看详细" w="150" h="30" x="245" y="440"/>
 			</buttons>
 			<labels>
 				<title text="单据审批" w="120" h="30" x="10" y="2" />
@@ -1038,7 +1039,6 @@
 					<columnname name="单据类型" />
 					<columnname name="单据编号" />
 					<columnname name="生成时间" />
-					<columnname name="详细信息" />
 					<columnname name="选择" />
 				</columnnames>
 			</tablepane>

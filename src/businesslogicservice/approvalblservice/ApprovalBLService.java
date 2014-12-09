@@ -5,6 +5,7 @@
  */
 package businesslogicservice.approvalblservice;
 
+import util.DocumentStatus;
 import util.ResultMessage;
 import vo.*;
 
@@ -20,27 +21,27 @@ public interface ApprovalBLService {
 	 * @param time2
 	 * @return
 	 */
-	public ArrayList<PresentVO> findPresent(int way, int status, String time1, String time2);
+	public ArrayList<PresentVO> findPresent(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<PurchaseVO> findPurchase(int way, int status, String time1, String time2);
+	public ArrayList<PurchaseVO> findPurchase(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<PurchaseVO> findPurchaseReturn(int way, int status, String time1, String time2);
+	public ArrayList<PurchaseVO> findPurchaseReturn(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<SaleVO> findSale(int way, int status, String time1, String time2);
+	public ArrayList<SaleVO> findSale(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<SaleVO> findSaleReturn(int way, int status, String time1, String time2);
+	public ArrayList<SaleVO> findSaleReturn(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<PaymentVO> findPayment(int way, int status, String time1, String time2);
+	public ArrayList<PaymentVO> findPayment(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<PaymentVO> findReceipt(int way, int status, String time1, String time2);
+	public ArrayList<PaymentVO> findReceipt(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<ExceptionVO> findOverflow(int way, int status, String time1, String time2);
+	public ArrayList<ExceptionVO> findOverflow(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1, String time2);
+	public ArrayList<ExceptionVO> findLoss(int way, DocumentStatus status, String time1, String time2);
 	
-	public ArrayList<CashVO> findCash(int way, int status, String time1, String time2);
+	public ArrayList<CashVO> findCash(int way, DocumentStatus status, String time1, String time2);
 
-	public DocumentVO show(int status, String time1, String time2);
+	public ArrayList<DocumentVO> show(DocumentStatus status, String time1, String time2);
 	
 	/**
 	 * 审批单据
