@@ -5,28 +5,6 @@
  */
 package businesslogic.salebl;
 
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-
-import po.CommodityLineItemPO;
-import po.CommodityPO;
-import po.PresentLineItemPO;
-import po.PresentPO;
-import po.SalePO;
-import util.DocumentStatus;
-import util.DocumentType;
-import util.ResultMessage;
-import vo.CommodityLineItemVO;
-import vo.CustomerGiftVO;
-import vo.PresentLineItemVO;
-import vo.PresentVO;
-import vo.PromotionVO;
-import vo.SaleVO;
-import vo.SpecialOfferVO;
-import vo.TotalGiftVO;
 import businesslogic.commoditybl.Commodity;
 import businesslogic.customerbl.Customer;
 import businesslogic.loginbl.Login;
@@ -36,6 +14,17 @@ import businesslogic.promotionbl.SpecialOfferPromotion;
 import businesslogic.promotionbl.TotalGiftPromotion;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
+import po.*;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
+import vo.*;
+
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 public class Sale {
 	
@@ -164,7 +153,7 @@ public class Sale {
 		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
 		DocumentType documentType = DocumentType.PRESENT;
 
-		if(!list.isEmpty()) {
+		if(list!=null) {
 			String id = new Present().createId();
 			PresentVO presentVO = new PresentVO(id, time, customerId,
 					customerName, list, documentStatus, documentType, false);
