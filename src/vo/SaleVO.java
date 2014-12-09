@@ -20,7 +20,7 @@ public class SaleVO implements DocumentVO {
 	/**
 	 * 客户
 	 */
-	public String customer;
+	public String customerId;
 
 	/**
 	 * 客户姓名
@@ -116,7 +116,7 @@ public class SaleVO implements DocumentVO {
 	 * @param isWriteOff
 	 * @param receiptType
 	 */
-	public SaleVO(String id, String time, String customer,
+	public SaleVO(String id, String time, String customerId,
 			String customerName, int customerVIP, String salesmanId,
 			String operatorId, String storage,
 			ArrayList<CommodityLineItemVO> saleList,String presentId,
@@ -126,7 +126,7 @@ public class SaleVO implements DocumentVO {
 			DocumentType receiptType) {
 		this.id = id;
 		this.time = time;
-		this.customer = customer;
+		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerVIP = customerVIP;
 		this.salesmanId = salesmanId;
