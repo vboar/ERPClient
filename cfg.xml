@@ -449,14 +449,44 @@
 		<panel className="ui.saleui.SaleReturnPanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<createsale text="创建销售退货单" w="100" h="30" x="560" y="5"/>
+				<autocreate text="自动创建" w="100" h="30" x="160" y="5"/>
+				<manualcreate text="手动创建" w="100" h="30" x="260" y="5"/>
 				<show text="查看所有" w="100" h="30" x="440" y="5"/>
-				<find text="查询" w="60" h="30" x="340" y="5"/>
+				<find text="查询" w="60" h="30" x="540" y="5"/>
+			</buttons>
+			<labels>
+				<list text="销售退货单列表" w="120" h="30" x="20" y="5" />
+			</labels>
+			<tablepane className="ui.saleui.SaleListPane" width="730" height="380" x="10" y="40">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="客户ID" />
+					<columnname name="客户名" />
+					<columnname name="客户级别" />
+					<columnname name="业务员" />
+					<columnname name="操作员" />
+					<columnname name="仓库" />
+					<columnname name="商品列表" />
+					<columnname name="折让前总额" />
+					<columnname name="折让" />
+					<columnname name="折让后总额" />
+				</columnnames>				
+			</tablepane>			
+		</panel>
+		
+		
+		<!-- 商品销售退货自动创建面板 -->
+		<panel className="ui.saleui.AutoCreatePanel" width="760" height="510"
+			   x="0" y="0" bg="img/common/rightpanel.png">
+			<buttons>
+				<create text="创建退货单" w="120" h="30" x="160" y="400"/>
+				<cancel text="取消" w="100" h="30" x="260" y="400"/>
 			</buttons>
 			<labels>
 				<list text="销售单列表" w="120" h="30" x="20" y="5" />
 			</labels>
-			<tablepane className="ui.saleui.SaleListPane" width="730" height="380" x="10" y="40">
+			<tablepane className="ui.saleui.SaleListPane" width="730" height="360" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />

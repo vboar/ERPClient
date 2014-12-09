@@ -12,13 +12,16 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 
+@SuppressWarnings("serial")
 public class SaleReturnPanel extends JPanel{
 	
 //	private MyDatePicker start;
 //
 //	private MyDatePicker end;
 	
-	private MyButton createSale;
+	private MyButton autocreate;
+	
+	private MyButton manualcreate;
 
 	private MyButton find;
 
@@ -29,6 +32,8 @@ public class SaleReturnPanel extends JPanel{
 	private PanelConfig cfg;
 	
 	private SaleListPane tablepane;
+	
+	private AutoCreatePanel autopane;
 	
     public SaleReturnPanel(JFrame frame) {
 		this.frame = frame;
@@ -48,21 +53,35 @@ public class SaleReturnPanel extends JPanel{
 		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),true);
 		this.add(tablepane);
 		this.add(new MyLabel(cfg.getLabels().element("list")));
-		// 创建销售单按钮
-		this.createSale = new MyButton(cfg.getButtons().element("createsale"));
-		this.createSale.addActionListener(new ActionListener() {			
+		// 自动创建按钮
+		this.autocreate = new MyButton(cfg.getButtons().element("autocreate"));
+		this.autocreate.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showCreate();
 			}
 		});
-		this.add(this.createSale);
+		this.add(this.autocreate);
+		// 手动创建按钮
+		this.manualcreate = new MyButton(cfg.getButtons().element("manualcreate"));
+		this.manualcreate.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showCreate();
+			}
+		});
+		this.add(this.manualcreate);
 		// 查看列表按钮
 		this.show = new MyButton(cfg.getButtons().element("show"));
 		this.show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tablepane.showFindTable(null, null);
+				SaleReturnPanel.this.removeAll();
+				SaleReturnPanel.this.add(tablepane);
+				SaleReturnPanel.this.add(show);
+				SaleReturnPanel.this.add(autocreate);
+				SaleReturnPanel.this.add(manualcreate);
+				SaleReturnPanel.this.repaint();
 			}
 		});
 		this.add(this.show);
@@ -95,7 +114,10 @@ public class SaleReturnPanel extends JPanel{
 	}
 	
 	public void showCreate() {
-		//new CreateSaleDialog(frame,this);
+		this.remove(tablepane);
+		autopane = new AutoCreatePanel(frame);
+		this.add(autopane);
+		repaint();
 	}
 
 	public void udpateData() {
