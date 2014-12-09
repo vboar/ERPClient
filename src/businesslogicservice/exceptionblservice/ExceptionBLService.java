@@ -48,4 +48,6 @@ public interface ExceptionBLService {
 	 */
 	public String createId();
 	
+	public ArrayList<ExceptionVO> findById(String id);
+	
 }
