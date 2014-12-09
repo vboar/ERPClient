@@ -1,17 +1,16 @@
 package ui.presentui;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.swing.table.DefaultTableModel;
-
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.presentblservice.PresentBLService;
+import config.TableConfig;
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PresentVO;
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.presentblservice.PresentBLService;
-import config.TableConfig;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * 赠送单列表
@@ -59,7 +58,7 @@ public class PresentListTablePane extends TablePanel{
 		if(list!=null){
 			this.data = new Object[list.size()][COLUMN_NUM];
 			for(int i=0; i<list.size(); ++i){
-				PresentVO temp = list.get(i);	
+				PresentVO temp = list.get(i);
 				this.createRow(data[i], temp);
 			}
 		}

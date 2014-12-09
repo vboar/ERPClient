@@ -6,6 +6,7 @@
 package businesslogic.approvalbl;
 
 import businesslogicservice.approvalblservice.ApprovalBLService;
+import util.DocumentStatus;
 import util.ResultMessage;
 import vo.*;
 
@@ -16,77 +17,88 @@ public class ApprovalController implements ApprovalBLService {
 	Approval approval = new Approval();
 
 	@Override
-	public ArrayList<PresentVO> findPresent(int way, int status, String time1,
+	public ArrayList<PresentVO> findPresent(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找赠品单");
-		return approval.findPresent(way,status,time1,time2);
+//		return approval.findPresent(way,status,time1,time2);
+		return null;
 	}
 
+
 	@Override
-	public ArrayList<PurchaseVO> findPurchase(int way, int status,
+	public ArrayList<PurchaseVO> findPurchase(int way, DocumentStatus status,
 			String time1, String time2) {
 		approval.addLog("按方法"+way+"查找进货单");
-		return approval.findPurchase(way, status, time1, time2);
+//		return approval.findPurchase(way, status, time1, time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<PurchaseVO> findPurchaseReturn(int way, int status,
+	public ArrayList<PurchaseVO> findPurchaseReturn(int way, DocumentStatus status,
 			String time1, String time2) {
 		approval.addLog("按方法"+way+"查找进货退货单");
-		return approval.findPurchaseReturn(way,status,time1,time2);
+//		return approval.findPurchaseReturn(way,status,time1,time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<SaleVO> findSale(int way, int status, String time1,
+	public ArrayList<SaleVO> findSale(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找销售单");
-		return approval.findSale(way,status,time1,time2);
+//		return approval.findSale(way,status,time1,time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<SaleVO> findSaleReturn(int way, int status, String time1,
+	public ArrayList<SaleVO> findSaleReturn(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找销售退货单");
-		return approval.findSaleReturn(way,status,time1,time2);
+//		return approval.findSaleReturn(way,status,time1,time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<PaymentVO> findPayment(int way, int status, String time1,
+	public ArrayList<PaymentVO> findPayment(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找付款单");
-		return approval.findPayment(way,status,time1,time2);
+//		return approval.findPayment(way,status,time1,time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<PaymentVO> findReceipt(int way, int status, String time1,
+	public ArrayList<PaymentVO> findReceipt(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找收款单");
-		return approval.findReceipt(way,status,time1,time2);
+//		return approval.findReceipt(way,status,time1,time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<ExceptionVO> findOverflow(int way, int status,
+	public ArrayList<ExceptionVO> findOverflow(int way, DocumentStatus status,
 			String time1, String time2) {
 		approval.addLog("按方法"+way+"查找报溢单");
-		return approval.findLoss(way, status, time1, time2);
+//		return approval.findLoss(way, status, time1, time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<ExceptionVO> findLoss(int way, int status, String time1,
+	public ArrayList<ExceptionVO> findLoss(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找报损单");
-		return approval.findLoss(way, status, time1, time2);
+//		return approval.findLoss(way, status, time1, time2);
+		return null;
 	}
 
 	@Override
-	public ArrayList<CashVO> findCash(int way, int status, String time1,
+	public ArrayList<CashVO> findCash(int way, DocumentStatus status, String time1,
 			String time2) {
 		approval.addLog("按方法"+way+"查找现金费用单");
-		return approval.fingCash(way, status, time1, time2);
+//		return approval.fingCash(way, status, time1, time2);
+		return null;
 	}
 
 	@Override
-	public DocumentVO show(int status, String time1, String time2) {
+	public ArrayList<DocumentVO> show(DocumentStatus status, String time1, String time2) {
 		return null;
 	}
 

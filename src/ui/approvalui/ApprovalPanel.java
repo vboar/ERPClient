@@ -31,6 +31,8 @@ public class ApprovalPanel extends JPanel {
 
     private MyButton failBtn;
 
+    private MyButton detailBtn;
+
     private MyComboBox typeBox;
 
     private MyDatePicker start;
@@ -144,6 +146,15 @@ public class ApprovalPanel extends JPanel {
         failBtn = new MyButton(buttons.element("fail"));
         add(failBtn);
         failBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        detailBtn = new MyButton(buttons.element("detail"));
+        add(detailBtn);
+        detailBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
