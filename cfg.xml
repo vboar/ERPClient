@@ -420,9 +420,9 @@
 		<panel className="ui.saleui.SalePanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<createsale text="创建销售单" w="100" h="30" x="560" y="5"/>
-				<show text="查看所有" w="100" h="30" x="440" y="5"/>
-				<find text="查询" w="60" h="30" x="340" y="5"/>
+				<createsale text="创建销售单" w="140" h="30" x="240" y="5"/>
+				<show text="显示所有" w="80" h="30" x="660" y="5"/>
+				<find text="查询" w="60" h="30" x="590" y="5"/>
 			</buttons>
 			<labels>
 				<list text="销售单列表" w="120" h="30" x="20" y="5" />
@@ -449,10 +449,9 @@
 		<panel className="ui.saleui.SaleReturnPanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<autocreate text="自动创建" w="100" h="30" x="160" y="5"/>
-				<manualcreate text="手动创建" w="100" h="30" x="260" y="5"/>
-				<show text="查看所有" w="100" h="30" x="440" y="5"/>
-				<find text="查询" w="60" h="30" x="540" y="5"/>
+				<autocreate text="创建销售退货单" w="140" h="30" x="240" y="5"/>
+				<show text="显示所有" w="75" h="30" x="660" y="5"/>
+				<find text="查询" w="60" h="30" x="590" y="5"/>
 			</buttons>
 			<labels>
 				<list text="销售退货单列表" w="120" h="30" x="20" y="5" />
@@ -480,13 +479,17 @@
 		<panel className="ui.saleui.AutoCreatePanel" width="760" height="510"
 			   x="0" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<create text="创建退货单" w="120" h="30" x="160" y="400"/>
-				<cancel text="取消" w="100" h="30" x="260" y="400"/>
+				<create text="创建退货单" w="120" h="30" x="20" y="5"/>
+				<cancel text="返回" w="100" h="30" x="620" y="395"/>
+				<show text="显示全部销售单" w="140" h="30" x="440" y="395"/>
+				<find text="查询" w="60" h="30" x="660" y="5"/>
 			</buttons>
 			<labels>
-				<list text="销售单列表" w="120" h="30" x="20" y="5" />
+				<list text="销售单列表" w="120" h="30" x="20" y="5" 
+				font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />		
+				<tip text="请从下列销售单列表中选择一个创建对应退货单" w="300" h="30" x="150" y="5" />
 			</labels>
-			<tablepane className="ui.saleui.SaleListPane" width="730" height="360" x="10" y="40">
+			<tablepane className="ui.saleui.SaleListPane" width="730" height="350" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />

@@ -21,11 +21,11 @@ public class SaleReturnPanel extends JPanel{
 	
 	private MyButton autocreate;
 	
-	private MyButton manualcreate;
-
 	private MyButton find;
 
 	private MyButton show;
+	
+	private MyLabel returnLabel;
 	
 	private JFrame frame;
 	
@@ -52,7 +52,8 @@ public class SaleReturnPanel extends JPanel{
 		// 销售退货单列表
 		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),true);
 		this.add(tablepane);
-		this.add(new MyLabel(cfg.getLabels().element("list")));
+		this.returnLabel = new MyLabel(cfg.getLabels().element("list"));
+		this.add(returnLabel);
 		// 自动创建按钮
 		this.autocreate = new MyButton(cfg.getButtons().element("autocreate"));
 		this.autocreate.addActionListener(new ActionListener() {			
@@ -62,26 +63,12 @@ public class SaleReturnPanel extends JPanel{
 			}
 		});
 		this.add(this.autocreate);
-		// 手动创建按钮
-		this.manualcreate = new MyButton(cfg.getButtons().element("manualcreate"));
-		this.manualcreate.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showCreate();
-			}
-		});
-		this.add(this.manualcreate);
 		// 查看列表按钮
 		this.show = new MyButton(cfg.getButtons().element("show"));
 		this.show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SaleReturnPanel.this.removeAll();
-				SaleReturnPanel.this.add(tablepane);
-				SaleReturnPanel.this.add(show);
-				SaleReturnPanel.this.add(autocreate);
-				SaleReturnPanel.this.add(manualcreate);
-				SaleReturnPanel.this.repaint();
+				showShow();
 			}
 		});
 		this.add(this.show);
@@ -114,12 +101,23 @@ public class SaleReturnPanel extends JPanel{
 	}
 	
 	public void showCreate() {
-		this.remove(tablepane);
-		autopane = new AutoCreatePanel(frame);
+		this.removeAll();
+		autopane = new AutoCreatePanel(frame,this);
 		this.add(autopane);
+
 		repaint();
 	}
 
+	public void showShow(){
+		this.remove(autopane);
+		this.add(autocreate);
+		this.add(find);
+		this.add(show);
+		this.add(returnLabel);
+		this.add(tablepane);
+		repaint();
+	}
+	
 	public void udpateData() {
 		this.tablepane.updateData();
 	}

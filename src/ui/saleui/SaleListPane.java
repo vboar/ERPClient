@@ -88,6 +88,19 @@ public class SaleListPane extends TablePanel{
 		this.updateUI();
 	}
 	
+	public SaleVO getSelectedVO(){
+		SaleVO vo = null;
+		int row = this.table.getSelectedRow();
+		String id = (String)this.table.getValueAt(row, 0);
+		for(int i=0; i<list.size(); i++){
+			vo = list.get(i);
+			if(id.equals(vo.id)){
+				return vo;
+			}
+		}
+		return vo;
+	}
+	
 	public void showFindTable(String time1, String time2) {
 		list = saleCtrl.findByTime(time1, time2);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
@@ -116,4 +129,5 @@ public class SaleListPane extends TablePanel{
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
 	}
+	
 }
