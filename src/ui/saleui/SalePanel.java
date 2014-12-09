@@ -45,7 +45,7 @@ public class SalePanel extends JPanel {
 	
 	private void initComponent() {
 		// 销售单列表
-		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()));
+		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),false);
 		this.add(tablepane);
 		this.add(new MyLabel(cfg.getLabels().element("list")));
 		// 创建销售单按钮

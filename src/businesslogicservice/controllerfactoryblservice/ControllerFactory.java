@@ -78,5 +78,7 @@ public interface ControllerFactory {
 	public BusinessConditionBLService getBusinessConditionBLService();
 
 	public ApprovalBLService getApprovalBLService();
+
+	public SaleBLService getSaleReturnController();
 	
 }

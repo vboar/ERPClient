@@ -50,6 +50,7 @@ public class SaleMainPanel extends JPanel{
     	this.tabPane.setBounds(0, 0, this.getWidth(), this.getHeight());
     	this.tabPane.add(this.salepanel,"  销 售  ");
     	this.tabPane.add(this.returnpanel,"销售退货");
+    	System.out.println("hi!");
     	this.add(this.tabPane);
 	}
 	

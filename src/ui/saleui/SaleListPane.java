@@ -25,12 +25,16 @@ public class SaleListPane extends TablePanel{
 	private DefaultTableModel dtm;
 	
 	private ArrayList<SaleVO> list;
+
+	private SaleBLService saleCtrl;
 	
-	private SaleBLService controller;
-	
-	public SaleListPane(TableConfig cfg) {
+	public SaleListPane(TableConfig cfg,boolean isreturn) {
 		super(cfg);
-		this.controller = ControllerFactoryImpl.getInstance().getSaleController();
+		if(isreturn){
+			this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleController();
+		}else{
+			this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleReturnController();
+		}
 		this.initTable();
 		this.initComponent();
 	}
@@ -51,7 +55,7 @@ public class SaleListPane extends TablePanel{
 	}
 
 	private void initData() {
-		this.list = controller.show();
+		this.list = saleCtrl.show();
 		if(list!=null){
 			this.data = new Object[list.size()][COLUMN_NUM];
 			for(int i=0; i<list.size(); ++i){
@@ -85,7 +89,7 @@ public class SaleListPane extends TablePanel{
 	}
 	
 	public void showFindTable(String time1, String time2) {
-		list = controller.findByTime(time1, time2);
+		list = saleCtrl.findByTime(time1, time2);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
 			names.add(columnNames[i]);
