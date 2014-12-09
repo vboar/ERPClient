@@ -147,12 +147,15 @@ public class AddSaleCommodityDialog extends JDialog implements FuzzySearch{
 					try{
 					int num = Integer.parseInt(numberTxt.getText());
 					double price = Double.parseDouble(priceTxt.getText());
+					if(num<=0||price<0){
+						throw new NumberFormatException();
+					}
 					String info = commodityTxt.getText();
 					// 创建赠品信息
 					addCommodity(info,num,price);
 					AddSaleCommodityDialog.this.dispose();
 					}catch(NumberFormatException ex){
-						MyOptionPane.showMessageDialog(frame, "请正确输入数据！","错误提示",
+						MyOptionPane.showMessageDialog(frame, "请输入合理数据！","错误提示",
 								MyOptionPane.ERROR_MESSAGE);
 					}
 				}

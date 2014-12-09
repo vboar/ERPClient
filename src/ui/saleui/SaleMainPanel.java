@@ -6,7 +6,6 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ui.util.MyLabel;
 import ui.util.MyTabbedPane;
 import config.ERPConfig;
 import config.PanelConfig;

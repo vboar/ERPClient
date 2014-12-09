@@ -56,17 +56,23 @@ public class PromotionTablePanel extends TablePanel{
 	}
 	
 	private void initData() {
-		this.data = new Object[list.size()][COLUMN_NUM];
-		for(int i=0; i<list.size(); ++i){
-			PromotionVO temp = list.get(i);	
-			this.createRow(data[i], temp);
+		if(list!=null){
+			this.data = new Object[list.size()][COLUMN_NUM];
+			for(int i=0; i<list.size(); ++i){
+				PromotionVO temp = list.get(i);	
+				this.createRow(data[i], temp);
+			}
+		}else{
+
+			this.data = new Object[0][COLUMN_NUM];
 		}
 	}
 
 	private void createRow(Object[] row, PromotionVO vo){
-		row[0]=vo.giftList;
-		row[1]=vo.discount;
-		row[2]=vo.voucher;
+		row[0]=vo.id;
+		row[1]=vo.giftList;
+		row[2]=vo.discount;
+		row[3]=vo.voucher;
 	}
 	
 	public void deleteRow(){

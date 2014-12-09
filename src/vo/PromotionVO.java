@@ -37,5 +37,16 @@ public class PromotionVO {
 		this.voucher = voucher;
 	}
 	
-
+	@Override
+	public String toString(){
+		String str = "促销编号:"+ id;
+		if(giftList!=null&&giftList.size()>0){
+			str += " 赠品列表：";
+			for(int i=0; i<giftList.size(); ++i){
+				str += " "+ giftList.get(i).name + "-" + giftList.get(i).model + "、";
+			}
+		}
+		str = str + " 折扣: "+ discount + " 赠送代金券：" + voucher;
+		return str;
+	}
 }

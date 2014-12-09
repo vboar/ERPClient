@@ -7,21 +7,29 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.MyButton;
+import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
+import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class SalePanel extends JPanel {
-
-	private MyButton createSale;
 	
+//	private MyDatePicker start;
+//
+//	private MyDatePicker end;
+	
+	private MyButton createSale;
+
+	private MyButton find;
+
 	private MyButton show;
 	
 	private JFrame frame;
 	
 	private PanelConfig cfg;
 	
-	private ShowPanel showpanel;
+	private SaleListPane tablepane;
 	
     public SalePanel(JFrame frame) {
 		this.frame = frame;
@@ -36,6 +44,11 @@ public class SalePanel extends JPanel {
     }
 	
 	private void initComponent() {
+		// 销售单列表
+		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()));
+		this.add(tablepane);
+		this.add(new MyLabel(cfg.getLabels().element("list")));
+		// 创建销售单按钮
 		this.createSale = new MyButton(cfg.getButtons().element("createsale"));
 		this.createSale.addActionListener(new ActionListener() {			
 			@Override
@@ -44,23 +57,48 @@ public class SalePanel extends JPanel {
 			}
 		});
 		this.add(this.createSale);
+		// 查看列表按钮
 		this.show = new MyButton(cfg.getButtons().element("show"));
 		this.show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showShow();
+				tablepane.showFindTable(null, null);
 			}
 		});
 		this.add(this.show);
+		// 查找按钮
+		this.find = new MyButton(cfg.getButtons().element("find"));
+//		this.find.addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Date day1 = start.getDate();
+//				Date day2 = end.getDate();
+//				String time1 = null;
+//				String time2 = null;
+//				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//				if((day1!=null)&&(day2!=null)){
+//					time1 = dateFormat.format(day1);
+//					time2 = dateFormat.format(day2);
+//					if(time1.compareTo(time2)>0){
+//						MyOptionPane.showMessageDialog(SalePanel.this, "请输入有效日期！","错误提示",
+//								MyOptionPane.ERROR_MESSAGE);
+//					}
+//				}else if((day1==null)&&(day2!=null)){
+//					time2 = dateFormat.format(day2);
+//				}else if(day1!=null){
+//					time1 = dateFormat.format(day1);
+//				}
+//				tablepane.showFindTable(time1,time2);
+//			}
+//		});
+		this.add(find);
 	}
 	
 	public void showCreate() {
 		new CreateSaleDialog(frame,this);
 	}
 
-	public void showShow() {
-		showpanel = new ShowPanel(frame);
-		add(showpanel);
-		repaint();
+	public void udpateData() {
+		this.tablepane.updateData();
 	}
 }

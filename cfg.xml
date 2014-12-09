@@ -420,24 +420,14 @@
 		<panel className="ui.saleui.SalePanel" width="760" height="510"
 			   x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<createsale text="创建销售单" w="100" h="30" x="20" y="0"/>
-				<show text="查看销售单" w="100" h="30" x="140" y="0"/>
+				<createsale text="创建销售单" w="100" h="30" x="560" y="5"/>
+				<show text="查看所有" w="100" h="30" x="440" y="5"/>
+				<find text="查询" w="60" h="30" x="340" y="5"/>
 			</buttons>
 			<labels>
-				<title text="商品销售" w="120" h="30" x="10" y="2" />
+				<list text="销售单列表" w="120" h="30" x="20" y="5" />
 			</labels>
-		</panel>
-		
-		<!-- 查看销售单面板-->
-		<panel className="ui.saleui.ShowPanel" width="760" height="370"
-			   x="0" y="30" bg="img/common/rightpanel.png">
-			<buttons>
-				<show text="查看" w="80" h="30" x="500" y="10"/>
-			</buttons>
-			<labels>
-				<title text="商品销售" w="120" h="30" x="10" y="2" />
-			</labels>
-			<tablepane className="ui.saleui.SaleListPane" width="730" height="320" x="10" y="40">
+			<tablepane className="ui.saleui.SaleListPane" width="730" height="380" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
@@ -452,7 +442,7 @@
 					<columnname name="折让" />
 					<columnname name="折让后总额" />
 				</columnnames>				
-			</tablepane>
+			</tablepane>			
 		</panel>
 
 		<!-- 创建销售单面板-->
@@ -469,11 +459,11 @@
 			<labels>
 				<customerid text="" w="120" h="30" x="90" y="47" />
 				<customername text="" w="120" h="30" x="290" y="47" />
-				<documentid text="" w="120" h="30" x="600" y="8" />
-				<totalbefore text="0" w="120" h="30" x="605" y="515" />		
-				<discount text="0" w="100" h="25" x="605" y="540"/>
-				<voucher text="0" w="100" h="25" x="605" y="565"/>
-				<total text="0" w="120" h="30" x="605" y="580" />
+				<documentid text="" w="200" h="30" x="550" y="10" />
+				<showpromotion text="" w="500" h="60" x="30" y="405" />
+				<totalbefore text="0" w="120" h="30" x="605" y="505" />			
+				<discount text="0" w="100" h="25" x="605" y="535"/>
+				<total text="0" w="120" h="30" x="605" y="583" />
 			</labels>
 			<comboboxes>
 				<salesman w="120" h="25" x="85" y="78"></salesman>
@@ -1554,15 +1544,24 @@
 		<buttons></buttons>
 	</addsaledialog>
 	
-	<choosepromotiondialog width="640" height="360" x="100"  y="100" title="选择促销策略">
-		<buttons></buttons>
-		<tablepane width="620" height="200" x="50" y="0">
-				<columnnames>
-					<columnname name="赠品列表" />
-					<columnname name="折扣"/>
-					<columnname name="赠送代金券"/>
-				</columnnames>
+	<choosepromotiondialog width="640" height="360" x="140"  y="100" title="选择促销策略">
+		<buttons>	
+			<add text="add" w="100" h="30" x="420" y="250"/>
+		</buttons>
+		<tablepane width="620" height="180" x="50" y="0">
+			<columnnames>
+				<columnname name="促销编号" />
+				<columnname name="赠品列表" />
+				<columnname name="折扣"/>
+				<columnname name="赠送代金券"/>
+			</columnnames>
 		</tablepane>
+		<labels>
+			<vip text="用户优惠：" w="100" h="30" x="20" y="250"/>
+			<viplab text="" w="400" h="30" x="120" y="250"/>
+			<price text="总价优惠：" w="100" h="30" x="20" y="270"/>
+			<pricelab text="" w="400" h="30" x="120" y="270"/>
+		</labels>
 	</choosepromotiondialog>
 	
 </erp>
