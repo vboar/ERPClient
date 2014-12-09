@@ -311,7 +311,7 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 				// 单据ID
 				saleVo.id = this.documentId.getText();
 				// 客户信息
-				saleVo.customer = customerVO.id;
+				saleVo.customerId = customerVO.id;
 				saleVo.customerName = customerVO.name;
 				saleVo.customerVIP = customerVO.level;
 				// 操作员

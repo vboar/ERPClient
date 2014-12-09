@@ -64,7 +64,7 @@ public class SaleListPane extends TablePanel{
 	private Object[] createRow(Object[] row, SaleVO vo) {
 		row[0]=vo.id;
 		row[1]=vo.time;
-		row[2]=vo.customer;
+		row[2]=vo.customerId;
 		row[3]=vo.customerName;
 		row[4]=vo.customerVIP;
 		row[5]=vo.salesmanId;
@@ -96,7 +96,7 @@ public class SaleListPane extends TablePanel{
 			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
 			row.add(vo.id);
 			row.add(vo.time);
-			row.add(vo.customer);
+			row.add(vo.customerId);
 			row.add(vo.customerName);
 			row.add(vo.customerVIP);
 			row.add(vo.salesmanId);
