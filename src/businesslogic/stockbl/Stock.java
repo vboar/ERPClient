@@ -10,8 +10,8 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
-import dataservice.datafactoryservice.DataFactoryImpl;
 import po.StockPO;
 import util.DocumentStatus;
 import util.DocumentType;
@@ -29,6 +29,7 @@ import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Stock {
 
@@ -39,11 +40,11 @@ public class Stock {
 		
 		//获得时间
 		if (time1 == null) {
-			time1 = "1970/1/1";
+			time1 = "1970/1/1/00/00/00";
 		}
 		if (time2 == null) {
 			Date date = new Date();
-			SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+			SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 			time2 = myFmt.format(date);
 		}
 		//获取初始单据信息
@@ -61,33 +62,43 @@ public class Stock {
 		ArrayList<CommodityLineItemVO> outList = new ArrayList<CommodityLineItemVO>();
 
 		//消去没有被审批的
-		for (SaleVO salevo : saleList) {
+		Iterator<SaleVO> salelistitr=saleList.iterator();
+		while(salelistitr.hasNext()) {
+			SaleVO salevo=salelistitr.next();
 			if (salevo.approvalState != DocumentStatus.PASSED) {
-				saleList.remove(salevo);
-				// TODO 有点不确定这样行不行
+				salelistitr.remove();
+				
 			}
 		}
-		for (SaleVO salevo : saleReturnList) {
+		Iterator<SaleVO> saleReturnItr=saleReturnList.iterator();
+		while(saleReturnItr.hasNext()) {
+			SaleVO salevo=saleReturnItr.next();
 			if (salevo.approvalState != DocumentStatus.PASSED) {
-				saleReturnList.remove(salevo);
+				saleReturnItr.remove();
 
 			}
 		}
-		for (PurchaseVO purchasevo : purchaseList) {
+		Iterator<PurchaseVO> purchaseItr=purchaseList.iterator();
+		while(purchaseItr.hasNext()){
+			PurchaseVO purchasevo=purchaseItr.next();
 			if (purchasevo.documentStatus != DocumentStatus.PASSED) {
-				purchaseList.remove(purchasevo);
+				purchaseItr.remove();
 
 			}
 		}
-		for (PurchaseVO purchasevo : purchaseReturnList) {
+		Iterator<PurchaseVO> purchaseReturnItr=purchaseReturnList.iterator();
+		while(purchaseReturnItr.hasNext()) {
+			PurchaseVO purchasevo=purchaseReturnItr.next();
 			if (purchasevo.documentStatus != DocumentStatus.PASSED) {
-				purchaseReturnList.remove(purchasevo);
+				purchaseReturnItr.remove();
 
 			}
 		}
-		for (PresentVO presentvo : presentList) {
+		Iterator<PresentVO> presentItr=presentList.iterator();
+		while(presentItr.hasNext()) {
+			PresentVO presentvo=presentItr.next();
 			if (presentvo.documentStatus != DocumentStatus.PASSED) {
-				presentList.remove(presentvo);
+				presentItr.remove();
 
 			}
 		}

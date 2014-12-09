@@ -157,18 +157,20 @@ public class Sale {
 		
 		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 	    time=myFmt2.format(date);
-	    String id=new Present().createId();
+
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
 		ArrayList<PresentLineItemVO> list = vo.giftList;
 		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
 		DocumentType documentType = DocumentType.PRESENT;
 
-		PresentVO presentVO = new PresentVO(id, time, customerId,
-				customerName, list, documentStatus, documentType, false);
-		Present pr = new Present();
-		pr.create(presentVO);
-
+		if(!list.isEmpty()) {
+			String id = new Present().createId();
+			PresentVO presentVO = new PresentVO(id, time, customerId,
+					customerName, list, documentStatus, documentType, false);
+			Present pr = new Present();
+			pr.create(presentVO);
+		}
 		return ResultMessage.SUCCESS;
 
 	}
