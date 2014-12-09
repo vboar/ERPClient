@@ -437,7 +437,7 @@ public class Sale {
 		vo.totalAfterDiscount=vo.totalBeforeDiscount*vo.discount;
 
 		vo.giftList=toOne(cusVO.giftInfo,totalVO.giftInfo);
-		return null;
+		return vo;
 	}
 
 

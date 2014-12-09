@@ -36,14 +36,14 @@ public class SaleController implements SaleBLService {
 
 	@Override
 	public ArrayList<SaleVO> findByStatus(DocumentStatus status) {
-		// TODO 自动生成的方法存根
-		return null;
+		
+		return sale.findByStatus(status.ordinal());
 	}
 
 	@Override
 	public ArrayList<SaleVO> findByCustomer(String customer) {
-		// TODO 自动生成的方法存根
-		return null;
+		
+		return sale.findByCustomer(customer);
 	}
 
 	@Override
@@ -60,20 +60,20 @@ public class SaleController implements SaleBLService {
 	
 	@Override
 	public ArrayList<PromotionVO> calCustomerPromotion(int VIP) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sale.calCustomerPromotion(VIP);
 	}
 
 	@Override
 	public ArrayList<PromotionVO> calTotalGiftPromotion(double price) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sale.calTotalGiftPromotion(price);
 	}
 
 	@Override
 	public SaleVO calAfterPrice(String customerGiftId, String totalGiftId,
 			SaleVO vo) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
