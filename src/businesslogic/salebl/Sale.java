@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import po.CommodityLineItemPO;
 import po.CommodityPO;
@@ -427,11 +428,43 @@ public class Sale {
 		return result;
 	}
 	
-	
+	public SaleVO calAfterPrice(String customerGiftId, String totalGiftId,
+			SaleVO vo) {
+		CustomerGiftVO cusVO=new CustomerGiftPromotion().getById(customerGiftId);
+		TotalGiftVO totalVO=new TotalGiftPromotion().getById(totalGiftId);
+		vo.voucher=cusVO.voucher+totalVO.voucher;
+		vo.discount=cusVO.discount;
+		vo.totalAfterDiscount=vo.totalBeforeDiscount*vo.discount;
 
+		vo.giftList=toOne(cusVO.giftInfo,totalVO.giftInfo);
+		return null;
+	}
+
+
+	private ArrayList<PresentLineItemVO> toOne(ArrayList<PresentLineItemVO> list1,ArrayList<PresentLineItemVO> list2){
+		ArrayList<PresentLineItemVO> result=new ArrayList<PresentLineItemVO>();
+		for(int i=0;i<list1.size();i++){
+			PresentLineItemVO father=list1.get(i);
+			Iterator<PresentLineItemVO> itr=list2.iterator();
+			while(itr.hasNext()){
+				PresentLineItemVO beadded=itr.next();
+				if(beadded.id.equals(father)){
+					father.number+=beadded.number;
+					list1.set(i,father);					
+				}else{
+					result.add(beadded);
+				}
+			}
+			
+		}
+		result.addAll(list1);
+		return result;
+	}
 		
 	public ResultMessage addlog(String content) {
 		//TODO
 		return null;
 	}
-}
+	
+	
+	}
