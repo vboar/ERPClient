@@ -55,4 +55,10 @@ public class UserController implements UserBLService {
 		return user.fuzzyFind(keyWord);
 	}
 
+	@Override
+	public ArrayList<UserVO> fuzzyFindOperator(String keyword) {
+		
+		return user.fuzzyFindOperator(keyword);
+	}
+
 }
