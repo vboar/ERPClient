@@ -5,11 +5,9 @@
  */
 package businesslogic.purchasebl;
 
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
+import businesslogic.loginbl.Login;
+import businesslogic.utilitybl.Utility;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import po.CommodityLineItemPO;
 import po.PurchasePO;
 import util.DocumentStatus;
@@ -17,8 +15,11 @@ import util.DocumentType;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
-import businesslogic.utilitybl.Utility;
-import dataservice.datafactoryservice.DataFactoryImpl;
+
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Purchase {
 
@@ -98,9 +99,11 @@ public class Purchase {
 
 	public ResultMessage add(PurchaseVO vo) {
 		Date date = new Date();
-		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 		String time = myFmt.format(date);
 		vo.time = time;
+		vo.operatorId=Login.currentUserId;
+		
 		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);

@@ -5,19 +5,19 @@
  */
 package businesslogic.purchasebl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.purchaseblservice.PurchaseBLService;
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.PurchaseVO;
-import businesslogicservice.purchaseblservice.PurchaseBLService;
+
+import java.util.ArrayList;
 
 public class PurchaseController implements PurchaseBLService {
 
 	Purchase purchase=new Purchase();
 	@Override
 	public ResultMessage add(PurchaseVO vo) {
-		return add(vo);
+		return purchase.add(vo);
 		}
 
 	@Override

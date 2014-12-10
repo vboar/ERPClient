@@ -43,13 +43,14 @@ public class Sale {
 				.getSaleList());
 		String PresentId=po.getPresentId();
 		
-		
+		ArrayList<PresentLineItemVO> giftList=new ArrayList<PresentLineItemVO>();
+		if(PresentId.length()>4){//4,5都可以啦
 		Present presentTemp=new Present();
 		PresentVO vo2=presentTemp.getById(PresentId);
 		PresentPO po2=presentTemp.voToPO(vo2);
 		ArrayList<PresentLineItemPO> prPOList=po2.getList();
-		ArrayList<PresentLineItemVO> giftList=Utility.presentPOListToVOList(prPOList);
-		
+	    giftList=Utility.presentPOListToVOList(prPOList);
+		}
 		
 		double totalBeforeDiscount = po.getTotalBeforeDiscount();
 		double discount = po.getDiscount();
@@ -134,19 +135,12 @@ public class Sale {
 		Date date=new Date();
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 		String time=myFmt.format(date);
-		vo.salesmanId=Login.currentUserId;
+		vo.operatorId=Login.currentUserId;
 		vo.time=time;
 		vo.presentId="";
 		
 		
-		SalePO po = SaleVOToSalePO(vo);
-		try {
-			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
-		} catch (RemoteException e) {
-			
-			e.printStackTrace();
-		}
-		
+				
 		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
 	    time=myFmt2.format(date);
 
@@ -163,6 +157,16 @@ public class Sale {
 					customerName, list, documentStatus, documentType, false);
 			Present pr = new Present();
 			pr.create(presentVO);
+		}
+
+		SalePO po = SaleVOToSalePO(vo);
+		System.out.println("salebl:161 salesmanId "+po.getSalesmanId());
+		System.out.println("salebl:162 operatorId "+po.getOperatorId());
+		try {
+			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
 		}
 		return ResultMessage.SUCCESS;
 
