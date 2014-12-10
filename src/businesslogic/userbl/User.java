@@ -7,6 +7,7 @@ package businesslogic.userbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import po.UserPO;
 import util.ResultMessage;
@@ -225,6 +226,34 @@ public class User {
 		}
 
 		return voList;
+	}
+	
+public ArrayList<UserVO> fuzzyFindOperator(String keyWord) {
+		
+	ArrayList<UserVO> voList1=findByName(keyWord);
+	ArrayList<UserVO> voList2=findById(keyWord);
+	ArrayList<UserVO> voList=new ArrayList<UserVO>();
+	voList.addAll(voList1);
+	for(UserVO vo2:voList2){
+		boolean add=true;
+		for(UserVO vo1:voList1){
+			if(vo1.id.equals(vo2.id)){
+				add=false;
+			}
+		}
+		if(add)
+		voList.add(vo2);
+	}
+
+	Iterator<UserVO> itr=voList.iterator();
+	while(itr.hasNext()){
+		UserVO tobechecked=itr.next();
+		if(tobechecked.type!=UserType.SALESMAN){
+			itr.remove();
+		}
+	}
+	
+	return voList;
 	}
 	
 
