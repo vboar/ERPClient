@@ -53,5 +53,13 @@ public interface UserBLService {
 	 * @return
 	 */
 	public UserVO getById(String id);
+	
+	
+	/**
+	 * 模糊查找operator（业务员）
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<UserVO> fuzzyFindOperator(String keyword);
 
 }

@@ -136,6 +136,9 @@ public class Sale {
 		String time=myFmt.format(date);
 		vo.salesmanId=Login.currentUserId;
 		vo.time=time;
+		vo.presentId="";
+		
+		
 		SalePO po = SaleVOToSalePO(vo);
 		try {
 			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
@@ -155,6 +158,7 @@ public class Sale {
 
 		if(list!=null) {
 			String id = new Present().createId();
+			vo.presentId=id;
 			PresentVO presentVO = new PresentVO(id, time, customerId,
 					customerName, list, documentStatus, documentType, false);
 			Present pr = new Present();

@@ -16,7 +16,6 @@ import ui.messageui.MessagePanel;
 import ui.paymentui.PaymentPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
-import ui.util.MyOptionPane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -88,9 +87,7 @@ public class CounterPanel extends MyMainPanel {
 		conditionBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showCondition();
+				showCondition();
 			}
 		});
 
@@ -99,9 +96,7 @@ public class CounterPanel extends MyMainPanel {
 		logBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showLog();
+				showLog();
 			}
 		});
 
@@ -110,9 +105,7 @@ public class CounterPanel extends MyMainPanel {
 		initialBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
-//				showInitial();
+				showInitial();
 			}
 		});
 		
