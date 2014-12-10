@@ -332,6 +332,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 				if(result == ResultMessage.SUCCESS){
 					MyOptionPane.showMessageDialog(frame, "销售单提交成功！");
 					dialog.dispose();
+					dialog.updateData();
 				}else{
 					MyOptionPane.showMessageDialog(frame, "销售单提交失败！");
 				}
@@ -359,6 +360,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		// 刷新界面总价
 		this.totalPrice = this.totalPrice + (vo.price * vo.number);
 		this.totalBeforeDiscountLab.setText(Double.toString(this.totalPrice));
+		this.totalLab.setText(Double.toString(this.totalPrice));
 	}
 	
 	/**

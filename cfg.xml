@@ -600,8 +600,8 @@
 				<cancel text="取消" w="80" h="30" x="400" y="460"/>
 			</buttons>
 			<labels>
-				<customerid text="" w="120" h="30" x="90" y="47" />
-				<customername text="" w="120" h="30" x="290" y="47" />
+				<customerid text="" w="120" h="30" x="150" y="45" />
+				<customername text="" w="120" h="30" x="320" y="45" />
 				<documentid text="" w="200" h="30" x="550" y="10" />
 				<total text="0" w="120" h="30" x="605" y="380" />
 			</labels>
@@ -614,7 +614,7 @@
 				<findcustomer w="160" h="25" x="470" y="75"/>
 			</textfields>
 			<textarea>
-				<remark w="380" h="80" x="60" y="390" />
+				<remark w="380" h="60" x="75" y="390" />
 			</textarea>
 			<tablepane className="ui.saleui.CommodityTablePane" width="730" height="225" x="10" y="140">
 				<columnnames>
@@ -639,6 +639,35 @@
 				<list text="进货退货单列表" w="120" h="30" x="20" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.PurchaseListPane" width="730" height="380" x="10" y="40">
+				<columnnames>
+					<columnname name="单据编号" />
+					<columnname name="创建时间" />
+					<columnname name="供应商ID" />
+					<columnname name="供应商名" />
+					<columnname name="仓库" />
+					<columnname name="操作员" />
+					<columnname name="入库商品列表" />
+					<columnname name="总额" />
+					<columnname name="备注" />
+				</columnnames>				
+			</tablepane>				
+		</panel>
+
+		<!--自动创建进货退货单面板 -->
+		<panel className="ui.purchaseui.AutoCreatePurchaseReturnPanel" width="760" height="510"
+			   x="0" y="0" bg="img/common/rightpanel.png">
+			<buttons>
+				<create text="创建退货单" w="120" h="30" x="20" y="5"/>
+				<cancel text="返回" w="100" h="30" x="620" y="395"/>
+				<show text="显示全部进货单" w="140" h="30" x="440" y="395"/>
+				<find text="查询" w="60" h="30" x="660" y="5"/>
+			</buttons>
+			<labels>
+				<list text="进货单列表" w="120" h="30" x="20" y="5" 
+				font="微软雅黑" fontsize="20" color="true" r="40" g="40" b="40" />		
+				<tip text="请从下列进货单列表中选择一个创建对应退货单" w="300" h="30" x="150" y="5" />
+			</labels>
+			<tablepane className="ui.saleui.PurchaseListPane" width="730" height="300" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
@@ -1665,12 +1694,13 @@
 		</textfields>
 	</addcommodityinfodialog>
 	
-	<addsalecommodityinfodialog width="480" height="290" x="240"
+	<!-- 添加销售商品对话框 -->
+	<addsalecommodityinfodialog width="480" height="320" x="240"
 								   y="200" title="添加商品">
 		<buttons>
 			<add text="添加" w="80" h="30" x="360" y="30" />
-			<commit text="确认" w="80" h="30" x="130" y="210" />
-			<cancel text="取消" w="80" h="30" x="240" y="210" />
+			<commit text="确认" w="80" h="30" x="130" y="240" />
+			<cancel text="取消" w="80" h="30" x="240" y="240" />
 		</buttons>
 		<labels>
 			<currentid text="" w="300" h="30" x="100" y="70" />
@@ -1683,11 +1713,13 @@
 			<model text="商品型号：" w="80" h="30" x="20" y="130" />
 			<number text="商品数量：" w="80" h="30" x="240" y="160" />
 			<price text="商品单价：" w="80" h="30" x="20" y="160" />
+			<remark text="商品备注：" w="80" h="30" x="20" y="190" />
 		</labels>
 		<textfields>
 			<commodity  w="320" h="30" x="20" y="30" />
 			<number  w="100" h="30" x="320" y="160" />
 			<price  w="100" h="30" x="100" y="160" />
+			<remark  w="320" h="30" x="100" y="200" />
 		</textfields>
 	</addsalecommodityinfodialog>
 	
@@ -1718,7 +1750,7 @@
 	</choosepromotiondialog>
 
 	<!-- 创建进货单对话框 -->
-	<addpurchasedialog width="780" height="500" x="100"  y="40" title="创建进货单">
+	<addpurchasedialog width="780" height="545" x="100"  y="40" title="创建进货单">
 		<buttons></buttons>
 	</addpurchasedialog>
 

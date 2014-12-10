@@ -110,7 +110,7 @@ public class LoginPanel extends JPanel{
 		this.passwordTxt.setLocation(Integer.parseInt(cfg.getTextFields().element("password").attributeValue("x")),
 				Integer.parseInt(cfg.getTextFields().element("password").attributeValue("y")));
 		this.idTxt.setText("00002");
-		this.passwordTxt.setText("admin");
+		this.passwordTxt.setText("123456");
 		this.add(this.idTxt);
 		this.add(this.passwordTxt);
 		
@@ -120,7 +120,7 @@ public class LoginPanel extends JPanel{
 	private void initComboBox(PanelConfig cfg){
 		// 获得复选框配置
 		this.usertype = new MyComboBox(cfg.getComboboxes().element("usertype"));
-		this.usertype.setSelectedIndex(4);
+		this.usertype.setSelectedIndex(2);
 		this.add(this.usertype);
 	}
 	

@@ -23,6 +23,8 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 	
 	private MyTextField numberTxt;
 	
+	private MyTextField remarkTxt;
+	
 	private MyButton commit;
 	
 	private MyButton cancel;
@@ -85,6 +87,8 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 		this.commodityTxt = new MySpecialTextField(this.cfg.getTextFields().element("commodity"), this);
 		this.numberTxt = new MyTextField(this.cfg.getTextFields().element("number"));
 		this.priceTxt = new MyTextField(cfg.getTextFields().element("price"));
+		this.remarkTxt = new MyTextField(cfg.getTextFields().element("remark"));
+		this.add(remarkTxt);
 		this.add(this.priceTxt);
 		this.add(this.commodityTxt);
 		this.add(this.numberTxt);
@@ -95,6 +99,7 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 		this.add(new MyLabel(this.cfg.getLabels().element("number")));
 		this.add(new MyLabel(this.cfg.getLabels().element("price")));
 		this.add(new MyLabel(this.cfg.getLabels().element("tip")));
+		this.add(new MyLabel(this.cfg.getLabels().element("remark")));
 		this.currentId = new MyLabel(this.cfg.getLabels().element("currentid"));
 		this.currentName = new MyLabel(this.cfg.getLabels().element("currentname"));
 		this.currentModel = new MyLabel(this.cfg.getLabels().element("currentmodel"));
@@ -144,8 +149,9 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 						throw new NumberFormatException();
 					}
 					String info = commodityTxt.getText();
+					String remark = remarkTxt.getText();
 					// 创建赠品信息
-					addCommodity(info,num,price);
+					addCommodity(info,num,price,remark);
 					AddTradeCommodityDialog.this.dispose();
 					}catch(NumberFormatException ex){
 						MyOptionPane.showMessageDialog(frame, "请输入合理数据！","错误提示",
@@ -177,11 +183,11 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 	 * @param key 搜索关键字
 	 * @param num 商品数量
 	 */
-	protected void addCommodity(String key, int num,double price) {
+	protected void addCommodity(String key, int num,double price,String remark) {
 		addCommodityVO = this.vomap.get(key);
 		if(addCommodityVO!=null){
 			this.commodityLineItemVO = new CommodityLineItemVO(addCommodityVO.id, addCommodityVO.name,
-				addCommodityVO.model, num, price);
+				addCommodityVO.model, num, price,num*price,remark);
 			this.panel.addCommodityLineItem(this.commodityLineItemVO);
 		}else{
 			MyOptionPane.showMessageDialog(frame, "请选择商品信息！");

@@ -30,7 +30,7 @@ public class CreatePurchaseDialog extends JDialog{
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.purchasepanel = panel;
 		this.frame = frame;
-		this.cfg = ERPConfig.getADDSALE_DIALOG_CONFIG();
+		this.cfg = ERPConfig.getADDPURCHASE_DIALOG_CONFIG();
 		// 设置对话框基本属性
 		this.setTitle(cfg.getTitle());
 		this.setBounds(cfg.getX(), cfg.getW(), cfg.getW(), cfg.getH());
@@ -56,7 +56,7 @@ public class CreatePurchaseDialog extends JDialog{
 	private void initComponent() {
 		jsp = new JScrollPane();
 		jsp.setBounds(0, 0, this.getWidth() , this.getHeight());
-		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jsp.setOpaque(false);
 		this.createpanel = new CreatePurchasePanel(frame,this);
 		jsp.setViewportView(this.createpanel);
 		this.add(jsp);

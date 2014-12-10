@@ -108,7 +108,10 @@ public class PurchaseReturnPanel extends JPanel{
 	}
 
 	public void showShow(){
-		this.remove(autopane);
+		this.updateData();
+		if(autopane!=null){
+			this.remove(autopane);
+		}
 		this.add(autocreate);
 		this.add(find);
 		this.add(show);
@@ -117,7 +120,7 @@ public class PurchaseReturnPanel extends JPanel{
 		repaint();
 	}
 	
-	public void udpateData() {
+	public void updateData() {
 		this.tablepane.updateData();
 	}
 }

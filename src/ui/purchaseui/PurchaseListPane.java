@@ -55,13 +55,11 @@ public class PurchaseListPane extends TablePanel{
 	}
 
 	private void initData() {
-		this.list = this.purchaseCtrl.show();
-		if(list!=null){
-			this.data = new Object[list.size()][COLUMN_NUM];
-			for(int i=0; i<list.size(); ++i){
-				PurchaseVO temp = list.get(i);	
-				this.createRow(data[i], temp);
-			}
+		list = purchaseCtrl.show();
+		this.data = new Object[list.size()][COLUMN_NUM];
+		for(int i=0; i<list.size(); ++i){
+			PurchaseVO temp = list.get(i);	
+			this.createRow(data[i], temp);
 		}
 	}
 	
