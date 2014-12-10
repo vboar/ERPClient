@@ -73,7 +73,7 @@ public interface ControllerFactory {
 	
 	public LoginBLService getLoginController();
 	
-	public SaleDetailsBLService getSaleDetailsBLService();
+	public SaleDetailsBLService getSaleDetailsBLController();
 	
 	public HistoryBLService getHistoryBLService();
 	

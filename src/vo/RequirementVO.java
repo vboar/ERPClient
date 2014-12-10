@@ -77,4 +77,6 @@ public class RequirementVO {
 		this.storage = storage;
 		this.operator = operator;
 	}
+	
+	public RequirementVO(){}
 }

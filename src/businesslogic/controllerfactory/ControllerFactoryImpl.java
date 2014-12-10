@@ -175,7 +175,7 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	}
 
 	@Override
-	public SaleDetailsBLService getSaleDetailsBLService() {
+	public SaleDetailsBLService getSaleDetailsBLController() {
 		return new SaleDetailsController();
 	}
 

@@ -36,7 +36,7 @@ public class SaleDetailsTablePane extends TablePanel{
 
 	public SaleDetailsTablePane(TableConfig cfg) {
 		super(cfg);
-		this.controller = ControllerFactoryImpl.getInstance().getSaleDetailsBLService();
+		this.controller = ControllerFactoryImpl.getInstance().getSaleDetailsBLController();
 		this.initTable();
 		this.initComponent();
 	}
@@ -84,7 +84,7 @@ public class SaleDetailsTablePane extends TablePanel{
 		this.updateUI();
 	}
 
-	public void showFindTable(RequirementVO requierevo) {
+	public boolean showFindTable(RequirementVO requierevo) {
 		list = controller.show(requierevo);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
@@ -105,6 +105,10 @@ public class SaleDetailsTablePane extends TablePanel{
 		this.dtm.setDataVector(table, names);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
+		if(list.size()<=0){
+			return false;
+		}
+		return true;
 	}
 	
 }

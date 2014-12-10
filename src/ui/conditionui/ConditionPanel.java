@@ -49,7 +49,7 @@ public class ConditionPanel extends JPanel {
 	private void initComponent() {
     	this.detailsPanel = new SaleDetailsPanel(frame);
     	this.historyPanel = new HistoryPanel(frame);
-    	this.conditionPanel = new BusinessConditionPanel();
+    	this.conditionPanel = new BusinessConditionPanel(frame);
     	this.tabPane = new MyTabbedPane();
     	this.tabPane.setBounds(0, 32, this.getWidth(), this.getHeight()-32);
     	this.tabPane.add(this.detailsPanel,"销售明细表");

@@ -1,20 +1,22 @@
 package ui.paymentui;
 
-import businesslogicservice.paymentblservice.CashBLService;
-import config.TableConfig;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.CashVO;
-
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-import java.util.Vector;
+import businesslogicservice.paymentblservice.CashBLService;
+import config.TableConfig;
 
 /**
  * 查看现金费用单的表格
  * Created by Vboar on 2014/12/4.
  */
+@SuppressWarnings("serial")
 public class ShowCashTable extends TablePanel {
 
     private String[] columnName;
@@ -116,5 +118,26 @@ public class ShowCashTable extends TablePanel {
         FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
         this.updateUI();
     }
-
+    
+    public void showHistory(ArrayList<CashVO> findlist){
+        Vector<String> names = new Vector<String>(COLUMN_NUM);
+        for(int i=0; i<COLUMN_NUM;++i){
+            names.add(columnName[i]);
+        }
+        Vector<Object> table = new Vector<Object>(list.size());
+        for(int i=findlist.size()-1; i>=0; --i){
+            CashVO vo = findlist.get(i);
+            Vector<Object> row = new Vector<Object>(COLUMN_NUM);
+            row.add(vo.id);
+            row.add(vo.time);
+            row.add(vo.operator);
+            row.add(vo.clauseList.toString());
+            row.add(vo.total);
+            row.add(vo.approvalState);
+            table.add(row);
+        }
+        this.dtm.setDataVector(table, names);
+        FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+        this.updateUI();
+    }
 }
