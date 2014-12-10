@@ -27,7 +27,7 @@ public class SaleReturn {
 	
 	
 	public String createId(){
-		return sale.createId();
+		return sale.createReturnId();
 	}
 	
 	public ResultMessage add(SaleVO vo) {	
