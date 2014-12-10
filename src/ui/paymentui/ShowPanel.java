@@ -138,7 +138,7 @@ public class ShowPanel extends JPanel {
             }
         });
 
-        showBtn = new MyButton(cfg.getButtons().element("showAll"));
+        showBtn = new MyButton(cfg.getButtons().element("show"));
         add(showBtn);
         showBtn.addActionListener(new ActionListener() {
             @Override

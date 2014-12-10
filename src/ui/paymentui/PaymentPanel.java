@@ -84,7 +84,7 @@ public class PaymentPanel extends JPanel {
 		});
 		this.add(createCashBtn);
 		
-		showBtn = new MyButton(cfg.getButtons().element("showAll"));
+		showBtn = new MyButton(cfg.getButtons().element("show"));
 		showBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
