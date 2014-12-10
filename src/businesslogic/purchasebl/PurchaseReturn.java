@@ -21,7 +21,7 @@ public class PurchaseReturn {
 	Purchase purchase = new Purchase();
 
 	public String createId() {
-		return purchase.createId();
+		return purchase.createReturnId();
 	}
 
 	public ResultMessage add(PurchaseVO vo) {
