@@ -256,6 +256,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		this.commodityTable.addRow(vo);
 		// 刷新界面总价
 		this.totalPrice = this.totalPrice + (vo.price * vo.number);
+		this.totalLab.setText(Double.toString(totalPrice));
 	}
 
 	public void delCommodity() {

@@ -69,13 +69,19 @@ public class AutoCreatePurchaseReturnPanel extends JPanel {
 				if(!tablepane.isSelected()){
 					MyOptionPane.showMessageDialog(frame, "请先选择一张销售单！");
 				}else{
-					PurchaseVO vo = tablepane.getSelectedVO();
-					vo.receiptType = DocumentType.PRESENTRETURN;
-					ResultMessage result = controller.add(vo);
-					if(result==ResultMessage.SUCCESS){
-						MyOptionPane.showMessageDialog(frame, "创建退货单成功！");
-					}else{
-						MyOptionPane.showMessageDialog(frame, "创建退货单失败");
+					int result = MyOptionPane.showConfirmDialog(frame, "确认创建此进货单创建退货单？",
+							"确认提示",MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						// TODO 进货退货单创建方式？
+						PurchaseVO vo = tablepane.getSelectedVO();
+						vo.id = controller.createId();
+						vo.receiptType = DocumentType.PRESENTRETURN;
+						ResultMessage addresult = controller.add(vo);
+						if(addresult==ResultMessage.SUCCESS){
+							MyOptionPane.showMessageDialog(frame, "创建退货单成功！");
+						}else{
+							MyOptionPane.showMessageDialog(frame, "创建退货单失败");
+						}
 					}
 					panel.showShow();
 				}

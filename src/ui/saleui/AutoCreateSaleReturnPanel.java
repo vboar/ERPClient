@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import util.DocumentStatus;
+import util.DocumentType;
 import util.ResultMessage;
 import vo.SaleVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -69,14 +71,22 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 				if(!tablepane.isSelected()){
 					MyOptionPane.showMessageDialog(frame, "请先选择一张销售单！");
 				}else{
-					SaleVO vo = tablepane.getSelectedVO();
-					ResultMessage result = controller.add(vo);
-					if(result==ResultMessage.SUCCESS){
-						MyOptionPane.showMessageDialog(frame, "创建退货单成功！");
-					}else{
-						MyOptionPane.showMessageDialog(frame, "创建退货单失败");
+					int result = MyOptionPane.showConfirmDialog(frame, "确认根据此销售单创建退货单？",
+							"确认提示",MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+					if(result == MyOptionPane.YES_OPTION){
+						// TODO 销售退货单创建方式？
+						SaleVO vo = tablepane.getSelectedVO();
+						vo.id = controller.createId();
+						vo.approvalState = DocumentStatus.NONCHECKED;
+						vo.receiptType = DocumentType.SALERETURN;
+						ResultMessage addresult = controller.add(vo);
+						if(addresult==ResultMessage.SUCCESS){
+							MyOptionPane.showMessageDialog(frame, "创建退货单成功！");
+						}else{
+							MyOptionPane.showMessageDialog(frame, "创建退货单失败");
+						}
+						panel.showShow();
 					}
-					panel.showShow();
 				}
 			}
 		});

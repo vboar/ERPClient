@@ -32,32 +32,27 @@ public class PurchaseController implements PurchaseBLService {
 
 	@Override
 	public ArrayList<PurchaseVO> findByStatus(DocumentStatus status) {
-		// TODO 自动生成的方法存根
-		return null;
+		return purchase.findByStatus(status.ordinal());
 	}
 
 	@Override
 	public ArrayList<PurchaseVO> findByCustomer(String customer) {
-		// TODO 自动生成的方法存根
-		return null;
+		return purchase.findByCustomer(customer);
 	}
 
 	@Override
 	public ArrayList<PurchaseVO> findByStorage(String Storage) {
-		// TODO 自动生成的方法存根
-		return null;
+		return purchase.findByStorage(Storage);
 	}
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		return purchase.createId();
 	}
 
 	@Override
 	public PurchaseVO getById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return purchase.getById(id);
 	}
 
 }
