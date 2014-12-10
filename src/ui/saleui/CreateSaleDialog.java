@@ -17,7 +17,7 @@ public class CreateSaleDialog extends JDialog{
 
 	private DialogConfig cfg;
 	
-	private CreatePanel createpanel;
+	private CreateSalePanel createpanel;
 	
 	private JScrollPane jsp;
 	
@@ -43,6 +43,7 @@ public class CreateSaleDialog extends JDialog{
             	int result = MyOptionPane.showConfirmDialog(frame, "确认放弃当前编辑？","确认提示",
             			MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
             	if(result == MyOptionPane.YES_OPTION){
+            		updateData();
             		dispose();
             	}
             }
@@ -56,8 +57,12 @@ public class CreateSaleDialog extends JDialog{
 		jsp = new JScrollPane();
 		jsp.setBounds(0, 0, this.getWidth() , this.getHeight());
 		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		this.createpanel = new CreatePanel(frame,this);
+		this.createpanel = new CreateSalePanel(frame,this);
 		jsp.setViewportView(this.createpanel);
 		this.add(jsp);
+	}
+	
+	public void updateData(){
+		this.salepanel.udpateData();
 	}
 }

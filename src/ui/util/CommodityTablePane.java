@@ -1,9 +1,7 @@
-package ui.saleui;
+package ui.util;
 
 import javax.swing.table.DefaultTableModel;
 
-import ui.util.MyTable;
-import ui.util.TablePanel;
 import vo.CommodityLineItemVO;
 import config.TableConfig;
 

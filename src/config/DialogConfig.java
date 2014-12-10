@@ -49,6 +49,11 @@ public class DialogConfig extends ComponentConfig{
 	private Element tablepane;
 	
 	/**
+	 * 大输入框配置
+	 */
+	private Element textarea;
+	
+	/**
 	 * 构造函数
 	 * @param info 配置对象
 	 */
@@ -61,6 +66,7 @@ public class DialogConfig extends ComponentConfig{
 		this.checkBox = info.element("checkbox");
 		this.tablepane = info.element("tablepane");
 		this.title = info.attributeValue("title");
+		this.textarea = info.element("textarea");
 		this.w = Integer.parseInt(info.attributeValue("width"));
 		this.h = Integer.parseInt(info.attributeValue("height"));
 		this.x = Integer.parseInt(info.attributeValue("x"));
@@ -97,6 +103,10 @@ public class DialogConfig extends ComponentConfig{
 
 	public Element getTablepane() {
 		return tablepane;
+	}
+
+	public Element getTextarea() {
+		return textarea;
 	}
 	
 }

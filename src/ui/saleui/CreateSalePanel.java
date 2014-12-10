@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.AddCommodityLineItem;
+import ui.util.AddTradeCommodityDialog;
+import ui.util.CommodityTablePane;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyCheckBox;
@@ -36,7 +38,7 @@ import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLineItem{
+public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodityLineItem{
 
 	private Image bg;
 	
@@ -83,7 +85,7 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 	private SaleBLService saleCtrl;	
 	private CustomerBLService customerCtrl;
 	
-	public CreatePanel(JFrame frame, CreateSaleDialog dialog){
+	public CreateSalePanel(JFrame frame, CreateSaleDialog dialog){
 		this.frame = frame;	
 		this.dialog = dialog;
 		// 初始化数据成员
@@ -201,7 +203,7 @@ public class CreatePanel extends JPanel implements FuzzySearch, AddCommodityLine
 		this.addBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddSaleCommodityDialog(CreatePanel.this,frame);
+				new AddTradeCommodityDialog(CreateSalePanel.this,frame);
 			}
 		});
 		// 删除商品按钮

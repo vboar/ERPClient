@@ -508,7 +508,7 @@
 		</panel>
 
 		<!-- 创建销售单面板-->
-		<panel className="ui.saleui.CreatePanel" width="760" height="680"
+		<panel className="ui.saleui.CreateSalePanel" width="760" height="680"
 			   x="0" y="0" bg="img/document/xsd.jpg">
 			<buttons>
 				<addcustomer text="添加客户" w="80" h="25" x="640" y="75"/>

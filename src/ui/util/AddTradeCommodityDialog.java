@@ -1,4 +1,4 @@
-package ui.saleui;
+package ui.util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,13 +9,6 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import ui.util.AddCommodityLineItem;
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import ui.util.MyTextField;
 import vo.CommodityLineItemVO;
 import vo.CommodityVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -24,7 +17,7 @@ import config.DialogConfig;
 import config.ERPConfig;
 
 @SuppressWarnings("serial")
-public class AddSaleCommodityDialog extends JDialog implements FuzzySearch{
+public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 	
 	private MySpecialTextField commodityTxt;
 	
@@ -63,7 +56,7 @@ public class AddSaleCommodityDialog extends JDialog implements FuzzySearch{
 	 * @param panel 赠送单面板
 	 * @param frame 主窗口
 	 */
-	public AddSaleCommodityDialog(AddCommodityLineItem panel,JFrame frame){
+	public AddTradeCommodityDialog(AddCommodityLineItem panel,JFrame frame){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.panel = panel;
@@ -153,7 +146,7 @@ public class AddSaleCommodityDialog extends JDialog implements FuzzySearch{
 					String info = commodityTxt.getText();
 					// 创建赠品信息
 					addCommodity(info,num,price);
-					AddSaleCommodityDialog.this.dispose();
+					AddTradeCommodityDialog.this.dispose();
 					}catch(NumberFormatException ex){
 						MyOptionPane.showMessageDialog(frame, "请输入合理数据！","错误提示",
 								MyOptionPane.ERROR_MESSAGE);
@@ -171,7 +164,7 @@ public class AddSaleCommodityDialog extends JDialog implements FuzzySearch{
 				int result = MyOptionPane.showConfirmDialog(frame, "确认取消？","确认提示",
 						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION){
-					AddSaleCommodityDialog.this.dispose();
+					AddTradeCommodityDialog.this.dispose();
 				}
 			}
 			

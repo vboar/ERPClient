@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import ui.customerui.CustomerPanel;
 import ui.messageui.MessagePanel;
 import ui.presentui.PresentPanel;
-import ui.purchaseui.PurchasePanel;
+import ui.purchaseui.PurchaseMainPanel;
 import ui.saleui.SaleMainPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
@@ -33,7 +33,7 @@ public class SalesmanPanel extends MyMainPanel {
 
 	private SaleMainPanel salePanel;
 
-	private PurchasePanel purchasePanel;
+	private PurchaseMainPanel purchasePanel;
 
 	private PresentPanel presentPanel;
 
@@ -96,7 +96,7 @@ public class SalesmanPanel extends MyMainPanel {
 
 	public void showPurchase() {
 		removeAllPanel();
-		purchasePanel = new PurchasePanel(frame);
+		purchasePanel = new PurchaseMainPanel(frame);
 		add(purchasePanel);
 		repaint();
 	}
