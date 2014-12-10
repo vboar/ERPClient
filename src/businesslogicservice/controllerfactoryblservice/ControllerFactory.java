@@ -62,6 +62,8 @@ public interface ControllerFactory {
 	public TotalGiftBLService getTotalGiftController();
 	
 	public PurchaseBLService getPurchaseController();
+
+	public PurchaseBLService getPurchaseReturnController();
 	
 	public SaleBLService getSaleController();
 	

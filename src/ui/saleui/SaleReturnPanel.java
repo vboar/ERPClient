@@ -33,7 +33,7 @@ public class SaleReturnPanel extends JPanel{
 	
 	private SaleListPane tablepane;
 	
-	private AutoCreatePanel autopane;
+	private AutoCreateSaleReturnPanel autopane;
 	
     public SaleReturnPanel(JFrame frame) {
 		this.frame = frame;
@@ -102,7 +102,7 @@ public class SaleReturnPanel extends JPanel{
 	
 	public void showCreate() {
 		this.removeAll();
-		autopane = new AutoCreatePanel(frame,this);
+		autopane = new AutoCreateSaleReturnPanel(frame,this);
 		this.add(autopane);
 
 		repaint();

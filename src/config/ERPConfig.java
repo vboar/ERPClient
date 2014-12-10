@@ -43,6 +43,8 @@ public class ERPConfig {
 
 	private static DialogConfig CHOOSEPROMOTION_DIALOG_CONFIG = null;
 	
+	private static DialogConfig ADDPURCHASE_DIALOG_CONFIG = null;
+	
 	static{
 		try {
 			// 创建XML读取器
@@ -84,6 +86,7 @@ public class ERPConfig {
 			ADDSALECOMMODITY_DIALOG_CONFIG = new DialogConfig(erp.element("addsalecommodityinfodialog"));
 			ADDSALE_DIALOG_CONFIG = new DialogConfig(erp.element("addsaledialog"));
 			CHOOSEPROMOTION_DIALOG_CONFIG = new DialogConfig(erp.element("choosepromotiondialog"));
+			ADDPURCHASE_DIALOG_CONFIG = new DialogConfig(erp.element("addpurchasedialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -159,6 +162,10 @@ public class ERPConfig {
 
 	public static DialogConfig getCHOOSEPROMOTION_DIALOG_CONFIG() {
 		return CHOOSEPROMOTION_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getADDPURCHASE_DIALOG_CONFIG() {
+		return ADDPURCHASE_DIALOG_CONFIG;
 	}
 
 }

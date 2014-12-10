@@ -154,7 +154,6 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		this.salesman = new MyComboBox(cfg.getComboboxes().element("salesman"));
 		this.salesman.addItem("0001");
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
-		this.storage.addItem("1号仓库");
 		this.add(salesman);
 		this.add(storage);
 	}

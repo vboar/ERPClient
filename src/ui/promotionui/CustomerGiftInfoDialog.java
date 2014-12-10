@@ -147,9 +147,10 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(discount.isSelected()){
+					discountTxt.setFocusable(true);
 					discountTxt.setEditable(true);
 				}else{
-					discountTxt.setEditable(false);
+					discountTxt.setFocusable(false);
 				}
 				CustomerGiftInfoDialog.this.repaint();
 			}
@@ -159,9 +160,10 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(voucher.isSelected()){
+					voucherTxt.setFocusable(true);
 					voucherTxt.setEditable(true);
 				}else{
-					voucherTxt.setEditable(false);
+					voucherTxt.setFocusable(false);
 				}
 				CustomerGiftInfoDialog.this.repaint();
 			}
@@ -171,9 +173,9 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.add(this.voucher);
 		// 添加输入框
 		this.discountTxt = new MyTextField(cfg.getTextFields().element("discount"));
-		this.discountTxt.setEditable(false);
 		this.voucherTxt = new MyTextField(cfg.getTextFields().element("voucher"));
-		this.voucherTxt.setEditable(false);
+		this.discountTxt.setFocusable(false);
+		this.voucherTxt.setFocusable(false);
 		this.add(this.discountTxt);
 		this.add(this.voucherTxt);
 	}

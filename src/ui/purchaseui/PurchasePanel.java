@@ -10,6 +10,7 @@ import ui.util.MyButton;
 import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
+import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class PurchasePanel extends JPanel{
@@ -43,6 +44,8 @@ public class PurchasePanel extends JPanel{
     }
 
 	private void initComponent() {
+		this.tablepane = new PurchaseListPane(new TableConfig(cfg.getTablepane()),false);
+		this.add(tablepane);
 		this.add(new MyLabel(cfg.getLabels().element("list")));
 		// 创建销售单按钮
 		this.createSale = new MyButton(cfg.getButtons().element("createsale"));

@@ -23,6 +23,7 @@ import businesslogic.promotionbl.CustomerGiftController;
 import businesslogic.promotionbl.SpecialOfferController;
 import businesslogic.promotionbl.TotalGiftController;
 import businesslogic.purchasebl.PurchaseController;
+import businesslogic.purchasebl.PurchaseReturnController;
 import businesslogic.salebl.SaleController;
 import businesslogic.salebl.SaleReturnController;
 import businesslogic.stockbl.StockController;
@@ -196,5 +197,10 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	@Override
 	public SaleBLService getSaleReturnController(){
 		return new SaleReturnController();
+	}
+
+	@Override
+	public PurchaseBLService getPurchaseReturnController() {
+		return new PurchaseReturnController();
 	}
 }

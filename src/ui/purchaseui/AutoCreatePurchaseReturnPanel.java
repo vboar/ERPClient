@@ -1,4 +1,4 @@
-package ui.saleui;
+package ui.purchaseui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,17 +10,17 @@ import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import util.ResultMessage;
-import vo.SaleVO;
+import vo.PurchaseVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.saleblservice.SaleBLService;
+import businesslogicservice.purchaseblservice.PurchaseBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class AutoCreatePanel extends JPanel{
+public class AutoCreatePurchaseReturnPanel extends JPanel {
 
-	private SaleListPane tablepane;
+	private PurchaseListPane tablepane;
 	
 	private MyLabel tip;
 	
@@ -34,22 +34,21 @@ public class AutoCreatePanel extends JPanel{
 	
 	private PanelConfig cfg;
 	
-	private SaleReturnPanel panel;
+	private PurchaseReturnPanel panel;
 	
 	private JFrame frame;
 	
-	private SaleBLService controller;
+	private PurchaseBLService controller;
 	
-	public AutoCreatePanel(JFrame frame, SaleReturnPanel panel){
-    	this.frame = frame;
-    	this.panel = panel;
-    	this.controller = ControllerFactoryImpl.getInstance().getSaleReturnController();
-    	this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		// 设置面板基础属性
-		this.setSize(cfg.getW(), cfg.getH());
-		this.setLocation(cfg.getX(), cfg.getY());
+	public AutoCreatePurchaseReturnPanel(JFrame frame,
+			PurchaseReturnPanel panel) {
+		this.frame = frame;
+		this.panel = panel;
+		this.controller = ControllerFactoryImpl.getInstance().getPurchaseReturnController();
+		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		// 设置基本属性
+		this.setBounds(cfg.getX(), cfg.getY(), cfg.getW(), cfg.getH());
 		this.setLayout(null);
-		// 初始化组件
 		this.initComponent();
 		this.setVisible(true);
 		this.repaint();
@@ -57,7 +56,7 @@ public class AutoCreatePanel extends JPanel{
 
 	private void initComponent() {
 		// 销售单列表
-		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),false);
+		this.tablepane = new PurchaseListPane(new TableConfig(this.cfg.getTablepane()),false);
 		this.add(tablepane);
 		// 提示标签
 		this.tip = new MyLabel(cfg.getLabels().element("tip"));
@@ -69,7 +68,7 @@ public class AutoCreatePanel extends JPanel{
 				if(!tablepane.isSelected()){
 					MyOptionPane.showMessageDialog(frame, "请先选择一张销售单！");
 				}else{
-					SaleVO vo = tablepane.getSelectedVO();
+					PurchaseVO vo = tablepane.getSelectedVO();
 					ResultMessage result = controller.add(vo);
 					if(result==ResultMessage.SUCCESS){
 						MyOptionPane.showMessageDialog(frame, "创建退货单成功！");
@@ -101,9 +100,11 @@ public class AutoCreatePanel extends JPanel{
 		this.find.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
+				// TODO 根据id精确查找进货单
 			}
 		});
 		this.add(find);
+		
 	}
+
 }

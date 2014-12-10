@@ -33,11 +33,6 @@ public class MyComboBox extends JComboBox {
 		}
 	}
 
-	public MyComboBox(Element ele, boolean isFindBox) {
-		this(ele);
-
-	}
-
 	@SuppressWarnings("unchecked")
 	public MyComboBox(DefaultComboBoxModel model) {
 		super(model);

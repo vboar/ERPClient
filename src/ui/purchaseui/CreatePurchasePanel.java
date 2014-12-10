@@ -29,7 +29,8 @@ import vo.PurchaseVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.customerblservice.CustomerBLService;
 import businesslogicservice.purchaseblservice.PurchaseBLService;
-import config.DialogConfig;
+import config.ERPConfig;
+import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
@@ -69,15 +70,19 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 
 	private CreatePurchaseDialog dialog;
 
-	private DialogConfig cfg;
-
+	private PanelConfig cfg;
+	
 	public CreatePurchasePanel(JFrame frame, CreatePurchaseDialog dialog) {
 		this.frame = frame;
 		this.dialog = dialog;
+		this.customerlist = new HashMap<String,CustomerVO>();
+		this.commoditylist = new ArrayList<CommodityLineItemVO>();
 		this.customerCtrl = ControllerFactoryImpl.getInstance()
 				.getCustomerController();
 		this.purchaseCtrl = ControllerFactoryImpl.getInstance()
 				.getPurchaseController();
+		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		this.bg = cfg.getBg();
 		// 设置对话框基本属性
 		this.setBounds(cfg.getX(), cfg.getW(), cfg.getW(), cfg.getH());
 		this.setLayout(null);
@@ -89,8 +94,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 	public void paintComponent(Graphics g){
 		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	private void initComponent() {
 		// 添加按钮
 		this.initButtons();
@@ -98,7 +102,6 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		this.initLabels();
 		// 添加仓库选择框
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
-		this.storage.addItem("1号仓库");
 		this.add(storage);
 		// 添加进货表格
 		this.commodityTable = new CommodityTablePane(new TableConfig(
@@ -206,6 +209,11 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 				}
 			}
 		});
+		this.add(addCustomer);
+		this.add(addBtn);
+		this.add(deleteBtn);
+		this.add(commitBtn);
+		this.add(cancelBtn);
 	}
 
 	protected void createPurchase() {
@@ -218,7 +226,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		ResultMessage result = purchaseCtrl.add(vo);
 		if(result == ResultMessage.SUCCESS){
 			MyOptionPane.showMessageDialog(frame, "创建进货单成功！");
-			dialog.udpateData();
+			dialog.updateData();
 		}else{
 			MyOptionPane.showMessageDialog(frame, "创建进货单失败！");
 		}
@@ -257,7 +265,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 	}
 
 	protected void updateData() {
-		dialog.udpateData();
+		dialog.updateData();
 	}
 
 	@Override

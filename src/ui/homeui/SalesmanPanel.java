@@ -64,7 +64,6 @@ public class SalesmanPanel extends MyMainPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showPurchase();
-				MyOptionPane.showMessageDialog(null, "界面正在开发中...");
 			}
 		});
 
