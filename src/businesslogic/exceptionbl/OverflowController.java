@@ -6,12 +6,12 @@
 
 package businesslogic.exceptionbl;
 
-import java.util.ArrayList;
-
+import businesslogicservice.exceptionblservice.ExceptionBLService;
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.ExceptionVO;
-import businesslogicservice.exceptionblservice.ExceptionBLService;
+
+import java.util.ArrayList;
 
 public class OverflowController implements ExceptionBLService {
 
@@ -42,6 +42,11 @@ public class OverflowController implements ExceptionBLService {
 	@Override
 	public String createId() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ExceptionVO> findById(String id) {
 		return null;
 	}
 
