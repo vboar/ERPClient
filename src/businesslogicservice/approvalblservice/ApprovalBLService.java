@@ -6,6 +6,7 @@
 package businesslogicservice.approvalblservice;
 
 import util.DocumentStatus;
+import util.DocumentType;
 import util.ResultMessage;
 import vo.*;
 
@@ -41,7 +42,7 @@ public interface ApprovalBLService {
 	
 	public ArrayList<CashVO> findCash(int way, DocumentStatus status, String time1, String time2);
 
-	public ArrayList<DocumentVO> show(DocumentStatus status, String time1, String time2);
+	public ArrayList<DocumentVO> show(DocumentType type, DocumentStatus status, String time1, String time2);
 	
 	/**
 	 * 审批单据
@@ -67,5 +68,7 @@ public interface ApprovalBLService {
 	public ResultMessage approveLoss(ExceptionVO vo);
 	
 	public ResultMessage approveCash(CashVO vo);
+
+	public ResultMessage approveDocument(DocumentVO vo);
 	
 }

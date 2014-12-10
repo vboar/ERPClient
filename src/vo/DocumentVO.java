@@ -19,5 +19,7 @@ public interface DocumentVO {
     public boolean isWriteoff();
 
     public String getTime();
-	
+
+    public void setStatus(DocumentStatus status);
+
 }

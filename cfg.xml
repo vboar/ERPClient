@@ -1551,7 +1551,7 @@
 		</tablepane>
 	</specialofferinfodialog>
 	
-		<!-- 特价包添加商品对话框 -->
+	<!-- 特价包添加商品对话框 -->
 	<addcommodityinfodialog width="480" height="280" x="240"
 								   y="200" title="添加商品">
 		<buttons>
@@ -1625,5 +1625,26 @@
 			<pricelab text="" w="400" h="30" x="120" y="270"/>
 		</labels>
 	</choosepromotiondialog>
+
+	<!-- 审批赠送单对话框 -->
+	<approvalpresentdialog width="640" height="360" x="140"  y="100" title="审批赠送单">
+		<buttons>
+			<add text="add" w="100" h="30" x="420" y="250"/>
+		</buttons>
+		<tablepane width="620" height="180" x="50" y="0">
+			<columnnames>
+				<columnname name="促销编号" />
+				<columnname name="赠品列表" />
+				<columnname name="折扣"/>
+				<columnname name="赠送代金券"/>
+			</columnnames>
+		</tablepane>
+		<labels>
+			<vip text="用户优惠：" w="100" h="30" x="20" y="250"/>
+			<viplab text="" w="400" h="30" x="120" y="250"/>
+			<price text="总价优惠：" w="100" h="30" x="20" y="270"/>
+			<pricelab text="" w="400" h="30" x="120" y="270"/>
+		</labels>
+	</approvalpresentdialog>
 	
 </erp>

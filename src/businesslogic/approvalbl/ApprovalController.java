@@ -7,6 +7,7 @@ package businesslogic.approvalbl;
 
 import businesslogicservice.approvalblservice.ApprovalBLService;
 import util.DocumentStatus;
+import util.DocumentType;
 import util.ResultMessage;
 import vo.*;
 
@@ -98,7 +99,8 @@ public class ApprovalController implements ApprovalBLService {
 	}
 
 	@Override
-	public ArrayList<DocumentVO> show(DocumentStatus status, String time1, String time2) {
+	public ArrayList<DocumentVO> show(DocumentType type, DocumentStatus status,
+									  String time1, String time2) {
 		return null;
 	}
 
@@ -161,7 +163,12 @@ public class ApprovalController implements ApprovalBLService {
 		approval.addLog("审批现金费用单");
 		return approval.approveCash(vo);
 	}
-	
+
+	@Override
+	public ResultMessage approveDocument(DocumentVO vo) {
+		return null;
+	}
+
 	public Object getById(String id){
 		approval.addLog("通过id唯一查找");
 		return approval.getById(id);

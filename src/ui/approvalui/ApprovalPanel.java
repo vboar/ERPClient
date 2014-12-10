@@ -12,11 +12,14 @@ import config.PanelConfig;
 import config.TableConfig;
 import org.dom4j.Element;
 import ui.util.*;
+import util.DocumentStatus;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class ApprovalPanel extends JPanel {
@@ -103,16 +106,8 @@ public class ApprovalPanel extends JPanel {
         noncheckBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        noncheckBtn = new MyButton(buttons.element("noncheck"));
-        add(noncheckBtn);
-        noncheckBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+                table.setStatus(DocumentStatus.NONCHECKED);
+                table.showTable();
             }
         });
 
@@ -121,7 +116,8 @@ public class ApprovalPanel extends JPanel {
         checkBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                table.setStatus(null);
+                table.showTable();
             }
         });
 
@@ -130,7 +126,26 @@ public class ApprovalPanel extends JPanel {
         findBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Date day1 = start.getDate();
+                Date day2 = end.getDate();
+                String time1 = null;
+                String time2 = null;
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                if((day1!=null)&&(day2!=null)){
+                    time1 = dateFormat.format(day1);
+                    time2 = dateFormat.format(day2);
+                    if(time1.compareTo(time2)>0){
+                        MyOptionPane.showMessageDialog(ApprovalPanel.this, "请输入有效日期！", "错误提示",
+                                MyOptionPane.ERROR_MESSAGE);
+                    }
+                }else if((day1==null)&&(day2!=null)){
+                    time2 = dateFormat.format(day2);
+                }else if(day1!=null){
+                    time1 = dateFormat.format(day1);
+                }
+                table.setStartTime(time1);
+                table.setEndTime(time2);
+                table.showTable();
             }
         });
 
@@ -139,7 +154,15 @@ public class ApprovalPanel extends JPanel {
         passBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(table.isChoose()) {
+                    int result = MyOptionPane.showConfirmDialog(frame, "确认通过审批？","审批通过",
+                            MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+                    if(result == MyOptionPane.YES_OPTION){
+                        table.updateData(DocumentStatus.PASSED);
+                    }
+                } else {
+                    MyOptionPane.showMessageDialog(frame, "请选择要通过审批的单据！");
+                }
             }
         });
 
@@ -148,7 +171,15 @@ public class ApprovalPanel extends JPanel {
         failBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(table.isChoose()) {
+                    int result = MyOptionPane.showConfirmDialog(frame, "确认不通过审批？","审批通过",
+                            MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+                    if(result == MyOptionPane.YES_OPTION){
+                        table.updateData(DocumentStatus.FAILED);
+                    }
+                } else {
+                    MyOptionPane.showMessageDialog(frame, "请选择要不通过审批的单据！");
+                }
             }
         });
 

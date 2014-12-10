@@ -179,4 +179,9 @@ public class SaleVO implements DocumentVO {
 	public String getTime() {
 		return time;
 	}
+
+	@Override
+	public void setStatus(DocumentStatus status) {
+		this.approvalState = status;
+	}
 }

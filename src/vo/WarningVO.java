@@ -69,4 +69,8 @@ public class WarningVO implements DocumentVO {
 	public String getTime() {
 		return time;
 	}
+
+	@Override
+	public void setStatus(DocumentStatus status) {
+	}
 }
