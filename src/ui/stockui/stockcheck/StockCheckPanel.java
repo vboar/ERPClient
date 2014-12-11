@@ -65,8 +65,8 @@ public class StockCheckPanel extends JPanel {
     
 	private void initComponent() {
 		this.filesaver = new MyJFileChooser();
-		this.tablepane = new StockCheckTablePane(new TableConfig(this.cfg.getTablepane()));
-		this.add(this.tablepane);
+//		this.tablepane = new StockCheckTablePane(new TableConfig(this.cfg.getTablepane()));
+//		this.add(this.tablepane);
 		this.date = new DatePickerGroup(this.cfg.getDatepicker().element("date"));
 		this.add(this.date);
 		this.add(new MyLabel(this.cfg.getLabels().element("title")));	
@@ -81,7 +81,7 @@ public class StockCheckPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.addCheck(tablepane.getList());
+				//controller.addCheck(tablepane.getList());
 			}
 		});
 		this.add(this.createCheck);
@@ -98,7 +98,7 @@ public class StockCheckPanel extends JPanel {
 		});
 		this.add(this.createExcel);
 		
-		this.show = new MyButton(this.cfg.getButtons().element("showAll"));
+		this.show = new MyButton(this.cfg.getButtons().element("show"));
 		this.show.addActionListener(new ActionListener() {
 			
 			@Override
