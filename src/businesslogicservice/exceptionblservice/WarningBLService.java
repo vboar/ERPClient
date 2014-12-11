@@ -27,4 +27,7 @@ public interface WarningBLService {
 	 */
 	public ArrayList<WarningVO> show(String time1, String time2);
 	
+	public ArrayList<WarningVO> findById(String id);
+	
+	public WarningVO getByid(String id);
 }

@@ -14,40 +14,42 @@ import vo.ExceptionVO;
 import java.util.ArrayList;
 
 public class OverflowController implements ExceptionBLService {
-
+	Overflow of=new Overflow();
+	
 	@Override
 	public ResultMessage create(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		of.addLog("增加报溢单");
+		return of.create(vo);
 	}
 
 	@Override
 	public ArrayList<ExceptionVO> show(String time1, String time2) {
-		// TODO Auto-generated method stub
-		return null;
+		of.addLog("按时间显示报溢单");
+		return of.findByTime(time1, time2);
 	}
 
 	@Override
 	public ArrayList<ExceptionVO> findByStatus(DocumentStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		of.addLog("按状态查找报溢单");
+		return of.findByStatus(status);
 	}
 
 	@Override
 	public ResultMessage update(ExceptionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		of.addLog("更新报溢单");
+		return of.update(vo);
 	}
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		of.addLog("获得报溢单ID");
+		return of.createId();
 	}
 
 	@Override
 	public ArrayList<ExceptionVO> findById(String id) {
-		return null;
+		of.addLog("按ID查找报溢单");
+		return of.findById(id);
 	}
 
 }

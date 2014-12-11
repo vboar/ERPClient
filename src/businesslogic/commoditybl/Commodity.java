@@ -6,10 +6,9 @@
 
 package businesslogic.commoditybl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Collections;
-
+import businesslogic.logbl.Log;
+import businesslogic.utilitybl.Utility;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import po.CategoryPO;
 import po.CommodityPO;
 import util.ResultMessage;
@@ -17,9 +16,10 @@ import vo.CategoryCommodityVO;
 import vo.CategoryVO;
 import vo.CommodityVO;
 import vo.ExceptionVO;
-import businesslogic.logbl.Log;
-import businesslogic.utilitybl.Utility;
-import dataservice.datafactoryservice.DataFactoryImpl;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Commodity {
 
@@ -140,6 +140,7 @@ public class Commodity {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		System.out.println("commoditybl: 143 po.id "+po.getId());
 
 		// 修改分类
 		Category cat = new Category();

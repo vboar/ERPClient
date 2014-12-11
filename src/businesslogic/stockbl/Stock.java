@@ -104,6 +104,7 @@ public class Stock {
 		}
 		
 		//把present矫诏变成commodity的样子
+		
 		for (PresentVO presentVO : presentList) {
 			ArrayList<PresentLineItemVO> preList = presentVO.list;
 			boolean present=true;
@@ -144,18 +145,23 @@ public class Stock {
 		CommodityLineItemVO invo =inList.get(0);
 		StockInfoVO vo=new StockInfoVO(invo.id, invo.name, invo.model, invo.number, invo.total, 0, 0);
 		inList.remove(0);
-		for(CommodityLineItemVO vo1:inList){
+		Iterator<CommodityLineItemVO> clivoitr=inList.iterator();
+		while(clivoitr.hasNext()){
+			CommodityLineItemVO vo1=clivoitr.next();
 			if(vo1.id.equals(invo.id)){
 				vo.inNumber+=vo1.number;
 				vo.inMoney+=vo1.total;
-				inList.remove(vo1);
+				clivoitr.remove();
 			}
 		}
-		for(CommodityLineItemVO vo2:outList){
+		Iterator<CommodityLineItemVO> clivoitr2=outList.iterator();
+
+		while(clivoitr2.hasNext()){
+			CommodityLineItemVO vo2=clivoitr2.next();
 			if(vo2.id.equals(invo.id)){
 				vo.outNumber+=vo2.number;
 				vo.outMoney+=vo2.total;
-				outList.remove(vo2);
+				clivoitr2.remove();
 			}
 		}
 		result.add(vo);
@@ -165,7 +171,9 @@ public class Stock {
 			CommodityLineItemVO outvo =outList.get(0);
 			StockInfoVO vo=new StockInfoVO(outvo.id, outvo.name, outvo.model, 0, 0, outvo.number, outvo.total);
 			outList.remove(0);
-		for(CommodityLineItemVO vo2:outList){
+			Iterator<CommodityLineItemVO> clivoitr3=outList.iterator();
+		while(clivoitr3.hasNext()){
+			CommodityLineItemVO vo2=clivoitr3.next();
 			if(vo2.id.equals(outvo.id)){
 				vo.outNumber+=vo2.number;
 				vo.outMoney+=vo2.total;
@@ -197,6 +205,7 @@ public class Stock {
 		String maxStr = df.format(maxInt + 1);
 		return  maxStr;
 	}
+	
 	public ArrayList<StockVO> showCheck() {
 		String batch=null;
 		Date date = new Date();

@@ -1,21 +1,17 @@
 package businesslogic.promotionbl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import po.CategoryPO;
-import po.CommodityLineItemPO;
-import po.SpecialOfferPO;
-import util.ResultMessage;
-import vo.CategoryVO;
-import vo.CommodityLineItemVO;
-import vo.CommodityVO;
-import vo.SaleVO;
-import vo.SpecialOfferVO;
 import businesslogic.commoditybl.Category;
 import businesslogic.commoditybl.Commodity;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
+import po.CategoryPO;
+import po.CommodityLineItemPO;
+import po.SpecialOfferPO;
+import util.ResultMessage;
+import vo.*;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class SpecialOfferPromotion {
 
@@ -23,15 +19,15 @@ public class SpecialOfferPromotion {
 		ArrayList<SpecialOfferVO> voList = show();
 
 		if (voList.size() == 0) {
-			return "SPO-00000";
+			return "SPO00";
 		} else {
 			String max = voList.get(voList.size() - 1).id;
 			String oldMax = max.substring(max.length() - 5);
 			int maxInt = Integer.parseInt(oldMax);
-			String pattern = "00000";
+			String pattern = "00";
 			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
 			String maxStr = df.format(maxInt + 1);
-			return "SPO-" + maxStr;
+			return "SPO" + maxStr;
 		}
 
 	}
@@ -39,9 +35,9 @@ public class SpecialOfferPromotion {
 	public ResultMessage add(SpecialOfferVO vo) {
 		SpecialOfferPO po = voToPO(vo);
 		String commodityId = vo.id;
-		String commodityName = null;
+		String commodityName = "";
 		for (CommodityLineItemVO vo1 : vo.commodityList) {
-			commodityName += vo1.name + "x" + vo1.number + " ";
+			commodityName += vo1.name + "X" + vo1.number + "和";
 		}
 
 		if (!Utility.checkTime(vo.startTime, vo.endTime)) {
@@ -59,9 +55,13 @@ public class SpecialOfferPromotion {
 			cat.add(catvo);
 		}
 		CategoryVO catvo = cat.CategoryPOToCategoryVO(cat.getById("99999"));
+		System.out.println("specialofferpromotionbl 62: catvoid "+catvo.id);
 		CommodityVO commodityvo = new CommodityVO("99999-" + commodityId,
 				commodityName, "nothing", 0, 0, vo.total, 0, 0, 0, false, catvo);
-		new Commodity().add(commodityvo);
+		
+		Commodity commoditytest=new Commodity();
+		ResultMessage resultmessage=commoditytest.add(commodityvo);
+		System.out.println("specialofferpromotionbl 67: message"+resultmessage.toFriendlyString());
 		return ResultMessage.SUCCESS;
 	}
 
