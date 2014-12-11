@@ -6,11 +6,8 @@
 
 package businesslogic.presentbl;
 
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
+import businesslogic.utilitybl.Utility;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import po.PresentLineItemPO;
 import po.PresentPO;
 import util.DocumentStatus;
@@ -18,8 +15,11 @@ import util.DocumentType;
 import util.ResultMessage;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
-import businesslogic.utilitybl.Utility;
-import dataservice.datafactoryservice.DataFactoryImpl;
+
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Present {
 
@@ -169,11 +169,12 @@ public class Present {
 	public ArrayList<PresentVO> findByTime(String time1,String time2){
 		ArrayList<PresentPO> poList=null;
 	try {
-		DataFactoryImpl.getInstance().getPresentData().findByTime(time1, time2);
+		poList=DataFactoryImpl.getInstance().getPresentData().findByTime(time1, time2);
 	} catch (RemoteException e) {
 		e.printStackTrace();
 	}
 	ArrayList<PresentVO> voList=poListToVOList(poList);
+		System.out.println("presentbl 177: polist.size: "+voList.size());
 	return voList;
 	}
 

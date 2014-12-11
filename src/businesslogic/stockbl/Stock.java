@@ -6,23 +6,6 @@
 
 package businesslogic.stockbl;
 
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-
-import po.StockPO;
-import util.DocumentStatus;
-import util.DocumentType;
-import vo.CommodityLineItemVO;
-import vo.CommodityVO;
-import vo.PresentLineItemVO;
-import vo.PresentVO;
-import vo.PurchaseVO;
-import vo.SaleVO;
-import vo.StockInfoVO;
-import vo.StockVO;
 import businesslogic.commoditybl.Commodity;
 import businesslogic.presentbl.Present;
 import businesslogic.purchasebl.Purchase;
@@ -30,6 +13,16 @@ import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
 import dataservice.datafactoryservice.DataFactoryImpl;
+import po.StockPO;
+import util.DocumentStatus;
+import util.DocumentType;
+import vo.*;
+
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 public class Stock {
 
@@ -50,6 +43,7 @@ public class Stock {
 		//获取初始单据信息
 		ArrayList<PresentVO> presentList = new Present().findByTime(time1,
 				time2);
+		System.out.println("Stockbl:53 presentlist.size "+presentList.size());
 		ArrayList<SaleVO> saleList = new Sale().findByTime(time1, time2);
 		ArrayList<SaleVO> saleReturnList = new SaleReturn().findByTime(time1,
 				time2);
@@ -104,7 +98,7 @@ public class Stock {
 		}
 		
 		//把present矫诏变成commodity的样子
-		
+		System.out.println("Stockbl 101: presentlist.size"+presentList.size());
 		for (PresentVO presentVO : presentList) {
 			ArrayList<PresentLineItemVO> preList = presentVO.list;
 			boolean present=true;
@@ -123,6 +117,8 @@ public class Stock {
 			}
 
 		}
+		System.out.println("Stockbl 127: outlist.size "+outList.size());
+		System.out.println("Stockbl 128: inlist.size "+inList.size());
 		
 		//加到第二级列表中，按照销售和进货分开
 		for (SaleVO salevo : saleList) {
