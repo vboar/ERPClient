@@ -50,7 +50,8 @@ public class TotalGiftPanel extends JPanel{
 		this.add.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TotalGiftInfoDialog(frame,true);
+				TotalGiftInfoDialog dialog = new TotalGiftInfoDialog(frame,tablepane,true);
+				dialog.setVisible(true);
 			}
 		});
 		this.unable = new MyButton(cfg.getButtons().element("unable"));
@@ -70,6 +71,7 @@ public class TotalGiftPanel extends JPanel{
 							MyOptionPane.showMessageDialog(frame, "停用失败！");
 						}
 					}
+					tablepane.updateData();
 				}else{
 					MyOptionPane.showMessageDialog(frame, "请选择一个促销策略！");
 				}
@@ -81,7 +83,8 @@ public class TotalGiftPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(tablepane.isSelected()){
 					TotalGiftVO vo = tablepane.getSelectedVO();
-					new TotalGiftInfoDialog(frame, false, vo);
+					TotalGiftInfoDialog dialog = new TotalGiftInfoDialog(frame, tablepane,false, vo);
+					dialog.setVisible(true);
 				}else{
 					MyOptionPane.showMessageDialog(frame, "请选择一个促销策略！");
 				}

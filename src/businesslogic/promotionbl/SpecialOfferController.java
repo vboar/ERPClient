@@ -8,34 +8,32 @@ import businesslogicservice.promotionblservice.SpecialOfferBLService;
 
 public class SpecialOfferController implements SpecialOfferBLService {
 
+	SpecialOfferPromotion sop = new SpecialOfferPromotion();
+	
 	@Override
 	public ResultMessage create(SpecialOfferVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sop.add(vo);
 	}
 
 	@Override
 	public ArrayList<SpecialOfferVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return sop.showAll();
 	}
 
 	@Override
 	public ArrayList<SpecialOfferVO> findByValid(boolean valid) {
-		// TODO Auto-generated method stub
+		// TODO
 		return null;
 	}
 
 	@Override
 	public ResultMessage update(SpecialOfferVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sop.update(vo);
 	}
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		return sop.createId();
 	}
 
 }

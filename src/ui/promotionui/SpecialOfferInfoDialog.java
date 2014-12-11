@@ -53,11 +53,14 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 	private SpecialOfferBLService controller;
 	
 	private ArrayList<CommodityLineItemVO> list;
+
+	private SpecialOfferTablePane table;
 	
-	public SpecialOfferInfoDialog(JFrame frame, boolean isAdd){
+	public SpecialOfferInfoDialog(JFrame frame, SpecialOfferTablePane table, boolean isAdd){
 		super(frame, true);
 		this.isAdd = isAdd;
 		this.frame = frame;
+		this.table = table;
 		// 获得配置
 		this.cfg = ERPConfig.getSPECIAL_OFFER_DIALOG_CONFIG();
 		// 获得控制器
@@ -72,17 +75,15 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 		this.setLocation(frame.getX() + this.cfg.getX(), frame.getY()+ this.cfg.getY());
 		// 初始组件
 		this.initComponent();
-		this.setVisible(true);
 	}
 
-	public SpecialOfferInfoDialog(JFrame frame, boolean isAdd, SpecialOfferVO vo){
-		super(frame,isAdd);
+	public SpecialOfferInfoDialog(JFrame frame, SpecialOfferTablePane table,boolean isAdd, SpecialOfferVO vo){
+		this(frame,table,isAdd);
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.total.setText(Double.toString(vo.total));
-		this.list = vo.commodityList;
-		for(int i=0; i<list.size(); ++i){
-			this.addCommodityLineItem(list.get(i));
+		for(int i=0; i<vo.commodityList.size(); ++i){
+			this.addCommodityLineItem(vo.commodityList.get(i));
 		}
 	}
 	
@@ -183,6 +184,8 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 					MyOptionPane.showMessageDialog(frame, "修改失败！");
 				}
 			}
+			dispose();
+			table.updateData();
 		}catch(NumberFormatException ex){
 			MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
 		}

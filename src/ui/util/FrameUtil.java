@@ -66,7 +66,7 @@ public class FrameUtil {
 	
 	public static Date getDateFormStr(String str){
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date date;
+		Date date = new Date();
 		try {
 			date = dateFormat.parse(str);
 			return date;

@@ -43,7 +43,7 @@ public class SpecialOfferPromotion {
 			commodityName += vo1.name + "x" + vo1.number + " ";
 		}
 
-		if (Utility.checkTime(vo.startTime, vo.endTime)) {
+		if (!Utility.checkTime(vo.startTime, vo.endTime)) {
 			return ResultMessage.TIME_ERROR;
 		}
 		try {
@@ -61,7 +61,7 @@ public class SpecialOfferPromotion {
 
 	public ResultMessage update(SpecialOfferVO vo) {
 		SpecialOfferPO po = voToPO(vo);
-		if (Utility.checkTime(vo.startTime, vo.endTime)) {
+		if (!Utility.checkTime(vo.startTime, vo.endTime)) {
 			return ResultMessage.TIME_ERROR;
 		}
 		try {

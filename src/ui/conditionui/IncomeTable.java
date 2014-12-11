@@ -3,7 +3,6 @@ package ui.conditionui;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.BusinessConditionVO;

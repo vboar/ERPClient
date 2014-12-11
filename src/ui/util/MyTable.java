@@ -32,12 +32,12 @@ public class MyTable extends JTable {
 					Object value,boolean isSelected, boolean hasFocus, int row, int column) {
 				super.getTableCellRendererComponent(table, value,isSelected, hasFocus, row, column);
 				if ((row % 2) != 0) {
-					setBackground(new Color(236, 233, 216));
+					setBackground(new Color(246, 243, 236));
 				} else {
 					setBackground(Color.white);
 				}
 				if (isSelected) {
-					setBackground(new Color(205,220,240));
+					setBackground(new Color(200,210,230));
 					setForeground(new Color(40,40,40));
 				}
 				return this;

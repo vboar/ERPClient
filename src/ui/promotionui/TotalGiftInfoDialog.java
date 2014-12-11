@@ -53,6 +53,8 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	
 	private JFrame frame;
 	
+	private TotalGiftTablePane table;
+	
 	private DialogConfig cfg;
 	
 	private boolean isAdd = false;
@@ -61,9 +63,10 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	
 	private TotalGiftBLService controller;
 	
-	public TotalGiftInfoDialog(JFrame frame, boolean isAdd) {
+	public TotalGiftInfoDialog(JFrame frame, TotalGiftTablePane table,boolean isAdd) {
 		super(frame, true);
 		this.isAdd = isAdd;
+		this.table = table;
 		this.frame = frame;
 		// 获得配置
 		this.cfg = ERPConfig.getTOTAL_GIFT_DIALOG_CONFIG();
@@ -79,19 +82,18 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 		this.setLocation(frame.getX() + this.cfg.getX(), frame.getY()+ this.cfg.getY());
 		// 初始组件
 		this.initComponent();
-		this.setVisible(true);
 	}
 	
-	public TotalGiftInfoDialog(JFrame frame, boolean isAdd, TotalGiftVO vo){
-		super(frame,isAdd);
+	public TotalGiftInfoDialog(JFrame frame, TotalGiftTablePane table,boolean isAdd, TotalGiftVO vo){
+		this(frame,table,isAdd);
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
+		this.total.setText(Double.toString(vo.total));
 		this.voucher.setSelected(true);
 		this.presents.setSelected(true);
-		this.commoditylist = vo.giftInfo;
-		for(int i=0; i<this.commoditylist.size();++i){
-			this.addPresentLineItem(commoditylist.get(i));
+		for(int i=0; i<vo.giftInfo.size();++i){
+			this.addPresentLineItem(vo.giftInfo.get(i));
 		}
 	}
 
@@ -134,6 +136,7 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 				if(voucher.isSelected()){
 					voucherTxt.setEditable(true);
 				}else{
+					voucherTxt.setText("");
 					voucherTxt.setEditable(false);
 				}
 				TotalGiftInfoDialog.this.repaint();
@@ -242,6 +245,8 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 					MyOptionPane.showMessageDialog(frame, "修改失败！");
 				}
 			}
+			dispose();
+			table.updateData();
 		}catch(NumberFormatException ex){
 			MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
 		}
@@ -266,6 +271,12 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	 */
 	@Override
 	public void addPresentLineItem(PresentLineItemVO vo) {
+		for(int i=0; i<commoditylist.size(); i++){
+			if(commoditylist.get(i).id.equals(vo.id)){
+				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
+				return;
+			}
+		}
 		this.commoditylist.add(vo);
 		this.presentsTable.addRow(vo);
 	}

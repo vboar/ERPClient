@@ -50,7 +50,8 @@ public class SpecialOfferPanel extends JPanel{
 		this.add.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SpecialOfferInfoDialog(frame,true);
+				SpecialOfferInfoDialog diag = new SpecialOfferInfoDialog(frame,tablepane,true);
+				diag.setVisible(true);
 			}
 		});
 		this.unable = new MyButton(cfg.getButtons().element("unable"));
@@ -70,6 +71,7 @@ public class SpecialOfferPanel extends JPanel{
 							MyOptionPane.showMessageDialog(frame, "停用失败！");
 						}
 					}
+					tablepane.updateData();
 				}else{
 					MyOptionPane.showMessageDialog(frame, "请选择一个促销策略！");
 				}
@@ -81,7 +83,8 @@ public class SpecialOfferPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(tablepane.isSelected()){
 					SpecialOfferVO vo = tablepane.getSelectedVO();
-					new SpecialOfferInfoDialog(frame, false, vo);
+					SpecialOfferInfoDialog dialog = new SpecialOfferInfoDialog(frame, tablepane,false, vo);
+					dialog.setVisible(true);
 				}else{
 					MyOptionPane.showMessageDialog(frame, "请选择一个促销策略！");
 				}

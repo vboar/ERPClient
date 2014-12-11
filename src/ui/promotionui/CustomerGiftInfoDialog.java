@@ -63,6 +63,8 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 	
 	private JFrame frame;
 	
+	private CustomerTablePane table;
+	
 	private DialogConfig cfg;
 	
 	private boolean isAdd = false;
@@ -71,8 +73,9 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 	
 	private CustomerGiftBLService controller;
 	
-	public CustomerGiftInfoDialog(JFrame frame, boolean isAdd) {
+	public CustomerGiftInfoDialog(JFrame frame, CustomerTablePane table, boolean isAdd) {
 		super(frame, true);
+		this.table = table;
 		this.isAdd = isAdd;
 		this.frame = frame;
 		// 获得配置
@@ -89,11 +92,10 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.setLocation(frame.getX() + this.cfg.getX(), frame.getY()+ this.cfg.getY());
 		// 初始组件
 		this.initComponent();
-		this.setVisible(true);
 	}
 	
-	public CustomerGiftInfoDialog(JFrame frame, boolean isAdd, CustomerGiftVO vo){
-		super(frame,isAdd);
+	public CustomerGiftInfoDialog(JFrame frame,CustomerTablePane table, boolean isAdd, CustomerGiftVO vo){
+		this(frame,table,isAdd);
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
@@ -101,10 +103,12 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.voucher.setSelected(true);
 		this.discount.setSelected(true);
 		this.presents.setSelected(true);
-		this.commoditylist = vo.giftInfo;
-		for(int i=0; i<this.commoditylist.size();++i){
-			this.addPresentLineItem(commoditylist.get(i));
+		this.voucherTxt.setFocusable(true);
+		this.discountTxt.setFocusable(true);
+		for(int i=0; i<vo.giftInfo.size();++i){
+			this.addPresentLineItem(vo.giftInfo.get(i));
 		}
+		this.repaint();
 	}
 
 	private void initComponent() {
@@ -268,12 +272,15 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 				}
 			}else{
 				ResultMessage result = this.controller.update(vo);
+				System.out.println(result);
 				if(result == ResultMessage.SUCCESS){
 					MyOptionPane.showMessageDialog(frame, "修改成功！");
 				}else{
 					MyOptionPane.showMessageDialog(frame, "修改失败！");
 				}
 			}
+			this.table.updateData();
+			dispose();
 		}catch(NumberFormatException ex){
 			MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
 		}

@@ -8,34 +8,32 @@ import businesslogicservice.promotionblservice.TotalGiftBLService;
 
 public class TotalGiftController implements TotalGiftBLService {
 
+	TotalGiftPromotion tgp = new TotalGiftPromotion();
+	
 	@Override
 	public ResultMessage create(TotalGiftVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return tgp.add(vo);
 	}
 
 	@Override
 	public ArrayList<TotalGiftVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return tgp.showAll();
 	}
 
 	@Override
 	public ArrayList<TotalGiftVO> findByValid(boolean valid) {
-		// TODO Auto-generated method stub
+		// TODO 未实现
 		return null;
 	}
 
 	@Override
 	public ResultMessage update(TotalGiftVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return tgp.update(vo);
 	}
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		return tgp.createId();
 	}
 
 }

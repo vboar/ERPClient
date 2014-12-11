@@ -38,7 +38,7 @@ public class CustomerGiftPromotion {
 
 		public ResultMessage add(CustomerGiftVO vo) {
 		CustomerGiftPO po=voToPO(vo);
-		if(Utility.checkTime(vo.startTime, vo.endTime)){
+		if(!Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
 		try {
@@ -52,7 +52,7 @@ public class CustomerGiftPromotion {
 	
 	public ResultMessage update(CustomerGiftVO vo) {
 		CustomerGiftPO po=voToPO(vo);
-		if(Utility.checkTime(vo.startTime, vo.endTime)){
+		if(!Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
 		try {

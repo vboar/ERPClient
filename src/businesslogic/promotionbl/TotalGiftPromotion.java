@@ -33,7 +33,7 @@ public class TotalGiftPromotion {
 
 	public ResultMessage add(TotalGiftVO vo) {
 		TotalGiftPO po = voToPO(vo);
-		if (Utility.checkTime(vo.startTime, vo.endTime)) {
+		if (!Utility.checkTime(vo.startTime, vo.endTime)) {
 			return ResultMessage.TIME_ERROR;
 		}
 		try {
@@ -47,7 +47,7 @@ public class TotalGiftPromotion {
 
 	public ResultMessage update(TotalGiftVO vo) {
 		TotalGiftPO po = voToPO(vo);
-		if (Utility.checkTime(vo.startTime, vo.endTime)) {
+		if (!Utility.checkTime(vo.startTime, vo.endTime)) {
 			return ResultMessage.TIME_ERROR;
 		}
 		try {

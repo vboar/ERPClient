@@ -55,7 +55,8 @@ public class CustomerPanel extends JPanel{
 		this.add.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CustomerGiftInfoDialog(frame,true);
+				CustomerGiftInfoDialog dialog = new CustomerGiftInfoDialog(frame,tablepane,true);
+				dialog.setVisible(true);
 			}
 		});
 		this.unable = new MyButton(cfg.getButtons().element("unable"));
@@ -74,6 +75,7 @@ public class CustomerPanel extends JPanel{
 						}else{
 							MyOptionPane.showMessageDialog(frame, "停用失败！");
 						}
+						tablepane.updateData();
 					}
 				}else{
 					MyOptionPane.showMessageDialog(frame, "请选择一个促销策略！");
@@ -86,7 +88,8 @@ public class CustomerPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(tablepane.isSelected()){
 					CustomerGiftVO vo = tablepane.getSelectedVO();
-					new CustomerGiftInfoDialog(frame, false, vo);
+					CustomerGiftInfoDialog dialog = new CustomerGiftInfoDialog(frame, tablepane, false, vo);
+					dialog.setVisible(true);
 				}else{
 					MyOptionPane.showMessageDialog(frame, "请选择一个促销策略！");
 				}
@@ -99,4 +102,5 @@ public class CustomerPanel extends JPanel{
 		this.add(this.update);
 		this.add(this.tablepane);
 	}
+
 }

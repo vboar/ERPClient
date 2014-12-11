@@ -8,34 +8,34 @@ import businesslogicservice.promotionblservice.CustomerGiftBLService;
 
 public class CustomerGiftController implements CustomerGiftBLService {
 
+	CustomerGiftPromotion cgp = new CustomerGiftPromotion();
+	
 	@Override
 	public ResultMessage create(CustomerGiftVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		ResultMessage result = cgp.add(vo);
+		System.out.println(result);
+		return result;
 	}
 
 	@Override
 	public ArrayList<CustomerGiftVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return cgp.showAll();
 	}
 
 	@Override
 	public ArrayList<CustomerGiftVO> findByValid(boolean valid) {
-		// TODO Auto-generated method stub
+		// TODO 
 		return null;
 	}
 
 	@Override
 	public ResultMessage update(CustomerGiftVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return cgp.update(vo);
 	}
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		return cgp.createId();
 	}
 
 }

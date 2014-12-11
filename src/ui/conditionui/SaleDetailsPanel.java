@@ -35,9 +35,9 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch{
 	
 	private MyComboBox storage;
 	
-//	private MyDatePicker start;
-//	
-//	private MyDatePicker end;
+	private MyDatePicker start;
+	
+	private MyDatePicker end;
 	
 	private MyButton find;
 	
@@ -70,11 +70,11 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch{
 		// 表格面板
 		this.table = new SaleDetailsTablePane(new TableConfig(cfg.getTablepane()));
 		this.add(this.table);
-//		// 初始化日期选择器
-//		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
-//		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
-//		this.add(start);
-//		this.add(end);
+		// 初始化日期选择器
+		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
+		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
+		this.add(start);
+		this.add(end);
 		// 初始化复选框
 		this.customer = new MyComboBox(cfg.getComboboxes().element("client"));
 		this.salesman = new MyComboBox(cfg.getComboboxes().element("operator"));
@@ -108,15 +108,15 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch{
 	protected void findSales() {
 		// 根据时间区间、商品名、客户名、业务员和仓库查询
 		RequirementVO vo = new RequirementVO();
-//		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
-//		String time2 =  FrameUtil.getFormattedDate(this.end.getDate());
-//		if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
-//			MyOptionPane.showMessageDialog(frame, "请输入有效日期！","错误提示",
-//					MyOptionPane.ERROR_MESSAGE);
-//			return;
-//		}
-//		vo.time1 = time1;
-//		vo.time2 = time2;
+		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
+		String time2 =  FrameUtil.getFormattedDate(this.end.getDate());
+		if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
+			MyOptionPane.showMessageDialog(frame, "请输入有效日期！","错误提示",
+					MyOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		vo.time1 = time1;
+		vo.time2 = time2;
 		if(salesman.getSelectedItem()!=null)
 			vo.salesman = salesman.getSelectedItem().toString();
 		if(storage.getSelectedItem()!=null)

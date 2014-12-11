@@ -19,6 +19,8 @@ public class CustomerTablePane extends TablePanel{
 	
 	private static int COLUMN_NUM = 8;
 	
+	private int padding = 20;
+	
 	private Object[][] data;
 
 	private DefaultTableModel dtm;
@@ -45,7 +47,8 @@ public class CustomerTablePane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
+		this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
 	}
 
 	public void initData() {
@@ -110,6 +113,15 @@ public class CustomerTablePane extends TablePanel{
 		if(this.isSelected()){
 			this.dtm.removeRow(this.table.getSelectedRow());
 		}
+	}
+	
+	public void updateData(){
+		list = controller.show();
+		this.initData();
+		this.dtm.setDataVector(data, columnName);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
+		this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
+		this.updateUI();
 	}
 
 }
