@@ -33,4 +33,10 @@ public class MessageController implements MessageBLService {
 		m.delete(vo);		
 	}
 
+	@Override
+	public ArrayList<MessageVO> showByState(int state) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

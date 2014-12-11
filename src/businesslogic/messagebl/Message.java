@@ -7,7 +7,9 @@ import po.MessagePO;
 import po.UserPO;
 import dataservice.datafactoryservice.DataFactoryImpl;
 import businesslogic.logbl.Log;
+import businesslogic.loginbl.Login;
 import util.ResultMessage;
+import util.UserType;
 import vo.MessageVO;
 import vo.UserVO;
 
@@ -78,4 +80,14 @@ public class Message {
 		return result;
 	}
 	
+	public ArrayList<MessageVO> showByState(int state){
+		ArrayList<MessageVO> result=new ArrayList<MessageVO>();
+		ArrayList<MessageVO> temp=showByUser(new UserVO(Login.currentUserId,"",UserType.ADMINISTRATOR,0,Login.currentUserName));
+		
+		for(int i=0;i<temp.size();i++)
+			if(temp.get(i).state==state)
+				result.add(temp.get(i));
+		
+		return result;
+	}
 }

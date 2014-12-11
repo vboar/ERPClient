@@ -33,4 +33,7 @@ public interface MessageBLService {
 	 * @return 消息列表
 	 */
 	public ArrayList<MessageVO> showByUser(UserVO vo);
+	
+	public ArrayList<MessageVO> showByState(int state);
+
 }
