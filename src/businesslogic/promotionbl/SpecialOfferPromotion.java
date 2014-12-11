@@ -3,6 +3,7 @@ package businesslogic.promotionbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.CategoryPO;
 import po.CommodityLineItemPO;
 import po.SpecialOfferPO;
 import util.ResultMessage;
@@ -52,6 +53,11 @@ public class SpecialOfferPromotion {
 			e.printStackTrace();
 		}
 		Category cat = new Category();
+		CategoryPO pocheck=cat.getById("99999");
+		if(pocheck==null){
+			CategoryVO catvo=new CategoryVO("99999", "促销包们", 0, null);
+			cat.add(catvo);
+		}
 		CategoryVO catvo = cat.CategoryPOToCategoryVO(cat.getById("99999"));
 		CommodityVO commodityvo = new CommodityVO("99999-" + commodityId,
 				commodityName, "nothing", 0, 0, vo.total, 0, 0, 0, false, catvo);
