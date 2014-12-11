@@ -45,7 +45,17 @@ public class Loss {
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
 		ArrayList<ExceptionPO> temp=new ArrayList<ExceptionPO>();
 		try {
+			if(time1!=null&&time2!=null)
 			temp=DataFactoryImpl.getInstance().getExceptionData().show(time1, time2);
+			
+			if(time1==null&&time2!=null)
+				temp=DataFactoryImpl.getInstance().getExceptionData().show("1970/1/1/0/0/0",time2);
+			
+			if(time1!=null&&time2==null)
+				temp=DataFactoryImpl.getInstance().getExceptionData().show(time1,Time.getCurrentTime());
+			
+			if(time1==null&&time2==null)
+				temp=DataFactoryImpl.getInstance().getExceptionData().show("1970/1/1/0/0/0",Time.getCurrentTime());
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

@@ -34,6 +34,6 @@ public interface MessageBLService {
 	 */
 	public ArrayList<MessageVO> showByUser(UserVO vo);
 	
-	public ArrayList<MessageVO> showByState(int state);
+	public ArrayList<MessageVO> showByStatus(int state);
 
 }

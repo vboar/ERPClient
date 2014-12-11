@@ -34,9 +34,8 @@ public class MessageController implements MessageBLService {
 	}
 
 	@Override
-	public ArrayList<MessageVO> showByState(int state) {
-		// TODO 自动生成的方法存根
-		return null;
+	public ArrayList<MessageVO> showByStatus(int status){
+		return m.showByStatus(status);
 	}
 
 }

@@ -80,12 +80,12 @@ public class Message {
 		return result;
 	}
 	
-	public ArrayList<MessageVO> showByState(int state){
+	public ArrayList<MessageVO> showByStatus(int status){
 		ArrayList<MessageVO> result=new ArrayList<MessageVO>();
 		ArrayList<MessageVO> temp=showByUser(new UserVO(Login.currentUserId,"",UserType.ADMINISTRATOR,0,Login.currentUserName));
 		
 		for(int i=0;i<temp.size();i++)
-			if(temp.get(i).state==state)
+			if(temp.get(i).state==status)
 				result.add(temp.get(i));
 		
 		return result;

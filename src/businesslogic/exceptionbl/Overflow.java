@@ -31,21 +31,22 @@ public class Overflow {
 	
 	public String createId(){
 		String result="";
-		ArrayList<ExceptionVO> presentList=findByTime("1970/1/1/0/0/0",Time.getCurrentTime());
-		String time="";
 		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
-		time=df.format(new Date());
-		String maxId=presentList.get(presentList.size()-1).id;	
+		String time=df.format(new Date());
+		ArrayList<ExceptionVO> presentList=findByTime("1970/1/1/0/0/0",Time.getCurrentTime());
 		if(presentList.size()==0){
-			return "BYD-"+time+"00001";
+			return "BYD-"+time+"-00001";
 		}else{
-			if(maxId.substring(4,12).compareTo(time)<0){
-				return "BYD-"+time+"00001";
+			ExceptionVO max=presentList.get(presentList.size()-1);
+			String maxId=max.id;
+			String maxTime=maxId.substring(4,12);
+			if(maxTime.compareTo(time)<0){
+				return "BYD-"+time+"-00001";
 			}else{
+				int maxnumber=Integer.parseInt(maxId.substring(13));
 				DecimalFormat f=new DecimalFormat("00000");
-				int m=Integer.parseInt(maxId.substring(13));
-				String newmax=f.format(m+1);
-				result="BYD-"+time+newmax;
+				String newMax=f.format(maxnumber+1);
+				result="BYD-"+time+"-"+newMax;
 			}
 		}
 		return result;
@@ -66,7 +67,17 @@ public class Overflow {
 		ArrayList<ExceptionPO> temp=new ArrayList<ExceptionPO>();
 		
 		try {
-			temp=DataFactoryImpl.getInstance().getExceptionData().show(time1, time2);
+			if(time1==null&&time2==null)
+			temp=DataFactoryImpl.getInstance().getExceptionData().show("1970/1/1/0/0/0",Time.getCurrentTime());
+			
+			if(time1==null&&time2!=null)
+				temp=DataFactoryImpl.getInstance().getExceptionData().show("1970/1/1/0/0/0",time2);
+			
+			if(time1!=null&&time2==null)
+				temp=DataFactoryImpl.getInstance().getExceptionData().show(time1,Time.getCurrentTime());
+			
+			if(time1!=null&&time2!=null)
+				temp=DataFactoryImpl.getInstance().getExceptionData().show(time1,time2);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
