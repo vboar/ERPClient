@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * Created by Vboar on 2014/12/4.
  */
 
+@SuppressWarnings("serial")
 public class CashTable extends TablePanel {
 
     private String[] columnNames;

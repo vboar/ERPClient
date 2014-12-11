@@ -6,9 +6,10 @@ import businesslogicservice.businessconditionblservice.BusinessConditionBLServic
 
 public class BusinessConditionController implements BusinessConditionBLService {
 
+	BusinessCondition bc = new BusinessCondition();
+	
 	@Override
 	public BusinessConditionVO show(String time1, String time2) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

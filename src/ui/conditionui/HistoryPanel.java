@@ -13,10 +13,10 @@ import ui.paymentui.ShowPaymentTable;
 import ui.presentui.PresentListTablePane;
 import ui.purchaseui.PurchaseListPane;
 import ui.saleui.SaleListPane;
+import ui.util.DatePickerGroup;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import util.DocumentType;
@@ -38,9 +38,9 @@ public class HistoryPanel extends JPanel{
 	
 	private MyComboBox storage;
 	
-	private MyDatePicker start;
+	private DatePickerGroup start;
 	
-	private MyDatePicker end;
+	private DatePickerGroup end;
 	
 	private MyButton find;
 	// 销售单	
@@ -80,8 +80,8 @@ public class HistoryPanel extends JPanel{
 	
 	private void initComponent() {
 		// 初始化日期选择器
-		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
+		this.start = new DatePickerGroup(cfg.getDatepicker().element("start"));
+		this.end = new DatePickerGroup(cfg.getDatepicker().element("end"));
 		this.add(start);
 		this.add(end);
 		// 初始化复选框

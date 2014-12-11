@@ -227,9 +227,11 @@ public class CreatePresentPanel extends JPanel implements FuzzySearch, AddPresen
 				MyOptionPane.showMessageDialog(frame, "赠送单提交成功！");
 				this.setVisible(false);
 				this.panel.getListpanel().udpateData();
-				this.panel.getListpanel().setVisible(true);	
+				this.panel.showList();
 			}else{
-			MyOptionPane.showMessageDialog(frame, "赠送单提交失败！");
+				MyOptionPane.showMessageDialog(frame, "赠送单提交失败！");
+				this.panel.getListpanel().udpateData();
+				this.panel.showList();
 			}
 		}else{
 			MyOptionPane.showMessageDialog(frame, "请填入完整单据数据！");

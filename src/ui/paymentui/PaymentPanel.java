@@ -12,10 +12,12 @@ import ui.util.MyButton;
 import ui.util.MyLabel;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class PaymentPanel extends JPanel {
 	
 	private MyButton createPaymentBtn;

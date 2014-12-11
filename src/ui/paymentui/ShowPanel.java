@@ -6,30 +6,35 @@
 
 package ui.paymentui;
 
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import ui.util.DatePickerGroup;
+import ui.util.MyButton;
+import ui.util.MyComboBox;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.paymentblservice.CashBLService;
 import businesslogicservice.paymentblservice.PaymentBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
-import ui.util.*;
-
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class ShowPanel extends JPanel {
 
     private MyComboBox documentTypeBox;
 
-    private MyDatePicker startPicker;
+    private DatePickerGroup startPicker;
 
-    private MyDatePicker endPicker;
+    private DatePickerGroup endPicker;
 
     private MyButton findBtn;
 
@@ -86,8 +91,8 @@ public class ShowPanel extends JPanel {
     }
 
     private void initPicker() {
-        startPicker = new MyDatePicker(cfg.getDatepicker().element("starttime"));
-        endPicker = new MyDatePicker(cfg.getDatepicker().element("endtime"));
+        startPicker = new DatePickerGroup(cfg.getDatepicker().element("starttime"));
+        endPicker = new DatePickerGroup(cfg.getDatepicker().element("endtime"));
         add(startPicker);
         add(endPicker);
     }

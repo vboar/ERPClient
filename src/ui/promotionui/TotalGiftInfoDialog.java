@@ -10,10 +10,10 @@ import javax.swing.JFrame;
 
 import ui.presentui.PresentCommodityTablePane;
 import ui.util.AddPresentLineItem;
+import ui.util.DatePickerGroup;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyCheckBox;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
@@ -29,9 +29,9 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 
-	private MyDatePicker start;
+	private DatePickerGroup start;
 	
-	private MyDatePicker end;
+	private DatePickerGroup end;
 	
 	private MyCheckBox presents;
 	
@@ -86,8 +86,9 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	
 	public TotalGiftInfoDialog(JFrame frame, TotalGiftTablePane table,boolean isAdd, TotalGiftVO vo){
 		this(frame,table,isAdd);
-		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
-		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
+		// TODO date
+//		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
+//		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
 		this.total.setText(Double.toString(vo.total));
 		this.voucher.setSelected(true);
@@ -107,8 +108,8 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 		this.add(new MyLabel(cfg.getLabels().element("starttime")));
 		this.add(new MyLabel(cfg.getLabels().element("endtime")));
 		// 添加日期选择器
-		this.start = new MyDatePicker(cfg.getDatePicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatePicker().element("end"));
+		this.start = new DatePickerGroup(cfg.getDatePicker().element("start"));
+		this.end = new DatePickerGroup(cfg.getDatePicker().element("end"));
 		this.add(this.start);
 		this.add(this.end);
 		// 添加单选框

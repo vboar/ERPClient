@@ -2,15 +2,14 @@ package ui.exceptionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JPanel;
 
 import org.dom4j.Element;
 
+import ui.util.DatePickerGroup;
+import ui.util.FrameUtil;
 import ui.util.MyButton;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import config.ERPConfig;
@@ -25,9 +24,9 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class ShowWarningPanel extends JPanel{
 	
-	private MyDatePicker start;
+	private DatePickerGroup start;
 
-	private MyDatePicker end;
+	private DatePickerGroup end;
 
 	private MyButton find;
 
@@ -58,8 +57,8 @@ public class ShowWarningPanel extends JPanel{
 	 */
 	private void initComponent() {
 		// 初始化日期选择器
-		this.start = new MyDatePicker(pcfg.getDatepicker().element("start"));
-		this.end = new MyDatePicker(pcfg.getDatepicker().element("end"));
+		this.start = new DatePickerGroup(pcfg.getDatepicker().element("start"));
+		this.end = new DatePickerGroup(pcfg.getDatepicker().element("end"));
 		this.add(this.start);
 		this.add(this.end);
 		
@@ -80,22 +79,12 @@ public class ShowWarningPanel extends JPanel{
 		this.find.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Date day1 = start.getDate();
-				Date day2 = end.getDate();
-				String time1 = null;
-				String time2 = null;
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-				if((day1!=null)&&(day2!=null)){
-					time1 = dateFormat.format(day1);
-					time2 = dateFormat.format(day2);
-					if(time1.compareTo(time2)>0){
-						MyOptionPane.showMessageDialog(null, "请输入有效日期！","错误提示",
-								MyOptionPane.ERROR_MESSAGE);
-					}
-				}else if((day1==null)&&(day2!=null)){
-					time2 = dateFormat.format(day2);
-				}else if(day1!=null){
-					time1 = dateFormat.format(day1);
+				String time1 = FrameUtil.getFormattedDate(start.getDate());
+				String time2 = FrameUtil.getFormattedDate(end.getDate());
+				if ((time1 != null) && (time2 != null) && (time1.compareTo(time2) > 0)) {
+					MyOptionPane.showMessageDialog(ShowWarningPanel.this, "请输入有效日期！", "错误提示",
+							MyOptionPane.ERROR_MESSAGE);
+					return;
 				}
 				tablepane.showFindTable(time1,time2);
 			}

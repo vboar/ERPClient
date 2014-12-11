@@ -6,6 +6,22 @@
 
 package ui.paymentui;
 
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import ui.util.FuzzySearch;
+import ui.util.MyButton;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import ui.util.MySpecialTextField;
+import vo.AccountVO;
+import vo.ClauseLineItemVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.loginbl.Login;
 import businesslogicservice.accountblservice.AccountBLService;
@@ -13,17 +29,8 @@ import businesslogicservice.paymentblservice.CashBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
-import ui.util.*;
-import vo.AccountVO;
-import vo.ClauseLineItemVO;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-
+@SuppressWarnings("serial")
 public class CreateCashPanel extends JPanel implements FuzzySearch {
 
     private MyLabel operatorLab;

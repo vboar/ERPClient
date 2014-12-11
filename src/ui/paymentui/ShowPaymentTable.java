@@ -1,20 +1,22 @@
 package ui.paymentui;
 
-import businesslogicservice.paymentblservice.PaymentBLService;
-import config.TableConfig;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PaymentVO;
-
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-import java.util.Vector;
+import businesslogicservice.paymentblservice.PaymentBLService;
+import config.TableConfig;
 
 /**
  * 查看收付款单的表格
  * Created by Vboar on 2014/12/4.
  */
+@SuppressWarnings("serial")
 public class ShowPaymentTable extends TablePanel {
 
     private String[] columnName;

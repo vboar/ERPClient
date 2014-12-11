@@ -18,7 +18,6 @@ import ui.purchaseui.PurchaseMainPanel;
 import ui.saleui.SaleMainPanel;
 import ui.util.MyButton;
 import ui.util.MyMainPanel;
-import ui.util.MyOptionPane;
 
 @SuppressWarnings("serial")
 public class SalesmanPanel extends MyMainPanel {

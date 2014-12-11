@@ -1,23 +1,33 @@
 package ui.paymentui;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.accountblservice.AccountBLService;
-import config.DialogConfig;
-import org.dom4j.Element;
-import ui.util.*;
-import vo.AccountVO;
-import vo.TransferLineItemVO;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
+import org.dom4j.Element;
+
+import ui.util.FuzzySearch;
+import ui.util.MyButton;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import ui.util.MySpecialTextField;
+import ui.util.MyTextField;
+import vo.AccountVO;
+import vo.TransferLineItemVO;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.accountblservice.AccountBLService;
+import config.DialogConfig;
+
 /**
  * 创建收款单添加账户框
  * Created by Vboar on 2014/12/1.
  */
+@SuppressWarnings("serial")
 public class AddAccountDialog extends JDialog implements FuzzySearch {
 
     private MyButton commit;

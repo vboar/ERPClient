@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 
 import ui.util.AddCommodityDialog;
 import ui.util.AddCommodityLineItem;
+import ui.util.DatePickerGroup;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
@@ -28,9 +28,9 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineItem{
 
-	private MyDatePicker start;
+	private DatePickerGroup start;
 	
-	private MyDatePicker end;
+	private DatePickerGroup end;
 	
 	private MyButton add;
 	
@@ -98,8 +98,8 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 		this.add(new MyLabel(cfg.getLabels().element("starttime")));
 		this.add(new MyLabel(cfg.getLabels().element("endtime")));
 		// 添加日期选择器
-		this.start = new MyDatePicker(cfg.getDatePicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatePicker().element("end"));
+		this.start = new DatePickerGroup(cfg.getDatePicker().element("start"));
+		this.end = new DatePickerGroup(cfg.getDatePicker().element("end"));
 		this.add(this.start);
 		this.add(this.end);
 		// 添加输入框

@@ -9,9 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ui.util.DatePickerGroup;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import vo.BusinessConditionVO;
@@ -34,9 +34,9 @@ public class BusinessConditionPanel extends JPanel {
 
 	private MyLabel total;
 
-	private MyDatePicker start;
+	private DatePickerGroup start;
 
-	private MyDatePicker end;
+	private DatePickerGroup end;
 
 	private PanelConfig cfg;
 
@@ -71,8 +71,8 @@ public class BusinessConditionPanel extends JPanel {
 
 	private void initComponent() {
 		// 初始化日期选择器
-		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
+		this.start = new DatePickerGroup(cfg.getDatepicker().element("start"));
+		this.end = new DatePickerGroup(cfg.getDatepicker().element("end"));
 		this.add(start);
 		this.add(end);
 		this.cost = new CostTable(new TableConfig(cfg.getTables().element(
@@ -93,7 +93,7 @@ public class BusinessConditionPanel extends JPanel {
 		this.export.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				// TODO 导出
 
 			}
 		});

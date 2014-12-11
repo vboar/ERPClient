@@ -5,21 +5,28 @@
  */
 package ui.approvalui;
 
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.dom4j.Element;
+
+import ui.util.DatePickerGroup;
+import ui.util.MyButton;
+import ui.util.MyComboBox;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import util.DocumentStatus;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.approvalblservice.ApprovalBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
-import org.dom4j.Element;
-import ui.util.*;
-import util.DocumentStatus;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @SuppressWarnings("serial")
 public class ApprovalPanel extends JPanel {
@@ -38,9 +45,9 @@ public class ApprovalPanel extends JPanel {
 
     private MyComboBox typeBox;
 
-    private MyDatePicker start;
+    private DatePickerGroup start;
 
-    private MyDatePicker end;
+    private DatePickerGroup end;
 
     private ApprovalTable table;
 
@@ -76,8 +83,8 @@ public class ApprovalPanel extends JPanel {
     }
 
     private void initPicker(Element datepicker) {
-        start = new MyDatePicker(datepicker.element("start"));
-        end = new MyDatePicker(datepicker.element("end"));
+        start = new DatePickerGroup(datepicker.element("start"));
+        end = new DatePickerGroup(datepicker.element("end"));
         add(start);
         add(end);
     }

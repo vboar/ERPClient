@@ -1,23 +1,28 @@
 package ui.paymentui;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.paymentblservice.CashBLService;
-import config.DialogConfig;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 import org.dom4j.Element;
+
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import vo.ClauseLineItemVO;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.paymentblservice.CashBLService;
+import config.DialogConfig;
 
 /**
  * 现金费用单添加条目对话框
  * Created by Vboar on 2014/12/7.
  */
+@SuppressWarnings("serial")
 public class AddCashDialog extends JDialog {
 
     private MyButton commit;

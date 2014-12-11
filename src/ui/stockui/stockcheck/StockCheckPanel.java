@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.DatePickerGroup;
 import ui.util.MyButton;
 import ui.util.MyDatePicker;
 import ui.util.MyJFileChooser;
@@ -32,7 +33,7 @@ public class StockCheckPanel extends JPanel {
 	
 	private MyButton show;
 	
-	private MyDatePicker date;
+	private DatePickerGroup date;
 	
 	private StockCheckTablePane tablepane;
 	
@@ -67,7 +68,7 @@ public class StockCheckPanel extends JPanel {
 		this.filesaver = new MyJFileChooser();
 		this.tablepane = new StockCheckTablePane(new TableConfig(this.cfg.getTablepane()));
 		this.add(this.tablepane);
-		this.date = new MyDatePicker(this.cfg.getDatepicker().element("date"));
+		this.date = new DatePickerGroup(this.cfg.getDatepicker().element("date"));
 		this.add(this.date);
 		this.add(new MyLabel(this.cfg.getLabels().element("title")));	
 		this.add(new MyLabel(this.cfg.getLabels().element("list")));

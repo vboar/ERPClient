@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.DatePickerGroup;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import config.ERPConfig;
@@ -18,9 +18,9 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class PurchasePanel extends JPanel{
 
-	private MyDatePicker start;
+	private DatePickerGroup start;
 
-	private MyDatePicker end;
+	private DatePickerGroup end;
 	
 	private MyButton createSale;
 
@@ -47,8 +47,8 @@ public class PurchasePanel extends JPanel{
     }
 
 	private void initComponent() {
-		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
+		this.start = new DatePickerGroup(cfg.getDatepicker().element("start"));
+		this.end = new DatePickerGroup(cfg.getDatepicker().element("end"));
 		this.add(start);
 		this.add(end);
 		this.tablepane = new PurchaseListPane(new TableConfig(cfg.getTablepane()),false);

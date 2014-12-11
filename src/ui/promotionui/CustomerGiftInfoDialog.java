@@ -10,11 +10,11 @@ import javax.swing.JFrame;
 
 import ui.presentui.PresentCommodityTablePane;
 import ui.util.AddPresentLineItem;
+import ui.util.DatePickerGroup;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyCheckBox;
 import ui.util.MyComboBox;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
@@ -37,9 +37,9 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 
 	private MyComboBox level;
 	
-	private MyDatePicker start;
+	private DatePickerGroup start;
 	
-	private MyDatePicker end;
+	private DatePickerGroup end;
 	
 	private MyCheckBox presents;
 	
@@ -96,6 +96,7 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 	
 	public CustomerGiftInfoDialog(JFrame frame,CustomerTablePane table, boolean isAdd, CustomerGiftVO vo){
 		this(frame,table,isAdd);
+		// TODO设置text
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
@@ -124,8 +125,8 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 		this.add(new MyLabel(cfg.getLabels().element("starttime")));
 		this.add(new MyLabel(cfg.getLabels().element("endtime")));
 		// 添加日期选择器
-		this.start = new MyDatePicker(cfg.getDatePicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatePicker().element("end"));
+		this.start = new DatePickerGroup(cfg.getDatePicker().element("start"));
+		this.end = new DatePickerGroup(cfg.getDatePicker().element("end"));
 		this.add(this.start);
 		this.add(this.end);
 		// 添加单选框
@@ -255,8 +256,8 @@ public class CustomerGiftInfoDialog extends JDialog implements AddPresentLineIte
 			int level = this.level.getSelectedIndex();
 			double discount = this.discount.isSelected() ? Double.parseDouble(this.discountTxt.getText()) : 0;
 			double voucher = this.voucher.isSelected() ? Double.parseDouble(this.voucherTxt.getText()) : 0;
-			String startTime = FrameUtil.getFormattedDate(this.start.getDate());
-			String endTime = FrameUtil.getFormattedDate(this.end.getDate());
+			String startTime = this.start.getFormatedDate();
+			String endTime = this.end.getFormatedDate();
 			if(startTime.compareTo(endTime)>0){
 				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 				return;
