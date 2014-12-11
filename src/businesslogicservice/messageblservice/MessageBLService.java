@@ -36,4 +36,11 @@ public interface MessageBLService {
 	
 	public ArrayList<MessageVO> showByStatus(int state);
 
+	/***
+	 * 根据单据审批状态查询
+	 * @param state
+	 * @return
+	 */
+	public ArrayList<MessageVO> findByStatus(int state);
+
 }

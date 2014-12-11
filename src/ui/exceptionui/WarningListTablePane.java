@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.WarningVO;
@@ -124,6 +125,9 @@ public class WarningListTablePane extends TablePanel {
 		this.dtm.setDataVector(table, names);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
+		if(list.size()==0){
+			MyOptionPane.showMessageDialog(WarningListTablePane.this, "抱歉，未找到相关记录！");
+		}
 	}
 
 }

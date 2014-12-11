@@ -38,4 +38,9 @@ public class MessageController implements MessageBLService {
 		return m.showByStatus(status);
 	}
 
+	@Override
+	public ArrayList<MessageVO> findByStatus(int state) {
+		return m.showByStatus(state);
+	}
+
 }

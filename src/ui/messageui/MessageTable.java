@@ -1,20 +1,22 @@
 package ui.messageui;
 
-import businesslogic.loginbl.Login;
-import businesslogicservice.messageblservice.MessageBLService;
-import config.TableConfig;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
+
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.MessageVO;
 import vo.UserVO;
-
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
+import businesslogic.loginbl.Login;
+import businesslogicservice.messageblservice.MessageBLService;
+import config.TableConfig;
 
 /**
  * 用户消息面板表格
  * Created by Vboar on 2014/12/7.
  */
+@SuppressWarnings("serial")
 public class MessageTable extends TablePanel {
 
     private String[] columnName;
