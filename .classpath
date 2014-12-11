@@ -12,5 +12,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/swingset3_beautyeye.jar"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/DatePicker-V0.99-2006.09.01.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
