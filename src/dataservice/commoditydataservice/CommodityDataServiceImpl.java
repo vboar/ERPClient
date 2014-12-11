@@ -6,12 +6,11 @@
 
 package dataservice.commoditydataservice;
 
+import po.CommodityPO;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import dataservice.commoditydataservice.CommodityDataService;
-import po.CommodityPO;
 
 public class CommodityDataServiceImpl extends UnicastRemoteObject implements CommodityDataService {
 	
@@ -55,6 +54,11 @@ public class CommodityDataServiceImpl extends UnicastRemoteObject implements Com
 
 	@Override
 	public ArrayList<CommodityPO> show() throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public ArrayList<CommodityPO> showByInitial(String id) throws RemoteException {
 		return null;
 	}
 

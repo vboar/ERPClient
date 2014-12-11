@@ -6,11 +6,11 @@
 
 package dataservice.accountdataservice;
 
+import po.AccountPO;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import po.AccountPO;
 
 public class AccountDataServiceImpl extends UnicastRemoteObject implements AccountDataService {
 
@@ -39,6 +39,11 @@ public class AccountDataServiceImpl extends UnicastRemoteObject implements Accou
 
 	@Override
 	public ArrayList<AccountPO> show() throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public ArrayList<AccountPO> showByInitial(String id) throws RemoteException {
 		return null;
 	}
 

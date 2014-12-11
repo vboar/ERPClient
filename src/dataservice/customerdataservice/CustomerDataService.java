@@ -5,11 +5,11 @@
  */
 package dataservice.customerdataservice;
 
+import po.CustomerPO;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import po.CustomerPO;
 
 public interface CustomerDataService extends Remote {
 	
@@ -26,4 +26,6 @@ public interface CustomerDataService extends Remote {
 	public CustomerPO getById(String id) throws RemoteException;
 	
 	public ArrayList<CustomerPO> show() throws RemoteException;
+
+	public ArrayList<CustomerPO> showByInitial(String id) throws RemoteException;
 }

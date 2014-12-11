@@ -5,11 +5,11 @@
  */
 package dataservice.commoditydataservice;
 
+import po.CommodityPO;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import po.CommodityPO;
 
 public interface CommodityDataService extends Remote {
 
@@ -28,5 +28,7 @@ public interface CommodityDataService extends Remote {
 	public CommodityPO getById(String id) throws RemoteException;
 	
 	public ArrayList<CommodityPO> show() throws RemoteException;
+
+	public ArrayList<CommodityPO> showByInitial(String id) throws RemoteException;
 	
 }

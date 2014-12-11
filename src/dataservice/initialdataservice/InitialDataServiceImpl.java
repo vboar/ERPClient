@@ -6,11 +6,11 @@
 
 package dataservice.initialdataservice;
 
+import po.InitialPO;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import po.InitialPO;
 
 public class InitialDataServiceImpl extends UnicastRemoteObject implements InitialDataService {
 
@@ -40,6 +40,10 @@ public class InitialDataServiceImpl extends UnicastRemoteObject implements Initi
 		return null;
 	}
 
+	@Override
+	public void saveEnd() throws RemoteException {
+
+	}
 
 
 }

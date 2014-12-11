@@ -5,11 +5,11 @@
  */
 package dataservice.initialdataservice;
 
+import po.InitialPO;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import po.InitialPO;
 
 public interface InitialDataService extends Remote {
 	
@@ -20,5 +20,7 @@ public interface InitialDataService extends Remote {
 	public InitialPO getById(String id) throws RemoteException;
 	
 	public ArrayList<InitialPO> show() throws RemoteException;
+
+	public void saveEnd() throws RemoteException;
 
 }

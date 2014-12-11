@@ -6,12 +6,11 @@
 
 package dataservice.customerdataservice;
 
+import po.CustomerPO;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import dataservice.customerdataservice.CustomerDataService;
-import po.CustomerPO;
 
 public class CustomerDataServiceImpl extends UnicastRemoteObject implements CustomerDataService {
 
@@ -50,6 +49,11 @@ public class CustomerDataServiceImpl extends UnicastRemoteObject implements Cust
 
 	@Override
 	public ArrayList<CustomerPO> show() throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public ArrayList<CustomerPO> showByInitial(String id) throws RemoteException {
 		return null;
 	}
 
