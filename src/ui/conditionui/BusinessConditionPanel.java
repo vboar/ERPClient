@@ -6,13 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import ui.util.FrameUtil;
 import ui.util.MyButton;
-import ui.util.MyDatePicker;
 import ui.util.MyLabel;
-import ui.util.MyOptionPane;
 import vo.BusinessConditionVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
@@ -29,11 +27,13 @@ public class BusinessConditionPanel extends JPanel {
 
 	private MyButton show;
 	
+	private MyButton export;
+	
 	private MyLabel total;
 	
-	private MyDatePicker start;
-
-	private MyDatePicker end;
+//	private MyDatePicker start;
+//
+//	private MyDatePicker end;
 
 	private PanelConfig cfg;
 
@@ -67,10 +67,14 @@ public class BusinessConditionPanel extends JPanel {
 	
 	private void initComponent() {
 		// 初始化日期选择器
-		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
-		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
-		this.add(start);
-		this.add(end);
+//		this.start = new MyDatePicker(cfg.getDatepicker().element("start"));
+//		this.end = new MyDatePicker(cfg.getDatepicker().element("end"));
+//		this.add(start);
+//		this.add(end);
+		this.cost = new CostTable(new TableConfig(cfg.getTables().element("cost")));
+		this.income = new IncomeTable(new TableConfig(cfg.getTables().element("income")));
+		this.add(cost);
+		this.add(income);
 		// 初始化按钮
 		this.show = new MyButton(cfg.getButtons().element("show"));
 		this.show.addActionListener(new ActionListener() {		
@@ -79,29 +83,41 @@ public class BusinessConditionPanel extends JPanel {
 				showData();
 			}
 		});
+		this.export = new MyButton(cfg.getButtons().element("export"));
+		this.export.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		this.add(export);
 		this.add(show);
 		// 总价标签
 		this.total = new MyLabel(cfg.getLabels().element("total"));
+		this.total.setHorizontalAlignment(JLabel.RIGHT);
 		this.add(total);
 	}
 
 	public void showData(){
-		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
-		String time2 =  FrameUtil.getFormattedDate(this.end.getDate());
-		if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
-			MyOptionPane.showMessageDialog(frame, "请输入有效日期！","错误提示",
-					MyOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		BusinessConditionVO vo = controller.show(time1, time2);
+//		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
+//		String time2 =  FrameUtil.getFormattedDate(this.end.getDate());
+//		if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
+//			MyOptionPane.showMessageDialog(frame, "请输入有效日期！","错误提示",
+//					MyOptionPane.ERROR_MESSAGE);
+//			return;
+//		}
+//		BusinessConditionVO vo = controller.show(time1, time2);
+		BusinessConditionVO vo = new BusinessConditionVO();
 		// 表格
 		if(vo!=null){
-		this.cost = new CostTable(new TableConfig(cfg.getTables().element("cost")), vo);
-		this.income = new IncomeTable(new TableConfig(cfg.getTables().element("income")),vo);
-		this.add(cost);
-		this.add(income);
-		this.total.setText(Double.toString(vo.profit));
+			this.cost.updateData(vo);;
+			this.income.updateData(vo);;
+			this.total.setText(Double.toString(vo.profit));
 		}
+//		}else{
+//			MyOptionPane.showMessageDialog(frame, "抱歉，未找到相关信息！");
+//		}
 	}
 	
 }

@@ -95,5 +95,7 @@ public class BusinessConditionVO {
 		this.profit = profit;
 	}
 	
+	public BusinessConditionVO(){}
+	
 	
 }

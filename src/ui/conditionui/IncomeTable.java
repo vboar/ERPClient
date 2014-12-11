@@ -1,5 +1,6 @@
 package ui.conditionui;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -19,17 +20,18 @@ public class IncomeTable extends TablePanel{
 
 	private DefaultTableModel dtm;
 	
-	private BusinessConditionVO vo;
-	
-	public IncomeTable(TableConfig cfg, BusinessConditionVO vo) {
+	public IncomeTable(TableConfig cfg) {
 		super(cfg);
-		this.vo = vo;
+		this.initTable();
+		this.initComponent();
+		this.setRowHeaderWidth(0);
+		this.setVisible(true);
 	}
 
 	@Override
 	protected void initTable() {
 		this.columnNames = cfg.getColumnName();
-		this.initData();
+		this.data = new Object[0][COLUMN_NUM];
 		this.dtm = new DefaultTableModel(this.data, this.columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
@@ -38,10 +40,11 @@ public class IncomeTable extends TablePanel{
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
 		this.table.setRowSorter(null);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		this.table.updateUI();
 	}
 
-	private void initData() {
+	public void updateData(BusinessConditionVO vo) {
 		this.data = new Object[1][COLUMN_NUM];
 		data[0][0]=vo.saleIncome;
 		data[0][1]=vo.commodityOverIncome;
@@ -49,6 +52,8 @@ public class IncomeTable extends TablePanel{
 		data[0][3]=vo.voucherIncome;
 		data[0][4]=vo.discount;
 		data[0][5]=vo.incomeAfterDiscount;
+		this.dtm.setDataVector(data, columnNames);
+		this.table.updateUI();
 	}
 
 }

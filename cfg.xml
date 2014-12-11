@@ -1111,20 +1111,22 @@
 		</panel>
 
 		<!-- 经营情况表面板 -->
-		<panel className="ui.conditionui.BusinessConditionPanel" width="760" height="510"
-			   x="0" y="0" bg="img/common/rightpanel.png">
+		<panel className="ui.conditionui.BusinessConditionPanel" width="760" height="400"
+			   x="0" y="0" bg="img/common/jyqkb.jpg">
 			<buttons>
-				<show text="查询" w="80" h="25" x="640" y="5" />
+				<show text="查询" w="80" h="30" x="650" y="10" />
+				<export text="导出Excel文件" w="120" h="30" x="580" y="340" />
 			</buttons>
 			<labels>
-				<total text="" w="120" h="30" x="400" y="320" />
+				<total text="" w="120" h="40" x="510" y="275"
+				 font="微软雅黑" fontsize="20" color="true" r="251" g="144" b="19"  />
 			</labels>
 			<datepicker>
-				<start w="120" h="25" x="240" y="7"/>
-				<end w="120" h="25" x="440" y="7"/>
+				<start w="120" h="25" x="365" y="10"/>
+				<end w="120" h="25" x="365" y="10"/>
 			</datepicker>
 			<tables>
-				<cost width="730" height="80" x="10" y="100">
+				<income width="630" height="80" x="110" y="50">
 					<columnnames>
 						<columnname name="销售收入" />
 						<columnname name="商品报溢收入" />
@@ -1133,15 +1135,15 @@
 						<columnname name="折让" />
 						<columnname name="折让后收入" />
 					</columnnames>
-				</cost>
-				<income width="730" height="80" x="10" y="200">
+				</income>
+				<cost width="630" height="80" x="110" y="160">
 					<columnnames>
 						<columnname name="销售成本" />
 						<columnname name="商品报损支出" />
 						<columnname name="商品赠送支出" />
 						<columnname name="合计支出" />
 					</columnnames>
-				</income>
+				</cost>
 			</tables>
 		</panel>
 		

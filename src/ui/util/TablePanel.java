@@ -32,7 +32,7 @@ public abstract class TablePanel extends JPanel{
 		//创建滚动条面板
 		this.rollpane = new RowTableScrollPane(this.table);
 		this.rollpane.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()-5));
-		this.rollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		//this.rollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		//this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.add(this.rollpane);
 	}
@@ -46,6 +46,10 @@ public abstract class TablePanel extends JPanel{
 
 	public MyTable getTable() {
 		return table;
+	}
+	
+	public void setRowHeaderWidth(int width){
+		this.rollpane.setRowHeaderWidth(width);
 	}
 	
 }

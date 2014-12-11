@@ -5,6 +5,7 @@
  */
 package ui.util;
 
+import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -41,6 +42,10 @@ public class RowTableScrollPane extends JScrollPane implements PropertyChangeLis
 		if(this.rowHeader!=null){
 			this.rowHeader.setTableModel(this.table);
 		}
+	}
+
+	public void setRowHeaderWidth(int width) {
+		this.rowHeader.setPreferredScrollableViewportSize(new Dimension(width,0));
 	}
 
 }
