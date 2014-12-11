@@ -10,12 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import businesslogic.accountbl.Account;
-import businesslogic.customerbl.CustomerController;
-import businesslogic.logbl.Log;
-import businesslogic.loginbl.Login;
-import dataservice.datafactoryservice.DataFactoryImpl;
-
 import po.PaymentPO;
 import po.TransferLineItemPO;
 import util.DocumentStatus;
@@ -25,9 +19,10 @@ import util.Time;
 import vo.AccountVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
-
-import java.rmi.RemoteException;
-import java.util.ArrayList;
+import businesslogic.accountbl.Account;
+import businesslogic.customerbl.CustomerController;
+import businesslogic.loginbl.Login;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 //oneoneO
 public class Payment {
@@ -76,10 +71,7 @@ public class Payment {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-
-		//???
-		Log l=new Log();
-		l.add("Add payment successfully");
+		
 		return ResultMessage.SUCCESS;
 	}
 	

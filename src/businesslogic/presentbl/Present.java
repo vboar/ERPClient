@@ -158,7 +158,7 @@ public class Present {
 	public ArrayList<PresentVO> findByCustomerId(String customerId){
 		ArrayList<PresentPO> poList=null;
 	try {
-		DataFactoryImpl.getInstance().getPresentData().findByCustomerId(customerId);
+		poList=DataFactoryImpl.getInstance().getPresentData().findByCustomerId(customerId);
 	} catch (RemoteException e) {
 		e.printStackTrace();
 	}
