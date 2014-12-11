@@ -32,6 +32,7 @@ public class Loss {
 	}
 	
 	public ResultMessage add(ExceptionVO vo){
+		vo.time=Time.getCurrentTime();
 		try {
 			DataFactoryImpl.getInstance().getExceptionData().insert(voToPo(vo));
 		} catch (RemoteException e) {

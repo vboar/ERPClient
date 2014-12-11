@@ -15,6 +15,7 @@ import po.ClauseLineItemPO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.AccountVO;
 import vo.CashVO;
 import vo.ClauseLineItemVO;
@@ -51,6 +52,7 @@ public class Cash {
 	}
 	
 	public ResultMessage add(CashVO vo){
+		vo.time=Time.getCurrentTime();
 		try {
 			DataFactoryImpl.getInstance().getCashDataService().insert(voToPo(vo));
 		} catch (RemoteException e) {

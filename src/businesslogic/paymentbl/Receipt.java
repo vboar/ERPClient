@@ -15,6 +15,7 @@ import po.TransferLineItemPO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.AccountVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
@@ -47,6 +48,7 @@ public class Receipt {
 	}
 	
 	public ResultMessage add(PaymentVO vo){
+		vo.time=Time.getCurrentTime();
 		try {
 			DataFactoryImpl.getInstance().getPaymentData().insert(voToPo(vo));
 		} catch (RemoteException e) {
