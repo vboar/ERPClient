@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.StockInfoVO;
@@ -90,7 +91,9 @@ public class StockTablePane extends TablePanel{
 		this.dtm.setDataVector(table, names);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
 		this.updateUI();
-		
+		if(list.size()==0){
+			MyOptionPane.showMessageDialog(StockTablePane.this, "抱歉，未找到相关记录！");
+		}
 	}
 	
 }

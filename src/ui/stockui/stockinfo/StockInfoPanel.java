@@ -97,7 +97,7 @@ public class StockInfoPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String time1 = FrameUtil.getFormattedDate(start.getDate());
 				String time2 = FrameUtil.getFormattedDate(end.getDate());
-				if(time1.compareTo(time2)>0){
+				if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
 					MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 					return;
 				}

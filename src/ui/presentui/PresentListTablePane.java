@@ -4,11 +4,13 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.presentblservice.PresentBLService;
 import config.TableConfig;
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PresentVO;
 
 import javax.swing.table.DefaultTableModel;
+
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -102,6 +104,9 @@ public class PresentListTablePane extends TablePanel{
 		this.dtm.setDataVector(table, names);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
+		if(list.size()==0){
+			MyOptionPane.showMessageDialog(PresentListTablePane.this, "抱歉，未找到相关记录！");
+		}
 	}
 	
 }
