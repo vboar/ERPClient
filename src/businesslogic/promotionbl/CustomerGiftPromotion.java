@@ -74,7 +74,7 @@ public class CustomerGiftPromotion {
 	}
 	
 	public CustomerGiftVO getById(String id){
-		ArrayList<CustomerGiftVO> list=new ArrayList<CustomerGiftVO>();
+		ArrayList<CustomerGiftVO> list=showAll();
 		for(CustomerGiftVO vo:list){
 			if(vo.id.equals(id)){
 				return vo;

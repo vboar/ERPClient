@@ -92,6 +92,33 @@ public class SpecialOfferPromotion {
 		}
 		return voList;
 	}
+	
+	
+	public ArrayList<SpecialOfferVO> showAll() {
+		ArrayList<SpecialOfferPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getSpecialOfferData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<SpecialOfferVO> voList = new ArrayList<SpecialOfferVO>();
+		for (SpecialOfferPO po : poList) {
+			SpecialOfferVO vo = poToVo(po);
+			voList.add(vo);
+		}
+		return voList;
+	}
+
+	public SpecialOfferVO getById(String id){
+		ArrayList<SpecialOfferVO> voList=showAll();
+		for(SpecialOfferVO vo:voList){
+			if(vo.id.equals(id)){
+				return vo;
+			}
+		}
+		return null;
+	}
+	
 
 	public SaleVO calBonus(SaleVO saleVO, SpecialOfferVO specialOfferVO) {
 		int validnumber = 0;

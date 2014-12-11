@@ -409,6 +409,22 @@ public class Sale {
 		for(CommodityLineItemVO vo1:vo.saleList){
 			
 			Commodity commodity=new Commodity();
+			String id=vo1.id;
+			if(id.compareTo("99998")>0){
+				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id);
+				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
+				for(CommodityLineItemVO commodityLineItemvo:spList){
+					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);
+					commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+					try {
+						DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+				continue;
+			}
+			
 			CommodityPO commoditypo=commodity.getById(vo1.id);
 			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
 			commoditypo.setRecentSalePrice(vo1.price);
@@ -458,6 +474,7 @@ public class Sale {
 		vo.discount=cusVO.discount;
 		vo.totalAfterDiscount=vo.totalBeforeDiscount*vo.discount;
 
+		
 		vo.giftList=toOne(cusVO.giftInfo,totalVO.giftInfo);
 		return vo;
 	}
