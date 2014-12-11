@@ -152,7 +152,7 @@ public class Loss {
 			if(maxTime.compareTo(time)<0){
 				return "BSD-"+time+"-00001";
 			}else{
-				int maxnumber=Integer.parseInt(maxId.substring(4,12));
+				int maxnumber=Integer.parseInt(maxId.substring(13));
 				DecimalFormat f=new DecimalFormat("00000");
 				String newMax=f.format(maxnumber+1);
 				result="BSD-"+time+"-"+newMax;

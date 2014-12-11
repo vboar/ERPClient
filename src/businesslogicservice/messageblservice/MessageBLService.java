@@ -17,7 +17,9 @@ public interface MessageBLService {
 	 * 发送消息
 	 * @param vo
 	 */
-	public void send(MessageVO vo);
+	public void add(MessageVO vo);
+	
+	public void delete(MessageVO vo);
 	
 	/**
 	 * 阅读消息
@@ -31,12 +33,4 @@ public interface MessageBLService {
 	 * @return 消息列表
 	 */
 	public ArrayList<MessageVO> showByUser(UserVO vo);
-	
-	/**
-	 * 根据阅读状态查找消息
-	 * @param status
-	 * @return
-	 */
-	public ArrayList<MessageVO> findByStatus(int status);
-
 }

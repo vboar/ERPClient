@@ -5,32 +5,59 @@
 package businesslogic.exceptionbl;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.ExceptionLineItemPO;
 import po.ExceptionPO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.ExceptionLineItemVO;
 import vo.ExceptionVO;
 import businesslogic.commoditybl.Commodity;
+import businesslogic.logbl.Log;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 
 public class Overflow {
+	public ResultMessage addLog(String content){
+		Log l=new Log();
+		return l.add(content);
+	}
 	
-	//报益报损单审批通过，修改商品数量
-	public ResultMessage approve(ExceptionVO vo){
+	public String createId(){
+		String result="";
+		ArrayList<ExceptionVO> presentList=findByTime("1970/1/1/0/0/0",Time.getCurrentTime());
+		String time="";
+		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
+		time=df.format(new Date());
+		String maxId=presentList.get(presentList.size()-1).id;	
+		if(presentList.size()==0){
+			return "BYD-"+time+"00001";
+		}else{
+			if(maxId.substring(4,12).compareTo(time)<0){
+				return "BYD-"+time+"00001";
+			}else{
+				DecimalFormat f=new DecimalFormat("00000");
+				int m=Integer.parseInt(maxId.substring(13));
+				String newmax=f.format(m+1);
+				result="BYD-"+time+newmax;
+			}
+		}
+		return result;
+	}
+	public ResultMessage create(ExceptionVO vo){
+		vo.time=Time.getCurrentTime();
 		try {
-			DataFactoryImpl.getInstance().getExceptionData().update(voToPo(vo));
+			DataFactoryImpl.getInstance().getExceptionData().insert(voToPo(vo));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
-		Commodity c=new Commodity();
-		c.approveException(vo);
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -50,6 +77,54 @@ public class Overflow {
 				result.add(poToVo(temp.get(i)));
 		}
 		return result;
+	}
+	
+	public ArrayList<ExceptionVO> findByStatus(DocumentStatus status){
+		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		ArrayList<ExceptionPO> temp=new ArrayList<ExceptionPO>();
+		
+		try {
+			DataFactoryImpl.getInstance().getExceptionData().findByStatus(status.ordinal());
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<temp.size();i++){
+			if(temp.get(i).getDocumentType()==DocumentType.OVERFLOW.ordinal())
+				result.add(poToVo(temp.get(i)));
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<ExceptionVO> findById(String id){
+		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		ArrayList<ExceptionPO> temp=new ArrayList<ExceptionPO>();
+		
+		try {
+			DataFactoryImpl.getInstance().getExceptionData().findById(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<temp.size();i++){
+			if(temp.get(i).getDocumentType()==DocumentType.OVERFLOW.ordinal())
+				result.add(poToVo(temp.get(i)));
+		}
+		
+		return result;
+	}
+	
+	public ResultMessage update(ExceptionVO vo){
+		try {
+			DataFactoryImpl.getInstance().getExceptionData().update(voToPo(vo));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
 	}
 	
 	public ExceptionVO poToVo(ExceptionPO po) {
@@ -79,5 +154,19 @@ public class Overflow {
 		return result;
 	}
 	
+	//报益报损单审批通过，修改商品数量
+		public ResultMessage approve(ExceptionVO vo){
+			try {
+				DataFactoryImpl.getInstance().getExceptionData().update(voToPo(vo));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			
+			Commodity c=new Commodity();
+			c.approveException(vo);
+			return ResultMessage.SUCCESS;
+		}
+		
 
 }
