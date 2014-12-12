@@ -44,6 +44,9 @@ public class MyTable extends JTable {
 			}
 		});
 		this.setBackground(new Color(240,240,255));
+		for(int i=0; i<this.getColumnCount();++i){
+			this.getTableHeader().getColumnModel().getColumn(i).setMinWidth(containerW/this.getColumnCount());
+		}
 		FrameUtil.setTableColumnWidth(this, containerW, padding);
 	}
 	

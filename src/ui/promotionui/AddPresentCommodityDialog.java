@@ -99,7 +99,6 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 		this.add(this.currentId);
 		this.add(this.currentName);
 		this.add(this.currentModel);
-
 	}
 
 	/**

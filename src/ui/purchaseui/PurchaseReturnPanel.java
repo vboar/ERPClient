@@ -2,13 +2,12 @@ package ui.purchaseui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.DatePickerGroup;
+import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
@@ -87,22 +86,11 @@ public class PurchaseReturnPanel extends JPanel{
 		this.find.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Date day1 = start.getDate();
-				Date day2 = end.getDate();
-				String time1 = null;
-				String time2 = null;
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-				if((day1!=null)&&(day2!=null)){
-					time1 = dateFormat.format(day1);
-					time2 = dateFormat.format(day2);
-					if(time1.compareTo(time2)>0){
-						MyOptionPane.showMessageDialog(PurchaseReturnPanel.this, "请输入有效日期！","错误提示",
-								MyOptionPane.ERROR_MESSAGE);
-					}
-				}else if((day1==null)&&(day2!=null)){
-					time2 = dateFormat.format(day2);
-				}else if(day1!=null){
-					time1 = dateFormat.format(day1);
+				String time1 = FrameUtil.getFormattedDate(start.getDate());
+				String time2 = FrameUtil.getFormattedDate(end.getDate());
+				if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
+					MyOptionPane.showMessageDialog(PurchaseReturnPanel.this, "请输入有效日期！","错误提示",
+							MyOptionPane.ERROR_MESSAGE);
 				}
 				tablepane.showFindTable(time1,time2);
 			}

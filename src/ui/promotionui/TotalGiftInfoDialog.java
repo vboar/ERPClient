@@ -2,6 +2,7 @@ package ui.promotionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -63,7 +64,7 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	
 	private TotalGiftBLService controller;
 	
-	public TotalGiftInfoDialog(JFrame frame, TotalGiftTablePane table,boolean isAdd) {
+	public TotalGiftInfoDialog(final JFrame frame, TotalGiftTablePane table,boolean isAdd) {
 		super(frame, true);
 		this.isAdd = isAdd;
 		this.table = table;
@@ -86,9 +87,8 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	
 	public TotalGiftInfoDialog(JFrame frame, TotalGiftTablePane table,boolean isAdd, TotalGiftVO vo){
 		this(frame,table,isAdd);
-		// TODO date
-//		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
-//		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
+		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
+		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
 		this.total.setText(Double.toString(vo.total));
 		this.voucher.setSelected(true);
@@ -259,9 +259,10 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	 * @return
 	 */
 	private boolean checkCompleted() {
-		if((this.start.getDate()!=null)&&(this.end.getDate()!=null)&&(
-				!this.total.getText().isEmpty())&&
-				(this.commoditylist.size()>0||!this.voucherTxt.getText().isEmpty())){
+		if((this.start.getDate()!=null)&&(this.end.getDate()!=null)
+				&&(!this.total.getText().isEmpty())
+				&&((this.presents.isSelected()&&this.commoditylist.size()>0)
+				||(!this.voucherTxt.getText().isEmpty()))){
 			return true;
 		}
 		return false;
@@ -288,5 +289,23 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	public void delCommodity(){
 		this.commoditylist.remove(this.presentsTable.getTable().getSelectedRow());
 		this.presentsTable.deleteRow();
+	}
+	
+	@Override
+	protected void processWindowEvent(WindowEvent e) {
+		boolean flag = false;
+		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+			int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？",
+					"确认提示", MyOptionPane.YES_NO_OPTION,
+					MyOptionPane.QUESTION_MESSAGE);
+			if (result == MyOptionPane.YES_OPTION) {
+				flag = true;
+				dispose();
+			}
+		}
+		if (flag) {
+			// 点击的了YES,那么交给上面去处理关闭的处理
+			super.processWindowEvent(e);
+		}
 	}
 }

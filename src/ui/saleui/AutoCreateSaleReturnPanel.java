@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
-import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.SaleVO;
@@ -74,11 +73,11 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 					int result = MyOptionPane.showConfirmDialog(frame, "确认根据此销售单创建退货单？",
 							"确认提示",MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
-						// TODO 销售退货单创建方式？
+						// TODO 销售退货单 只修改ID和类型
 						SaleVO vo = tablepane.getSelectedVO();
 						vo.id = controller.createId();
-						vo.approvalState = DocumentStatus.NONCHECKED;
 						vo.receiptType = DocumentType.SALERETURN;
+						// 交给bl操作
 						ResultMessage addresult = controller.add(vo);
 						if(addresult==ResultMessage.SUCCESS){
 							MyOptionPane.showMessageDialog(frame, "创建退货单成功！");

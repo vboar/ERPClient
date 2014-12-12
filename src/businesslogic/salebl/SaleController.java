@@ -73,8 +73,7 @@ public class SaleController implements SaleBLService {
 	@Override
 	public SaleVO calAfterPrice(String customerGiftId, String totalGiftId,
 			SaleVO vo) {
-		
-		return null;
+		return sale.calAfterPrice(customerGiftId, totalGiftId, vo);
 	}
 	
 	

@@ -36,7 +36,7 @@ public class StockCheckTablePane extends TablePanel{
 	public StockCheckTablePane(TableConfig cfg) {
 		super(cfg);
 		this.controller = ControllerFactoryImpl.getInstance().getStockController();
-		this.mylist = this.controller.showCheck();
+		this.mylist = new ArrayList<StockVO>();
 		this.initTable();
 		this.initComponent();
 	}
@@ -96,5 +96,13 @@ public class StockCheckTablePane extends TablePanel{
 		return mylist;
 	}
 
+	public void showCheck(){
+		mylist = controller.showCheck();
+		System.out.println(mylist.size());
+		this.initData(mylist);
+		this.dtm.setDataVector(data, columnName);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
+		this.updateUI();	
+	}
 	
 }

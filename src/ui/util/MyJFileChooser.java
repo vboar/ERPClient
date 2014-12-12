@@ -26,7 +26,7 @@ public class MyJFileChooser extends JFileChooser {
 		this.setFileSelectionMode(JFileChooser.SAVE_DIALOG); 
 		this.setCurrentDirectory(new File("d:/"));
 		this.setSelectedFile(new File("20141205"));
-		this.setFileFilter(new FileNameExtensionFilter("excelFile",".xls"));
+		this.setFileFilter(new FileNameExtensionFilter(".xls",".xls"));
 	}
 	
 	public String getPath(){

@@ -84,9 +84,8 @@ public class PurchasePanel extends JPanel{
 				if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
 					MyOptionPane.showMessageDialog(PurchasePanel.this, "请输入有效日期！","错误提示",
 							MyOptionPane.ERROR_MESSAGE);
-				}else{
-					tablepane.showFindTable(time1,time2);
 				}
+				tablepane.showFindTable(time1,time2);
 			}
 		});
 		this.add(find);

@@ -30,9 +30,11 @@ import vo.CommodityLineItemVO;
 import vo.CustomerVO;
 import vo.PromotionVO;
 import vo.SaleVO;
+import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.customerblservice.CustomerBLService;
 import businesslogicservice.saleblservice.SaleBLService;
+import businesslogicservice.userblservice.UserBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
@@ -84,6 +86,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 	
 	private SaleBLService saleCtrl;	
 	private CustomerBLService customerCtrl;
+	private UserBLService userCtrl;
 	
 	public CreateSalePanel(JFrame frame, CreateSaleDialog dialog){
 		this.frame = frame;	
@@ -96,6 +99,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		// 获得控制器
 		this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleController();
 		this.customerCtrl = ControllerFactoryImpl.getInstance().getCustomerController();
+		this.userCtrl = ControllerFactoryImpl.getInstance().getUserController();
 		// 获得配置
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		// 设置面板基本属性
@@ -148,11 +152,13 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		this.add(customerTxt);
 	}
 
-	// TODO 从逻辑端拿到仓库和业务员信息加入选择列表
 	@SuppressWarnings("unchecked")
 	private void initComboBoxes(){
 		this.salesman = new MyComboBox(cfg.getComboboxes().element("salesman"));
-		this.salesman.addItem("0001");
+		ArrayList<UserVO> list = userCtrl.fuzzyFindOperator("");
+		for(int i=0; i<list.size(); i++){
+			this.salesman.addItem(list.get(i).id);
+		}
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
 		this.add(salesman);
 		this.add(storage);
@@ -273,15 +279,9 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 	 */
 	protected void showChoosePromotionDialog() {
 		// 获得可用优惠列表
+		System.out.println(customerVO.level+" "+totalPrice);
 		ArrayList<PromotionVO> vip = saleCtrl.calCustomerPromotion(customerVO.level);
 		ArrayList<PromotionVO> price = saleCtrl.calTotalGiftPromotion(totalPrice);
-		// TODO --------test -----------------
-//		vip = new ArrayList<PromotionVO>();
-//		vip.add(new PromotionVO("00001",null,10,300));
-//		vip.add(new PromotionVO("00002",null,40,200));
-//		price = new ArrayList<PromotionVO>();
-//		price.add(new PromotionVO("00003",null,0,400));
-//		price.add(new PromotionVO("00004",null,20,240));
 		// 如果不为空，则显示选择对话框
 		if((vip!=null&&vip.size()>0)||(price!=null&&price.size()>0)){
 			new ShowChoosePromotionDialog(frame,vip,price,this);
@@ -389,14 +389,15 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 			showStr += this.promotionlist.get(1).toString();
 		}
 		showStr += "<html>";
-		this.saleVo.discount = 10;
-		this.saleVo.totalAfterDiscount = 300;
-		//this.saleVo = saleCtrl.calAfterPrice( vipid,priceid, saleVo);
+		// TODO 空指针
+		this.saleVo = saleCtrl.calAfterPrice(vipid,priceid, saleVo);
 		// 显示折扣和总价和促销策略
-		this.discountLab.setText(Double.toString(this.saleVo.discount));
-		this.totalLab.setText(Double.toString(this.saleVo.totalAfterDiscount));
-		this.promotionLab.setText(showStr);
-		this.promotionLab.setAutoscrolls(true);
+		if(this.saleVo!=null){
+			this.discountLab.setText(Double.toString(this.saleVo.discount));
+			this.totalLab.setText(Double.toString(this.saleVo.totalAfterDiscount));
+			this.promotionLab.setText(showStr);
+			this.promotionLab.setAutoscrolls(true);
+		}
 	}
 	
 	/**
