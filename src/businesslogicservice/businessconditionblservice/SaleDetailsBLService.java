@@ -26,6 +26,6 @@ public interface SaleDetailsBLService {
 	 * @param path
 	 * @return
 	 */
-	public ResultMessage exportExcel(String path);
+	public ResultMessage exportExcel(String path,RequirementVO vo);
 	
 }

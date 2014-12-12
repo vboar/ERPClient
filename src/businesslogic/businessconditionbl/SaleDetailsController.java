@@ -17,9 +17,9 @@ public class SaleDetailsController implements SaleDetailsBLService {
 	}
 
 	@Override
-	public ResultMessage exportExcel(String path) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessage exportExcel(String path,RequirementVO vo) {
+		sd.addLog("导出销售明细Excel");
+		return sd.exportExcel(path, vo);
 	}
 
 }
