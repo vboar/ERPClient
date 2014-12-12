@@ -2,6 +2,7 @@ package ui.conditionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,13 +15,18 @@ import ui.presentui.PresentListTablePane;
 import ui.purchaseui.PurchaseListPane;
 import ui.saleui.SaleListPane;
 import ui.util.DatePickerGroup;
+import ui.util.ExcelSaver;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import ui.util.SavePathDialog;
 import util.DocumentType;
+import util.ResultMessage;
+import vo.CustomerVO;
 import vo.RequirementVO;
+import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.businessconditionblservice.HistoryBLService;
 import config.ERPConfig;
@@ -28,7 +34,7 @@ import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class HistoryPanel extends JPanel{
+public class HistoryPanel extends JPanel implements ExcelSaver{
 
 	private MyComboBox customer;
 	
@@ -41,6 +47,8 @@ public class HistoryPanel extends JPanel{
 	private DatePickerGroup start;
 	
 	private DatePickerGroup end;
+	
+	private MyButton export;
 	
 	private MyButton find;
 	// 销售单	
@@ -78,6 +86,7 @@ public class HistoryPanel extends JPanel{
 		this.repaint();	
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void initComponent() {
 		// 初始化日期选择器
 		this.start = new DatePickerGroup(cfg.getDatepicker().element("start"));
@@ -85,8 +94,20 @@ public class HistoryPanel extends JPanel{
 		this.add(start);
 		this.add(end);
 		// 初始化复选框
+		// 添加客户信息
 		this.customer = new MyComboBox(cfg.getComboboxes().element("client"));
+		ArrayList<CustomerVO> cutomerlist = ControllerFactoryImpl.getInstance().getCustomerController()
+				.fuzzyFind("");
+		for(int j=0; j<cutomerlist.size();++j){
+			this.customer.addItem(cutomerlist.get(j).id+cutomerlist.get(j).name);
+		}	
+		// 添加业务员信息
 		this.salesman = new MyComboBox(cfg.getComboboxes().element("operator"));
+		ArrayList<UserVO> userlist =ControllerFactoryImpl.getInstance().getUserController()
+				.fuzzyFindOperator("");
+		for(int i=0; i<userlist.size();++i){
+			this.salesman.addItem(userlist.get(i).id);
+		}
 		this.type = new MyComboBox(cfg.getComboboxes().element("type"));
 		this.storage = new MyComboBox(cfg.getComboboxes().element("store"));
 		this.add(customer);
@@ -110,6 +131,14 @@ public class HistoryPanel extends JPanel{
 				showTable();
 			}
 		});
+		this.export = new MyButton(cfg.getButtons().element("export"));
+		this.export.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SavePathDialog(frame, HistoryPanel.this);
+			}
+		});
+		this.add(export);
 		this.add(find);
 	}
 	
@@ -221,6 +250,16 @@ public class HistoryPanel extends JPanel{
 		if(exception != null) remove(exception); exception = null;
 		if(warning != null) remove(warning); warning = null;
 		if(cash != null) remove(cash); cash = null;
+	}
+
+	@Override
+	public ResultMessage setSavePath(String path) {
+		return controller.exportExcel(path);
+	}
+
+	@Override
+	public String getDefaultPath() {
+		return controller.getDefaultPath();
 	}
 	
 }

@@ -28,4 +28,10 @@ public interface SaleDetailsBLService {
 	 */
 	public ResultMessage exportExcel(String path,RequirementVO vo);
 	
+	/**
+	 * 获取导出文件默认路径
+	 * @return
+	 */
+	public String getDefaultPath();
+	
 }

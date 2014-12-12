@@ -22,4 +22,10 @@ public class SaleDetailsController implements SaleDetailsBLService {
 		return sd.exportExcel(path, vo);
 	}
 
+	@Override
+	public String getDefaultPath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

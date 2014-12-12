@@ -223,11 +223,13 @@
 			<datepicker>
 				<start w="200" h="30" x="220" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="30" x="420" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<tablepane className="ui.presentui.ShowPanel" width="730"
@@ -259,12 +261,14 @@
 			</labels>
 			<datepicker>
 				<start w="200" h="30" x="220" y="45">
-					<text w="100" h="30" x="0" y="0" />
-					<btn w="45" h="30" x="100" y="0" />
+					<text w="100" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="30" x="420" y="45">
-					<text w="100" h="30" x="0" y="0" />
-					<btn w="45" h="30" x="100" y="0" />
+					<text w="100" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<tablepane className="ui.stockui.stockinfo.StockTablePane"
@@ -298,8 +302,9 @@
 			</labels>
 			<datepicker>
 				<date w="200" h="30" x="540" y="45">
-					<text w="100" h="30" x="0" y="0" />
-					<btn w="45" h="30" x="100" y="0" />
+					<text w="100" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</date>
 			</datepicker>
 			<tablepane className="ui.stockui.stockcheck.StockCheckTablePane"
@@ -325,6 +330,9 @@
 				<losslist text="查看报损单" w="120" h="30" x="480" y="45" />
 				<overlist text="查看报溢单" w="120" h="30" x="610" y="45" />
 			</buttons>
+			<labels>
+				<title text="库存异常处理" w="200" h="30" x="10" y="2" />
+			</labels>
 		</panel>
 
 		<!-- 库存异常处理中的创建报损单面板 -->
@@ -393,11 +401,13 @@
 			<datepicker>
 				<start w="200" h="25" x="220" y="12">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="420" y="12">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<tablepane className="ui.exceptionui.ExceptionListTablePane"
@@ -426,11 +436,13 @@
 			<datepicker>
 				<start w="200" h="25" x="220" y="12">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="420" y="12">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<tablepane className="ui.exceptionui.WarningListTablePane"
@@ -464,11 +476,13 @@
 			<datepicker>
 				<start w="200" h="25" x="400" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="560" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<labels>
@@ -556,11 +570,13 @@
 			<datepicker>
 				<start w="200" h="25" x="400" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="560" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<labels>
@@ -639,11 +655,13 @@
 			<datepicker>
 				<start w="200" h="25" x="400" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="560" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<labels>
@@ -718,11 +736,13 @@
 			<datepicker>
 				<start w="200" h="25" x="400" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="560" y="7">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<labels>
@@ -845,11 +865,13 @@
 			<datepicker>
 				<starttime w="200" h="30" x="275" y="20">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</starttime>
 				<endtime w="200" h="30" x="450" y="20">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</endtime>
 			</datepicker>
 			<comboboxes>
@@ -904,9 +926,9 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<customeridlab text="______________________" w="180"
+				<customeridlab text="" w="180"
 					h="35" x="170" y="80" />
-				<customernamelab text="______________________" w="180"
+				<customernamelab text="" w="180"
 					h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
 			</labels>
@@ -936,9 +958,9 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<customeridlab text="______________________" w="180"
+				<customeridlab text="" w="180"
 					h="35" x="170" y="80" />
-				<customernamelab text="______________________" w="180"
+				<customernamelab text="" w="180"
 					h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
 			</labels>
@@ -955,9 +977,9 @@
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
 				<tip text="请输入客户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
 					fontsize="12" color="true" r="255" g="100" b="10" />
-				<customeridlab text="_________________________" w="180"
+				<customeridlab text="" w="180"
 					h="35" x="100" y="88" />
-				<customernamelab text="________________________" w="180"
+				<customernamelab text="" w="180"
 					h="35" x="370" y="88" />
 			</labels>
 			<textfields>
@@ -986,9 +1008,9 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<accountidlab text="______________________" w="180" h="35"
+				<accountidlab text="" w="180" h="35"
 					x="170" y="80" />
-				<accountnamelab text="______________________" w="180"
+				<accountnamelab text="" w="180"
 					h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
 				<totallab text="总额" w="120" h="30" x="581" y="306" />
@@ -1006,9 +1028,9 @@
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
 				<tip text="请输入账户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
 					fontsize="12" color="true" r="255" g="100" b="10" />
-				<accountidlab text="_________________________" w="180"
+				<accountidlab text="" w="180"
 					h="35" x="100" y="88" />
-				<accountnamelab text="________________________" w="180"
+				<accountnamelab text="" w="180"
 					h="35" x="370" y="88" />
 			</labels>
 			<textfields>
@@ -1040,7 +1062,8 @@
 		<panel className="ui.conditionui.SaleDetailsPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.jpg">
 			<buttons>
-				<find text="查询" w="60" h="25" x="660" y="40" />
+				<find text="查询" w="120" h="25" x="590" y="20" />
+				<export text="导出Excel文件" w="120" h="30" x="590" y="60" />
 			</buttons>
 			<labels>
 				<require text="筛选条件" w="60" h="30" x="20" y="10" />
@@ -1055,11 +1078,13 @@
 			<datepicker>
 				<start w="200" h="25" x="240" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="440" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<textfields>
@@ -1089,30 +1114,33 @@
 		<panel className="ui.conditionui.HistoryPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.jpg">
 			<buttons>
-				<find text="查询" w="60" h="25" x="660" y="40" />
+				<find text="查询" w="120" h="25" x="590" y="20" />
+				<export text="导出Excel文件" w="120" h="30" x="590" y="60" />
 			</buttons>
 			<labels>
 				<require text="筛选条件" w="60" h="30" x="20" y="10" />
 				<time text="时间区间" w="60" h="25" x="100" y="10" />
 				<start text="起始日期" w="60" h="25" x="180" y="10" />
 				<end text="截止日期" w="60" h="25" x="380" y="10" />
-				<type text="单据类型" w="60" h="25" x="100" y="40" />
-				<client text="客户" w="60" h="25" x="310" y="40" />
-				<operator text="业务员" w="60" h="25" x="500" y="40" />
-				<store text="仓库" w="60" h="25" x="580" y="10" />
+				<type text="单据类型" w="60" h="25" x="100" y="70" />
+				<client text="客户名" w="60" h="25" x="100" y="40" />
+				<operator text="业务员" w="60" h="25" x="380" y="40" />
+				<store text="仓库" w="60" h="25" x="380" y="70" />
 			</labels>
 			<datepicker>
 				<start w="200" h="25" x="240" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="200" h="25" x="440" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<comboboxes>
-				<type text="单据类型" w="120" h="25" x="160" y="40">
+				<type text="单据类型" w="190" h="25" x="180" y="70">
 					<string str="进货单" />
 					<string str="进货退货单" />
 					<string str="销售单" />
@@ -1125,14 +1153,14 @@
 					<string str="库存报损单" />
 					<string str="库存报警单" />
 				</type>
-				<client text="客户" w="120" h="25" x="350" y="40"></client>
-				<operator text="业务员" w="100" h="25" x="550" y="40"></operator>
-				<store text="仓库" w="100" h="25" x="620" y="10">
+				<client text="客户" w="120" h="25" x="180" y="40"></client>
+				<operator text="业务员" w="100" h="25" x="440" y="40"></operator>
+				<store text="仓库" w="100" h="25" x="440" y="70">
 					<string str="1号仓库" />
 				</store>
 			</comboboxes>
 			<tables>
-				<present width="730" height="300" x="10" y="80">
+				<present width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="时间" />
@@ -1142,21 +1170,21 @@
 						<columnname name="审批状态 " />
 					</columnnames>
 				</present>
-				<warning width="730" height="300" x="10" y="80">
+				<warning width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="商品列表" />
 					</columnnames>
 				</warning>
-				<exception width="730" height="300" x="10" y="80">
+				<exception width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="商品列表" />
 					</columnnames>
 				</exception>
-				<payment width="730" height="300" x="10" y="80">
+				<payment width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1168,7 +1196,7 @@
 						<columnname name="审批状态" />
 					</columnnames>
 				</payment>
-				<purchase width="730" height="300" x="10" y="80">
+				<purchase width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1181,7 +1209,7 @@
 						<columnname name="备注" />
 					</columnnames>
 				</purchase>
-				<sale width="730" height="300" x="10" y="80">
+				<sale width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1197,7 +1225,7 @@
 						<columnname name="折让后总额" />
 					</columnnames>
 				</sale>
-				<cash width="730" height="300" x="10" y="80">
+				<cash width="730" height="300" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1225,11 +1253,13 @@
 			<datepicker>
 				<start w="120" h="25" x="365" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="120" h="25" x="365" y="10">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<tables>
@@ -1270,11 +1300,13 @@
 			<datepicker>
 				<start w="120" h="30" x="230" y="42">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="120" h="30" x="420" y="42">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<tablepane className="" width="730" height="390" x="10" y="80">
@@ -1357,11 +1389,13 @@
 			<datepicker>
 				<start w="120" h="25" x="335" y="90">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</start>
 				<end w="120" h="25" x="525" y="90">
 					<text w="100" h="25" x="0" y="0" />
-					<btn w="45" h="25" x="100" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<comboboxes>
@@ -1798,11 +1832,13 @@
 		<datepicker>
 			<start w="200" h="25" x="250" y="20">
 				<text w="100" h="25" x="0" y="0" />
-				<btn w="45" h="25" x="100" y="0" />
+				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+					pathroll="img/buttons/csr.png" />
 			</start>
 			<end w="200" h="25" x="480" y="20">
 				<text w="100" h="25" x="0" y="0" />
-				<btn w="45" h="25" x="100" y="0" />
+				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+					pathroll="img/buttons/csr.png" />
 			</end>
 		</datepicker>
 		<textfields>
@@ -1851,11 +1887,13 @@
 		<datepicker>
 			<start w="120" h="25" x="270" y="20">
 				<text w="100" h="25" x="0" y="0" />
-				<btn w="45" h="25" x="100" y="0" />
+				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+					pathroll="img/buttons/csr.png" />
 			</start>
 			<end w="120" h="25" x="480" y="20">
 				<text w="100" h="25" x="0" y="0" />
-				<btn w="45" h="25" x="100" y="0" />
+				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+					pathroll="img/buttons/csr.png" />
 			</end>
 		</datepicker>
 		<textfields>
@@ -1895,11 +1933,13 @@
 		<datepicker>
 			<start w="120" h="25" x="280" y="20">
 				<text w="100" h="25" x="0" y="0" />
-				<btn w="45" h="25" x="100" y="0" />
+				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+					pathroll="img/buttons/csr.png" />
 			</start>
 			<end w="120" h="25" x="480" y="20">
 				<text w="100" h="25" x="0" y="0" />
-				<btn w="45" h="25" x="100" y="0" />
+				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+					pathroll="img/buttons/csr.png" />
 			</end>
 		</datepicker>
 		<textfields>
@@ -2025,5 +2065,20 @@
 			<pricelab text="" w="400" h="30" x="120" y="270" />
 		</labels>
 	</approvalpresentdialog>
+
+	<!-- 导出文件对话框 -->
+	<saverdialog width="620" height="200" x="240" y="180" title="导出Excel">
+		<buttons>
+			<default text="默认路径" w="100" h="30" x="20" y="20" />
+			<own text="自定义路径" w="100" h="30" x="20" y="60" />
+			<choose text="选择" w="60" h="30" x="520" y="60" />
+			<commit text="确认" w="100" h="30" x="160" y="100" />
+			<cancel text="取消" w="100" h="30" x="320" y="100" />
+		</buttons>
+		<textfields>
+			<default w="380" h="30" x="120" y="20" />
+			<own w="380" h="30" x="120" y="60" />
+		</textfields>		
+	</saverdialog>
 
 </erp>

@@ -29,14 +29,12 @@ public class PresentController implements PresentBLService {
 
 	@Override
 	public ArrayList<PresentVO> findByStatus(DocumentStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		return present.findByStatus(status);
 	}
 
 	@Override
 	public PresentVO getById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return present.getById(id);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package ui.paymentui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -123,5 +124,23 @@ public class AddCashDialog extends JDialog {
         remarkTxt = new MyTextField(element.element("remark"));
         add(remarkTxt);
     }
+
+	@Override
+	protected void processWindowEvent(WindowEvent e) {
+		boolean flag = false;
+		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+			int result = MyOptionPane.showConfirmDialog(this, "是否放弃当前编辑？",
+					"确认提示", MyOptionPane.YES_NO_OPTION,
+					MyOptionPane.QUESTION_MESSAGE);
+			if (result == MyOptionPane.YES_OPTION) {
+				flag = true;
+				dispose();
+			}
+		}
+		if (flag) {
+			// 点击的了YES,那么交给上面去处理关闭的处理
+			super.processWindowEvent(e);
+		}
+	}
 
 }

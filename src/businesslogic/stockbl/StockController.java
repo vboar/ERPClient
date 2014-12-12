@@ -45,4 +45,10 @@ public class StockController implements StockBLService {
 		return null;
 	}
 
+	@Override
+	public String getDefaultPath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

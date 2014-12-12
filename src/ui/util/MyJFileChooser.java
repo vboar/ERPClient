@@ -1,36 +1,39 @@
 package ui.util;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import org.dom4j.Element;
+import javax.swing.filechooser.FileFilter;
 
 @SuppressWarnings("serial")
 public class MyJFileChooser extends JFileChooser {
 
-	private String defaultDisk;
-	
-	private String defaultName;
-	
-	public MyJFileChooser(Element ele){
-		this.setFileSelectionMode(JFileChooser.SAVE_DIALOG); 
-		this.setCurrentDirectory(new File(defaultDisk));
-	//	this.setDefaultLocale(l);
-		this.defaultDisk = ele.attributeValue("defaultDisk");
-		this.defaultName = ele.attributeValue("defaultName");
+	private ArrayList<String> list;
+
+	public MyJFileChooser() {
+		list = new ArrayList<String>();
+		list.add("xls");
+		list.add("xlsx");
+		this.setFileFilter(new FileFilter() {
+			@Override
+			public boolean accept(File f) {
+				if (f.isDirectory())
+					return true;
+				String name = f.getName();
+				int p = name.lastIndexOf('.');
+				if (p == -1)
+					return false;
+				String suffix = name.substring(p + 1).toLowerCase();
+				return list.contains(suffix);
+			}
+
+			@Override
+			public String getDescription() {
+				return "excel files";
+			}
+		});
+		this.setSelectedFile(new File(".xls"));
 	}
-	
-	public MyJFileChooser(){
-		this.setFileSelectionMode(JFileChooser.SAVE_DIALOG); 
-		this.setCurrentDirectory(new File("d:/"));
-		this.setSelectedFile(new File("20141205"));
-		this.setFileFilter(new FileNameExtensionFilter(".xls",".xls"));
-	}
-	
-	public String getPath(){
-		return null;
-	}
-	
+
 }

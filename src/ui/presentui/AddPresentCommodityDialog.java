@@ -9,8 +9,10 @@ import vo.CommodityVO;
 import vo.PresentLineItemVO;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -139,6 +141,10 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 					if(result==MyOptionPane.YES_OPTION){
 						try{
 							int num = Integer.parseInt(numberTxt.getText());
+							if(num>addCommodityVO.number){
+								MyOptionPane.showMessageDialog(frame, "库存不足，该商品库存"+addCommodityVO.number+"件。");
+								return;
+							}
 							if(num<=0){
 								throw new NumberFormatException();
 							}
@@ -204,6 +210,25 @@ public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 			return result;
 		}
 		return null;
+	}
+	
+
+	@Override
+	protected void processWindowEvent(WindowEvent e) {
+		boolean flag = false;
+		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+			int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？",
+					"确认提示", MyOptionPane.YES_NO_OPTION,
+					MyOptionPane.QUESTION_MESSAGE);
+			if (result == MyOptionPane.YES_OPTION) {
+				flag = true;
+				dispose();
+			}
+		}
+		if (flag) {
+			// 点击的了YES,那么交给上面去处理关闭的处理
+			super.processWindowEvent(e);
+		}
 	}
 
 }

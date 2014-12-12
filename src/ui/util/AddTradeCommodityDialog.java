@@ -148,6 +148,10 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 					if(num<=0||price<0){
 						throw new NumberFormatException();
 					}
+					if(num>addCommodityVO.number){
+						MyOptionPane.showMessageDialog(frame, "库存不足，该商品库存"+addCommodityVO.number+"件。");
+						return;
+					}
 					String info = commodityTxt.getText();
 					String remark = remarkTxt.getText();
 					// 创建赠品信息

@@ -8,10 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.stockblservice.StockBLService;
 import ui.util.DatePickerGroup;
+import ui.util.ExcelSaver;
 import ui.util.MyButton;
-import ui.util.MyJFileChooser;
 import ui.util.MyLabel;
+import ui.util.SavePathDialog;
+import util.ResultMessage;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
@@ -22,7 +26,7 @@ import config.TableConfig;
  * @date 2014/12/2
  */
 @SuppressWarnings("serial")
-public class StockCheckPanel extends JPanel {
+public class StockCheckPanel extends JPanel implements ExcelSaver {
 
 	private MyButton createExcel;
 	
@@ -32,16 +36,17 @@ public class StockCheckPanel extends JPanel {
 	
 	private StockCheckTablePane tablepane;
 	
-	private MyJFileChooser filesaver;
-	
 	private PanelConfig cfg;
 	
 	private Image bg;
 	
 	private JFrame frame;
 	
+	private StockBLService controller;
+	
     public StockCheckPanel(JFrame frame) {
     	this.frame = frame;
+    	this.controller = ControllerFactoryImpl.getInstance().getStockController();
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.setSize(cfg.getW(), cfg.getH());
 		this.setLocation(cfg.getX(), cfg.getY());
@@ -57,7 +62,6 @@ public class StockCheckPanel extends JPanel {
 	}
     
 	private void initComponent() {
-		this.filesaver = new MyJFileChooser();
 		this.tablepane = new StockCheckTablePane(new TableConfig(this.cfg.getTablepane()));
 		this.add(this.tablepane);
 		this.date = new DatePickerGroup(this.cfg.getDatepicker().element("date"));
@@ -84,7 +88,7 @@ public class StockCheckPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				filesaver.showSaveDialog(null);
+				new SavePathDialog(frame, StockCheckPanel.this);
 			}
 		});
 		this.add(this.createExcel);
@@ -93,6 +97,16 @@ public class StockCheckPanel extends JPanel {
 	public void exportExcel() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ResultMessage setSavePath(String path) {
+		return controller.exportExcel(path);
+	}
+
+	@Override
+	public String getDefaultPath() {
+		return controller.getDefaultPath();
 	}
 
 }

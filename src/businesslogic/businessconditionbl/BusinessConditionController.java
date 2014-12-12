@@ -19,4 +19,10 @@ public class BusinessConditionController implements BusinessConditionBLService {
 		return null;
 	}
 
+	@Override
+	public String getDefaultPath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

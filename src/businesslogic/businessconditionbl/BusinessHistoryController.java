@@ -80,4 +80,10 @@ public class BusinessHistoryController implements HistoryBLService {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
+	public String getDefaultPath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

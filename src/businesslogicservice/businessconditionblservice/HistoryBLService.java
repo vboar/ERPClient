@@ -93,4 +93,10 @@ public interface HistoryBLService {
 	 * @return
 	 */
 	public ResultMessage exportExcel(String path);
+	
+	/**
+	 * 获取导出文件默认路径
+	 * @return
+	 */
+	public String getDefaultPath();
 }

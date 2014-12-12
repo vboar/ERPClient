@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.util.MyButton;
+import ui.util.MyLabel;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -72,6 +73,7 @@ public class ExceptionPanel extends JPanel {
      * 初始化组件
      */
 	private void initComponent() {
+		this.add(new MyLabel(cfg.getLabels().element("title")));
 		// 显示报溢单按钮
 		this.overListShow = new MyButton(this.cfg.getButtons().element("overlist"));
 		this.overListShow.addActionListener(new ActionListener() {

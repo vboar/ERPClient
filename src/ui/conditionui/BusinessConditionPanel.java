@@ -10,10 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ui.util.DatePickerGroup;
+import ui.util.ExcelSaver;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import ui.util.SavePathDialog;
+import util.ResultMessage;
 import vo.BusinessConditionVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
@@ -22,7 +25,7 @@ import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class BusinessConditionPanel extends JPanel {
+public class BusinessConditionPanel extends JPanel implements ExcelSaver{
 
 	private CostTable cost;
 
@@ -93,8 +96,7 @@ public class BusinessConditionPanel extends JPanel {
 		this.export.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 导出
-
+				new SavePathDialog(frame, BusinessConditionPanel.this);
 			}
 		});
 		this.add(export);
@@ -122,6 +124,16 @@ public class BusinessConditionPanel extends JPanel {
 		} else {
 			MyOptionPane.showMessageDialog(frame, "抱歉，未找到相关信息！");
 		}
+	}
+
+	@Override
+	public ResultMessage setSavePath(String path) {
+		return controller.exportExcel(path);
+	}
+
+	@Override
+	public String getDefaultPath() {
+		return controller.getDefaultPath();
 	}
 
 }

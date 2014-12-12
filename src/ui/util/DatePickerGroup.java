@@ -1,5 +1,6 @@
 package ui.util;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -39,6 +40,7 @@ public class DatePickerGroup extends JLabel{
 				dp.start(text);
 			};
 		});
+		this.btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		text.setBounds(Integer.parseInt(textcfg.attributeValue("x")),
 				Integer.parseInt(textcfg.attributeValue("y")),
 				Integer.parseInt(textcfg.attributeValue("w")),
