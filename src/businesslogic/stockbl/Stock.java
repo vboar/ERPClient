@@ -182,12 +182,17 @@ public class Stock {
 	}
 
 	private String createBatchNumber(){
-		ArrayList<StockVO> voList=showCheck();
-		if(voList.isEmpty()){
+		ArrayList<StockPO> poList=null;
+		try {
+			poList = DataFactoryImpl.getInstance().getStockData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		if(poList.isEmpty()){
 			return "00001";
 		}
-		String old=voList.get(voList.size()-1).batchNumber;
-		String oldBatch=voList.get(voList.size()-1).batch;
+		String old=poList.get(poList.size()-1).getBatchNumber();
+		String oldBatch=poList.get(poList.size()-1).getBatch();
 		String batch=null;
 		Date date = new Date();
 		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");

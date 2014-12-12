@@ -468,6 +468,25 @@ public class Sale {
 	
 	public SaleVO calAfterPrice(String customerGiftId, String totalGiftId,
 			SaleVO vo) {
+		if(customerGiftId==null&&totalGiftId==null){
+			vo.remark+="没有促销策略";
+			return vo;
+		}if(customerGiftId==null){
+			TotalGiftVO totalVO=new TotalGiftPromotion().getById(totalGiftId);
+			vo.voucher=totalVO.voucher;
+			vo.giftList=totalVO.giftInfo;
+			vo.remark+="$使用id是"+totalGiftId+"的基于总价的促销策略";
+			return vo;
+		}
+		if(totalGiftId==null){
+			CustomerGiftVO cusVO=new CustomerGiftPromotion().getById(customerGiftId);
+			vo.voucher=cusVO.voucher;
+			vo.discount=cusVO.discount;
+			vo.totalAfterDiscount=vo.totalBeforeDiscount*vo.discount;
+			vo.giftList=cusVO.giftInfo;
+			vo.remark+="$使用id是"+customerGiftId+"的vip促销策略";
+			return vo;
+		}
 		CustomerGiftVO cusVO=new CustomerGiftPromotion().getById(customerGiftId);
 		TotalGiftVO totalVO=new TotalGiftPromotion().getById(totalGiftId);
 		vo.voucher=cusVO.voucher+totalVO.voucher;

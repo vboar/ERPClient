@@ -24,7 +24,7 @@ public class PresentController implements PresentBLService {
 
 	@Override
 	public ArrayList<PresentVO> show(String time1, String time2) {
-		return present.show();
+		return present.findByTime(time1, time2);
 	}
 
 	@Override
