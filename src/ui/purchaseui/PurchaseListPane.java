@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PurchaseVO;
@@ -121,6 +122,18 @@ public class PurchaseListPane extends TablePanel{
 		this.dtm.setDataVector(data, columnNames);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 		this.updateUI();
+	}
+	
+	public void showFindOne(PurchaseVO vo){
+		if(vo!=null){
+			this.data = new Object[1][COLUMN_NUM];
+			this.createRow(data[0], vo);
+			this.dtm.setDataVector(data, columnNames);
+			FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+			this.updateUI();
+		}else{
+			MyOptionPane.showMessageDialog(PurchaseListPane.this, "未找到单据！");
+		}
 	}
 
 }

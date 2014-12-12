@@ -1,7 +1,10 @@
 package ui.saleui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +12,7 @@ import javax.swing.JPanel;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import ui.util.MyTextField;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.SaleVO;
@@ -24,6 +28,8 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 	private SaleListPane tablepane;
 	
 	private MyLabel tip;
+	
+	private MyTextField findTxt;
 	
 	private MyButton create;
 	
@@ -110,9 +116,22 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 		this.find.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 根据id精确查找销售单
+				//TODO 销售单精确查找
 			}
 		});
 		this.add(find);
+		this.findTxt = new MyTextField(cfg.getTextFields().element("find"));
+		this.findTxt.setText("请输入单据编号");
+		this.findTxt.setForeground(new Color(120,120,120));
+		this.findTxt.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				if(e.getSource()==findTxt){
+					findTxt.setText("");
+					findTxt.setForeground(new Color(40,40,40));
+				}
+			}		
+		});
+		this.add(findTxt);
 	}
 }

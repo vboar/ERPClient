@@ -15,8 +15,6 @@ import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import vo.ClauseLineItemVO;
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.paymentblservice.CashBLService;
 import config.DialogConfig;
 
 /**
@@ -42,12 +40,9 @@ public class AddCashDialog extends JDialog {
 
     private ClauseLineItemVO vo;
 
-    private CashBLService controller;
-
     public AddCashDialog(DialogConfig cfg, JFrame frame, CreateCashPanel panel) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
-        controller = ControllerFactoryImpl.getInstance().getCashController();
         this.cfg = cfg;
         this.panel = panel;
         this.setSize(this.cfg.getW(), this.cfg.getH());

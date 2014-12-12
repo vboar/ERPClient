@@ -474,12 +474,12 @@
 				<find text="查询" w="60" h="30" x="680" y="5" />
 			</buttons>
 			<datepicker>
-				<start w="200" h="25" x="400" y="7">
+				<start w="125" h="25" x="355" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="200" h="25" x="560" y="7">
+				<end w="125" h="25" x="545" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
@@ -487,8 +487,8 @@
 			</datepicker>
 			<labels>
 				<list text="销售单列表" w="120" h="30" x="160" y="5" />
-				<start text="起始日" w="60" h="30" x="360" y="5" />
-				<end text="截止日" w="60" h="30" x="520" y="5" />
+				<start text="起始日期" w="80" h="30" x="300" y="5" />
+				<end text="截止日期" w="80" h="30" x="490" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.SaleListPane" width="730"
 				height="340" x="10" y="40">
@@ -568,12 +568,12 @@
 				<find text="查询" w="60" h="30" x="680" y="5" />
 			</buttons>
 			<datepicker>
-				<start w="200" h="25" x="400" y="7">
+				<start w="125" h="25" x="355" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="200" h="25" x="560" y="7">
+				<end w="125" h="25" x="545" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
@@ -581,8 +581,8 @@
 			</datepicker>
 			<labels>
 				<list text="销售退货单列表" w="120" h="30" x="180" y="5" />
-				<start text="起始日" w="60" h="30" x="360" y="5" />
-				<end text="截止日" w="60" h="30" x="520" y="5" />
+				<start text="起始日期" w="80" h="30" x="300" y="5" />
+				<end text="截止日期" w="80" h="30" x="490" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.SaleListPane" width="730"
 				height="340" x="10" y="40">
@@ -617,6 +617,9 @@
 					fontsize="20" color="true" r="40" g="40" b="40" />
 				<tip text="请从下列销售单列表中选择一个创建对应退货单" w="300" h="30" x="150" y="5" />
 			</labels>
+			<textfields>
+				<find w="160" h="30" x="490" y="5" />
+			</textfields>
 			<tablepane className="ui.saleui.SaleListPane" width="730"
 				height="350" x="10" y="40">
 				<columnnames>
@@ -648,26 +651,26 @@
 		<panel className="ui.purchaseui.PurchasePanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<createpurchase text="创建进货单" w="140" h="30" x="20" y="5" />
+				<createpurchase text="创建进货单" w="120" h="30" x="20" y="5" />
 				<show text="显示所有" w="80" h="30" x="660" y="390" />
 				<find text="查询" w="60" h="30" x="680" y="5" />
 			</buttons>
 			<datepicker>
-				<start w="200" h="25" x="400" y="7">
+				<start w="125" h="25" x="355" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="200" h="25" x="560" y="7">
+				<end w="125" h="25" x="545" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
 			<labels>
-				<list text="进货单列表" w="120" h="30" x="180" y="5" />
-				<start text="起始日" w="60" h="30" x="360" y="5" />
-				<end text="截止日" w="60" h="30" x="520" y="5" />
+				<list text="进货单列表" w="120" h="30" x="160" y="5" />
+				<start text="起始日期" w="80" h="30" x="300" y="5" />
+				<end text="截止日期" w="80" h="30" x="490" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
 				height="340" x="10" y="40">
@@ -734,12 +737,12 @@
 				<find text="查询" w="60" h="30" x="680" y="5" />
 			</buttons>
 			<datepicker>
-				<start w="200" h="25" x="400" y="7">
+				<start w="125" h="25" x="355" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="200" h="25" x="560" y="7">
+				<end w="125" h="25" x="545" y="7">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
@@ -747,8 +750,8 @@
 			</datepicker>
 			<labels>
 				<list text="进货退货单列表" w="120" h="30" x="180" y="5" />
-				<start text="起始日" w="60" h="30" x="360" y="5" />
-				<end text="截止日" w="60" h="30" x="520" y="5" />
+				<start text="起始日期" w="80" h="30" x="300" y="5" />
+				<end text="截止日期" w="80" h="30" x="490" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
 				height="380" x="10" y="40">
@@ -775,13 +778,16 @@
 				<show text="显示全部进货单" w="140" h="30" x="440" y="395" />
 				<find text="查询" w="60" h="30" x="660" y="5" />
 			</buttons>
+			<textfields>
+				<find w="160" h="30" x="490" y="5" />
+			</textfields>
 			<labels>
 				<list text="进货单列表" w="120" h="30" x="20" y="5" font="微软雅黑"
 					fontsize="20" color="true" r="40" g="40" b="40" />
 				<tip text="请从下列进货单列表中选择一个创建对应退货单" w="300" h="30" x="150" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
-				height="300" x="10" y="40">
+				height="350" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
@@ -850,7 +856,7 @@
 				<show text="单据查看" w="150" h="30" x="20" y="40" />
 			</buttons>
 			<labels>
-				<title text="收付款" w="120" h="32" x="10" y="5" />
+				<title text="收付款" w="120" h="32" x="10" y="2" />
 			</labels>
 		</panel>
 
@@ -860,17 +866,17 @@
 			<labels>
 				<documenttype text="单据类型" w="60" h="30" x="20" y="20" />
 				<starttime text="起始日期" w="60" h="30" x="215" y="20" />
-				<endtime text="截止日期" w="60" h="30" x="390" y="20" />
+				<endtime text="截止日期" w="60" h="30" x="400" y="20" />
 			</labels>
 			<datepicker>
-				<starttime w="200" h="30" x="275" y="20">
-					<text w="100" h="25" x="0" y="0" />
-					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+				<starttime w="105" h="30" x="275" y="20">
+					<text w="80" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="80" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</starttime>
-				<endtime w="200" h="30" x="450" y="20">
-					<text w="100" h="25" x="0" y="0" />
-					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+				<endtime w="105" h="30" x="460" y="20">
+					<text w="80" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="80" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</endtime>
 			</datepicker>
@@ -882,8 +888,8 @@
 				</documenttype>
 			</comboboxes>
 			<buttons>
-				<find text="查询" w="60" h="30" x="565" y="20" />
-				<show text="查看所有" w="90" h="30" x="640" y="20" />
+				<find text="查询" w="60" h="30" x="585" y="20" />
+				<show text="查看所有" w="80" h="30" x="660" y="20" />
 			</buttons>
 			<tables>
 				<payment className="ui.paymentui.ShowPaymentTable" width="730"
@@ -926,10 +932,8 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<customeridlab text="" w="180"
-					h="35" x="170" y="80" />
-				<customernamelab text="" w="180"
-					h="35" x="400" y="80" />
+				<customeridlab text="" w="180" h="35" x="170" y="80" />
+				<customernamelab text="" w="180" h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
 			</labels>
 			<textfields>
@@ -958,10 +962,8 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<customeridlab text="" w="180"
-					h="35" x="170" y="80" />
-				<customernamelab text="" w="180"
-					h="35" x="400" y="80" />
+				<customeridlab text="" w="180" h="35" x="170" y="80" />
+				<customernamelab text="" w="180" h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
 			</labels>
 			<textfields>
@@ -977,10 +979,8 @@
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
 				<tip text="请输入客户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
 					fontsize="12" color="true" r="255" g="100" b="10" />
-				<customeridlab text="" w="180"
-					h="35" x="100" y="88" />
-				<customernamelab text="" w="180"
-					h="35" x="370" y="88" />
+				<customeridlab text="" w="180" h="35" x="100" y="88" />
+				<customernamelab text="" w="180" h="35" x="370" y="88" />
 			</labels>
 			<textfields>
 				<customerfind w="240" h="30" x="380" y="50" />
@@ -1008,10 +1008,8 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<accountidlab text="" w="180" h="35"
-					x="170" y="80" />
-				<accountnamelab text="" w="180"
-					h="35" x="400" y="80" />
+				<accountidlab text="" w="180" h="35" x="170" y="80" />
+				<accountnamelab text="" w="180" h="35" x="400" y="80" />
 				<operatorlab text="" w="120" h="30" x="640" y="80" />
 				<totallab text="总额" w="120" h="30" x="581" y="306" />
 			</labels>
@@ -1028,10 +1026,8 @@
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
 				<tip text="请输入账户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
 					fontsize="12" color="true" r="255" g="100" b="10" />
-				<accountidlab text="" w="180"
-					h="35" x="100" y="88" />
-				<accountnamelab text="" w="180"
-					h="35" x="370" y="88" />
+				<accountidlab text="" w="180" h="35" x="100" y="88" />
+				<accountnamelab text="" w="180" h="35" x="370" y="88" />
 			</labels>
 			<textfields>
 				<accountfind w="240" h="30" x="380" y="50" />
@@ -1251,14 +1247,14 @@
 					fontsize="20" color="true" r="251" g="144" b="19" />
 			</labels>
 			<datepicker>
-				<start w="120" h="25" x="365" y="10">
-					<text w="100" h="25" x="0" y="0" />
-					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+				<start w="105" h="25" x="265" y="10">
+					<text w="80" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="80" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="120" h="25" x="365" y="10">
-					<text w="100" h="25" x="0" y="0" />
-					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
+				<end w="105" h="25" x="475" y="10">
+					<text w="80" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="80" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>
@@ -1298,12 +1294,12 @@
 				<show text="查看所有" w="80" h="30" x="650" y="42" />
 			</buttons>
 			<datepicker>
-				<start w="120" h="30" x="230" y="42">
+				<start w="125" h="25" x="230" y="44">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="120" h="30" x="420" y="42">
+				<end w="125" h="25" x="420" y="44">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
@@ -2067,7 +2063,8 @@
 	</approvalpresentdialog>
 
 	<!-- 导出文件对话框 -->
-	<saverdialog width="620" height="200" x="240" y="180" title="导出Excel">
+	<saverdialog width="620" height="200" x="240" y="180"
+		title="导出Excel">
 		<buttons>
 			<default text="默认路径" w="100" h="30" x="20" y="20" />
 			<own text="自定义路径" w="100" h="30" x="20" y="60" />
@@ -2078,7 +2075,7 @@
 		<textfields>
 			<default w="380" h="30" x="120" y="20" />
 			<own w="380" h="30" x="120" y="60" />
-		</textfields>		
+		</textfields>
 	</saverdialog>
 
 </erp>

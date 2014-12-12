@@ -3,17 +3,20 @@ package ui.logui;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.logblservice.LogBLService;
 import config.TableConfig;
+import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.LogVO;
 
 import javax.swing.table.DefaultTableModel;
+
 import java.util.ArrayList;
 
 /**
  * 系统日志查询表格
  * Created by Vboar on 2014/12/8.
  */
+@SuppressWarnings("serial")
 public class LogTable extends TablePanel {
 
     private String[] columnName;
@@ -47,6 +50,11 @@ public class LogTable extends TablePanel {
             }
         };
         this.table = new MyTable(this.dtm, this.getWidth());
+        this.table.getColumnModel().getColumn(0).setMinWidth(180);
+        this.table.getColumnModel().getColumn(1).setMinWidth(160);
+        this.table.getColumnModel().getColumn(2).setMinWidth(this.getWidth()-280);
+        FrameUtil.setTableColumnWidth(table, this.getWidth(), 20);
+        this.table.updateUI();
     }
 
     private void initData(ArrayList<LogVO> list) {

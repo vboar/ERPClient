@@ -19,7 +19,6 @@ import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
 import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.logblservice.LogBLService;
 import businesslogicservice.userblservice.UserBLService;
 import config.ERPConfig;
 import config.PanelConfig;
@@ -42,8 +41,6 @@ public class LogPanel extends JPanel implements FuzzySearch {
 
     private JFrame frame;
 
-    private LogBLService controller;
-
     private UserBLService userController;
 
     private PanelConfig pcfg;
@@ -55,7 +52,6 @@ public class LogPanel extends JPanel implements FuzzySearch {
 
     public LogPanel(JFrame frame) {
         this.frame = frame;
-        controller = ControllerFactoryImpl.getInstance().getLogController();
         userController = ControllerFactoryImpl.getInstance().getUserController();
         this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
         this.setSize(pcfg.getW(), pcfg.getH());
