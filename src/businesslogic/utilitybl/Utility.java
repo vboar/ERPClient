@@ -164,6 +164,14 @@ public static ArrayList<PresentLineItemPO> presentVOListToPOlist(ArrayList<Prese
 	return poList;
 }
 
+public static String getCurrentTime(){
+	Date date=new Date();
+	SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	String time=myFmt.format(date);
+
+	return time;
+}
+
 
 
 

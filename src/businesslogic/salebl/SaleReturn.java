@@ -19,6 +19,7 @@ import vo.PresentLineItemVO;
 import vo.PresentVO;
 import vo.SaleVO;
 import businesslogic.presentbl.Present;
+import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class SaleReturn {
@@ -85,6 +86,13 @@ public class SaleReturn {
 	
 	
 	public ArrayList<SaleVO> findByTime(String time1, String time2){
+		if(time1.equals("")){
+			time1="1970/1/1 00:00:00";
+		}
+		if(time2.equals("")){
+			time2=Utility.getCurrentTime();
+		}
+
 		ArrayList<SalePO> poList=null;
 		
 		try {
