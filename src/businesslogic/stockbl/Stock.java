@@ -16,6 +16,7 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 import po.StockPO;
 import util.DocumentStatus;
 import util.DocumentType;
+import util.ResultMessage;
 import vo.*;
 
 import java.rmi.RemoteException;
@@ -246,6 +247,34 @@ public class Stock {
 		}
 		return stockList;
 	}
+	public ArrayList<StockVO> findByDate(String batch, String batchNumber) {
+		ArrayList<StockVO> voList=new ArrayList<StockVO>();
+		ArrayList<StockPO> poList=new ArrayList<StockPO>();
+		try {
+		 poList=DataFactoryImpl.getInstance().getStockData().findByDate(batch, batchNumber);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for(StockPO po:poList){
+			StockVO vo=poToVO(po);
+			voList.add(vo);
+		}
+		
+		return voList;
+		
+	}
+	
+	public ResultMessage exportExcel(String path,String time) {
+		 String batch=time.replace("/", "");
+		 ArrayList<StockVO> voList=findByDate(batch, "00001");
+		 try {
+			ExportStockPO.export(voList, path);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.SUCCESS;
+	}
 	
 	
 	
@@ -261,5 +290,16 @@ public class Stock {
 		return po;
 	}
 	
+	private StockVO poToVO(StockPO po){
+		String commodityId=po.getCommodityId();
+		String commodityName=po.getCommodityName();
+		String commodityModel=po.getCommodityModel();
+		int number=po.getNumber();
+		double avgPrice=po.getAvgPrice();
+		String batch=po.getBatch();
+		String batchNumber=po.getBatchNumber();
+		StockVO vo=new StockVO(commodityId, commodityName, commodityModel, number, avgPrice, batch, batchNumber);
+		return vo;
+	}
 
 }
