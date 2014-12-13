@@ -208,7 +208,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		this.addBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddTradeCommodityDialog(CreateSalePanel.this,frame);
+				new AddTradeCommodityDialog(CreateSalePanel.this,frame,false);
 			}
 		});
 		// 删除商品按钮

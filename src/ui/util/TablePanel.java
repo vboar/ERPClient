@@ -25,7 +25,9 @@ public abstract class TablePanel extends JPanel{
 		this.setLocation(cfg.getX(), cfg.getY());
 		this.setOpaque(false);
 	}
-
+	
+	public TablePanel(){}
+	
 	protected abstract void initTable();
 	
 	protected void initComponent() {

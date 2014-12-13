@@ -158,7 +158,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		this.addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddTradeCommodityDialog(CreatePurchasePanel.this, frame);
+				new AddTradeCommodityDialog(CreatePurchasePanel.this, frame,true);
 			}
 		});
 		// 删除商品按钮
