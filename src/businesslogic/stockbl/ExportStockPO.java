@@ -1,7 +1,7 @@
 package businesslogic.stockbl;
 
 import java.io.FileOutputStream;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -31,7 +31,7 @@ public class ExportStockPO  {
 //    }  
 //  
 
-	public static void export(List<StockVO> voList,String path)throws Exception  {  
+	public static void export(ArrayList<StockVO> voList,String path)throws Exception  {  
         // 第一步，创建一个webbook，对应一个Excel文件  
         HSSFWorkbook wb = new HSSFWorkbook();  
         // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet  
@@ -67,7 +67,8 @@ public class ExportStockPO  {
 
   
         // 第五步，写入实体数据 实际应用中这些数据从数据库得到，  
-        List<StockVO> list = voList;
+        ArrayList<StockVO> list = voList;
+        System.out.println("exportstockpobl 71:list.size "+list.size());
   
         for (int i = 0; i < list.size(); i++)  
         {  

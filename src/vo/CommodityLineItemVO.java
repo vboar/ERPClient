@@ -56,7 +56,7 @@ public class CommodityLineItemVO {
     	this.number=number;
     	this.price=price;
     	this.total=total;
-    	this.remark=remark;
+    	this.remark=" ";
     }
     
     public CommodityLineItemVO(String id, String name ,String model, int number){

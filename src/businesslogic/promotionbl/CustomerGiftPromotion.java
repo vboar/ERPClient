@@ -41,6 +41,7 @@ public class CustomerGiftPromotion {
 		if(!Utility.checkTime(vo.startTime, vo.endTime)){
 			return ResultMessage.TIME_ERROR;
 		}
+		
 		try {
 			DataFactoryImpl.getInstance().getCustomerGiftData().insert(po);
 		} catch (RemoteException e) {
