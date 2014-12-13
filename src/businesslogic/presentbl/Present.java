@@ -91,7 +91,7 @@ public class Present {
 	
 	public ResultMessage create(PresentVO vo) {
 		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/ HH:mm:ss");
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time=myFmt.format(date);
 		vo.time=time;
 		PresentPO po = voToPO(vo);
