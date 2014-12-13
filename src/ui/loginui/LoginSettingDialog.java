@@ -69,6 +69,7 @@ public class LoginSettingDialog extends JDialog {
                 if(result == MyOptionPane.YES_OPTION) {
                     DataFactoryImpl.address = addressTxt.getText();
                     DataFactoryImpl.port = portTxt.getText();
+                    dispose();
                 }
             }
         });

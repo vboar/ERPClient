@@ -66,12 +66,9 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 	}
 	
 	public static DataFactory getInstance() {
-		if(dataFactory == null) {
-			try {
-				dataFactory = (DataFactory) Naming.lookup("rmi://" + address + ":" + "/DataFactory");
-			} catch (MalformedURLException | RemoteException
-					| NotBoundException e) {
-			}
+		try {
+			dataFactory = (DataFactory) Naming.lookup("rmi://" + address + ":" + port + "/DataFactory");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 		}
 		return dataFactory;
 	}
