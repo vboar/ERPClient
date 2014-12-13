@@ -507,6 +507,7 @@
 					<columnname name="折让前总额" />
 					<columnname name="折让" />
 					<columnname name="折让后总额" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -601,6 +602,7 @@
 					<columnname name="折让前总额" />
 					<columnname name="折让" />
 					<columnname name="折让后总额" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -637,6 +639,7 @@
 					<columnname name="折让前总额" />
 					<columnname name="折让" />
 					<columnname name="折让后总额" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -686,6 +689,7 @@
 					<columnname name="入库商品列表" />
 					<columnname name="总额" />
 					<columnname name="备注" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -756,7 +760,7 @@
 				<end text="截止日期" w="80" h="30" x="490" y="5" />
 			</labels>
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
-				height="380" x="10" y="40">
+				height="350" x="10" y="40">
 				<columnnames>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
@@ -767,6 +771,7 @@
 					<columnname name="入库商品列表" />
 					<columnname name="总额" />
 					<columnname name="备注" />
+					<columnname name="单据状态" />
 				</columnnames>
 			</tablepane>
 		</panel>

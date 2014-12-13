@@ -57,7 +57,7 @@ public class SaleReturnPanel extends JPanel{
 		this.add(start);
 		this.add(end);
 		// 销售退货单列表
-		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),true);
+		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),true,false);
 		this.add(tablepane);
 		// 标签
 		this.add(new MyLabel(cfg.getLabels().element("start")));

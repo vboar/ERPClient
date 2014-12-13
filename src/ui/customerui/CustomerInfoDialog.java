@@ -46,6 +46,8 @@ public class CustomerInfoDialog extends JDialog {
 	
 	private CustomerPanel panel;
 	
+	private CustomerVO vo;
+	
 	private JFrame frame;
 	
 	private boolean isAdd;
@@ -68,6 +70,7 @@ public class CustomerInfoDialog extends JDialog {
 	public CustomerInfoDialog(DialogConfig cfg, JFrame frame, CustomerPanel panel, 
 			boolean isAdd, CustomerVO vo) {
 		this(cfg, frame, panel, isAdd);
+		this.vo = vo;
 		this.addressTxt.setText(vo.address);
 		this.creditLimitTxt.setText(Double.toString(vo.creditLimit));
 		this.emailTxt.setText(vo.email);
@@ -107,7 +110,9 @@ public class CustomerInfoDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				int category = categoryBox.getSelectedIndex();
 				int level = levelBox.getSelectedIndex();
-				String id = ControllerFactoryImpl.getInstance().getCustomerController().createId();
+				String id="";
+				if(!isAdd) id = vo.id;
+				else id = ControllerFactoryImpl.getInstance().getCustomerController().createId();
 				String name = nameTxt.getText();
 				String phoneNumber = phoneNumberTxt.getText();
 				String address = addressTxt.getText();

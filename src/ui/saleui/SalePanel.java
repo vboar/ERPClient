@@ -52,7 +52,7 @@ public class SalePanel extends JPanel {
 		this.add(start);
 		this.add(end);
 		// 销售单列表
-		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),false);
+		this.tablepane = new SaleListPane(new TableConfig(this.cfg.getTablepane()),false,false);
 		this.add(tablepane);
 		// 标签
 		this.add(new MyLabel(cfg.getLabels().element("start")));

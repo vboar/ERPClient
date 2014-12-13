@@ -63,7 +63,7 @@ public class AutoCreatePurchaseReturnPanel extends JPanel {
 
 	private void initComponent() {
 		// 销售单列表
-		this.tablepane = new PurchaseListPane(new TableConfig(this.cfg.getTablepane()),false);
+		this.tablepane = new PurchaseListPane(new TableConfig(this.cfg.getTablepane()),false,true);
 		this.add(tablepane);
 		// 提示标签
 		this.tip = new MyLabel(cfg.getLabels().element("tip"));

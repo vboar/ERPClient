@@ -38,38 +38,40 @@ public class SaleDetails {
 		for(int i=0;i<all.size();i++)
 			if(judgeTime(vo.time1,vo.time2,all.get(i).time)==false)
 				all.remove(i);
-		
-		if(vo.commodityName!=null){
+		if(!vo.commodityName.equals("")){
 			for(int i=0;i<all.size();i++){
 				ArrayList<CommodityLineItemVO> temp=all.get(i).saleList;
 				boolean isContain=false;
 				for(int j=0;j<temp.size();j++){				
-					if(temp.get(j).name==vo.commodityName)
+					if(temp.get(j).name.equals(vo.commodityName))
 						isContain=true;
 				}
 				if(isContain==false)
 					all.remove(i);
 			}
 		}
-		
+
+		System.out.println(all.size());
 		if(vo.customer!=null){
-			for(int i=0;i<all.size();i++)
-				if(all.get(i).customerName!=vo.customer)
+			for(int i=0;i<all.size();i++){
+				System.out.println(all.get(i).customerId);
+				System.out.println(vo.customer.equals(all.get(i).customerId));
+				if(!all.get(i).customerId.equals(vo.customer))
 					all.remove(i);
+			}
 		}
-		
+		System.out.println("after customer: "+all.size());
 		if(vo.operator!=null){
 			for(int i=0;i<all.size();i++)
-				if(all.get(i).operatorId!=vo.operator)
+				if(!all.get(i).operatorId.equals(vo.operator))
 					all.remove(i);
 		}
-		
 		if(vo.storage!=null){
-			for(int i=0;i<all.size();i++)
-				if(all.get(i).storage!=vo.storage)
+			for(int i=0;i<all.size();i++){
+				if(!all.get(i).storage.equals(vo.storage))
 					all.remove(i);
+			}
 		}
-
 		for(int i=0;i<all.size();i++){
 			ArrayList<CommodityLineItemVO> list=new ArrayList<CommodityLineItemVO>();
 			list=all.get(i).saleList;

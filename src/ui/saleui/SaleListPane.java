@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
+import util.DocumentStatus;
 import vo.SaleVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.saleblservice.SaleBLService;
@@ -18,7 +19,7 @@ public class SaleListPane extends TablePanel {
 
 	private String[] columnNames;
 
-	private static int COLUMN_NUM = 12;
+	private static int COLUMN_NUM = 13;
 
 	private Object[][] data;
 
@@ -28,8 +29,11 @@ public class SaleListPane extends TablePanel {
 
 	private SaleBLService saleCtrl;
 
-	public SaleListPane(TableConfig cfg, boolean isreturn) {
+	private boolean isCreate;
+	
+	public SaleListPane(TableConfig cfg, boolean isreturn, boolean isCreate) {
 		super(cfg);
+		this.isCreate = isCreate;
 		if (!isreturn) {
 			this.saleCtrl = ControllerFactoryImpl.getInstance()
 					.getSaleController();
@@ -57,7 +61,11 @@ public class SaleListPane extends TablePanel {
 	}
 
 	private void initData() {
-		list = saleCtrl.show();
+		if(isCreate){
+			list = saleCtrl.findByStatus(DocumentStatus.PASSED);
+		}else{
+			list = saleCtrl.show();
+		}
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for (int i = 0; i < list.size(); ++i) {
 			SaleVO temp = list.get(i);
@@ -78,6 +86,7 @@ public class SaleListPane extends TablePanel {
 		row[9] = vo.totalBeforeDiscount;
 		row[10] = vo.discount;
 		row[11] = vo.totalAfterDiscount;
+		row[12] = vo.approvalState.toReadableString();
 		return row;
 	}
 
@@ -123,6 +132,7 @@ public class SaleListPane extends TablePanel {
 			row.add(vo.totalBeforeDiscount);
 			row.add(vo.discount);
 			row.add(vo.totalAfterDiscount);
+			row.add(vo.approvalState.toReadableString());
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);

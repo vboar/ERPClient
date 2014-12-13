@@ -98,11 +98,13 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.customer = new MyComboBox(cfg.getComboboxes().element("client"));
 		ArrayList<CustomerVO> cutomerlist = ControllerFactoryImpl.getInstance().getCustomerController()
 				.fuzzyFind("");
+		this.customer.addItem("所有");
 		for(int j=0; j<cutomerlist.size();++j){
 			this.customer.addItem(cutomerlist.get(j).id+cutomerlist.get(j).name);
 		}	
 		// 添加业务员信息
 		this.salesman = new MyComboBox(cfg.getComboboxes().element("operator"));
+		this.salesman.addItem("所有");
 		ArrayList<UserVO> userlist =ControllerFactoryImpl.getInstance().getUserController()
 				.fuzzyFindOperator("");
 		for(int i=0; i<userlist.size();++i){
@@ -204,7 +206,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	public void showSale(RequirementVO vo, boolean isreturn){
 		removeAllPanel();
 		this.sales = new SaleListPane(
-				new TableConfig(cfg.getTables().element("sale")), isreturn);
+				new TableConfig(cfg.getTables().element("sale")), isreturn,false);
 		add(sales);
 		repaint();
 	}
@@ -212,7 +214,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	public void showPurchase(RequirementVO vo, boolean isreturn){
 		removeAllPanel();
 		this.purchase = new PurchaseListPane(
-				new TableConfig(cfg.getTables().element("purchase")), isreturn);
+				new TableConfig(cfg.getTables().element("purchase")), isreturn,false);
 		add(purchase);
 		repaint();
 	}

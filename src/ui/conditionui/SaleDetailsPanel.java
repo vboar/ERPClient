@@ -95,6 +95,7 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch, ExcelSaver 
 		this.storage = new MyComboBox(cfg.getComboboxes().element("store"));
 		// 添加客户信息
 		this.customer = new MyComboBox(cfg.getComboboxes().element("client"));
+		this.customer.addItem("所有");
 		ArrayList<CustomerVO> cutomerlist = ControllerFactoryImpl.getInstance().getCustomerController()
 				.fuzzyFind("");
 		for(int j=0; j<cutomerlist.size();++j){
@@ -102,6 +103,7 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch, ExcelSaver 
 		}	
 		// 添加业务员信息
 		this.salesman = new MyComboBox(cfg.getComboboxes().element("operator"));
+		this.salesman.addItem("所有");
 		ArrayList<UserVO> userlist =ControllerFactoryImpl.getInstance().getUserController()
 				.fuzzyFindOperator("");
 		for(int i=0; i<userlist.size();++i){
@@ -163,12 +165,11 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch, ExcelSaver 
 			vo.time1 = time1;
 			vo.time2 = time2;
 		}
-		if (salesman.getSelectedItem() != null)
-			vo.salesman = salesman.getSelectedItem().toString();
-		if (storage.getSelectedItem() != null)
-			vo.storage = storage.getSelectedItem().toString();
-		if (customer.getSelectedItem() != null)
-			vo.customer = this.customer.getSelectedItem().toString();
+		if(salesman.getSelectedItem().toString().equals("所有")) vo.salesman = null;
+		else vo.salesman = salesman.getSelectedItem().toString();
+		if(customer.getSelectedItem().toString().equals("所有")) vo.customer = null;
+		else vo.customer = this.customer.getSelectedItem().toString().substring(0,7);
+		vo.storage = storage.getSelectedItem().toString();
 		vo.commodityName = this.commodity.getText();
 		return vo;
 	}

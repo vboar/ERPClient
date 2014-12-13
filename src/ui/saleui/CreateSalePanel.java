@@ -159,6 +159,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		for(int i=0; i<list.size(); i++){
 			this.salesman.addItem(list.get(i).id);
 		}
+		this.salesman.setSelectedIndex(0);
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
 		this.add(salesman);
 		this.add(storage);
@@ -195,6 +196,12 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 						// 显示客户名和ID
 						customerIdLab.setText(customerVO.id);
 						customerNameLab.setText(customerVO.name);
+						for(int i=0; i<salesman.getItemCount();++i){
+							if(salesman.getItemAt(i).toString().equals(customerVO.salesman)){
+								salesman.setSelectedIndex(i);
+								break;
+							}
+						}
 						// 当前已添加客户
 						hasCustomer = true;
 					}else{

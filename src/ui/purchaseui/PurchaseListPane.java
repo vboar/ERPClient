@@ -9,6 +9,7 @@ import ui.util.FrameUtil;
 import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
+import util.DocumentStatus;
 import vo.PurchaseVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.purchaseblservice.PurchaseBLService;
@@ -19,7 +20,7 @@ public class PurchaseListPane extends TablePanel{
 
 	private String[] columnNames;
 
-	private static int COLUMN_NUM = 9;
+	private static int COLUMN_NUM = 10;
 
 	private Object[][] data;
 
@@ -29,8 +30,11 @@ public class PurchaseListPane extends TablePanel{
 
 	private PurchaseBLService purchaseCtrl;
 	
-	public PurchaseListPane(TableConfig cfg,boolean isreturn) {
+	private boolean iscreate;
+	
+	public PurchaseListPane(TableConfig cfg,boolean isreturn,boolean iscreate) {
 		super(cfg);
+		this.iscreate = iscreate;
 		if(!isreturn){
 			this.purchaseCtrl = ControllerFactoryImpl.getInstance().getPurchaseController();
 		}else{
@@ -56,7 +60,8 @@ public class PurchaseListPane extends TablePanel{
 	}
 
 	private void initData() {
-		list = purchaseCtrl.show();
+		if(iscreate) list = purchaseCtrl.findByStatus(DocumentStatus.PASSED);
+		else list = purchaseCtrl.show();
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for(int i=0; i<list.size(); ++i){
 			PurchaseVO temp = list.get(i);	
@@ -74,6 +79,7 @@ public class PurchaseListPane extends TablePanel{
 		row[6]=vo.saleList;
 		row[7]=vo.total;
 		row[8]=vo.remark;
+		row[9]=vo.documentStatus.toReadableString();
 		return row;
 	}
 
@@ -109,6 +115,7 @@ public class PurchaseListPane extends TablePanel{
 			row.add(vo.saleList);
 			row.add(vo.total);
 			row.add(vo.remark);
+			row.add(vo.documentStatus.toReadableString());
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);

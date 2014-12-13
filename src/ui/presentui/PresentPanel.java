@@ -37,6 +37,8 @@ public class PresentPanel extends JPanel {
 	
 	private PanelConfig pcfg;
 	
+	private boolean islist = true;
+	
 	public PresentPanel(JFrame frame){
 		this.frame = frame;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -77,8 +79,8 @@ public class PresentPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listpanel.udpateData();
-				if(createPanel!=null){
+				listpanel.udpateData(); 
+				if(!islist){
 					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
 							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
@@ -92,12 +94,14 @@ public class PresentPanel extends JPanel {
 
 	public void showCreate() {
 		remove(listpanel);
+		this.islist = false;
 		createPanel = new CreatePresentPanel(frame,this);
 		add(createPanel);
 		repaint();
 	}
 
 	public void showList() {
+		this.islist = true;
 		remove(createPanel);
 		listpanel = new ShowPanel();
 		add(listpanel);

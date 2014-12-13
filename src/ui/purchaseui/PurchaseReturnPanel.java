@@ -57,7 +57,7 @@ public class PurchaseReturnPanel extends JPanel{
 		this.add(start);
 		this.add(end);
 		// 进货退货单列表
-		this.tablepane = new PurchaseListPane(new TableConfig(this.cfg.getTablepane()),true);
+		this.tablepane = new PurchaseListPane(new TableConfig(this.cfg.getTablepane()),true,false);
 		this.add(tablepane);
 		this.add(new MyLabel(cfg.getLabels().element("start")));
 		this.add(new MyLabel(cfg.getLabels().element("end")));

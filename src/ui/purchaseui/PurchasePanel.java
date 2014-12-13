@@ -51,7 +51,7 @@ public class PurchasePanel extends JPanel{
 		this.end = new DatePickerGroup(cfg.getDatepicker().element("end"));
 		this.add(start);
 		this.add(end);
-		this.tablepane = new PurchaseListPane(new TableConfig(cfg.getTablepane()),false);
+		this.tablepane = new PurchaseListPane(new TableConfig(cfg.getTablepane()),false,false);
 		this.add(tablepane);
 		this.add(new MyLabel(cfg.getLabels().element("start")));
 		this.add(new MyLabel(cfg.getLabels().element("end")));
