@@ -1566,6 +1566,22 @@
 		</panel>
 	</frame>
 
+	<!-- 登录设置对话框 -->
+	<loginsettingdialog width="300" height="200" x="100"
+						y="100" title="设置">
+		<buttons>
+			<commit text="确定" w="80" h="30" x="100" y="120" />
+			<cancel text="取消" w="80" h="30" x="190" y="120" />
+		</buttons>
+		<labels>
+			<address text="IP地址" w="50" h="30" x="20" y="20" />
+			<port text="端口" w="50" h="30" x="20" y="70" />
+		</labels>
+		<textfields>
+			<address w="150" h="30" x="70" y="20" />
+			<port w="150" h="30" x="70" y="70" />
+		</textfields>
+	</loginsettingdialog>
 
 	<!-- 商品分类信息对话框 -->
 	<categoryinfodialog width="480" height="165" x="230"
