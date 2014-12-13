@@ -6,7 +6,9 @@
 
 package businesslogic.stockbl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import util.ResultMessage;
 import vo.StockInfoVO;
@@ -47,8 +49,11 @@ public class StockController implements StockBLService {
 
 	@Override
 	public String getDefaultPath() {
-		// TODO Auto-generated method stub
-		return null;
+		String batch=null;
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		batch = "库存查看"+myFmt.format(date)+".xsl";
+		return batch;
 	}
 
 }

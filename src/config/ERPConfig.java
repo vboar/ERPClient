@@ -46,6 +46,8 @@ public class ERPConfig {
 	private static DialogConfig ADDPURCHASE_DIALOG_CONFIG = null;
 	
 	private static DialogConfig SAVER_DIALOG_CONFIG = null;
+
+	private static DialogConfig LOGINSETTING_DIALOG_CONFIG =null;
 	
 	static{
 		try {
@@ -90,6 +92,7 @@ public class ERPConfig {
 			CHOOSEPROMOTION_DIALOG_CONFIG = new DialogConfig(erp.element("choosepromotiondialog"));
 			ADDPURCHASE_DIALOG_CONFIG = new DialogConfig(erp.element("addpurchasedialog"));
 			SAVER_DIALOG_CONFIG = new DialogConfig(erp.element("saverdialog"));
+			LOGINSETTING_DIALOG_CONFIG = new DialogConfig(erp.element("loginsettingdialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -173,6 +176,10 @@ public class ERPConfig {
 
 	public static DialogConfig getSAVER_DIALOG_CONFIG() {
 		return SAVER_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getLOGINSETTING_DIALOG_CONFIG() {
+		return LOGINSETTING_DIALOG_CONFIG;
 	}
 
 }

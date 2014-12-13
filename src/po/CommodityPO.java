@@ -87,6 +87,7 @@ public class CommodityPO implements Serializable {
 		    this.id=id;
 		    this.name=name;
 		    this.model=model;
+			this.number=number;
 		    this.purchasePrice=purchasePrice;
 		    this.salePrice=salePrice;
 		    this.recentPurchasePrice=recentPurchasePrice;

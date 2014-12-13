@@ -39,17 +39,18 @@ public class WarningPO implements Serializable {
 	 * 无参构造
 	 */
 	public WarningPO() {}
-	
+
 	/**
 	 * 构造方法
 	 * @param id
 	 * @param time
 	 * @param list
-	 * @param type
+	 * @param documentType
 	 */
 	public WarningPO(String id, String time, ArrayList<WarningLineItemPO> list, int documentType) {
 		this.id = id;
 		this.time = time;
+		this.list = list;
 		this.documentType = documentType;
 	}
 

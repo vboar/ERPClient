@@ -91,7 +91,7 @@ public class Present {
 	
 	public ResultMessage create(PresentVO vo) {
 		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/");
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/ HH:mm:ss");
 		String time=myFmt.format(date);
 		vo.time=time;
 		PresentPO po = voToPO(vo);
@@ -167,6 +167,12 @@ public class Present {
 	}
 	
 	public ArrayList<PresentVO> findByTime(String time1,String time2){
+		if(time1.equals("")){
+			time1="1970/1/1 00:00:00";
+		}
+		if(time2.equals("")){
+			time2=Utility.getCurrentTime();
+		}
 		ArrayList<PresentPO> poList=null;
 	try {
 		poList=DataFactoryImpl.getInstance().getPresentData().findByTime(time1, time2);

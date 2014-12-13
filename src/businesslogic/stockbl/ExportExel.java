@@ -33,7 +33,7 @@ public class ExportExel
         return list;  
     }  
   
-    @SuppressWarnings("deprecation")
+
 	public static void main(String[] args) throws Exception  
     {  
         // 第一步，创建一个webbook，对应一个Excel文件  
@@ -46,16 +46,16 @@ public class ExportExel
         HSSFCellStyle style = wb.createCellStyle();  
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式  
   
-        HSSFCell cell = row.createCell((short) 0);  
+        HSSFCell cell = row.createCell(0);  
         cell.setCellValue("学号");  
         cell.setCellStyle(style);  
-        cell = row.createCell((short) 1);  
+        cell = row.createCell(1);  
         cell.setCellValue("姓名");  
         cell.setCellStyle(style);  
-        cell = row.createCell((short) 2);  
+        cell = row.createCell(2);  
         cell.setCellValue("年龄");  
         cell.setCellStyle(style);  
-        cell = row.createCell((short) 3);  
+        cell = row.createCell(3);  
         cell.setCellValue("生日");  
         cell.setCellStyle(style);  
   
@@ -67,10 +67,10 @@ public class ExportExel
             row = sheet.createRow((int) i + 1);  
             Student stu = (Student) list.get(i);  
             // 第四步，创建单元格，并设置值  
-            row.createCell((short) 0).setCellValue((double) stu.getId());  
-            row.createCell((short) 1).setCellValue(stu.getName());  
-            row.createCell((short) 2).setCellValue((double) stu.getAge());  
-            cell = row.createCell((short) 3);  
+            row.createCell(0).setCellValue((double) stu.getId());  
+            row.createCell(1).setCellValue(stu.getName());  
+            row.createCell(2).setCellValue((double) stu.getAge());  
+            cell = row.createCell(3);  
             cell.setCellValue(new SimpleDateFormat("yyyy-mm-dd").format(stu  
                     .getBirth()));  
         }  

@@ -39,6 +39,8 @@ public class LoginPanel extends JPanel{
 	private MyTextField idTxt;
 	
 	private JPasswordField passwordTxt;
+
+	private LoginSettingDialog loginSettingDialog;
 	
 	private Image bg;
 	
@@ -154,6 +156,14 @@ public class LoginPanel extends JPanel{
 
 	private void initSetBtn(PanelConfig cfg){
 		this.setBtn = new MyButton(cfg.getButtons().element("setting"));
+		setBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loginSettingDialog = new LoginSettingDialog(ERPConfig.getLOGINSETTING_DIALOG_CONFIG(),
+						frame, LoginPanel.this);
+				loginSettingDialog.setVisible(true);
+			}
+		});
 	}
 	
 	private void checkLogin(){

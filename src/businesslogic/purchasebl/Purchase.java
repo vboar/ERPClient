@@ -121,7 +121,7 @@ public class Purchase {
 
 	public ResultMessage add(PurchaseVO vo) {
 		Date date = new Date();
-		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time = myFmt.format(date);
 		vo.time = time;
 		vo.operatorId=Login.currentUserId;
@@ -162,6 +162,12 @@ public class Purchase {
 	}
 
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
+		if(time1.equals("")){
+			time1="1970/1/1 00:00:00";
+		}
+		if(time2.equals("")){
+			time2=Utility.getCurrentTime();
+		}
 		ArrayList<PurchasePO> poList = null;
 		try {
 			poList = DataFactoryImpl.getInstance().getPurchaseData()
