@@ -159,7 +159,6 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		for(int i=0; i<list.size(); i++){
 			this.salesman.addItem(list.get(i).id);
 		}
-		this.salesman.setSelectedIndex(0);
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
 		this.add(salesman);
 		this.add(storage);
@@ -280,7 +279,6 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 	 */
 	protected void showChoosePromotionDialog() {
 		// 获得可用优惠列表
-		System.out.println(customerVO.level+" "+totalPrice);
 		ArrayList<PromotionVO> vip = saleCtrl.calCustomerPromotion(customerVO.level);
 		ArrayList<PromotionVO> price = saleCtrl.calTotalGiftPromotion(totalPrice);
 		// 如果不为空，则显示选择对话框
@@ -328,7 +326,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 				saleVo.receiptType = DocumentType.SALE;
 				// 备注
 				String remark = this.remarkTxt.getArea().getText();
-				saleVo.remark = remark;
+				saleVo.remark = saleVo.remark + remark;
 				ResultMessage result = this.saleCtrl.add(saleVo);
 				if(result == ResultMessage.SUCCESS){
 					MyOptionPane.showMessageDialog(frame, "销售单提交成功！");
@@ -391,7 +389,8 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		}
 		showStr += "<html>";
 		// TODO 空指针
-		this.saleVo = saleCtrl.calAfterPrice(vipid,priceid, saleVo);
+		this.saleVo.totalBeforeDiscount = totalPrice;
+		this.saleVo = saleCtrl.calAfterPrice(vipid,priceid, this.saleVo);
 		// 显示折扣和总价和促销策略
 		if(this.saleVo!=null){
 			this.discountLab.setText(Double.toString(this.saleVo.discount));

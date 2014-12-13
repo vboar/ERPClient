@@ -477,6 +477,7 @@ public class Sale {
 			SaleVO vo) {
 		if(customerGiftId==null&&totalGiftId==null){
 			vo.remark+="没有促销策略";
+			vo.totalAfterDiscount = vo.totalBeforeDiscount;
 			return vo;
 		}if(customerGiftId==null){
 			TotalGiftVO totalVO=new TotalGiftPromotion().getById(totalGiftId);
