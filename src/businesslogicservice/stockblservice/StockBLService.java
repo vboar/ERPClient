@@ -47,12 +47,12 @@ public interface StockBLService {
 	 * @param path
 	 * @return 导出成功与否消息
 	 */
-	public ResultMessage exportExcel(String path);
+	public ResultMessage exportExcel(String path,String time);
 	
 	/**
 	 * 获取导出文件默认路径
 	 * @return
 	 */
-	public String getDefaultPath();
+	public String getDefaultPath(String time);
 	
 }

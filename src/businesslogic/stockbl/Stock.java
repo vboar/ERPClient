@@ -188,7 +188,7 @@ public class Stock {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		if(poList.isEmpty()){
+		if(poList==null||poList.isEmpty()){
 			return "00001";
 		}
 		String old=poList.get(poList.size()-1).getBatchNumber();
@@ -246,6 +246,8 @@ public class Stock {
 		}
 		return stockList;
 	}
+	
+	
 	
 	private StockPO voToPO(StockVO vo){
 		String commodityId=vo.commodityId;
