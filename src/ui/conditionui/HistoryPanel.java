@@ -70,6 +70,8 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	private PanelConfig cfg;
 	
+	private boolean hasTable = false;
+	
 	private HistoryBLService controller;
 	
 	public HistoryPanel(JFrame frame){
@@ -137,7 +139,14 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.export.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SavePathDialog(frame, HistoryPanel.this);
+				if(hasTable){
+					if(MyOptionPane.showConfirmDialog(frame, "是否根据当前列表导出Excel文件？","确认提示",
+							MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE)==MyOptionPane.YES_OPTION){
+						new SavePathDialog(frame, HistoryPanel.this);
+					}
+				}else{
+					MyOptionPane.showMessageDialog(frame, "当前无数据可导出！");
+				}
 			}
 		});
 		this.add(export);
@@ -145,6 +154,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	}
 	
 	public void showTable(){
+		this.hasTable = true;
 		RequirementVO vo = new RequirementVO();
 		// 根据时间区间、商品名、客户名、业务员和仓库查询
 		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
@@ -156,12 +166,14 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		}
 		vo.time1 = time1;
 		vo.time2 = time2;
-		if(salesman.getSelectedItem()!=null)
+		if(!salesman.getSelectedItem().equals("所有"))
 			vo.salesman = salesman.getSelectedItem().toString();
-		if(storage.getSelectedItem()!=null)
-			vo.storage = storage.getSelectedItem().toString();	
-		if(customer.getSelectedItem()!=null)
-			vo.customer = this.customer.getSelectedItem().toString();
+		else vo.salesman = null;
+		if(!storage.getSelectedItem().equals("所有"))
+			vo.storage = storage.getSelectedItem().toString();
+		if(!customer.getSelectedItem().equals("所有"))
+			vo.customer = this.customer.getSelectedItem().toString().substring(0,7);
+		else vo.customer = null;
 		DocumentType documentType = DocumentType.strToType(this.type.getSelectedItem().toString());
 		switch(documentType){
 		case PRESENT: showPresent(vo); break;

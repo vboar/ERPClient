@@ -34,16 +34,16 @@
 	<frame title="ERP企业进销存管理系统" width="970" height="630" windowUp="20">
 
 		<!-- 当前登录用户信息面板 -->
-		>
 		<panel className="ui.homeui.LoginUserInfoPanel" width="970"
 			height="90" x="0" y="0" bg="img/common/title.jpg">
 			<buttons>
-				<mailbox text="" w="40" h="30" x="190" y="54" path="img/common/2.png" />
+				<mailbox text="" w="40" h="32" x="180" y="45" path="img/common/mailr.png" 
+				pathroll="img/common/mail.png"/>
 			</buttons>
 			<labels>
 				<username w="100" h="30" x="80" y="15" />
 				<id w="100" h="30" x="80" y="35" />
-				<img text="" w="240" h="60" x="20" y="20" path="img/common/1.jpg" />
+				<img text="" w="240" h="60" x="20" y="17" path="img/common/1.jpg" />
 			</labels>
 		</panel>
 
@@ -1065,8 +1065,8 @@
 		<panel className="ui.conditionui.SaleDetailsPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.jpg">
 			<buttons>
-				<find text="查询" w="120" h="25" x="590" y="20" />
-				<export text="导出Excel文件" w="120" h="30" x="590" y="60" />
+				<find text="查询" w="120" h="30" x="590" y="60" />
+				<export text="导出Excel文件" w="120" h="30" x="590" y="15" />
 			</buttons>
 			<labels>
 				<require text="筛选条件" w="60" h="30" x="20" y="10" />
@@ -1117,8 +1117,8 @@
 		<panel className="ui.conditionui.HistoryPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.jpg">
 			<buttons>
-				<find text="查询" w="120" h="25" x="590" y="20" />
-				<export text="导出Excel文件" w="120" h="30" x="590" y="60" />
+				<find text="查询" w="120" h="30" x="590" y="60" />
+				<export text="导出Excel文件" w="120" h="30" x="590" y="15" />
 			</buttons>
 			<labels>
 				<require text="筛选条件" w="60" h="30" x="20" y="10" />
@@ -1849,7 +1849,7 @@
 			<endtime text="截止时间" w="80" h="30" x="420" y="15" />
 		</labels>
 		<datepicker>
-			<start w="200" h="25" x="250" y="20">
+			<start w="200" h="25" x="275" y="20">
 				<text w="100" h="25" x="0" y="0" />
 				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 					pathroll="img/buttons/csr.png" />
@@ -1904,12 +1904,12 @@
 			<endtime text="截止时间" w="80" h="30" x="420" y="15" />
 		</labels>
 		<datepicker>
-			<start w="120" h="25" x="270" y="20">
+			<start w="125" h="25" x="270" y="20">
 				<text w="100" h="25" x="0" y="0" />
 				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 					pathroll="img/buttons/csr.png" />
 			</start>
-			<end w="120" h="25" x="480" y="20">
+			<end w="125" h="25" x="480" y="20">
 				<text w="100" h="25" x="0" y="0" />
 				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 					pathroll="img/buttons/csr.png" />
@@ -1950,12 +1950,12 @@
 			<endtime text="截止时间" w="80" h="30" x="420" y="15" />
 		</labels>
 		<datepicker>
-			<start w="120" h="25" x="280" y="20">
+			<start w="125" h="25" x="280" y="20">
 				<text w="100" h="25" x="0" y="0" />
 				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 					pathroll="img/buttons/csr.png" />
 			</start>
-			<end w="120" h="25" x="480" y="20">
+			<end w="125" h="25" x="480" y="20">
 				<text w="100" h="25" x="0" y="0" />
 				<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 					pathroll="img/buttons/csr.png" />

@@ -72,10 +72,13 @@ public class ExceptionListTablePane extends TablePanel {
 			}
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
+		this.table.getColumnModel().getColumn(0).setMinWidth(200);
+		this.table.getColumnModel().getColumn(1).setMinWidth(200);
+		this.table.getColumnModel().getColumn(2).setMinWidth(550);
 		// 设置不可排序
 		this.table.setRowSorter(null);
 		// 设置表格列宽
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 100);
 	}
 
 	/**
@@ -110,7 +113,7 @@ public class ExceptionListTablePane extends TablePanel {
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 120);
 		this.updateUI();
 	}
 
@@ -136,7 +139,7 @@ public class ExceptionListTablePane extends TablePanel {
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 120);
 		this.updateUI();
 		if (list.size() == 0) {
 			MyOptionPane.showMessageDialog(ExceptionListTablePane.this,

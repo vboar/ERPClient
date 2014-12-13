@@ -140,7 +140,7 @@ public class StockCheckPanel extends JPanel implements ExcelSaver {
 
 	@Override
 	public String getDefaultPath() {
-		return controller.getDefaultPath(date.getText());
+		return controller.getDefaultPath(date.getFormatedDate());
 	}
 
 }

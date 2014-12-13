@@ -90,6 +90,7 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
+		this.voucherTxt.setEditable(true);
 		this.total.setText(Double.toString(vo.total));
 		this.voucher.setSelected(true);
 		this.presents.setSelected(true);

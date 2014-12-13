@@ -61,6 +61,7 @@ public class LoginUserInfoPanel extends JPanel {
 
 	private void initButtons(Element button) {
 		this.mailbox = new MyButton(button.element("mailbox"));
+		this.mailbox.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.add(this.mailbox);
 		mailbox.addActionListener(new ActionListener() {
 			@Override

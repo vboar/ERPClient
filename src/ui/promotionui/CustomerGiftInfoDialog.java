@@ -108,6 +108,8 @@ public class CustomerGiftInfoDialog extends JDialog implements
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
 		this.discountTxt.setText(Double.toString(vo.discount));
+		this.voucherTxt.setEditable(true);
+		this.discountTxt.setEditable(true);
 		this.voucher.setSelected(true);
 		this.discount.setSelected(true);
 		this.presents.setSelected(true);

@@ -19,7 +19,7 @@ public class SpecialOfferTablePane extends TablePanel{
 	
 	private static int COLUMN_NUM = 6;
 	
-	private int padding = 25;
+	private int padding = 50;
 	
 	private Object[][] data;
 
@@ -110,7 +110,6 @@ public class SpecialOfferTablePane extends TablePanel{
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), padding);
-		this.table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		this.updateUI();
 	}
 }
