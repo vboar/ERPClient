@@ -48,4 +48,8 @@ public class WarningLineItemVO {
 		this.warningNumber = warningNumber;
 	}
 	
+	@Override
+	public String toString(){
+		return name+"-"+model+"-"+"-actual"+stockNumber+"-warning"+warningNumber;
+	}
 }

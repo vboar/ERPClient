@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.stockblservice.StockBLService;
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.StockVO;
@@ -54,6 +55,7 @@ public class StockCheckTablePane extends TablePanel{
 	}
 	
 	public void initData(ArrayList<StockVO> list){
+		
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for(int i=0; i<list.size(); ++i){
 			StockVO temp = list.get(i);	
@@ -103,6 +105,17 @@ public class StockCheckTablePane extends TablePanel{
 		this.dtm.setDataVector(data, columnName);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
 		this.updateUI();	
+	}
+	
+	public void showFindCheck(String date){
+		mylist = controller.findByDate(date, "00001");
+		this.initData(mylist);
+		this.dtm.setDataVector(data, columnName);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
+		this.updateUI();
+		if(mylist.size()==0){
+			MyOptionPane.showMessageDialog(StockCheckTablePane.this, "未找到相关数据！");
+		}
 	}
 	
 }

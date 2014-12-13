@@ -35,14 +35,12 @@ public class StockController implements StockBLService {
 
 	@Override
 	public ArrayList<StockVO> findByDate(String batch, String batchNumber) {
-		// TODO
-		return null;
+		return st.findByDate(batch, batchNumber);
 	}
 
 	@Override
 	public ResultMessage exportExcel(String path,String time) {
-		// TODO Auto-generated method stub
-		return null;
+		return st.exportExcel(path, time);
 	}
 
 	@Override

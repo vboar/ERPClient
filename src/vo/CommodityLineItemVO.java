@@ -74,4 +74,10 @@ public class CommodityLineItemVO {
     	this.number = number;
     	this.price = price;
     }
+    
+    @Override
+    public String toString(){
+    	return name + "-" + model + "-￥" + price + "-"+number;
+    }
+    
 }

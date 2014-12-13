@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogicservice.stockblservice.StockBLService;
 import ui.util.DatePickerGroup;
 import ui.util.ExcelSaver;
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import ui.util.SavePathDialog;
 import util.ResultMessage;
+import util.Time;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.stockblservice.StockBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
@@ -31,6 +33,12 @@ public class StockCheckPanel extends JPanel implements ExcelSaver {
 	private MyButton createExcel;
 	
 	private MyButton createCheck;
+	
+	private MyButton find;
+	
+	private MyLabel today;
+	
+	private MyLabel past;
 	
 	private DatePickerGroup date;
 	
@@ -67,18 +75,41 @@ public class StockCheckPanel extends JPanel implements ExcelSaver {
 		this.date = new DatePickerGroup(this.cfg.getDatepicker().element("date"));
 		this.add(this.date);
 		this.add(new MyLabel(this.cfg.getLabels().element("title")));	
-		this.add(new MyLabel(this.cfg.getLabels().element("list")));
+		this.past = new MyLabel(this.cfg.getLabels().element("past"));
+		this.past.setVisible(false);
+		this.today = new MyLabel(this.cfg.getLabels().element("list"));
+		this.add(today);
+		this.add(past);
 		this.add(new MyLabel(this.cfg.getLabels().element("date")));
 		this.initButtons();
 	}
 	
 	private void initButtons() {
+		this.find = new MyButton(cfg.getButtons().element("find"));
+		this.find.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String time = date.getFormatedDate();
+				if(time.equals("")){
+					MyOptionPane.showMessageDialog(frame, "请选择一个日期！");
+					return;
+				}
+				tablepane.showFindCheck(time);
+				past.setText(time+"库存快照");
+				past.setVisible(true);
+				today.setVisible(false);
+			}
+		});
+		this.add(find);
 		this.createCheck = new MyButton(this.cfg.getButtons().element("createcheck"));
-		this.createCheck.addActionListener(new ActionListener() {
-			
+		this.createCheck.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tablepane.showCheck();
+				past.setVisible(false);
+				today.setVisible(true);
+				String currentTime = Time.getCurrentTime();
+				date.setDate(currentTime.substring(0,10));		 	
 			}
 		});
 		this.add(this.createCheck);
@@ -88,25 +119,28 @@ public class StockCheckPanel extends JPanel implements ExcelSaver {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SavePathDialog(frame, StockCheckPanel.this);
+				if(date.getFormatedDate().equals("")){
+					MyOptionPane.showMessageDialog(frame, "请先选择一日库存快照！");
+					return;
+				}
+				if(MyOptionPane.showConfirmDialog(frame, "确认导出当前所示列表到Excel文件？","确认提示",
+						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE)==
+						MyOptionPane.YES_OPTION){
+					new SavePathDialog(frame, StockCheckPanel.this);
+				}
 			}
 		});
 		this.add(this.createExcel);
 	}
-
-	public void exportExcel() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public ResultMessage setSavePath(String path) {
-		return controller.exportExcel(path);
+		return controller.exportExcel(path,date.getFormatedDate());
 	}
 
 	@Override
 	public String getDefaultPath() {
-		return controller.getDefaultPath();
+		return controller.getDefaultPath(date.getText());
 	}
 
 }

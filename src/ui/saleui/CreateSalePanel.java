@@ -159,6 +159,7 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		for(int i=0; i<list.size(); i++){
 			this.salesman.addItem(list.get(i).id);
 		}
+		this.salesman.setSelectedIndex(0);
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
 		this.add(salesman);
 		this.add(storage);

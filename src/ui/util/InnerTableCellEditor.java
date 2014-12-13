@@ -45,10 +45,7 @@ public class InnerTableCellEditor extends DefaultCellEditor {
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
 			this.jsp = (JScrollPane)value;
-			this.panel.setSize(jsp.getWidth(),jsp.getHeight());	
-			this.panel.add(jsp);
-		
-		return this.panel;
+		return this.jsp;
 	}
 
 	/**

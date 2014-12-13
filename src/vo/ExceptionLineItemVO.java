@@ -49,4 +49,8 @@ public class ExceptionLineItemVO {
 		this.actualNumber = actualNumber;
 	}
 	
+	public String toString(){
+		return  name+"-"+model+"-System"+systemNumber+"-Actual"+actualNumber;
+	}
+	
 }

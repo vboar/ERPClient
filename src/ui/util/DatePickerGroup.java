@@ -62,4 +62,10 @@ public class DatePickerGroup extends JLabel{
 		this.dp.setSelectedDate(date);
 		this.text.setText(dateFormat.format(date));
 	}
+	
+	public void setDate(String date){
+		this.text.setText(date);
+		this.dp.setSelectedDate(dp.parseDate(date));
+	}
+	
 }

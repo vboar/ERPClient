@@ -43,6 +43,6 @@ public class PresentLineItemVO {
 	
 	@Override
 	public String toString(){
-		return id + "-" + name + "-" + model + "-" + number;
+		return name + "-" + model + "-" + number;
 	}
 }

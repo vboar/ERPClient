@@ -38,5 +38,9 @@ public class TransferLineItemVO {
 		this.remark = remark;
 	}
 	
+	@Override
+	public String toString(){
+		return name+"-"+bankAccount+"-"+account+"-"+remark;
+	}
 	
 }

@@ -290,13 +290,15 @@
 		<panel className="ui.stockui.stockcheck.StockCheckPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<show text="查看" w="60" h="30" x="670" y="45" />
-				<createcheck text="生成今日快照" w="120" h="30" x="450" y="440" />
+				<find text="查看" w="60" h="30" x="670" y="45" />
+				<createcheck text="生成今日快照" w="120" h="30" x="320" y="45" />
 				<excel text="导出Excel文件" w="140" h="30" x="580" y="440" />
 			</buttons>
 			<labels>
 				<title text="库存盘点" w="200" h="30" x="10" y="2" />
 				<list text="今日库存信息列表" w="180" h="40" x="20" y="40" font="微软雅黑"
+					fontsize="20" color="true" r="40" g="40" b="40" />
+					<past text="" w="240" h="40" x="20" y="40" font="微软雅黑"
 					fontsize="20" color="true" r="40" g="40" b="40" />
 				<date text="日期" w="60" h="30" x="500" y="45" />
 			</labels>

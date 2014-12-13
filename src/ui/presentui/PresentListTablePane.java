@@ -1,20 +1,14 @@
 package ui.presentui;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
-import ui.util.InnerTableCellEditor;
-import ui.util.InnerTableCellRenderer;
 import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
-import vo.PresentLineItemVO;
 import vo.PresentVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.presentblservice.PresentBLService;
@@ -22,61 +16,57 @@ import config.TableConfig;
 
 /**
  * 赠送单列表
+ * 
  * @author JanelDQ
  * @date 2014/11/27
  */
 @SuppressWarnings("serial")
-public class PresentListTablePane extends TablePanel{
+public class PresentListTablePane extends TablePanel {
 
 	private String[] columnName;
-	
+
 	private static int COLUMN_NUM = 6;
-	
+
 	private Object[][] data;
 
 	private DefaultTableModel dtm;
-	
+
 	private ArrayList<PresentVO> list;
-	
+
 	private PresentBLService controller;
-	
+
 	public PresentListTablePane(TableConfig cfg) {
 		super(cfg);
-		this.controller = ControllerFactoryImpl.getInstance().getPresentController();
+		this.controller = ControllerFactoryImpl.getInstance()
+				.getPresentController();
 		this.initTable();
 		this.initComponent();
 	}
-	
+
 	protected void initTable() {
 		this.columnName = cfg.getColumnName();
 		this.initData();
 		this.data = new Object[list.size()][COLUMN_NUM];
-		for(int i=0; i<list.size(); ++i){
+		for (int i = 0; i < list.size(); ++i) {
 			PresentVO temp = list.get(i);
 			this.createRow(data[i], temp);
 		}
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data, this.columnName) {
 			@Override
-			public boolean isCellEditable(int row, int col){
-				if(col==4){
-					return true;
-				}
+			public boolean isCellEditable(int row, int col) {
 				return false;
 			}
-		}; 
-		this.table = new MyTable(this.dtm,this.getWidth());
-		this.table.setRowHeight(60);
-		this.table.getColumnModel().getColumn(4).setCellRenderer(new InnerTableCellRenderer());
-		this.table.getColumnModel().getColumn(4).setCellEditor(new InnerTableCellEditor(this.table));
+		};
+		this.table = new MyTable(this.dtm, this.getWidth());
 		this.table.setRowSorter(null);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 	}
 
 	private void initData() {
 		this.list = controller.show("", "");
-		if(list!=null){
+		if (list != null) {
 			this.data = new Object[list.size()][COLUMN_NUM];
-			for(int i=0; i<list.size(); ++i){
+			for (int i = 0; i < list.size(); ++i) {
 				PresentVO temp = list.get(i);
 				this.createRow(data[i], temp);
 			}
@@ -84,15 +74,15 @@ public class PresentListTablePane extends TablePanel{
 	}
 
 	private Object[] createRow(Object[] row, PresentVO vo) {
-		row[0]=vo.id;
-		row[1]=vo.time;
-		row[2]=vo.customerId;
-		row[3]=vo.customerName;
-		row[4]=this.createLineItemTable(vo.list);
-		row[5]=vo.documentStatus.toReadableString();
+		row[0] = vo.id;
+		row[1] = vo.time;
+		row[2] = vo.customerId;
+		row[3] = vo.customerName;
+		row[4] = vo.list.toString();
+		row[5] = vo.documentStatus.toReadableString();
 		return row;
 	}
-	
+
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
@@ -100,29 +90,14 @@ public class PresentListTablePane extends TablePanel{
 		this.updateUI();
 	}
 
-	public JScrollPane createLineItemTable(ArrayList<PresentLineItemVO> list){
-		String[] columns = new String[]{"商品名称","型号","数量"};
-		Object[][] items = new Object[list.size()][3];
-		for(int i=0; i<list.size(); i++){
-			PresentLineItemVO temp = list.get(i);
-			items[i][0] = temp.name;
-			items[i][1] = temp.model;
-			items[i][2] = temp.number;
-		}
-		JTable lineTable = new JTable(new DefaultTableModel(items, columns));
-		lineTable.getTableHeader().setPreferredSize(new Dimension(lineTable.getTableHeader().getPreferredSize().width,0));
-		JScrollPane jsp = new JScrollPane(lineTable);
-		return jsp;
-	}
-	
 	public void showFindTable(String time1, String time2) {
 		list = controller.show(time1, time2);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
-		for(int i=0; i<COLUMN_NUM;++i){
+		for (int i = 0; i < COLUMN_NUM; ++i) {
 			names.add(columnName[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
-		for(int i=0; i<list.size(); ++i){
+		for (int i = 0; i < list.size(); ++i) {
 			PresentVO vo = list.get(i);
 			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
 			row.add(vo.id);
@@ -136,9 +111,10 @@ public class PresentListTablePane extends TablePanel{
 		this.dtm.setDataVector(table, names);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
 		this.updateUI();
-		if(list.size()==0){
-			MyOptionPane.showMessageDialog(PresentListTablePane.this, "抱歉，未找到相关记录！");
+		if (list.size() == 0) {
+			MyOptionPane.showMessageDialog(PresentListTablePane.this,
+					"抱歉，未找到相关记录！");
 		}
 	}
-	
+
 }
