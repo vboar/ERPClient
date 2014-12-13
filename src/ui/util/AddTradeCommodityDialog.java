@@ -53,14 +53,17 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 	
 	private CommodityBLService controller;
 	
+	private boolean isPurchase;
+	
 	/**
 	 * 构造函数
 	 * @param panel 赠送单面板
 	 * @param frame 主窗口
 	 */
-	public AddTradeCommodityDialog(AddCommodityLineItem panel,JFrame frame){
+	public AddTradeCommodityDialog(AddCommodityLineItem panel,JFrame frame,boolean isPurchase){
 		super(frame,true);
 		((JComponent) this.getContentPane()).setOpaque(true);
+		this.isPurchase = isPurchase;
 		this.panel = panel;
 		this.frame = frame;
 		this.controller = ControllerFactoryImpl.getInstance().getCommodityController();
@@ -106,7 +109,6 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 		this.add(this.currentId);
 		this.add(this.currentName);
 		this.add(this.currentModel);
-
 	}
 
 	/**
@@ -148,9 +150,11 @@ public class AddTradeCommodityDialog extends JDialog implements FuzzySearch{
 					if(num<=0||price<0){
 						throw new NumberFormatException();
 					}
-					if(num>addCommodityVO.number){
-						MyOptionPane.showMessageDialog(frame, "库存不足，该商品库存"+addCommodityVO.number+"件。");
-						return;
+					if(!isPurchase){
+						if(num>addCommodityVO.number){
+							MyOptionPane.showMessageDialog(frame, "库存不足，该商品库存"+addCommodityVO.number+"件。");
+							return;
+						}
 					}
 					String info = commodityTxt.getText();
 					String remark = remarkTxt.getText();
