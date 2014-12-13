@@ -33,11 +33,11 @@ public class Stock {
 		
 		//获得时间
 		if (time1 == null) {
-			time1 = "1970/1/1/00/00/00";
+			time1 = "1970/1/1 00:00:00";
 		}
 		if (time2 == null) {
 			Date date = new Date();
-			SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+			SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			time2 = myFmt.format(date);
 		}
 		//获取初始单据信息

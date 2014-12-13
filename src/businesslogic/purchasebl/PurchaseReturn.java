@@ -56,10 +56,10 @@ public class PurchaseReturn {
 	}
 
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		if(time1.equals("")){
+		if(time1.equals("")||time1==null){
 			time1="1970/1/1 00:00:00";
 		}
-		if(time2.equals("")){
+		if(time2.equals("")||time2==null){
 			time2=Utility.getCurrentTime();
 		}
 
