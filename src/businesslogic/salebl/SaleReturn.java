@@ -32,7 +32,7 @@ public class SaleReturn {
 	
 	public ResultMessage add(SaleVO vo) {	
 		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time=myFmt.format(date);
 		vo.time=time;
 		SalePO po = sale.SaleVOToSalePO(vo);
@@ -43,7 +43,7 @@ public class SaleReturn {
 			e.printStackTrace();
 		}
 		 date=new Date();
-		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		 time=myFmt2.format(date);
 		 String id=new Present().createId();
 

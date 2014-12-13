@@ -26,7 +26,7 @@ public class PurchaseReturn {
 
 	public ResultMessage add(PurchaseVO vo) {
 		Date date = new Date();
-		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time = myFmt.format(date);
 		vo.time = time;
 		PurchasePO po = purchase.voToPO(vo);

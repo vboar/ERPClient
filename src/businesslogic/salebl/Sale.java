@@ -156,7 +156,7 @@ public class Sale {
 
 	public ResultMessage add(SaleVO vo)  {
 		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time=myFmt.format(date);
 		vo.operatorId=Login.currentUserId;
 		vo.time=time;
@@ -164,7 +164,7 @@ public class Sale {
 		
 		
 				
-		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	    time=myFmt2.format(date);
 
 		String customerId = vo.customerId;
@@ -495,6 +495,7 @@ public class Sale {
 
 		
 		vo.giftList=toOne(cusVO.giftInfo,totalVO.giftInfo);
+		vo.remark+="$使用id是"+customerGiftId+"的vip促销策略和使用id是"+totalGiftId+"的基于总价的促销策略";
 		return vo;
 	}
 
