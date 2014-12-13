@@ -198,7 +198,7 @@ public class Stock {
 		Date date = new Date();
 		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
 		batch = myFmt.format(date);
-		if(batch!=oldBatch){
+		if(batch.equals(oldBatch)){
 			return "00001";
 		}
 		int maxInt = Integer.parseInt(old);
