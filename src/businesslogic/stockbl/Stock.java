@@ -198,7 +198,7 @@ public class Stock {
 		Date date = new Date();
 		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd");
 		batch = myFmt.format(date);
-		if(batch.equals(oldBatch)){
+		if(!batch.equals(oldBatch)){
 			return "00001";
 		}
 		int maxInt = Integer.parseInt(old);
@@ -265,8 +265,10 @@ public class Stock {
 	}
 	
 	public ResultMessage exportExcel(String path,String time) {
-		 String batch=time.replace("/", "");
+		 String batch=time;
+		 System.out.println("stockbl 269 time:"+batch);
 		 ArrayList<StockVO> voList=findByDate(batch, "00001");
+		 
 		 try {
 			ExportStockPO.export(voList, path);
 		} catch (Exception e) {
