@@ -53,25 +53,33 @@ public class BusinessHistory {
 		
 		result=s.show();		
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer)
+				if(result.get(i).customerName!=vo.customer){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator)
+				if(result.get(i).operatorId!=vo.operator){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage)
+				if(result.get(i).storage!=vo.storage){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		return result;
@@ -83,25 +91,33 @@ public class BusinessHistory {
 		
 		result=sr.show();		
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer)
+				if(result.get(i).customerName!=vo.customer){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator)
+				if(result.get(i).operatorId!=vo.operator){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage)
+				if(result.get(i).storage!=vo.storage){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		return result;
@@ -113,25 +129,33 @@ public class BusinessHistory {
 
 		result=p.show();
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer)
+				if(result.get(i).customerName!=vo.customer){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator)
+				if(result.get(i).operatorId!=vo.operator){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage)
+				if(result.get(i).storage!=vo.storage){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		return result;
@@ -143,25 +167,33 @@ public class BusinessHistory {
 
 		result=pr.show();
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer)
+				if(result.get(i).customerName!=vo.customer){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator)
+				if(result.get(i).operatorId!=vo.operator){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage)
+				if(result.get(i).storage!=vo.storage){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		return result;
@@ -173,19 +205,25 @@ public class BusinessHistory {
 		
 		result=p.show();
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer)
+				if(result.get(i).customerName!=vo.customer){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator)
+				if(result.get(i).operatorId!=vo.operator){
 					result.remove(i);
+					i--;
+					}
 		}	
 		return result;
 	}
@@ -196,19 +234,25 @@ public class BusinessHistory {
 	
 		result=r.show();
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer)
+				if(result.get(i).customerName!=vo.customer){
 					result.remove(i);
+					i--;
+					}
 		}
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator)
+				if(result.get(i).operatorId!=vo.operator){
 					result.remove(i);
+					i--;
+					}
 		}
 		return result;
 	}
@@ -219,8 +263,10 @@ public class BusinessHistory {
 		
 		result=c.show();
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 
 		return result;
 	}
@@ -231,8 +277,10 @@ public class BusinessHistory {
 		
 		result=of.findByTime("1970/1/1/0/0/0",Time.getCurrentTime());
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		return result;
 	}
@@ -243,8 +291,10 @@ public class BusinessHistory {
 		
 		result=l.show("1970/1/1/0/0/0",Time.getCurrentTime());
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		return result;
 	}
@@ -255,8 +305,10 @@ public class BusinessHistory {
 		
 		result=w.findByTime("1970/1/1/0/0/0",Time.getCurrentTime());
 		for(int i=0;i<result.size();i++)
-			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
 				result.remove(i);
+				i--;
+				}
 		
 		return result;
 	}

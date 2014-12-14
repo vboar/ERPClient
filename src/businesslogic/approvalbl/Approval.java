@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import util.DocumentStatus;
 import util.ResultMessage;
+import util.Time;
 import vo.CashVO;
 import vo.DocumentVO;
 import vo.ExceptionVO;
@@ -94,6 +95,8 @@ public class Approval {
 	
 	public ArrayList<PresentVO> findPresent(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Present p=new Present();
 		switch(way){
 		case 0:
@@ -112,6 +115,8 @@ public class Approval {
 	
 	public ArrayList<PurchaseVO> findPurchase(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Purchase p=new Purchase();
 		switch(way){
 		case 0:
@@ -130,6 +135,8 @@ public class Approval {
 	
 	public ArrayList<PurchaseVO> findPurchaseReturn(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		PurchaseReturn pr=new PurchaseReturn();
 		switch(way){
 		case 0:
@@ -147,6 +154,8 @@ public class Approval {
 	
 	public ArrayList<SaleVO> findSale(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Sale s=new Sale();
 		switch(way){
 		case 0:
@@ -165,6 +174,8 @@ public class Approval {
 	
 	public ArrayList<SaleVO> findSaleReturn(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		SaleReturn sr=new SaleReturn();
 		switch(way){
 		case 0:
@@ -183,6 +194,8 @@ public class Approval {
 	
 	public ArrayList<PaymentVO> findPayment(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Payment p=new Payment();
 		switch(way){
 		case 0:
@@ -201,6 +214,8 @@ public class Approval {
 	
 	public ArrayList<PaymentVO> findReceipt(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Receipt r=new Receipt();
 		switch(way){
 		case 0:
@@ -219,6 +234,8 @@ public class Approval {
 	
 	public ArrayList<CashVO> findCash(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Cash c=new Cash();
 		switch(way){
 		case 0:
@@ -237,6 +254,8 @@ public class Approval {
 	
 	public ArrayList<ExceptionVO> findLoss(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Loss l=new Loss();
 		switch(way){
 		case 0:
@@ -252,6 +271,8 @@ public class Approval {
 	
 	public ArrayList<ExceptionVO> findOverflow(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		Overflow o=new Overflow();
 		switch(way){
 		case 0:
@@ -340,6 +361,8 @@ public class Approval {
 	public ArrayList<DocumentVO> show(DocumentStatus status,
 			  String time1, String time2){
 		ArrayList<DocumentVO> result=new ArrayList<DocumentVO>();
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		
 		ArrayList<PresentVO> temp1=findPresent(1,status,time1,time2);
 		for(int i=0;i<temp1.size();i++)
