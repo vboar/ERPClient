@@ -22,7 +22,7 @@ import vo.ClauseLineItemVO;
 import businesslogic.accountbl.Account;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
-public class Cash {
+public class Cash{
 
 	public String createId(){
 		Date date=new Date();
@@ -173,4 +173,16 @@ public class Cash {
 		return result;
 	}
 	
+	public CashVO getById(String id){
+		CashVO result=null;
+		
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getCashDataService().getById(id));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

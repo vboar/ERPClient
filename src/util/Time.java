@@ -1,12 +1,11 @@
 package util;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 
 public class Time {
 public static String getCurrentTime(){
-	SimpleDateFormat df=new SimpleDateFormat("yyyy/MM/dd/hh/mm/ss");
+	SimpleDateFormat df=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	String time=df.format(new Date());
 	return time;
 }

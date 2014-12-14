@@ -2,6 +2,7 @@ package businesslogic.businessconditionbl;
 
 import util.ResultMessage;
 import vo.BusinessConditionVO;
+import vo.RequirementVO;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
 
 public class BusinessConditionController implements BusinessConditionBLService {
@@ -14,7 +15,7 @@ public class BusinessConditionController implements BusinessConditionBLService {
 	}
 
 	@Override
-	public ResultMessage exportExcel(String path) {
+	public ResultMessage exportExcel(String path,RequirementVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

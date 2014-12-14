@@ -5,16 +5,29 @@
  */
 package businesslogic.businessconditionbl;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
 import vo.CashVO;
+import vo.ClauseLineItemVO;
+import vo.CommodityLineItemVO;
+import vo.ExceptionLineItemVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
 import vo.PurchaseVO;
 import vo.RequirementVO;
 import vo.SaleVO;
+import vo.TransferLineItemVO;
+import vo.WarningLineItemVO;
 import vo.WarningVO;
 import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
@@ -273,5 +286,535 @@ public class BusinessHistory {
 		}
 		
 		return result;
+	}
+	
+	public ResultMessage exportSale(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet();
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("客户");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("业务员");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(3);
+		cell.setCellValue("操作员");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(4);
+		cell.setCellValue("仓库");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(5);
+		cell.setCellValue("出货商品清单");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(13);
+		cell.setCellValue("折让前总额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(14);
+		cell.setCellValue("折让");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(15);
+		cell.setCellValue("使用代金券金额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(16);
+		cell.setCellValue("折让后总额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(17);
+		cell.setCellValue("备注");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		cell=row.createCell(6);
+		cell.setCellValue("编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("名称");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(8);
+		cell.setCellValue("型号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(9);
+		cell.setCellValue("数量");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(10);
+		cell.setCellValue("单价");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(11);
+		cell.setCellValue("金额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(12);
+		cell.setCellValue("商品备注");
+		cell.setCellStyle(style);
+		
+		ArrayList<SaleVO> list=new ArrayList<SaleVO>();
+		if(vo.type==DocumentType.SALE){
+			list=showSale(vo);
+		}else{
+			list=showSaleReturn(vo);
+		}
+		for(int i=0;i<list.size();i++){
+			SaleVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.customerId+" "+temp.customerName);
+			row.createCell(2).setCellValue(temp.salesmanId);
+			row.createCell(3).setCellValue(temp.operatorId);
+			row.createCell(4).setCellValue(temp.storage);
+			row.createCell(13).setCellValue(temp.totalBeforeDiscount);
+			row.createCell(14).setCellValue(temp.discount);
+			row.createCell(15).setCellValue(temp.voucher);
+			row.createCell(16).setCellValue(temp.totalAfterDiscount);
+			row.createCell(17).setCellValue(temp.remark);
+			
+			ArrayList<CommodityLineItemVO> c=new ArrayList<CommodityLineItemVO>();
+			for(int j=0;j<c.size();j++){
+				CommodityLineItemVO t=c.get(j);
+				row=sheet.createRow(j+2);
+				
+				row.createCell(6).setCellValue(t.id);
+				row.createCell(7).setCellValue(t.name);
+				row.createCell(8).setCellValue(t.model);
+				row.createCell(9).setCellValue(t.number);
+				row.createCell(10).setCellValue(t.price);
+				row.createCell(11).setCellValue(t.total);
+				row.createCell(12).setCellValue(t.remark);
+			}
+		}
+	
+		try{
+			FileOutputStream fout=new FileOutputStream(path);
+			wb.write(fout);
+			fout.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage exportPurchase(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet();
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("供应商");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("仓库");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(3);
+		cell.setCellValue("操作员");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(4);
+		cell.setCellValue("入库商品列表");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(13);
+		cell.setCellValue("备注");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(14);
+		cell.setCellValue("总额合计");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		cell=row.createCell(6);
+		cell.setCellValue("商品编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("名称");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(8);
+		cell.setCellValue("型号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(9);
+		cell.setCellValue("数量");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(10);
+		cell.setCellValue("单价");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(11);
+		cell.setCellValue("金额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(12);
+		cell.setCellValue("商品备注");
+		cell.setCellStyle(style);
+		
+		ArrayList<PurchaseVO> list=new ArrayList<PurchaseVO>();
+		if(vo.type==DocumentType.PURCHASE){
+			list=showPurchase(vo);
+			}else{
+				list=showPurchaseReturn(vo);
+			}
+		for(int i=0;i<list.size();i++){
+			PurchaseVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.customerId+" "+temp.customerName);
+			row.createCell(2).setCellValue(temp.storage);
+			row.createCell(3).setCellValue(temp.operatorId);
+			row.createCell(13).setCellValue(temp.remark);
+			row.createCell(14).setCellValue(temp.total);
+
+			
+			ArrayList<CommodityLineItemVO> c=new ArrayList<CommodityLineItemVO>();
+			for(int j=0;j<c.size();j++){
+				CommodityLineItemVO t=c.get(j);
+				row=sheet.createRow(j+2);
+				
+				row.createCell(6).setCellValue(t.id);
+				row.createCell(7).setCellValue(t.name);
+				row.createCell(8).setCellValue(t.model);
+				row.createCell(9).setCellValue(t.number);
+				row.createCell(10).setCellValue(t.price);
+				row.createCell(11).setCellValue(t.total);
+				row.createCell(12).setCellValue(t.remark);
+			}
+		}
+	
+		try{
+			FileOutputStream fout=new FileOutputStream(path);
+			wb.write(fout);
+			fout.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage exportPayment(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet();
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("客户");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("操作员");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(3);
+		cell.setCellValue("转账列表");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("总额汇总");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		cell=row.createCell(4);
+		cell.setCellValue("银行账户");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(5);
+		cell.setCellValue("转账金额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(6);
+		cell.setCellValue("备注");
+		cell.setCellStyle(style);
+		
+		ArrayList<PaymentVO> list=new ArrayList<PaymentVO>();
+		if(vo.type==DocumentType.PAYMENT){
+			list=showPayment(vo);
+		}else{
+			list=showReceipt(vo);
+		}
+		for(int i=0;i<list.size();i++){
+			PaymentVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.customerId+" "+temp.customerName);
+			row.createCell(2).setCellValue(temp.operatorId);
+			row.createCell(7).setCellValue(temp.total);
+			
+			ArrayList<TransferLineItemVO> c=new ArrayList<TransferLineItemVO>();
+			for(int j=0;j<c.size();j++){
+				TransferLineItemVO t=c.get(j);
+				row=sheet.createRow(j+2);
+				
+				row.createCell(4).setCellValue(t.bankAccount);
+				row.createCell(5).setCellValue(t.account);
+				row.createCell(6).setCellValue(t.remark);
+			}
+		}
+	
+		try{
+			FileOutputStream fout=new FileOutputStream(path);
+			wb.write(fout);
+			fout.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage exportCash(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet();
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("操作员");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("银行账户");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(3);
+		cell.setCellValue("条目清单");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("总额");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		
+		cell=row.createCell(4);
+		cell.setCellValue("条目名");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(5);
+		cell.setCellValue("金额");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(6);
+		cell.setCellValue("备注");
+		cell.setCellStyle(style);
+		
+		ArrayList<CashVO> list=showCash(vo);
+		for(int i=0;i<list.size();i++){
+			CashVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.operator);
+			row.createCell(2).setCellValue(temp.bankAccount);
+			row.createCell(7).setCellValue(temp.total);
+
+			ArrayList<ClauseLineItemVO> c=temp.clauseList;
+			for(int j=0;j<c.size();j++){
+				ClauseLineItemVO t=c.get(j);
+				row=sheet.createRow(j+2);
+				
+				row.createCell(3).setCellValue(t.name);
+				row.createCell(3).setCellValue(t.account);
+				row.createCell(3).setCellValue(t.remark);
+			}
+		}
+		
+		try{
+			FileOutputStream fout=new FileOutputStream(path);
+			wb.write(fout);
+			fout.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage exportException(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet();
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("时间");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("商品列表");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		cell=row.createCell(3);
+		cell.setCellValue("商品编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(4);
+		cell.setCellValue("商品名称");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(5);
+		cell.setCellValue("商品型号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(6);
+		cell.setCellValue("系统库存数量");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("实际库存数量");
+		cell.setCellStyle(style);
+		
+		ArrayList<ExceptionVO> list=new ArrayList<ExceptionVO>();
+		if(vo.type==DocumentType.OVERFLOW){
+			list=showOverFlow(vo);
+		}else{
+			list=showLoss(vo);
+		}
+		for(int i=0;i<list.size();i++){
+			ExceptionVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.time);
+			
+			ArrayList<ExceptionLineItemVO> e=temp.list;
+			for(int j=0;j<e.size();j++){
+				ExceptionLineItemVO t=e.get(j);
+				row=sheet.createRow(j+2);
+				
+				row.createCell(3).setCellValue(t.id);
+				row.createCell(4).setCellValue(t.name);
+				row.createCell(5).setCellValue(t.model);
+				row.createCell(6).setCellValue(t.systemNumber);
+				row.createCell(7).setCellValue(t.actualNumber);
+			}
+		}
+		
+		try{
+			FileOutputStream fout=new FileOutputStream(path);
+			wb.write(fout);
+			fout.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage exportWarning(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet();
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("时间");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("商品列表");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		cell=row.createCell(3);
+		cell.setCellValue("商品编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(4);
+		cell.setCellValue("商品名称");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(5);
+		cell.setCellValue("商品型号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(6);
+		cell.setCellValue("库存数量");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("警戒数量");
+		cell.setCellStyle(style);
+		
+		ArrayList<WarningVO> list=showWarning(vo);
+		for(int i=0;i<list.size();i++){
+			WarningVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.time);
+			
+			ArrayList<WarningLineItemVO> e=temp.list;
+			for(int j=0;j<e.size();j++){
+				WarningLineItemVO t=e.get(j);
+				row=sheet.createRow(j+2);
+				
+				row.createCell(3).setCellValue(t.id);
+				row.createCell(4).setCellValue(t.name);
+				row.createCell(5).setCellValue(t.model);
+				row.createCell(6).setCellValue(t.stockNumber);
+				row.createCell(7).setCellValue(t.warningNumber);
+			}
+		}
+		
+		try{
+			FileOutputStream fout=new FileOutputStream(path);
+			wb.write(fout);
+			fout.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
 	}
 }

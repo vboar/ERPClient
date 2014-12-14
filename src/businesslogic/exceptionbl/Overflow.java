@@ -179,5 +179,16 @@ public class Overflow {
 			return ResultMessage.SUCCESS;
 		}
 		
-
+		public ExceptionVO getById(String id){
+			ExceptionVO result=null;
+			
+			try {
+				result=poToVo(DataFactoryImpl.getInstance().getExceptionData().getById(id));
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
 }

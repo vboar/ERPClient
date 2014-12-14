@@ -211,4 +211,17 @@ public class Receipt {
 		}
 		return result;
 	}
+	
+	public PaymentVO getById(String id){
+		PaymentVO result=null;
+		
+		try {
+			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().getById(id));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

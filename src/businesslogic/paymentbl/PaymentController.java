@@ -50,5 +50,9 @@ public class PaymentController implements PaymentBLService{
 	public ArrayList<PaymentVO> findByOperator(String operator) {
 		return payment.findByOperator(operator);
 	}
+	
+	public PaymentVO getById(String id){
+		return payment.getById(id);
+	}
 
 }

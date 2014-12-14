@@ -3,6 +3,7 @@ package businesslogic.businessconditionbl;
 import java.util.ArrayList;
 
 import util.ResultMessage;
+import util.Time;
 import vo.CashVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
@@ -76,14 +77,33 @@ public class BusinessHistoryController implements HistoryBLService {
 	}
 
 	@Override
-	public ResultMessage exportExcel(String path) {
-		// TODO 自动生成的方法存根
-		return null;
+	public ResultMessage exportExcel(String path,RequirementVO vo) {
+		switch(vo.type){
+		case SALE: case SALERETURN:
+			bh.exportSale(path, vo);
+			break;
+		case PURCHASE: case PURCHASERETURN:
+			bh.exportPurchase(path, vo);
+			break;
+		case PAYMENT: case RECEIPT:
+			bh.exportPayment(path, vo);
+			break;
+		case CASH:
+			bh.exportCash(path, vo);
+			break;
+		case OVERFLOW:case LOSS:
+			bh.exportException(path, vo);
+			break;
+		case WARNING:
+			bh.exportWarning(path, vo);
+			break;
+		}
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public String getDefaultPath() {
-		// TODO Auto-generated method stub
-		return null;
+		String name=Time.getCurrentTime()+"经营历程表.xls";
+		return name;
 	}
 }

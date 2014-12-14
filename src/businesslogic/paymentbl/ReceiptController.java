@@ -49,4 +49,8 @@ public class ReceiptController implements PaymentBLService {
 	public ArrayList<PaymentVO> findByOperator(String operator) {
 		return receipt.findByOperator(operator);
 	}
+	
+	public PaymentVO getById(String id){
+		return receipt.getById(id);
+	}
 }

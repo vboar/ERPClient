@@ -92,7 +92,7 @@ public interface HistoryBLService {
 	 * @param path
 	 * @return
 	 */
-	public ResultMessage exportExcel(String path);
+	public ResultMessage exportExcel(String path,RequirementVO vo);
 	
 	/**
 	 * 获取导出文件默认路径

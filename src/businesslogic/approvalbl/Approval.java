@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import util.DocumentStatus;
 import util.ResultMessage;
 import vo.CashVO;
+import vo.DocumentVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
 import vo.PresentVO;
@@ -91,27 +92,9 @@ public class Approval {
 		return p.approve(vo);
 	}
 	
-	public ArrayList<PresentVO> findPresent(int way,int status,String time1,String time2){
+	public ArrayList<PresentVO> findPresent(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
 		Present p=new Present();
-		switch(way){
-		case 0:
-			result=p.show();
-			break;
-		case 1:
-			result=p.findByStatus(DocumentStatus.values()[status]);
-			break;
-		case 2:
-			result=p.findByTime(time1, time2);
-			break;
-		}
-		
-		return result;
-	}
-	
-	public ArrayList<PurchaseVO> findPurchase(int way,int status,String time1,String time2){
-		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
-		Purchase p=new Purchase();
 		switch(way){
 		case 0:
 			result=p.show();
@@ -127,7 +110,25 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<PurchaseVO> findPurchaseReturn(int way,int status,String time1,String time2){
+	public ArrayList<PurchaseVO> findPurchase(int way,DocumentStatus status,String time1,String time2){
+		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
+		Purchase p=new Purchase();
+		switch(way){
+		case 0:
+			result=p.show();
+			break;
+		case 1:
+			result=p.findByStatus(status.ordinal());
+			break;
+		case 2:
+			result=p.findByTime(time1, time2);
+			break;
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<PurchaseVO> findPurchaseReturn(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
 		PurchaseReturn pr=new PurchaseReturn();
 		switch(way){
@@ -135,7 +136,7 @@ public class Approval {
 			result=pr.show();
 			break;
 		case 1:
-			result=pr.findByStatus(status);
+			result=pr.findByStatus(status.ordinal());
 			break;
 		case 2:
 			result=pr.findByTime(time1, time2);
@@ -144,7 +145,7 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<SaleVO> findSale(int way,int status,String time1,String time2){
+	public ArrayList<SaleVO> findSale(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
 		Sale s=new Sale();
 		switch(way){
@@ -152,7 +153,7 @@ public class Approval {
 			result=s.show();
 			break;
 		case 1:
-			result=s.findByStatus(status);
+			result=s.findByStatus(status.ordinal());
 			break;
 		case 2:
 			result=s.findByTime(time1, time2);
@@ -162,7 +163,7 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<SaleVO> findSaleReturn(int way,int status,String time1,String time2){
+	public ArrayList<SaleVO> findSaleReturn(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
 		SaleReturn sr=new SaleReturn();
 		switch(way){
@@ -170,7 +171,7 @@ public class Approval {
 			result=sr.show();
 			break;
 		case 1:
-			result=sr.findByStatus(status);
+			result=sr.findByStatus(status.ordinal());
 			break;
 		case 2:
 			result=sr.findByTime(time1, time2);
@@ -180,7 +181,7 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<PaymentVO> findPayment(int way,int status,String time1,String time2){
+	public ArrayList<PaymentVO> findPayment(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		Payment p=new Payment();
 		switch(way){
@@ -188,7 +189,7 @@ public class Approval {
 			result=p.show();
 			break;
 		case 1:
-			result=p.findByStatus(status);
+			result=p.findByStatus(status.ordinal());
 			break;
 		case 2:
 			result=p.findByTime(time1, time2);
@@ -198,7 +199,7 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<PaymentVO> findReceipt(int way,int status,String time1,String time2){
+	public ArrayList<PaymentVO> findReceipt(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		Receipt r=new Receipt();
 		switch(way){
@@ -206,7 +207,7 @@ public class Approval {
 			result=r.show();
 			break;
 		case 1:
-			result=r.findByStatus(status);
+			result=r.findByStatus(status.ordinal());
 			break;
 		case 2:
 			result=r.findByTime(time1, time2);
@@ -216,7 +217,7 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<CashVO> fingCash(int way,int status,String time1,String time2){
+	public ArrayList<CashVO> findCash(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		Cash c=new Cash();
 		switch(way){
@@ -224,7 +225,7 @@ public class Approval {
 			result=c.show();
 			break;
 		case 1:
-			result=c.findByStatus(status);
+			result=c.findByStatus(status.ordinal());
 			break;
 		case 2:
 			result=c.findByTime(time1, time2);
@@ -234,7 +235,7 @@ public class Approval {
 		return result;
 	}
 	
-	public ArrayList<ExceptionVO> findLoss(int way,int status,String time1,String time2){
+	public ArrayList<ExceptionVO> findLoss(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
 		Loss l=new Loss();
 		switch(way){
@@ -244,79 +245,151 @@ public class Approval {
 			result=l.show(time1, time2);
 			break;
 		case 2:
-			result=l.findByStatus(status);
+			result=l.findByStatus(status.ordinal());
 		}
 		return result;
 	}
 	
-	public Object getById(String id){
-		Object result=new Object();
+	public ArrayList<ExceptionVO> findOverflow(int way,DocumentStatus status,String time1,String time2){
+		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		Overflow o=new Overflow();
+		switch(way){
+		case 0:
+			break;
+		case 1:
+			result=o.findByTime(time1, time2);
+			break;
+		case 2:
+			result=o.findByStatus(status);
+		}
+		return result;
+	}
+	
+	public DocumentVO getById(String id){
 		
 		if(id.contains("ZPD")){
 			Present p=new Present();
 			try {
-				result=p.poToVO(DataFactoryImpl.getInstance().getPresentData().getById(id));
+			DocumentVO result=p.poToVO(DataFactoryImpl.getInstance().getPresentData().getById(id));
+			return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-			return result;
+			
 		}
 	
 		if(id.contains("JHD")||id.contains("JHTHD")){
 			Purchase p=new Purchase();
 			try {
-				result=p.poToVO(DataFactoryImpl.getInstance().getPurchaseData().getById(id));
+				DocumentVO result=p.poToVO(DataFactoryImpl.getInstance().getPurchaseData().getById(id));
+				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-			return result;
 		}
 		
 		if(id.contains("XSD")||id.contains("XSTHD")){
 			Sale s=new Sale();
 			try {
-				result=s.SalePOToSaleVO(DataFactoryImpl.getInstance().getSaleDataService().getById(id));
+				DocumentVO result=s.SalePOToSaleVO(DataFactoryImpl.getInstance().getSaleDataService().getById(id));
+				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-			return result;
 		}
 		
 		if(id.contains("FKD")||id.contains("SKD")){
 			Payment p=new Payment();
 			try {
-				result=p.poToVo(DataFactoryImpl.getInstance().getPaymentData().getById(id));
+				DocumentVO result=p.poToVo(DataFactoryImpl.getInstance().getPaymentData().getById(id));
+				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-			return result;
 		}
 		
 		if(id.contains("XJFYD")){
 			Cash c=new Cash();
 			try {
-				result=c.poToVo(DataFactoryImpl.getInstance().getCashDataService().getById(id));
+				DocumentVO result=c.poToVo(DataFactoryImpl.getInstance().getCashDataService().getById(id));
+				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-			return result;
 		}
 		
 		if(id.contains("BYD")||id.contains("BSD")){
 			Loss l=new Loss();
 			try {
-				result=l.poToVo(DataFactoryImpl.getInstance().getExceptionData().getById(id));
+				DocumentVO result=l.poToVo(DataFactoryImpl.getInstance().getExceptionData().getById(id));
+				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
 		}
+
+		return null;
+	}
 	
-	return result;	
+	public ArrayList<DocumentVO> show(DocumentStatus status,
+			  String time1, String time2){
+		ArrayList<DocumentVO> result=new ArrayList<DocumentVO>();
+		
+		ArrayList<PresentVO> temp1=findPresent(1,status,time1,time2);
+		for(int i=0;i<temp1.size();i++)
+			result.add(temp1.get(i));
+		
+		ArrayList<PurchaseVO> temp2=findPurchase(1,status,time1,time2);
+		for(int i=0;i<temp2.size();i++)
+			result.add(temp2.get(i));
+		
+		ArrayList<PurchaseVO> temp3=findPurchaseReturn(1,status,time1,time2);
+		for(int i=0;i<temp3.size();i++)
+			result.add(temp3.get(i));
+		
+		ArrayList<SaleVO> temp4=findSale(1,status,time1,time2);
+		for(int i=0;i<temp4.size();i++)
+			result.add(temp4.get(i));
+		
+		ArrayList<SaleVO> temp5=findSaleReturn(1,status,time1,time2);
+		for(int i=0;i<temp5.size();i++)
+			result.add(temp5.get(i));
+		
+		ArrayList<PaymentVO> temp6=findPayment(1,status,time1,time2);
+		for(int i=0;i<temp6.size();i++)
+			result.add(temp6.get(i));
+		
+		ArrayList<PaymentVO> temp7=findReceipt(1,status,time1,time2);
+		for(int i=0;i<temp7.size();i++)
+			result.add(temp7.get(i));
+		
+		ArrayList<CashVO> temp8=findCash(1,status,time1,time2);
+		for(int i=0;i<temp8.size();i++)
+			result.add(temp8.get(i));
+		
+		ArrayList<ExceptionVO> temp9=findLoss(1,status,time1,time2);
+		for(int i=0;i<temp9.size();i++)
+			result.add(temp9.get(i));
+		
+		ArrayList<ExceptionVO> temp10=findOverflow(1,status,time1,time2);
+		for(int i=0;i<temp10.size();i++)
+			result.add(temp10.get(i));
+		
+		if(status!=null){
+			for(int i=0;i<result.size();i++){
+				DocumentVO t=result.get(i);
+				if(t.getStatus()!=status){
+				result.remove(i);
+				i--;
+				}
+			}
+		}
+		return result;
 	}
 }

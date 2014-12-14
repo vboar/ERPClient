@@ -7,6 +7,7 @@ package businesslogicservice.businessconditionblservice;
 
 import util.ResultMessage;
 import vo.BusinessConditionVO;
+import vo.RequirementVO;
 
 public interface BusinessConditionBLService {
 
@@ -22,7 +23,7 @@ public interface BusinessConditionBLService {
 	 * @param path
 	 * @return
 	 */
-	public ResultMessage exportExcel(String path);
+	public ResultMessage exportExcel(String path,RequirementVO vo);
 	
 	/**
 	 * 获取导出文件默认路径

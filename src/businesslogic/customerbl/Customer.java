@@ -12,14 +12,15 @@ import util.ResultMessage;
 import vo.CustomerVO;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Customer {
     Log l=new Log();
 	
     public ResultMessage createLog(String content){
-		//TODO
-		return null;	
+		Log l=new Log();
+		return l.add(content);	
 	}
     
 	//客户名唯一
@@ -29,7 +30,6 @@ public class Customer {
 				l.add("Customer Add Error:customer exists");
 				return ResultMessage.EXIST;
 			}else{
-				//TODO
 				String id=createId();
 				DataFactoryImpl.getInstance().getCustomerData().insert(new CustomerPO(id,
 						vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
@@ -245,9 +245,18 @@ public class Customer {
 		return result;
 	}
 	
-	//TODO
 	public String createId(){
-		return null;
+		String id="";
+		ArrayList<CustomerVO> list=show();
+		if(list.size()==0){
+			return "00001";
+		}else{
+			CustomerVO max=list.get(list.size());
+			DecimalFormat df=new DecimalFormat("00000");
+			int m=Integer.parseInt(max.id);
+			id=df.format(m);
+		}
+		return id;
 	}
 	
 	public CustomerVO poToVo(CustomerPO po){
