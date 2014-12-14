@@ -290,7 +290,7 @@ public class BusinessHistory {
 	
 	public ResultMessage exportSale(String path,RequirementVO vo){
 		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet();
+		HSSFSheet sheet=wb.createSheet("销售历史表");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -416,7 +416,7 @@ public class BusinessHistory {
 	
 	public ResultMessage exportPurchase(String path,RequirementVO vo){
 		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet();
+		HSSFSheet sheet=wb.createSheet("进货历史表");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -523,7 +523,7 @@ public class BusinessHistory {
 	
 	public ResultMessage exportPayment(String path,RequirementVO vo){
 		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet();
+		HSSFSheet sheet=wb.createSheet("付款单历史");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -600,7 +600,7 @@ public class BusinessHistory {
 	
 	public ResultMessage exportCash(String path,RequirementVO vo){
 		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet();
+		HSSFSheet sheet=wb.createSheet("现金费用单历史");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -673,7 +673,7 @@ public class BusinessHistory {
 	
 	public ResultMessage exportException(String path,RequirementVO vo){
 		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet();
+		HSSFSheet sheet=wb.createSheet("库存异常历史");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -749,7 +749,7 @@ public class BusinessHistory {
 	
 	public ResultMessage exportWarning(String path,RequirementVO vo){
 		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet();
+		HSSFSheet sheet=wb.createSheet("报警单历史");
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);

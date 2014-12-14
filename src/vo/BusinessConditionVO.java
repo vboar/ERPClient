@@ -13,6 +13,16 @@ public class BusinessConditionVO {
 	public double saleIncome;
 	
 	/**
+	 * 折让后收入
+	 */
+	public double incomeAfterDiscount;
+	
+	/**
+	 * 折让
+	 */
+	public double discount;
+	
+	/**
 	 * 商品报溢收入
 	 */
 	public double commodityOverIncome;
@@ -23,19 +33,9 @@ public class BusinessConditionVO {
 	public double costAdjustIncome;
 	
 	/**
-	 * 代金券与实际差额收入
+	 * 代金券与实际收款差额
 	 */
 	public double voucherIncome;
-	
-	/**
-	 * 折让后收入
-	 */
-	public double incomeAfterDiscount;
-	
-	/**
-	 * 折让
-	 */
-	public double discount;
 	
 	/**
 	 * 销售成本
@@ -76,9 +76,9 @@ public class BusinessConditionVO {
 	 * @param totalCost
 	 * @param profit
 	 */
-	public BusinessConditionVO(double saleIncome, double commodityOverIncome,
-			double costAdjustIncome, double voucherIncome,
-			double incomeAfterDiscount, double discount, double saleCost,
+	public BusinessConditionVO(double saleIncome,double incomeAfterDiscount, 
+			double discount,double commodityOverIncome,double costAdjustIncome, 
+			double voucherIncome, double saleCost,
 			double costByLoss, double costBySending, double totalCost,
 			double profit) {
 		super();

@@ -126,6 +126,8 @@ public class Payment {
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
+			time1=Time.jdugeTime1(time1);
+			time2=Time.jdugeTime2(time2);
 			temp=DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2);
 			for(int i=0;i<temp.size();i++){
 				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())

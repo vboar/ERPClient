@@ -56,7 +56,9 @@ public class Warning {
 		ArrayList<WarningPO> temp=new ArrayList<WarningPO>();
 		
 		try {
-			temp=DataFactoryImpl.getInstance().getWarningData().show(time1, time2);
+			time1=Time.jdugeTime1(time1);
+			time2=Time.jdugeTime2(time2);
+			temp=DataFactoryImpl.getInstance().getWarningData().show(time1,time2);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

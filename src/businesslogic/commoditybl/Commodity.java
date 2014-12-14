@@ -54,7 +54,7 @@ public class Commodity {
 	 * @param po
 	 * @return
 	 */
-	private CommodityVO commodityPOToCommodityVO(CommodityPO po) {
+	public CommodityVO commodityPOToCommodityVO(CommodityPO po) {
 
 		String id = po.getId();
 		String name = po.getName();

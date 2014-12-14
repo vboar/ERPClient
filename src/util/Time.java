@@ -27,4 +27,26 @@ public static String getCurrentDay(){
 	String date=df.format(new Date());
 	return date;
 }
+
+//若传入的time1为null或者""，返回“1970/1/1 0:0:0”
+public static String jdugeTime1(String time1){
+	
+	if(time1!=null&!time1.equals("")){
+		return time1;
+	}else{
+		return "1970/1/1 0:0:0";
+	}
+
+}
+
+//若传入的time2为null或者""，返回现在的时间 
+public static String jdugeTime2(String time2){
+	
+	if(time2!=null&!time2.equals("")){
+		return time2;
+	}else{
+		return getCurrentTime();
+	}
+
+}
 }

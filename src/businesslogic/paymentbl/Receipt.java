@@ -80,6 +80,8 @@ public class Receipt {
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		ArrayList<PaymentPO> temp=new ArrayList<PaymentPO>();
 		try {
+			time1=Time.jdugeTime1(time1);
+			time2=Time.jdugeTime2(time2);
 			temp=DataFactoryImpl.getInstance().getPaymentData().findByTime(time1, time2);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

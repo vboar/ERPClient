@@ -100,6 +100,8 @@ public class Cash{
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		ArrayList<CashPO> temp=new ArrayList<CashPO>();
 		try {
+			time1=Time.jdugeTime1(time1);
+			time2=Time.jdugeTime2(time2);
 			temp=DataFactoryImpl.getInstance().getCashDataService().findByTime(time1, time2);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
