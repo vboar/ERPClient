@@ -45,6 +45,7 @@ public class AddCashDialog extends JDialog {
         ((JComponent) this.getContentPane()).setOpaque(true);
         this.cfg = cfg;
         this.panel = panel;
+        this.setTitle(cfg.getTitle());
         this.setSize(this.cfg.getW(), this.cfg.getH());
         this.setLayout(null);
         this.setResizable(false);

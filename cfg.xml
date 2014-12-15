@@ -1015,10 +1015,11 @@
 			</buttons>
 			<labels>
 				<documentidlab text="" w="200" h="30" x="590" y="10" />
-				<accountidlab text="" w="180" h="35" x="170" y="80" />
-				<accountnamelab text="" w="180" h="35" x="400" y="80" />
-				<operatorlab text="" w="120" h="30" x="640" y="80" />
-				<totallab text="总额" w="120" h="30" x="581" y="306" />
+				<accountidlab text="" w="180" h="35" x="320" y="80" />
+				<accountnamelab text="" w="180" h="35" x="95" y="80" />
+				<operatorlab text="" w="120" h="30" x="620" y="80" />
+				<totallab text="" w="120" h="30" x="590" y="300" 
+				 font="微软雅黑" fontsize="18" color="true" r="54" g="87" b="143" />
 			</labels>
 			<textfields>
 				<accountfind w="270" h="25" x="180" y="50" />
@@ -1336,28 +1337,27 @@
 
 		<!-- 账户管理面板 -->
 		<panel className="ui.accountui.AccountPanel" width="760" height="510"
-			x="200" y="0" bg="img/common/panel.png">
+			x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<add text="" w="80" h="32" x="180" y="36" path="img/buttons/adduser.png"
-					pathroll="img/buttons/adduser1.png" />
-				<delete text="" w="80" h="32" x="260" y="36"
-					path="img/buttons/deluser.png" pathroll="img/buttons/deluser1.png" />
-				<update text="" w="80" h="32" x="340" y="36"
-					path="img/buttons/upduser.png" pathroll="img/buttons/upduser1.png" />
-				<show text="" w="100" h="30" x="420" y="36" path="img/buttons/show.png"
-					pathroll="img/buttons/show1.png" />
-				<find text="" w="24" h="24" x="700" y="40" path="img/buttons/search.png"
+				<add text="" w="80" h="32" x="170" y="40" path="img/buttons/addac.png"
+					pathroll="img/buttons/addac1.png" />
+				<delete text="" w="80" h="32" x="250" y="40"
+					path="img/buttons/delac.png" pathroll="img/buttons/delac1.png" />
+				<update text="" w="80" h="32" x="330" y="40"
+					path="img/buttons/updac.png" pathroll="img/buttons/updac1.png" />
+				<show text="" w="100" h="32" x="410" y="40" path="img/buttons/showac.png"
+					pathroll="img/buttons/showac1.png" />
+				<find text="" w="30" h="30" x="702" y="45" path="img/buttons/search.png"
 					pathroll="img/buttons/search1.png" />
 			</buttons>
 			<labels>
 				<title text="账户管理" w="120" h="30" x="10" y="2" />
-				<accountlist text="" w="120" h="32" x="0" y="35"
-					path="img/userlist.png" />
-				<modulename text="账户管理" w="120" h="30" x="0" y="2" />
+				<accountlist text="" w="120" h="32" x="20" y="40"
+					path="img/accountlist.png" />
 				<counter text="" w="150" h="30" x="25" y="2" path="img\admin.png" />
 			</labels>
 			<textfields>
-				<findinput w="175" h="28" x="525" y="38" />
+				<findinput w="175" h="28" x="525" y="45" />
 			</textfields>
 			<tablepane className="ui.accountui.AccountTablePane" width="730"
 				height="390" x="10" y="80">
@@ -1759,21 +1759,21 @@
 	</addreceiptaccountinfodialog>
 
 	<!-- 收付款中现金费用单添加条目对话框 -->
-	<addcashinfodialog width="480" height="280" x="240"
+	<addcashinfodialog width="480" height="240" x="240"
 		y="200" title="添加条目">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="270" y="190" />
-			<cancel text="取消" w="80" h="30" x="360" y="190" />
+			<commit text="提交" w="80" h="30" x="270" y="150" />
+			<cancel text="取消" w="80" h="30" x="360" y="150" />
 		</buttons>
 		<labels>
-			<name text="条目名称：" w="80" h="30" x="20" y="30" />
-			<money text="转账金额" w="80" h="30" x="20" y="70" />
-			<remark text="备注" w="80" h="30" x="20" y="110" />
+			<name text="条目名称：" w="80" h="30" x="20" y="10" />
+			<money text="转账金额" w="80" h="30" x="20" y="50" />
+			<remark text="备注" w="80" h="30" x="20" y="90" />
 		</labels>
 		<textfields>
-			<name w="100" h="30" x="86" y="30" />
-			<money w="100" h="30" x="86" y="70" />
-			<remark w="350" h="30" x="86" y="110" />
+			<name w="160" h="30" x="86" y="10" />
+			<money w="160" h="30" x="86" y="50" />
+			<remark w="350" h="30" x="86" y="90" />
 		</textfields>
 	</addcashinfodialog>
 

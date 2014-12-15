@@ -94,7 +94,6 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 
 	private void initLabels(Element labels) {
 		this.add(new MyLabel(labels.element("accountlist")));
-		this.add(new MyLabel(labels.element("modulename")));
 		this.add(new MyLabel(labels.element("counter")));
 		this.add(new MyLabel(labels.element("title")));
 	}
@@ -104,7 +103,7 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 		this.initDeleteBtn(buttons.element("delete"));
 		this.initUpdateBtn(buttons.element("update"));
 		this.initFindBtn(buttons.element("find"));
-		this.initShowBtn(buttons.element("showAll"));
+		this.initShowBtn(buttons.element("show"));
 		this.add(addBtn);
 		this.add(deleteBtn);
 		this.add(updateBtn);

@@ -8,11 +8,14 @@ package ui.homeui;
 import businesslogicservice.loginblservice.LoginBLService;
 import config.ERPConfig;
 import config.PanelConfig;
+
 import org.dom4j.Element;
+
 import ui.util.MyButton;
 import ui.util.MyLabel;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,7 +64,6 @@ public class LoginUserInfoPanel extends JPanel {
 
 	private void initButtons(Element button) {
 		this.mailbox = new MyButton(button.element("mailbox"));
-		this.mailbox.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.add(this.mailbox);
 		mailbox.addActionListener(new ActionListener() {
 			@Override
