@@ -94,6 +94,7 @@ public class Present {
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time=myFmt.format(date);
 		vo.time=time;
+		vo.id=createId();
 		PresentPO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPresentData().insert(po);

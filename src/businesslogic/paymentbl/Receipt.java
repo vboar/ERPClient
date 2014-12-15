@@ -49,6 +49,7 @@ public class Receipt {
 	
 	public ResultMessage add(PaymentVO vo){
 		vo.time=Time.getCurrentTime();
+		vo.id=createId();
 		try {
 			DataFactoryImpl.getInstance().getPaymentData().insert(voToPo(vo));
 		} catch (RemoteException e) {

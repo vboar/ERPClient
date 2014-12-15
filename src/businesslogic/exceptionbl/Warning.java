@@ -53,6 +53,7 @@ public class Warning {
 	
 	public ResultMessage create(WarningVO vo){
 		vo.time=Time.getCurrentTime();
+		vo.id=createId();
 		try {
 			DataFactoryImpl.getInstance().getWarningData().insert(voToPo(vo));
 		} catch (RemoteException e) {
