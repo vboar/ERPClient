@@ -18,7 +18,6 @@ import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
-import vo.TransferLineItemVO;
 import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
 import businesslogic.logbl.Log;
@@ -53,49 +52,85 @@ public class Approval {
 		}
 	}
 	
-	public ResultMessage approveReceipt(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
+	public ResultMessage approveReceipt(PaymentVO vo){
 		Receipt r=new Receipt();
-		return r.approve(transferlist, id, customerId, total);
+		if(vo.approvalState==DocumentStatus.PASSED){
+		return r.approve(vo.transferList, vo.id, vo.customerId, vo.total);
+		}else{
+			return r.update(vo);
+		}
 	}
 	
 	public ResultMessage approveSale(SaleVO vo){
 		Sale s=new Sale();
+		if(vo.approvalState==DocumentStatus.PASSED){
 		return s.approve(vo);
+		}else{
+			return s.update(vo);
+		}
 	}
 	
 	public ResultMessage approveSaleReturn(SaleVO vo){
 		SaleReturn sr=new SaleReturn();
+		if(vo.approvalState==DocumentStatus.PASSED){
 		return sr.approve(vo);
+		}else{
+			return sr.update(vo);
+		}
 	}
 	
 	public ResultMessage approvePurchase(PurchaseVO vo){
 		Purchase p=new Purchase();
+		if(vo.documentStatus==DocumentStatus.PASSED){
 		return p.approve(vo);
+		}else{
+			return p.update(vo);
+		}
 	}
 	
 	public ResultMessage approvePurchaseReturn(PurchaseVO vo){
 		PurchaseReturn pr=new PurchaseReturn();
+		if(vo.documentStatus==DocumentStatus.PASSED){
 		return pr.approve(vo);
+		}else{
+			return pr.update(vo);
+		}
 	}
 	
 	public ResultMessage approveOverflow(ExceptionVO vo){
 		Overflow of=new Overflow();
+		if(vo.status==DocumentStatus.PASSED){
 		return of.approve(vo);
+		}else{
+			return of.update(vo);
+		}
 	}
 	
 	public ResultMessage approveLoss(ExceptionVO vo){
 		Loss l=new Loss();
+		if(vo.status==DocumentStatus.PASSED){
 		return l.approve(vo);
+		}else{
+			return l.update(vo);
+		}
 	}
 	
 	public ResultMessage approveCash(CashVO vo){
 		Cash c=new Cash();
+		if(vo.approvalState==DocumentStatus.PASSED){
 		return c.approve(vo);
+		}else{
+			return c.update(vo);
+		}
 	}
 	
 	public ResultMessage approvePresent(PresentVO vo){
 		Present p=new Present();
+		if(vo.documentStatus==DocumentStatus.PASSED){
 		return p.approve(vo);
+		}else{
+			return p.update(vo);
+		}
 	}
 	
 	public ArrayList<PresentVO> findPresent(int way,DocumentStatus status,String time1,String time2){

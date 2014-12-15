@@ -116,6 +116,16 @@ public class Cash{
 		return result;
 	}
 	
+	public ResultMessage update(CashVO vo){
+		try {
+			DataFactoryImpl.getInstance().getCashDataService().update(voToPo(vo));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
 	public ArrayList<CashVO> show(){
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		ArrayList<CashPO> temp=new ArrayList<CashPO>();

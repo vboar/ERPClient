@@ -179,6 +179,16 @@ public class Receipt {
 		return ResultMessage.SUCCESS;
 	}
 	
+	public ResultMessage update(PaymentVO vo){
+		try {
+			DataFactoryImpl.getInstance().getPaymentData().update(voToPo(vo));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
 	public PaymentPO voToPo(PaymentVO vo){
 		ArrayList<TransferLineItemPO> transferList=voListTOpoList(vo.transferList);
 		PaymentPO result=new PaymentPO(vo.id,vo.time,vo.customerId,vo.customerName,
