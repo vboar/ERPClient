@@ -43,7 +43,9 @@ public class Approval {
 		Log l=new Log();
 		return l.add(content);
 	}
-	public ResultMessage approvePayment(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){
+	
+	public ResultMessage approvePayment(ArrayList<TransferLineItemVO> transferlist,
+			String id,String customerId,double total,DocumentStatus Status){
 		Payment p=new Payment();
 		return p.approve(transferlist,id,customerId,total);
 	}

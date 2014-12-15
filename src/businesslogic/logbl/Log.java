@@ -26,7 +26,7 @@ public class Log {
 			String operator=getOperator();
 			
 			try {
-				DataFactoryImpl.getInstance().getLogData().insert(new LogPO(time,id,operator,content));
+				DataFactoryImpl.getInstance().getLogData().insert(new LogPO(id,time,operator,content));
 			} catch (RemoteException e) {
 				
 				e.printStackTrace();
@@ -54,6 +54,38 @@ public class Log {
 			return result;
 		}
 		
+		public ArrayList<LogVO> findByOperator(String operatorId){
+			ArrayList<LogVO> result=new ArrayList<LogVO>();
+			ArrayList<LogPO> temp=new ArrayList<LogPO>();
+			
+			try {
+				temp=DataFactoryImpl.getInstance().getLogData().show();
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getOperatorId().equals(operatorId))
+					result.add(poToVo(temp.get(i)));
+			}
+			return result;
+		}
+		
+		public ArrayList<LogVO> find(String time1,String time2,String operatorId){
+			ArrayList<LogVO> result=new ArrayList<LogVO>();
+			ArrayList<LogVO> temp=new ArrayList<LogVO>();
+			
+			temp=findByTime(time1,time2);
+			for(int i=0;i<temp.size();i++)
+				result.add(temp.get(i));
+			
+			temp=findByOperator(operatorId);
+			for(int i=0;i<temp.size();i++)
+				result.add(temp.get(i));
+			
+			return result;
+		}
 		public ArrayList<LogVO> show() {
 			ArrayList<LogVO> result=new ArrayList<LogVO>();
 			ArrayList<LogPO> temp=new ArrayList<LogPO>();

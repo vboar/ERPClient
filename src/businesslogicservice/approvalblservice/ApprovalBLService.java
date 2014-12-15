@@ -5,12 +5,17 @@
  */
 package businesslogicservice.approvalblservice;
 
-import util.DocumentStatus;
-import util.DocumentType;
-import util.ResultMessage;
-import vo.*;
-
 import java.util.ArrayList;
+
+import util.DocumentStatus;
+import util.ResultMessage;
+import vo.CashVO;
+import vo.DocumentVO;
+import vo.ExceptionVO;
+import vo.PaymentVO;
+import vo.PresentVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
 
 public interface ApprovalBLService {
 	

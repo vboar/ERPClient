@@ -16,8 +16,7 @@ public class LogController implements LogBLService {
 
 	@Override
 	public ArrayList<LogVO> find(String time1, String time2, String operatorId) {
-		// TODO 未实现
-		return log.findByTime(time1,time2);
+		return log.find(time1,time2,operatorId);
 	}
 
 	@Override
