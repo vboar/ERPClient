@@ -127,4 +127,12 @@ public class PaymentVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 		this.approvalState = status;
 	}
+	
+	public String listToStr(){
+		String str = "";
+		for(int i=0; i<transferList.size();++i){
+			str = str + transferList.get(i).toString()+" \n";
+		}
+		return str;
+	}
 }

@@ -182,6 +182,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.hasTable = true;
 		if(this.getRequirementVO()!=null){
 			DocumentType documentType = DocumentType.strToType(this.type.getSelectedItem().toString());
+			vo.type = documentType;
 			switch(documentType){
 			case PRESENT: showPresent(vo); break;
 			case OVERFLOW: showException(vo, false); break;

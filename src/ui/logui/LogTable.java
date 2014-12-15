@@ -66,7 +66,6 @@ public class LogTable extends TablePanel {
             LogVO vo = list.get(i);
             this.createRow(data[i], vo);
         }
-        System.out.println("find"+list.size());
     }
 
     private void createRow(Object[] row, LogVO vo) {
@@ -84,6 +83,7 @@ public class LogTable extends TablePanel {
     public void find(String time1, String time2, String operatorId) {
         list = controller.find(time1, time2, operatorId);
         initData(list);
+        this.dtm.setDataVector(data, columnName);
         updateUI();
     }
 }

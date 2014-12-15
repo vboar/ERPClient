@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import ui.util.MyButton;
 import ui.util.MyLabel;
+import ui.util.MyOptionPane;
 import config.ERPConfig;
 import config.PanelConfig;
 
@@ -130,6 +131,12 @@ public class ExceptionPanel extends JPanel {
 	 * 显示报损单面板
 	 */
 	public void showCreateLoss() {
+		if(createOverPanel!=null||createLossPanel!=null){
+			if(MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑?","确认提示",
+					MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE)!=MyOptionPane.YES_OPTION){
+				return;
+			}
+		}
 		removeAllPanel();
 		createLossPanel = new CreateLossPanel(frame, ExceptionPanel.this);
 		add(createLossPanel);
@@ -140,6 +147,12 @@ public class ExceptionPanel extends JPanel {
 	 * 显示报溢单面板
 	 */
 	public void showCreateOver() {
+		if(createOverPanel!=null||createLossPanel!=null){
+			if(MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑?","确认提示",
+					MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE)!=MyOptionPane.YES_OPTION){
+				return;
+			}
+		}
 		removeAllPanel();
 		createOverPanel = new CreateOverPanel(frame, ExceptionPanel.this);
 		add(createOverPanel);
@@ -150,6 +163,12 @@ public class ExceptionPanel extends JPanel {
 	 * 显示报警单面板
 	 */
 	public void showWarning() {
+		if(createOverPanel!=null||createLossPanel!=null){
+			if(MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑?","确认提示",
+					MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE)!=MyOptionPane.YES_OPTION){
+				return;
+			}
+		}
 		removeAllPanel();
 		showWarningPanel = new ShowWarningPanel();
 		add(showWarningPanel);
@@ -161,6 +180,13 @@ public class ExceptionPanel extends JPanel {
 	 * @param isloss true为报损单,false为报溢单
 	 */
 	public void showExceptionList(boolean isloss) {
+		if((createOverPanel!=null&&createOverPanel.isVisible())||
+				(createLossPanel!=null&&createLossPanel.isVisible())){
+			if(MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑?","确认提示",
+					MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE)!=MyOptionPane.YES_OPTION){
+				return;
+			}
+		}
 		removeAllPanel();
 		showOverLossPanel = new ShowOverLossPanel(isloss);
 		add(showOverLossPanel);

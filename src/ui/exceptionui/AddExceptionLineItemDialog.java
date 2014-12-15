@@ -78,6 +78,7 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 		this.cfg = ERPConfig.getADDEXCEPTIONLINEITEM_DIALOG_CONFIG();
 		
 		// 设置大小、坐标、布局
+		this.setTitle(cfg.getTitle());
 		this.setBounds(cfg.getX(), cfg.getW(), cfg.getW(), cfg.getH());
         this.setLayout(null);
         this.setResizable(false);

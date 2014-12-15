@@ -59,6 +59,8 @@ public class PresentListTablePane extends TablePanel {
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
 		this.table.setRowSorter(null);
+		this.table.getColumnModel().getColumn(0).setMinWidth(160);
+		this.table.getColumnModel().getColumn(4).setMinWidth(300);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
 	}
 

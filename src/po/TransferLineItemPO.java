@@ -15,6 +15,11 @@ public class TransferLineItemPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * 账户名称
+	 */
+	private String name;
+	
+	/**
 	 * 银行账号
 	 */
 	private String bankAccount;
@@ -35,7 +40,8 @@ public class TransferLineItemPO implements Serializable{
 	 * @param account
 	 * @param remark
 	 */
-	public TransferLineItemPO(String bankAccount, double account,String remark){
+	public TransferLineItemPO(String name,String bankAccount, double account,String remark){
+		this.name = name;
 		this.bankAccount = bankAccount;
 		this.account = account;
 		this.remark = remark;
@@ -52,6 +58,9 @@ public class TransferLineItemPO implements Serializable{
 	public String getRemark() {
 		return remark;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
 
 }

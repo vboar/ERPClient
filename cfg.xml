@@ -290,8 +290,8 @@
 		<panel className="ui.stockui.stockcheck.StockCheckPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<find text="查看" w="60" h="30" x="670" y="45" />
-				<createcheck text="生成今日快照" w="120" h="30" x="320" y="45" />
+				<find text="查看" w="60" h="30" x="540" y="45" />
+				<createcheck text="生成今日快照" w="120" h="30" x="620" y="45" />
 				<excel text="导出Excel文件" w="140" h="30" x="580" y="440" />
 			</buttons>
 			<labels>
@@ -300,10 +300,10 @@
 					fontsize="20" color="true" r="40" g="40" b="40" />
 					<past text="" w="240" h="40" x="20" y="40" font="微软雅黑"
 					fontsize="20" color="true" r="40" g="40" b="40" />
-				<date text="日期" w="60" h="30" x="500" y="45" />
+				<date text="日期" w="60" h="30" x="355" y="45" />
 			</labels>
 			<datepicker>
-				<date w="200" h="30" x="540" y="45">
+				<date w="125" h="30" x="400" y="47">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
@@ -1742,9 +1742,9 @@
 		<labels>
 			<name text="账户名称：" w="65" h="30" x="20" y="70" />
 			<account text="银行卡号：" w="65" h="30" x="200" y="70" />
-			<currentname text="________________" w="100" h="30" x="86"
+			<currentname text="" w="100" h="30" x="86"
 				y="70" />
-			<currentaccount text="________________" w="175" h="30"
+			<currentaccount text="" w="175" h="30"
 				x="268" y="70" />
 			<money text="转账金额" w="80" h="30" x="20" y="110" />
 			<remark text="备注" w="80" h="30" x="20" y="150" />

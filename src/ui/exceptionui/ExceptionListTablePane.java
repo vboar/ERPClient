@@ -72,9 +72,9 @@ public class ExceptionListTablePane extends TablePanel {
 			}
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
-		this.table.getColumnModel().getColumn(0).setMinWidth(200);
-		this.table.getColumnModel().getColumn(1).setMinWidth(200);
-		this.table.getColumnModel().getColumn(2).setMinWidth(550);
+		this.table.getColumnModel().getColumn(0).setMinWidth(160);
+		this.table.getColumnModel().getColumn(1).setMinWidth(160);
+		this.table.getColumnModel().getColumn(2).setMinWidth(500);
 		// 设置不可排序
 		this.table.setRowSorter(null);
 		// 设置表格列宽

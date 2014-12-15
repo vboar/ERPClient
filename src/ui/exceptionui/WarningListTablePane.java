@@ -60,8 +60,8 @@ public class WarningListTablePane extends TablePanel {
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setRowSorter(null);
-		this.table.getColumnModel().getColumn(0).setMaxWidth(160);
-		this.table.getColumnModel().getColumn(1).setMaxWidth(160);
+		this.table.getColumnModel().getColumn(0).setMinWidth(160);
+		this.table.getColumnModel().getColumn(1).setMinWidth(160);
 		this.table.getColumnModel().getColumn(2).setMinWidth(500);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), 100);
 	}
@@ -109,9 +109,7 @@ public class WarningListTablePane extends TablePanel {
 	 * @param time2
 	 */
 	public void showFindTable(String time1, String time2) {
-		if(list==null){
-			return;
-		}
+		list = controller.show(time1, time2);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
 			names.add(columnName[i]);
