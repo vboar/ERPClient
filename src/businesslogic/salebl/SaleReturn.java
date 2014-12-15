@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import po.CommodityPO;
 import po.SalePO;
 import util.DocumentStatus;
 import util.DocumentType;
@@ -18,7 +19,11 @@ import vo.CommodityLineItemVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
 import vo.SaleVO;
+import vo.SpecialOfferVO;
+import businesslogic.commoditybl.Commodity;
+import businesslogic.customerbl.Customer;
 import businesslogic.presentbl.Present;
+import businesslogic.promotionbl.SpecialOfferPromotion;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
@@ -234,9 +239,49 @@ public class SaleReturn {
 	}
 	
 	//TODO
-	public ResultMessage approve(SaleVO vo) {
-		return null;
+	public ResultMessage approve(SaleVO vo) {		
+		double total=vo.totalAfterDiscount-vo.voucher;
 
+		Customer cus=new Customer();
+		if(total>0){
+		
+		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
+		cus.updateBySaleReturn(vo.customerId, vo.totalAfterDiscount);
+		}
+		
+		
+		
+		for(CommodityLineItemVO vo1:vo.saleList){
+			
+			Commodity commodity=new Commodity();
+			String id=vo1.id;
+			if(id.compareTo("99998")>0){
+				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id);
+				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
+				for(CommodityLineItemVO commodityLineItemvo:spList){
+					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);
+					commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+					try {
+						DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+				continue;
+			}
+			
+			CommodityPO commoditypo=commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+			commoditypo.setRecentSalePrice(vo1.price);
+						try {
+				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+			
+		}		
+			return ResultMessage.SUCCESS;
 	}	
 	
 	public ResultMessage addlog(String content){

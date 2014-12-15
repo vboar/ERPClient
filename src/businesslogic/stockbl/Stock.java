@@ -8,6 +8,7 @@ package businesslogic.stockbl;
 
 import businesslogic.commoditybl.Commodity;
 import businesslogic.presentbl.Present;
+import businesslogic.promotionbl.SpecialOfferPromotion;
 import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
@@ -64,6 +65,7 @@ public class Stock {
 				salelistitr.remove();
 
 			}
+			
 		}
 		Iterator<SaleVO> saleReturnItr = saleReturnList.iterator();
 		while (saleReturnItr.hasNext()) {
@@ -125,6 +127,17 @@ public class Stock {
 		System.out.println("Stockbl 127: outlist.size " + outList.size());
 		System.out.println("Stockbl 128: inlist.size " + inList.size());
 
+		//把促销包变换成商品
+		for(SaleVO salevo : saleList){
+			ArrayList<CommodityLineItemVO> list=removeSpecial(salevo.saleList);
+			salevo.saleList=list;
+		}
+		
+		for(SaleVO salevo : saleReturnList){
+			ArrayList<CommodityLineItemVO> list=removeSpecial(salevo.saleList);
+			salevo.saleList=list;
+		}
+
 		// 加到第二级列表中，按照销售和进货分开
 		for (SaleVO salevo : saleList) {
 			outList.addAll(salevo.saleList);
@@ -180,7 +193,7 @@ public class Stock {
 				if (vo2.id.equals(outvo.id)) {
 					vo.outNumber += vo2.number;
 					vo.outMoney += vo2.total;
-					outList.remove(vo2);
+					clivoitr3.remove();
 				}
 			}
 			result.add(vo);
@@ -222,7 +235,7 @@ public class Stock {
 
 		String batchNumber = createBatchNumber();
 
-		ArrayList<CommodityVO> commodityList = new Commodity().show();
+		ArrayList<CommodityVO> commodityList = new Commodity().showButSpecial();
 		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 		for (CommodityVO commodityvo : commodityList) {
 			String id = commodityvo.id;
@@ -314,6 +327,20 @@ public class Stock {
 		StockVO vo = new StockVO(commodityId, commodityName, commodityModel,
 				number, avgPrice, batch, batchNumber);
 		return vo;
+	}
+	
+	public ArrayList<CommodityLineItemVO> removeSpecial(ArrayList<CommodityLineItemVO> commodityList){
+		ArrayList<CommodityLineItemVO> result=new ArrayList<CommodityLineItemVO>();
+		for(CommodityLineItemVO vo:commodityList){
+			if(vo.id.compareTo("9999")>0){
+				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(vo.id);
+				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
+				result.addAll(spList);
+			}else{
+				result.add(vo);
+			}
+		}
+		return result;
 	}
 
 }

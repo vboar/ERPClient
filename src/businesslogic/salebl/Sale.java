@@ -418,7 +418,7 @@ public class Sale {
 		if(total>0){
 		
 		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
-		cus.updateByPurchase(vo.customerId, vo.totalAfterDiscount);
+		cus.updateBySale(vo.customerId, vo.totalAfterDiscount);
 		}
 		
 		
