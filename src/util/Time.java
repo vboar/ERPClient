@@ -34,7 +34,7 @@ public static String jdugeTime1(String time1){
 	if(time1!=null&&!time1.equals("")){
 		return time1;
 	}else{
-		return "1970/1/1 0:0:0";
+		return "1970/01/01 00:00:00";
 	}
 
 }

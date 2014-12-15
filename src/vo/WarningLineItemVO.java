@@ -50,6 +50,6 @@ public class WarningLineItemVO {
 	
 	@Override
 	public String toString(){
-		return name+"-"+model+"-"+"-actual"+stockNumber+"-warning"+warningNumber;
+		return name+"-"+model+"-"+stockNumber+"-警戒线"+warningNumber;
 	}
 }

@@ -60,7 +60,10 @@ public class WarningListTablePane extends TablePanel {
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setRowSorter(null);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.table.getColumnModel().getColumn(0).setMaxWidth(160);
+		this.table.getColumnModel().getColumn(1).setMaxWidth(160);
+		this.table.getColumnModel().getColumn(2).setMinWidth(500);
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 100);
 	}
 
 	/**
@@ -96,7 +99,7 @@ public class WarningListTablePane extends TablePanel {
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 100);
 		this.updateUI();
 	}
 
@@ -123,7 +126,7 @@ public class WarningListTablePane extends TablePanel {
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 100);
 		this.updateUI();
 		if(list.size()==0){
 			MyOptionPane.showMessageDialog(WarningListTablePane.this, "抱歉，未找到相关记录！");

@@ -38,6 +38,9 @@ public class Log {
 		public ArrayList<LogVO> findByTime(String time1,String time2){
 			ArrayList<LogVO> result=new ArrayList<LogVO>();
 			ArrayList<LogPO> temp=new ArrayList<LogPO>();
+			time1 = Time.jdugeTime1(time1);
+			time2 = Time.jdugeTime2(time2);
+			System.out.println(time1+" "+time2);
 			try {
 				temp=DataFactoryImpl.getInstance().getLogData().findByTime(time1, time2);
 			} catch (RemoteException e) {
@@ -47,6 +50,7 @@ public class Log {
 			for(int i=0;i<temp.size();i++){
 				result.add(poToVo(temp.get(i)));
 			}
+			System.out.println("temp:" + temp.size());
 			return result;
 		}
 		

@@ -66,6 +66,7 @@ public class LogTable extends TablePanel {
             LogVO vo = list.get(i);
             this.createRow(data[i], vo);
         }
+        System.out.println("find"+list.size());
     }
 
     private void createRow(Object[] row, LogVO vo) {
