@@ -1,7 +1,9 @@
 package businesslogic.messagebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.MessagePO;
 import po.UserPO;
@@ -9,6 +11,7 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 import businesslogic.logbl.Log;
 import businesslogic.loginbl.Login;
 import util.ResultMessage;
+import util.Time;
 import util.UserType;
 import vo.MessageVO;
 import vo.UserVO;
@@ -21,6 +24,8 @@ public class Message {
 	}
 	
 	public void add(MessageVO vo){
+		vo.id=createId();
+		vo.time=Time.getCurrentTime();
 		try {
 			DataFactoryImpl.getInstance().getMessageData().insert(voToPo(vo));
 		} catch (RemoteException e) {
@@ -89,5 +94,29 @@ public class Message {
 				result.add(temp.get(i));
 		
 		return result;
+	}
+	
+	public String createId(){
+		Date date=new Date();
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");
+		String time=myFmt.format(date);
+
+		ArrayList<MessageVO> list=new ArrayList<MessageVO>();
+		if(list.size()==0){
+			return "XX-"+Time.getCurrentTime()+"-00001";
+		}else{
+			String maxId=list.get(list.size()-1).id;
+			String day=maxId.substring(4,maxId.length()-5);
+			if(day.compareTo(time)<0){
+				return "XX-"+time+"-00001";
+			}else{
+				String oldMax=maxId.substring(maxId.length()-5);
+				int maxInt=Integer.parseInt(oldMax);
+				String pattern="00000";
+				 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+				 String maxStr=df.format(maxInt+1);
+				 return "XX-"+time+"-"+maxStr;
+			}
+		}
 	}
 }

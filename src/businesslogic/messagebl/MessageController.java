@@ -43,4 +43,7 @@ public class MessageController implements MessageBLService {
 		return m.showByStatus(state);
 	}
 
+	public String createId(){
+		return m.createId();
+	}
 }

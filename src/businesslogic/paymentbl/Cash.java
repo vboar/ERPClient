@@ -53,6 +53,7 @@ public class Cash{
 	
 	public ResultMessage add(CashVO vo){
 		vo.time=Time.getCurrentTime();
+		vo.id=createId();
 		try {
 			DataFactoryImpl.getInstance().getCashDataService().insert(voToPo(vo));
 		} catch (RemoteException e) {
