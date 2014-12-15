@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PromotionVO;
@@ -82,7 +83,12 @@ public class PromotionTablePanel extends TablePanel{
 	}
 	
 	public PromotionVO getSeleted(){
-		return this.list.get(this.table.getSelectedRow());
+		int row = this.table.getSelectedRow();
+		if(row==-1){
+			MyOptionPane.showMessageDialog(PromotionTablePanel.this, "请选择一个促销策略！");
+			return null;
+		}
+		return this.list.get(row);
 	}
 
 }

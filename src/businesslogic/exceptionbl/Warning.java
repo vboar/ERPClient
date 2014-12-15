@@ -91,7 +91,7 @@ public class Warning {
 		
 		for(int i=0;i<temp.size();i++)
 			result.add(poToVo(temp.get(i)));
-		
+		System.out.println("result"+result.get(0).list);
 		return result;
 	}
 
@@ -122,6 +122,7 @@ public class Warning {
 	}
 	public WarningVO poToVo(WarningPO po) {
 		ArrayList<WarningLineItemVO> list=poListToVoList(po.getList());
+		System.out.println();
 		WarningVO result=new WarningVO(po.getId(),po.getTime(),
 				list,DocumentType.values()[po.getDocumentType()]);
 		return result;

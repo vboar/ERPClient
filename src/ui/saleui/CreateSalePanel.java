@@ -288,6 +288,12 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		// 获得可用优惠列表
 		ArrayList<PromotionVO> vip = saleCtrl.calCustomerPromotion(customerVO.level);
 		ArrayList<PromotionVO> price = saleCtrl.calTotalGiftPromotion(totalPrice);
+		//TODO 
+//		ArrayList<PresentLineItemVO> list = new ArrayList<PresentLineItemVO>();
+//		list.add(new PresentLineItemVO("0001", "aa", "b", 1));
+//		vip.add(new PromotionVO("00001", list, 0, 0));
+//		vip.add(new PromotionVO("00003", list, 0, 20));
+//		price.add(new PromotionVO("00002",list,0.8,10));
 		// 如果不为空，则显示选择对话框
 		if((vip!=null&&vip.size()>0)||(price!=null&&price.size()>0)){
 			new ShowChoosePromotionDialog(frame,vip,price,this);
@@ -388,11 +394,11 @@ public class CreateSalePanel extends JPanel implements FuzzySearch, AddCommodity
 		String showStr = "<html>";
 		if(this.promotionlist.size()>0&&this.promotionlist.get(0)!=null){
 			vipid = this.promotionlist.get(0).id;
-			showStr = showStr + this.promotionlist.get(0).toString() + "<br>";
+			showStr = showStr + " "+this.promotionlist.get(0).toString() + "<br>";
 		}
 		if((this.promotionlist.size()>1)&&(this.promotionlist.get(1)!=null)){
 			priceid = this.promotionlist.get(1).id;
-			showStr += this.promotionlist.get(1).toString();
+			showStr = showStr + " " + this.promotionlist.get(1).toString();
 		}
 		showStr += "<html>";
 		// TODO 空指针
