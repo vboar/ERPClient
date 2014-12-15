@@ -59,9 +59,7 @@ public class PresentListTablePane extends TablePanel {
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
 		this.table.setRowSorter(null);
-		this.table.getColumnModel().getColumn(0).setMinWidth(160);
-		this.table.getColumnModel().getColumn(4).setMinWidth(300);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.updateWidth();
 	}
 
 	private void initData() {
@@ -88,8 +86,7 @@ public class PresentListTablePane extends TablePanel {
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 	}
 
 	public void showFindTable(String time1, String time2) {
@@ -111,12 +108,17 @@ public class PresentListTablePane extends TablePanel {
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 		if (list.size() == 0) {
 			MyOptionPane.showMessageDialog(PresentListTablePane.this,
 					"抱歉，未找到相关记录！");
 		}
 	}
-
+	
+	public void updateWidth(){
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+        this.table.getColumnModel().getColumn(0).setMinWidth(160);
+        this.table.getColumnModel().getColumn(4).setMinWidth(300);
+        this.updateUI();
+	}
 }

@@ -55,8 +55,7 @@ public class PurchaseListPane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
-		this.table.setRowSorter(null);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.updateWidth();
 	}
 
 	private void initData() {
@@ -119,16 +118,13 @@ public class PurchaseListPane extends TablePanel{
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-		this.updateUI();
-	
+		this.updateWidth();
 	}
-
+	
 	public void updateData(){
 		this.initData();
 		this.dtm.setDataVector(data, columnNames);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 	}
 	
 	public void showFindOne(PurchaseVO vo){
@@ -136,11 +132,17 @@ public class PurchaseListPane extends TablePanel{
 			this.data = new Object[1][COLUMN_NUM];
 			this.createRow(data[0], vo);
 			this.dtm.setDataVector(data, columnNames);
-			FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
-			this.updateUI();
+			this.updateWidth();
 		}else{
 			MyOptionPane.showMessageDialog(PurchaseListPane.this, "未找到单据！");
 		}
+	}
+	
+	public void updateWidth(){
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+        this.table.getColumnModel().getColumn(0).setMinWidth(160);
+        this.table.getColumnModel().getColumn(6).setMinWidth(300);
+        this.updateUI();
 	}
 
 }

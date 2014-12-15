@@ -100,8 +100,9 @@ public class Payment {
 		try {
 			temp=DataFactoryImpl.getInstance().getPaymentData().show();
 			for(int i=0;i<temp.size();i++){
-				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal())
+				if(temp.get(i).getDocumentType()==DocumentType.PAYMENT.ordinal()){
 					result.add(poToVo(temp.get(i)));
+				}
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

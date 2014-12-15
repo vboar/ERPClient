@@ -20,7 +20,11 @@ import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
 import vo.AccountVO;
+import vo.CashVO;
 import vo.ClauseLineItemVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogic.loginbl.Login;
@@ -203,7 +207,19 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
     }
 
     public void createCash() {
-
+    	if(!hasAccount){
+    		MyOptionPane.showMessageDialog(frame, "请先添加转账账户！");
+    		return;
+    	}
+    	CashVO vo = new CashVO(this.documentIdLab.getText(),null,this.accountVO.account,null,list,
+    			this.total,DocumentStatus.NONCHECKED,false,DocumentType.CASH);
+    	ResultMessage result = cashController.create(vo);
+    	if(result == ResultMessage.SUCCESS){
+    		MyOptionPane.showMessageDialog(frame, "创建现金费用单成功！");
+    		panel.showShow();
+    	}else{
+    		MyOptionPane.showMessageDialog(frame, "创建现金费用单失败！");
+    	}
     }
 
     /**

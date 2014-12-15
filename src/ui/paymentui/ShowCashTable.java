@@ -51,6 +51,7 @@ public class ShowCashTable extends TablePanel {
             }
         };
         this.table = new MyTable(this.dtm,this.getWidth());
+        this.updateWidth();
     }
 
     private void initData(ArrayList<CashVO> list) {
@@ -66,10 +67,9 @@ public class ShowCashTable extends TablePanel {
         row[1]=vo.time;
         row[2]=vo.operator;
         row[3]=vo.bankAccount;
-        // TODO
-        row[4]=vo.clauseList.toString();
+        row[4]=vo.listToStr();
         row[5]=vo.total;
-        row[6]=vo.approvalState;
+        row[6]=vo.approvalState.toReadableString();
     }
 
     public void showFindTable(String time1, String time2) {
@@ -85,15 +85,14 @@ public class ShowCashTable extends TablePanel {
             row.add(vo.id);
             row.add(vo.time);
             row.add(vo.operator);
-            // TODO
-            row.add(vo.clauseList.toString());
+            row.add(vo.bankAccount);
+            row.add(vo.listToStr());
             row.add(vo.total);
-            row.add(vo.approvalState);
+            row.add(vo.approvalState.toReadableString());
             table.add(row);
         }
         this.dtm.setDataVector(table, names);
-        FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.updateUI();
+        this.updateWidth();
     }
 
     public void showAllTable() {
@@ -109,14 +108,14 @@ public class ShowCashTable extends TablePanel {
             row.add(vo.id);
             row.add(vo.time);
             row.add(vo.operator);
-            row.add(vo.clauseList.toString());
+            row.add(vo.bankAccount);
+            row.add(vo.listToStr());
             row.add(vo.total);
-            row.add(vo.approvalState);
+            row.add(vo.approvalState.toReadableString());
             table.add(row);
         }
         this.dtm.setDataVector(table, names);
-        FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.updateUI();
+        this.updateWidth();
     }
     
     public void showHistory(ArrayList<CashVO> findlist){
@@ -137,7 +136,13 @@ public class ShowCashTable extends TablePanel {
             table.add(row);
         }
         this.dtm.setDataVector(table, names);
-        FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.updateUI();
+        this.updateWidth();
     }
+    
+	public void updateWidth(){
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+        this.table.getColumnModel().getColumn(0).setMinWidth(160);
+        this.table.getColumnModel().getColumn(4).setMinWidth(300);
+        this.updateUI();
+	}
 }

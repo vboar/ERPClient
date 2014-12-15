@@ -92,7 +92,6 @@ public class Warning {
 		
 		for(int i=0;i<temp.size();i++)
 			result.add(poToVo(temp.get(i)));
-		System.out.println("result"+result.get(0).list);
 		return result;
 	}
 

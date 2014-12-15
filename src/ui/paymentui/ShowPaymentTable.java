@@ -51,6 +51,7 @@ public class ShowPaymentTable extends TablePanel {
             }
         };
         this.table = new MyTable(this.dtm,this.getWidth());
+        this.updateWidth();
     }
 
     public void initData(ArrayList<PaymentVO> list){
@@ -66,7 +67,6 @@ public class ShowPaymentTable extends TablePanel {
         row[1]=vo.time;
         row[2]=vo.customerId;
         row[3]=vo.customerName;
-        // TODO
         row[4]=vo.transferList.toString();
         row[5]=vo.total;
         row[6]=vo.operatorId;
@@ -92,16 +92,14 @@ public class ShowPaymentTable extends TablePanel {
             row.add(vo.time);
             row.add(vo.customerId);
             row.add(vo.customerName);
-            // TODO
             row.add(vo.transferList.toString());
             row.add(vo.total);
             row.add(vo.operatorId);
-            row.add(vo.approvalState);
+            row.add(vo.approvalState.toReadableString());
             table.add(row);
         }
         this.dtm.setDataVector(table, names);
-        FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.updateUI();
+        this.updateWidth();
     }
 
     /**
@@ -124,12 +122,17 @@ public class ShowPaymentTable extends TablePanel {
             row.add(vo.transferList.toString());
             row.add(vo.total);
             row.add(vo.operatorId);
-            row.add(vo.approvalState);
+            row.add(vo.approvalState.toReadableString());
             table.add(row);
         }
         this.dtm.setDataVector(table, names);
-        FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.updateUI();
+        this.updateWidth();
     }
-
+    
+	public void updateWidth(){
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+        this.table.getColumnModel().getColumn(0).setMinWidth(160);
+        this.table.getColumnModel().getColumn(4).setMinWidth(300);
+        this.updateUI();
+	}
 }

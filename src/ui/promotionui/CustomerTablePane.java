@@ -49,6 +49,7 @@ public class CustomerTablePane extends TablePanel{
 		this.table = new MyTable(this.dtm,this.getWidth());
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
 		this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
+		this.table.getColumnModel().getColumn(0).setMinWidth(120);
 	}
 
 	public void initData() {

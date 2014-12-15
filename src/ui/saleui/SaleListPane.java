@@ -57,7 +57,7 @@ public class SaleListPane extends TablePanel {
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
 		this.table.setRowSorter(null);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.updateWidth();
 	}
 
 	private void initData() {
@@ -93,8 +93,7 @@ public class SaleListPane extends TablePanel {
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnNames);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 	}
 
 	public SaleVO getSelectedVO() {
@@ -136,8 +135,15 @@ public class SaleListPane extends TablePanel {
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 	}
-
+	
+	public void updateWidth(){
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
+        this.table.getColumnModel().getColumn(0).setMinWidth(160);
+        this.table.getColumnModel().getColumn(2).setMinWidth(160);
+        this.table.getColumnModel().getColumn(8).setMinWidth(300);
+        this.updateUI();
+	}
+	
 }

@@ -111,4 +111,12 @@ public class CashVO implements DocumentVO{
 	public void setStatus(DocumentStatus status) {
 		this.approvalState = status;
 	}
+	
+	public String listToStr(){
+		String str="";
+		for(int i=0; i<this.clauseList.size();++i){
+			str = str + clauseList.get(i).toString() +" \n";
+		}
+		return str;
+	}
 }

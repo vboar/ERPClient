@@ -20,6 +20,7 @@ import vo.AccountVO;
 import vo.CashVO;
 import vo.ClauseLineItemVO;
 import businesslogic.accountbl.Account;
+import businesslogic.loginbl.Login;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Cash{
@@ -53,7 +54,6 @@ public class Cash{
 	
 	public ResultMessage add(CashVO vo){
 		vo.time=Time.getCurrentTime();
-		vo.id=createId();
 		try {
 			DataFactoryImpl.getInstance().getCashDataService().insert(voToPo(vo));
 		} catch (RemoteException e) {
@@ -153,7 +153,7 @@ public class Cash{
 	}
 	public CashPO voToPo(CashVO vo) {
 		ArrayList<ClauseLineItemPO> clauseList=voListTOpoList(vo.clauseList);
-		CashPO result=new CashPO(vo.id,vo.time,vo.operator,vo.bankAccount,clauseList,vo.total,
+		CashPO result=new CashPO(vo.id,vo.time,Login.currentUserId,vo.bankAccount,clauseList,vo.total,
 				vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal());
 		
 		return result;
@@ -165,7 +165,7 @@ public class Cash{
 			ClauseLineItemVO temp=clauseList.get(i);
 			result.add(new ClauseLineItemPO(temp.name,temp.account,temp.remark));
 		}
-		return null;
+		return result;
 	}
 
 	public CashVO poToVo(CashPO po){

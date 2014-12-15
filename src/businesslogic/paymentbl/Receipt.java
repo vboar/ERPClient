@@ -220,7 +220,7 @@ public class Receipt {
 		ArrayList<TransferLineItemVO> result=new ArrayList<TransferLineItemVO>();
 		for(int i=0;i<transferList.size();i++){
 			TransferLineItemPO temp=transferList.get(i);
-			result.add(new TransferLineItemVO(null, temp.getBankAccount(),temp.getAccount(),temp.getRemark()));
+			result.add(new TransferLineItemVO(temp.getName(), temp.getBankAccount(),temp.getAccount(),temp.getRemark()));
 		}
 		return result;
 	}

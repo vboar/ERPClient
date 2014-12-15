@@ -33,7 +33,10 @@ public class ClauseLineItemVO {
 		this.remark = remark;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return name+"-"+account+"-"+remark;
+	}
 	
 
 }
