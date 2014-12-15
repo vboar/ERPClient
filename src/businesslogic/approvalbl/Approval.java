@@ -44,10 +44,13 @@ public class Approval {
 		return l.add(content);
 	}
 	
-	public ResultMessage approvePayment(ArrayList<TransferLineItemVO> transferlist,
-			String id,String customerId,double total,DocumentStatus Status){
+	public ResultMessage approvePayment(PaymentVO vo){
 		Payment p=new Payment();
-		return p.approve(transferlist,id,customerId,total);
+		if(vo.approvalState==DocumentStatus.PASSED){
+		return p.approve(vo.transferList,vo.id,vo.customerId,vo.total);
+		}else{
+			return p.update(vo);
+		}
 	}
 	
 	public ResultMessage approveReceipt(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){

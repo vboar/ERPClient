@@ -60,7 +60,7 @@ public class Payment {
 		ArrayList<TransferLineItemPO> transferlist=new ArrayList<TransferLineItemPO>();
 		for(int i=0;i<vo.transferList.size();i++){
 			TransferLineItemVO t=vo.transferList.get(i);
-			TransferLineItemPO temp=new TransferLineItemPO(t.bankAccount,t.account,t.remark);
+			TransferLineItemPO temp=new TransferLineItemPO(t.name,t.bankAccount,t.account,t.remark);
 			transferlist.add(temp);
 		}
 		
@@ -76,7 +76,8 @@ public class Payment {
 		return ResultMessage.SUCCESS;
 	}
 	
-	public ResultMessage approve(ArrayList<TransferLineItemVO> transferlist,String id,String customerId,double total){	
+	public ResultMessage approve(ArrayList<TransferLineItemVO> transferlist,String id,
+			String customerId,double total){	
 		//修改公司账户金额，修改客户应收应付
 		Account acc=new Account();
 		CustomerController c=new CustomerController();
@@ -192,6 +193,34 @@ public class Payment {
 		return result;
 	}
 	
+	//更新不通过引起的更新，只更新审批状态
+	public ResultMessage update(PaymentVO vo){
+		try {
+			DataFactoryImpl.getInstance().getPaymentData().update(voToPo(vo));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
+	private PaymentPO voToPo(PaymentVO vo) {
+		ArrayList<TransferLineItemPO> list=voListToPoList(vo.transferList);
+		PaymentPO result=new PaymentPO(vo.id,vo.time,vo.customerId,vo.customerName,
+				vo.operatorId,list,vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal());
+		return result;
+	}
+
+	private ArrayList<TransferLineItemPO> voListToPoList(
+			ArrayList<TransferLineItemVO> list) {
+		ArrayList<TransferLineItemPO> result=new ArrayList<TransferLineItemPO>();
+		for(int i=0;i<list.size();i++){
+			TransferLineItemVO temp=list.get(i);
+			result.add(new TransferLineItemPO(temp.name,temp.bankAccount,temp.account,temp.remark));
+		}
+		return null;
+	}
+
 	public PaymentVO poToVo(PaymentPO po){
 			ArrayList<TransferLineItemVO> temp=new ArrayList<TransferLineItemVO>();
 
@@ -199,7 +228,7 @@ public class Payment {
 		
 			for(int j=0;j<p.size();j++){
 				TransferLineItemPO t=p.get(j);
-				temp.add(new TransferLineItemVO(null, t.getBankAccount(),t.getAccount(),t.getRemark()));
+				temp.add(new TransferLineItemVO(t.getName(), t.getBankAccount(),t.getAccount(),t.getRemark()));
 			}
 			
 			PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),po.getCustomerName(),po.getOperatorId(),

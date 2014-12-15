@@ -141,7 +141,7 @@ public class ApprovalController implements ApprovalBLService {
 	@Override
 	public ResultMessage approvePayment(PaymentVO vo) {
 		approval.addLog("审批付款单");
-		return approval.approvePayment(vo.transferList, vo.id, vo.customerId, vo.total,vo.approvalState);
+		return approval.approvePayment(vo);
 	}
 
 	@Override
