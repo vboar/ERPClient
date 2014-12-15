@@ -18,6 +18,7 @@ import ui.util.MyOptionPane;
 import ui.util.SavePathDialog;
 import util.ResultMessage;
 import vo.BusinessConditionVO;
+import vo.RequirementVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
 import config.ERPConfig;
@@ -128,7 +129,10 @@ public class BusinessConditionPanel extends JPanel implements ExcelSaver{
 
 	@Override
 	public ResultMessage setSavePath(String path) {
-		return controller.exportExcel(path);
+		RequirementVO vo = new RequirementVO();
+		vo.time1 = FrameUtil.getFormattedDate(this.start.getDate());
+		vo.time2 = FrameUtil.getFormattedDate(this.end.getDate());
+		return controller.exportExcel(path,vo);
 	}
 
 	@Override

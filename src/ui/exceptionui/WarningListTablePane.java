@@ -86,7 +86,7 @@ public class WarningListTablePane extends TablePanel {
 	private Object[] createRow(Object[] row, WarningVO vo) {
 		row[0]=vo.id;
 		row[1]=vo.time;
-		row[2]=vo.list;
+		row[2]=vo.listToStr();
 		return row;
 	}
 	
@@ -119,7 +119,7 @@ public class WarningListTablePane extends TablePanel {
 			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
 			row.add(vo.id);
 			row.add(vo.time);
-			row.add(vo.list);
+			row.add(vo.listToStr());
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);

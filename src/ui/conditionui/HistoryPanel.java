@@ -70,12 +70,15 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	private PanelConfig cfg;
 	
+	private RequirementVO vo;
+	
 	private boolean hasTable = false;
 	
 	private HistoryBLService controller;
 	
 	public HistoryPanel(JFrame frame){
     	this.frame = frame;
+    	vo = new RequirementVO();
     	this.controller = ControllerFactoryImpl.getInstance().getHistoryBLService();
     	this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		// 设置面板基础属性
@@ -153,16 +156,14 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.add(find);
 	}
 	
-	public void showTable(){
-		this.hasTable = true;
-		RequirementVO vo = new RequirementVO();
+	public RequirementVO getRequirementVO(){
 		// 根据时间区间、商品名、客户名、业务员和仓库查询
 		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
 		String time2 =  FrameUtil.getFormattedDate(this.end.getDate());
 		if((time1!=null)&&(time2!=null)&&(time1.compareTo(time2)>0)){
 			MyOptionPane.showMessageDialog(frame, "请输入有效日期！","错误提示",
 					MyOptionPane.ERROR_MESSAGE);
-			return;
+			return null;
 		}
 		vo.time1 = time1;
 		vo.time2 = time2;
@@ -174,21 +175,28 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		if(!customer.getSelectedItem().equals("所有"))
 			vo.customer = this.customer.getSelectedItem().toString().substring(0,7);
 		else vo.customer = null;
-		DocumentType documentType = DocumentType.strToType(this.type.getSelectedItem().toString());
-		switch(documentType){
-		case PRESENT: showPresent(vo); break;
-		case OVERFLOW: showException(vo, false); break;
-		case LOSS: showException(vo, true);	break;
-		case WARNING: showWarning(vo); break;
-		case SALE: showSale(vo,false); break;
-		case SALERETURN: showSale(vo, true); break;
-		case PURCHASE: showPurchase(vo, false);	break;
-		case PURCHASERETURN: showPurchase(vo, true); break;
-		case RECEIPT: showReceipt(vo); break;
-		case PAYMENT: showPayment(vo); break;
-		case CASH: showCash(vo);break;
-		default:
-			return;
+		return vo;
+	}
+	
+	public void showTable(){
+		this.hasTable = true;
+		if(this.getRequirementVO()!=null){
+			DocumentType documentType = DocumentType.strToType(this.type.getSelectedItem().toString());
+			switch(documentType){
+			case PRESENT: showPresent(vo); break;
+			case OVERFLOW: showException(vo, false); break;
+			case LOSS: showException(vo, true);	break;
+			case WARNING: showWarning(vo); break;
+			case SALE: showSale(vo,false); break;
+			case SALERETURN: showSale(vo, true); break;
+			case PURCHASE: showPurchase(vo, false);	break;
+			case PURCHASERETURN: showPurchase(vo, true); break;
+			case RECEIPT: showReceipt(vo); break;
+			case PAYMENT: showPayment(vo); break;
+			case CASH: showCash(vo);break;
+			default:
+				return;
+			}
 		}
 	}
 	
@@ -268,7 +276,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 
 	@Override
 	public ResultMessage setSavePath(String path) {
-		return controller.exportExcel(path);
+		return controller.exportExcel(path,getRequirementVO());
 	}
 
 	@Override
