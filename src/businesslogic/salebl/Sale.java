@@ -7,6 +7,7 @@ package businesslogic.salebl;
 
 import businesslogic.commoditybl.Commodity;
 import businesslogic.customerbl.Customer;
+import businesslogic.exceptionbl.Warning;
 import businesslogic.loginbl.Login;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.CustomerGiftPromotion;
@@ -405,6 +406,12 @@ public class Sale {
 		//改客户
 		//促销的商品？？
 		//TODO
+		boolean hasWarning=false;
+		String WarningId=new Warning().createId();
+		String time=Utility.getCurrentTime();
+		ArrayList<WarningLineItemVO> list=new ArrayList<WarningLineItemVO>();	
+		WarningVO warningvo=new WarningVO(WarningId, time, list, DocumentType.WARNING);
+		
 		double total=vo.totalAfterDiscount-vo.voucher;
 
 		Customer cus=new Customer();
@@ -413,6 +420,9 @@ public class Sale {
 		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
 		cus.updateByPurchase(vo.customerId, vo.totalAfterDiscount);
 		}
+		
+		
+		
 		for(CommodityLineItemVO vo1:vo.saleList){
 			
 			Commodity commodity=new Commodity();
@@ -423,6 +433,11 @@ public class Sale {
 				for(CommodityLineItemVO commodityLineItemvo:spList){
 					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);
 					commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+					if(commoditypo.getNumber()<commoditypo.getWarningNumber()){
+						WarningLineItemVO warning=new WarningLineItemVO(commoditypo.getId(), commoditypo.getName(), commoditypo.getModel(), commoditypo.getNumber(), commoditypo.getWarningNumber());
+						list.add(warning);
+						hasWarning=true;					
+					}
 					try {
 						DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
 					} catch (RemoteException e) {
@@ -435,6 +450,11 @@ public class Sale {
 			CommodityPO commoditypo=commodity.getById(vo1.id);
 			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
 			commoditypo.setRecentSalePrice(vo1.price);
+			if(commoditypo.getNumber()<commoditypo.getWarningNumber()){
+				WarningLineItemVO warning=new WarningLineItemVO(commoditypo.getId(), commoditypo.getName(), commoditypo.getModel(), commoditypo.getNumber(), commoditypo.getWarningNumber());
+				list.add(warning);
+				hasWarning=true;					
+			}
 			try {
 				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
 			} catch (RemoteException e) {
@@ -443,7 +463,10 @@ public class Sale {
 			
 			
 		}		
-		return null;
+		if(hasWarning){
+			new Warning().create(warningvo);
+		}
+		return ResultMessage.SUCCESS;
 	}
 	public ArrayList<PromotionVO> calCustomerPromotion(int VIP){
 		CustomerGiftPromotion bl=new CustomerGiftPromotion();

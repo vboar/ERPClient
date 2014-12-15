@@ -339,6 +339,27 @@ public class Commodity {
 		return voList;
 
 	}
+	/**
+	 * 返回没有促销包的商品
+	 * @return
+	 */
+	public ArrayList<CommodityVO> showButSpecial() {
+		ArrayList<CommodityPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCommodityData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<CommodityVO> voList = new ArrayList<CommodityVO>();
+		for (CommodityPO po : poList) {
+			if(po.getId().compareTo("9999")<0){
+			voList.add(commodityPOToCommodityVO(po));
+			}
+		}
+		return voList;
+
+	}
+
 
 	/**
 	 * 组合大排序

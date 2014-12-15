@@ -47,7 +47,7 @@ public class StockController implements StockBLService {
 	public String getDefaultPath(String time) {
 		String path=null;
 	    time=time.replace("/", "");
-		path = "库存查看"+time+".xls";
+		path = "库存查看/库存查看"+time+".xls";
 		return path;
 	}
 //	public static void main(String[] args) {

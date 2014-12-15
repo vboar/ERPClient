@@ -7,17 +7,19 @@
 package businesslogic.exceptionbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import dataservice.datafactoryservice.DataFactoryImpl;
 import po.WarningLineItemPO;
 import po.WarningPO;
-import businesslogic.logbl.Log;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
 import vo.WarningLineItemVO;
 import vo.WarningVO;
+import businesslogic.logbl.Log;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 
 public class Warning {
@@ -26,6 +28,29 @@ public class Warning {
 		return l.add(content);
 	}
 
+	
+	public String createId(){
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyyMMdd");
+		String time = myFmt.format(date);
+		ArrayList<WarningVO> warningList =findByTime("1970","9999");
+		if (warningList.isEmpty()) {
+			return "BJD-" + time + "-00001";
+		} else {
+			String max = warningList.get(warningList.size() - 1).id;
+			String day = max.substring(4, max.length() - 5);
+			if (day.compareTo(time) < 0) {
+				return "BJD-" + time + "-00001";
+			}
+			String oldMax = max.substring(max.length() - 5);
+			int maxInt = Integer.parseInt(oldMax);
+			String pattern = "00000";
+			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+			String maxStr = df.format(maxInt + 1);
+			return "BJD-" + time + "-" + maxStr;
+		}
+	}
+	
 	public ResultMessage create(WarningVO vo){
 		vo.time=Time.getCurrentTime();
 		try {
