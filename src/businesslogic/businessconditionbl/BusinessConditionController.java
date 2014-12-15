@@ -1,7 +1,9 @@
 package businesslogic.businessconditionbl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import util.ResultMessage;
-import util.Time;
 import vo.BusinessConditionVO;
 import vo.RequirementVO;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
@@ -25,7 +27,9 @@ public class BusinessConditionController implements BusinessConditionBLService {
 
 	@Override
 	public String getDefaultPath() {
-		String path="经营情况表"+Time.getCurrentTime()+".xls";
+		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
+		String time=df.format(new Date());
+		String path="经营情况表"+time+".xls";
 		return path;
 	}
 

@@ -1,9 +1,10 @@
 package businesslogic.businessconditionbl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import util.ResultMessage;
-import util.Time;
 import vo.CashVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
@@ -97,13 +98,16 @@ public class BusinessHistoryController implements HistoryBLService {
 		case WARNING:
 			bh.exportWarning(path, vo);
 			break;
+		case PRESENT:case PRESENTRETURN:
 		}
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public String getDefaultPath() {
-		String name=Time.getCurrentTime()+"经营历程表.xls";
-		return name;
+		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
+		String time=df.format(new Date());
+		String path="经营历程表.xls"+time;
+		return path;
 	}
 }

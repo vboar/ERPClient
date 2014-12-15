@@ -1,6 +1,8 @@
 package businesslogic.businessconditionbl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import util.ResultMessage;
 import vo.RequirementVO;
@@ -24,8 +26,10 @@ public class SaleDetailsController implements SaleDetailsBLService {
 
 	@Override
 	public String getDefaultPath() {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
+		String time=df.format(new Date());
+		String path="销售明细表.xls"+time;
+		return path;
 	}
 
 }
