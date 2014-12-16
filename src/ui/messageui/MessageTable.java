@@ -34,7 +34,8 @@ public class MessageTable extends TablePanel {
     public MessageTable(TableConfig cfg, MessageBLService controller) {
         super(cfg);
         this.controller = controller;
-        this.list = new ArrayList<MessageVO>();
+        list = controller.showByUser(new UserVO(Login.currentUserId, null, Login.currentUserType, 0,
+                Login.currentUserName));
         this.initTable();
         this.initComponent();
     }
@@ -70,7 +71,8 @@ public class MessageTable extends TablePanel {
     }
 
     public void showAll() {
-        list = controller.showByUser(new UserVO(Login.currentUserId, null, null, 0, null));
+        list = controller.showByUser(new UserVO(Login.currentUserId, null, Login.currentUserType, 0,
+                Login.currentUserName));
         initData(list);
         updateUI();
     }
@@ -84,6 +86,7 @@ public class MessageTable extends TablePanel {
     public boolean setRead() {
         MessageVO vo = list.get(table.getSelectedRow());
         if(vo.state == 0) {
+            vo.state = 1;
             controller.update(vo);
             dtm.setValueAt(vo.state, table.getSelectedRow(), 0);
             updateUI();

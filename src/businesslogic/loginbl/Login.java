@@ -13,7 +13,7 @@ public class Login {
 	
 	public static String currentUserId;
 
-	private UserType currentUserType;
+	public static UserType currentUserType;
 	
 	private int type;
 	
