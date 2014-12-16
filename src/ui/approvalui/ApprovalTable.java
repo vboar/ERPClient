@@ -10,6 +10,7 @@ import util.DocumentType;
 import vo.DocumentVO;
 import vo.PresentVO;
 
+import javax.lang.model.type.ArrayType;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
@@ -41,9 +42,9 @@ public class ApprovalTable extends TablePanel {
     public ApprovalTable(TableConfig cfg, ApprovalBLService controller) {
         super(cfg);
         this.controller = controller;
+        status = DocumentStatus.NONCHECKED;
         this.initTable();
         this.initComponent();
-        status = DocumentStatus.NONCHECKED;
     }
 
     @Override
@@ -66,10 +67,7 @@ public class ApprovalTable extends TablePanel {
     }
 
     private void initData() {
-        list = new ArrayList<DocumentVO>();
-        PresentVO vo = new PresentVO("123", "145", "111", "555", null, DocumentStatus.NONCHECKED,
-                DocumentType.PRESENT, false);
-        list.add(vo);
+        list = controller.show(status, startTime, endTime);
         this.data = new Object[list.size()][COLUMN_NUM];
         for(int i=0; i<list.size(); ++i){
             DocumentVO dvo = list.get(i);
@@ -78,11 +76,16 @@ public class ApprovalTable extends TablePanel {
     }
 
     public void showTable() {
-//        list = controller.show(type, status, startTime, endTime);
-        list = new ArrayList<DocumentVO>();
-        PresentVO vo = new PresentVO("123", "145", "111", "555", null, DocumentStatus.NONCHECKED,
-                DocumentType.PRESENT, false);
-        list.add(vo);
+        // 得到已审批的单据包括通过和不通过的
+        if(status == null) {
+            list = controller.show(DocumentStatus.PASSED, startTime, endTime);
+            ArrayList<DocumentVO> tempList = controller.show(DocumentStatus.FAILED, startTime, endTime);
+            for(DocumentVO vo: tempList) {
+                list.add(vo);
+            }
+        } else {
+            list = controller.show(status, startTime, endTime);
+        }
         this.data = new Object[list.size()][COLUMN_NUM];
         for(int i=0; i<list.size(); ++i){
             DocumentVO dvo = list.get(i);
@@ -116,8 +119,9 @@ public class ApprovalTable extends TablePanel {
     public void updateData(DocumentStatus status) {
         for(int i = 0; i < table.getRowCount(); i++) {
             if((boolean)table.getValueAt(i, 4)) {
-                list.get(i).setStatus(status);
-                controller.approveDocument(list.get(i));
+                DocumentVO vo = list.get(i);
+                vo.setStatus(status);
+                controller.approveDocument(vo);
             }
         }
         showTable();
@@ -137,5 +141,9 @@ public class ApprovalTable extends TablePanel {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public DocumentStatus getStatus() {
+        return status;
     }
 }

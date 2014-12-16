@@ -162,10 +162,15 @@ public class ApprovalPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(table.isChoose()) {
+                    if(table.getStatus() != DocumentStatus.NONCHECKED) {
+                        MyOptionPane.showMessageDialog(frame, "审批操作非法！");
+                        return;
+                    }
                     int result = MyOptionPane.showConfirmDialog(frame, "确认通过审批？","审批通过",
                             MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
                     if(result == MyOptionPane.YES_OPTION){
                         table.updateData(DocumentStatus.PASSED);
+                        table.showTable();
                     }
                 } else {
                     MyOptionPane.showMessageDialog(frame, "请选择要通过审批的单据！");
@@ -179,10 +184,15 @@ public class ApprovalPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(table.isChoose()) {
+                    if(table.getStatus() != DocumentStatus.NONCHECKED) {
+                        MyOptionPane.showMessageDialog(frame, "审批操作非法！");
+                        return;
+                    }
                     int result = MyOptionPane.showConfirmDialog(frame, "确认不通过审批？","审批通过",
                             MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
                     if(result == MyOptionPane.YES_OPTION){
                         table.updateData(DocumentStatus.FAILED);
+                        table.showTable();
                     }
                 } else {
                     MyOptionPane.showMessageDialog(frame, "请选择要不通过审批的单据！");
