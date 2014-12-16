@@ -12,6 +12,7 @@ import ui.exceptionui.WarningListTablePane;
 import ui.paymentui.ShowCashTable;
 import ui.paymentui.ShowPaymentTable;
 import ui.presentui.PresentListTablePane;
+import ui.purchaseui.PurchaseDocument;
 import ui.purchaseui.PurchaseListPane;
 import ui.saleui.SaleListPane;
 import ui.util.DatePickerGroup;
@@ -25,6 +26,7 @@ import ui.util.SavePathDialog;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.CustomerVO;
+import vo.PurchaseVO;
 import vo.RequirementVO;
 import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -48,22 +50,26 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	private DatePickerGroup end;
 	
+	private MyButton writeoff;
+	
+	private MyButton copy;
+	
 	private MyButton export;
 	
 	private MyButton find;
-	// 销售单	
+	
 	private SaleListPane sales;
-	// 进货单
+
 	private PurchaseListPane purchase;
-	// 赠送单
+
 	private PresentListTablePane present;	
-	// 付款收款单
+
 	private ShowPaymentTable payment;	
-	// 现金费用单
+
 	private ShowCashTable cash;	
-	// 报溢报损单
+	
 	private ExceptionListTablePane exception;	
-	// 报警单
+	
 	private WarningListTablePane warning;
 	
 	private JFrame frame;
@@ -73,6 +79,8 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	private RequirementVO vo;
 	
 	private boolean hasTable = false;
+	
+	private DocumentType tableType;
 	
 	private HistoryBLService controller;
 	
@@ -131,6 +139,22 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.add(new MyLabel(cfg.getLabels().element("operator")));
 		this.add(new MyLabel(cfg.getLabels().element("store")));
 		// 初始化按钮
+		this.writeoff = new MyButton(cfg.getButtons().element("writeoff"));
+		this.writeoff.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showDocumentDialog(1);
+			}
+		});
+		this.add(writeoff);
+		this.copy = new MyButton(cfg.getButtons().element("copy"));
+		this.copy.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showDocumentDialog(2);
+			}
+		});
+		this.add(copy);
 		this.find = new MyButton(cfg.getButtons().element("find"));
 		this.find.addActionListener(new ActionListener() {
 			@Override
@@ -156,6 +180,34 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.add(find);
 	}
 	
+	protected void showDocumentDialog(int type) {
+		if(tableType==null){
+			//TODO
+			MyOptionPane.showMessageDialog(frame, "请选择一张单据！");
+			return;
+		}
+		switch(tableType){
+		case PRESENT:  break;
+		case OVERFLOW:  break;
+		case LOSS: 	break;
+		case WARNING: break;
+		case SALE: break;
+		case SALERETURN: break;
+		case PURCHASE: showPurchaseDocument(type);	break;
+		case PURCHASERETURN: ; break;
+		case RECEIPT:  break;
+		case PAYMENT:  break;
+		case CASH: break;
+		default:
+			return;
+		}
+	}
+
+	private void showPurchaseDocument(int type) {
+		PurchaseVO vo = this.purchase.getSelectedVO();
+		if(vo!=null)	new PurchaseDocument(frame,type,vo);
+	}
+
 	public RequirementVO getRequirementVO(){
 		// 根据时间区间、商品名、客户名、业务员和仓库查询
 		String time1 = FrameUtil.getFormattedDate(this.start.getDate());
@@ -183,6 +235,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		if(this.getRequirementVO()!=null){
 			DocumentType documentType = DocumentType.strToType(this.type.getSelectedItem().toString());
 			vo.type = documentType;
+			this.tableType = documentType;
 			switch(documentType){
 			case PRESENT: showPresent(vo); break;
 			case OVERFLOW: showException(vo, false); break;
@@ -204,7 +257,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	public void showPresent(RequirementVO vo){
 		removeAllPanel();
 		this.present = new PresentListTablePane(new TableConfig(cfg.getTables().element("present")));
-		// TODO this.present.showFindData(controller.showPresent(vo));
+		this.present.showFindData(controller.showPresent(vo));
 		add(present);	
 		repaint();
 	}
@@ -243,7 +296,8 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.purchase = new PurchaseListPane(
 				new TableConfig(cfg.getTables().element("purchase")), isreturn,false);
-		this.purchase.showFindData(controller.showPurchase(vo));
+		if(!isreturn) this.purchase.showFindData(controller.showPurchase(vo));
+		else this.purchase.showFindData(controller.showPurchaseReturn(vo));
 		add(purchase);
 		repaint();
 	}

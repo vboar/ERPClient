@@ -110,6 +110,7 @@ public class PresentListTablePane extends TablePanel {
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
+        this.table.getColumnModel().getColumn(1).setMinWidth(160);
         this.table.getColumnModel().getColumn(4).setMinWidth(300);
         this.updateUI();
 	}

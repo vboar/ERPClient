@@ -24,6 +24,7 @@ import businesslogicservice.purchaseblservice.PurchaseBLService;
 import businesslogicservice.saleblservice.SaleBLService;
 import businesslogicservice.stockblservice.StockBLService;
 import businesslogicservice.userblservice.UserBLService;
+import businesslogicservice.writeoffblservice.WriteoffBLService;
 
 public interface ControllerFactory {
 
@@ -82,5 +83,7 @@ public interface ControllerFactory {
 	public ApprovalBLService getApprovalBLService();
 
 	public SaleBLService getSaleReturnController();
+	
+	public WriteoffBLService getWriteoffController();
 	
 }

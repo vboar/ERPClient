@@ -37,8 +37,8 @@
 		<panel className="ui.homeui.LoginUserInfoPanel" width="970"
 			height="90" x="0" y="0" bg="img/common/title.jpg">
 			<buttons>
-				<mailbox text="" w="40" h="32" x="180" y="45" path="img/common/mailr.png" 
-				pathroll="img/common/mail.png"/>
+				<mailbox text="" w="40" h="32" x="180" y="45"
+					path="img/common/mailr.png" pathroll="img/common/mail.png" />
 			</buttons>
 			<labels>
 				<username w="100" h="30" x="80" y="15" />
@@ -298,7 +298,7 @@
 				<title text="库存盘点" w="200" h="30" x="10" y="2" />
 				<list text="今日库存信息列表" w="180" h="40" x="20" y="40" font="微软雅黑"
 					fontsize="20" color="true" r="40" g="40" b="40" />
-					<past text="" w="240" h="40" x="20" y="40" font="微软雅黑"
+				<past text="" w="240" h="40" x="20" y="40" font="微软雅黑"
 					fontsize="20" color="true" r="40" g="40" b="40" />
 				<date text="日期" w="60" h="30" x="355" y="45" />
 			</labels>
@@ -729,7 +729,6 @@
 					<columnname name="商品型号" />
 					<columnname name="数量" />
 					<columnname name="单价" />
-					4
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -1018,8 +1017,8 @@
 				<accountidlab text="" w="180" h="35" x="320" y="80" />
 				<accountnamelab text="" w="180" h="35" x="95" y="80" />
 				<operatorlab text="" w="120" h="30" x="620" y="80" />
-				<totallab text="" w="120" h="30" x="590" y="300" 
-				 font="微软雅黑" fontsize="18" color="true" r="54" g="87" b="143" />
+				<totallab text="" w="120" h="30" x="590" y="300" font="微软雅黑"
+					fontsize="18" color="true" r="54" g="87" b="143" />
 			</labels>
 			<textfields>
 				<accountfind w="270" h="25" x="180" y="50" />
@@ -1120,6 +1119,8 @@
 			<buttons>
 				<find text="查询" w="120" h="30" x="590" y="60" />
 				<export text="导出Excel文件" w="120" h="30" x="590" y="15" />
+				<copy text="红冲并复制" w="120" h="30" x="120" y="367" />
+				<writeoff text="红冲" w="80" h="30" x="20" y="367" />
 			</buttons>
 			<labels>
 				<require text="筛选条件" w="60" h="30" x="20" y="10" />
@@ -1164,7 +1165,7 @@
 				</store>
 			</comboboxes>
 			<tables>
-				<present width="730" height="300" x="10" y="100">
+				<present width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="时间" />
@@ -1174,21 +1175,21 @@
 						<columnname name="审批状态 " />
 					</columnnames>
 				</present>
-				<warning width="730" height="300" x="10" y="100">
+				<warning width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="商品列表" />
 					</columnnames>
 				</warning>
-				<exception width="730" height="300" x="10" y="100">
+				<exception width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="商品列表" />
 					</columnnames>
 				</exception>
-				<payment width="730" height="300" x="10" y="100">
+				<payment width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1200,7 +1201,7 @@
 						<columnname name="审批状态" />
 					</columnnames>
 				</payment>
-				<purchase width="730" height="300" x="10" y="100">
+				<purchase width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1213,7 +1214,7 @@
 						<columnname name="备注" />
 					</columnnames>
 				</purchase>
-				<sale width="730" height="300" x="10" y="100">
+				<sale width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1229,7 +1230,7 @@
 						<columnname name="折让后总额" />
 					</columnnames>
 				</sale>
-				<cash width="730" height="300" x="10" y="100">
+				<cash width="730" height="260" x="10" y="100">
 					<columnnames>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
@@ -1575,7 +1576,7 @@
 
 	<!-- 登录设置对话框 -->
 	<loginsettingdialog width="300" height="200" x="100"
-						y="100" title="设置">
+		y="100" title="设置">
 		<buttons>
 			<commit text="确定" w="80" h="30" x="100" y="120" />
 			<cancel text="取消" w="80" h="30" x="190" y="120" />
@@ -1742,10 +1743,8 @@
 		<labels>
 			<name text="账户名称：" w="65" h="30" x="20" y="70" />
 			<account text="银行卡号：" w="65" h="30" x="200" y="70" />
-			<currentname text="" w="100" h="30" x="86"
-				y="70" />
-			<currentaccount text="" w="175" h="30"
-				x="268" y="70" />
+			<currentname text="" w="100" h="30" x="86" y="70" />
+			<currentaccount text="" w="175" h="30" x="268" y="70" />
 			<money text="转账金额" w="80" h="30" x="20" y="110" />
 			<remark text="备注" w="80" h="30" x="20" y="150" />
 			<tip text="请输入账户关键字" w="120" h="30" x="20" y="2" font="微软雅黑"
@@ -2100,5 +2099,46 @@
 			<own w="380" h="30" x="120" y="60" />
 		</textfields>
 	</saverdialog>
-
+	
+	<!-- 审批、红冲进货单面板 -->
+	<purchasedocument width="760" height="500" x="100" y="50" bg="img/document/jhd.jpg"
+		bg2="img/document/jhthd.jpg" title="红冲单据">
+		<buttons>
+			<add text="添加商品" w="80" h="25" x="520" y="115" />
+			<delete text="删除商品" w="80" h="25" x="620" y="115" />
+			<commit text="提交" w="80" h="30" x="270" y="425" />
+			<check text="审批通过" w="100" h="30" x="140" y="422" />
+			<reject text="审批不通过" w="100" h="30" x="270" y="422" />
+			<copy text="红冲并复制" w="120" h="30" x="270" y="422" />
+			<writeoff text="红冲" w="80" h="30" x="270" y="422" />
+			<cancel text="取消" w="80" h="30" x="400" y="422" />
+		</buttons>
+		<labels>
+			<customerid text="" w="120" h="30" x="150" y="45" />
+			<customername text="" w="120" h="30" x="320" y="45" />
+			<documentid text="" w="200" h="30" x="550" y="10" />
+			<total text="0" w="120" h="30" x="605" y="380" />
+		</labels>
+		<comboboxes>
+			<storage w="120" h="25" x="100" y="78">
+				<string str="1号仓库" />
+			</storage>
+		</comboboxes>
+		<textfields>
+			<findcustomer w="160" h="25" x="470" y="75" />
+		</textfields>
+		<textarea>
+			<remark w="380" h="60" x="75" y="350" />
+		</textarea>
+		<tablepane className="ui.saleui.CommodityTablePane" width="730"
+			height="200" x="10" y="140">
+			<columnnames>
+				<columnname name="商品编号" />
+				<columnname name="商品名称" />
+				<columnname name="商品型号" />
+				<columnname name="数量" />
+				<columnname name="单价" />
+			</columnnames>
+		</tablepane>
+	</purchasedocument>
 </erp>

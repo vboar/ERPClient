@@ -4,6 +4,7 @@
  */
 package businesslogicservice.writeoffblservice;
 
+import util.DocumentType;
 import util.ResultMessage;
 import vo.DocumentVO;
 
@@ -14,7 +15,7 @@ public interface WriteoffBLService {
 	 * @param vo
 	 * @return
 	 */
-	public ResultMessage create(DocumentVO vo);
+	public ResultMessage create(DocumentType type, String id);
 	
 	/**
 	 * 复制

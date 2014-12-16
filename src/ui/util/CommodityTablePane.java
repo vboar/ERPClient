@@ -37,7 +37,12 @@ public class CommodityTablePane extends TablePanel {
 	protected void initTable(){
 		this.columnName = cfg.getColumnName();
 		this.data = new Object[0][COLUMN_NUM];
-		this.dtm = new DefaultTableModel(this.data,this.columnName);
+		this.dtm = new DefaultTableModel(this.data,this.columnName){
+			@Override
+			public boolean isCellEditable(int row, int col) {
+				return false;
+			}
+		};
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setRowSorter(null);
 	}

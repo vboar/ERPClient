@@ -126,7 +126,7 @@ public class SaleListPane extends TablePanel {
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
-        this.table.getColumnModel().getColumn(2).setMinWidth(160);
+        this.table.getColumnModel().getColumn(1).setMinWidth(160);
         this.table.getColumnModel().getColumn(8).setMinWidth(300);
         this.updateUI();
 	}

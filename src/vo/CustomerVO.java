@@ -90,4 +90,6 @@ public class CustomerVO {
   	  this.salesman=salesman;
       this.isDeletable=isDeletable;    	 
     }
+    
+    public CustomerVO(){}
 }

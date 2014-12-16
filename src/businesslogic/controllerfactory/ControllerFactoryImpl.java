@@ -28,6 +28,7 @@ import businesslogic.salebl.SaleController;
 import businesslogic.salebl.SaleReturnController;
 import businesslogic.stockbl.StockController;
 import businesslogic.userbl.UserController;
+import businesslogic.writeoffbl.WriteoffController;
 import businesslogicservice.accountblservice.AccountBLService;
 import businesslogicservice.approvalblservice.ApprovalBLService;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
@@ -52,6 +53,7 @@ import businesslogicservice.purchaseblservice.PurchaseBLService;
 import businesslogicservice.saleblservice.SaleBLService;
 import businesslogicservice.stockblservice.StockBLService;
 import businesslogicservice.userblservice.UserBLService;
+import businesslogicservice.writeoffblservice.WriteoffBLService;
 
 public class ControllerFactoryImpl implements ControllerFactory{
 
@@ -202,5 +204,10 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	@Override
 	public PurchaseBLService getPurchaseReturnController() {
 		return new PurchaseReturnController();
+	}
+
+	@Override
+	public WriteoffBLService getWriteoffController() {
+		return new WriteoffController();
 	}
 }

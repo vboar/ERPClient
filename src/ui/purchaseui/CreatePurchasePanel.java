@@ -90,6 +90,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		this.setVisible(true);
 	}
 	
+	
 	@Override
 	public void paintComponent(Graphics g){
 		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);

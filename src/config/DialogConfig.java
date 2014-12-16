@@ -1,5 +1,9 @@
 package config;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import org.dom4j.Element;
 
 /**
@@ -53,6 +57,8 @@ public class DialogConfig extends ComponentConfig{
 	 */
 	private Element textarea;
 	
+	private Image bg;	
+	
 	/**
 	 * 构造函数
 	 * @param info 配置对象
@@ -71,6 +77,9 @@ public class DialogConfig extends ComponentConfig{
 		this.h = Integer.parseInt(info.attributeValue("height"));
 		this.x = Integer.parseInt(info.attributeValue("x"));
 		this.y = Integer.parseInt(info.attributeValue("y"));
+		if(info.attributeValue("bg")!=null){
+			this.bg = new ImageIcon(info.attributeValue("bg")).getImage();
+		}
 	}
 
 	public Element getButtons() {
@@ -107,6 +116,10 @@ public class DialogConfig extends ComponentConfig{
 
 	public Element getTextarea() {
 		return textarea;
+	}
+
+	public Image getBg() {
+		return bg;
 	}
 	
 }

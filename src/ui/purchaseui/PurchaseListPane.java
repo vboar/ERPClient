@@ -84,6 +84,10 @@ public class PurchaseListPane extends TablePanel{
 	public PurchaseVO getSelectedVO(){
 		PurchaseVO vo = null;
 		int row = this.table.getSelectedRow();
+		if(row<0){
+			MyOptionPane.showMessageDialog(PurchaseListPane.this, "请先选择一行数据！");
+			return null;
+		}
 		String id = (String)this.table.getValueAt(row, 0);
 		for(int i=0; i<list.size(); i++){
 			vo = list.get(i);
@@ -100,6 +104,7 @@ public class PurchaseListPane extends TablePanel{
 	}
 	
 	public void showFindData(ArrayList<PurchaseVO> list){
+		this.list = list;
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for (int i = 0; i < list.size(); ++i) {
 			PurchaseVO temp = list.get(i);
