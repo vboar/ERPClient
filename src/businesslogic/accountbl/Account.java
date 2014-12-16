@@ -95,7 +95,7 @@ public class Account {
 		while (accountItr.hasNext()) {
 			AccountVO vocheck = accountItr.next();
 			String key = vocheck.account + vocheck.name;
-			if (key.contains(keyword)){
+			if (!key.contains(keyword)){
 				accountItr.remove();
 			}
 		}
