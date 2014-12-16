@@ -57,9 +57,12 @@ public class Payment {
 	public ResultMessage create(PaymentVO vo) {
 		String time=Time.getCurrentTime();
 		vo.id=createId();
+		
 		ArrayList<TransferLineItemPO> transferlist=new ArrayList<TransferLineItemPO>();
 		for(int i=0;i<vo.transferList.size();i++){
 			TransferLineItemVO t=vo.transferList.get(i);
+			if(t.remark==null||t.remark.equals(""))
+				t.remark="无";
 			TransferLineItemPO temp=new TransferLineItemPO(t.name,t.bankAccount,t.account,t.remark);
 			transferlist.add(temp);
 		}
