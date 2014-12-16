@@ -36,8 +36,10 @@ public class SaleDetails {
 		
 		all=s.show();
 		for(int i=0;i<all.size();i++)
-			if(judgeTime(vo.time1,vo.time2,all.get(i).time)==false)
+			if(judgeTime(vo.time1,vo.time2,all.get(i).time)==false){
 				all.remove(i);
+				i--;
+			}
 		if(!vo.commodityName.equals("")){
 			for(int i=0;i<all.size();i++){
 				ArrayList<CommodityLineItemVO> temp=all.get(i).saleList;
@@ -52,19 +54,14 @@ public class SaleDetails {
 				}
 			}
 		}
-
-		System.out.println(all.size());
 		if(vo.customer!=null){
 			for(int i=0;i<all.size();i++){
-				System.out.println(all.get(i).customerId);
-				System.out.println(vo.customer.equals(all.get(i).customerId));
 				if(!all.get(i).customerId.equals(vo.customer)){
 					all.remove(i);
 					i--;
 				}
 			}
 		}
-		System.out.println("after customer: "+all.size());
 		if(vo.operator!=null){
 			for(int i=0;i<all.size();i++)
 				if(!all.get(i).operatorId.equals(vo.operator)){

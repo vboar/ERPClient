@@ -228,6 +228,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.sales = new SaleListPane(
 				new TableConfig(cfg.getTables().element("sale")), isreturn,false);
+		this.sales.showFindData(controller.showSale(vo));
 		add(sales);
 		repaint();
 	}

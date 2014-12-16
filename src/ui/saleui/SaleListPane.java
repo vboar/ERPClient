@@ -1,7 +1,6 @@
 package ui.saleui;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -111,30 +110,16 @@ public class SaleListPane extends TablePanel {
 
 	public void showFindTable(String time1, String time2) {
 		list = saleCtrl.findByTime(time1, time2);
-		Vector<String> names = new Vector<String>(COLUMN_NUM);
-		for (int i = 0; i < COLUMN_NUM; ++i) {
-			names.add(columnNames[i]);
-		}
-		Vector<Object> table = new Vector<Object>(list.size());
+		this.showFindData(list);
+	}
+	
+	public void showFindData(ArrayList<SaleVO> list){
+		this.data = new Object[list.size()][COLUMN_NUM];
 		for (int i = 0; i < list.size(); ++i) {
-			SaleVO vo = list.get(i);
-			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-			row.add(vo.id);
-			row.add(vo.time);
-			row.add(vo.customerId);
-			row.add(vo.customerName);
-			row.add(vo.customerVIP);
-			row.add(vo.salesmanId);
-			row.add(vo.operatorId);
-			row.add(vo.storage);
-			row.add(vo.saleList);
-			row.add(vo.totalBeforeDiscount);
-			row.add(vo.discount);
-			row.add(vo.totalAfterDiscount);
-			row.add(vo.approvalState.toReadableString());
-			table.add(row);
+			SaleVO temp = list.get(i);
+			this.createRow(data[i], temp);
 		}
-		this.dtm.setDataVector(table, names);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
 	}
 	

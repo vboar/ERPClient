@@ -170,7 +170,9 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch, ExcelSaver 
 		if(customer.getSelectedItem().toString().equals("所有")) vo.customer = null;
 		else vo.customer = this.customer.getSelectedItem().toString().substring(0,7);
 		vo.storage = storage.getSelectedItem().toString();
-		vo.commodityName = this.commodity.getText();
+		if(this.vomap.get(this.commodity.getText())!=null)
+			vo.commodityName = this.vomap.get(this.commodity.getText()).name;
+		else vo.commodityName = this.commodity.getText();
 		return vo;
 	}
 

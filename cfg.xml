@@ -1144,7 +1144,7 @@
 				</end>
 			</datepicker>
 			<comboboxes>
-				<type text="单据类型" w="190" h="25" x="180" y="70">
+				<type text="单据类型" w="140" h="25" x="180" y="70">
 					<string str="进货单" />
 					<string str="进货退货单" />
 					<string str="销售单" />
@@ -1157,7 +1157,7 @@
 					<string str="库存报损单" />
 					<string str="库存报警单" />
 				</type>
-				<client text="客户" w="120" h="25" x="180" y="40"></client>
+				<client text="客户" w="140" h="25" x="180" y="40"></client>
 				<operator text="业务员" w="100" h="25" x="440" y="40"></operator>
 				<store text="仓库" w="100" h="25" x="440" y="70">
 					<string str="1号仓库" />

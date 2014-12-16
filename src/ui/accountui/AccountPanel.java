@@ -229,6 +229,7 @@ public class AccountPanel extends JPanel implements FuzzySearch {
 	}
 	
 	public void findAccount(String keyWord) {
+		//TODO 查找结果不对
 		this.accountTable.showFindTable(accountController.fuzzyFind(keyWord));
 	}
 

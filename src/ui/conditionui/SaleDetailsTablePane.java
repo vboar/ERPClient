@@ -53,7 +53,7 @@ public class SaleDetailsTablePane extends TablePanel{
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
 		this.table.setRowSorter(null);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
+		this.updateWidth();
 	}
 
 	private void initData() {
@@ -80,8 +80,7 @@ public class SaleDetailsTablePane extends TablePanel{
 	public void updateData() {
 		this.initData();
 		this.dtm.setDataVector(data, columnName);
-		FrameUtil.setTableColumnWidth(table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 	}
 
 	public boolean showFindTable(RequirementVO requierevo) {
@@ -103,12 +102,16 @@ public class SaleDetailsTablePane extends TablePanel{
 			table.add(row);
 		}
 		this.dtm.setDataVector(table, names);
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-		this.updateUI();
+		this.updateWidth();
 		if(list.size()<=0){
 			return false;
 		}
 		return true;
 	}
 	
+	public void updateWidth(){
+		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
+		this.table.getColumnModel().getColumn(0).setMinWidth(160);
+		this.updateUI();
+	}
 }
