@@ -28,7 +28,7 @@ public class SaleDetailsController implements SaleDetailsBLService {
 	public String getDefaultPath() {
 		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
 		String time=df.format(new Date());
-		String path="销售明细表.xls"+time;
+		String path="销售明细表"+time+".xls";
 		return path;
 	}
 

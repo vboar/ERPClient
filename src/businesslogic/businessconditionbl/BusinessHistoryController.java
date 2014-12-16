@@ -116,7 +116,7 @@ public class BusinessHistoryController implements HistoryBLService {
 	public String getDefaultPath() {
 		SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd");
 		String time=df.format(new Date());
-		String path="经营历程表.xls"+time;
+		String path="经营历程表"+time+".xls";
 		return path;
 	}
 

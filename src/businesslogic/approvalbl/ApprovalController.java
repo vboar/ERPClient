@@ -174,43 +174,63 @@ public class ApprovalController implements ApprovalBLService {
 		switch(type){
 		case PRESENT:
 			Present pr=new Present();
-			approvePresent(pr.getById(vo.getId()));
+			PresentVO present=pr.getById(vo.getId());
+			present.setStatus(vo.getStatus());
+			approvePresent(present);
 			break;
 		case PURCHASE:
 			Purchase pu=new Purchase();
-			approvePurchase(pu.getById(vo.getId()));
+			PurchaseVO purchase=pu.getById(vo.getId());
+			purchase.setStatus(vo.getStatus());
+			approvePurchase(purchase);
 			break;			
 		case PURCHASERETURN:
 			PurchaseReturn pre=new PurchaseReturn();
-			approvePurchaseReturn(pre.getById(vo.getId()));
+			PurchaseVO purchasere=pre.getById(vo.getId());
+			purchasere.setStatus(vo.getStatus());
+			approvePurchaseReturn(purchasere);
 			break;
 		case SALE:
 			Sale s=new Sale();
-			approveSale(s.getById(vo.getId()));
+			SaleVO sale=s.getById(vo.getId());
+			sale.setStatus(vo.getStatus());
+			approveSale(sale);
 			break;
 		case SALERETURN:
 			Sale s1=new Sale();
-			approveSaleReturn(s1.getById(vo.getId()));
+			SaleVO sre=s1.getById(vo.getId());
+			sre.setStatus(vo.getStatus());
+			approveSaleReturn(sre);
 			break;
 		case PAYMENT:
 			Payment p=new Payment();
-			approvePayment(p.getById(vo.getId()));
+			PaymentVO payment=p.getById(vo.getId());
+			payment.setStatus(vo.getStatus());
+			approvePayment(payment);
 			break;
 		case RECEIPT:
 			Receipt r=new Receipt();
-			approveReceipt(r.getById(vo.getId()));
+			PaymentVO receipt=r.getById(vo.getId());
+			receipt.setStatus(vo.getStatus());
+			approveReceipt(receipt);
 			break;
 		case OVERFLOW:
 			Overflow of=new Overflow();
-			approveOverflow(of.getById(vo.getId()));
+			ExceptionVO overflow=of.getById(vo.getId());
+			overflow.setStatus(vo.getStatus());
+			approveOverflow(overflow);
 			break;
 		case LOSS:
 			Overflow of1=new Overflow();
-			approveLoss(of1.getById(vo.getId()));
+			ExceptionVO loss=of1.getById(vo.getId());
+			loss.setStatus(vo.getStatus());
+			approveLoss(loss);
 			break;
 		case CASH:
 			Cash c=new Cash();
-			approveCash(c.getById(vo.getId()));
+			CashVO cash=c.getById(vo.getId());
+			cash.setStatus(vo.getStatus());
+			approveCash(cash);
 			break;
 		case PRESENTRETURN:
 		case WARNING:
