@@ -46,6 +46,7 @@ public class Approval {
 	public ResultMessage approvePayment(PaymentVO vo){
 		Payment p=new Payment();
 		if(vo.approvalState==DocumentStatus.PASSED){
+			p.update(vo);
 		return p.approve(vo.transferList,vo.id,vo.customerId,vo.total);
 		}else{
 			return p.update(vo);
@@ -55,6 +56,7 @@ public class Approval {
 	public ResultMessage approveReceipt(PaymentVO vo){
 		Receipt r=new Receipt();
 		if(vo.approvalState==DocumentStatus.PASSED){
+			r.update(vo);
 		return r.approve(vo.transferList, vo.id, vo.customerId, vo.total);
 		}else{
 			return r.update(vo);
@@ -127,6 +129,7 @@ public class Approval {
 	public ResultMessage approvePresent(PresentVO vo){
 		Present p=new Present();
 		if(vo.documentStatus==DocumentStatus.PASSED){
+			p.update(vo);
 		return p.approve(vo);
 		}else{
 			return p.update(vo);
