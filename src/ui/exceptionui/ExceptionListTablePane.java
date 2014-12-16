@@ -1,7 +1,6 @@
 package ui.exceptionui;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -120,20 +119,16 @@ public class ExceptionListTablePane extends TablePanel {
 	 */
 	public void showFindTable(String time1, String time2) {
 		list = controller.show(time1, time2);
-		Vector<String> names = new Vector<String>(COLUMN_NUM);
-		for (int i = 0; i < COLUMN_NUM; ++i) {
-			names.add(columnName[i]);
-		}
-		Vector<Object> table = new Vector<Object>(list.size());
+		this.showFindData(list);
+	}
+	
+	public void showFindData(ArrayList<ExceptionVO> list){
+		this.data = new Object[list.size()][COLUMN_NUM];
 		for (int i = 0; i < list.size(); ++i) {
-			ExceptionVO vo = list.get(i);
-			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-			row.add(vo.id);
-			row.add(vo.time);
-			row.add(vo.list);
-			table.add(row);
+			ExceptionVO temp = list.get(i);
+			this.createRow(data[i], temp);
 		}
-		this.dtm.setDataVector(table, names);
+		this.dtm.setDataVector(data, columnName);
 		this.updateWidth();
 		if (list.size() == 0) {
 			MyOptionPane.showMessageDialog(ExceptionListTablePane.this,

@@ -204,6 +204,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	public void showPresent(RequirementVO vo){
 		removeAllPanel();
 		this.present = new PresentListTablePane(new TableConfig(cfg.getTables().element("present")));
+		// TODO this.present.showFindData(controller.showPresent(vo));
 		add(present);	
 		repaint();
 	}
@@ -212,6 +213,10 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.exception = new ExceptionListTablePane(
 				new TableConfig(cfg.getTables().element("exception")),isloss);
+		if(isloss)
+			this.exception.showFindData(controller.showLoss(vo));
+		else
+			this.exception.showFindData(controller.showOverFlow(vo));
 		add(exception);
 		repaint();
 	}
@@ -220,6 +225,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.warning = new WarningListTablePane(
 				new TableConfig(cfg.getTables().element("warning")));
+		this.warning.showFindData(controller.showWarning(vo));
 		add(warning);
 		repaint();
 	}
@@ -237,6 +243,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.purchase = new PurchaseListPane(
 				new TableConfig(cfg.getTables().element("purchase")), isreturn,false);
+		this.purchase.showFindData(controller.showPurchase(vo));
 		add(purchase);
 		repaint();
 	}
@@ -245,6 +252,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.payment = new ShowPaymentTable(new TableConfig(cfg.getTables().element("payment")),
 				ControllerFactoryImpl.getInstance().getReceiptController());
+		this.payment.showFindData(controller.showReceipt(vo));
 		add(payment);
 		repaint();
 	}
@@ -253,6 +261,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.payment = new ShowPaymentTable(new TableConfig(cfg.getTables().element("payment")),
 		ControllerFactoryImpl.getInstance().getPaymentController());
+		this.payment.showFindData(controller.showPayment(vo));
 		add(payment);
 		repaint();
 	}

@@ -1,7 +1,6 @@
 package ui.purchaseui;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -97,28 +96,21 @@ public class PurchaseListPane extends TablePanel{
 	
 	public void showFindTable(String time1, String time2) {
 		list = purchaseCtrl.findByTime(time1, time2);
-		Vector<String> names = new Vector<String>(COLUMN_NUM);
-		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnNames[i]);
+		this.showFindData(list);
+	}
+	
+	public void showFindData(ArrayList<PurchaseVO> list){
+		this.data = new Object[list.size()][COLUMN_NUM];
+		for (int i = 0; i < list.size(); ++i) {
+			PurchaseVO temp = list.get(i);
+			this.createRow(data[i], temp);
 		}
-		Vector<Object> table = new Vector<Object>(list.size());
-		for(int i=0; i<list.size(); ++i){
-			PurchaseVO vo = list.get(i);
-			Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-			row.add(vo.id);
-			row.add(vo.time);
-			row.add(vo.customerId);
-			row.add(vo.customerName);
-			row.add(vo.storage);
-			row.add(vo.operatorId);
-			row.add(vo.saleList);
-			row.add(vo.total);
-			row.add(vo.remark);
-			row.add(vo.documentStatus.toReadableString());
-			table.add(row);
-		}
-		this.dtm.setDataVector(table, names);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
+		if (list.size() == 0) {
+			MyOptionPane.showMessageDialog(PurchaseListPane.this,
+					"抱歉，未找到相关记录！");
+		}
 	}
 	
 	public void updateData(){

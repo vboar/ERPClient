@@ -1255,14 +1255,14 @@
 					fontsize="20" color="true" r="251" g="144" b="19" />
 			</labels>
 			<datepicker>
-				<start w="105" h="25" x="265" y="10">
-					<text w="80" h="25" x="0" y="0" />
-					<btn w="25" h="25" x="80" y="0" path="img/buttons/cs.png"
+				<start w="125" h="25" x="265" y="10">
+					<text w="100" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="105" h="25" x="475" y="10">
-					<text w="80" h="25" x="0" y="0" />
-					<btn w="25" h="25" x="80" y="0" path="img/buttons/cs.png"
+				<end w="125" h="25" x="475" y="10">
+					<text w="100" h="25" x="0" y="0" />
+					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</end>
 			</datepicker>

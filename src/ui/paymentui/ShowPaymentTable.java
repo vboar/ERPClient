@@ -1,11 +1,11 @@
 package ui.paymentui;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.PaymentVO;
@@ -80,53 +80,29 @@ public class ShowPaymentTable extends TablePanel {
      */
     public void showFindTable(String time1, String time2) {
         list = controller.findByTime(time1, time2);
-        Vector<String> names = new Vector<String>(COLUMN_NUM);
-        for(int i=0; i<COLUMN_NUM;++i){
-            names.add(columnName[i]);
-        }
-        Vector<Object> table = new Vector<Object>(list.size());
-        for(int i=0; i<list.size(); ++i){
-            PaymentVO vo = list.get(i);
-            Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-            row.add(vo.id);
-            row.add(vo.time);
-            row.add(vo.customerId);
-            row.add(vo.customerName);
-            row.add(vo.transferList.toString());
-            row.add(vo.total);
-            row.add(vo.operatorId);
-            row.add(vo.approvalState.toReadableString());
-            table.add(row);
-        }
-        this.dtm.setDataVector(table, names);
-        this.updateWidth();
+        this.showFindData(list);
     }
 
+    public void showFindData(ArrayList<PaymentVO> list){
+		this.data = new Object[list.size()][COLUMN_NUM];
+		for (int i = 0; i < list.size(); ++i) {
+			PaymentVO temp = list.get(i);
+			this.createRow(data[i], temp);
+		}
+		this.dtm.setDataVector(data, columnName);
+		this.updateWidth();
+		if (list.size() == 0) {
+			MyOptionPane.showMessageDialog(ShowPaymentTable.this,
+					"抱歉，未找到相关记录！");
+		}
+    }
+    
     /**
      * 查看所有单据（逆序）
      */
     public void showAllTable() {
         list = controller.show();
-        Vector<String> names = new Vector<String>(COLUMN_NUM);
-        for(int i=0; i<COLUMN_NUM;++i){
-            names.add(columnName[i]);
-        }
-        Vector<Object> table = new Vector<Object>(list.size());
-        for(int i=list.size()-1; i>=0; --i){
-            PaymentVO vo = list.get(i);
-            Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-            row.add(vo.id);
-            row.add(vo.time);
-            row.add(vo.customerId);
-            row.add(vo.customerName);
-            row.add(vo.transferList.toString());
-            row.add(vo.total);
-            row.add(vo.operatorId);
-            row.add(vo.approvalState.toReadableString());
-            table.add(row);
-        }
-        this.dtm.setDataVector(table, names);
-        this.updateWidth();
+        this.showFindData(list);
     }
     
 	public void updateWidth(){
