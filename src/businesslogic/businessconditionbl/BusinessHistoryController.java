@@ -8,6 +8,7 @@ import util.ResultMessage;
 import vo.CashVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
+import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.RequirementVO;
 import vo.SaleVO;
@@ -70,6 +71,12 @@ public class BusinessHistoryController implements HistoryBLService {
 		bh.addLog("经营历程表查看：查看报损单");
 		return bh.showLoss(vo);
 	}
+	
+	@Override
+	public ArrayList<PresentVO> showPresent(RequirementVO vo) {
+		bh.addLog("经营历程表查看：查看赠送单");
+		return bh.showPresent(vo);
+	}
 
 	@Override
 	public ArrayList<WarningVO> showWarning(RequirementVO vo) {
@@ -98,7 +105,9 @@ public class BusinessHistoryController implements HistoryBLService {
 		case WARNING:
 			bh.exportWarning(path, vo);
 			break;
-		case PRESENT:case PRESENTRETURN:
+		case PRESENT:
+			bh.exportPresent(path,vo);
+		case PRESENTRETURN:
 		}
 		return ResultMessage.SUCCESS;
 	}
@@ -110,4 +119,6 @@ public class BusinessHistoryController implements HistoryBLService {
 		String path="经营历程表.xls"+time;
 		return path;
 	}
+
+
 }

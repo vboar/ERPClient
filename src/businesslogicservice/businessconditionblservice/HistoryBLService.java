@@ -11,6 +11,7 @@ import util.ResultMessage;
 import vo.CashVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
+import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.RequirementVO;
 import vo.SaleVO;
@@ -99,4 +100,11 @@ public interface HistoryBLService {
 	 * @return
 	 */
 	public String getDefaultPath();
+	
+	/**
+	 * 根据条件筛选赠送单
+	 * @param vo
+	 * @return
+	 */
+	public ArrayList<PresentVO> showPresent(RequirementVO vo);
 }

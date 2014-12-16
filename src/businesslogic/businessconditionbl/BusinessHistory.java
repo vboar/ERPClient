@@ -23,6 +23,8 @@ import vo.CommodityLineItemVO;
 import vo.ExceptionLineItemVO;
 import vo.ExceptionVO;
 import vo.PaymentVO;
+import vo.PresentLineItemVO;
+import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.RequirementVO;
 import vo.SaleVO;
@@ -36,6 +38,7 @@ import businesslogic.logbl.Log;
 import businesslogic.paymentbl.Cash;
 import businesslogic.paymentbl.Payment;
 import businesslogic.paymentbl.Receipt;
+import businesslogic.presentbl.Present;
 import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
@@ -60,7 +63,7 @@ public class BusinessHistory {
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer){
+				if(!result.get(i).customerName.equals(vo.customer)){
 					result.remove(i);
 					i--;
 					}
@@ -68,7 +71,7 @@ public class BusinessHistory {
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator){
+				if(!result.get(i).operatorId.equals(vo.operator)){
 					result.remove(i);
 					i--;
 					}
@@ -76,7 +79,7 @@ public class BusinessHistory {
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage){
+				if(!result.get(i).storage.equals(vo.storage)){
 					result.remove(i);
 					i--;
 					}
@@ -98,7 +101,7 @@ public class BusinessHistory {
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer){
+				if(!result.get(i).customerName.equals(vo.customer)){
 					result.remove(i);
 					i--;
 					}
@@ -106,7 +109,7 @@ public class BusinessHistory {
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator){
+				if(!result.get(i).operatorId.equals(vo.operator)){
 					result.remove(i);
 					i--;
 					}
@@ -114,7 +117,7 @@ public class BusinessHistory {
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage){
+				if(!result.get(i).storage.equals(vo.storage)){
 					result.remove(i);
 					i--;
 					}
@@ -136,7 +139,7 @@ public class BusinessHistory {
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer){
+				if(!result.get(i).customerName.equals(vo.customer)){
 					result.remove(i);
 					i--;
 					}
@@ -144,7 +147,7 @@ public class BusinessHistory {
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator){
+				if(!result.get(i).operatorId.equals(vo.operator)){
 					result.remove(i);
 					i--;
 					}
@@ -152,7 +155,7 @@ public class BusinessHistory {
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage){
+				if(!result.get(i).storage.equals(vo.storage)){
 					result.remove(i);
 					i--;
 					}
@@ -174,7 +177,7 @@ public class BusinessHistory {
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer){
+				if(!result.get(i).customerName.equals(vo.customer)){
 					result.remove(i);
 					i--;
 					}
@@ -182,7 +185,7 @@ public class BusinessHistory {
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator){
+				if(!result.get(i).operatorId.equals(vo.operator)){
 					result.remove(i);
 					i--;
 					}
@@ -190,7 +193,7 @@ public class BusinessHistory {
 		
 		if(vo.storage!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).storage!=vo.storage){
+				if(!result.get(i).storage.equals(vo.storage)){
 					result.remove(i);
 					i--;
 					}
@@ -212,7 +215,7 @@ public class BusinessHistory {
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer){
+				if(!result.get(i).customerName.equals(vo.customer)){
 					result.remove(i);
 					i--;
 					}
@@ -220,7 +223,7 @@ public class BusinessHistory {
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator){
+				if(!result.get(i).operatorId.equals(vo.operator)){
 					result.remove(i);
 					i--;
 					}
@@ -241,7 +244,7 @@ public class BusinessHistory {
 		
 		if(vo.customer!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).customerName!=vo.customer){
+				if(!result.get(i).customerName.equals(vo.customer)){
 					result.remove(i);
 					i--;
 					}
@@ -249,7 +252,7 @@ public class BusinessHistory {
 		
 		if(vo.operator!=null){
 			for(int i=0;i<result.size();i++)
-				if(result.get(i).operatorId!=vo.operator){
+				if(!result.get(i).operatorId.equals(vo.operator)){
 					result.remove(i);
 					i--;
 					}
@@ -295,6 +298,29 @@ public class BusinessHistory {
 				result.remove(i);
 				i--;
 				}
+		
+		return result;
+	}
+	
+	public ArrayList<PresentVO> showPresent(RequirementVO vo){
+		Present p=new Present();
+		ArrayList<PresentVO> result=p.show();
+		
+		for(int i=0;i<result.size();i++){
+			if(judgeTime(vo.time1,vo.time2,result.get(i).time)==false){
+				result.remove(i);
+				i--;
+			}
+		}
+		
+		if(vo.customer!=null){
+			for(int i=0;i<result.size();i++){
+				if(!result.get(i).customerId.equals(vo.customer)){
+					result.remove(i);
+					i--;
+				}
+			}
+		}
 		
 		return result;
 	}
@@ -866,6 +892,74 @@ public class BusinessHistory {
 			fout.close();
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage exportPresent(String path,RequirementVO vo){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet("赠送单历史");
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("单据编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(1);
+		cell.setCellValue("时间");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(2);
+		cell.setCellValue("客户编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(3);
+		cell.setCellValue("客户姓名");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(4);
+		cell.setCellValue("赠品列表");
+		cell.setCellStyle(style);
+		
+		row=sheet.createRow(1);
+		
+		cell=row.createCell(5);
+		cell.setCellValue("赠品编号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(6);
+		cell.setCellValue("赠品名称");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(7);
+		cell.setCellValue("赠品型号");
+		cell.setCellStyle(style);
+		
+		cell=row.createCell(8);
+		cell.setCellValue("赠品数量");
+		cell.setCellStyle(style);
+
+		ArrayList<PresentVO> list=showPresent(vo);
+		for(int i=0;i<list.size();i++){
+			PresentVO temp=list.get(i);
+			row=sheet.createRow(i+1);
+			
+			row.createCell(0).setCellValue(temp.id);
+			row.createCell(1).setCellValue(temp.time);
+			row.createCell(2).setCellValue(temp.customerId);
+			row.createCell(3).setCellValue(temp.customerName);
+
+			for(int j=0;j<temp.list.size();j++){
+			PresentLineItemVO t=temp.list.get(j);
+			row=sheet.createRow(j+2);
+			
+			row.createCell(5).setCellValue(t.id);
+			row.createCell(6).setCellValue(t.name);
+			row.createCell(7).setCellValue(t.model);
+			row.createCell(8).setCellValue(t.number);
+			}
 		}
 		return ResultMessage.SUCCESS;
 	}
