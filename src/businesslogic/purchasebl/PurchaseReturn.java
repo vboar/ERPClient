@@ -10,7 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.commoditybl.Commodity;
+import businesslogic.customerbl.Customer;
 import businesslogic.utilitybl.Utility;
+import po.CommodityPO;
 import po.PurchasePO;
 import util.DocumentType;
 import util.ResultMessage;
@@ -45,22 +48,17 @@ public class PurchaseReturn {
 	}
 
 	public PurchaseVO getById(String id) {
-		
-		return purchase.getById(id);
 
-	}
-	// TODO
-	public ResultMessage approve(PurchaseVO vo) {
-		return null;
+		return purchase.getById(id);
 
 	}
 
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		if(time1==null||time1.equals("")){
-			time1="1970/1/1 00:00:00";
+		if (time1 == null || time1.equals("")) {
+			time1 = "1970/1/1 00:00:00";
 		}
-		if(time2==null||time2.equals("")){
-			time2=Utility.getCurrentTime();
+		if (time2 == null || time2.equals("")) {
+			time2 = Utility.getCurrentTime();
 		}
 
 		ArrayList<PurchasePO> poList = null;
@@ -171,6 +169,29 @@ public class PurchaseReturn {
 		ArrayList<PurchaseVO> voList = purchase.poListToVoList(poList2);
 
 		return voList;
+	}
+
+	public ResultMessage approve(PurchaseVO vo) {
+		double total = vo.total;
+
+		Customer cus = new Customer();
+		cus.updateByPurchaseReturn(vo.customerId, total);
+
+		for (CommodityLineItemVO vo1 : vo.saleList) {
+			Commodity commodity = new Commodity();
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+			// commoditypo.setRecentPurchasePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return ResultMessage.SUCCESS;
+
 	}
 
 }

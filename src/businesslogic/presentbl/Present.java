@@ -6,8 +6,12 @@
 
 package businesslogic.presentbl;
 
-import businesslogic.utilitybl.Utility;
-import dataservice.datafactoryservice.DataFactoryImpl;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import po.CommodityPO;
 import po.PresentLineItemPO;
 import po.PresentPO;
 import util.DocumentStatus;
@@ -15,11 +19,9 @@ import util.DocumentType;
 import util.ResultMessage;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
-
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import businesslogic.commoditybl.Commodity;
+import businesslogic.utilitybl.Utility;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Present {
 
@@ -210,15 +212,31 @@ public class Present {
 	}
 	
 	public ResultMessage approve(PresentVO vo){
-//	if(vo.documentType==DocumentType.PRESENT){
-//			for(PresentLineItemVO present:vo.list){
-//				String id=present.id;
-//				//
-//			}
-//		}
-		//该库存，改商品
-	return null;
+				
+		boolean present=true;
+		if(vo.documentType==DocumentType.PRESENTRETURN){
+			present=false;
+		}
+		for(PresentLineItemVO vo1:vo.list){
+		Commodity commodity=new Commodity();
+		CommodityPO commoditypo=commodity.getById(vo1.id);
+		if(present){
+			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+		}else{
+			commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+		}
+		//commoditypo.setRecentPurchasePrice(vo1.price);
+					try {
+			DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+				
+	}		
+		return ResultMessage.SUCCESS;
+
 	}
+
 
 	
 	

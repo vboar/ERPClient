@@ -256,11 +256,11 @@ public class SaleReturn {
 			Commodity commodity=new Commodity();
 			String id=vo1.id;
 			if(id.compareTo("99998")>0){
-				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id);
+				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id.substring(6));
 				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
 				for(CommodityLineItemVO commodityLineItemvo:spList){
 					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);
-					commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
+					commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
 					try {
 						DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
 					} catch (RemoteException e) {
@@ -271,8 +271,8 @@ public class SaleReturn {
 			}
 			
 			CommodityPO commoditypo=commodity.getById(vo1.id);
-			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
-			commoditypo.setRecentSalePrice(vo1.price);
+			commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+			//commoditypo.setRecentSalePrice(vo1.price);
 						try {
 				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
 			} catch (RemoteException e) {

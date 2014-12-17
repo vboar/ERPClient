@@ -428,7 +428,7 @@ public class Sale {
 			Commodity commodity=new Commodity();
 			String id=vo1.id;
 			if(id.compareTo("99998")>0){
-				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id);
+				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id.substring(6));//通过商品的id找到对应促销包
 				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
 				for(CommodityLineItemVO commodityLineItemvo:spList){
 					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);

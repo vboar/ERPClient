@@ -5,21 +5,24 @@
  */
 package businesslogic.purchasebl;
 
-import businesslogic.loginbl.Login;
-import businesslogic.utilitybl.Utility;
-import dataservice.datafactoryservice.DataFactoryImpl;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import po.CommodityLineItemPO;
+import po.CommodityPO;
 import po.PurchasePO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
-
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import businesslogic.commoditybl.Commodity;
+import businesslogic.customerbl.Customer;
+import businesslogic.loginbl.Login;
+import businesslogic.utilitybl.Utility;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Purchase {
 
@@ -293,7 +296,25 @@ public class Purchase {
 
 	// TODO
 	public ResultMessage approve(PurchaseVO vo) {
-		return null;
+		double total=vo.total;
+
+		Customer cus=new Customer();
+		cus.updateByPurchase(vo.customerId, total);
+				
+		for(CommodityLineItemVO vo1:vo.saleList){
+		Commodity commodity=new Commodity();
+		CommodityPO commoditypo=commodity.getById(vo1.id);
+		commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+		commoditypo.setRecentPurchasePrice(vo1.price);
+					try {
+			DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+				
+	}		
+		return ResultMessage.SUCCESS;
+
 	}
 
 }
