@@ -45,7 +45,7 @@ public class CreateSaleDialog extends JDialog{
 		jsp = new JScrollPane();
 		jsp.setBounds(0, 0, this.getWidth() , this.getHeight());
 		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		this.createpanel = new CreateSalePanel(frame,this);
+		this.createpanel = new CreateSalePanel(frame,this,false);
 		jsp.setViewportView(this.createpanel);
 		this.add(jsp);
 	}

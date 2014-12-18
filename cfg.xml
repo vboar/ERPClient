@@ -207,6 +207,37 @@
 			</tablepane>
 		</panel>
 
+		<!--显示赠送单面板 -->
+		<panel className="ui.presentui.ShowPresentPanel" width="750"
+			height="400" x="0" y="80" bg="img/document/zsd.jpg">
+			<buttons>
+				<addcustomer text="添加客户信息" w="100" h="30" x="630" y="50" />
+				<add text="增加商品" w="80" h="25" x="560" y="125" />
+				<delete text="删除商品" w="80" h="25" x="650" y="125" />
+				<commit text="提交" w="100" h="30" x="260" y="360" />
+				<cancel text="取消" w="100" h="30" x="400" y="360" />
+			</buttons>
+			<labels>
+				<documentidlab text="" w="200" h="30" x="590" y="8" />
+				<tip text="请输入客户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
+					fontsize="12" color="true" r="255" g="100" b="10" />
+				<customeridlab text="" w="180" h="35" x="100" y="85" />
+				<customernamelab text="" w="180" h="35" x="370" y="85" />
+			</labels>
+			<textfields>
+				<customerinfo w="240" h="30" x="380" y="50" />
+			</textfields>
+			<tablepane className="ui.presentui.PresentCommodityTablePane"
+				width="730" height="200" x="10" y="152">
+				<columnnames>
+					<columnname name="商品编号" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="数量" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
 		<!-- 赠品发放中的查看单据面板 -->
 		<panel className="ui.presentui.ShowPanel" width="760" height="400"
 			x="0" y="80" bg="img/common/rightpanel.png">
@@ -386,6 +417,29 @@
 				</columnnames>
 			</tablepane>
 		</panel>
+		
+		<!-- 显示报溢报损单面板 -->
+		<panel className="ui.exceptionui.ShowExceptionPanel" width="760"
+			height="400" x="0" y="80" bg="img/document/kcbsd.jpg" bg1="img/document/kcbyd.jpg">
+			<buttons>
+				<add text="增加商品" w="80" h="25" x="560" y="50" />
+				<delete text="删除商品" w="80" h="25" x="650" y="50" />
+			</buttons>
+			<labels>
+				<documentid text="" w="200" h="30" x="593" y="10" />
+			</labels>
+			<tablepane className="ui.presentui.PresentCommodityTablePane"
+				width="730" height="260" x="10" y="80">
+				<columnnames>
+					<columnname name="商品编号" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="系统库存数量" />
+					<columnname name="实际库存数量" />
+					<columnname name="数量差" />
+				</columnnames>
+			</tablepane>
+		</panel>
 
 		<!-- 查看报溢报损列表面板 -->
 		<panel className="ui.exceptionui.ShowOverLossPanel" width="760"
@@ -512,6 +566,56 @@
 			</tablepane>
 		</panel>
 
+		<!-- 显示销售单面板 -->
+		<panel className="ui.saleui.ShowSalePanel" width="760" height="680"
+			x="0" y="0" bg="img/document/xsd.jpg" bg1="img/document/xsthd.jpg">
+			<buttons>
+				<addcustomer text="添加客户" w="80" h="25" x="640" y="75" />
+				<add text="添加商品" w="80" h="25" x="520" y="115" />
+				<delete text="删除商品" w="80" h="25" x="620" y="115" />
+				<showpromotion text="点击查看" w="80" h="30" x="120" y="370" />
+			</buttons>
+			<labels>
+				<customerid text="" w="120" h="30" x="90" y="47" />
+				<customername text="" w="120" h="30" x="290" y="47" />
+				<documentid text="" w="200" h="30" x="550" y="10" />
+				<showpromotion text="" w="500" h="60" x="30" y="405" />
+				<totalbefore text="0" w="120" h="30" x="605" y="505" />
+				<discount text="0" w="100" h="25" x="605" y="535" />
+				<total text="0" w="120" h="30" x="605" y="583" />
+				<tip text="请输入客户信息关键字" w="120" h="30" x="470" y="40" font="微软雅黑"
+					fontsize="11" color="true" r="237" g="76" b="44" />
+			</labels>
+			<comboboxes>
+				<salesman w="120" h="25" x="85" y="78"></salesman>
+				<storage w="120" h="25" x="285" y="78">
+					<string str="1号仓库" />
+				</storage>
+			</comboboxes>
+			<textfields>
+				<findcustomer w="160" h="25" x="470" y="75" />
+				<voucher w="100" h="25" x="130" y="508" />
+			</textfields>
+			<checkbox>
+				<voucher text="使用代金券" w="100" h="30" x="15" y="505" />
+			</checkbox>
+			<textarea>
+				<remark w="380" h="80" x="60" y="540" />
+			</textarea>
+			<tables>
+				<commodity className="ui.saleui.CommodityTablePane" width="730"
+					height="225" x="10" y="140">
+					<columnnames>
+						<columnname name="商品编号" />
+						<columnname name="商品名称" />
+						<columnname name="商品型号" />
+						<columnname name="数量" />
+						<columnname name="单价" />
+					</columnnames>
+				</commodity>
+			</tables>
+		</panel>
+
 		<!-- 创建销售单面板 -->
 		<panel className="ui.saleui.CreateSalePanel" width="760" height="680"
 			x="0" y="0" bg="img/document/xsd.jpg">
@@ -531,6 +635,8 @@
 				<totalbefore text="0" w="120" h="30" x="605" y="505" />
 				<discount text="0" w="100" h="25" x="605" y="535" />
 				<total text="0" w="120" h="30" x="605" y="583" />
+				<tip text="请输入客户信息关键字" w="120" h="30" x="470" y="40" font="微软雅黑"
+					fontsize="11" color="true" r="237" g="76" b="44" />
 			</labels>
 			<comboboxes>
 				<salesman w="120" h="25" x="85" y="78"></salesman>
@@ -694,6 +800,50 @@
 			</tablepane>
 		</panel>
 
+		<!-- 显示进货单面板 -->
+		<panel className="ui.purchaseui.ShowPurchasePanel" width="760"
+			height="500" x="0" y="0" bg="img/document/jhd.jpg" bg1="img/document/jhthd.jpg">
+			<buttons>
+				<add text="添加商品" w="80" h="25" x="520" y="115" />
+				<delete text="删除商品" w="80" h="25" x="620" y="115" />
+				<commit text="提交" w="80" h="30" x="270" y="460" />
+				<check text="审批通过" w="100" h="30" x="140" y="460" />
+				<reject text="审批不通过" w="100" h="30" x="270" y="460" />
+				<copy text="红冲并复制" w="120" h="30" x="270" y="460" />
+				<writeoff text="红冲" w="80" h="30" x="270" y="460" />
+				<cancel text="取消" w="80" h="30" x="400" y="460" />
+			</buttons>
+			<labels>
+				<customerid text="" w="120" h="30" x="150" y="45" />
+				<customername text="" w="120" h="30" x="320" y="45" />
+				<documentid text="" w="200" h="30" x="550" y="10" />
+				<total text="0" w="120" h="30" x="605" y="380" />
+				<tip text="请输入客户信息关键字" w="120" h="30" x="470" y="40" font="微软雅黑"
+					fontsize="11" color="true" r="237" g="76" b="44" />
+			</labels>
+			<comboboxes>
+				<storage w="120" h="25" x="100" y="78">
+					<string str="1号仓库" />
+				</storage>
+			</comboboxes>
+			<textfields>
+				<findcustomer w="160" h="25" x="470" y="70" />
+			</textfields>
+			<textarea>
+				<remark w="380" h="60" x="75" y="390" />
+			</textarea>
+			<tablepane className="ui.saleui.CommodityTablePane" width="730"
+				height="225" x="10" y="140">
+				<columnnames>
+					<columnname name="商品编号" />
+					<columnname name="商品名称" />
+					<columnname name="商品型号" />
+					<columnname name="数量" />
+					<columnname name="单价" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
 		<!-- 创建进货单面板 -->
 		<panel className="ui.purchaseui.CreatePurchasePanel" width="760"
 			height="500" x="0" y="0" bg="img/document/jhd.jpg">
@@ -709,6 +859,8 @@
 				<customername text="" w="120" h="30" x="320" y="45" />
 				<documentid text="" w="200" h="30" x="550" y="10" />
 				<total text="0" w="120" h="30" x="605" y="380" />
+				<tip text="请输入客户信息关键字" w="120" h="30" x="470" y="40" font="微软雅黑"
+					fontsize="11" color="true" r="237" g="76" b="44" />
 			</labels>
 			<comboboxes>
 				<storage w="120" h="25" x="100" y="78">
@@ -716,7 +868,7 @@
 				</storage>
 			</comboboxes>
 			<textfields>
-				<findcustomer w="160" h="25" x="470" y="75" />
+				<findcustomer w="160" h="25" x="470" y="70" />
 			</textfields>
 			<textarea>
 				<remark w="380" h="60" x="75" y="390" />
@@ -977,8 +1129,48 @@
 				<addcustomer text="添加客户信息" w="100" h="30" x="630" y="50" />
 				<add text="增加账户" w="80" h="25" x="560" y="125" />
 				<delete text="删除账户" w="80" h="25" x="650" y="125" />
-				<commit text="提交" w="100" h="30" x="260" y="360" />
-				<cancel text="取消" w="100" h="30" x="400" y="360" />
+			</textfields>
+			<labels>
+				<operatorlab text="" w="120" h="30" x="576" y="88" />
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<tip text="请输入客户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
+					fontsize="12" color="true" r="255" g="100" b="10" />
+				<customeridlab text="" w="180" h="35" x="100" y="88" />
+				<customernamelab text="" w="180" h="35" x="370" y="88" />
+			</labels>
+			<textfields>
+				<customerfind w="240" h="30" x="380" y="50" />
+			</textfields>
+			<tablepane className="ui.paymentui.PaymentTable" width="730"
+				height="200" x="10" y="152">
+				<columnnames>
+					<columnname name="账户名称" />
+					<columnname name="账户卡号" />
+					<columnname name="金额" />
+					<columnname name="备注" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
+		<!-- 查看付款单面板 -->
+		<panel className="ui.paymentui.ShowPaymentPanel" width="760"
+			height="400" x="0" y="80" bg="img/document/fkd.jpg" bg1="img/document/skd.jpg">
+			<buttons>
+				<add text="添加账户" w="80" h="25" x="540" y="125" />
+				<delete text="删除账户" w="80" h="25" x="640" y="125" />
+				<addcustomer text="添加" w="80" h="25" x="460" y="50" />
+			</buttons>
+			<labels>
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<customeridlab text="" w="180" h="35" x="170" y="80" />
+				<customernamelab text="" w="180" h="35" x="400" y="80" />
+				<operatorlab text="" w="120" h="30" x="640" y="80" />
+			</labels>
+			<textfields>
+				<customerfind w="270" h="25" x="180" y="50" />
+				<addcustomer text="添加客户信息" w="100" h="30" x="630" y="50" />
+				<add text="增加账户" w="80" h="25" x="560" y="125" />
+				<delete text="删除账户" w="80" h="25" x="650" y="125" />
 			</textfields>
 			<labels>
 				<operatorlab text="" w="120" h="30" x="576" y="88" />
@@ -1025,6 +1217,50 @@
 				<addaccount text="添加账户信息" w="100" h="30" x="630" y="50" />
 				<add text="增加条目" w="80" h="25" x="560" y="125" />
 				<delete text="删除条目" w="80" h="25" x="650" y="125" />
+			</textfields>
+			<labels>
+				<operatorlab text="" w="120" h="30" x="576" y="88" />
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<tip text="请输入账户信息关键字" w="180" h="30" x="250" y="50" font="微软雅黑"
+					fontsize="12" color="true" r="255" g="100" b="10" />
+				<accountidlab text="" w="180" h="35" x="100" y="88" />
+				<accountnamelab text="" w="180" h="35" x="370" y="88" />
+			</labels>
+			<textfields>
+				<accountfind w="240" h="30" x="380" y="50" />
+			</textfields>
+			<tablepane className="ui.paymentui.CashTable" width="730"
+				height="130" x="10" y="152">
+				<columnnames>
+					<columnname name="条目名" />
+					<columnname name="金额" />
+					<columnname name="备注" />
+				</columnnames>
+			</tablepane>
+		</panel>
+
+
+		<!--查看现金费用单面板 -->
+		<panel className="ui.paymentui.ShowCashPanel" width="760"
+			height="400" x="0" y="80" bg="img/document/xjfyd.jpg">
+			<buttons>
+				<add text="添加条目" w="80" h="25" x="540" y="125" />
+				<delete text="删除条目" w="80" h="25" x="640" y="125" />
+				<addaccount text="添加" w="80" h="25" x="460" y="50" />
+			</buttons>
+			<labels>
+				<documentidlab text="" w="200" h="30" x="590" y="10" />
+				<accountidlab text="" w="180" h="35" x="320" y="80" />
+				<accountnamelab text="" w="180" h="35" x="95" y="80" />
+				<operatorlab text="" w="120" h="30" x="620" y="80" />
+				<totallab text="" w="120" h="30" x="590" y="300" font="微软雅黑"
+					fontsize="18" color="true" r="54" g="87" b="143" />
+			</labels>
+			<textfields>
+				<accountfind w="270" h="25" x="180" y="50" />
+				<addaccount text="添加账户信息" w="100" h="30" x="630" y="50" />
+				<add text="增加条目" w="80" h="25" x="560" y="125" />
+				<delete text="删除条目" w="80" h="25" x="650" y="125" />
 				<commit text="提交" w="100" h="30" x="260" y="360" />
 				<cancel text="取消" w="100" h="30" x="400" y="360" />
 			</textfields>
@@ -1048,7 +1284,6 @@
 				</columnnames>
 			</tablepane>
 		</panel>
-
 
 
 		<!-- 经营状况查看面板 -->
@@ -2099,46 +2334,16 @@
 			<own w="380" h="30" x="120" y="60" />
 		</textfields>
 	</saverdialog>
-	
-	<!-- 审批、红冲进货单面板 -->
-	<purchasedocument width="760" height="500" x="100" y="50" bg="img/document/jhd.jpg"
-		bg2="img/document/jhthd.jpg" title="红冲单据">
+
+	<showdocumentdialog width="770" height="540" x="100"
+		y="50" bg="img/document/jhd.jpg" bg2="img/document/jhthd.jpg" title="红冲单据">
 		<buttons>
-			<add text="添加商品" w="80" h="25" x="520" y="115" />
-			<delete text="删除商品" w="80" h="25" x="620" y="115" />
-			<commit text="提交" w="80" h="30" x="270" y="425" />
-			<check text="审批通过" w="100" h="30" x="140" y="422" />
-			<reject text="审批不通过" w="100" h="30" x="270" y="422" />
-			<copy text="红冲并复制" w="120" h="30" x="270" y="422" />
-			<writeoff text="红冲" w="80" h="30" x="270" y="422" />
-			<cancel text="取消" w="80" h="30" x="400" y="422" />
+			<commit text="提交" w="80" h="30" x="270" y="460" />
+			<check text="审批通过" w="100" h="30" x="140" y="460" />
+			<reject text="审批不通过" w="100" h="30" x="270" y="460" />
+			<copy text="红冲并复制" w="120" h="30" x="270" y="460" />
+			<writeoff text="红冲" w="80" h="30" x="270" y="460" />
+			<cancel text="取消" w="80" h="30" x="400" y="460" />
 		</buttons>
-		<labels>
-			<customerid text="" w="120" h="30" x="150" y="45" />
-			<customername text="" w="120" h="30" x="320" y="45" />
-			<documentid text="" w="200" h="30" x="550" y="10" />
-			<total text="0" w="120" h="30" x="605" y="380" />
-		</labels>
-		<comboboxes>
-			<storage w="120" h="25" x="100" y="78">
-				<string str="1号仓库" />
-			</storage>
-		</comboboxes>
-		<textfields>
-			<findcustomer w="160" h="25" x="470" y="75" />
-		</textfields>
-		<textarea>
-			<remark w="380" h="60" x="75" y="350" />
-		</textarea>
-		<tablepane className="ui.saleui.CommodityTablePane" width="730"
-			height="200" x="10" y="140">
-			<columnnames>
-				<columnname name="商品编号" />
-				<columnname name="商品名称" />
-				<columnname name="商品型号" />
-				<columnname name="数量" />
-				<columnname name="单价" />
-			</columnnames>
-		</tablepane>
-	</purchasedocument>
+	</showdocumentdialog>
 </erp>

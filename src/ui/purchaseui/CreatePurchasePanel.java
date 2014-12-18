@@ -1,14 +1,12 @@
 package ui.purchaseui;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import ui.util.AddCommodityLineItem;
 import ui.util.AddTradeCommodityDialog;
@@ -30,33 +28,15 @@ import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.customerblservice.CustomerBLService;
 import businesslogicservice.purchaseblservice.PurchaseBLService;
 import config.ERPConfig;
-import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class CreatePurchasePanel extends JPanel implements FuzzySearch,
+public class CreatePurchasePanel extends PurchaseDocumentPanel implements FuzzySearch,
 		AddCommodityLineItem {
 
-	private Image bg;
-
-	private MyButton addBtn;
-	private MyButton deleteBtn;
 	private MyButton commitBtn;
 	private MyButton cancelBtn;
-	private MyButton addCustomer;
-
-	private MyLabel documentId;
-	private MyLabel customerIdLab;
-	private MyLabel customerNameLab;
-	private MyLabel totalLab;
-
-	private MyComboBox storage;
-
-	private MySpecialTextField customerTxt;
-	private MyTextArea remarkTxt;
-
-	private CommodityTablePane commodityTable;
-
+	
 	private boolean hasCustomer = false;
 	private double totalPrice = 0;
 	private CustomerVO customerVO;
@@ -66,14 +46,10 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 	private PurchaseBLService purchaseCtrl;
 	private CustomerBLService customerCtrl;
 
-	private JFrame frame;
-
 	private CreatePurchaseDialog dialog;
-
-	private PanelConfig cfg;
 	
-	public CreatePurchasePanel(JFrame frame, CreatePurchaseDialog dialog) {
-		this.frame = frame;
+	public CreatePurchasePanel(JFrame frame, CreatePurchaseDialog dialog, boolean isreturn) {
+		super(frame,isreturn);
 		this.dialog = dialog;
 		this.customerlist = new HashMap<String,CustomerVO>();
 		this.commoditylist = new ArrayList<CommodityLineItemVO>();
@@ -96,7 +72,7 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		g.drawImage(bg, 0, 0, cfg.getW(), cfg.getH(), null);
 	}
 
-	private void initComponent() {
+	protected void initComponent() {
 		// 添加按钮
 		this.initButtons();
 		// 添加标签
@@ -129,6 +105,8 @@ public class CreatePurchasePanel extends JPanel implements FuzzySearch,
 		this.customerIdLab = new MyLabel(cfg.getLabels().element("customerid"));
 		this.customerNameLab = new MyLabel(cfg.getLabels().element(
 				"customername"));
+		this.tip = new MyLabel(cfg.getLabels().element("tip"));
+		this.add(tip);
 		this.add(documentId);
 		this.add(customerIdLab);
 		this.add(customerNameLab);

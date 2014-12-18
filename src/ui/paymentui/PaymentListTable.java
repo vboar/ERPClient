@@ -17,7 +17,7 @@ import config.TableConfig;
  * Created by Vboar on 2014/12/4.
  */
 @SuppressWarnings("serial")
-public class ShowPaymentTable extends TablePanel {
+public class PaymentListTable extends TablePanel {
 
     private String[] columnName;
 
@@ -31,7 +31,7 @@ public class ShowPaymentTable extends TablePanel {
 
     private PaymentBLService controller;
 
-    public ShowPaymentTable(TableConfig cfg, PaymentBLService controller) {
+    public PaymentListTable(TableConfig cfg, PaymentBLService controller) {
         super(cfg);
         list = controller.show();
         this.controller = controller;
@@ -92,7 +92,7 @@ public class ShowPaymentTable extends TablePanel {
 		this.dtm.setDataVector(data, columnName);
 		this.updateWidth();
 		if (list.size() == 0) {
-			MyOptionPane.showMessageDialog(ShowPaymentTable.this,
+			MyOptionPane.showMessageDialog(PaymentListTable.this,
 					"抱歉，未找到相关记录！");
 		}
     }
@@ -110,5 +110,22 @@ public class ShowPaymentTable extends TablePanel {
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(4).setMinWidth(300);
         this.updateUI();
+	}
+	
+	public PaymentVO getSelectedVO(){
+		PaymentVO vo = null;
+		int row = this.table.getSelectedRow();
+		if(row<0){
+			MyOptionPane.showMessageDialog(PaymentListTable.this, "请先选择一张单据！");
+			return null;
+		}
+		String id = (String)this.table.getValueAt(row, 0);
+		for(int i=0; i<list.size(); i++){
+			vo = list.get(i);
+			if(id.equals(vo.id)){
+				return vo;
+			}
+		}
+		return vo;	
 	}
 }

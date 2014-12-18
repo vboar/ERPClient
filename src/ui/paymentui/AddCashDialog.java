@@ -34,13 +34,13 @@ public class AddCashDialog extends JDialog {
 
     private MyTextField remarkTxt;
 
-    private CreateCashPanel panel;
+    private AddClauseLineItem panel;
 
     private DialogConfig cfg;
 
     private ClauseLineItemVO vo;
 
-    public AddCashDialog(DialogConfig cfg, JFrame frame, CreateCashPanel panel) {
+    public AddCashDialog(DialogConfig cfg, JFrame frame, AddClauseLineItem panel) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
         this.cfg = cfg;
@@ -86,7 +86,7 @@ public class AddCashDialog extends JDialog {
                     try{
                         double money = Double.parseDouble(moneyTxt.getText());
                         vo = new ClauseLineItemVO(nameTxt.getText(), money, remarkTxt.getText());
-                        panel.addCash(vo);
+                        panel.addClauseLineItem(vo);
                         dispose();
                     }catch(NumberFormatException ex){
                         MyOptionPane.showMessageDialog(null, "请正确输入数据！","错误提示",

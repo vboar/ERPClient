@@ -1,5 +1,6 @@
 package ui.presentui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import ui.util.AddPresentLineItem;
+import ui.util.DocumentWriteoffAndCopy;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -26,23 +28,19 @@ import businesslogicservice.presentblservice.PresentBLService;
 import config.ERPConfig;
 import config.TableConfig;
 
-/**
- * 创建赠送单面板
- * @author JanelDQ
- * @date 2014/11/27
- */
 @SuppressWarnings("serial")
-public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySearch, AddPresentLineItem{
+public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearch,
+	AddPresentLineItem, DocumentWriteoffAndCopy{
 	
-	private PresentPanel panel;
-	private JFrame frame;
+	private int type;
 	
-	private CustomerVO customerVO;
-	private ArrayList<PresentLineItemVO> commoditylist;
-	private HashMap<String,CustomerVO> customerlist;	
+	private PresentVO vo;	
+	private CustomerVO customerVO;	
+	private ArrayList<PresentLineItemVO> commoditylist;	
+	private HashMap<String,CustomerVO> customerlist;
 	private boolean hasCustomer = false;
 	
-	private PresentBLService presentController;
+	private PresentBLService presentController;	
 	private CustomerBLService customerController;
 
 	/**
@@ -50,17 +48,21 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 	 * @param frame 主窗口
 	 * @param panel 赠送单面板
 	 */
-	public CreatePresentPanel(JFrame frame,PresentPanel panel) {
+	public ShowPresentPanel(JFrame frame,PresentVO vo, int type) {
 		super(frame);
-		this.panel = panel;
-		this.commoditylist = new ArrayList<PresentLineItemVO>();
+		this.vo = vo;
+		this.type = type;
+		this.commoditylist = vo.list;
+		this.customerVO = new CustomerVO();
+		this.customerVO.id = vo.customerId;
+		this.customerVO.name = vo.customerName;
 		this.customerlist = new HashMap<String,CustomerVO>();
 		this.presentController = ControllerFactoryImpl.getInstance().getPresentController();
 		this.customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		this.bg = this.cfg.getBg();
+		this.bg = cfg.getBg();
 		// 设置面板基本属性
-		this.setSize(cfg.getW(), cfg.getH());
+		this.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()));
 		this.setLocation(cfg.getX(), cfg.getY());
 		this.setLayout(null);
 		// 初始化组件
@@ -79,12 +81,16 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 	protected void initComponent() {
 		this.initLabels();
 		this.initButtons();
-		// 初始化赠品列表
+		// 添加赠品列表
 		this.presentTable = new PresentCommodityTablePane(new TableConfig(cfg.getTablepane()));
+		for(int i=0; i<commoditylist.size();++i){
+			this.presentTable.addRow(commoditylist.get(i));
+		}
+		this.presentTable.updateUI();
 		this.add(this.presentTable);
 		// 初始化客户信息输入框
 		this.customerTxt = new MySpecialTextField(cfg.getTextFields().element("customerinfo"),this);
-		this.add(this.customerTxt);		
+		if(type!=1) this.add(this.customerTxt);		
 	}
 	
 	/**
@@ -94,11 +100,13 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 		this.customerIdLab = new MyLabel(cfg.getLabels().element("customeridlab"));
 		this.customerNameLab = new MyLabel(cfg.getLabels().element("customernamelab"));
 		this.documentId = new MyLabel(cfg.getLabels().element("documentidlab"));
-		this.documentId.setText(this.presentController.createId());
-		this.add(new MyLabel(cfg.getLabels().element("tip")));
+		this.documentId.setText( type!=2 ? vo.id : presentController.createId());
+		this.customerIdLab.setText(vo.customerId);
+		this.customerNameLab.setText(vo.customerName);
 		this.add(this.documentId);
 		this.add(this.customerIdLab);
 		this.add(this.customerNameLab);
+		if(type!=1) this.add(new MyLabel(cfg.getLabels().element("tip")));
 	}
 	
 	/**
@@ -123,17 +131,15 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 				}
 			}
 		});
-		this.add(this.addCustomer);
 		// 添加赠品按钮
 		this.addBtn = new MyButton(cfg.getButtons().element("add"));
 		this.addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddPresentCommodityDialog(CreatePresentPanel.this,frame);
+				new AddPresentCommodityDialog(ShowPresentPanel.this,frame);
 			}
 			
 		});
-		this.add(this.addBtn);
 		// 删除赠品按钮
 		this.deleteBtn = new MyButton(cfg.getButtons().element("delete"));
 		this.deleteBtn.addActionListener(new ActionListener() {
@@ -152,52 +158,10 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 			}
 			
 		});
-		this.add(this.deleteBtn);
-		// 提交按钮
-		this.commitBtn = new MyButton(cfg.getButtons().element("commit"));
-		this.commitBtn.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(frame, "确认创建？","确认提示",
-						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-				if(result == MyOptionPane.YES_OPTION){
-					createPresent();
-				}
-			}
-		});
-		// 取消按钮
-		this.cancelBtn = new MyButton(cfg.getButtons().element("cancel"));
-		this.cancelBtn.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
-							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-					if(result == MyOptionPane.YES_OPTION){
-						panel.showList();
-				}
-			}
-		});
-		this.add(this.commitBtn);
-		this.add(this.cancelBtn);
-	}
-	
-	/**
-	 * 创建赠送单
-	 */
-	public void createPresent(){
-		if(this.checkCompleted()){
-			ResultMessage result = this.presentController.create(new PresentVO(this.documentId.getText(),
-					null,customerVO.id,customerVO.name,
-					this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
-			if(result == ResultMessage.SUCCESS){
-				MyOptionPane.showMessageDialog(frame, "赠送单提交成功！");
-				this.setVisible(false);
-			}else
-				MyOptionPane.showMessageDialog(frame, "赠送单提交失败！");
-			this.panel.getListpanel().udpateData();
-			this.panel.showList();
-		}else{
-			MyOptionPane.showMessageDialog(frame, "请填入完整单据数据！");
+		if(type!=1){
+			this.add(this.addCustomer);
+			this.add(this.addBtn);
+			this.add(this.deleteBtn);
 		}
 	}
 	
@@ -205,9 +169,10 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 	 * 检查是否填写完整
 	 * @return
 	 */
-	private boolean checkCompleted() {
-		if(hasCustomer&&this.commoditylist.size()>0)
+	public boolean checkCompleted() {
+		if(hasCustomer&&this.commoditylist.size()>0){
 			return true;
+		}
 		return false;
 	}
 
@@ -242,6 +207,34 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 		}
 		this.commoditylist.add(vo);
 		this.presentTable.addRow(vo);
+	}
+
+
+	@Override
+	public DocumentType getDocumentType() {
+		return vo.documentType;
+	}
+
+	@Override
+	public String getDocumentID() {
+		return vo.id;
+	}
+
+	@Override
+	public void createCopyDocument() {
+		if(this.checkCompleted()){
+			ResultMessage result = this.presentController.create(new PresentVO(this.documentId.getText(),
+					null,customerVO.id,customerVO.name,
+					this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
+			if(result == ResultMessage.SUCCESS){
+				MyOptionPane.showMessageDialog(frame, "赠送单提交成功！");
+				this.setVisible(false);
+			}else{
+				MyOptionPane.showMessageDialog(frame, "赠送单提交失败！");
+			}
+		}else{
+			MyOptionPane.showMessageDialog(frame, "请填入完整单据数据！");
+		}
 	}
 
 }

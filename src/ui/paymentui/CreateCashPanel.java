@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
@@ -31,76 +30,45 @@ import businesslogic.loginbl.Login;
 import businesslogicservice.accountblservice.AccountBLService;
 import businesslogicservice.paymentblservice.CashBLService;
 import config.ERPConfig;
-import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class CreateCashPanel extends JPanel implements FuzzySearch {
+public class CreateCashPanel extends CashDocumentPanel implements FuzzySearch, AddClauseLineItem {
 
-    private MyLabel operatorLab;
-
-    private MyLabel documentIdLab;
-
-    private MyLabel accountNameLab;
-
-    private MyLabel accountIdLab;
-
-    private MyLabel totalLab;
-
-    private MyButton addAccountBtn;
-
-    private MyButton addBtn;
-
-    private MyButton deleteBtn;
-
-    private MyButton commitBtn;
-
-    private MyButton cancelBtn;
-
-    private MySpecialTextField accountFind;
-
-    private CashTable table;
-
-    private JFrame frame;
-
-    private PanelConfig pcfg;
-
+	private MyButton commitBtn;
+	private MyButton cancelBtn;
+	
     private PaymentPanel panel;
 
+    private AccountVO accountVO;
+    private boolean hasAccount;
+    private double total;
+    private HashMap<String,AccountVO> accountList;
     private ArrayList<ClauseLineItemVO> list;
-
+    
     private CashBLService cashController;
-
     private AccountBLService accountController;
 
-    private AccountVO accountVO;
-
-    private boolean hasAccount;
-
-    private HashMap<String,AccountVO> accountList;
-
-    private double total;
-
     public CreateCashPanel(JFrame frame, PaymentPanel panel) {
-        this.frame = frame;
+        super(frame);
         this.panel = panel;
         cashController = ControllerFactoryImpl.getInstance().getCashController();
         accountController = ControllerFactoryImpl.getInstance().getAccountController();
         list = new ArrayList<ClauseLineItemVO>();
         accountList = new HashMap<String, AccountVO>();
-        this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-        this.setSize(pcfg.getW(), pcfg.getH());
-        this.setLocation(pcfg.getX(), pcfg.getY());
+        this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+        this.setSize(cfg.getW(), cfg.getH());
+        this.setLocation(cfg.getX(), cfg.getY());
         this.setLayout(null);
         this.initComponent();
     }
 
     @Override
     public void paintComponent(Graphics g){
-        g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(), pcfg.getH(),null);
+        g.drawImage(cfg.getBg(), 0, 0, cfg.getW(), cfg.getH(),null);
     }
 
-    private void initComponent() {
+    protected void initComponent() {
         initTable();
         initLabels();
         initButtons();
@@ -108,13 +76,13 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
     }
 
     private void initAccountFind() {
-        accountFind = new MySpecialTextField(pcfg.getTextFields().element("accountfind"), this);
+        accountFind = new MySpecialTextField(cfg.getTextFields().element("accountfind"), this);
         add(accountFind);
     }
 
     private void initButtons() {
         // 添加账户按钮
-        addAccountBtn = new MyButton(pcfg.getButtons().element("addaccount"));
+        addAccountBtn = new MyButton(cfg.getButtons().element("addaccount"));
         add(addAccountBtn);
         addAccountBtn.addActionListener(new ActionListener() {
             @Override
@@ -133,7 +101,7 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
         });
 
         // 添加条目按钮
-        addBtn = new MyButton(pcfg.getButtons().element("add"));
+        addBtn = new MyButton(cfg.getButtons().element("add"));
         this.add(addBtn);
         addBtn.addActionListener(new ActionListener() {
             @Override
@@ -142,9 +110,8 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
                         CreateCashPanel.this);
             }
         });
-
         // 删除条目按钮
-        deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
+        deleteBtn = new MyButton(cfg.getButtons().element("delete"));
         this.add(deleteBtn);
         deleteBtn.addActionListener(new ActionListener() {
             @Override
@@ -162,7 +129,7 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
         });
 
         // 提交按钮
-        commitBtn = new MyButton(pcfg.getButtons().element("commit"));
+        commitBtn = new MyButton(cfg.getButtons().element("commit"));
         commitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -176,7 +143,7 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
         this.add(commitBtn);
 
         // 取消按钮
-        cancelBtn = new MyButton(pcfg.getButtons().element("cancel"));
+        cancelBtn = new MyButton(cfg.getButtons().element("cancel"));
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -187,13 +154,13 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
     }
 
     private void initLabels() {
-        this.accountIdLab = new MyLabel(pcfg.getLabels().element("accountidlab"));
-        this.accountNameLab = new MyLabel(pcfg.getLabels().element("accountnamelab"));
-        this.operatorLab = new MyLabel(pcfg.getLabels().element("operatorlab"));
+        this.accountIdLab = new MyLabel(cfg.getLabels().element("accountidlab"));
+        this.accountNameLab = new MyLabel(cfg.getLabels().element("accountnamelab"));
+        this.operatorLab = new MyLabel(cfg.getLabels().element("operatorlab"));
         operatorLab.setText(Login.currentUserId);
-        this.documentIdLab = new MyLabel(pcfg.getLabels().element("documentidlab"));
+        this.documentIdLab = new MyLabel(cfg.getLabels().element("documentidlab"));
         this.documentIdLab.setText(cashController.createId());
-        this.totalLab = new MyLabel(pcfg.getLabels().element("totallab"));
+        this.totalLab = new MyLabel(cfg.getLabels().element("totallab"));
         this.add(this.operatorLab);
         this.add(this.documentIdLab);
         this.add(accountIdLab);
@@ -202,7 +169,7 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
     }
 
     private void initTable() {
-        table = new CashTable(new TableConfig(pcfg.getTablepane()));
+        table = new CashLineItemTable(new TableConfig(cfg.getTablepane()));
         this.add(table);
     }
 
@@ -226,7 +193,7 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
      * 增加条目
      * @param vo
      */
-    public void addCash(ClauseLineItemVO vo) {
+    public void addClauseLineItem(ClauseLineItemVO vo) {
         list.add(vo);
         table.addRow(vo);
         // 更新总额
@@ -260,4 +227,5 @@ public class CreateCashPanel extends JPanel implements FuzzySearch {
         }
         return strs;
     }
+
 }

@@ -6,91 +6,67 @@
 
 package ui.paymentui;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import businesslogic.loginbl.Login;
-import businesslogicservice.customerblservice.CustomerBLService;
-import businesslogicservice.paymentblservice.PaymentBLService;
-import config.ERPConfig;
-import config.PanelConfig;
-import config.TableConfig;
-import ui.util.*;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.JFrame;
+
+import ui.util.FuzzySearch;
+import ui.util.MyButton;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import ui.util.MySpecialTextField;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.CustomerVO;
 import vo.PaymentVO;
 import vo.TransferLineItemVO;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogic.loginbl.Login;
+import businesslogicservice.customerblservice.CustomerBLService;
+import businesslogicservice.paymentblservice.PaymentBLService;
+import config.ERPConfig;
+import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePanel {
+public class CreatePaymentPanel extends PaymentDocumentPanel implements FuzzySearch, CreatePanel {
 	
-	private MyLabel operatorLab;
-
-	private MyLabel documentIdLab;
-
-	private MyLabel customerIdLab;
-
-	private MyLabel customerNameLab;
-
-	private MyButton addCustomerBtn;
-	
-	private MyButton addBtn;
-	
-	private MyButton deleteBtn;
-	
+	private PaymentPanel panel;
 	private MyButton commitBtn;
-	
 	private MyButton cancelBtn;
 
-	private MySpecialTextField customerFind;
-
-	private PaymentTable table;
-	
-	private JFrame frame;
-	
-	private PanelConfig pcfg;
-	
-	private PaymentBLService paymentController;
-
-	private CustomerBLService customerController;
-
 	private CustomerVO customerVO;
-
 	private boolean hasCustomer = false;
-
 	private ArrayList<TransferLineItemVO> lists;
-
 	private HashMap<String,CustomerVO> customerlist;
 
-	private PaymentPanel panel;
-
+	private PaymentBLService paymentController;
+	private CustomerBLService customerController;
+	
     public CreatePaymentPanel(JFrame frame, PaymentPanel panel) {
-		this.frame = frame;
+    	super(frame);
 		this.panel = panel;
 		paymentController = ControllerFactoryImpl.getInstance().getPaymentController();
 		customerController = ControllerFactoryImpl.getInstance().getCustomerController();
 		customerlist = new HashMap<String,CustomerVO>();
 		lists = new ArrayList<TransferLineItemVO>();
-		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
-		this.setSize(pcfg.getW(), pcfg.getH());
-		this.setLocation(pcfg.getX(), pcfg.getY());
+		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		this.setSize(cfg.getW(), cfg.getH());
+		this.setLocation(cfg.getX(), cfg.getY());
 		this.setLayout(null);
 		this.initComponent();
     }
 
 	@Override
 	public void paintComponent(Graphics g){
-		g.drawImage(pcfg.getBg(), 0, 0, pcfg.getW(), pcfg.getH(),null);
+		g.drawImage(cfg.getBg(), 0, 0, cfg.getW(), cfg.getH(),null);
 	}
 
-	private void initComponent() {
+	protected void initComponent() {
 		initLabels();
 		initButtons();
 		initCustomerFind();
@@ -98,16 +74,16 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 	}
 	
 	private void initTable() {
-		table = new PaymentTable(new TableConfig(pcfg.getTablepane()));
+		table = new PaymentLineItemTable(new TableConfig(cfg.getTablepane()));
 		this.add(table);
 	}
 	
 	private void initLabels() {
-		this.operatorLab = new MyLabel(pcfg.getLabels().element("operatorlab"));
+		this.operatorLab = new MyLabel(cfg.getLabels().element("operatorlab"));
 		operatorLab.setText(Login.currentUserId);
-		this.customerIdLab = new MyLabel(pcfg.getLabels().element("customeridlab"));
-		this.customerNameLab = new MyLabel(pcfg.getLabels().element("customernamelab"));
-		this.documentIdLab = new MyLabel(pcfg.getLabels().element("documentidlab"));
+		this.customerIdLab = new MyLabel(cfg.getLabels().element("customeridlab"));
+		this.customerNameLab = new MyLabel(cfg.getLabels().element("customernamelab"));
+		this.documentIdLab = new MyLabel(cfg.getLabels().element("documentidlab"));
 		this.documentIdLab.setText(paymentController.createId());
 		this.add(this.operatorLab);
 		this.add(this.documentIdLab);
@@ -117,7 +93,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 	
 	private void initButtons() {
 		// 添加客户按钮
-		addCustomerBtn = new MyButton(pcfg.getButtons().element("addcustomer"));
+		addCustomerBtn = new MyButton(cfg.getButtons().element("addcustomer"));
 		add(addCustomerBtn);
 		addCustomerBtn.addActionListener(new ActionListener() {
 			@Override
@@ -136,7 +112,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		});
 
 		// 添加账户按钮
-		addBtn = new MyButton(pcfg.getButtons().element("add"));
+		addBtn = new MyButton(cfg.getButtons().element("add"));
 		this.add(addBtn);
 		addBtn.addActionListener(new ActionListener() {
 			@Override
@@ -147,7 +123,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		});
 
 		// 删除账户按钮
-		deleteBtn = new MyButton(pcfg.getButtons().element("delete"));
+		deleteBtn = new MyButton(cfg.getButtons().element("delete"));
 		this.add(deleteBtn);
 		deleteBtn.addActionListener(new ActionListener() {
 			@Override
@@ -165,7 +141,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		});
 
 		// 提交按钮
-		commitBtn = new MyButton(pcfg.getButtons().element("commit"));
+		commitBtn = new MyButton(cfg.getButtons().element("commit"));
 		commitBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +155,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 		this.add(commitBtn);
 
 		// 取消按钮
-		cancelBtn = new MyButton(pcfg.getButtons().element("cancel"));
+		cancelBtn = new MyButton(cfg.getButtons().element("cancel"));
 		cancelBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -190,7 +166,7 @@ public class CreatePaymentPanel extends JPanel implements FuzzySearch, CreatePan
 	}
 
 	private void initCustomerFind() {
-		customerFind = new MySpecialTextField(pcfg.getTextFields().element("customerfind"), this);
+		customerFind = new MySpecialTextField(cfg.getTextFields().element("customerfind"), this);
 		add(customerFind);
 	}
 

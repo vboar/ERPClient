@@ -21,6 +21,7 @@ import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
 import ui.util.MyTextArea;
 import ui.util.MyTextField;
+import ui.util.DocumentWriteoffAndCopy;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
@@ -37,42 +38,49 @@ import config.ERPConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch, 
-	AddCommodityLineItem,	GetPromotions{
-
-	private CreateSaleDialog dialog;
-	private MyButton cancelBtn;
-	private MyButton commitBtn;
+public class ShowSalePanel extends SaleDocumentPanel implements FuzzySearch,
+	AddCommodityLineItem,GetPromotions,DocumentWriteoffAndCopy{
 	
-	private boolean hasCustomer = false;	
-	private double totalPrice = 0;	
+	private int type;
+	
+	private boolean hasCustomer;	
+	private double totalPrice;
 	private CustomerVO customerVO;	
-	private SaleVO saleVo;
-	private ArrayList<PromotionVO> promotionlist;
+	private SaleVO vo;
 	private HashMap<String,CustomerVO> customerlist;	
 	private ArrayList<CommodityLineItemVO> commoditylist;
+	private ArrayList<PromotionVO> promotionlist;
 	
 	private SaleBLService saleCtrl;	
 	private CustomerBLService customerCtrl;
 	private UserBLService userCtrl;
 	
-	public CreateSalePanel(JFrame frame, CreateSaleDialog dialog,boolean isreturn){
+	public ShowSalePanel(JFrame frame,SaleVO vo, int type, boolean isreturn){
 		super(frame,isreturn);
 		this.frame = frame;	
-		this.dialog = dialog;
-		// 初始化数据成员
-		this.saleVo = new SaleVO();
+		this.type = type;
+		// 初始化数据成员	
+		this.vo = vo;
 		this.customerlist = new HashMap<String,CustomerVO>();
-		this.commoditylist = new ArrayList<CommodityLineItemVO>();
 		this.promotionlist = new ArrayList<PromotionVO>();
-		// 获得控制器
-		this.saleCtrl = ControllerFactoryImpl.getInstance().getSaleController();
-		this.customerCtrl = ControllerFactoryImpl.getInstance().getCustomerController();
-		this.userCtrl = ControllerFactoryImpl.getInstance().getUserController();
+		// 客户信息
+		this.customerVO = new CustomerVO();
+		customerVO.id = vo.customerId;
+		customerVO.name = vo.customerName;
+		customerVO.level = vo.customerVIP;
+		this.hasCustomer = true;
+		this.totalPrice = vo.totalAfterDiscount;
+		// 商品赠品信息
+		this.commoditylist = vo.saleList;
 		// 获得配置
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
+		// 获得控制器
+		this.saleCtrl = isreturn ? ControllerFactoryImpl.getInstance().getSaleReturnController():
+			ControllerFactoryImpl.getInstance().getSaleController();
+		this.customerCtrl = ControllerFactoryImpl.getInstance().getCustomerController();
+		this.userCtrl = ControllerFactoryImpl.getInstance().getUserController();
 		// 设置面板基本属性
-		this.bg = cfg.getBg();
+		this.bg = isreturn ? cfg.getBg1(): cfg.getBg();
         this.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()));
         this.setLocation(cfg.getX(), cfg.getY());
         this.setLayout(null);
@@ -93,32 +101,42 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 		this.initButtons();
 		this.initComboBoxes();
 		// 商品列表
-		this.commodityTable = new CommodityTablePane(new TableConfig(cfg.getTables().element("commodity")));
+		this.commodityTable = new CommodityTablePane(new TableConfig(
+				cfg.getTables().element("commodity")));
+		for (int i = 0; i < vo.saleList.size(); ++i) {
+			this.commodityTable.addRow(vo.saleList.get(i));
+		}
 		this.add(commodityTable);
 		// 代金券单选框
 		this.voucherBox = new MyCheckBox(cfg.getCheckbox().element("voucher"));
-		this.voucherBox.addActionListener(new ActionListener() {	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(voucherBox.isSelected()){
-					voucherTxt.setFocusable(true);
-				}else{
-					voucherTxt.setText("");
-					voucherTxt.setFocusable(false);
+		this.voucherBox.setSelected(true);
+		if(type!=1)
+			this.voucherBox.addActionListener(new ActionListener() {	
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(voucherBox.isSelected()){
+						voucherTxt.setFocusable(true);
+					}else{
+						voucherTxt.setText("");
+						voucherTxt.setFocusable(false);
+					}
 				}
-			}
-		});
+			});
 		this.add(this.voucherBox);
 		// 代金券输入框
 		this.voucherTxt = new MyTextField(cfg.getTextFields().element("voucher"));
+		this.voucherTxt.setText(Double.toString(vo.voucher));
 		this.voucherTxt.setFocusable(false);
 		this.add(voucherTxt);
 		// 备注框
 		this.remarkTxt = new MyTextArea(cfg.getTextarea().element("remark"));
+		this.remarkTxt.getArea().setText(vo.remark);
+		this.remarkTxt.getArea().setEditable(false);
+		if(type!=1) this.remarkTxt.getArea().setEditable(true);
 		this.add(remarkTxt);
 		// 客户信息模糊查找输入框
 		this.customerTxt = new MySpecialTextField(cfg.getTextFields().element("findcustomer"), this);
-		this.add(customerTxt);
+		if(type!=1)	this.add(customerTxt);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -128,22 +146,40 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 		for(int i=0; i<list.size(); i++){
 			this.salesman.addItem(list.get(i).id);
 		}
-		this.salesman.setSelectedIndex(0);
+		for(int i=0; i<list.size(); ++i){
+			if(vo.salesmanId.equals(this.salesman.getItemAt(i).toString())){
+				this.salesman.setSelectedIndex(i);
+				break;
+			}
+		}
 		this.storage = new MyComboBox(cfg.getComboboxes().element("storage"));
+		this.storage.setSelectedIndex(0);
 		this.add(salesman);
 		this.add(storage);
+		if(type==1){
+			this.storage.setEditable(false);
+			this.salesman.setEditable(false);
+		}
 	}
 
 	private void initLabels() {
 		// 单据编号标签
 		this.documentId = new MyLabel(cfg.getLabels().element("documentid"));
-		this.documentId.setText(saleCtrl.createId());
 		this.customerIdLab = new MyLabel(cfg.getLabels().element("customerid"));
 		this.customerNameLab = new MyLabel(cfg.getLabels().element("customername"));
 		this.promotionLab = new MyLabel(cfg.getLabels().element("showpromotion"));
 		this.totalBeforeDiscountLab = new MyLabel(cfg.getLabels().element("totalbefore"));
 		this.discountLab = new MyLabel(cfg.getLabels().element("discount"));
 		this.totalLab = new MyLabel(cfg.getLabels().element("total"));
+
+		this.documentId.setText(type==2? saleCtrl.createId() : vo.id);
+		this.customerIdLab.setText(customerVO.id);
+		this.customerNameLab.setText(customerVO.name);
+		this.totalBeforeDiscountLab.setText(Double.toString(vo.totalBeforeDiscount));
+		this.discountLab.setText(Double.toString(vo.discount));
+		this.totalLab.setText(Double.toString(vo.totalAfterDiscount));
+		this.promotionLab.setText(vo.giftListToStr());
+		
 		this.add(promotionLab);
 		this.add(customerIdLab);
 		this.add(customerNameLab);
@@ -151,7 +187,7 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 		this.add(discountLab);
 		this.add(totalBeforeDiscountLab);
 		this.add(totalLab);
-		this.add(new MyLabel(cfg.getLabels().element("tip")));
+		if(type!=1) this.add(new MyLabel(cfg.getLabels().element("tip")));
 	}
 	
 	private void initButtons() {
@@ -185,7 +221,7 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 		this.addBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddTradeCommodityDialog(CreateSalePanel.this,frame,false);
+				new AddTradeCommodityDialog(ShowSalePanel.this,frame,false);
 			}
 		});
 		// 删除商品按钮
@@ -218,39 +254,15 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 				}
 			}
 		});
-		// 取消按钮
-		this.cancelBtn = new MyButton(cfg.getButtons().element("cancel"));
-		this.cancelBtn.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-					int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？","确认提示",
-							MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-					if(result == MyOptionPane.YES_OPTION){
-						dialog.dispose();
-				}
-			}
-		});
-		// 提交按钮
-		this.commitBtn = new MyButton(cfg.getButtons().element("commit"));
-		this.commitBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(frame, "确认创建？","确认提示",
-						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
-				if(result == MyOptionPane.YES_OPTION){
-					//创建一张销售单
-					createSale();
-				}
-			}
-		});
-		this.add(addBtn);
-		this.add(deleteBtn);
-		this.add(cancelBtn);
-		this.add(commitBtn);
-		this.add(addCustomer);
-		this.add(showPromotions);
+		if(type!=1){
+			this.add(addBtn);
+			this.add(deleteBtn);
+			this.add(addCustomer);
+			this.add(showPromotions);
+		}
 	}
 
+	
 	/**
 	 * 显示可选优惠对话框
 	 */
@@ -268,59 +280,6 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 		}
 	}
 
-	/**
-	 * 创建销售单VO
-	 */
-	protected void createSale() {
-		if(this.checkCompleted()){
-			try{
-				// 总价
-				double totalBeforeDicount = Double.parseDouble(this.totalBeforeDiscountLab.getText());
-				double total = Double.parseDouble(this.totalLab.getText());
-				double discount = Double.parseDouble(this.discountLab.getText());
-				saleVo.totalBeforeDiscount = totalBeforeDicount;
-				saleVo.discount = discount;
-				saleVo.totalAfterDiscount = total;
-				// 如果选择使用代金券，获得使用代金券金额
-				if(voucherBox.isSelected()){
-					double voucher = Double.parseDouble(this.voucherTxt.getText());
-					saleVo.voucher = voucher;
-				}
-				// 单据ID
-				saleVo.id = this.documentId.getText();
-				// 客户信息
-				saleVo.customerId = customerVO.id;
-				saleVo.customerName = customerVO.name;
-				saleVo.customerVIP = customerVO.level;
-				// 操作员
-				saleVo.salesmanId = this.salesman.getSelectedItem().toString();
-				// 仓库
-				saleVo.storage = this.storage.getSelectedItem().toString();
-				// 商品列表
-				saleVo.saleList = commoditylist;
-				// 单据状态
-				saleVo.approvalState = DocumentStatus.NONCHECKED;
-				saleVo.isWriteOff = false;
-				saleVo.receiptType = DocumentType.SALE;
-				// 备注
-				String remark = this.remarkTxt.getArea().getText();
-				saleVo.remark = saleVo.remark + remark;
-				ResultMessage result = this.saleCtrl.add(saleVo);
-				if(result == ResultMessage.SUCCESS){
-					MyOptionPane.showMessageDialog(frame, "销售单提交成功！");
-					dialog.dispose();
-					dialog.updateData();
-				}else{
-					MyOptionPane.showMessageDialog(frame, "销售单提交失败！");
-				}
-			}catch(NumberFormatException ex){
-				MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
-			}
-		}else{
-			MyOptionPane.showMessageDialog(frame, "请填入完整单据数据！");
-		}
-	}
-	
 	/**
 	 * 添加一条商品信息
 	 */
@@ -366,12 +325,12 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 		}
 		showStr += "<html>";
 		// TODO 空指针
-		this.saleVo.totalBeforeDiscount = totalPrice;
-		this.saleVo = saleCtrl.calAfterPrice(vipid,priceid, this.saleVo);
+		this.vo.totalBeforeDiscount = totalPrice;
+		this.vo = saleCtrl.calAfterPrice(vipid,priceid, this.vo);
 		// 显示折扣和总价和促销策略
-		if(this.saleVo!=null){
-			this.discountLab.setText(Double.toString(this.saleVo.discount));
-			this.totalLab.setText(Double.toString(this.saleVo.totalAfterDiscount));
+		if(this.vo!=null){
+			this.discountLab.setText(Double.toString(this.vo.discount));
+			this.totalLab.setText(Double.toString(this.vo.totalAfterDiscount));
 			this.promotionLab.setText(showStr);
 			this.promotionLab.setAutoscrolls(true);
 		}
@@ -397,7 +356,8 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 	 * 检查单据是否填写完整
 	 * @return
 	 */
-	private boolean checkCompleted() {
+	@Override
+	public boolean checkCompleted() {
 		if(hasCustomer&&this.commoditylist.size()>0){
 			if(voucherBox.isSelected()&&voucherTxt.getText().isEmpty()){
 				return false;
@@ -409,6 +369,65 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 	
 	public ArrayList<PromotionVO> getPromotions() {
 		return promotionlist;
+	}
+
+	@Override
+	public DocumentType getDocumentType() {
+		return vo.receiptType;
+	}
+
+	@Override
+	public String getDocumentID() {
+		return vo.id;
+	}
+
+	@Override
+	public void createCopyDocument() {
+		if(this.checkCompleted()){
+			try{
+				// 总价
+				double totalBeforeDicount = Double.parseDouble(this.totalBeforeDiscountLab.getText());
+				double total = Double.parseDouble(this.totalLab.getText());
+				double discount = Double.parseDouble(this.discountLab.getText());
+				vo.totalBeforeDiscount = totalBeforeDicount;
+				vo.discount = discount;
+				vo.totalAfterDiscount = total;
+				// 如果选择使用代金券，获得使用代金券金额
+				if(voucherBox.isSelected()){
+					double voucher = Double.parseDouble(this.voucherTxt.getText());
+					vo.voucher = voucher;
+				}
+				// 单据ID
+				vo.id = this.documentId.getText();
+				// 客户信息
+				vo.customerId = customerVO.id;
+				vo.customerName = customerVO.name;
+				vo.customerVIP = customerVO.level;
+				// 操作员
+				vo.salesmanId = this.salesman.getSelectedItem().toString();
+				// 仓库
+				vo.storage = this.storage.getSelectedItem().toString();
+				// 商品列表
+				vo.saleList = commoditylist;
+				// 单据状态
+				vo.approvalState = DocumentStatus.NONCHECKED;
+				vo.isWriteOff = false;
+				vo.receiptType = DocumentType.SALE;
+				// 备注
+				String remark = this.remarkTxt.getArea().getText();
+				vo.remark = vo.remark + remark;
+				ResultMessage result = this.saleCtrl.add(vo);
+				if(result == ResultMessage.SUCCESS){
+					MyOptionPane.showMessageDialog(frame, "销售单提交成功！");
+				}else{
+					MyOptionPane.showMessageDialog(frame, "销售单提交失败！");
+				}
+			}catch(NumberFormatException ex){
+				MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
+			}
+		}else{
+			MyOptionPane.showMessageDialog(frame, "请填入完整单据数据！");
+		}
 	}
 
 }

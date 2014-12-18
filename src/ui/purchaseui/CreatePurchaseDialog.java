@@ -57,7 +57,7 @@ public class CreatePurchaseDialog extends JDialog{
 		jsp = new JScrollPane();
 		jsp.setBounds(0, 0, this.getWidth() , this.getHeight());
 		jsp.setOpaque(false);
-		this.createpanel = new CreatePurchasePanel(frame,this);
+		this.createpanel = new CreatePurchasePanel(frame,this,false);
 		jsp.setViewportView(this.createpanel);
 		this.add(jsp);
 	}

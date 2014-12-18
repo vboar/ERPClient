@@ -57,7 +57,6 @@ public class PresentListTablePane extends TablePanel {
 			}
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
-		this.table.setRowSorter(null);
 		this.updateWidth();
 	}
 
@@ -94,6 +93,7 @@ public class PresentListTablePane extends TablePanel {
 	}
 	
 	public void showFindData(ArrayList<PresentVO> list){
+		this.list = list;
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for (int i = 0; i < list.size(); ++i) {
 			PresentVO temp = list.get(i);
@@ -113,5 +113,22 @@ public class PresentListTablePane extends TablePanel {
         this.table.getColumnModel().getColumn(1).setMinWidth(160);
         this.table.getColumnModel().getColumn(4).setMinWidth(300);
         this.updateUI();
+	}
+
+	public PresentVO getSelectedVO() {
+		PresentVO vo = null;
+		int row = this.table.getSelectedRow();
+		if(row<0){
+			MyOptionPane.showMessageDialog(PresentListTablePane.this, "请先选择一张单据！");
+			return null;
+		}
+		String id = (String)this.table.getValueAt(row, 0);
+		for(int i=0; i<list.size(); i++){
+			vo = list.get(i);
+			if(id.equals(vo.id)){
+				return vo;
+			}
+		}
+		return vo;
 	}
 }

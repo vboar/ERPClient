@@ -25,34 +25,25 @@ import java.util.HashMap;
 public class AddPresentCommodityDialog extends JDialog implements FuzzySearch{
 
 	private MySpecialTextField commodityTxt;
-	
 	private MyTextField numberTxt;
 	
 	private MyButton commit;
-	
-	private MyButton cancel;
-	
+	private MyButton cancel;	
 	private MyButton add;
 	
-	private MyLabel currentId;
-	
-	private MyLabel currentName;
-	
+	private MyLabel currentId;	
+	private MyLabel currentName;	
 	private MyLabel currentModel;
+	
+	private AddPresentLineItem panel;	
+	private JFrame frame;
 	
 	private DialogConfig cfg;
 	
-	private CommodityVO addCommodityVO;
-	
-	private PresentLineItemVO presentLineItemVO;
-	
-	private boolean hasCommodity= false;
-	
-	private AddPresentLineItem panel;
-	
-	private JFrame frame;
-	
+	private CommodityVO addCommodityVO;	
+	private PresentLineItemVO presentLineItemVO;	
 	private HashMap<String, CommodityVO> vomap;
+	private boolean hasCommodity= false;
 	
 	private CommodityBLService controller;
 	

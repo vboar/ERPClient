@@ -33,4 +33,6 @@ public class AccountVO {
 		this.balance = balance;
 	}
 	
+	public AccountVO(){}
+	
 }

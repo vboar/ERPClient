@@ -14,7 +14,7 @@ import vo.TransferLineItemVO;
 import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
-public class PaymentTable extends TablePanel {
+public class PaymentLineItemTable extends TablePanel {
 
 	private String[] columnNames;
 
@@ -24,7 +24,7 @@ public class PaymentTable extends TablePanel {
 
 	private DefaultTableModel dtm;
 
-	public PaymentTable(TableConfig cfg) {
+	public PaymentLineItemTable(TableConfig cfg) {
 		super(cfg);
 		initTable();
 		initComponent();

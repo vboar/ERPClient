@@ -144,4 +144,17 @@ public class ExceptionListTablePane extends TablePanel {
         this.updateUI();
 	}
 
+	public ExceptionVO getSelectedVO() {
+		ExceptionVO vo = null;
+		int row = this.table.getSelectedRow();
+		String id = (String) this.table.getValueAt(row, 0);
+		for (int i = 0; i < list.size(); i++) {
+			vo = list.get(i);
+			if (id.equals(vo.id)) {
+				return vo;
+			}
+		}
+		return vo;
+	}
+
 }

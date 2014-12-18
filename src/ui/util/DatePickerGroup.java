@@ -15,7 +15,7 @@ import org.dom4j.Element;
 @SuppressWarnings("serial")
 public class DatePickerGroup extends JLabel{
 
-	final ObservingTextField text;
+	final DateObservingTextField text;
 
 	JButton btn;
 	
@@ -26,7 +26,7 @@ public class DatePickerGroup extends JLabel{
 				Integer.parseInt(ele.attributeValue("y")),
 				Integer.parseInt(ele.attributeValue("w")),
 				Integer.parseInt(ele.attributeValue("h")));
-		this.text = new ObservingTextField();
+		this.text = new DateObservingTextField();
 		this.text.setEditable(false);
 		Element textcfg = ele.element("text");
 		Element btncfg = ele.element("btn");

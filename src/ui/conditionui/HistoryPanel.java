@@ -8,14 +8,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ui.exceptionui.ExceptionListTablePane;
+import ui.exceptionui.ShowExceptionPanel;
 import ui.exceptionui.WarningListTablePane;
-import ui.paymentui.ShowCashTable;
-import ui.paymentui.ShowPaymentTable;
+import ui.paymentui.CashListTable;
+import ui.paymentui.PaymentListTable;
+import ui.paymentui.ShowCashPanel;
+import ui.paymentui.ShowPaymentPanel;
 import ui.presentui.PresentListTablePane;
-import ui.purchaseui.PurchaseDocument;
+import ui.presentui.ShowPresentPanel;
 import ui.purchaseui.PurchaseListPane;
+import ui.purchaseui.ShowPurchasePanel;
 import ui.saleui.SaleListPane;
+import ui.saleui.ShowSalePanel;
 import ui.util.DatePickerGroup;
+import ui.util.DocumentShowDialog;
 import ui.util.ExcelSaver;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
@@ -25,9 +31,14 @@ import ui.util.MyOptionPane;
 import ui.util.SavePathDialog;
 import util.DocumentType;
 import util.ResultMessage;
+import vo.CashVO;
 import vo.CustomerVO;
+import vo.ExceptionVO;
+import vo.PaymentVO;
+import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.RequirementVO;
+import vo.SaleVO;
 import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.businessconditionblservice.HistoryBLService;
@@ -64,9 +75,9 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 
 	private PresentListTablePane present;	
 
-	private ShowPaymentTable payment;	
+	private PaymentListTable payment;	
 
-	private ShowCashTable cash;	
+	private CashListTable cash;	
 	
 	private ExceptionListTablePane exception;	
 	
@@ -182,30 +193,62 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	protected void showDocumentDialog(int type) {
 		if(tableType==null){
-			//TODO
 			MyOptionPane.showMessageDialog(frame, "请选择一张单据！");
 			return;
 		}
+		// TODO
 		switch(tableType){
-		case PRESENT:  break;
-		case OVERFLOW:  break;
-		case LOSS: 	break;
+		case PRESENT: showPresentDocument(type); break;
+		case OVERFLOW: showExceptionDocument(type,false); break;
+		case LOSS: 	showExceptionDocument(type,true); break;
 		case WARNING: break;
-		case SALE: break;
-		case SALERETURN: break;
-		case PURCHASE: showPurchaseDocument(type);	break;
-		case PURCHASERETURN: ; break;
-		case RECEIPT:  break;
-		case PAYMENT:  break;
-		case CASH: break;
+		case SALE: showSaleDocument(type,false);break;
+		case SALERETURN: showSaleDocument(type,true);break;
+		case PURCHASE: showPurchaseDocument(type,false);break;
+		case PURCHASERETURN: showPurchaseDocument(type,true); break;
+		case RECEIPT:  showPaymentDocument(type,true);break;
+		case PAYMENT:  showPaymentDocument(type,false);break;
+		case CASH: showCashDocument(type);break;
 		default:
 			return;
 		}
 	}
 
-	private void showPurchaseDocument(int type) {
+	private void showExceptionDocument(int type, boolean isloss) {
+		ExceptionVO vo = this.exception.getSelectedVO();
+		if(vo!=null)
+			new DocumentShowDialog(frame, new ShowExceptionPanel(frame, vo, type, isloss), type);
+	}
+
+	private void showPaymentDocument(int type, boolean isreceipt) {
+		PaymentVO vo = this.payment.getSelectedVO();
+		if(vo!=null)
+			new DocumentShowDialog(frame, new ShowPaymentPanel(frame, vo, type, isreceipt), type);
+	}
+
+	private void showCashDocument(int type) {
+		CashVO vo = this.cash.getSelectedVO();
+		if(vo!=null)
+			new DocumentShowDialog(frame,new ShowCashPanel(frame,vo,type),type);
+		
+	}
+
+	private void showPresentDocument(int type) {
+		PresentVO vo = this.present.getSelectedVO();
+		if(vo!=null)
+			new DocumentShowDialog(frame,new ShowPresentPanel(frame,vo,type),type);
+	}
+
+	private void showSaleDocument(int type, boolean isreturn) {
+		SaleVO vo = this.sales.getSelectedVO();
+		if(vo!=null)
+			new DocumentShowDialog(frame, new ShowSalePanel(frame, vo, type, isreturn),type);
+	}
+
+	private void showPurchaseDocument(int type, boolean isreturn) {
 		PurchaseVO vo = this.purchase.getSelectedVO();
-		if(vo!=null)	new PurchaseDocument(frame,type,vo);
+		if(vo!=null)	
+			new DocumentShowDialog(frame,new ShowPurchasePanel(frame,vo,type,isreturn),type);
 	}
 
 	public RequirementVO getRequirementVO(){
@@ -266,10 +309,8 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.exception = new ExceptionListTablePane(
 				new TableConfig(cfg.getTables().element("exception")),isloss);
-		if(isloss)
-			this.exception.showFindData(controller.showLoss(vo));
-		else
-			this.exception.showFindData(controller.showOverFlow(vo));
+		if(isloss) this.exception.showFindData(controller.showLoss(vo));
+		else this.exception.showFindData(controller.showOverFlow(vo));
 		add(exception);
 		repaint();
 	}
@@ -287,7 +328,8 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		removeAllPanel();
 		this.sales = new SaleListPane(
 				new TableConfig(cfg.getTables().element("sale")), isreturn,false);
-		this.sales.showFindData(controller.showSale(vo));
+		if(isreturn) this.sales.showFindData(controller.showSaleReturn(vo));
+		else this.sales.showFindData(controller.showSale(vo));
 		add(sales);
 		repaint();
 	}
@@ -304,7 +346,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	public void showReceipt(RequirementVO vo){
 		removeAllPanel();
-		this.payment = new ShowPaymentTable(new TableConfig(cfg.getTables().element("payment")),
+		this.payment = new PaymentListTable(new TableConfig(cfg.getTables().element("payment")),
 				ControllerFactoryImpl.getInstance().getReceiptController());
 		this.payment.showFindData(controller.showReceipt(vo));
 		add(payment);
@@ -313,7 +355,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	public void showPayment(RequirementVO vo){
 		removeAllPanel();
-		this.payment = new ShowPaymentTable(new TableConfig(cfg.getTables().element("payment")),
+		this.payment = new PaymentListTable(new TableConfig(cfg.getTables().element("payment")),
 		ControllerFactoryImpl.getInstance().getPaymentController());
 		this.payment.showFindData(controller.showPayment(vo));
 		add(payment);
@@ -322,7 +364,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	
 	public void showCash(RequirementVO vo){
 		removeAllPanel();
-		this.cash = new ShowCashTable(new TableConfig(cfg.getTables().element("cash")),
+		this.cash = new CashListTable(new TableConfig(cfg.getTables().element("cash")),
 				ControllerFactoryImpl.getInstance().getCashController());
 		this.cash.showHistory(controller.showCash(vo));
 		add(cash);

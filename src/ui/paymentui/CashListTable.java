@@ -1,11 +1,11 @@
 package ui.paymentui;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import vo.CashVO;
@@ -17,7 +17,7 @@ import config.TableConfig;
  * Created by Vboar on 2014/12/4.
  */
 @SuppressWarnings("serial")
-public class ShowCashTable extends TablePanel {
+public class CashListTable extends TablePanel {
 
     private String[] columnName;
 
@@ -31,7 +31,7 @@ public class ShowCashTable extends TablePanel {
 
     private CashBLService controller;
 
-    public  ShowCashTable(TableConfig cfg, CashBLService controller) {
+    public  CashListTable(TableConfig cfg, CashBLService controller) {
         super(cfg);
         list = controller.show();
         this.controller = controller;
@@ -74,68 +74,27 @@ public class ShowCashTable extends TablePanel {
 
     public void showFindTable(String time1, String time2) {
         list = controller.findByTime(time1, time2);
-        Vector<String> names = new Vector<String>(COLUMN_NUM);
-        for(int i=0; i<COLUMN_NUM;++i){
-            names.add(columnName[i]);
-        }
-        Vector<Object> table = new Vector<Object>(list.size());
-        for(int i=0; i<list.size(); ++i){
-            CashVO vo = list.get(i);
-            Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-            row.add(vo.id);
-            row.add(vo.time);
-            row.add(vo.operator);
-            row.add(vo.bankAccount);
-            row.add(vo.listToStr());
-            row.add(vo.total);
-            row.add(vo.approvalState.toReadableString());
-            table.add(row);
-        }
-        this.dtm.setDataVector(table, names);
-        this.updateWidth();
-    }
-
-    public void showAllTable() {
-        list = controller.show();
-        Vector<String> names = new Vector<String>(COLUMN_NUM);
-        for(int i=0; i<COLUMN_NUM;++i){
-            names.add(columnName[i]);
-        }
-        Vector<Object> table = new Vector<Object>(list.size());
-        for(int i=list.size()-1; i>=0; --i){
-            CashVO vo = list.get(i);
-            Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-            row.add(vo.id);
-            row.add(vo.time);
-            row.add(vo.operator);
-            row.add(vo.bankAccount);
-            row.add(vo.listToStr());
-            row.add(vo.total);
-            row.add(vo.approvalState.toReadableString());
-            table.add(row);
-        }
-        this.dtm.setDataVector(table, names);
-        this.updateWidth();
+        this.showFindData(list);
     }
     
+    public void showAllTable() {
+        list = controller.show();
+        this.showFindData(list);
+    }
+
     public void showHistory(ArrayList<CashVO> findlist){
-        Vector<String> names = new Vector<String>(COLUMN_NUM);
-        for(int i=0; i<COLUMN_NUM;++i){
-            names.add(columnName[i]);
+    	this.list = findlist;
+    	this.showFindData(findlist);
+    }
+    
+    public void showFindData(ArrayList<CashVO> list){
+    	this.list = list;
+        this.data = new Object[list.size()][COLUMN_NUM];
+        for(int i=0; i<list.size(); ++i){
+        	CashVO temp = list.get(i);
+        	this.createRow(data[i], temp);
         }
-        Vector<Object> table = new Vector<Object>(list.size());
-        for(int i=findlist.size()-1; i>=0; --i){
-            CashVO vo = findlist.get(i);
-            Vector<Object> row = new Vector<Object>(COLUMN_NUM);
-            row.add(vo.id);
-            row.add(vo.time);
-            row.add(vo.operator);
-            row.add(vo.clauseList.toString());
-            row.add(vo.total);
-            row.add(vo.approvalState);
-            table.add(row);
-        }
-        this.dtm.setDataVector(table, names);
+        this.dtm.setDataVector(data, columnName);
         this.updateWidth();
     }
     
@@ -144,5 +103,22 @@ public class ShowCashTable extends TablePanel {
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(4).setMinWidth(300);
         this.updateUI();
+	}
+
+	public CashVO getSelectedVO() {
+		CashVO vo = null;
+		int row = this.table.getSelectedRow();
+		if(row<0){
+			MyOptionPane.showMessageDialog(CashListTable.this, "请先选择一张单据！");
+			return null;
+		}
+		String id = (String)this.table.getValueAt(row, 0);
+		for(int i=0; i<list.size(); i++){
+			vo = list.get(i);
+			if(id.equals(vo.id)){
+				return vo;
+			}
+		}
+		return vo;
 	}
 }

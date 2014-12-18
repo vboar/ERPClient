@@ -16,7 +16,7 @@ import config.ERPConfig;
 import config.PanelConfig;
 
 /**
- * 赠送单面板
+ * 赠送单管理面板
  * @author JanelDQ
  * @date 2014/11/27
  */

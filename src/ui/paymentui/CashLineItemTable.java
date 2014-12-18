@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 
 @SuppressWarnings("serial")
-public class CashTable extends TablePanel {
+public class CashLineItemTable extends TablePanel {
 
     private String[] columnNames;
 
@@ -23,7 +23,7 @@ public class CashTable extends TablePanel {
 
     private DefaultTableModel dtm;
 
-    public CashTable(TableConfig cfg) {
+    public CashLineItemTable(TableConfig cfg) {
         super(cfg);
         initTable();
         initComponent();

@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import com.qt.datapicker.DatePicker;
 
 @SuppressWarnings("serial")
-public class ObservingTextField extends JTextField  implements Observer {
+public class DateObservingTextField extends JTextField  implements Observer {
 	
     public void update(Observable o, Object arg) {
         Calendar calendar = (Calendar) arg;

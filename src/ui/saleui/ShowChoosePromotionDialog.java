@@ -39,12 +39,12 @@ public class ShowChoosePromotionDialog extends JDialog{
 	
 	private ArrayList<PromotionVO> selectlist;
 	
-	private CreateSalePanel panel;
+	private GetPromotions panel;
 	
 	private DialogConfig cfg;
 	
 	public ShowChoosePromotionDialog(final JFrame frame, ArrayList<PromotionVO> viplist,
-			ArrayList<PromotionVO> pricelist, final CreateSalePanel panel){
+			ArrayList<PromotionVO> pricelist, final GetPromotions panel){
 		super(frame,true);
 		this.panel = panel;
 		this.pricelist = pricelist;
@@ -107,8 +107,8 @@ public class ShowChoosePromotionDialog extends JDialog{
 					price.setText(pricetable.getSeleted().id);
 					selectlist.add(pricetable.getSeleted());
 				}
-				panel.getPromotionlist().clear();
-				panel.getPromotionlist().addAll(selectlist);
+				panel.getPromotions().clear();
+				panel.getPromotions().addAll(selectlist);
 			}
 		});
 		this.add(this.addBtn);
