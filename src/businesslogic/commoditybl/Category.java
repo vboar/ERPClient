@@ -81,7 +81,11 @@ public class Category {
 			if(voList.isEmpty()){
 			return "00000";
 			}else{
+			
 				String max=voList.get(voList.size()-1).id;
+				if(max.compareTo("99999")>0){
+					max=voList.get(voList.size()-2).id;
+				}
 				String oldMax=max.substring(0,5);
 				int maxInt=Integer.parseInt(oldMax);
 				String pattern="00000";

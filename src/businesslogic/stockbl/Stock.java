@@ -31,6 +31,7 @@ public class Stock {
 	public Stock() {
 	}
 
+	//查看
 	public ArrayList<StockInfoVO> showStockInfo(String time1, String time2) {
 
 		// 获得时间
