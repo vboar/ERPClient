@@ -17,9 +17,9 @@ public class CommodityTreePanel extends CommodityTreePane {
     private String initialId;
 
     /**
+     * 构造函数
      *
-     * @param frame
-     * @param initialId
+     * @param frame 主窗口
      */
     public CommodityTreePanel(JFrame frame, String initialId) {
         super(ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().
