@@ -45,5 +45,5 @@ public interface AccountBLService {
 	 * @return
 	 */
 	public ArrayList<AccountVO> fuzzyFind(String keyWord);
-	
+
 }

@@ -21,16 +21,23 @@ public class AccountTablePane extends TablePanel {
 
 	private DefaultTableModel dtm;
 
-	private ArrayList<AccountVO> list;
+	public ArrayList<AccountVO> list;
+
+	public AccountBLService controller;
 	
 	public AccountTablePane(TableConfig cfg, AccountBLService controller) {
 		super(cfg);
+		this.controller = controller;
+		init();
+	}
+
+	public void init() {
 		this.list = controller.show();
 		this.initTable();
 		this.initComponent();
 	}
 
-	protected void initTable() {
+	public void initTable() {
 		this.columnName = cfg.getColumnName();
 		this.initData(list);
 		this.dtm = new DefaultTableModel(this.data, this.columnName) {
@@ -42,7 +49,7 @@ public class AccountTablePane extends TablePanel {
 		this.table = new MyTable(this.dtm, this.getWidth());
 	}
 
-	private void initData(ArrayList<AccountVO> list) {
+	public void initData(ArrayList<AccountVO> list) {
 		int size;
 		if(list == null) size = 0;
 		else size = list.size();

@@ -2,6 +2,8 @@ package businesslogic.initialbl;
 
 import java.util.ArrayList;
 
+import businesslogic.accountbl.Account;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import util.ResultMessage;
 import vo.AccountVO;
 import vo.CommodityVO;
@@ -43,8 +45,7 @@ public class InitialController implements InitialBLService {
 
 	@Override
 	public ArrayList<AccountVO> showAccount(InitialVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Account().showByInitial(vo);
 	}
 
 }

@@ -14,6 +14,7 @@ import util.ResultMessage;
 import vo.AccountVO;
 import businesslogic.logbl.Log;
 import dataservice.datafactoryservice.DataFactoryImpl;
+import vo.InitialVO;
 
 //oneoneO
 public class Account {
@@ -113,6 +114,19 @@ public class Account {
 		}
 
 		return result;
+	}
+
+	public ArrayList<AccountVO> showByInitial(InitialVO vo) {
+		ArrayList<AccountVO> list = new ArrayList<AccountVO>();
+		try {
+			ArrayList<AccountPO> poList = DataFactoryImpl.getInstance().getAccountData().showByInitial(vo.id);
+			for(AccountPO po: poList) {
+				list.add(poToVo(po));
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public AccountVO poToVo(AccountPO po) {
