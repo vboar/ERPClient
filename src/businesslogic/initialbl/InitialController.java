@@ -2,11 +2,13 @@ package businesslogic.initialbl;
 
 import java.util.ArrayList;
 
+import businesslogic.accountbl.Account;
+import businesslogic.commoditybl.Category;
+import businesslogic.commoditybl.Commodity;
+import businesslogic.customerbl.Customer;
+import dataservice.datafactoryservice.DataFactoryImpl;
 import util.ResultMessage;
-import vo.AccountVO;
-import vo.CommodityVO;
-import vo.CustomerVO;
-import vo.InitialVO;
+import vo.*;
 import businesslogicservice.initialblservice.InitialBLService;
 
 public class InitialController implements InitialBLService {
@@ -30,21 +32,18 @@ public class InitialController implements InitialBLService {
 	}
 
 	@Override
-	public ArrayList<CommodityVO> showCommodity(InitialVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CategoryCommodityVO> showCommodity(String id) {
+		return new Commodity().showByInitial(id);
 	}
 
 	@Override
-	public ArrayList<CustomerVO> showCustomer(InitialVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CustomerVO> showCustomer(String id) {
+		return new Customer().showByInitial(id);
 	}
 
 	@Override
-	public ArrayList<AccountVO> showAccount(InitialVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<AccountVO> showAccount(String id) {
+		return new Account().showByInitial(id);
 	}
 
 }

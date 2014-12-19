@@ -74,7 +74,7 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 	/**
 	 * 商品信息VO列表
 	 */
-	ArrayList<CategoryCommodityVO> list;
+	public ArrayList<CategoryCommodityVO> list;
 	
 	/**
 	 * 树表是否初始属性
@@ -97,8 +97,17 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				Integer.parseInt(ele.attributeValue("y")),
 				Integer.parseInt(ele.attributeValue("width")),
 				Integer.parseInt(ele.attributeValue("height")));
+	}
+
+	public void initData() {
+		// 获得商品信息
+		this.list = this.controller.bigShow();
+		initTreeTable();
+	}
+
+	public void init() {
 		// 初始树表
-		this.initTreeTable();
+		initData();
 		// 初始弹出菜单
 		this.popmenu = new MyPopMenu(this);
 		// 添加组件
@@ -106,21 +115,35 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 		this.add(this.jsp);
 		// 设置面板可见
 		this.setVisible(true);
-
 	}
 
 	/**
 	 * 初始树表
 	 */
-	private void initTreeTable() {
-		// 获得商品信息
-		this.list = this.controller.bigShow();
+	public void initTreeTable() {
 		// 根据数据创建树表模型
 		this.treeTableModel = new CommodityTreeTableModel(list);
 		// 创建树表
 		this.treeTable = new JXTreeTable(this.treeTableModel);
 		this.treeTable.setToggleClickCount(1);
-		// 增加树表监听
+		this.addListener();
+		this.treeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.treeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		this.treeTable.setDefaultRenderer(Object.class, new MyTreeTableRenderer());
+		this.treeTable.setRootVisible(true);
+		// 创建滚动条面板
+		this.jsp = new JScrollPane();
+		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());	
+		this.jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		this.jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		// 将树表添加到滚动条面板上
+		this.jsp.getViewport().add(this.treeTable);
+	}
+
+	/**
+	 * 添加树表监听
+	 */
+	public void addListener() {
 		this.treeTable.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -147,17 +170,6 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				}
 			}
 		});
-		this.treeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.treeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		this.treeTable.setDefaultRenderer(Object.class, new MyTreeTableRenderer());
-		this.treeTable.setRootVisible(true);
-		// 创建滚动条面板
-		this.jsp = new JScrollPane();
-		this.jsp.setBounds(0, 0, this.getWidth(), this.getHeight());	
-		this.jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		this.jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		// 将树表添加到滚动条面板上
-		this.jsp.getViewport().add(this.treeTable);
 	}
 
 	/**
@@ -298,5 +310,9 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 			}
 			return comp;
 		}
+	}
+
+	public JXTreeTable getTreeTable() {
+		return treeTable;
 	}
 }

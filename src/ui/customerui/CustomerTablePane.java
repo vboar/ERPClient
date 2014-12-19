@@ -28,7 +28,7 @@ public class CustomerTablePane extends TablePanel {
 
 	private DefaultTableModel dtm;
 	
-	private ArrayList<CustomerVO> list;
+	public ArrayList<CustomerVO> list;
 
 	public CustomerTablePane(TableConfig cfg, CustomerBLService controller) {
 		super(cfg);

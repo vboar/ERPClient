@@ -360,6 +360,20 @@ public class Commodity {
 
 	}
 
+	public ArrayList<CategoryCommodityVO> showByInitial(String id) {
+		// TODO
+		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
+		try {
+			ArrayList<CommodityPO> poList = DataFactoryImpl.getInstance().getCommodityData().showByInitial(id);
+			for(CommodityPO po: poList) {
+				list.add(commodityPOToCommodityVO(po));
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 	/**
 	 * 组合大排序

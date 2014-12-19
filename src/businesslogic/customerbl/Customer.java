@@ -258,6 +258,19 @@ public class Customer {
 		}
 		return id;
 	}
+
+	public ArrayList<CustomerVO> showByInitial(String id) {
+		ArrayList<CustomerVO> list = new ArrayList<CustomerVO>();
+		try {
+			ArrayList<CustomerPO> poList = DataFactoryImpl.getInstance().getCustomerData().showByInitial(id);
+			for(CustomerPO po: poList) {
+				list.add(poToVo(po));
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	public CustomerVO poToVo(CustomerPO po){
 			CustomerVO result=new CustomerVO(po.getId(),po.getCategory(),po.getLevel(),

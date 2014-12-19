@@ -1564,11 +1564,19 @@
 		<!-- 期初建账面板 -->
 		<panel className="ui.initialui.InitialPanel" width="760" height="510"
 			x="200" y="0" bg="img/common/rightpanel.png">
-			<buttons>
-			</buttons>
 			<labels>
 				<title text="期初建账" w="120" h="30" x="10" y="2" />
 			</labels>
+		</panel>
+
+		<!-- 期初建账当前账期初信息面板 -->
+		<panel className="ui.initialui.InitialInfoPanel" width="760" height="510"
+			   x="200" y="0" bg="img/common/rightpanel.png">
+			<buttons>
+				<commodity text="商品信息" w="80" h="30" x="30" y="10" />
+				<customer text="客户信息" w="80" h="30" x="120" y="10" />
+				<account text="账户信息" w="80" h="30" x="210" y="10" />
+			</buttons>
 		</panel>
 
 		<!-- 账户管理面板 -->

@@ -7,11 +7,9 @@ package businesslogicservice.initialblservice;
 
 import java.util.ArrayList;
 
+import businesslogic.commoditybl.Category;
 import util.ResultMessage;
-import vo.AccountVO;
-import vo.CommodityVO;
-import vo.CustomerVO;
-import vo.InitialVO;
+import vo.*;
 
 public interface InitialBLService {
 	
@@ -37,23 +35,23 @@ public interface InitialBLService {
 	
 	/**
 	 * 返回对应账本商品信息
-	 * @param vo
+	 * @param id
 	 * @return 商品列表
 	 */
-	public ArrayList<CommodityVO> showCommodity(InitialVO vo);
+	public ArrayList<CategoryCommodityVO> showCommodity(String id);
 	
 	/**
 	 * 返回对应账本客户信息
-	 * @param vo
+	 * @param id
 	 * @return 客户列表
 	 */
-	public ArrayList<CustomerVO> showCustomer(InitialVO vo);
+	public ArrayList<CustomerVO> showCustomer(String id);
 	
 	/**
 	 * 返回对应账本账户信息
-	 * @param vo
+	 * @param id
 	 * @return 账户列表
 	 */
-	public ArrayList<AccountVO> showAccount(InitialVO vo);
+	public ArrayList<AccountVO> showAccount(String id);
 	
 }

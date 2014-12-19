@@ -89,6 +89,7 @@ public class CommodityPanel extends JPanel implements FuzzySearch{
 		
 		// 初始化商品树形面板
 		this.treepane = new CommodityTreePane(pcfg.getTree(),this.frame);
+		treepane.init();
 		this.add(this.treepane);
 		
 		// 初始化查找输入框
