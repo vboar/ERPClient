@@ -11,11 +11,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import org.dom4j.Element;
 
+import ui.util.EditDialog;
 import ui.util.MyButton;
 import ui.util.MyComboBox;
 import ui.util.MyLabel;
@@ -27,7 +27,7 @@ import vo.UserVO;
 import config.DialogConfig;
 
 @SuppressWarnings("serial")
-public class UserInfoDialog extends JDialog {
+public class UserInfoDialog extends EditDialog {
 	
 	private MyLabel idTip;
 	
@@ -53,8 +53,6 @@ public class UserInfoDialog extends JDialog {
 	
 	private UserPanel panel;
 	
-	private JFrame frame;
-	
 	private boolean isAdd;
 	
 	/**
@@ -65,7 +63,7 @@ public class UserInfoDialog extends JDialog {
 	 * @param isAdd true为添加，false为修改
 	 */
 	public UserInfoDialog(DialogConfig cfg, JFrame frame, UserPanel panel,boolean isAdd){
-		super(frame,true);
+		super(frame);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.setTitle(cfg.getTitle());
 		this.isAdd = isAdd;

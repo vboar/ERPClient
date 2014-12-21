@@ -3,12 +3,14 @@ package ui.presentui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-import ui.util.AddPresentLineItem;
+import ui.util.AddCommodityLineItem;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -17,6 +19,7 @@ import ui.util.MySpecialTextField;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.CustomerVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
@@ -32,7 +35,8 @@ import config.TableConfig;
  * @date 2014/11/27
  */
 @SuppressWarnings("serial")
-public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySearch, AddPresentLineItem{
+public class CreatePresentPanel extends PresentDocumentPanel implements 
+FuzzySearch, AddCommodityLineItem{
 	
 	private PresentPanel panel;
 	private JFrame frame;
@@ -52,6 +56,7 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 	 */
 	public CreatePresentPanel(JFrame frame,PresentPanel panel) {
 		super(frame);
+		this.frame = frame;
 		this.panel = panel;
 		this.commoditylist = new ArrayList<PresentLineItemVO>();
 		this.customerlist = new HashMap<String,CustomerVO>();
@@ -84,6 +89,13 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 		this.add(this.presentTable);
 		// 初始化客户信息输入框
 		this.customerTxt = new MySpecialTextField(cfg.getTextFields().element("customerinfo"),this);
+		this.customerTxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)
+					showCustomer();
+			}
+		});
 		this.add(this.customerTxt);		
 	}
 	
@@ -111,16 +123,7 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(customerTxt.getText()!=null){
-					customerVO = customerlist.get(customerTxt.getText());
-					if(customerVO!=null){
-						customerIdLab.setText(customerVO.id);
-						customerNameLab.setText(customerVO.name);
-						hasCustomer = true;
-					}else{
-						MyOptionPane.showMessageDialog(frame, "请重新选择客户！");
-					}
-				}
+				showCustomer();
 			}
 		});
 		this.add(this.addCustomer);
@@ -181,6 +184,19 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 		this.add(this.cancelBtn);
 	}
 	
+	protected void showCustomer() {
+		if(customerTxt.getText()!=null){
+			customerVO = customerlist.get(customerTxt.getText());
+			if(customerVO!=null){
+				customerIdLab.setText(customerVO.id);
+				customerNameLab.setText(customerVO.name);
+				hasCustomer = true;
+			}else{
+				MyOptionPane.showMessageDialog(frame, "请重新选择客户！");
+			}
+		}
+	}
+
 	/**
 	 * 创建赠送单
 	 */
@@ -233,15 +249,16 @@ public class CreatePresentPanel extends PresentDocumentPanel implements FuzzySea
 	}
 
 	@Override
-	public void addPresentLineItem(PresentLineItemVO vo) {
+	public void addCommodityLineItem(CommodityLineItemVO vo) {
 		for(int i=0; i<commoditylist.size();++i){
 			if(commoditylist.get(i).id.equals(vo.id)){
 				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
 				return;
 			}
 		}
-		this.commoditylist.add(vo);
-		this.presentTable.addRow(vo);
+		PresentLineItemVO pvo = new PresentLineItemVO(vo.id,vo.name,vo.model,vo.number);
+		this.commoditylist.add(pvo);
+		this.presentTable.addRow(pvo);
 	}
 
 }

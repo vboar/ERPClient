@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import vo.PromotionVO;
 
-public interface GetPromotions {
+public interface CheckPromotion {
 
 	public ArrayList<PromotionVO> getPromotions();
 	

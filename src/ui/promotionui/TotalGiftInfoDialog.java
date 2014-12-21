@@ -2,16 +2,16 @@ package ui.promotionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import ui.presentui.AddPresentCommodityDialog;
 import ui.presentui.PresentCommodityTablePane;
-import ui.util.AddPresentLineItem;
+import ui.util.AddCommodityLineItem;
 import ui.util.DatePickerGroup;
+import ui.util.EditDialog;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyCheckBox;
@@ -19,6 +19,7 @@ import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.PresentLineItemVO;
 import vo.TotalGiftVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -28,7 +29,7 @@ import config.ERPConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
+public class TotalGiftInfoDialog extends EditDialog implements AddCommodityLineItem{
 
 	private DatePickerGroup start;
 	
@@ -65,7 +66,7 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	private TotalGiftBLService controller;
 	
 	public TotalGiftInfoDialog(final JFrame frame, TotalGiftTablePane table,boolean isAdd) {
-		super(frame, true);
+		super(frame);
 		this.isAdd = isAdd;
 		this.table = table;
 		this.frame = frame;
@@ -272,14 +273,7 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 	/**
 	 * 添加一个商品
 	 */
-	@Override
 	public void addPresentLineItem(PresentLineItemVO vo) {
-		for(int i=0; i<commoditylist.size(); i++){
-			if(commoditylist.get(i).id.equals(vo.id)){
-				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
-				return;
-			}
-		}
 		this.commoditylist.add(vo);
 		this.presentsTable.addRow(vo);
 	}
@@ -291,22 +285,18 @@ public class TotalGiftInfoDialog extends JDialog implements AddPresentLineItem{
 		this.commoditylist.remove(this.presentsTable.getTable().getSelectedRow());
 		this.presentsTable.deleteRow();
 	}
-	
+
 	@Override
-	protected void processWindowEvent(WindowEvent e) {
-		boolean flag = false;
-		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
-			int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？",
-					"确认提示", MyOptionPane.YES_NO_OPTION,
-					MyOptionPane.QUESTION_MESSAGE);
-			if (result == MyOptionPane.YES_OPTION) {
-				flag = true;
-				dispose();
+	public void addCommodityLineItem(CommodityLineItemVO vo) {
+		for(int i=0; i<commoditylist.size(); i++){
+			if(commoditylist.get(i).id.equals(vo.id)){
+				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
+				return;
 			}
 		}
-		if (flag) {
-			// 点击的了YES,那么交给上面去处理关闭的处理
-			super.processWindowEvent(e);
-		}
+		PresentLineItemVO pvo = new PresentLineItemVO(vo.id, vo.name, vo.model, vo.number);
+		this.commoditylist.add(pvo);
+		this.presentsTable.addRow(pvo);
 	}
+
 }

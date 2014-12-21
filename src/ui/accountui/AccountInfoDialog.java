@@ -1,20 +1,24 @@
 package ui.accountui;
 
-import config.DialogConfig;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
 import org.dom4j.Element;
+
+import ui.util.EditDialog;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
 import vo.AccountVO;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import config.DialogConfig;
 
 @SuppressWarnings("serial")
-public class AccountInfoDialog extends JDialog {
+public class AccountInfoDialog extends EditDialog {
 
 	private MyButton commit;
 	
@@ -35,7 +39,7 @@ public class AccountInfoDialog extends JDialog {
 	private boolean isAdd;
 	
 	public AccountInfoDialog(DialogConfig cfg, JFrame frame, AccountPanel panel, boolean isAdd) {
-		super(frame, true);
+		super(frame);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.cfg = cfg;
 		this.setTitle("账户信息");

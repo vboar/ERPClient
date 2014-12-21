@@ -5,21 +5,22 @@
  */
 package ui.homeui;
 
-import businesslogicservice.loginblservice.LoginBLService;
-import config.ERPConfig;
-import config.PanelConfig;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
 
 import org.dom4j.Element;
 
-import ui.loginui.LoginUI;
 import ui.util.MyButton;
 import ui.util.MyLabel;
-
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import businesslogicservice.loginblservice.LoginBLService;
+import config.ERPConfig;
+import config.PanelConfig;
 
 @SuppressWarnings("serial")
 public class LoginUserInfoPanel extends JPanel {
@@ -28,7 +29,7 @@ public class LoginUserInfoPanel extends JPanel {
 	
 	private MyLabel userId;
 	
-	private MyLabel img;
+	private MyLabel usertype;
 	
 	private MyButton mailbox;
 	
@@ -64,17 +65,8 @@ public class LoginUserInfoPanel extends JPanel {
 	}
 
 	private void initButtons(Element button) {
-		MyButton logoutBtn = new MyButton(button.element("testlogout"));
-		add(logoutBtn);
-		logoutBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new LoginUI();
-			}
-		});
-
 		this.mailbox = new MyButton(button.element("mailbox"));
+		this.mailbox.setToolTipText("收件箱");
 		this.add(this.mailbox);
 		mailbox.addActionListener(new ActionListener() {
 			@Override
@@ -101,14 +93,17 @@ public class LoginUserInfoPanel extends JPanel {
 	}
 
 	private void initLabels(Element label) {
-		this.username = new MyLabel("操作员："+lc.getUserName(), label.element("username"));
-		this.userId = new MyLabel("ID："+lc.getUserId(),label.element("id"));
-		this.img = new MyLabel(label.element("img"));
-		this.username.setForeground(Color.WHITE);
-		this.userId.setForeground(Color.WHITE);
-		this.userId.setFont(new Font("黑体",Font.PLAIN,16));
+		this.username = new MyLabel(lc.getUserName(), label.element("username"));
+		this.usertype = new MyLabel(lc.getUserType().toFriendString(),label.element("usertype"));
+		this.userId = new MyLabel(lc.getUserId(),label.element("id"));
+		this.userId.setFont(new Font("微软雅黑",Font.PLAIN,12));
+		this.usertype.setFont(new Font("微软雅黑",Font.PLAIN,12));
+		this.username.setFont(new Font("微软雅黑",Font.PLAIN,12));
+		this.userId.setForeground(new Color(40,52,84));
+		this.usertype.setForeground(new Color(40,52,84));
+		this.username.setForeground(new Color(40,52,84));
 		this.add(this.username);
+		this.add(this.usertype);
 		this.add(this.userId);
-		this.add(this.img);
 	}
 }

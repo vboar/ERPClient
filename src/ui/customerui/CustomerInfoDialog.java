@@ -6,19 +6,27 @@
 
 package ui.customerui;
 
-import businesslogic.controllerfactory.ControllerFactoryImpl;
-import config.DialogConfig;
-import org.dom4j.Element;
-import ui.util.*;
-import util.ResultMessage;
-import vo.CustomerVO;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+import org.dom4j.Element;
+
+import ui.util.EditDialog;
+import ui.util.MyButton;
+import ui.util.MyComboBox;
+import ui.util.MyLabel;
+import ui.util.MyOptionPane;
+import ui.util.MyTextField;
+import util.ResultMessage;
+import vo.CustomerVO;
+import businesslogic.controllerfactory.ControllerFactoryImpl;
+import config.DialogConfig;
+
 @SuppressWarnings("serial")
-public class CustomerInfoDialog extends JDialog {
+public class CustomerInfoDialog extends EditDialog {
 	
 	private MyTextField nameTxt;
 	
@@ -47,13 +55,11 @@ public class CustomerInfoDialog extends JDialog {
 	private CustomerPanel panel;
 	
 	private CustomerVO vo;
-	
-	private JFrame frame;
-	
+
 	private boolean isAdd;
 	
 	public CustomerInfoDialog(DialogConfig cfg, JFrame frame, CustomerPanel panel, boolean isAdd) {
-		super(frame, true);
+		super(frame);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.cfg = cfg;
 		this.setTitle(cfg.getTitle());

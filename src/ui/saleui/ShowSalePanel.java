@@ -39,7 +39,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowSalePanel extends SaleDocumentPanel implements FuzzySearch,
-	AddCommodityLineItem,GetPromotions,DocumentWriteoffAndCopy{
+	AddCommodityLineItem,CheckPromotion,DocumentWriteoffAndCopy{
 	
 	private int type;
 	

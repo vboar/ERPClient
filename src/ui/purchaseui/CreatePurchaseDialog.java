@@ -1,19 +1,15 @@
 package ui.purchaseui;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-import ui.util.MyOptionPane;
+import ui.util.EditDialog;
 import config.DialogConfig;
 import config.ERPConfig;
 
 @SuppressWarnings("serial")
-public class CreatePurchaseDialog extends JDialog{
+public class CreatePurchaseDialog extends EditDialog{
 	
 	private DialogConfig cfg;
 	
@@ -26,7 +22,7 @@ public class CreatePurchaseDialog extends JDialog{
 	private PurchasePanel purchasepanel;
 	
 	public CreatePurchaseDialog(final JFrame frame, PurchasePanel panel){
-		super(frame,true);
+		super(frame);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.purchasepanel = panel;
 		this.frame = frame;
@@ -37,17 +33,7 @@ public class CreatePurchaseDialog extends JDialog{
         this.setLayout(null);
         this.setResizable(false);
         this.setLocation(frame.getX()+this.cfg.getX(), frame.getY()+this.cfg.getY());
-        this.addWindowListener(new WindowAdapter() {
-        	@Override
-            public void windowClosing(WindowEvent e) {
-            	int result = MyOptionPane.showConfirmDialog(frame, "确认放弃当前编辑？","确认提示",
-            			MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
-            	if(result == MyOptionPane.YES_OPTION){
-            		updateData();
-            		dispose();
-            	}
-            }
-		});
+
         // 初始化组件
 		this.initComponent();
 		this.setVisible(true);

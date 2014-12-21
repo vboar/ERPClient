@@ -38,7 +38,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch, 
-	AddCommodityLineItem,	GetPromotions{
+	AddCommodityLineItem,	CheckPromotion{
 
 	private CreateSaleDialog dialog;
 	private MyButton cancelBtn;

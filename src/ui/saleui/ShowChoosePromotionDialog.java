@@ -39,12 +39,12 @@ public class ShowChoosePromotionDialog extends JDialog{
 	
 	private ArrayList<PromotionVO> selectlist;
 	
-	private GetPromotions panel;
+	private CheckPromotion panel;
 	
 	private DialogConfig cfg;
 	
 	public ShowChoosePromotionDialog(final JFrame frame, ArrayList<PromotionVO> viplist,
-			ArrayList<PromotionVO> pricelist, final GetPromotions panel){
+			ArrayList<PromotionVO> pricelist, final CheckPromotion panel){
 		super(frame,true);
 		this.panel = panel;
 		this.pricelist = pricelist;
@@ -52,6 +52,7 @@ public class ShowChoosePromotionDialog extends JDialog{
 		this.selectlist = new ArrayList<PromotionVO>();
 		this.cfg = ERPConfig.getCHOOSEPROMOTION_DIALOG_CONFIG();
 		// 设置对话框基本属性
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setTitle(cfg.getTitle());
 		this.setBounds(cfg.getX(), cfg.getW(), cfg.getW(), cfg.getH());
         this.setLayout(null);

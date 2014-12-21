@@ -35,16 +35,15 @@
 
 		<!-- 当前登录用户信息面板 -->
 		<panel className="ui.homeui.LoginUserInfoPanel" width="970"
-			height="90" x="0" y="0" bg="img/common/title.jpg">
+			height="90" x="0" y="0" bg="img/common/title1.jpg">
 			<buttons>
-				<testlogout text="注销" w="60" h="32" x="180" y="10"></testlogout>
-				<mailbox text="" w="40" h="32" x="180" y="45"
-					path="img/common/mailr.png" pathroll="img/common/mail.png" />
+				<mailbox text="" w="30" h="24" x="192" y="50"
+					path="img/common/mailrs.png" pathroll="img/common/mails.png" />
 			</buttons>
 			<labels>
-				<username w="100" h="30" x="80" y="15" />
-				<id w="100" h="30" x="80" y="35" />
-				<img text="" w="240" h="60" x="20" y="17" path="img/common/1.jpg" />
+				<username w="100" h="30" x="60" y="8" />
+				<usertype w="160" h="30" x="60" y="52"/>
+				<id w="100" h="30" x="60" y="30" />
 			</labels>
 		</panel>
 
@@ -2021,19 +2020,19 @@
 	</addcashinfodialog>
 
 	<!-- 账户信息对话框 -->
-	<accountinfodialog width="500" height="280" x="230"
-		y="180" title="账户信息">
+	<accountinfodialog width="500" height="200" x="230"
+		y="200" title="账户信息">
 		<buttons>
-			<commit text="提交" w="80" h="30" x="150" y="210" />
-			<cancel text="取消" w="80" h="30" x="270" y="210" />
+			<commit text="提交" w="80" h="30" x="150" y="120" />
+			<cancel text="取消" w="80" h="30" x="270" y="120" />
 		</buttons>
 		<labels>
 			<account text="银行账户" w="80" h="30" x="20" y="20" />
-			<name text="账户名称" w="80" h="30" x="20" y="50" />
+			<name text="账户名称" w="80" h="30" x="20" y="60" />
 		</labels>
 		<textfields>
 			<account w="320" h="30" x="120" y="20" />
-			<name w="320" h="30" x="120" y="50" />
+			<name w="320" h="30" x="120" y="60" />
 		</textfields>
 	</accountinfodialog>
 
@@ -2344,6 +2343,7 @@
 		</textfields>
 	</saverdialog>
 
+	<!--显示单据对话框  -->
 	<showdocumentdialog width="770" height="540" x="100"
 		y="50" bg="img/document/jhd.jpg" bg2="img/document/jhthd.jpg" title="红冲单据">
 		<buttons>
@@ -2355,4 +2355,12 @@
 			<cancel text="取消" w="80" h="30" x="400" y="460" />
 		</buttons>
 	</showdocumentdialog>
+	
+	<!-- 退出/注销对话框 -->
+	<quitdialog width="300" height="120" x="330" y="220" title="退出提示">
+		<buttons>
+			<quit text="退出" w="100" h="40" x="150" y="20"/>
+			<logout text="注销" w="100" h="40" x="30" y="20"/>
+		</buttons>
+	</quitdialog>
 </erp>

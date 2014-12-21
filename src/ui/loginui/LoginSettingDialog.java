@@ -1,21 +1,26 @@
 package ui.loginui;
 
-import config.DialogConfig;
-import dataservice.datafactoryservice.DataFactoryImpl;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 import org.dom4j.Element;
+
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import config.DialogConfig;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 /**
  * 登录设置面板
  * Created by Vboar on 2014/12/13.
  */
+@SuppressWarnings("serial")
 public class LoginSettingDialog extends JDialog {
 
     private MyTextField addressTxt;
@@ -28,13 +33,10 @@ public class LoginSettingDialog extends JDialog {
 
     private DialogConfig cfg;
 
-    private LoginPanel panel;
-
-    public LoginSettingDialog(DialogConfig cfg, JFrame frame, LoginPanel panel) {
+    public LoginSettingDialog(DialogConfig cfg, JFrame frame) {
         super(frame, true);
         ((JComponent) this.getContentPane()).setOpaque(true);
         this.cfg = cfg;
-        this.panel = panel;
         this.setSize(this.cfg.getW(), this.cfg.getH());
         this.setLayout(null);
         this.setResizable(false);

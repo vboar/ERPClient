@@ -106,6 +106,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.setLayout(null);
 		// 初始化组件
 		this.initComponent();
+		this.showPurchase(new RequirementVO(), false);
 		this.setVisible(true);
 		this.repaint();	
 	}

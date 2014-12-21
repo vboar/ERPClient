@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import org.dom4j.Element;
 
+import ui.util.EditDialog;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
@@ -22,7 +22,7 @@ import config.DialogConfig;
  * @date 2014/11/27
  */
 @SuppressWarnings("serial")
-public class CategoryInfoDialog extends JDialog{
+public class CategoryInfoDialog extends EditDialog{
 	
 	private MyLabel nameTip;
 	
@@ -47,7 +47,7 @@ public class CategoryInfoDialog extends JDialog{
 	 * @param tree
 	 */
 	public CategoryInfoDialog(DialogConfig cfg,JFrame frame, CategoryTreePane tree){
-		super(frame,true);
+		super(frame);
 		this.frame = frame;
 		this.cfg = cfg;
 		this.tree = tree;

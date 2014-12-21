@@ -107,7 +107,6 @@ public class UserPanel extends JPanel implements FuzzySearch{
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER){
-					System.out.println("enter");
 					findUser(userfindbox.getText());
 				}
 			}

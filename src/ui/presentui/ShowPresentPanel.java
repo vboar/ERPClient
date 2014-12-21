@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-import ui.util.AddPresentLineItem;
+import ui.util.AddCommodityLineItem;
 import ui.util.DocumentWriteoffAndCopy;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
@@ -19,6 +19,7 @@ import ui.util.MySpecialTextField;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.CustomerVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
@@ -30,7 +31,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearch,
-	AddPresentLineItem, DocumentWriteoffAndCopy{
+	AddCommodityLineItem, DocumentWriteoffAndCopy{
 	
 	private int type;
 	
@@ -198,19 +199,6 @@ public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearc
 	}
 
 	@Override
-	public void addPresentLineItem(PresentLineItemVO vo) {
-		for(int i=0; i<commoditylist.size();++i){
-			if(commoditylist.get(i).id.equals(vo.id)){
-				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
-				return;
-			}
-		}
-		this.commoditylist.add(vo);
-		this.presentTable.addRow(vo);
-	}
-
-
-	@Override
 	public DocumentType getDocumentType() {
 		return vo.documentType;
 	}
@@ -235,6 +223,19 @@ public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearc
 		}else{
 			MyOptionPane.showMessageDialog(frame, "请填入完整单据数据！");
 		}
+	}
+
+	@Override
+	public void addCommodityLineItem(CommodityLineItemVO vo) {
+		for(int i=0; i<commoditylist.size();++i){
+			if(commoditylist.get(i).id.equals(vo.id)){
+				MyOptionPane.showMessageDialog(frame, "已添加过该商品！");
+				return;
+			}
+		}
+		PresentLineItemVO pvo = new PresentLineItemVO(vo.id, vo.name, vo.model, vo.number);
+		this.commoditylist.add(pvo);
+		this.presentTable.addRow(pvo);
 	}
 
 }

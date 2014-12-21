@@ -2,20 +2,14 @@ package ui.util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import ui.util.AddCommodityLineItem;
-import ui.util.FuzzySearch;
-import ui.util.MyButton;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.MySpecialTextField;
-import ui.util.MyTextField;
 import vo.CommodityLineItemVO;
 import vo.CommodityVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -24,37 +18,29 @@ import config.DialogConfig;
 import config.ERPConfig;
 
 @SuppressWarnings("serial")
-public class AddCommodityDialog extends JDialog implements FuzzySearch{
+public class AddCommodityDialog extends EditDialog implements FuzzySearch{
 	
-	private MySpecialTextField commodityTxt;
+	protected MySpecialTextField commodityTxt;
+	protected MyTextField numberTxt;
 	
-	private MyTextField numberTxt;
+	protected MyButton commit;	
+	protected MyButton cancel;	
+	protected MyButton add;
 	
-	private MyButton commit;
+	protected MyLabel currentId;	
+	protected MyLabel currentName;
+	protected MyLabel currentModel;
 	
-	private MyButton cancel;
+	protected DialogConfig cfg;
 	
-	private MyButton add;
+	protected boolean hasCommodity = false;
+	protected CommodityVO addCommodityVO;	
+	protected CommodityLineItemVO commodityLineItemVO;
+	protected HashMap<String, CommodityVO> vomap;	
 	
-	private MyLabel currentId;
-	
-	private MyLabel currentName;
-	
-	private MyLabel currentModel;
-	
-	private DialogConfig cfg;
-	
-	private CommodityVO addCommodityVO;
-	
-	private CommodityLineItemVO commodityLineItemVO;
-	
-	private AddCommodityLineItem panel;
-	
-	private JFrame frame;
-	
-	private HashMap<String, CommodityVO> vomap;
-	
-	private CommodityBLService controller;
+	protected AddCommodityLineItem panel;	
+
+	protected CommodityBLService controller;
 	
 	/**
 	 * 构造函数
@@ -62,7 +48,7 @@ public class AddCommodityDialog extends JDialog implements FuzzySearch{
 	 * @param frame 主窗口
 	 */
 	public AddCommodityDialog(AddCommodityLineItem panel,JFrame frame){
-		super(frame,true);
+		super(frame);
 		((JComponent) this.getContentPane()).setOpaque(true);
 		this.panel = panel;
 		this.frame = frame;
@@ -80,14 +66,31 @@ public class AddCommodityDialog extends JDialog implements FuzzySearch{
 		this.setVisible(true);
 	}
 
+	public AddCommodityDialog(AddCommodityLineItem panel,JFrame frame,boolean ismore){
+		super(frame);
+		((JComponent) this.getContentPane()).setOpaque(true);
+		this.panel = panel;
+		this.frame = frame;
+		this.controller = ControllerFactoryImpl.getInstance().getCommodityController();
+		this.vomap = new HashMap<String,CommodityVO>();
+	}
+	
 	/**
 	 * 初始化组件
 	 */
-	private void initComponent() {
+	protected void initComponent() {
 		// 初始化按钮
 		this.initButtons();
 		// 初始化输入框
 		this.commodityTxt = new MySpecialTextField(this.cfg.getTextFields().element("commodity"), this);
+		this.commodityTxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					showCommodity();
+				}
+			}		
+		});
 		this.numberTxt = new MyTextField(this.cfg.getTextFields().element("number"));	
 		this.add(this.commodityTxt);
 		this.add(this.numberTxt);
@@ -109,30 +112,19 @@ public class AddCommodityDialog extends JDialog implements FuzzySearch{
 	/**
 	 * 初始化按钮
 	 */
-	private void initButtons(){
+	protected void initButtons(){
 		// 添加商品按钮
 		this.add = new MyButton(this.cfg.getButtons().element("add"));
-		this.add.addActionListener(new ActionListener() {
-			
+		this.add.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(commodityTxt.getText()!=null){
-					addCommodityVO = vomap.get(commodityTxt.getText());
-					if(addCommodityVO!=null){
-						currentId.setText(addCommodityVO.id);
-						currentName.setText(addCommodityVO.name);
-						currentModel.setText(addCommodityVO.model);
-					}else{
-						MyOptionPane.showMessageDialog(frame, "请重新选择商品！");
-					}
-				}
+				showCommodity();
 			}
 		});
 		this.add(this.add);
 		// 提交按钮
 		this.commit = new MyButton(this.cfg.getButtons().element("commit"));
-		this.commit.addActionListener(new ActionListener() {
-			
+		this.commit.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int result = MyOptionPane.showConfirmDialog(frame, "确认添加该商品？","确认提示",
@@ -140,9 +132,8 @@ public class AddCommodityDialog extends JDialog implements FuzzySearch{
 				if(result==MyOptionPane.YES_OPTION){
 					try{
 					int num = Integer.parseInt(numberTxt.getText());
-					String info = commodityTxt.getText();
 					// 创建赠品信息
-					addCommodity(info,num);
+					addCommodity(num);
 					AddCommodityDialog.this.dispose();
 					}catch(NumberFormatException ex){
 						MyOptionPane.showMessageDialog(frame, "请正确输入数据！","错误提示",
@@ -169,14 +160,27 @@ public class AddCommodityDialog extends JDialog implements FuzzySearch{
 		this.add(this.cancel);
 	}
 	
+	protected void showCommodity(){
+		if(commodityTxt.getText()!=null){
+			addCommodityVO = vomap.get(commodityTxt.getText());
+			if(addCommodityVO!=null){
+				currentId.setText(addCommodityVO.id);
+				currentName.setText(addCommodityVO.name);
+				currentModel.setText(addCommodityVO.model);
+				hasCommodity = true;
+			}else{
+				MyOptionPane.showMessageDialog(frame, "请重新选择商品！");
+			}
+		}
+	}
+	
 	/**
 	 * 添加商品信息
 	 * @param key 搜索关键字
 	 * @param num 商品数量
 	 */
-	protected void addCommodity(String key, int num) {
-		addCommodityVO = this.vomap.get(key);
-		if(addCommodityVO!=null){
+	protected void addCommodity(int num) {
+		if(hasCommodity){
 			this.commodityLineItemVO = new CommodityLineItemVO(addCommodityVO.id, addCommodityVO.name,
 				addCommodityVO.model, num);
 			this.panel.addCommodityLineItem(this.commodityLineItemVO);

@@ -9,6 +9,8 @@ package ui.paymentui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -77,26 +79,25 @@ public class CreateCashPanel extends CashDocumentPanel implements FuzzySearch, A
 
     private void initAccountFind() {
         accountFind = new MySpecialTextField(cfg.getTextFields().element("accountfind"), this);
+        accountFind.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyReleased(KeyEvent e){
+        		if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        			showAccountInfo();
+        		}
+        	}
+		});
         add(accountFind);
     }
 
-    private void initButtons() {
+	private void initButtons() {
         // 添加账户按钮
         addAccountBtn = new MyButton(cfg.getButtons().element("addaccount"));
         add(addAccountBtn);
         addAccountBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(accountFind.getText() != null){
-                    accountVO = accountList.get(accountFind.getText());
-                    if(accountVO != null){
-                        accountIdLab.setText(accountVO.account);
-                        accountNameLab.setText(accountVO.name);
-                        hasAccount = true;
-                    }else{
-                        MyOptionPane.showMessageDialog(null, "请重新选择账户！");
-                    }
-                }
+            	showAccountInfo();
             }
         });
 
@@ -172,6 +173,19 @@ public class CreateCashPanel extends CashDocumentPanel implements FuzzySearch, A
         table = new CashLineItemTable(new TableConfig(cfg.getTablepane()));
         this.add(table);
     }
+    
+    protected void showAccountInfo() {
+        if(accountFind.getText() != null){
+            accountVO = accountList.get(accountFind.getText());
+            if(accountVO != null){
+                accountIdLab.setText(accountVO.account);
+                accountNameLab.setText(accountVO.name);
+                hasAccount = true;
+            }else{
+                MyOptionPane.showMessageDialog(null, "请重新选择账户！");
+            }
+        }
+	}
 
     public void createCash() {
     	if(!hasAccount){

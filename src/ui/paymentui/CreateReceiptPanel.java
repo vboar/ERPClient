@@ -9,6 +9,8 @@ package ui.paymentui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -98,16 +100,7 @@ public class CreateReceiptPanel extends PaymentDocumentPanel implements FuzzySea
 		addCustomerBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(customerFind.getText() != null){
-					customerVO = customerlist.get(customerFind.getText());
-					if(customerVO != null){
-						customerIdLab.setText(customerVO.id);
-						customerNameLab.setText(customerVO.name);
-						hasCustomer = true;
-					}else{
-						MyOptionPane.showMessageDialog(null, "请重新选择客户！");
-					}
-				}
+				showCustomerInfo();
 			}
 		});
 
@@ -167,7 +160,28 @@ public class CreateReceiptPanel extends PaymentDocumentPanel implements FuzzySea
 
 	private void initCustomerFind() {
 		customerFind = new MySpecialTextField(cfg.getTextFields().element("customerfind"), this);
+		customerFind.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					showCustomerInfo();
+				}
+			}
+		});
 		add(customerFind);
+	}
+
+	protected void showCustomerInfo() {
+		if(customerFind.getText() != null){
+			customerVO = customerlist.get(customerFind.getText());
+			if(customerVO != null){
+				customerIdLab.setText(customerVO.id);
+				customerNameLab.setText(customerVO.name);
+				hasCustomer = true;
+			}else{
+				MyOptionPane.showMessageDialog(null, "请重新选择客户！");
+			}
+		}
 	}
 
 	public void createReceipt() {

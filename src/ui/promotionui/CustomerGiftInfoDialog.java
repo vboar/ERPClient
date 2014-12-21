@@ -2,16 +2,16 @@ package ui.promotionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import ui.presentui.AddPresentCommodityDialog;
 import ui.presentui.PresentCommodityTablePane;
-import ui.util.AddPresentLineItem;
+import ui.util.AddCommodityLineItem;
 import ui.util.DatePickerGroup;
+import ui.util.EditDialog;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyCheckBox;
@@ -20,6 +20,7 @@ import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
+import vo.CommodityLineItemVO;
 import vo.CustomerGiftVO;
 import vo.PresentLineItemVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -35,8 +36,8 @@ import config.TableConfig;
  * @date 2014/12/6
  */
 @SuppressWarnings("serial")
-public class CustomerGiftInfoDialog extends JDialog implements
-		AddPresentLineItem {
+public class CustomerGiftInfoDialog extends EditDialog implements
+		AddCommodityLineItem {
 
 	private MyComboBox level;
 
@@ -64,8 +65,6 @@ public class CustomerGiftInfoDialog extends JDialog implements
 
 	private PresentCommodityTablePane presentsTable;
 
-	private JFrame frame;
-
 	private CustomerTablePane table;
 
 	private DialogConfig cfg;
@@ -78,7 +77,7 @@ public class CustomerGiftInfoDialog extends JDialog implements
 
 	public CustomerGiftInfoDialog(final JFrame frame, CustomerTablePane table,
 			boolean isAdd) {
-		super(frame, true);
+		super(frame);
 		this.table = table;
 		this.isAdd = isAdd;
 		this.frame = frame;
@@ -103,7 +102,6 @@ public class CustomerGiftInfoDialog extends JDialog implements
 	public CustomerGiftInfoDialog(JFrame frame, CustomerTablePane table,
 			boolean isAdd, CustomerGiftVO vo) {
 		this(frame, table, isAdd);
-		// TODO设置text
 		this.start.setDate(FrameUtil.getDateFormStr(vo.startTime));
 		this.end.setDate(FrameUtil.getDateFormStr(vo.endTime));
 		this.voucherTxt.setText(Double.toString(vo.voucher));
@@ -326,7 +324,6 @@ public class CustomerGiftInfoDialog extends JDialog implements
 	/**
 	 * 添加一个商品
 	 */
-	@Override
 	public void addPresentLineItem(PresentLineItemVO vo) {
 		this.commoditylist.add(vo);
 		this.presentsTable.addRow(vo);
@@ -342,20 +339,9 @@ public class CustomerGiftInfoDialog extends JDialog implements
 	}
 
 	@Override
-	protected void processWindowEvent(WindowEvent e) {
-		boolean flag = false;
-		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
-			int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？",
-					"确认提示", MyOptionPane.YES_NO_OPTION,
-					MyOptionPane.QUESTION_MESSAGE);
-			if (result == MyOptionPane.YES_OPTION) {
-				flag = true;
-				dispose();
-			}
-		}
-		if (flag) {
-			// 点击的了YES,那么交给上面去处理关闭的处理
-			super.processWindowEvent(e);
-		}
+	public void addCommodityLineItem(CommodityLineItemVO vo) {
+		PresentLineItemVO pvo = new PresentLineItemVO(vo.id, vo.name, vo.model, vo.number);
+		this.commoditylist.add(pvo);
+		this.presentsTable.addRow(pvo);
 	}
 }

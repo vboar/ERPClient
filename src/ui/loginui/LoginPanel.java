@@ -160,7 +160,7 @@ public class LoginPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				loginSettingDialog = new LoginSettingDialog(ERPConfig.getLOGINSETTING_DIALOG_CONFIG(),
-						frame, LoginPanel.this);
+						frame);
 				loginSettingDialog.setVisible(true);
 			}
 		});

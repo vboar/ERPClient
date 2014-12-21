@@ -2,16 +2,15 @@ package ui.promotionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import ui.util.AddCommodityDialog;
 import ui.util.AddCommodityLineItem;
 import ui.util.DatePickerGroup;
+import ui.util.EditDialog;
 import ui.util.FrameUtil;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -27,7 +26,7 @@ import config.ERPConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineItem{
+public class SpecialOfferInfoDialog extends EditDialog implements AddCommodityLineItem{
 
 	private DatePickerGroup start;
 	
@@ -45,8 +44,6 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 	
 	private SpecialCommodityTablePane commodityTable;
 	
-	private JFrame frame;
-	
 	private DialogConfig cfg;
 	
 	private boolean isAdd = false;
@@ -58,7 +55,7 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 	private SpecialOfferTablePane table;
 	
 	public SpecialOfferInfoDialog(final JFrame frame, SpecialOfferTablePane table, boolean isAdd){
-		super(frame, true);
+		super(frame);
 		this.isAdd = isAdd;
 		this.frame = frame;
 		this.table = table;
@@ -86,6 +83,8 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 		for(int i=0; i<vo.commodityList.size(); ++i){
 			this.addCommodityLineItem(vo.commodityList.get(i));
 		}
+		this.add.setEnabled(false);
+		this.delete.setEnabled(false);
 	}
 	
 	private void initComponent() {
@@ -226,23 +225,5 @@ public class SpecialOfferInfoDialog extends JDialog implements AddCommodityLineI
 	public void addCommodityLineItem(CommodityLineItemVO vo) {
 		this.list.add(vo);
 		this.commodityTable.addRow(vo);
-	}
-		
-	@Override
-	protected void processWindowEvent(WindowEvent e) {
-		boolean flag = false;
-		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
-			int result = MyOptionPane.showConfirmDialog(frame, "是否放弃当前编辑？",
-					"确认提示", MyOptionPane.YES_NO_OPTION,
-					MyOptionPane.QUESTION_MESSAGE);
-			if (result == MyOptionPane.YES_OPTION) {
-				flag = true;
-				dispose();
-			}
-		}
-		if (flag) {
-			// 点击的了YES,那么交给上面去处理关闭的处理
-			super.processWindowEvent(e);
-		}
 	}
 }

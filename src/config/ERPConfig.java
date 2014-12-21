@@ -51,6 +51,8 @@ public class ERPConfig {
 	
 	private static DialogConfig SHOWDOCUMENT_DIALOG_CONFIG = null;
 	
+	private static DialogConfig QUIT_DIALOG_CONFIG = null;
+	
 	static{
 		try {
 			// 创建XML读取器
@@ -96,6 +98,7 @@ public class ERPConfig {
 			SAVER_DIALOG_CONFIG = new DialogConfig(erp.element("saverdialog"));
 			LOGINSETTING_DIALOG_CONFIG = new DialogConfig(erp.element("loginsettingdialog"));
 			SHOWDOCUMENT_DIALOG_CONFIG = new DialogConfig(erp.element("showdocumentdialog"));
+			QUIT_DIALOG_CONFIG = new DialogConfig(erp.element("quitdialog"));
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -187,6 +190,10 @@ public class ERPConfig {
 
 	public static DialogConfig getSHOWDOCUMENT_DIALOG_CONFIG() {
 		return SHOWDOCUMENT_DIALOG_CONFIG;
+	}
+
+	public static DialogConfig getQUIT_DIALOG_CONFIG() {
+		return QUIT_DIALOG_CONFIG;
 	}
 
 }

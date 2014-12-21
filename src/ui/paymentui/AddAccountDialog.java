@@ -2,6 +2,8 @@ package ui.paymentui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -88,14 +90,7 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
         addAccount.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addAccountVO = vomap.get(accountTxt.getText());
-                if(addAccountVO!=null){
-                    currentAccount.setText(addAccountVO.account);
-                    currentName.setText(addAccountVO.name);
-                    hasAccount = true;
-                }else{
-                    MyOptionPane.showMessageDialog(null, "请重新选择商品！");
-                }
+            	showAccountInfo();
             }
         });
 
@@ -169,13 +164,32 @@ public class AddAccountDialog extends JDialog implements FuzzySearch {
         add(moneyTxt);
 
         accountTxt = new MySpecialTextField(element.element("account"), this);
+        accountTxt.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyReleased(KeyEvent e){
+        		if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        			showAccountInfo();
+        		}
+        	}
+		});
         add(accountTxt);
 
         remarkTxt = new MyTextField(element.element("remark"));
         add(remarkTxt);
     }
 
-    public void addAccount() {
+    protected void showAccountInfo() {
+        addAccountVO = vomap.get(accountTxt.getText());
+        if(addAccountVO!=null){
+            currentAccount.setText(addAccountVO.account);
+            currentName.setText(addAccountVO.name);
+            hasAccount = true;
+        }else{
+            MyOptionPane.showMessageDialog(null, "请重新选择商品！");
+        }
+	}
+
+	public void addAccount() {
         if(addAccountVO != null) {
             transferLineItemVO = new TransferLineItemVO(addAccountVO.name, addAccountVO.account,
                     Double.parseDouble(moneyTxt.getText()), remarkTxt.getText());

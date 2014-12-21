@@ -5,13 +5,16 @@
  */
 package ui.homeui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+
+import ui.util.FrameUtil;
+import ui.util.MyMainPanel;
 import businesslogicservice.loginblservice.LoginBLService;
 import config.ERPConfig;
 import config.FrameConfig;
-import ui.util.FrameUtil;
-import ui.util.MyMainPanel;
-
-import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class HomeUI extends JFrame {
@@ -36,7 +39,7 @@ public class HomeUI extends JFrame {
 		// 设置不可更改大小
 		this.setResizable(false);
 		// 默认关闭退出
-		this.setDefaultCloseOperation(3);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		// 居中
 		FrameUtil.setFrameCenter(this,fcfg.getWindowUp());
 		// 设置为自由布局
@@ -45,6 +48,12 @@ public class HomeUI extends JFrame {
 		this.add(new TimePanel());
 		this.getContentPane().add(new LoginUserInfoPanel(lc, this));
 		this.addMainPanel(lc);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			 public void windowClosing(WindowEvent e) {
+				new QuitDialog(HomeUI.this);
+			}
+		});
 		// 显示
 		this.setVisible(true);
 	}

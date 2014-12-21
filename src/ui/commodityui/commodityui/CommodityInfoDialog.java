@@ -9,11 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import org.dom4j.Element;
 
+import ui.util.EditDialog;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
@@ -22,7 +22,7 @@ import vo.CommodityVO;
 import config.DialogConfig;
 
 @SuppressWarnings("serial")
-public class CommodityInfoDialog extends JDialog {
+public class CommodityInfoDialog extends EditDialog {
 	
 	private MyLabel nameTip;
 	
@@ -43,9 +43,7 @@ public class CommodityInfoDialog extends JDialog {
 	private CommodityTreePane tree;
 	
 	private DialogConfig cfg;
-	
-	private JFrame frame;
-		
+
 	private boolean isAdd;
 
 	/**
@@ -56,7 +54,7 @@ public class CommodityInfoDialog extends JDialog {
 	 * @param isAdd 是否为添加商品
 	 */
 	public CommodityInfoDialog(DialogConfig cfg, JFrame frame, CommodityTreePane tree, boolean isAdd) {
-		super(frame, true);
+		super(frame);
 		this.frame = frame;
 		this.isAdd = isAdd;
 		this.tree = tree;
