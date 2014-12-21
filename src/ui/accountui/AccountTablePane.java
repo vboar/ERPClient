@@ -13,13 +13,7 @@ import java.util.Vector;
 @SuppressWarnings("serial")
 public class AccountTablePane extends TablePanel {
 	
-	private String[] columnName;
-	
 	private static int COLUMN_NUM = 3;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 
 	public ArrayList<AccountVO> list;
 
@@ -38,9 +32,9 @@ public class AccountTablePane extends TablePanel {
 	}
 
 	public void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData(list);
-		this.dtm = new DefaultTableModel(this.data, this.columnName) {
+		this.dtm = new DefaultTableModel(this.data, this.columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
@@ -96,7 +90,7 @@ public class AccountTablePane extends TablePanel {
 	public void showFindTable(ArrayList<AccountVO> list) {
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnName[i]);
+			names.add(columnNames[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){

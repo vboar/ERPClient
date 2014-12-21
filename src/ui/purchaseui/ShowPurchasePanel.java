@@ -110,20 +110,8 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 		this.customerTxt.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if (customerTxt.getText() != null) {
-						customerVO = customerlist.get(customerTxt.getText());
-						if (customerVO != null) {
-							// 显示客户名和ID
-							customerIdLab.setText(customerVO.id);
-							customerNameLab.setText(customerVO.name);
-							// 当前已添加客户
-							hasCustomer = true;
-						} else {
-							MyOptionPane.showMessageDialog(frame, "请重新选择客户！");
-						}
-					}
-				}
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)
+					showCustomerInfo();
 			}
 		});
 		// 若为审批或红冲则不可编辑
@@ -160,6 +148,15 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 	}
 
 	private void initButtons() {
+		// 添加客户按钮
+		this.addCustomer = new MyButton(cfg.getButtons().element("addcustomer"));
+		this.addCustomer.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showCustomerInfo();
+			}
+		});
+		this.add(addCustomer);
 		// 添加商品按钮
 		this.addBtn = new MyButton(cfg.getButtons().element("add"));
 		this.addBtn.addActionListener(new ActionListener() {
@@ -187,7 +184,22 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 			}
 		});
 	}
-
+	
+	protected void showCustomerInfo() {
+		if (customerTxt.getText() != null) {
+			customerVO = customerlist.get(customerTxt.getText());
+			if (customerVO != null) {
+				// 显示客户名和ID
+				customerIdLab.setText(customerVO.id);
+				customerNameLab.setText(customerVO.name);
+				// 当前已添加客户
+				hasCustomer = true;
+			} else {
+				MyOptionPane.showMessageDialog(frame, "请重新选择客户！");
+			}
+		}
+	}
+	
 	@Override
 	public void addCommodityLineItem(CommodityLineItemVO vo) {
 		for (int i = 0; i < commoditylist.size(); ++i) {

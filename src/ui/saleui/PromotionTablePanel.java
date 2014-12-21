@@ -13,14 +13,8 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class PromotionTablePanel extends TablePanel{
-
-	private String[] columnName;
 	
 	private static int COLUMN_NUM = 4;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<PromotionVO> list;
 	
@@ -39,9 +33,9 @@ public class PromotionTablePanel extends TablePanel{
 	 * 初始化表格
 	 */
 	protected void initTable(){
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData();
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				if(col==0){
@@ -75,13 +69,7 @@ public class PromotionTablePanel extends TablePanel{
 		row[2]=vo.discount;
 		row[3]=vo.voucher;
 	}
-	
-	public void deleteRow(){
-		if(this.isSelected()){
-			this.dtm.removeRow(this.table.getSelectedRow());
-		}
-	}
-	
+
 	public PromotionVO getSeleted(){
 		int row = this.table.getSelectedRow();
 		if(row==-1){

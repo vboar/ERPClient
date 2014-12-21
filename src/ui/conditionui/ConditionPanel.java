@@ -6,6 +6,7 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ui.util.MyLabel;
 import ui.util.MyTabbedPane;
 import config.ERPConfig;
 import config.PanelConfig;
@@ -47,6 +48,7 @@ public class ConditionPanel extends JPanel {
 	}
 	
 	private void initComponent() {
+		this.add(new MyLabel(cfg.getLabels().element("title")));
     	this.detailsPanel = new SaleDetailsPanel(frame);
     	this.historyPanel = new HistoryPanel(frame);
     	this.conditionPanel = new BusinessConditionPanel(frame);

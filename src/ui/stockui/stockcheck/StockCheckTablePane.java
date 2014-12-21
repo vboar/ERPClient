@@ -22,14 +22,8 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class StockCheckTablePane extends TablePanel{
 
-	private String[] columnName;
-	
 	private static int COLUMN_NUM = 6;
-	
-	private Object[][] data;
 
-	private DefaultTableModel dtm;
-	
 	private ArrayList<StockVO> mylist;
 	
 	private StockBLService controller;
@@ -43,9 +37,9 @@ public class StockCheckTablePane extends TablePanel{
 	}
 
 	protected void initTable(){
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData(mylist);
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
@@ -75,7 +69,7 @@ public class StockCheckTablePane extends TablePanel{
 	public void showFindTable(ArrayList<StockVO> list){
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnName[i]);
+			names.add(columnNames[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){
@@ -102,7 +96,7 @@ public class StockCheckTablePane extends TablePanel{
 		mylist = controller.showCheck();
 		System.out.println(mylist.size());
 		this.initData(mylist);
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
 		this.updateUI();	
 	}
@@ -110,7 +104,7 @@ public class StockCheckTablePane extends TablePanel{
 	public void showFindCheck(String date){
 		mylist = controller.findByDate(date, "00001");
 		this.initData(mylist);
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
 		this.updateUI();
 		if(mylist.size()==0){

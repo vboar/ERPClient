@@ -11,13 +11,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class IncomeTable extends TablePanel{
 
-	private String[] columnNames;
-
 	private static int COLUMN_NUM = 6;
-
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	public IncomeTable(TableConfig cfg) {
 		super(cfg);

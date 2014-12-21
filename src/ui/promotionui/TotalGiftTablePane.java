@@ -2,6 +2,7 @@ package ui.promotionui;
 
 import java.util.ArrayList;
 
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -15,15 +16,9 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class TotalGiftTablePane extends TablePanel{
 
-	private String[] columnName;
-	
 	private static int COLUMN_NUM = 7;
 	
 	private int padding = 30;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<TotalGiftVO> list;
 	
@@ -39,17 +34,17 @@ public class TotalGiftTablePane extends TablePanel{
 
 	@Override
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData();
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
-		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
-		this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.updateWidth();
 	}
 
 	public void initData() {
@@ -107,17 +102,15 @@ public class TotalGiftTablePane extends TablePanel{
 		this.dtm.addRow(newRow);
 		this.list.add(vo);
 	}
-
-	public void deleteRow(){
-		if(this.isSelected()){
-			this.dtm.removeRow(this.table.getSelectedRow());
-		}
-	}
 	
 	public void updateData(){
 		list = controller.show();
 		this.initData();
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
+		this.updateWidth();
+	}
+	
+	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
 		this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
 		this.updateUI();

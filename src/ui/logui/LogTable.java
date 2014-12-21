@@ -19,13 +19,7 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class LogTable extends TablePanel {
 
-    private String[] columnName;
-
     private static int COLUMN_NUM = 3;
-
-    private Object[][] data;
-
-    private DefaultTableModel dtm;
 
     private ArrayList<LogVO> list;
 
@@ -41,9 +35,9 @@ public class LogTable extends TablePanel {
 
     @Override
     protected void initTable() {
-        this.columnName = cfg.getColumnName();
+        this.columnNames = cfg.getColumnName();
         this.initData(list);
-        this.dtm = new DefaultTableModel(this.data, this.columnName) {
+        this.dtm = new DefaultTableModel(this.data, this.columnNames) {
             @Override
             public boolean isCellEditable(int row, int col){
                 return false;
@@ -83,7 +77,7 @@ public class LogTable extends TablePanel {
     public void find(String time1, String time2, String operatorId) {
         list = controller.find(time1, time2, operatorId);
         initData(list);
-        this.dtm.setDataVector(data, columnName);
+        this.dtm.setDataVector(data, columnNames);
         updateUI();
     }
 }

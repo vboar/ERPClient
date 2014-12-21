@@ -75,4 +75,14 @@ public class FrameUtil {
 			return null;
 		}
 	}
+	
+	public static String autoLineFeed(String str){
+		String newStr = "<html>";
+		String[] list = str.split(",");
+		for(int i=0; i<list.length ; ++i){
+			newStr = newStr + list[i] +"<br>";
+		}
+		newStr += "<html>";
+		return newStr;
+	}
 }

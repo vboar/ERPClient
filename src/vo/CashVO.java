@@ -114,9 +114,10 @@ public class CashVO implements DocumentVO{
 	
 	public String listToStr(){
 		String str="";
-		for(int i=0; i<this.clauseList.size();++i){
-			str = str + clauseList.get(i).toString() +" \n";
+		for(int i=0; i<this.clauseList.size()-1;++i){
+			str = str + clauseList.get(i).toString() +",";
 		}
+		str = str + clauseList.get(clauseList.size()-1).toString();
 		return str;
 	}
 }

@@ -12,20 +12,16 @@ import ui.util.TablePanel;
 import util.UserType;
 import vo.UserVO;
 
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 import java.util.ArrayList;
 import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class UserTablePane extends TablePanel{
 
-	private String[] columnName;
-	
 	private static int COLUMN_NUM = 5;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<UserVO> list;
 	
@@ -45,15 +41,16 @@ public class UserTablePane extends TablePanel{
 	 * 初始化表格
 	 */
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData(list);
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.table.setUnvisibleColumn(2);
 	}
 
@@ -79,15 +76,6 @@ public class UserTablePane extends TablePanel{
 		this.dtm.addRow(newUser);
 	}
 
-	/**
-	 * 删除一行
-	 */
-	public void deleteRow(){
-		if(this.isSelected()){
-			this.dtm.removeRow(this.table.getSelectedRow());
-		}
-	}
-	
 	/**
 	 * 更新一行
 	 * @param vo
@@ -136,7 +124,7 @@ public class UserTablePane extends TablePanel{
 	public void showFindTable(ArrayList<UserVO> list){
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnName[i]);
+			names.add(columnNames[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){

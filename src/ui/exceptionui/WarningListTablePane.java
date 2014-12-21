@@ -1,7 +1,11 @@
 package ui.exceptionui;
 
+import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -20,14 +24,8 @@ import config.TableConfig;
  */
 @SuppressWarnings("serial")
 public class WarningListTablePane extends TablePanel {
-	
-	private String[] columnName;
-	
-	private static int COLUMN_NUM = 3;
-	
-	private Object[][] data;
 
-	private DefaultTableModel dtm;
+	private static int COLUMN_NUM = 3;
 	
 	private ArrayList<WarningVO> list;
 	
@@ -49,15 +47,16 @@ public class WarningListTablePane extends TablePanel {
 	 */
 	@Override
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData();
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.table.setRowSorter(null);
 		this.updateWidth();
 	}
@@ -94,7 +93,7 @@ public class WarningListTablePane extends TablePanel {
 	 */
 	public void updateData() {
 		this.initData();
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
 	}
 
@@ -114,7 +113,7 @@ public class WarningListTablePane extends TablePanel {
 			WarningVO temp = list.get(i);
 			this.createRow(data[i], temp);
 		}
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
 		if (list.size() == 0) {
 			MyOptionPane.showMessageDialog(WarningListTablePane.this,
@@ -127,6 +126,15 @@ public class WarningListTablePane extends TablePanel {
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(1).setMinWidth(160);
         this.table.getColumnModel().getColumn(2).setMinWidth(460);
+		this.table.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer(){
+			@Override
+			 public Component getTableCellRendererComponent(JTable table, Object value,
+                     boolean isSelected, boolean hasFocus, int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				this.setToolTipText(FrameUtil.autoLineFeed(value.toString()));
+				return this;
+			}
+		});
         this.updateUI();
 	}
 

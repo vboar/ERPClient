@@ -106,7 +106,6 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		this.setLayout(null);
 		// 初始化组件
 		this.initComponent();
-		this.showPurchase(new RequirementVO(), false);
 		this.setVisible(true);
 		this.repaint();	
 	}
@@ -197,12 +196,10 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 			MyOptionPane.showMessageDialog(frame, "请选择一张单据！");
 			return;
 		}
-		// TODO
 		switch(tableType){
 		case PRESENT: showPresentDocument(type); break;
 		case OVERFLOW: showExceptionDocument(type,false); break;
 		case LOSS: 	showExceptionDocument(type,true); break;
-		case WARNING: break;
 		case SALE: showSaleDocument(type,false);break;
 		case SALERETURN: showSaleDocument(type,true);break;
 		case PURCHASE: showPurchaseDocument(type,false);break;
@@ -210,6 +207,9 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 		case RECEIPT:  showPaymentDocument(type,true);break;
 		case PAYMENT:  showPaymentDocument(type,false);break;
 		case CASH: showCashDocument(type);break;
+		case WARNING: 
+			MyOptionPane.showMessageDialog(frame, "报警单不可红冲！");
+			break;
 		default:
 			return;
 		}

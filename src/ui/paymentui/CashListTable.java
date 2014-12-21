@@ -1,7 +1,11 @@
 package ui.paymentui;
 
+import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -19,13 +23,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class CashListTable extends TablePanel {
 
-    private String[] columnName;
-
     private static int COLUMN_NUM = 7;
-
-    private Object[][] data;
-
-    private DefaultTableModel dtm;
 
     private ArrayList<CashVO> list;
 
@@ -42,15 +40,16 @@ public class CashListTable extends TablePanel {
 
     @Override
     protected void initTable() {
-        this.columnName = cfg.getColumnName();
+        this.columnNames = cfg.getColumnName();
         initData(list);
-        this.dtm = new DefaultTableModel(this.data,this.columnName){
+        this.dtm = new DefaultTableModel(this.data,this.columnNames){
             @Override
             public boolean isCellEditable(int row, int col){
                 return false;
             }
         };
         this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.updateWidth();
     }
 
@@ -94,7 +93,7 @@ public class CashListTable extends TablePanel {
         	CashVO temp = list.get(i);
         	this.createRow(data[i], temp);
         }
-        this.dtm.setDataVector(data, columnName);
+        this.dtm.setDataVector(data, columnNames);
         this.updateWidth();
     }
     
@@ -102,6 +101,15 @@ public class CashListTable extends TablePanel {
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(4).setMinWidth(300);
+		this.table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer(){
+			@Override
+			 public Component getTableCellRendererComponent(JTable table, Object value,
+                     boolean isSelected, boolean hasFocus, int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				this.setToolTipText(FrameUtil.autoLineFeed(value.toString()));
+				return this;
+			}
+		});
         this.updateUI();
 	}
 

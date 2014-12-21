@@ -187,9 +187,20 @@ public class SaleVO implements DocumentVO {
 	
 	public String giftListToStr(){
 		String str="";
-		for(int i=0; i<giftList.size(); ++i){
-			str = str + giftList.get(i).toString() + "\n";
+		for(int i=0; i<giftList.size()-1; ++i){
+			str = str + giftList.get(i).toString() + ",";
 		}
+		str = str + giftList.get(giftList.size()-1).toString();
 		return str;
 	}
+	
+	public String saleListToStr(){
+		String str="";
+		for(int i=0; i<saleList.size()-1; ++i){
+			str = str + saleList.get(i).toString() + ",";
+		}
+		str += saleList.get(saleList.size()-1).toString();
+		return str;
+	}
+	
 }

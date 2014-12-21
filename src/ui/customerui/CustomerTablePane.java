@@ -9,6 +9,7 @@ package ui.customerui;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.MyTable;
@@ -19,14 +20,8 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class CustomerTablePane extends TablePanel {
-	
-	private String[] columnName;
-	
-	private static int COLUMN_NUM = 12;
-	
-	private Object[][] data;
 
-	private DefaultTableModel dtm;
+	private static int COLUMN_NUM = 12;
 	
 	public ArrayList<CustomerVO> list;
 
@@ -38,15 +33,16 @@ public class CustomerTablePane extends TablePanel {
 	}
 
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData(list);
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 	
 	public void initData(ArrayList<CustomerVO> list) {
@@ -132,7 +128,7 @@ public class CustomerTablePane extends TablePanel {
 	public void showFindTable(ArrayList<CustomerVO> list) {
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnName[i]);
+			names.add(columnNames[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){

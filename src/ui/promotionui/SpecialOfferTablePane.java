@@ -15,15 +15,9 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class SpecialOfferTablePane extends TablePanel{
 	
-	private String[] columnName;
-	
 	private static int COLUMN_NUM = 6;
 	
 	private int padding = 50;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<SpecialOfferVO> list;
 	
@@ -39,9 +33,9 @@ public class SpecialOfferTablePane extends TablePanel{
 
 	@Override
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData();
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
@@ -98,17 +92,11 @@ public class SpecialOfferTablePane extends TablePanel{
 		this.dtm.addRow(newRow);
 		this.list.add(vo);
 	}
-
-	public void deleteRow(){
-		if(this.isSelected()){
-			this.dtm.removeRow(this.table.getSelectedRow());
-		}
-	}
 	
 	public void updateData(){
 		list = controller.show();
 		this.initData();
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		FrameUtil.setTableColumnWidth(table, this.getWidth(), padding);
 		this.updateUI();
 	}

@@ -8,14 +8,22 @@ package ui.util;
 import config.TableConfig;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 
 @SuppressWarnings("serial")
 public abstract class TablePanel extends JPanel{
 
-	protected RowTableScrollPane rollpane;
+	protected String[] columnNames;
+	
+	protected Object[][] data;
+
+	protected DefaultTableModel dtm;
 	
 	protected MyTable table;
+	
+	protected RowTableScrollPane rollpane;
 	
 	protected TableConfig cfg;
 	
@@ -34,8 +42,6 @@ public abstract class TablePanel extends JPanel{
 		//创建滚动条面板
 		this.rollpane = new RowTableScrollPane(this.table);
 		this.rollpane.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()-5));
-		//this.rollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		//this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.add(this.rollpane);
 	}
 
@@ -54,4 +60,9 @@ public abstract class TablePanel extends JPanel{
 		this.rollpane.setRowHeaderWidth(width);
 	}
 	
+	public void deleteRow(){
+		if(this.isSelected()){
+			this.dtm.removeRow(this.table.getSelectedRow());
+		}
+	}
 }

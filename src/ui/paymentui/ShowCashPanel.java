@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -82,8 +84,28 @@ public class ShowCashPanel extends CashDocumentPanel implements FuzzySearch,
 		this.add(table);
 		accountFind = new MySpecialTextField(cfg.getTextFields().element(
 				"accountfind"), this);
+		accountFind.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					showAccountInfo();
+				}
+			}
+		});
 		if (type != 1)
 			add(accountFind);
+	}
+
+	protected void showAccountInfo() {
+		if (accountFind.getText() != null) {
+			accountVO = accountList.get(accountFind.getText());
+			if (accountVO != null) {
+				accountIdLab.setText(accountVO.account);
+				accountNameLab.setText(accountVO.name);
+				hasAccount = true;
+			} else {
+				MyOptionPane.showMessageDialog(null, "请重新选择账户！");
+			}
+		}
 	}
 
 	private void initButtons() {
@@ -94,16 +116,7 @@ public class ShowCashPanel extends CashDocumentPanel implements FuzzySearch,
 			addAccountBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (accountFind.getText() != null) {
-						accountVO = accountList.get(accountFind.getText());
-						if (accountVO != null) {
-							accountIdLab.setText(accountVO.account);
-							accountNameLab.setText(accountVO.name);
-							hasAccount = true;
-						} else {
-							MyOptionPane.showMessageDialog(null, "请重新选择账户！");
-						}
-					}
+					showAccountInfo();
 				}
 			});
 			// 添加条目按钮

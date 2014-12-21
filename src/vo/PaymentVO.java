@@ -130,9 +130,10 @@ public class PaymentVO implements DocumentVO {
 	
 	public String listToStr(){
 		String str = "";
-		for(int i=0; i<transferList.size();++i){
-			str = str + transferList.get(i).toString()+" \n";
+		for(int i=0; i<transferList.size()-1;++i){
+			str = str + transferList.get(i).toString()+",";
 		}
+		str = str + transferList.get(transferList.size()-1).toString();
 		return str;
 	}
 }

@@ -804,6 +804,7 @@
 		<panel className="ui.purchaseui.ShowPurchasePanel" width="760"
 			height="500" x="0" y="0" bg="img/document/jhd.jpg" bg1="img/document/jhthd.jpg">
 			<buttons>
+				<addcustomer text="添加客户" w="80" h="25" x="640" y="75" />
 				<add text="添加商品" w="80" h="25" x="520" y="115" />
 				<delete text="删除商品" w="80" h="25" x="620" y="115" />
 				<commit text="提交" w="80" h="30" x="270" y="460" />

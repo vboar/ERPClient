@@ -19,13 +19,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class MessageTable extends TablePanel {
 
-    private String[] columnName;
-
     private static int COLUMN_NUM = 3;
-
-    private Object[][] data;
-
-    private DefaultTableModel dtm;
 
     private ArrayList<MessageVO> list;
 
@@ -42,9 +36,9 @@ public class MessageTable extends TablePanel {
 
     @Override
     protected void initTable() {
-        this.columnName = cfg.getColumnName();
+        this.columnNames = cfg.getColumnName();
         this.initData(list);
-        this.dtm = new DefaultTableModel(this.data, this.columnName) {
+        this.dtm = new DefaultTableModel(this.data, this.columnNames) {
             @Override
             public boolean isCellEditable(int row, int col){
                 return false;

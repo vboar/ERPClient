@@ -1,7 +1,11 @@
 package ui.presentui;
 
+import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -22,13 +26,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class PresentListTablePane extends TablePanel {
 
-	private String[] columnName;
-
 	private static int COLUMN_NUM = 6;
-
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 
 	private ArrayList<PresentVO> list;
 
@@ -43,20 +41,21 @@ public class PresentListTablePane extends TablePanel {
 	}
 
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData();
 		this.data = new Object[list.size()][COLUMN_NUM];
 		for (int i = 0; i < list.size(); ++i) {
 			PresentVO temp = list.get(i);
 			this.createRow(data[i], temp);
 		}
-		this.dtm = new DefaultTableModel(this.data, this.columnName) {
+		this.dtm = new DefaultTableModel(this.data, this.columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
 			}
 		};
 		this.table = new MyTable(this.dtm, this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.updateWidth();
 	}
 
@@ -76,14 +75,14 @@ public class PresentListTablePane extends TablePanel {
 		row[1] = vo.time;
 		row[2] = vo.customerId;
 		row[3] = vo.customerName;
-		row[4] = vo.list.toString();
+		row[4] = vo.listToStr();
 		row[5] = vo.documentStatus.toReadableString();
 		return row;
 	}
 
 	public void updateData() {
 		this.initData();
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
 	}
 
@@ -99,7 +98,7 @@ public class PresentListTablePane extends TablePanel {
 			PresentVO temp = list.get(i);
 			this.createRow(data[i], temp);
 		}
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
 		if (list.size() == 0) {
 			MyOptionPane.showMessageDialog(PresentListTablePane.this,
@@ -112,6 +111,15 @@ public class PresentListTablePane extends TablePanel {
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(1).setMinWidth(160);
         this.table.getColumnModel().getColumn(4).setMinWidth(300);
+		this.table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer(){
+			@Override
+			 public Component getTableCellRendererComponent(JTable table, Object value,
+                     boolean isSelected, boolean hasFocus, int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				this.setToolTipText(FrameUtil.autoLineFeed(value.toString()));
+				return this;
+			}
+		});
         this.updateUI();
 	}
 

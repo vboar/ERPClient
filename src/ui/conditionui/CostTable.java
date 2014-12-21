@@ -11,13 +11,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class CostTable extends TablePanel{
 
-	private String[] columnNames;
-
 	private static int COLUMN_NUM = 4;
-
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	public CostTable(TableConfig cfg) {
 		super(cfg);

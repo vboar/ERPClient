@@ -1,5 +1,6 @@
 package ui.promotionui;
 
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.MyTable;
@@ -9,14 +10,8 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class SpecialCommodityTablePane extends TablePanel{
-	
-	private String[] columnName;
-	
-	private static int COLUMN_NUM = 4;
-	
-	private Object[][] data;
 
-	private DefaultTableModel dtm;
+	private static int COLUMN_NUM = 4;
 	
 	/**
 	 * 构造函数
@@ -32,10 +27,11 @@ public class SpecialCommodityTablePane extends TablePanel{
 	 * 初始化表格
 	 */
 	protected void initTable(){
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.data = new Object[0][COLUMN_NUM];
-		this.dtm = new DefaultTableModel(this.data,this.columnName);
+		this.dtm = new DefaultTableModel(this.data,this.columnNames);
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.table.setRowSorter(null);
 	}
 	
@@ -51,10 +47,5 @@ public class SpecialCommodityTablePane extends TablePanel{
 		row[2]=vo.model;
 		row[3]=vo.number;
 	}
-	
-	public void deleteRow(){
-		if(this.isSelected()){
-			this.dtm.removeRow(this.table.getSelectedRow());
-		}
-	}
+
 }

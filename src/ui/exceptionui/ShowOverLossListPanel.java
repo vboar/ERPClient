@@ -22,7 +22,7 @@ import config.TableConfig;
  * @date 2014/12/5
  */
 @SuppressWarnings("serial")
-public class ShowOverLossPanel extends JPanel{
+public class ShowOverLossListPanel extends JPanel{
 
 	private DatePickerGroup start;
 
@@ -42,7 +42,7 @@ public class ShowOverLossPanel extends JPanel{
 	 * 构造函数
 	 * @param isloss true显示报损单，false显示报溢单
 	 */
-	public ShowOverLossPanel(boolean isloss) {
+	public ShowOverLossListPanel(boolean isloss) {
 		this.isloss = isloss;
 		this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap()
 				.get(this.getClass().getName());
@@ -91,7 +91,7 @@ public class ShowOverLossPanel extends JPanel{
 				String time1 = FrameUtil.getFormattedDate(start.getDate());
 				String time2 = FrameUtil.getFormattedDate(end.getDate());
 				if ((time1 != null) && (time2 != null) && (time1.compareTo(time2) > 0)) {
-					MyOptionPane.showMessageDialog(ShowOverLossPanel.this, "请输入有效日期！", "错误提示",
+					MyOptionPane.showMessageDialog(ShowOverLossListPanel.this, "请输入有效日期！", "错误提示",
 							MyOptionPane.ERROR_MESSAGE);
 					return;
 				}

@@ -120,4 +120,13 @@ public class PurchaseVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 		this.documentStatus = status;
 	}
+	
+	public String listToStr(){
+		String str="";
+		for(int i=0; i<saleList.size()-1; ++i){
+			str=str+saleList.get(i)+",";
+		}
+		str+=saleList.get(saleList.size()-1);
+		return str;
+	}
 }

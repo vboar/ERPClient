@@ -16,13 +16,7 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class PaymentLineItemTable extends TablePanel {
 
-	private String[] columnNames;
-
 	private static int COLUMN_NUM = 4;
-
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 
 	public PaymentLineItemTable(TableConfig cfg) {
 		super(cfg);
@@ -54,12 +48,6 @@ public class PaymentLineItemTable extends TablePanel {
 		row[1]=vo.bankAccount;
 		row[2]=vo.account;
 		row[3]=vo.remark;
-	}
-
-	public void deleteRow(){
-		if(this.isSelected()){
-			this.dtm.removeRow(this.table.getSelectedRow());
-		}
 	}
 
 }

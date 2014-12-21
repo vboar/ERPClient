@@ -22,13 +22,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class SaleDetailsTablePane extends TablePanel{
 	
-	private String[] columnName;
-	
 	private static int COLUMN_NUM = 6;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<SaleDetailsVO> list;
 	
@@ -43,9 +37,9 @@ public class SaleDetailsTablePane extends TablePanel{
 	
 	@Override
 	protected void initTable() {
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData();
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
@@ -79,7 +73,7 @@ public class SaleDetailsTablePane extends TablePanel{
 	
 	public void updateData() {
 		this.initData();
-		this.dtm.setDataVector(data, columnName);
+		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
 	}
 
@@ -87,7 +81,7 @@ public class SaleDetailsTablePane extends TablePanel{
 		list = controller.show(requierevo);
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnName[i]);
+			names.add(columnNames[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){

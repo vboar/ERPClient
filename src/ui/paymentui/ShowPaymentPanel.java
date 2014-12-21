@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -83,9 +85,16 @@ public class ShowPaymentPanel extends PaymentDocumentPanel implements
 		this.add(table);
 		customerFind = new MySpecialTextField(cfg.getTextFields().element(
 				"customerfind"), this);
+		customerFind.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					showCustomerInfo();
+				}
+			}
+		});
 		if (type != 1)
 			add(customerFind);
-
 	}
 
 	private void initLabels() {
@@ -118,16 +127,7 @@ public class ShowPaymentPanel extends PaymentDocumentPanel implements
 			addCustomerBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (customerFind.getText() != null) {
-						customerVO = customerlist.get(customerFind.getText());
-						if (customerVO != null) {
-							customerIdLab.setText(customerVO.id);
-							customerNameLab.setText(customerVO.name);
-							hasCustomer = true;
-						} else {
-							MyOptionPane.showMessageDialog(null, "请重新选择客户！");
-						}
-					}
+					showCustomerInfo();
 				}
 			});
 			// 添加账户按钮
@@ -163,7 +163,20 @@ public class ShowPaymentPanel extends PaymentDocumentPanel implements
 			this.add(deleteBtn);
 		}
 	}
-
+	
+	protected void showCustomerInfo() {
+		if(customerFind.getText() != null){
+			customerVO = customerlist.get(customerFind.getText());
+			if(customerVO != null){
+				customerIdLab.setText(customerVO.id);
+				customerNameLab.setText(customerVO.name);
+				hasCustomer = true;
+			}else{
+				MyOptionPane.showMessageDialog(null, "请重新选择客户！");
+			}
+		}
+	}
+	
 	@Override
 	public ArrayList<String> getFuzzyResult(String keyword) {
 		ArrayList<CustomerVO> result = customerController.fuzzyFind(keyword);

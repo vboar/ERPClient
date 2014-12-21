@@ -20,14 +20,8 @@ import config.TableConfig;
  */
 @SuppressWarnings("serial")
 public class StockTablePane extends TablePanel{
-
-	private String[] columnName;
 	
 	private static int COLUMN_NUM = 8;
-	
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<StockInfoVO> list;
 	
@@ -39,9 +33,9 @@ public class StockTablePane extends TablePanel{
 	}
 	
 	protected void initTable(){
-		this.columnName = cfg.getColumnName();
+		this.columnNames = cfg.getColumnName();
 		this.initData(list);
-		this.dtm = new DefaultTableModel(this.data,this.columnName){
+		this.dtm = new DefaultTableModel(this.data,this.columnNames){
 			@Override
 			public boolean isCellEditable(int row, int col){
 				return false;
@@ -72,7 +66,7 @@ public class StockTablePane extends TablePanel{
 	public void showFindTable(ArrayList<StockInfoVO> list){
 		Vector<String> names = new Vector<String>(COLUMN_NUM);
 		for(int i=0; i<COLUMN_NUM;++i){
-			names.add(columnName[i]);
+			names.add(columnNames[i]);
 		}
 		Vector<Object> table = new Vector<Object>(list.size());
 		for(int i=0; i<list.size(); ++i){

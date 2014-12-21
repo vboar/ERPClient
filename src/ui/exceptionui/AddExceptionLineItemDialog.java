@@ -2,6 +2,8 @@ package ui.exceptionui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -56,6 +58,8 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 	
 	private CommodityVO addCommodityVO;
 	
+	private boolean hasCommodity=false;
+	
 	private ExceptionLineItemVO exceptionLineItemVO;
 	
 	private HashMap<String, CommodityVO> vomap;
@@ -95,6 +99,14 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 		
 		// 初始化输入框
 		this.commodityTxt = new MySpecialTextField(this.cfg.getTextFields().element("commodity"), this);
+		this.commodityTxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					showCommodityInfo();
+				}
+			}
+		});
 		this.numberTxt = new MyTextField(this.cfg.getTextFields().element("number"));	
 		this.add(this.commodityTxt);
 		this.add(this.numberTxt);
@@ -117,6 +129,21 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 
 	}
 
+	protected void showCommodityInfo() {
+		if(commodityTxt.getText()!=null){
+			addCommodityVO = vomap.get(commodityTxt.getText());
+			if(addCommodityVO!=null){
+				currentId.setText(addCommodityVO.id);
+				currentName.setText(addCommodityVO.name);
+				currentModel.setText(addCommodityVO.model);
+				currentSystemNum.setText(Integer.toString(addCommodityVO.number));
+				hasCommodity = true;
+			}else{
+				MyOptionPane.showMessageDialog(frame, "请重新选择商品！");
+			}
+		}
+	}
+
 	/**
 	 * 初始化按钮
 	 */
@@ -126,17 +153,7 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 		this.add.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(commodityTxt.getText()!=null){
-					addCommodityVO = vomap.get(commodityTxt.getText());
-					if(addCommodityVO!=null){
-						currentId.setText(addCommodityVO.id);
-						currentName.setText(addCommodityVO.name);
-						currentModel.setText(addCommodityVO.model);
-						currentSystemNum.setText(Integer.toString(addCommodityVO.number));
-					}else{
-						MyOptionPane.showMessageDialog(frame, "请重新选择商品！");
-					}
-				}
+				showCommodityInfo();
 			}
 		});
 		this.add(this.add);
@@ -152,9 +169,8 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 					try{
 					int num = Integer.parseInt(numberTxt.getText());
 					if(num<=0)	throw new NumberFormatException();
-					String info = commodityTxt.getText();
 					// 创建赠品信息
-					addCommodity(info,num);
+					addCommodity(num);
 					AddExceptionLineItemDialog.this.dispose();
 					}catch(NumberFormatException ex){
 						MyOptionPane.showMessageDialog(frame, "请输入合理数据！","错误提示",
@@ -186,9 +202,8 @@ public class AddExceptionLineItemDialog extends JDialog implements FuzzySearch{
 	 * @param key 商品
 	 * @param num 商品数量
 	 */
-	protected void addCommodity(String key, int num) {
-		addCommodityVO = this.vomap.get(key);
-		if(addCommodityVO!=null){
+	protected void addCommodity(int num) {
+		if(hasCommodity){
 			this.exceptionLineItemVO = new ExceptionLineItemVO(addCommodityVO.id, addCommodityVO.name,
 					addCommodityVO.model, addCommodityVO.number, 
 					num);;

@@ -170,7 +170,7 @@ public class ExceptionPanel extends JPanel {
 			}
 		}
 		removeAllPanel();
-		showWarningPanel = new ShowWarningPanel();
+		showWarningPanel = new ShowWarningListPanel();
 		add(showWarningPanel);
 		repaint();
 	}
@@ -188,7 +188,7 @@ public class ExceptionPanel extends JPanel {
 			}
 		}
 		removeAllPanel();
-		showOverLossPanel = new ShowOverLossPanel(isloss);
+		showOverLossPanel = new ShowOverLossListPanel(isloss);
 		add(showOverLossPanel);
 		repaint();
 	}

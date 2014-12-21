@@ -111,4 +111,14 @@ public class PresentVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 		this.documentStatus = status;
 	}
+
+	public String listToStr() {
+		String str="";
+		for(int i=0; i<this.list.size()-1; ++i){
+			str = str + list.get(i)+",";
+		}
+		str = str + list.get(list.size()-1);
+		return str;
+		
+	}
 }

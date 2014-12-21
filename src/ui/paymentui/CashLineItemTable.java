@@ -15,13 +15,7 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class CashLineItemTable extends TablePanel {
 
-    private String[] columnNames;
-
     private static int COLUMN_NUM = 3;
-
-    private Object[][] data;
-
-    private DefaultTableModel dtm;
 
     public CashLineItemTable(TableConfig cfg) {
         super(cfg);

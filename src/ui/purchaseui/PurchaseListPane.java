@@ -1,7 +1,11 @@
 package ui.purchaseui;
 
+import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -17,13 +21,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class PurchaseListPane extends TablePanel{
 
-	private String[] columnNames;
-
 	private static int COLUMN_NUM = 10;
-
-	private Object[][] data;
-
-	private DefaultTableModel dtm;
 	
 	private ArrayList<PurchaseVO> list;
 
@@ -54,6 +52,7 @@ public class PurchaseListPane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.updateWidth();
 	}
 
@@ -74,7 +73,7 @@ public class PurchaseListPane extends TablePanel{
 		row[3]=vo.customerName;
 		row[4]=vo.storage;
 		row[5]=vo.operatorId;
-		row[6]=vo.saleList;
+		row[6]=vo.listToStr();
 		row[7]=vo.total;
 		row[8]=vo.remark;
 		row[9]=vo.documentStatus.toReadableString();
@@ -139,6 +138,14 @@ public class PurchaseListPane extends TablePanel{
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
         this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(6).setMinWidth(300);
+        this.table.getColumnModel().getColumn(6).setCellRenderer(new DefaultTableCellRenderer(){
+			 public Component getTableCellRendererComponent(JTable table, Object value,
+                     boolean isSelected, boolean hasFocus, int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				this.setToolTipText(FrameUtil.autoLineFeed(value.toString()));
+				return this;
+			}
+        });
         this.updateUI();
 	}
 

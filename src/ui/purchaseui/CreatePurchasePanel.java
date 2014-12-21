@@ -3,6 +3,8 @@ package ui.purchaseui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -90,6 +92,14 @@ public class CreatePurchasePanel extends PurchaseDocumentPanel implements FuzzyS
 		// 客户信息模糊查找输入框
 		this.customerTxt = new MySpecialTextField(cfg.getTextFields().element(
 				"findcustomer"), this);
+		this.customerTxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					showCustomerInfo();
+				}
+			}
+		});
 		this.add(customerTxt);
 	}
 
@@ -118,18 +128,7 @@ public class CreatePurchasePanel extends PurchaseDocumentPanel implements FuzzyS
 		this.addCustomer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (customerTxt.getText() != null) {
-					customerVO = customerlist.get(customerTxt.getText());
-					if (customerVO != null) {
-						// 显示客户名和ID
-						customerIdLab.setText(customerVO.id);
-						customerNameLab.setText(customerVO.name);
-						// 当前已添加客户
-						hasCustomer = true;
-					} else {
-						MyOptionPane.showMessageDialog(frame, "请重新选择客户！");
-					}
-				}
+				showCustomerInfo();
 			}
 		});
 		// 添加商品按钮
@@ -193,6 +192,21 @@ public class CreatePurchasePanel extends PurchaseDocumentPanel implements FuzzyS
 		this.add(deleteBtn);
 		this.add(commitBtn);
 		this.add(cancelBtn);
+	}
+
+	protected void showCustomerInfo() {
+		if (customerTxt.getText() != null) {
+			customerVO = customerlist.get(customerTxt.getText());
+			if (customerVO != null) {
+				// 显示客户名和ID
+				customerIdLab.setText(customerVO.id);
+				customerNameLab.setText(customerVO.name);
+				// 当前已添加客户
+				hasCustomer = true;
+			} else {
+				MyOptionPane.showMessageDialog(frame, "请重新选择客户！");
+			}
+		}
 	}
 
 	protected void createPurchase() {
