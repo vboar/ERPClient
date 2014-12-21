@@ -36,7 +36,7 @@ public class InitialPanel extends JPanel {
     }
 
     private void initComponent() {
-        initialDoPanel = new InitialDoPanel(frame);
+        initialDoPanel = new InitialDoPanel(frame, this);
         initialHistoryPanel = new InitialHistoryPanel(frame);
         initialInfoPanel = new InitialInfoPanel(frame);
         tabPane = new MyTabbedPane();
@@ -52,4 +52,15 @@ public class InitialPanel extends JPanel {
         g.drawImage(cfg.getBg(), 0, 0, cfg.getW(),cfg.getH(),null);
     }
 
+    public InitialInfoPanel getInitialInfoPanel() {
+        return initialInfoPanel;
+    }
+
+    public InitialDoPanel getInitialDoPanel() {
+        return initialDoPanel;
+    }
+
+    public InitialHistoryPanel getInitialHistoryPanel() {
+        return initialHistoryPanel;
+    }
 }

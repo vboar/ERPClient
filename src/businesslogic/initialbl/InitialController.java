@@ -13,6 +13,8 @@ import businesslogicservice.initialblservice.InitialBLService;
 
 public class InitialController implements InitialBLService {
 
+	private Initial initial = new Initial();
+
 	@Override
 	public ArrayList<InitialVO> findById(String id) {
 		// TODO Auto-generated method stub
@@ -21,14 +23,12 @@ public class InitialController implements InitialBLService {
 
 	@Override
 	public ArrayList<InitialVO> show() {
-		// TODO Auto-generated method stub
-		return null;
+		return initial.show();
 	}
 
 	@Override
-	public ResultMessage initialAccount(InitialVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessage initialAccount() {
+		return initial.initialAccount();
 	}
 
 	@Override

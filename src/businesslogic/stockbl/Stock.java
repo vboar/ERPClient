@@ -6,6 +6,26 @@
 
 package businesslogic.stockbl;
 
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+
+import po.StockPO;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
+import vo.CommodityLineItemVO;
+import vo.CommodityVO;
+import vo.PresentLineItemVO;
+import vo.PresentVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
+import vo.SpecialOfferVO;
+import vo.StockInfoVO;
+import vo.StockVO;
 import businesslogic.commoditybl.Commodity;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.SpecialOfferPromotion;
@@ -14,17 +34,6 @@ import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
 import dataservice.datafactoryservice.DataFactoryImpl;
-import po.StockPO;
-import util.DocumentStatus;
-import util.DocumentType;
-import util.ResultMessage;
-import vo.*;
-
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 
 public class Stock {
 
@@ -258,7 +267,11 @@ public class Stock {
 				}
 			}
 			if (commodityvo.number != 0) {
+				
+
 				stockvo.avgPrice = allPrice / stockvo.number;
+				BigDecimal bg = new BigDecimal(stockvo.avgPrice);
+				stockvo.avgPrice = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			}
 			stockList.add(stockvo);
 			StockPO po = voToPO(stockvo);

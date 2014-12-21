@@ -6,10 +6,12 @@ import businesslogicservice.initialblservice.InitialBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import ui.util.MyButton;
+import vo.InitialVO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * 期初建账当前账期初信息面板
@@ -34,6 +36,8 @@ public class InitialInfoPanel extends JPanel {
     private PanelConfig cfg;
 
     private InitialBLService controller;
+
+    private String initialId;
 
     public InitialInfoPanel(JFrame frame) {
         this.frame = frame;
@@ -83,17 +87,48 @@ public class InitialInfoPanel extends JPanel {
             }
         });
 
+        updateInitialId();
+
         // 初始化小面板
-        commodityTreePanel = new CommodityTreePanel(frame, "currentdata");
+        commodityTreePanel = new CommodityTreePanel(frame, initialId);
         commodityTreePanel.init();
         add(commodityTreePanel);
-        customerInfoPanel = new CustomerInfoPanel("currentdata",
+        customerInfoPanel = new CustomerInfoPanel(initialId,
                 ControllerFactoryImpl.getInstance().getCustomerController());
         add(customerInfoPanel);
         customerInfoPanel.setVisible(false);
-        accountInfoPanel = new AccountInfoPanel("currentdata");
+        accountInfoPanel = new AccountInfoPanel(initialId);
         add(accountInfoPanel);
         accountInfoPanel.setVisible(false);
         // TODO
     }
+
+    public void updateCommodityTree() {
+        if(commodityTreePanel != null) {
+            remove(commodityTreePanel);
+        }
+        commodityTreePanel = new CommodityTreePanel(frame, initialId);
+        commodityTreePanel.init();
+        add(commodityTreePanel);
+    }
+
+    public void updateInitialId() {
+        ArrayList<InitialVO> list = controller.show();
+        initialId = list.get(list.size()-1).id;
+    }
+
+    public void updateAll() {
+        updateInitialId();
+
+        if(commodityTreePanel.isVisible()) {
+            updateCommodityTree();
+            commodityTreePanel.setVisible(true);
+        } else {
+            updateCommodityTree();
+        }
+
+        customerInfoPanel.updateData(initialId);
+        accountInfoPanel.updateData(initialId);
+    }
+
 }

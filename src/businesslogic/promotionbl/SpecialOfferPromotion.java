@@ -90,7 +90,7 @@ public class SpecialOfferPromotion {
 			if (!po.isValid()) {
 				continue;
 			}
-			if (Utility.inTime(po.getStartTime(), po.getEndTime())) {
+			if (!Utility.inTime(po.getStartTime(), po.getEndTime())) {
 				continue;
 			}
 			SpecialOfferVO vo = poToVo(po);

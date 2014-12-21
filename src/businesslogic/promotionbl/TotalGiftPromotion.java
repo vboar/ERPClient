@@ -98,7 +98,7 @@ public class TotalGiftPromotion {
 			if (!po.isValid()) {
 				continue;
 			}
-			if (Utility.inTime(po.getStartTime(), po.getEndTime())) {
+			if (!Utility.inTime(po.getStartTime(), po.getEndTime())) {
 				continue;
 			}
 			TotalGiftVO vo = poToVo(po);

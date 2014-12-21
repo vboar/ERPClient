@@ -27,4 +27,6 @@ public interface CategoryDataService extends Remote {
 	
 	public ArrayList<CategoryPO> show() throws RemoteException;
 
+	public ArrayList<CategoryPO> showByInitial(String id) throws RemoteException;
+
 }

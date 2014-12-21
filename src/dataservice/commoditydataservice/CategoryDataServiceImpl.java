@@ -52,4 +52,9 @@ public class CategoryDataServiceImpl extends UnicastRemoteObject implements Cate
 		return null;
 	}
 
+	@Override
+	public ArrayList<CategoryPO> showByInitial(String id) throws RemoteException {
+		return null;
+	}
+
 }

@@ -1579,6 +1579,28 @@
 			</buttons>
 		</panel>
 
+		<!-- 期初建账中建账面板 -->
+		<panel className="ui.initialui.InitialDoPanel" width="760" height="510"
+			   x="200" y="0" bg="img/common/rightpanel.png">
+			<buttons>
+				<initial text="期初建账" w="80" h="30" x="30" y="10" />
+			</buttons>
+		</panel>
+
+		<!-- 期初建账当前账期初信息面板 -->
+		<panel className="ui.initialui.InitialHistoryPanel" width="760" height="510"
+			   x="200" y="0" bg="img/common/rightpanel.png">
+			<buttons>
+				<commodity text="商品信息" w="80" h="30" x="30" y="10" />
+				<customer text="客户信息" w="80" h="30" x="120" y="10" />
+				<account text="账户信息" w="80" h="30" x="210" y="10" />
+			</buttons>
+			<comboboxes>
+				<history w="150" h="25" x="580" y="10">
+				</history>
+			</comboboxes>
+		</panel>
+
 		<!-- 账户管理面板 -->
 		<panel className="ui.accountui.AccountPanel" width="760" height="510"
 			x="200" y="0" bg="img/common/rightpanel.png">

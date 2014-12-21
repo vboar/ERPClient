@@ -18,7 +18,7 @@ public class MessageVO {
 	public String time;
 	
 	/**
-	 * 状态		
+	 * 状态  0为未查看	
 	 */
 	public int state;
 	

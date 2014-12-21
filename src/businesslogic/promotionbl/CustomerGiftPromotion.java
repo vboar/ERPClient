@@ -113,7 +113,7 @@ public class CustomerGiftPromotion {
 			if(!po.isValid()){
 				continue;
 			}
-			if(Utility.inTime(po.getStartTime(), po.getEndTime())){
+			if(!Utility.inTime(po.getStartTime(), po.getEndTime())){
 				continue;
 			}
 			CustomerGiftVO vo=poToVo(po);
