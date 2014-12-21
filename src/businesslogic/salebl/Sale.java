@@ -472,13 +472,14 @@ public class Sale {
 		CustomerGiftPromotion bl=new CustomerGiftPromotion();
 		ArrayList<PromotionVO> result=new ArrayList<PromotionVO>();
 		ArrayList<CustomerGiftVO>voList=bl.show();
+		System.out.println("salebl:475 volist.size:"+voList.size());
 		for(CustomerGiftVO oldVO:voList){
 			if(oldVO.vip<=VIP){
 			PromotionVO vo=new PromotionVO(oldVO.id, oldVO.giftInfo, oldVO.discount, oldVO.voucher);
 			result.add(vo);
 			}
 		}
-		
+		System.out.println("salebl:481 cgp.size:"+result.size() );
 		return result;
 	}
 	
