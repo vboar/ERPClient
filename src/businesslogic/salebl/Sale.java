@@ -556,6 +556,11 @@ public class Sale {
 		//TODO
 		return null;
 	}
+
+	public void writeoff(SaleVO sale) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	}
