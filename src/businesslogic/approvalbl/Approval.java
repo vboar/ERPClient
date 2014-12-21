@@ -12,6 +12,7 @@ import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
+import util.UserType;
 import vo.CashVO;
 import vo.DocumentVO;
 import vo.ExceptionVO;
@@ -20,6 +21,7 @@ import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
+import vo.UserVO;
 import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
 import businesslogic.logbl.Log;
@@ -32,6 +34,7 @@ import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
+import businesslogic.userbl.User;
 import dataservice.datafactoryservice.DataFactoryImpl;
 //审批通过后：1、发消息到收件箱  2、修改相应数据
 public class Approval {
@@ -48,11 +51,11 @@ public class Approval {
 	}
 	
 	public ResultMessage approvePayment(PaymentVO vo){
-		String content;
+		String content; 
 		if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"财务人员",content);
-		sendMessage(message);
+		
+		sendMessage(new MessageVO(null,Time.getCurrentTime(),0,vo.operatorId,content));
 		
 		Payment p=new Payment();
 		if(vo.approvalState==DocumentStatus.PASSED){
@@ -65,9 +68,10 @@ public class Approval {
 	
 	public ResultMessage approveReceipt(PaymentVO vo){	
 		String content;
+		
 		if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"财务人员",content);
+		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,vo.operatorId,content);
 		sendMessage(message);
 		
 		Receipt r=new Receipt();
@@ -83,7 +87,7 @@ public class Approval {
 		String content;
 		if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
+		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,vo.operatorId,content);
 		sendMessage(message);
 			
 		Sale s=new Sale();
@@ -100,7 +104,7 @@ public class Approval {
 			String content;
 			if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 			else content="单据"+vo.id+"审批不通过";
-			MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
+			MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,vo.operatorId,content);
 			sendMessage(message);
 		}
 		
@@ -117,7 +121,7 @@ public class Approval {
 		String content;
 		if(vo.documentStatus==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
+		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,vo.operatorId,content);
 		sendMessage(message);
 		
 		Purchase p=new Purchase();
@@ -133,7 +137,7 @@ public class Approval {
 		String content;
 		if(vo.documentStatus==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
+		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,vo.operatorId,content);
 		sendMessage(message);
 		
 		
@@ -148,10 +152,13 @@ public class Approval {
 	
 	public ResultMessage approveOverflow(ExceptionVO vo){
 		String content;
+		User u=new User();
+		ArrayList<UserVO> user=u.findByType(UserType.STOCKKEEPER);
 		if(vo.status==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"库存管理人员",content);
-		sendMessage(message);
+		
+		for(int i=0;i<user.size();i++)
+			sendMessage(new MessageVO(null,Time.getCurrentTime(),0,user.get(i).id,content));
 		
 		Overflow of=new Overflow();
 		if(vo.status==DocumentStatus.PASSED){
@@ -164,10 +171,13 @@ public class Approval {
 	
 	public ResultMessage approveLoss(ExceptionVO vo){
 		String content;
+		User u=new User();
+		ArrayList<UserVO> user=u.findByType(UserType.STOCKKEEPER);
 		if(vo.status==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"库存管理人员",content);
-		sendMessage(message);
+		
+		for(int i=0;i<user.size();i++)
+		sendMessage(new MessageVO(null,Time.getCurrentTime(),0,user.get(i).id,content));
 		
 		Loss l=new Loss();
 		if(vo.status==DocumentStatus.PASSED){
@@ -182,7 +192,7 @@ public class Approval {
 		String content;
 		if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"财务人员",content);
+		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,vo.operator,content);
 		sendMessage(message);
 		
 		
@@ -197,11 +207,13 @@ public class Approval {
 	
 	public ResultMessage approvePresent(PresentVO vo){
 		String content;
+		User u=new User();
+		ArrayList<UserVO> user=u.findByType(UserType.STOCKKEEPER);
 		if(vo.documentStatus==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
 		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"库存管理人员",content);
-		sendMessage(message);
 		
+		for(int i=0;i<user.size();i++)
+		sendMessage(new MessageVO(null,Time.getCurrentTime(),0,user.get(i).id,content));
 		
 		Present p=new Present();
 		if(vo.documentStatus==DocumentStatus.PASSED){

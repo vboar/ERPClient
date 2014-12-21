@@ -13,13 +13,14 @@ import po.UserPO;
 import util.ResultMessage;
 import util.UserType;
 import vo.UserVO;
+import businesslogic.logbl.Log;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class User {
 	public ResultMessage createLog(String content) {
-		//TODO
-		return null;
+		Log l=new Log();
+		return l.add(content);
 	}
 
 	/**

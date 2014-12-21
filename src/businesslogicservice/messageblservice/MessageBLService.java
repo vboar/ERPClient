@@ -33,8 +33,6 @@ public interface MessageBLService {
 	 * @return 消息列表
 	 */
 	public ArrayList<MessageVO> showByUser(UserVO vo);
-	
-	public ArrayList<MessageVO> showByStatus(int state);
 
 	/***
 	 * 根据单据审批状态查询
@@ -42,5 +40,7 @@ public interface MessageBLService {
 	 * @return
 	 */
 	public ArrayList<MessageVO> findByStatus(int state);
+	
+	public ArrayList<MessageVO> show();
 
 }

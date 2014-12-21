@@ -96,6 +96,11 @@ public class Message {
 		return result;
 	}
 	
+	public ArrayList<MessageVO> show(){
+		ArrayList<MessageVO> result=showByUser(new UserVO(Login.currentUserId,"",UserType.ADMINISTRATOR,0,Login.currentUserName));
+		return result;
+	}
+	
 	public String createId(){
 		Date date=new Date();
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");

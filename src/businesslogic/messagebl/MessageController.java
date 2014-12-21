@@ -34,16 +34,18 @@ public class MessageController implements MessageBLService {
 	}
 
 	@Override
-	public ArrayList<MessageVO> showByStatus(int status){
-		return m.showByStatus(status);
-	}
-
-	@Override
 	public ArrayList<MessageVO> findByStatus(int state) {
+		m.addLog("按照状态查看消息");
 		return m.showByStatus(state);
 	}
 
 	public String createId(){
 		return m.createId();
+	}
+
+	@Override
+	public ArrayList<MessageVO> show() {
+		m.addLog("显示所有消息");
+		return m.show();
 	}
 }
