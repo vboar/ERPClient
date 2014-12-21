@@ -258,7 +258,7 @@ public class Customer {
 		}else{
 			CustomerVO max=list.get(list.size()-1);
 			DecimalFormat df=new DecimalFormat("00000");
-			int m=Integer.parseInt(max.id);
+			int m=Integer.parseInt(max.id.substring(2));
 			id=df.format(m+1);
 		}
 		return id;
