@@ -391,18 +391,36 @@ public class Commodity {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<CategoryCommodityVO> showByInitial(String id) {
-		// TODO
-		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
+		ArrayList<CategoryCommodityVO> voList = new ArrayList<CategoryCommodityVO>();
+
+		ArrayList<CategoryPO> caPOList=null;
 		try {
-			ArrayList<CommodityPO> poList = DataFactoryImpl.getInstance().getCommodityData().showByInitial(id);
-			for(CommodityPO po: poList) {
-				list.add(commodityPOToCommodityVO(po));
-			}
+			 caPOList=DataFactoryImpl.getInstance().getCategoryData().showByInitial(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		Collections.sort(list, new SortByIdForBig());
-		return null;
+		for (CategoryPO capo : caPOList) {
+			CategoryVO cavo=new Category().CategoryPOToCategoryVO(capo);
+			CategoryCommodityVO cacovo = new CategoryCommodityVO(cavo.id, cavo,
+					null);
+			voList.add(cacovo);
+		}
+
+		ArrayList<CommodityPO> coPOList=null;
+		try {
+			coPOList=DataFactoryImpl.getInstance().getCommodityData().showByInitial(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (CommodityPO copo : coPOList) {
+			CommodityVO covo=commodityPOToCommodityVO(copo);
+			CategoryCommodityVO cacovo = new CategoryCommodityVO(covo.id, null,
+					covo);
+			voList.add(cacovo);
+		}
+		Collections.sort(voList, new SortByIdForBig());
+
+		return voList;
 	}
 
 
