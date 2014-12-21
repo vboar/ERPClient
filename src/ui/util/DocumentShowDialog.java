@@ -80,7 +80,7 @@ public class DocumentShowDialog extends JDialog {
 							"确认提示", MyOptionPane.YES_NO_OPTION,
 							MyOptionPane.QUESTION_MESSAGE);
 					if (result == MyOptionPane.YES_OPTION) {
-						// 创建一张进货单
+						// 创建一张复制单据
 						if (writeoffCtrl.create(panel.getDocumentType(),
 								panel.getDocumentID()) == ResultMessage.SUCCESS) {
 							panel.createCopyDocument();
