@@ -27,9 +27,8 @@ public class InitialController implements InitialBLService {
 	}
 
 	@Override
-	public ResultMessage initialAccount(InitialVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessage initialAccount() {
+		return initial.initialAccount();
 	}
 
 	@Override

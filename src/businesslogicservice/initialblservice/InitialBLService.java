@@ -28,10 +28,9 @@ public interface InitialBLService {
 
 	/**
 	 * 初始化建账
-	 * @param vo
 	 * @return 成功与否消息
 	 */
-	public ResultMessage initialAccount(InitialVO vo);
+	public ResultMessage initialAccount();
 	
 	/**
 	 * 返回对应账本商品信息

@@ -24,6 +24,7 @@ public class CommodityTreePanel extends CommodityTreePane {
     public CommodityTreePanel(JFrame frame, String initialId) {
         super(ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().
                 get("ui.commodityui.commodityui.CommodityPanel").getTree(), frame);
+        this.initialId = initialId;
         this.setBounds(this.getX(), 50, this.getWidth(), this.getHeight()-40);
     }
 

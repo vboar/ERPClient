@@ -16,9 +16,11 @@ import po.WarningPO;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
+import vo.MessageVO;
 import vo.WarningLineItemVO;
 import vo.WarningVO;
 import businesslogic.logbl.Log;
+import businesslogic.messagebl.Message;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 
@@ -51,9 +53,18 @@ public class Warning {
 		}
 	}
 	
+	public void sendMessage(MessageVO vo){
+		Message m=new Message();
+		m.add(vo);
+	}
+	
 	public ResultMessage create(WarningVO vo){
 		vo.time=Time.getCurrentTime();
 		vo.id=createId();
+		
+		String content="库存报警!请尽快查看报警单"+vo.id;
+		sendMessage(new MessageVO(null,Time.getCurrentTime(),0,"库存管理人员",content));
+		
 		try {
 			DataFactoryImpl.getInstance().getWarningData().insert(voToPo(vo));
 		} catch (RemoteException e) {
