@@ -33,8 +33,7 @@ public class CommodityTreePanel extends CommodityTreePane {
     @Override
     public void initData() {
         // 获得商品信息
-//        this.list = ControllerFactoryImpl.getInstance().getInitialController().showCommodity(initialId);
-        this.list = ControllerFactoryImpl.getInstance().getCommodityController().bigShow();
+        this.list = ControllerFactoryImpl.getInstance().getInitialController().showCommodity(initialId);
         initTreeTable();
     }
 

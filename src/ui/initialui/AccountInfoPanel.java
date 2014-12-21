@@ -46,10 +46,13 @@ public class AccountInfoPanel extends AccountTablePane {
     protected void initComponent() {
         //创建滚动条面板
         this.rollpane = new RowTableScrollPane(this.table);
-        this.rollpane.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()-85));
+        this.rollpane.setPreferredSize(new Dimension(cfg.getW(),cfg.getH()-45));
         //this.rollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         //this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         this.add(this.rollpane);
     }
 
+    public void setInitialId(String initialId) {
+        this.initialId = initialId;
+    }
 }

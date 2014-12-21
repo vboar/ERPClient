@@ -20,7 +20,7 @@ public class CustomerInfoPanel extends CustomerTablePane {
     public CustomerInfoPanel(String initialId, CustomerBLService customerController) {
         super(new TableConfig(ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().
                 get("ui.customerui.CustomerPanel").getTablepane()), customerController);
-        this.setBounds(getX(), 50, this.getWidth(), this.getHeight() - 80);
+        this.setBounds(getX(), 50, this.getWidth(), this.getHeight() - 40);
         updateData(initialId);
     }
 
@@ -34,9 +34,13 @@ public class CustomerInfoPanel extends CustomerTablePane {
     protected void initComponent() {
         //创建滚动条面板
         this.rollpane = new RowTableScrollPane(this.table);
-        this.rollpane.setPreferredSize(new Dimension(cfg.getW(), cfg.getH() - 85));
+        this.rollpane.setPreferredSize(new Dimension(cfg.getW(), cfg.getH() - 45));
         //this.rollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         //this.rollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         this.add(this.rollpane);
+    }
+
+    public void setInitialId(String initialId) {
+        this.initialId = initialId;
     }
 }
