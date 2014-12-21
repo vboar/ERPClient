@@ -26,7 +26,16 @@ public class Customer {
 	//客户名唯一
 	public ResultMessage add(CustomerVO vo) {
 		try {
-			if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).size()!=0){
+			ArrayList<CustomerPO> temp=new ArrayList<CustomerPO>();
+			temp=DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name);
+			boolean isExist=false;
+			for(int i=0;i<temp.size();i++){
+				if(temp.get(i).getName().equals(vo.name)){
+					isExist=true;
+					break;
+					}
+			}
+			if(isExist==true){
 				return ResultMessage.EXIST;
 			}else{
 				String id=createId();
@@ -35,6 +44,7 @@ public class Customer {
 						vo.postalCode,vo.email,vo.creditLimit,vo.receivables,vo.paybles,
 						vo.salesman,vo.isDeletable));
 			}
+			
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
