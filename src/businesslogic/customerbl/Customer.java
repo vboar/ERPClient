@@ -26,8 +26,7 @@ public class Customer {
 	//客户名唯一
 	public ResultMessage add(CustomerVO vo) {
 		try {
-			if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).size()==0){
-				l.add("Customer Add Error:customer exists");
+			if(DataFactoryImpl.getInstance().getCustomerData().findByName(vo.name).size()!=0){
 				return ResultMessage.EXIST;
 			}else{
 				String id=createId();
@@ -41,7 +40,6 @@ public class Customer {
 			e.printStackTrace();
 		}
 		
-		l.add("Add customer Successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -53,7 +51,6 @@ public class Customer {
 						vo.salesman,vo.isDeletable));
 			}else{
 				//该客户不能删除
-				l.add("Fail to delete customer:customer is undeletable");
 				return ResultMessage.FAILED;
 			}
 		} catch (RemoteException e) {
@@ -61,7 +58,6 @@ public class Customer {
 			e.printStackTrace();
 		}
 		
-		l.add("Delete customer successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -87,7 +83,6 @@ public class Customer {
 			e.printStackTrace();
 		}
 		
-		l.add("Update customer successfully");
 		return ResultMessage.SUCCESS;
 	}
 	
