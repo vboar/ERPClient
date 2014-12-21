@@ -442,7 +442,7 @@
 		</panel>
 
 		<!-- 查看报溢报损列表面板 -->
-		<panel className="ui.exceptionui.ShowOverLossPanel" width="760"
+		<panel className="ui.exceptionui.ShowOverLossListPanel" width="760"
 			height="400" x="0" y="80" bg="img/common/rightpanel.png">
 			<buttons>
 				<find text="查询" w="70" h="30" x="550" y="10" />
@@ -477,7 +477,7 @@
 		</panel>
 
 		<!-- 查看报警单列表面板 -->
-		<panel className="ui.exceptionui.ShowWarningPanel" width="760"
+		<panel className="ui.exceptionui.ShowWarningListPanel" width="760"
 			height="400" x="0" y="80" bg="img/common/rightpanel.png">
 			<buttons>
 				<find text="查询" w="70" h="30" x="550" y="10" />

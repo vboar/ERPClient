@@ -132,6 +132,11 @@ public class AddCommodityDialog extends EditDialog implements FuzzySearch{
 				if(result==MyOptionPane.YES_OPTION){
 					try{
 					int num = Integer.parseInt(numberTxt.getText());
+					if(num>addCommodityVO.number){
+						MyOptionPane.showMessageDialog(frame, "库存不足，该商品库存仅余"+
+					addCommodityVO.number+"件");
+						return;
+					}
 					// 创建赠品信息
 					addCommodity(num);
 					AddCommodityDialog.this.dispose();

@@ -52,7 +52,7 @@ public class PromotionPanel extends JPanel {
 		this.totalPanel = new TotalGiftPanel(frame);
 		this.customerPanel = new CustomerPanel(frame);
 		this.specialPanel = new SpecialOfferPanel(frame);
-		this.tabpanel.add(this.customerPanel,"针对客户界别的促销策略");
+		this.tabpanel.add(this.customerPanel,"针对客户级别的促销策略");
 		this.tabpanel.add(this.totalPanel,"针对总价的促销策略");
 		this.tabpanel.add(this.specialPanel,"特价包策略");
 		this.add(tabpanel);

@@ -60,7 +60,7 @@ public class TotalGiftInfoDialog extends EditDialog implements AddCommodityLineI
 	private DialogConfig cfg;
 	
 	private boolean isAdd = false;
-
+	private String id;
 	private ArrayList<PresentLineItemVO> commoditylist = null;
 	
 	private TotalGiftBLService controller;
@@ -98,6 +98,7 @@ public class TotalGiftInfoDialog extends EditDialog implements AddCommodityLineI
 		for(int i=0; i<vo.giftInfo.size();++i){
 			this.addPresentLineItem(vo.giftInfo.get(i));
 		}
+		this.id = vo.id;
 	}
 
 	private void initComponent() {
@@ -231,7 +232,7 @@ public class TotalGiftInfoDialog extends EditDialog implements AddCommodityLineI
 				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 				return;
 			}
-			TotalGiftVO vo = new TotalGiftVO(controller.createId(),total,commoditylist,
+			TotalGiftVO vo = new TotalGiftVO(isAdd?controller.createId():id,total,commoditylist,
 					voucher,startTime,endTime,true);
 			if(isAdd){
 				ResultMessage result = this.controller.create(vo);

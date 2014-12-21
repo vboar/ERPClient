@@ -237,7 +237,7 @@ public class Payment {
 			TransferLineItemVO temp=list.get(i);
 			result.add(new TransferLineItemPO(temp.name,temp.bankAccount,temp.account,temp.remark));
 		}
-		return null;
+		return result;
 	}
 
 	public PaymentVO poToVo(PaymentPO po){

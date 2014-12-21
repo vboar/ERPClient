@@ -138,7 +138,7 @@ public class CreateReceiptPanel extends PaymentDocumentPanel implements FuzzySea
 		commitBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = MyOptionPane.showConfirmDialog(null, "确认创建该付款单？", "创建付款单",
+				int result = MyOptionPane.showConfirmDialog(null, "确认创建该收款单？", "创建收款单",
 						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 				if(result == MyOptionPane.YES_OPTION) {
 					createReceipt();

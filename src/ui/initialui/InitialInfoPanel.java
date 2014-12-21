@@ -114,7 +114,7 @@ public class InitialInfoPanel extends JPanel {
 
     public void updateInitialId() {
         ArrayList<InitialVO> list = controller.show();
-        initialId = list.get(list.size()-1).id;
+        if(list.size()>0) initialId = list.get(list.size()-1).id;
     }
 
     public void updateAll() {

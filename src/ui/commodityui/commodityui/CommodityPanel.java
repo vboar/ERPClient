@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -94,6 +96,14 @@ public class CommodityPanel extends JPanel implements FuzzySearch{
 		
 		// 初始化查找输入框
 		this.findTxt = new MySpecialTextField(pcfg.getTextFields().element("find"), this);
+		this.findTxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					treepane.findCommodity(findTxt.getText());
+				}
+			}
+		});
 		this.add(this.findTxt);
 	}
 

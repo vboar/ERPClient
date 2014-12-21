@@ -69,7 +69,7 @@ public class PaymentListTable extends TablePanel {
         row[4]=vo.listToStr();
         row[5]=vo.total;
         row[6]=vo.operatorId;
-        row[7]=vo.approvalState;
+        row[7]=vo.approvalState.toReadableString();
     }
 
     /**
@@ -90,10 +90,6 @@ public class PaymentListTable extends TablePanel {
 		}
 		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
-		if (list.size() == 0) {
-			MyOptionPane.showMessageDialog(PaymentListTable.this,
-					"抱歉，未找到相关记录！");
-		}
     }
     
     /**

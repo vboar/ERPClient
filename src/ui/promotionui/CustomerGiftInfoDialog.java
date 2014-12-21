@@ -70,6 +70,7 @@ public class CustomerGiftInfoDialog extends EditDialog implements
 	private DialogConfig cfg;
 
 	private boolean isAdd = false;
+	private String id;
 
 	private ArrayList<PresentLineItemVO> commoditylist = null;
 
@@ -113,6 +114,7 @@ public class CustomerGiftInfoDialog extends EditDialog implements
 		this.presents.setSelected(true);
 		this.voucherTxt.setFocusable(true);
 		this.discountTxt.setFocusable(true);
+		this.id = vo.id;
 		for (int i = 0; i < vo.giftInfo.size(); ++i) {
 			this.addPresentLineItem(vo.giftInfo.get(i));
 		}
@@ -269,16 +271,17 @@ public class CustomerGiftInfoDialog extends EditDialog implements
 		try {
 			int level = this.level.getSelectedIndex();
 			double discount = this.discount.isSelected() ? Double
-					.parseDouble(this.discountTxt.getText()) : 0;
+					.parseDouble(this.discountTxt.getText()) : 1;
 			double voucher = this.voucher.isSelected() ? Double
 					.parseDouble(this.voucherTxt.getText()) : 0;
 			String startTime = this.start.getFormatedDate();
 			String endTime = this.end.getFormatedDate();
+			if(isAdd) id = controller.createId();
 			if (startTime.compareTo(endTime) > 0) {
 				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 				return;
 			}
-			CustomerGiftVO vo = new CustomerGiftVO(controller.createId(),
+			CustomerGiftVO vo = new CustomerGiftVO(id,
 					level, commoditylist, discount, voucher, startTime,
 					endTime, true);
 			if (isAdd) {
@@ -290,7 +293,6 @@ public class CustomerGiftInfoDialog extends EditDialog implements
 				}
 			} else {
 				ResultMessage result = this.controller.update(vo);
-				System.out.println(result);
 				if (result == ResultMessage.SUCCESS) {
 					MyOptionPane.showMessageDialog(frame, "修改成功！");
 				} else {

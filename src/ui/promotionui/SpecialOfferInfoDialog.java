@@ -47,6 +47,7 @@ public class SpecialOfferInfoDialog extends EditDialog implements AddCommodityLi
 	private DialogConfig cfg;
 	
 	private boolean isAdd = false;
+	private String id;
 	
 	private SpecialOfferBLService controller;
 	
@@ -83,6 +84,7 @@ public class SpecialOfferInfoDialog extends EditDialog implements AddCommodityLi
 		for(int i=0; i<vo.commodityList.size(); ++i){
 			this.addCommodityLineItem(vo.commodityList.get(i));
 		}
+		this.id = vo.id;
 		this.add.setEnabled(false);
 		this.delete.setEnabled(false);
 	}
@@ -167,7 +169,7 @@ public class SpecialOfferInfoDialog extends EditDialog implements AddCommodityLi
 				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 				return;
 			}
-			SpecialOfferVO vo = new SpecialOfferVO(controller.createId(),list,
+			SpecialOfferVO vo = new SpecialOfferVO(isAdd?controller.createId():id,list,
 					total,startTime,endTime,true);
 			if(isAdd){
 				ResultMessage result = this.controller.create(vo);
