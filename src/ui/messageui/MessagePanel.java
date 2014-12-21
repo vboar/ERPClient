@@ -15,6 +15,7 @@ import org.dom4j.Element;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
+import util.ResultMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,9 +106,10 @@ public class MessagePanel extends JPanel {
         setreadBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean result = table.setRead();
-                if(!result) {
+                if(table.setRead() == ResultMessage.EXIST) {
                     MyOptionPane.showMessageDialog(null, "消息已经读过！");
+                } else if(table.setRead() == ResultMessage.NOT_FOUND) {
+                    MyOptionPane.showMessageDialog(null, "请选择一条消息！");
                 }
             }
         });

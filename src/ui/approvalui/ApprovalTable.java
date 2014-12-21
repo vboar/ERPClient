@@ -77,7 +77,6 @@ public class ApprovalTable extends TablePanel {
     }
 
     public void showTable() {
-        list = controller.show(status, startTime, endTime);
         this.data = new Object[list.size()][COLUMN_NUM];
         for(int i=0; i<list.size(); ++i){
             DocumentVO dvo = list.get(i);
@@ -92,6 +91,9 @@ public class ApprovalTable extends TablePanel {
 
     public void showTableByType(int way) {
         list.clear();
+        if(type == null) {
+            list = controller.show(status, startTime, endTime);
+        } else
         switch(type){
             case PRESENT:
                 ArrayList<PresentVO> presentList = controller.findPresent(way, status, startTime, endTime);
@@ -154,7 +156,6 @@ public class ApprovalTable extends TablePanel {
                 }
                 break;
             default:
-                list = controller.show(status, startTime, endTime);
         }
 
         this.data = new Object[list.size()][COLUMN_NUM];

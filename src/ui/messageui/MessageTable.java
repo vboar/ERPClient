@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.util.MyTable;
 import ui.util.TablePanel;
+import util.ResultMessage;
 import vo.MessageVO;
 import vo.UserVO;
 import businesslogic.loginbl.Login;
@@ -77,16 +78,17 @@ public class MessageTable extends TablePanel {
         updateUI();
     }
 
-    public boolean setRead() {
+    public ResultMessage setRead() {
+        if(table.getSelectedRow() == -1) return ResultMessage.NOT_FOUND;
         MessageVO vo = list.get(table.getSelectedRow());
         if(vo.state == 0) {
             vo.state = 1;
             controller.update(vo);
             dtm.setValueAt(vo.state, table.getSelectedRow(), 0);
             updateUI();
-            return true;
+            return ResultMessage.SUCCESS;
         } else {
-            return false;
+            return ResultMessage.EXIST;
         }
     }
 
