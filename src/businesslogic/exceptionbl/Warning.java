@@ -16,11 +16,14 @@ import po.WarningPO;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
+import util.UserType;
 import vo.MessageVO;
+import vo.UserVO;
 import vo.WarningLineItemVO;
 import vo.WarningVO;
 import businesslogic.logbl.Log;
 import businesslogic.messagebl.Message;
+import businesslogic.userbl.User;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 
@@ -61,9 +64,12 @@ public class Warning {
 	public ResultMessage create(WarningVO vo){
 		vo.time=Time.getCurrentTime();
 		vo.id=createId();
+		User u=new User();
+		ArrayList<UserVO> user=u.findByType(UserType.STOCKKEEPER);
 		
 		String content="库存报警!请尽快查看报警单"+vo.id;
-		sendMessage(new MessageVO(null,Time.getCurrentTime(),0,"库存管理人员",content));
+		for(int i=0;i<user.size();i++)
+		sendMessage(new MessageVO(null,Time.getCurrentTime(),0,user.get(i).id,content));
 		
 		try {
 			DataFactoryImpl.getInstance().getWarningData().insert(voToPo(vo));
