@@ -8,6 +8,8 @@ package ui.approvalui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +29,7 @@ import businesslogicservice.approvalblservice.ApprovalBLService;
 import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
+import util.DocumentType;
 
 @SuppressWarnings("serial")
 public class ApprovalPanel extends JPanel {
@@ -97,6 +100,14 @@ public class ApprovalPanel extends JPanel {
     private void initComboBox(Element element) {
         typeBox = new MyComboBox(element.element("type"));
         add(typeBox);
+        typeBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                table.setType(DocumentType.values()[typeBox.getSelectedIndex() - 1]);
+                table.showTable();
+                // TODO
+            }
+        });
     }
 
     private void initLabels(Element labels) {

@@ -11,6 +11,7 @@ import config.PanelConfig;
 
 import org.dom4j.Element;
 
+import ui.loginui.LoginUI;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 
@@ -63,6 +64,16 @@ public class LoginUserInfoPanel extends JPanel {
 	}
 
 	private void initButtons(Element button) {
+		MyButton logoutBtn = new MyButton(button.element("testlogout"));
+		add(logoutBtn);
+		logoutBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new LoginUI();
+			}
+		});
+
 		this.mailbox = new MyButton(button.element("mailbox"));
 		this.add(this.mailbox);
 		mailbox.addActionListener(new ActionListener() {
