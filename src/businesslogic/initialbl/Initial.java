@@ -26,6 +26,21 @@ public class Initial {
 			e.printStackTrace();
 		}
 	}
+
+	public ResultMessage initialAccount() {
+		try {
+			data.saveEnd();
+			ArrayList<InitialPO> list = data.show();
+			int lastYear = Integer.parseInt(list.get(list.size()-1).getId().substring(0, 4));
+			String thisYear = Integer.toString(lastYear+1);
+			InitialPO po = new InitialPO(thisYear + "-INI", thisYear + "年期初账");
+			data.insert(po);
+			return ResultMessage.SUCCESS;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAILED;
+	}
 	
 	public ResultMessage createLog(String content) {
 		//TODO

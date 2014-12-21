@@ -117,4 +117,18 @@ public class InitialInfoPanel extends JPanel {
         initialId = list.get(list.size()-1).id;
     }
 
+    public void updateAll() {
+        updateInitialId();
+
+        if(commodityTreePanel.isVisible()) {
+            updateCommodityTree();
+            commodityTreePanel.setVisible(true);
+        } else {
+            updateCommodityTree();
+        }
+
+        customerInfoPanel.updateData(initialId);
+        accountInfoPanel.updateData(initialId);
+    }
+
 }
