@@ -1641,8 +1641,9 @@
 		<panel className="ui.approvalui.ApprovalPanel" width="760"
 			height="510" x="200" y="0" bg="img/common/rightpanel.png">
 			<buttons>
-				<noncheck text="待审批单据" w="150" h="32" x="425" y="40" />
-				<check text="已审批单据" w="150" h="32" x="585" y="40" />
+				<noncheck text="待审批单据" w="150" h="32" x="265" y="40" />
+				<passcheck text="审批通过单据" w="150" h="32" x="425" y="40" />
+				<failcheck text="审批不通过单据" w="150" h="32" x="585" y="40" />
 				<find text="查找" w="80" h="25" x="655" y="90" />
 				<pass text="审批通过" w="150" h="30" x="415" y="440" />
 				<fail text="审批不通过" w="150" h="30" x="585" y="440" />

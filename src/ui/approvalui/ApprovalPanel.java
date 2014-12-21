@@ -36,7 +36,9 @@ public class ApprovalPanel extends JPanel {
 
     private MyButton noncheckBtn;
 
-    private MyButton checkBtn;
+    private MyButton passcheckBtn;
+
+    private MyButton failcheckBtn;
 
     private MyButton findBtn;
 
@@ -103,9 +105,20 @@ public class ApprovalPanel extends JPanel {
         typeBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                table.setType(DocumentType.values()[typeBox.getSelectedIndex() - 1]);
-                table.showTable();
-                // TODO
+                switch (typeBox.getSelectedIndex()) {
+                    case 0: table.setType(null); break;
+                    case 1: table.setType(DocumentType.PURCHASE); break;
+                    case 2: table.setType(DocumentType.PURCHASERETURN); break;
+                    case 3: table.setType(DocumentType.SALE); break;
+                    case 4: table.setType(DocumentType.SALERETURN); break;
+                    case 5: table.setType(DocumentType.PRESENT); break;
+                    case 6: table.setType(DocumentType.RECEIPT); break;
+                    case 7: table.setType(DocumentType.PAYMENT); break;
+                    case 8: table.setType(DocumentType.CASH); break;
+                    case 9: table.setType(DocumentType.OVERFLOW); break;
+                    case 10: table.setType(DocumentType.LOSS); break;
+                }
+                table.showTableByType(1);
             }
         });
     }
@@ -129,12 +142,22 @@ public class ApprovalPanel extends JPanel {
             }
         });
 
-        checkBtn = new MyButton(buttons.element("check"));
-        add(checkBtn);
-        checkBtn.addActionListener(new ActionListener() {
+        passcheckBtn = new MyButton(buttons.element("passcheck"));
+        add(passcheckBtn);
+        passcheckBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                table.setStatus(null);
+                table.setStatus(DocumentStatus.PASSED);
+                table.showTable();
+            }
+        });
+
+        failcheckBtn = new MyButton(buttons.element("failcheck"));
+        add(failcheckBtn);
+        failcheckBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                table.setStatus(DocumentStatus.FAILED);
                 table.showTable();
             }
         });

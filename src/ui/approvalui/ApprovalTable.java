@@ -2,13 +2,13 @@ package ui.approvalui;
 
 import businesslogicservice.approvalblservice.ApprovalBLService;
 import config.TableConfig;
+import po.SalePO;
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.DocumentStatus;
 import util.DocumentType;
-import vo.DocumentVO;
-import vo.PresentVO;
+import vo.*;
 
 import javax.lang.model.type.ArrayType;
 import javax.swing.table.DefaultTableModel;
@@ -76,16 +76,86 @@ public class ApprovalTable extends TablePanel {
     }
 
     public void showTable() {
-        // 得到已审批的单据包括通过和不通过的
-        if(status == null) {
-            list = controller.show(DocumentStatus.PASSED, startTime, endTime);
-            ArrayList<DocumentVO> tempList = controller.show(DocumentStatus.FAILED, startTime, endTime);
-            for(DocumentVO vo: tempList) {
-                list.add(vo);
-            }
-        } else {
-            list = controller.show(status, startTime, endTime);
+        list = controller.show(status, startTime, endTime);
+        this.data = new Object[list.size()][COLUMN_NUM];
+        for(int i=0; i<list.size(); ++i){
+            DocumentVO dvo = list.get(i);
+            this.createRow(data[i], dvo);
         }
+        this.dtm.setDataVector(data, columnName);
+        FrameUtil.setTableColumnWidth(table, this.getWidth(), 30);
+        getTable().getColumnModel().getColumn(4).setCellEditor(getTable().getDefaultEditor(Boolean.class));
+        getTable().getColumnModel().getColumn(4).setCellRenderer(getTable().getDefaultRenderer(Boolean.class));
+        this.updateUI();
+    }
+
+    public void showTableByType(int way) {
+        list.clear();
+        switch(type){
+            case PRESENT:
+                ArrayList<PresentVO> presentList = controller.findPresent(way, status, startTime, endTime);
+                for(PresentVO vo: presentList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case OVERFLOW:
+                ArrayList<ExceptionVO> exceptionList = controller.findOverflow(way, status, startTime, endTime);
+                for(ExceptionVO vo: exceptionList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case LOSS:
+                exceptionList = controller.findLoss(0, status, startTime, endTime);
+                for(ExceptionVO vo: exceptionList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case SALE:
+                ArrayList<SaleVO> saleList = controller.findSale(way, status, startTime, endTime);
+                for(SaleVO vo: saleList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case SALERETURN:
+                saleList = controller.findSaleReturn(way, status, startTime, endTime);
+                for(SaleVO vo: saleList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case PURCHASE:
+                ArrayList<PurchaseVO> purchaseList = controller.findPurchase(way, status, startTime, endTime);
+                for(PurchaseVO vo: purchaseList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case PURCHASERETURN:
+                purchaseList = controller.findPurchaseReturn(way, status, startTime, endTime);
+                for(PurchaseVO vo: purchaseList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case RECEIPT:
+                ArrayList<PaymentVO> paymentList = controller.findReceipt(way, status, startTime, endTime);
+                for(PaymentVO vo: paymentList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case PAYMENT:
+                paymentList = controller.findPayment(way, status, startTime, endTime);
+                for(PaymentVO vo: paymentList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            case CASH:
+                ArrayList<CashVO> cashList = controller.findCash(way, status, startTime, endTime);
+                for(CashVO vo: cashList) {
+                    list.add((DocumentVO) vo);
+                }
+                break;
+            default:
+                list = controller.show(status, startTime, endTime);
+        }
+
         this.data = new Object[list.size()][COLUMN_NUM];
         for(int i=0; i<list.size(); ++i){
             DocumentVO dvo = list.get(i);
