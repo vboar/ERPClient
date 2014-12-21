@@ -12,6 +12,7 @@ import vo.*;
 
 import javax.lang.model.type.ArrayType;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
 import java.util.ArrayList;
 
 /**
@@ -215,5 +216,13 @@ public class ApprovalTable extends TablePanel {
 
     public DocumentStatus getStatus() {
         return status;
+    }
+
+    public DocumentVO getSelectedVO() {
+        if(table.getSelectedRow() == -1) {
+            return null;
+        }
+        DocumentVO vo = list.get(this.table.getSelectedRow());
+        return vo;
     }
 }

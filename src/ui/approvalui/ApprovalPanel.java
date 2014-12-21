@@ -18,11 +18,8 @@ import javax.swing.JPanel;
 
 import org.dom4j.Element;
 
-import ui.util.DatePickerGroup;
-import ui.util.MyButton;
-import ui.util.MyComboBox;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
+import ui.presentui.ShowPresentPanel;
+import ui.util.*;
 import util.DocumentStatus;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.approvalblservice.ApprovalBLService;
@@ -30,6 +27,8 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 import util.DocumentType;
+import vo.DocumentVO;
+import vo.PresentVO;
 
 @SuppressWarnings("serial")
 public class ApprovalPanel extends JPanel {
@@ -239,9 +238,35 @@ public class ApprovalPanel extends JPanel {
         detailBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                toDetail();
             }
         });
+    }
+
+    public void toDetail() {
+        if(table.getSelectedVO() == null) {
+            MyOptionPane.showMessageDialog(frame, "请选择单据！");
+            return;
+        }
+        DocumentVO vo = table.getSelectedVO();
+        int type = 0;
+        switch (vo.getType()) {
+            case PRESENT: {
+                PresentVO presentVO = ControllerFactoryImpl.getInstance().getPresentController().getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowPresentPanel(frame,presentVO,type),type);
+            }
+//            case OVERFLOW: showExceptionDocument(type,false); break;
+//            case LOSS: 	showExceptionDocument(type,true); break;
+//            case WARNING: break;
+//            case SALE: showSaleDocument(type,false);break;
+//            case SALERETURN: showSaleDocument(type,true);break;
+//            case PURCHASE: showPurchaseDocument(type,false);break;
+//            case PURCHASERETURN: showPurchaseDocument(type,true); break;
+//            case RECEIPT:  showPaymentDocument(type,true);break;
+//            case PAYMENT:  showPaymentDocument(type,false);break;
+//            case CASH: showCashDocument(type);break;
+            default:
+        }
     }
 
 }
