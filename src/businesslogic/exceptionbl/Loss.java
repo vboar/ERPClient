@@ -97,18 +97,22 @@ public class Loss {
 	}
 	
 	public ResultMessage approve(ExceptionVO vo){
-		//修改单据状态
-		try {
-			DataFactoryImpl.getInstance().getExceptionData().update(voToPo(vo));
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		
 		Commodity c=new Commodity();
 		c.approveException(vo);
 	
 		return ResultMessage.SUCCESS;
+	}
+	
+	public void writeoff(ExceptionVO vo){
+		for(int i=0;i<vo.list.size();i++){
+			ExceptionLineItemVO commodity=vo.list.get(i);
+			int temp=commodity.actualNumber;
+			commodity.actualNumber=commodity.systemNumber;
+			commodity.systemNumber=temp;
+		}
+		
+		Commodity c=new Commodity();
+		c.approveException(vo);
 	}
 	
 	public ExceptionPO voToPo(ExceptionVO vo){

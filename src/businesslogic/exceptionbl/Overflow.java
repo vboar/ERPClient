@@ -16,6 +16,7 @@ import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
+import vo.CommodityVO;
 import vo.ExceptionLineItemVO;
 import vo.ExceptionVO;
 import businesslogic.commoditybl.Commodity;
@@ -160,16 +161,21 @@ public class Overflow {
 	
 	//报益报损单审批通过，修改商品数量
 		public ResultMessage approve(ExceptionVO vo){
-			try {
-				DataFactoryImpl.getInstance().getExceptionData().update(voToPo(vo));
-			} catch (RemoteException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
+			Commodity c=new Commodity();
+			c.approveException(vo);
+			return ResultMessage.SUCCESS;
+		}
+		
+		public void writeoff(ExceptionVO vo){
+			for(int i=0;i<vo.list.size();i++){
+				ExceptionLineItemVO commodity=vo.list.get(i);
+				int temp=commodity.actualNumber;
+				commodity.actualNumber=commodity.systemNumber;
+				commodity.systemNumber=temp;
 			}
 			
 			Commodity c=new Commodity();
 			c.approveException(vo);
-			return ResultMessage.SUCCESS;
 		}
 		
 		public ExceptionVO getById(String id){

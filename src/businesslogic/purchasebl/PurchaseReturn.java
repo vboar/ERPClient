@@ -191,7 +191,10 @@ public class PurchaseReturn {
 
 		}
 		return ResultMessage.SUCCESS;
-
+	}
+	
+	public void writeoff(PurchaseVO vo){
+		//TODO
 	}
 
 }

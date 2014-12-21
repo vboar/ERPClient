@@ -312,9 +312,12 @@ public class Purchase {
 			e.printStackTrace();
 		}
 				
-	}		
+	}	
 		return ResultMessage.SUCCESS;
-
+	}
+	
+	public void writeoff(PurchaseVO vo){
+	//TODO
 	}
 
 }

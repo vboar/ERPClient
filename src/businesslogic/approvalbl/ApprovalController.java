@@ -8,7 +8,6 @@ package businesslogic.approvalbl;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
-import util.DocumentType;
 import util.ResultMessage;
 import vo.CashVO;
 import vo.DocumentVO;
@@ -17,14 +16,6 @@ import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
-import businesslogic.exceptionbl.Overflow;
-import businesslogic.paymentbl.Cash;
-import businesslogic.paymentbl.Payment;
-import businesslogic.paymentbl.Receipt;
-import businesslogic.presentbl.Present;
-import businesslogic.purchasebl.Purchase;
-import businesslogic.purchasebl.PurchaseReturn;
-import businesslogic.salebl.Sale;
 import businesslogicservice.approvalblservice.ApprovalBLService;
 
 public class ApprovalController implements ApprovalBLService {
@@ -170,72 +161,7 @@ public class ApprovalController implements ApprovalBLService {
 
 	@Override
 	public ResultMessage approveDocument(DocumentVO vo) {
-		DocumentType type=vo.getType();
-		switch(type){
-		case PRESENT:
-			Present pr=new Present();
-			PresentVO present=pr.getById(vo.getId());
-			present.setStatus(vo.getStatus());
-			approvePresent(present);
-			break;
-		case PURCHASE:
-			Purchase pu=new Purchase();
-			PurchaseVO purchase=pu.getById(vo.getId());
-			purchase.setStatus(vo.getStatus());
-			approvePurchase(purchase);
-			break;			
-		case PURCHASERETURN:
-			PurchaseReturn pre=new PurchaseReturn();
-			PurchaseVO purchasere=pre.getById(vo.getId());
-			purchasere.setStatus(vo.getStatus());
-			approvePurchaseReturn(purchasere);
-			break;
-		case SALE:
-			Sale s=new Sale();
-			SaleVO sale=s.getById(vo.getId());
-			sale.setStatus(vo.getStatus());
-			approveSale(sale);
-			break;
-		case SALERETURN:
-			Sale s1=new Sale();
-			SaleVO sre=s1.getById(vo.getId());
-			sre.setStatus(vo.getStatus());
-			approveSaleReturn(sre);
-			break;
-		case PAYMENT:
-			Payment p=new Payment();
-			PaymentVO payment=p.getById(vo.getId());
-			payment.setStatus(vo.getStatus());
-			approvePayment(payment);
-			break;
-		case RECEIPT:
-			Receipt r=new Receipt();
-			PaymentVO receipt=r.getById(vo.getId());
-			receipt.setStatus(vo.getStatus());
-			approveReceipt(receipt);
-			break;
-		case OVERFLOW:
-			Overflow of=new Overflow();
-			ExceptionVO overflow=of.getById(vo.getId());
-			overflow.setStatus(vo.getStatus());
-			approveOverflow(overflow);
-			break;
-		case LOSS:
-			Overflow of1=new Overflow();
-			ExceptionVO loss=of1.getById(vo.getId());
-			loss.setStatus(vo.getStatus());
-			approveLoss(loss);
-			break;
-		case CASH:
-			Cash c=new Cash();
-			CashVO cash=c.getById(vo.getId());
-			cash.setStatus(vo.getStatus());
-			approveCash(cash);
-			break;
-		case PRESENTRETURN:
-		case WARNING:
-		}
-		return ResultMessage.SUCCESS;
+		return approval.approveDocument(vo);
 	}
 
 	//嫖人的不知道能不能用

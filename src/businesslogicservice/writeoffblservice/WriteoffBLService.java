@@ -11,16 +11,10 @@ import vo.DocumentVO;
 public interface WriteoffBLService {
 
 	/**
-	 * 红冲操作
-	 * @param vo
+	 * 红冲单据
+	 * @param type
+	 * @param id
 	 * @return
 	 */
-	public ResultMessage create(DocumentType type, String id);
-	
-	/**
-	 * 复制
-	 * @param vo
-	 * @return
-	 */
-	public ResultMessage copy(DocumentVO vo);
+	public ResultMessage create(DocumentType type,String id);
 }

@@ -81,7 +81,7 @@ public class Payment {
 	
 	public ResultMessage approve(ArrayList<TransferLineItemVO> transferlist,String id,
 			String customerId,double total){	
-		//修改公司账户金额，修改客户应收应付
+		//修改公司账户金额，减少；修改客户应收，减少
 		Account acc=new Account();
 		CustomerController c=new CustomerController();
 		
@@ -94,6 +94,21 @@ public class Payment {
 		
 		c.updateByPayment(customerId, total);
 		return ResultMessage.SUCCESS;
+	}
+	
+	//修改公司账户金额，增加；修改客户应收，增加
+	public void writeoff(PaymentVO vo){
+		Account acc=new Account();
+		CustomerController c=new CustomerController();
+		
+		for(int i=0;i<vo.transferList.size();i++){
+		AccountVO temp;
+		temp =acc.findByAccount(vo.transferList.get(i).bankAccount);
+		temp.balance=temp.balance+vo.transferList.get(i).account;
+		acc.update(temp);
+		}
+		
+		c.updateByPayment(vo.customerId,-vo.total);
 	}
 	
 	public ArrayList<PaymentVO> show(){

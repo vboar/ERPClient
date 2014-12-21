@@ -179,6 +179,21 @@ public class Receipt {
 		return ResultMessage.SUCCESS;
 	}
 	
+	//红冲付款单，减少客户应收，减少公司账户金额
+	public void writeoff(PaymentVO vo){
+		Account a=new Account();
+		Customer c=new Customer();
+		
+		for(int i=0;i<vo.transferList.size();i++){
+			AccountVO temp;
+			temp = a.findByAccount(vo.transferList.get(i).bankAccount);
+			temp.balance=temp.balance-vo.transferList.get(i).account;
+			a.update(temp);
+		}
+		
+		c.updateByReceipt(vo.customerId,-vo.total);
+	}
+	
 	public ResultMessage update(PaymentVO vo){
 		try {
 			DataFactoryImpl.getInstance().getPaymentData().update(voToPo(vo));

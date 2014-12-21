@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import util.ResultMessage;
+import util.Time;
 import vo.BusinessConditionVO;
 import vo.RequirementVO;
 import businesslogicservice.businessconditionblservice.BusinessConditionBLService;
@@ -14,6 +15,8 @@ public class BusinessConditionController implements BusinessConditionBLService {
 	
 	@Override
 	public BusinessConditionVO show(String time1, String time2) {
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		String content="查看"+time1+"到"+time2+"间的经营情况";
 		bc.addLog(content);
 		return bc.show(time1, time2);

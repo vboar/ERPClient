@@ -237,9 +237,9 @@ public class Present {
 
 	}
 
-
-	
-	
+	public void writeoff(PresentVO vo){
+		//TODO
+	}
 	
 	public static void main(String[] args) {
 		String id=new Present().createId();

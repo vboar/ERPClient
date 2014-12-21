@@ -143,7 +143,7 @@ public class Cash{
 		return result;
 	}
 	
-	//修改公司账户余额
+	//修改公司账户余额，减少
 	public ResultMessage approve(CashVO vo){
 		Account a=new Account();
 		AccountVO avo=a.findByAccount(vo.bankAccount);
@@ -151,6 +151,15 @@ public class Cash{
 		a.update(avo);
 		return ResultMessage.SUCCESS;
 	}
+	
+	//修改公司账户余额，增加
+	public void writeoff(CashVO vo){
+		Account a=new Account();
+		AccountVO avo=a.findByAccount(vo.bankAccount);
+		avo.balance=avo.balance+vo.total;
+		a.update(avo);
+	}
+	
 	public CashPO voToPo(CashVO vo) {
 		ArrayList<ClauseLineItemPO> clauseList=voListTOpoList(vo.clauseList);
 		CashPO result=new CashPO(vo.id,vo.time,Login.currentUserId,vo.bankAccount,clauseList,vo.total,

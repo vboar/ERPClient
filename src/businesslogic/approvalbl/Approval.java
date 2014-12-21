@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import util.DocumentStatus;
+import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
 import vo.CashVO;
@@ -84,7 +85,7 @@ public class Approval {
 		else content="单据"+vo.id+"审批不通过";
 		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
 		sendMessage(message);
-		
+			
 		Sale s=new Sale();
 		if(vo.approvalState==DocumentStatus.PASSED){
 			s.update(vo);
@@ -95,11 +96,13 @@ public class Approval {
 	}
 	
 	public ResultMessage approveSaleReturn(SaleVO vo){
-		String content;
-		if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
-		else content="单据"+vo.id+"审批不通过";
-		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
-		sendMessage(message);
+		if(vo.isWriteOff==false){
+			String content;
+			if(vo.approvalState==DocumentStatus.PASSED)content="单据"+vo.id+"审批通过";
+			else content="单据"+vo.id+"审批不通过";
+			MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
+			sendMessage(message);
+		}
 		
 		SaleReturn sr=new SaleReturn();
 		if(vo.approvalState==DocumentStatus.PASSED){
@@ -132,6 +135,7 @@ public class Approval {
 		else content="单据"+vo.id+"审批不通过";
 		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"进货销售人员",content);
 		sendMessage(message);
+		
 		
 		PurchaseReturn pr=new PurchaseReturn();
 		if(vo.documentStatus==DocumentStatus.PASSED){
@@ -181,6 +185,7 @@ public class Approval {
 		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"财务人员",content);
 		sendMessage(message);
 		
+		
 		Cash c=new Cash();
 		if(vo.approvalState==DocumentStatus.PASSED){
 			c.update(vo);
@@ -197,6 +202,7 @@ public class Approval {
 		MessageVO message=new MessageVO(null,Time.getCurrentTime(),0,"库存管理人员",content);
 		sendMessage(message);
 		
+		
 		Present p=new Present();
 		if(vo.documentStatus==DocumentStatus.PASSED){
 			p.update(vo);
@@ -206,6 +212,74 @@ public class Approval {
 		}
 	}
 	
+	public ResultMessage approveDocument(DocumentVO vo){
+		DocumentType type=vo.getType();
+		switch(type){
+		case PRESENT:
+			Present pr=new Present();
+			PresentVO present=pr.getById(vo.getId());
+			present.setStatus(vo.getStatus());
+			approvePresent(present);
+			break;
+		case PURCHASE:
+			Purchase pu=new Purchase();
+			PurchaseVO purchase=pu.getById(vo.getId());
+			purchase.setStatus(vo.getStatus());
+			approvePurchase(purchase);
+			break;			
+		case PURCHASERETURN:
+			PurchaseReturn pre=new PurchaseReturn();
+			PurchaseVO purchasere=pre.getById(vo.getId());
+			purchasere.setStatus(vo.getStatus());
+			approvePurchaseReturn(purchasere);
+			break;
+		case SALE:
+			Sale s=new Sale();
+			SaleVO sale=s.getById(vo.getId());
+			sale.setStatus(vo.getStatus());
+			approveSale(sale);
+			break;
+		case SALERETURN:
+			Sale s1=new Sale();
+			SaleVO sre=s1.getById(vo.getId());
+			sre.setStatus(vo.getStatus());
+			approveSaleReturn(sre);
+			break;
+		case PAYMENT:
+			Payment p=new Payment();
+			PaymentVO payment=p.getById(vo.getId());
+			payment.setStatus(vo.getStatus());
+			approvePayment(payment);
+			break;
+		case RECEIPT:
+			Receipt r=new Receipt();
+			PaymentVO receipt=r.getById(vo.getId());
+			receipt.setStatus(vo.getStatus());
+			approveReceipt(receipt);
+			break;
+		case OVERFLOW:
+			Overflow of=new Overflow();
+			ExceptionVO overflow=of.getById(vo.getId());
+			overflow.setStatus(vo.getStatus());
+			approveOverflow(overflow);
+			break;
+		case LOSS:
+			Overflow of1=new Overflow();
+			ExceptionVO loss=of1.getById(vo.getId());
+			loss.setStatus(vo.getStatus());
+			approveLoss(loss);
+			break;
+		case CASH:
+			Cash c=new Cash();
+			CashVO cash=c.getById(vo.getId());
+			cash.setStatus(vo.getStatus());
+			approveCash(cash);
+			break;
+		case PRESENTRETURN:
+		case WARNING:
+		}
+		return ResultMessage.SUCCESS;
+	}
 	public ArrayList<PresentVO> findPresent(int way,DocumentStatus status,String time1,String time2){
 		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
 		time1=Time.jdugeTime1(time1);
