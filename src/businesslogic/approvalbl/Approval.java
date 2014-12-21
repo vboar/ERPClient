@@ -294,6 +294,12 @@ public class Approval {
 			break;
 		case 2:
 			result=p.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentStatus!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 		
@@ -314,6 +320,12 @@ public class Approval {
 			break;
 		case 2:
 			result=p.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentStatus!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 		
@@ -334,6 +346,12 @@ public class Approval {
 			break;
 		case 2:
 			result=pr.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).documentStatus!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 			}
 		return result;
@@ -353,6 +371,12 @@ public class Approval {
 			break;
 		case 2:
 			result=s.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).approvalState!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 		
@@ -373,6 +397,12 @@ public class Approval {
 			break;
 		case 2:
 			result=sr.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).approvalState!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 		
@@ -393,6 +423,12 @@ public class Approval {
 			break;
 		case 2:
 			result=p.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).approvalState!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 		
@@ -413,6 +449,12 @@ public class Approval {
 			break;
 		case 2:
 			result=r.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).approvalState!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 		
@@ -433,6 +475,12 @@ public class Approval {
 			break;
 		case 2:
 			result=c.findByTime(time1, time2);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).approvalState!=status){
+					result.remove(i);
+					i--;
+					}
+			}
 			break;
 		}
 
@@ -452,6 +500,13 @@ public class Approval {
 			break;
 		case 2:
 			result=l.findByStatus(status.ordinal());
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).status!=status){
+					result.remove(i);
+					i--;
+					}
+			}
+			break;
 		}
 		return result;
 	}
@@ -469,6 +524,13 @@ public class Approval {
 			break;
 		case 2:
 			result=o.findByStatus(status);
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).status!=status){
+					result.remove(i);
+					i--;
+					}
+			}
+			break;
 		}
 		return result;
 	}
