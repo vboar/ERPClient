@@ -6,9 +6,10 @@
 
 package businesslogic.commoditybl;
 
-import businesslogic.logbl.Log;
-import businesslogic.utilitybl.Utility;
-import dataservice.datafactoryservice.DataFactoryImpl;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import po.CategoryPO;
 import po.CommodityPO;
 import util.ResultMessage;
@@ -16,10 +17,11 @@ import vo.CategoryCommodityVO;
 import vo.CategoryVO;
 import vo.CommodityVO;
 import vo.ExceptionVO;
-
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Collections;
+import vo.SpecialOfferVO;
+import businesslogic.logbl.Log;
+import businesslogic.promotionbl.SpecialOfferPromotion;
+import businesslogic.utilitybl.Utility;
+import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Commodity {
 
@@ -95,7 +97,30 @@ public class Commodity {
 
 		return false;
 	}
+	
+	/**
+	 * 在显示中把不在时间范围内的或者手动使之无效的促销包商品去除掉
+	 * @param voList
+	 * @return
+	 */
+	private ArrayList<CommodityVO> removeOutDate(ArrayList<CommodityVO> voList){
+		ArrayList<CommodityVO> result=new ArrayList<CommodityVO>();
+		for(CommodityVO vo:voList){
+			if(vo.id.compareTo("9999")>0){
+				String speid=vo.id.substring(6);
+				SpecialOfferVO specialVO=new SpecialOfferPromotion().getById(speid);
+				boolean intime=Utility.inTime(specialVO.startTime, specialVO.endTime)&&specialVO.valid;
+				if(intime){
+					result.add(vo);
+				}
+			}else{
+				result.add(vo);
+			}
+		}
+		return result;
+	}
 
+	
 	/**
 	 * 创建商品的时候新建id
 	 * 
@@ -254,6 +279,7 @@ public class Commodity {
 		for (CommodityPO po : poList) {
 			voList.add(commodityPOToCommodityVO(po));
 		}
+		voList=removeOutDate(voList);
 		return voList;
 	}
 
@@ -269,6 +295,7 @@ public class Commodity {
 		for (CommodityPO po : poList) {
 			voList.add(commodityPOToCommodityVO(po));
 		}
+		voList=removeOutDate(voList);
 		return voList;
 	}
 
@@ -284,6 +311,7 @@ public class Commodity {
 		for (CommodityPO po : poList) {
 			voList.add(commodityPOToCommodityVO(po));
 		}
+		voList=removeOutDate(voList);
 		return voList;
 	}
 
@@ -336,6 +364,7 @@ public class Commodity {
 		for (CommodityPO po : poList) {
 			voList.add(commodityPOToCommodityVO(po));
 		}
+		voList=removeOutDate(voList);
 		return voList;
 
 	}
@@ -360,6 +389,7 @@ public class Commodity {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<CategoryCommodityVO> showByInitial(String id) {
 		// TODO
 		ArrayList<CommodityVO> list = new ArrayList<CommodityVO>();
@@ -371,6 +401,7 @@ public class Commodity {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		Collections.sort(list, new SortByIdForBig());
 		return null;
 	}
 
