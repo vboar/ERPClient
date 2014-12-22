@@ -6,26 +6,6 @@
 
 package businesslogic.stockbl;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-
-import po.StockPO;
-import util.DocumentStatus;
-import util.DocumentType;
-import util.ResultMessage;
-import vo.CommodityLineItemVO;
-import vo.CommodityVO;
-import vo.PresentLineItemVO;
-import vo.PresentVO;
-import vo.PurchaseVO;
-import vo.SaleVO;
-import vo.SpecialOfferVO;
-import vo.StockInfoVO;
-import vo.StockVO;
 import businesslogic.commoditybl.Commodity;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.SpecialOfferPromotion;
@@ -34,13 +14,38 @@ import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
 import dataservice.datafactoryservice.DataFactoryImpl;
+import po.StockPO;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
+import vo.*;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 public class Stock {
 
 	public Stock() {
 	}
 
-	//查看
+	/**
+	 * 库存查看
+	 * 流程是这样的：
+	 * 1.首先获得时间，如果时间缺省就自动补充成道现在或者从头开始
+	 * 2.按时间查询，销售单，销售退货单，进货单，进货退货单，赠品单，并且建立outlist（出货列表）和inlist（进货列表）
+	 * 3.把这些单据中没有审批的或者审批不过的去掉
+	 * 4.把赠品单里的商品list转化并进入inlist或者outlist。
+	 * 5.把促销包商品转化成对应的商品
+	 * 6.把销售单和进货的退货单里面的商品的list并入outlist，吧销售退货单和进货单里面的商品list并入inlist
+	 * 7.使用遍历的方法合并inlist和outlist的同类项的商品，做成最后的结果，存入arraylist
+	 * @param time1
+	 * @param time2
+	 * @return
+	 */
 	public ArrayList<StockInfoVO> showStockInfo(String time1, String time2) {
 
 		// 获得时间
@@ -211,6 +216,11 @@ public class Stock {
 		return result;
 	}
 
+	/**
+	 * 生成批号
+	 * 老方法，每天从1开始
+	 * @return
+	 */
 	private String createBatchNumber() {
 		ArrayList<StockPO> poList = null;
 		try {
@@ -237,6 +247,16 @@ public class Stock {
 		return maxStr;
 	}
 
+	/**
+	 * 库存盘点
+	 * 过程是这样的：
+	 * 1.先生称今天的时间
+	 * 2.遍历每一个除了促销包的商品
+	 * 3.在进货单中使劲找，如果是进货单，就在这个商品的总价上加上这次进货的总价，数量上加上这次进货的数量；退货的话则反过来
+	 * 4.除一下，算出平均价，并且保留两位小数
+	 * 5.把这一次的盘点计入到数据层
+	 * @return
+	 */
 	public ArrayList<StockVO> showCheck() {
 		String batch = null;
 		Date date = new Date();
@@ -250,6 +270,7 @@ public class Stock {
 		for (CommodityVO commodityvo : commodityList) {
 			String id = commodityvo.id;
 			double allPrice = 0;
+			int numbertotal=0;
 			StockVO stockvo = new StockVO(id, commodityvo.name,
 					commodityvo.model, commodityvo.number, 0, batch,
 					batchNumber);
@@ -259,17 +280,17 @@ public class Stock {
 				for (CommodityLineItemVO commodity : purchasevo.saleList) {
 					if (commodity.id.equals(id)) {
 						if (purchasevo.receiptType == DocumentType.PURCHASE) {
-							allPrice += purchasevo.total;
+							allPrice += commodity.total;
+							numbertotal+=commodity.number;
 						} else {
-							allPrice -= purchasevo.total;
+							allPrice -= commodity.total;
+							numbertotal-=commodity.number;
 						}
 					}
 				}
 			}
-			if (commodityvo.number != 0) {
-				
-
-				stockvo.avgPrice = allPrice / stockvo.number;
+			if (numbertotal >= 0) {
+				stockvo.avgPrice = allPrice / numbertotal;
 				BigDecimal bg = new BigDecimal(stockvo.avgPrice);
 				stockvo.avgPrice = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			}
@@ -285,6 +306,15 @@ public class Stock {
 		return stockList;
 	}
 
+	/**
+	 * 按照批次和批号查找
+	 * 1.从数据层娶过来
+	 * 2.po转成vo
+	 * 3.返回
+	 * @param batch
+	 * @param batchNumber
+	 * @return
+	 */
 	public ArrayList<StockVO> findByDate(String batch, String batchNumber) {
 		ArrayList<StockVO> voList = new ArrayList<StockVO>();
 		ArrayList<StockPO> poList = new ArrayList<StockPO>();
@@ -303,6 +333,14 @@ public class Stock {
 
 	}
 
+	/**
+	 * 导出当天第一次生成的excel
+	 * 1.生成路径
+	 * 2.导出excel
+	 * @param path
+	 * @param time
+	 * @return
+	 */
 	public ResultMessage exportExcel(String path, String time) {
 		String batch = time;
 		System.out.println("stockbl 269 time:" + batch);
@@ -343,6 +381,11 @@ public class Stock {
 		return vo;
 	}
 	
+	/**
+	 * 在一个商品列表中消去促销包商品，并把对应商品加进去
+	 * @param commodityList
+	 * @return
+	 */
 	public ArrayList<CommodityLineItemVO> removeSpecial(ArrayList<CommodityLineItemVO> commodityList){
 		ArrayList<CommodityLineItemVO> result=new ArrayList<CommodityLineItemVO>();
 		for(CommodityLineItemVO vo:commodityList){
@@ -356,5 +399,8 @@ public class Stock {
 		}
 		return result;
 	}
+
+
+
 
 }

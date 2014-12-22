@@ -558,7 +558,7 @@ public class Sale {
 	}
 
 	public void writeoff(SaleVO sale) {
-		// TODO Auto-generated method stub
+		//TODO
 		
 	}
 	
