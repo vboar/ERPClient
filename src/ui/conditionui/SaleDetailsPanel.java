@@ -62,7 +62,7 @@ public class SaleDetailsPanel extends JPanel implements FuzzySearch, ExcelSaver 
 	public SaleDetailsPanel(JFrame frame) {
 		this.frame = frame;
 		this.controller = ControllerFactoryImpl.getInstance()
-				.getSaleDetailsBLController();
+				.getSaleDetailsController();
 		this.commodityCtrl = ControllerFactoryImpl.getInstance()
 				.getCommodityController();
 		this.vomap = new HashMap<String, CommodityVO>();

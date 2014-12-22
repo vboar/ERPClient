@@ -47,7 +47,19 @@ public interface ExceptionBLService {
 	 * @return
 	 */
 	public String createId();
-	
+
+	/**
+	 * 根据Id模糊查找单据
+	 * @param id
+	 * @return
+	 */
 	public ArrayList<ExceptionVO> findById(String id);
+
+	/**
+	 * 根据id准确查找该单据
+	 * @param id
+	 * @return
+	 */
+	public ExceptionVO getById(String id);
 	
 }

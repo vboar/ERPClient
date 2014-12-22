@@ -30,7 +30,7 @@ public class SaleDetailsTablePane extends TablePanel{
 
 	public SaleDetailsTablePane(TableConfig cfg) {
 		super(cfg);
-		this.controller = ControllerFactoryImpl.getInstance().getSaleDetailsBLController();
+		this.controller = ControllerFactoryImpl.getInstance().getSaleDetailsController();
 		this.initTable();
 		this.initComponent();
 	}

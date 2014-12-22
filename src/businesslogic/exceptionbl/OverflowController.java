@@ -52,7 +52,8 @@ public class OverflowController implements ExceptionBLService {
 		return of.findById(id);
 	}
 
-	public ExceptionVO getById(String id){
+	@Override
+	public ExceptionVO getById(String id) {
 		of.addLog("按ID唯一查找报溢单");
 		return of.getById(id);
 	}

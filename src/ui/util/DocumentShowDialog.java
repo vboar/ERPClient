@@ -8,11 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import businesslogicservice.approvalblservice.ApprovalBLService;
+import ui.exceptionui.ShowExceptionPanel;
+import ui.paymentui.ShowCashPanel;
+import ui.paymentui.ShowPaymentPanel;
+import ui.purchaseui.ShowPurchasePanel;
+import ui.saleui.ShowSalePanel;
+import util.DocumentStatus;
 import util.ResultMessage;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
 import businesslogicservice.writeoffblservice.WriteoffBLService;
 import config.DialogConfig;
 import config.ERPConfig;
+import vo.*;
 
 @SuppressWarnings("serial")
 public class DocumentShowDialog extends JDialog {
@@ -100,9 +108,83 @@ public class DocumentShowDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 审批通过
+				ApprovalBLService controller = ControllerFactoryImpl.getInstance().getApprovalController();
+				switch (panel.getDocumentType()) {
+					case PRESENT: {
+						PresentVO presentVO = ControllerFactoryImpl.getInstance().
+								getPresentController().getById(panel.getDocumentID());
+						presentVO.documentStatus = DocumentStatus.PASSED;
+						controller.approvePresent(presentVO);
+						break;
+					}
+					case OVERFLOW: {
+						ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getOverflowController().
+								getById(panel.getDocumentID());
+						exceptionVO.status = DocumentStatus.PASSED;
+						controller.approveOverflow(exceptionVO);
+						break;
+					}
+					case LOSS: {
+						ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getLossController().
+								getById(panel.getDocumentID());
+						exceptionVO.status = DocumentStatus.PASSED;
+						controller.approveLoss(exceptionVO);
+						break;
+					}
+					case SALE: {
+						SaleVO saleVO = ControllerFactoryImpl.getInstance().
+								getSaleController().getById(panel.getDocumentID());
+						saleVO.approvalState = DocumentStatus.PASSED;
+						controller.approveSale(saleVO);
+						break;
+					}
+					case SALERETURN: {
+						SaleVO saleVO = ControllerFactoryImpl.getInstance().
+								getSaleReturnController().getById(panel.getDocumentID());
+						saleVO.approvalState = DocumentStatus.PASSED;
+						controller.approveSaleReturn(saleVO);
+						break;
+					}
+					case PURCHASE: {
+						PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseController()
+								.getById(panel.getDocumentID());
+						purchaseVO.documentStatus = DocumentStatus.PASSED;
+						controller.approvePurchase(purchaseVO);
+						break;
+					}
+					case PURCHASERETURN: {
+						PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseReturnController()
+								.getById(panel.getDocumentID());
+						purchaseVO.documentStatus = DocumentStatus.PASSED;
+						controller.approvePurchaseReturn(purchaseVO);
+						break;
+					}
+					case RECEIPT: {
+						PaymentVO paymentVO = ControllerFactoryImpl.
+								getInstance().getReceiptController().getById(panel.getDocumentID());
+						paymentVO.approvalState = DocumentStatus.PASSED;
+						controller.approveReceipt(paymentVO);
+						break;
+					}
+					case PAYMENT: {
+						PaymentVO paymentVO = ControllerFactoryImpl.getInstance().
+								getPaymentController().getById(panel.getDocumentID());
+						paymentVO.approvalState = DocumentStatus.PASSED;
+						controller.approvePayment(paymentVO);
+						break;
+					}
+					case CASH: {
+						CashVO cashVO = ControllerFactoryImpl.getInstance().
+								getCashController().getById(panel.getDocumentID());
+						cashVO.approvalState = DocumentStatus.PASSED;
+						controller.approveCash(cashVO);
+						break;
+					}
+				}
+				dispose();
 			}
 		});
-		// 审批不同按钮
+		// 审批不通过按钮
 		this.rejectBtn = new MyButton(cfg.getButtons().element("reject"));
 		this.rejectBtn.addActionListener(new ActionListener() {
 			@Override

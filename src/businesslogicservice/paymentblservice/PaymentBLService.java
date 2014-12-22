@@ -43,4 +43,6 @@ public interface PaymentBLService {
 	public ArrayList<PaymentVO> show();
 
 	public String createId();
+
+	public PaymentVO getById(String id);
 }

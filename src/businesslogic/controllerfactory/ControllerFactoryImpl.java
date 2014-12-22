@@ -177,22 +177,22 @@ public class ControllerFactoryImpl implements ControllerFactory{
 	}
 
 	@Override
-	public SaleDetailsBLService getSaleDetailsBLController() {
+	public SaleDetailsBLService getSaleDetailsController() {
 		return new SaleDetailsController();
 	}
 
 	@Override
-	public HistoryBLService getHistoryBLService() {
+	public HistoryBLService getHistoryController() {
 		return new BusinessHistoryController();
 	}
 
 	@Override
-	public BusinessConditionBLService getBusinessConditionBLService() {
+	public BusinessConditionBLService getBusinessConditionController() {
 		return new BusinessConditionController();
 	}
 
 	@Override
-	public ApprovalBLService getApprovalBLService() {
+	public ApprovalBLService getApprovalController() {
 		return new ApprovalController();
 	}
 

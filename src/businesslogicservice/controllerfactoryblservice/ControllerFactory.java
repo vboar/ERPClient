@@ -74,13 +74,13 @@ public interface ControllerFactory {
 	
 	public LoginBLService getLoginController();
 	
-	public SaleDetailsBLService getSaleDetailsBLController();
+	public SaleDetailsBLService getSaleDetailsController();
 	
-	public HistoryBLService getHistoryBLService();
+	public HistoryBLService getHistoryController();
 	
-	public BusinessConditionBLService getBusinessConditionBLService();
+	public BusinessConditionBLService getBusinessConditionController();
 
-	public ApprovalBLService getApprovalBLService();
+	public ApprovalBLService getApprovalController();
 
 	public SaleBLService getSaleReturnController();
 	

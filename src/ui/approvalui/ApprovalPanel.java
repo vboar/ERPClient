@@ -18,7 +18,12 @@ import javax.swing.JPanel;
 
 import org.dom4j.Element;
 
+import ui.exceptionui.ShowExceptionPanel;
+import ui.paymentui.ShowCashPanel;
+import ui.paymentui.ShowPaymentPanel;
 import ui.presentui.ShowPresentPanel;
+import ui.purchaseui.ShowPurchasePanel;
+import ui.saleui.ShowSalePanel;
 import ui.util.*;
 import util.DocumentStatus;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
@@ -27,8 +32,7 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 import util.DocumentType;
-import vo.DocumentVO;
-import vo.PresentVO;
+import vo.*;
 
 @SuppressWarnings("serial")
 public class ApprovalPanel extends JPanel {
@@ -63,7 +67,7 @@ public class ApprovalPanel extends JPanel {
 
     public ApprovalPanel(JFrame frame) {
         this.frame = frame;
-        controller = ControllerFactoryImpl.getInstance().getApprovalBLService();
+        controller = ControllerFactoryImpl.getInstance().getApprovalController();
         this.pcfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
         this.setSize(pcfg.getW(), pcfg.getH());
         this.setLocation(pcfg.getX(), pcfg.getY());
@@ -238,7 +242,15 @@ public class ApprovalPanel extends JPanel {
         detailBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                toDetail();
+                if(table.isSelected()) {
+                    if(table.getStatus() != DocumentStatus.NONCHECKED) {
+                        MyOptionPane.showMessageDialog(frame, "审批操作非法！");
+                        return;
+                    }
+                    toDetail();
+                } else {
+                    MyOptionPane.showMessageDialog(frame, "请选择单据！");
+                }
             }
         });
     }
@@ -254,18 +266,57 @@ public class ApprovalPanel extends JPanel {
             case PRESENT: {
                 PresentVO presentVO = ControllerFactoryImpl.getInstance().getPresentController().getById(vo.getId());
                 new DocumentShowDialog(frame,new ShowPresentPanel(frame,presentVO,type),type);
+                break;
             }
-//            case OVERFLOW: showExceptionDocument(type,false); break;
-//            case LOSS: 	showExceptionDocument(type,true); break;
-//            case WARNING: break;
-//            case SALE: showSaleDocument(type,false);break;
-//            case SALERETURN: showSaleDocument(type,true);break;
-//            case PURCHASE: showPurchaseDocument(type,false);break;
-//            case PURCHASERETURN: showPurchaseDocument(type,true); break;
-//            case RECEIPT:  showPaymentDocument(type,true);break;
-//            case PAYMENT:  showPaymentDocument(type,false);break;
-//            case CASH: showCashDocument(type);break;
-            default:
+            case OVERFLOW: {
+                ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getOverflowController().
+                        getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, false),type);
+                break;
+            }
+            case LOSS: {
+                ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getLossController().
+                        getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, true),type);
+                break;
+            }
+            case SALE: {
+                SaleVO saleVO = ControllerFactoryImpl.getInstance().getSaleController().getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowSalePanel(frame,saleVO,type, false),type);
+                break;
+            }
+            case SALERETURN: {
+                SaleVO saleVO = ControllerFactoryImpl.getInstance().getSaleReturnController().getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowSalePanel(frame,saleVO,type, true),type);
+                break;
+            }
+            case PURCHASE: {
+                PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseController()
+                        .getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowPurchasePanel(frame,purchaseVO,type, false),type);
+                break;
+            }
+            case PURCHASERETURN: {
+                PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseReturnController()
+                        .getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowPurchasePanel(frame,purchaseVO,type, true),type);
+                break;
+            }
+            case RECEIPT: {
+                PaymentVO paymentVO = ControllerFactoryImpl.getInstance().getReceiptController().getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowPaymentPanel(frame,paymentVO,type, true),type);
+                break;
+            }
+            case PAYMENT: {
+                PaymentVO paymentVO = ControllerFactoryImpl.getInstance().getPaymentController().getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowPaymentPanel(frame,paymentVO,type, false),type);
+                break;
+            }
+            case CASH: {
+                CashVO cashVO = ControllerFactoryImpl.getInstance().getCashController().getById(vo.getId());
+                new DocumentShowDialog(frame,new ShowCashPanel(frame,cashVO,type),type);
+                break;
+            }
         }
     }
 

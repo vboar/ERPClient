@@ -38,7 +38,8 @@ public class CashController implements CashBLService {
 	public ArrayList<CashVO> findById(String id) {
 		return c.findById(id);
 	}
-	
+
+	@Override
 	public CashVO getById(String id){
 		return c.getById(id);
 	}

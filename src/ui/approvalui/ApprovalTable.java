@@ -77,6 +77,7 @@ public class ApprovalTable extends TablePanel {
     }
 
     public void showTable() {
+        list = controller.show(status, startTime, endTime);
         this.data = new Object[list.size()][COLUMN_NUM];
         for(int i=0; i<list.size(); ++i){
             DocumentVO dvo = list.get(i);

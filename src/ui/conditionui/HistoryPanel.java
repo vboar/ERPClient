@@ -98,7 +98,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	public HistoryPanel(JFrame frame){
     	this.frame = frame;
     	vo = new RequirementVO();
-    	this.controller = ControllerFactoryImpl.getInstance().getHistoryBLService();
+    	this.controller = ControllerFactoryImpl.getInstance().getHistoryController();
     	this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		// 设置面板基础属性
 		this.setSize(cfg.getW(), cfg.getH());

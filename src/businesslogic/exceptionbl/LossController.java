@@ -52,4 +52,11 @@ public class LossController implements ExceptionBLService {
 		return l.findById(id);
 	}
 
+	@Override
+	public ExceptionVO getById(String id) {
+		// TODO
+		return null;
+	}
+
+
 }

@@ -53,7 +53,7 @@ public class BusinessConditionPanel extends JPanel implements ExcelSaver{
 	public BusinessConditionPanel(JFrame frame) {
 		this.frame = frame;
 		this.controller = ControllerFactoryImpl.getInstance()
-				.getBusinessConditionBLService();
+				.getBusinessConditionController();
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap()
 				.get((this.getClass().getName()));
 		// 设置面板基础属性
