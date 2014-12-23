@@ -100,7 +100,7 @@ public class Customer {
 	public ResultMessage updateByPayment(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setReceivables(cpo.getPaybles()-total);
+			cpo.setPaybles(cpo.getPaybles()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {		
 			e.printStackTrace();
@@ -113,7 +113,7 @@ public class Customer {
 	public ResultMessage updateByReceipt(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setPaybles(cpo.getReceivables()-total);
+			cpo.setReceivables(cpo.getReceivables()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -126,7 +126,7 @@ public class Customer {
 	public ResultMessage updateBySale(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setPaybles(cpo.getReceivables()+total);
+			cpo.setReceivables(cpo.getReceivables()+total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class Customer {
 	public ResultMessage updateBySaleReturn(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setPaybles(cpo.getReceivables()-total);
+			cpo.setReceivables(cpo.getReceivables()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -152,7 +152,7 @@ public class Customer {
 	public ResultMessage updateByPurchase(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setReceivables(cpo.getPaybles()+total);
+			cpo.setPaybles(cpo.getPaybles()+total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -165,7 +165,7 @@ public class Customer {
 	public ResultMessage updateByPurchaseReturn(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setReceivables(cpo.getPaybles()-total);
+			cpo.setPaybles(cpo.getPaybles()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
