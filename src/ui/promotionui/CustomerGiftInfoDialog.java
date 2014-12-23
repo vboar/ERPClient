@@ -240,7 +240,7 @@ public class CustomerGiftInfoDialog extends EditDialog implements
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new AddPresentCommodityDialog(CustomerGiftInfoDialog.this,
-						frame);
+						frame,true);
 			}
 		});
 		this.delete.addActionListener(new ActionListener() {

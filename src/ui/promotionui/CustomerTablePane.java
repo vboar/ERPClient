@@ -58,7 +58,7 @@ public class CustomerTablePane extends TablePanel{
 
 	private void createRow(Object[] row, CustomerGiftVO vo) {
 		row[0]=vo.id;
-		row[1]=vo.vip;
+		row[1]="VIP"+(vo.vip+1);
 		row[2]=vo.giftInfo;
 		row[3]=vo.discount;
 		row[4]=vo.voucher;
@@ -71,7 +71,7 @@ public class CustomerTablePane extends TablePanel{
 		// 更新模型
 		int row = this.table.getSelectedRow();
 		this.dtm.setValueAt(vo.id, row, 0);
-		this.dtm.setValueAt(vo.vip, row, 1);
+		this.dtm.setValueAt("VIP"+(vo.vip+1), row, 1);
 		this.dtm.setValueAt(vo.giftInfo, row,2);
 		this.dtm.setValueAt(vo.discount, row, 3);
 		this.dtm.setValueAt(vo.voucher, row, 4);

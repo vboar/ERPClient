@@ -253,6 +253,9 @@ public class CreatePurchasePanel extends PurchaseDocumentPanel implements FuzzyS
 	}
 
 	public void delCommodity() {
+		CommodityLineItemVO vo = this.commodityTable.getSelectedVO();
+		this.totalPrice = this.totalPrice - vo.number*vo.price;
+		this.totalLab.setText(Double.toString(totalPrice));
 		this.commoditylist.remove(this.commodityTable.getTable()
 				.getSelectedRow());
 		this.commodityTable.deleteRow();

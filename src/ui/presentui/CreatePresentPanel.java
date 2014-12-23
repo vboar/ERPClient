@@ -132,7 +132,7 @@ FuzzySearch, AddCommodityLineItem{
 		this.addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddPresentCommodityDialog(CreatePresentPanel.this,frame);
+				new AddPresentCommodityDialog(CreatePresentPanel.this,frame,false);
 			}
 			
 		});

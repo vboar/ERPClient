@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-import ui.util.DocumentWriteoffAndCopy;
+import ui.util.DocumentShowDialogExtra;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -32,7 +32,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowPaymentPanel extends PaymentDocumentPanel implements
-		FuzzySearch, DocumentWriteoffAndCopy, CreatePanel {
+		FuzzySearch, DocumentShowDialogExtra, CreatePanel {
 
 	private int type;
 

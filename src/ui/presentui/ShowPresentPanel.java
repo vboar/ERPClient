@@ -10,7 +10,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import ui.util.AddCommodityLineItem;
-import ui.util.DocumentWriteoffAndCopy;
+import ui.util.DocumentShowDialogExtra;
 import ui.util.FuzzySearch;
 import ui.util.MyButton;
 import ui.util.MyLabel;
@@ -31,7 +31,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearch,
-	AddCommodityLineItem, DocumentWriteoffAndCopy{
+	AddCommodityLineItem, DocumentShowDialogExtra{
 	
 	private int type;
 	
@@ -137,7 +137,7 @@ public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearc
 		this.addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddPresentCommodityDialog(ShowPresentPanel.this,frame);
+				new AddPresentCommodityDialog(ShowPresentPanel.this,frame,false);
 			}
 			
 		});

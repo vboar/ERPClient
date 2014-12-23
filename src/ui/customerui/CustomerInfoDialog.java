@@ -114,6 +114,7 @@ public class CustomerInfoDialog extends EditDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try{
 				int category = categoryBox.getSelectedIndex();
 				int level = levelBox.getSelectedIndex();
 				String id="";
@@ -151,6 +152,9 @@ public class CustomerInfoDialog extends EditDialog {
 						}
 					}
 					
+				}
+				}catch(NumberFormatException ne){
+					MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
 				}
 			}
 			

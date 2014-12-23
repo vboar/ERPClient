@@ -290,7 +290,8 @@ public class Stock {
 				}
 			}
 			if (numbertotal >= 0) {
-				stockvo.avgPrice = allPrice / numbertotal;
+				if(numbertotal==0) stockvo.avgPrice = 0;
+				else stockvo.avgPrice = allPrice / numbertotal;
 				BigDecimal bg = new BigDecimal(stockvo.avgPrice);
 				stockvo.avgPrice = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			}

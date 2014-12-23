@@ -23,7 +23,7 @@ import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
 import ui.util.MyTextArea;
 import ui.util.MyTextField;
-import ui.util.DocumentWriteoffAndCopy;
+import ui.util.DocumentShowDialogExtra;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
@@ -41,7 +41,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowSalePanel extends SaleDocumentPanel implements FuzzySearch,
-	AddCommodityLineItem,CheckPromotion,DocumentWriteoffAndCopy{
+	AddCommodityLineItem,CheckPromotion,DocumentShowDialogExtra{
 	
 	private int type;
 	

@@ -21,7 +21,7 @@ import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MySpecialTextField;
 import ui.util.MyTextArea;
-import ui.util.DocumentWriteoffAndCopy;
+import ui.util.DocumentShowDialogExtra;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
@@ -36,7 +36,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowPurchasePanel extends PurchaseDocumentPanel implements
-		FuzzySearch, AddCommodityLineItem, DocumentWriteoffAndCopy{
+		FuzzySearch, AddCommodityLineItem, DocumentShowDialogExtra{
 
 	private int type;
 

@@ -8,19 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import businesslogicservice.approvalblservice.ApprovalBLService;
-import ui.exceptionui.ShowExceptionPanel;
-import ui.paymentui.ShowCashPanel;
-import ui.paymentui.ShowPaymentPanel;
-import ui.purchaseui.ShowPurchasePanel;
-import ui.saleui.ShowSalePanel;
 import util.DocumentStatus;
 import util.ResultMessage;
+import vo.CashVO;
+import vo.ExceptionVO;
+import vo.PaymentVO;
+import vo.PresentVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.approvalblservice.ApprovalBLService;
 import businesslogicservice.writeoffblservice.WriteoffBLService;
 import config.DialogConfig;
 import config.ERPConfig;
-import vo.*;
 
 @SuppressWarnings("serial")
 public class DocumentShowDialog extends JDialog {
@@ -37,12 +37,12 @@ public class DocumentShowDialog extends JDialog {
 	private JScrollPane jsp;
 	
 	private DialogConfig cfg;
-	private DocumentWriteoffAndCopy panel;
+	private DocumentShowDialogExtra extra;
 	private WriteoffBLService writeoffCtrl;
 
-	public DocumentShowDialog(JFrame frame, DocumentWriteoffAndCopy panel, int type) {
+	public DocumentShowDialog(JFrame frame, DocumentShowDialogExtra extra, int type) {
 		super(frame, true);
-		this.panel = panel;
+		this.extra = extra;
 		this.type = type;
 		this.cfg = ERPConfig.getSHOWDOCUMENT_DIALOG_CONFIG();
 		this.writeoffCtrl = ControllerFactoryImpl.getInstance().getWriteoffController();
@@ -60,7 +60,7 @@ public class DocumentShowDialog extends JDialog {
 		this.initButtons();
 		jsp = new JScrollPane();
 		jsp.setBounds(0, 0, this.getWidth()-5, this.getHeight()-90);
-		jsp.setViewportView((JPanel)this.panel);
+		jsp.setViewportView((JPanel)this.extra);
 		this.add(jsp);
 	}
 	
@@ -83,15 +83,15 @@ public class DocumentShowDialog extends JDialog {
 		this.copyBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (panel.checkCompleted()) {
+				if (extra.checkCompleted()) {
 					int result = MyOptionPane.showConfirmDialog(frame, "确认创建？",
 							"确认提示", MyOptionPane.YES_NO_OPTION,
 							MyOptionPane.QUESTION_MESSAGE);
 					if (result == MyOptionPane.YES_OPTION) {
 						// 创建一张复制单据
-						if (writeoffCtrl.create(panel.getDocumentType(),
-								panel.getDocumentID()) == ResultMessage.SUCCESS) {
-							panel.createCopyDocument();
+						if (writeoffCtrl.create(extra.getDocumentType(),
+								extra.getDocumentID()) == ResultMessage.SUCCESS) {
+							extra.createCopyDocument();
 							dispose();
 						} else {
 							MyOptionPane.showMessageDialog(frame, "红冲操作失败！");
@@ -109,73 +109,73 @@ public class DocumentShowDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 审批通过
 				ApprovalBLService controller = ControllerFactoryImpl.getInstance().getApprovalController();
-				switch (panel.getDocumentType()) {
+				switch (extra.getDocumentType()) {
 					case PRESENT: {
 						PresentVO presentVO = ControllerFactoryImpl.getInstance().
-								getPresentController().getById(panel.getDocumentID());
+								getPresentController().getById(extra.getDocumentID());
 						presentVO.documentStatus = DocumentStatus.PASSED;
 						controller.approvePresent(presentVO);
 						break;
 					}
 					case OVERFLOW: {
 						ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getOverflowController().
-								getById(panel.getDocumentID());
+								getById(extra.getDocumentID());
 						exceptionVO.status = DocumentStatus.PASSED;
 						controller.approveOverflow(exceptionVO);
 						break;
 					}
 					case LOSS: {
 						ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getLossController().
-								getById(panel.getDocumentID());
+								getById(extra.getDocumentID());
 						exceptionVO.status = DocumentStatus.PASSED;
 						controller.approveLoss(exceptionVO);
 						break;
 					}
 					case SALE: {
 						SaleVO saleVO = ControllerFactoryImpl.getInstance().
-								getSaleController().getById(panel.getDocumentID());
+								getSaleController().getById(extra.getDocumentID());
 						saleVO.approvalState = DocumentStatus.PASSED;
 						controller.approveSale(saleVO);
 						break;
 					}
 					case SALERETURN: {
 						SaleVO saleVO = ControllerFactoryImpl.getInstance().
-								getSaleReturnController().getById(panel.getDocumentID());
+								getSaleReturnController().getById(extra.getDocumentID());
 						saleVO.approvalState = DocumentStatus.PASSED;
 						controller.approveSaleReturn(saleVO);
 						break;
 					}
 					case PURCHASE: {
 						PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseController()
-								.getById(panel.getDocumentID());
+								.getById(extra.getDocumentID());
 						purchaseVO.documentStatus = DocumentStatus.PASSED;
 						controller.approvePurchase(purchaseVO);
 						break;
 					}
 					case PURCHASERETURN: {
 						PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseReturnController()
-								.getById(panel.getDocumentID());
+								.getById(extra.getDocumentID());
 						purchaseVO.documentStatus = DocumentStatus.PASSED;
 						controller.approvePurchaseReturn(purchaseVO);
 						break;
 					}
 					case RECEIPT: {
 						PaymentVO paymentVO = ControllerFactoryImpl.
-								getInstance().getReceiptController().getById(panel.getDocumentID());
+								getInstance().getReceiptController().getById(extra.getDocumentID());
 						paymentVO.approvalState = DocumentStatus.PASSED;
 						controller.approveReceipt(paymentVO);
 						break;
 					}
 					case PAYMENT: {
 						PaymentVO paymentVO = ControllerFactoryImpl.getInstance().
-								getPaymentController().getById(panel.getDocumentID());
+								getPaymentController().getById(extra.getDocumentID());
 						paymentVO.approvalState = DocumentStatus.PASSED;
 						controller.approvePayment(paymentVO);
 						break;
 					}
 					case CASH: {
 						CashVO cashVO = ControllerFactoryImpl.getInstance().
-								getCashController().getById(panel.getDocumentID());
+								getCashController().getById(extra.getDocumentID());
 						cashVO.approvalState = DocumentStatus.PASSED;
 						controller.approveCash(cashVO);
 						break;
@@ -198,8 +198,8 @@ public class DocumentShowDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 红冲
-				writeoffCtrl.create(panel.getDocumentType(),
-						panel.getDocumentID());
+				writeoffCtrl.create(extra.getDocumentType(),
+						extra.getDocumentID());
 			}
 		});
 		if (type == 0) {

@@ -60,7 +60,7 @@ public class MessageTable extends TablePanel {
     }
 
     private void createRow(Object[] row, MessageVO vo) {
-        row[0] = vo.state;
+        row[0] = vo.state==0 ? "未读":"已读";
         row[1] = vo.time;
         row[2] = vo.content;
     }

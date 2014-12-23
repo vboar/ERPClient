@@ -1,5 +1,7 @@
 package ui.util;
 
+import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
 
 import vo.CommodityLineItemVO;
@@ -21,12 +23,14 @@ public class CommodityTablePane extends TablePanel {
 
 	private DefaultTableModel dtm;
 	
+	private ArrayList<CommodityLineItemVO> list;
 	/**
 	 * 构造函数
 	 * @param cfg
 	 */
 	public CommodityTablePane(TableConfig cfg) {
 		super(cfg);
+		list = new ArrayList<CommodityLineItemVO>();
 		this.initTable();
 		this.initComponent();
 	}
@@ -49,6 +53,7 @@ public class CommodityTablePane extends TablePanel {
 	
 	public void addRow(CommodityLineItemVO vo){
 		Object[] newrow= new Object[COLUMN_NUM];
+		list.add(vo);
 		this.createRow(newrow,vo);
 		this.dtm.addRow(newrow);
 	}
@@ -67,4 +72,15 @@ public class CommodityTablePane extends TablePanel {
 		}
 	}
 	
+	public CommodityLineItemVO getSelectedVO(){
+		CommodityLineItemVO vo = null;
+		int row = this.table.getSelectedRow();
+		for(int i=0; i<list.size();++i){
+			if(this.table.getValueAt(row, 0).equals(list.get(i).id)){
+				vo = list.get(i);
+				return vo;
+			}
+		}
+		return vo;
+	}
 }

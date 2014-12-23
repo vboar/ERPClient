@@ -77,7 +77,7 @@ public class CommodityLineItemVO {
     
     @Override
     public String toString(){
-    	return name + "-" + model + "-￥" + price + "-"+number;
+    	return name + "-" + model + "-￥" + price + "*"+number;
     }
     
 }

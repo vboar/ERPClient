@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import ui.util.DocumentWriteoffAndCopy;
+import ui.util.DocumentShowDialogExtra;
 import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
@@ -24,7 +24,7 @@ import config.TableConfig;
 
 @SuppressWarnings("serial")
 public class ShowExceptionPanel extends ExceptionDocumentPanel implements 
-	AddExceptionLineItem,DocumentWriteoffAndCopy{
+	AddExceptionLineItem,DocumentShowDialogExtra{
 
 	private int type;
 	

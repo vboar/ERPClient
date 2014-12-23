@@ -195,7 +195,7 @@ public class TotalGiftInfoDialog extends EditDialog implements AddCommodityLineI
 		this.add.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddPresentCommodityDialog(TotalGiftInfoDialog.this, frame);
+				new AddPresentCommodityDialog(TotalGiftInfoDialog.this, frame,true);
 			}
 		});
 		this.delete.addActionListener(new ActionListener() {

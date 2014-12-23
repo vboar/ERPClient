@@ -358,6 +358,10 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 	 * 删除一个商品
 	 */
 	public void delCommodity(){
+		CommodityLineItemVO vo = this.commodityTable.getSelectedVO();
+		this.totalPrice = this.totalPrice-vo.number*vo.price;
+		this.totalLab.setText(Double.toString(totalPrice));
+		this.totalBeforeDiscountLab.setText(Double.toString(totalPrice));
 		this.commoditylist.remove(this.commodityTable.getTable().getSelectedRow());
 		this.commodityTable.deleteRow();
 	}

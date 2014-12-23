@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -113,6 +115,13 @@ public class CustomerPanel extends JPanel implements FuzzySearch {
 	
 	private void initFindComboBox(Element textfields) {
 		this.findBox = new MySpecialTextField(textfields.element("findinput"),this);
+		this.findBox.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)
+					findCustomer(findBox.getText());
+			}
+		});
 		this.add(findBox);
 	}
 	
