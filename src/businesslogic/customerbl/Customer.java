@@ -96,11 +96,11 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
-	//因为审批付款单引起的应收减少
+	//付款单通过审批，应付减少
 	public ResultMessage updateByPayment(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setReceivables(cpo.getReceivables()-total);
+			cpo.setReceivables(cpo.getPaybles()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {		
 			e.printStackTrace();
@@ -109,11 +109,11 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
-	//付款单通过审批，应付减少
+	//收款单通过审批，应收减少
 	public ResultMessage updateByReceipt(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setPaybles(cpo.getPaybles()-total);
+			cpo.setPaybles(cpo.getReceivables()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -122,11 +122,11 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
-	//销售单通过审批，客户应付增加
+	//销售单通过审批，客户应收增加
 	public ResultMessage updateBySale(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setPaybles(cpo.getPaybles()+total);
+			cpo.setPaybles(cpo.getReceivables()+total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -135,11 +135,11 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
-	// 销售退货单通过审批，客户应付减少
+	// 销售退货单通过审批，客户应收减少
 	public ResultMessage updateBySaleReturn(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setPaybles(cpo.getPaybles()-total);
+			cpo.setPaybles(cpo.getReceivables()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -148,11 +148,11 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
-	//进货单通过审批，客户应收增加
+	//进货单通过审批，客户应付增加
 	public ResultMessage updateByPurchase(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setReceivables(cpo.getReceivables()+total);
+			cpo.setReceivables(cpo.getPaybles()+total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -161,11 +161,11 @@ public class Customer {
 		return ResultMessage.SUCCESS;
 	}
 	
-	//进货退货单通过审批,客户应收减少
+	//进货退货单通过审批,客户应付减少
 	public ResultMessage updateByPurchaseReturn(String customerId,double total){
 		try {
 			CustomerPO cpo=DataFactoryImpl.getInstance().getCustomerData().getById(customerId);
-			cpo.setReceivables(cpo.getReceivables()-total);
+			cpo.setReceivables(cpo.getPaybles()-total);
 			DataFactoryImpl.getInstance().getCustomerData().update(cpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
