@@ -141,7 +141,7 @@ public class ApprovalPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 table.setStatus(DocumentStatus.NONCHECKED);
-                table.showTable();
+                table.showTableByType(1);
             }
         });
 
@@ -151,7 +151,7 @@ public class ApprovalPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 table.setStatus(DocumentStatus.PASSED);
-                table.showTable();
+                table.showTableByType(1);
             }
         });
 
@@ -161,7 +161,7 @@ public class ApprovalPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 table.setStatus(DocumentStatus.FAILED);
-                table.showTable();
+                table.showTableByType(1);
             }
         });
 

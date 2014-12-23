@@ -154,7 +154,7 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 	}
 
 	@Override
-	public SaleDataService getSaleDataService() throws RemoteException {
+	public SaleDataService getSaleData() throws RemoteException {
 		return new SaleDataServiceImpl();
 	}
 

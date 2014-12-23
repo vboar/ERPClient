@@ -43,7 +43,7 @@ public class SaleReturn {
 		vo.time=time;
 		SalePO po = sale.SaleVOToSalePO(vo);
 		try {
-			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+			DataFactoryImpl.getInstance().getSaleData().insert(po);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -102,7 +102,7 @@ public class SaleReturn {
 		
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findByTime(time1, time2);
+					.getSaleData().findByTime(time1, time2);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class SaleReturn {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findByCustomer(customer);
+					.getSaleData().findByCustomer(customer);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -159,7 +159,7 @@ public class SaleReturn {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findBySalesman(salesman);
+					.getSaleData().findBySalesman(salesman);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -180,7 +180,7 @@ public class SaleReturn {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findByStorage(Storage);
+					.getSaleData().findByStorage(Storage);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -202,7 +202,7 @@ public class SaleReturn {
 		ArrayList<SalePO> temp=new ArrayList<SalePO>();
 		Sale s=new Sale();
 		try {
-			temp=DataFactoryImpl.getInstance().getSaleDataService().findByStatus(status);
+			temp=DataFactoryImpl.getInstance().getSaleData().findByStatus(status);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -221,7 +221,7 @@ public class SaleReturn {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().show();
+					.getSaleData().show();
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();

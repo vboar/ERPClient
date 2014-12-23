@@ -39,7 +39,7 @@ public static String jdugeTime1(String time1){
 
 }
 
-//若传入的time2为null或者""，返回现在的时间 
+//若传入的time2为null或者""，返回现在的时间
 public static String jdugeTime2(String time2){
 	
 	if(time2!=null&&!time2.equals("")){
