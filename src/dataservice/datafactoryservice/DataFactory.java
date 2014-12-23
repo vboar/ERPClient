@@ -63,7 +63,7 @@ public interface DataFactory extends Remote {
 	
 	public PurchaseDataService getPurchaseData() throws RemoteException;
 	
-	public SaleDataService getSaleDataService() throws RemoteException;
+	public SaleDataService getSaleData() throws RemoteException;
 	
 	public StockDataService getStockData() throws RemoteException;
 	

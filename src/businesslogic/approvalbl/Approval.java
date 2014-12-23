@@ -575,7 +575,7 @@ public class Approval {
 		if(id.contains("XSD")||id.contains("XSTHD")){
 			Sale s=new Sale();
 			try {
-				DocumentVO result=s.SalePOToSaleVO(DataFactoryImpl.getInstance().getSaleDataService().getById(id));
+				DocumentVO result=s.SalePOToSaleVO(DataFactoryImpl.getInstance().getSaleData().getById(id));
 				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块

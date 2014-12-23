@@ -187,7 +187,7 @@ public class Sale {
 		System.out.println("salebl:161 salesmanId "+po.getSalesmanId());
 		System.out.println("salebl:162 operatorId "+po.getOperatorId());
 		try {
-			DataFactoryImpl.getInstance().getSaleDataService().insert(po);
+			DataFactoryImpl.getInstance().getSaleData().insert(po);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -201,7 +201,7 @@ public class Sale {
 		vo.time=time;
 		SalePO po = SaleVOToSalePO(vo);
 		try {
-			DataFactoryImpl.getInstance().getSaleDataService().update(po);
+			DataFactoryImpl.getInstance().getSaleData().update(po);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -212,7 +212,7 @@ public class Sale {
 	public SaleVO getById(String id) {
 		SalePO po = null;
 		try {
-			po = DataFactoryImpl.getInstance().getSaleDataService().getById(id);
+			po = DataFactoryImpl.getInstance().getSaleData().getById(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -234,7 +234,7 @@ public class Sale {
 		
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findByTime(time1, time2);
+					.getSaleData().findByTime(time1, time2);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -270,7 +270,7 @@ public class Sale {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findByCustomer(customer);
+					.getSaleData().findByCustomer(customer);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -290,7 +290,7 @@ public class Sale {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findBySalesman(salesman);
+					.getSaleData().findBySalesman(salesman);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -311,7 +311,7 @@ public class Sale {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().findByStorage(Storage);
+					.getSaleData().findByStorage(Storage);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -332,7 +332,7 @@ public class Sale {
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
 		ArrayList<SalePO> temp=new ArrayList<SalePO>();
 		try {
-			temp=DataFactoryImpl.getInstance().getSaleDataService().findByStatus(status);
+			temp=DataFactoryImpl.getInstance().getSaleData().findByStatus(status);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -349,7 +349,7 @@ public class Sale {
 		ArrayList<SalePO> poList=null;
 		try {
 			poList = DataFactoryImpl.getInstance()
-					.getSaleDataService().show();
+					.getSaleData().show();
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();
@@ -369,7 +369,7 @@ public class Sale {
 	public ArrayList<SaleVO> bigShow() {
 		ArrayList<SalePO> poList = null;
 		try {
-			poList = DataFactoryImpl.getInstance().getSaleDataService().show();
+			poList = DataFactoryImpl.getInstance().getSaleData().show();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
