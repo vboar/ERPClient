@@ -92,7 +92,7 @@ public class AccountInfoDialog extends EditDialog {
 							MyOptionPane.showMessageDialog(null, "添加成功！");
 							dispose();
 						} else {
-							MyOptionPane.showMessageDialog(null, "填写信息错误，添加失败！");
+							MyOptionPane.showMessageDialog(null, "该银行账号已存在，添加失败！");
 						}
 					} else {
 						if(panel.updateAccount(vo) == ResultMessage.SUCCESS) {

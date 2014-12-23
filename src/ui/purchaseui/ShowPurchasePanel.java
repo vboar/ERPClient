@@ -156,7 +156,6 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 				showCustomerInfo();
 			}
 		});
-		this.add(addCustomer);
 		// 添加商品按钮
 		this.addBtn = new MyButton(cfg.getButtons().element("add"));
 		this.addBtn.addActionListener(new ActionListener() {
@@ -183,6 +182,11 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 				}
 			}
 		});
+		if(type!=1){
+			this.add(addCustomer);
+			this.add(addBtn);
+			this.add(deleteBtn);
+		}
 	}
 	
 	protected void showCustomerInfo() {

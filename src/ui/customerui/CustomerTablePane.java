@@ -66,8 +66,8 @@ public class CustomerTablePane extends TablePanel {
 		row[6] = vo.postalCode;
 		row[7] = vo.email;
 		row[8] = vo.creditLimit;
-		row[9] = vo.paybles;
-		row[10] = vo.receivables;
+		row[9] = vo.receivables;
+		row[10] = vo.paybles;
 		row[11] = vo.salesman;
 	}
 	
@@ -94,8 +94,8 @@ public class CustomerTablePane extends TablePanel {
 		this.dtm.setValueAt(vo.postalCode, row, 6);
 		this.dtm.setValueAt(vo.email, row, 7);
 		this.dtm.setValueAt(vo.creditLimit, row, 8);
-		this.dtm.setValueAt(vo.paybles, row, 9);
-		this.dtm.setValueAt(vo.receivables, row, 10);
+		this.dtm.setValueAt(vo.receivables, row, 9);
+		this.dtm.setValueAt(vo.paybles, row, 10);
 		this.dtm.setValueAt(vo.salesman, row, 11);
 	}
 
@@ -143,8 +143,8 @@ public class CustomerTablePane extends TablePanel {
 			row.add(vo.postalCode);
 			row.add(vo.email);
 			row.add(vo.creditLimit);
-			row.add(vo.paybles);
 			row.add(vo.receivables);
+			row.add(vo.paybles);
 			row.add(vo.salesman);
 			table.add(row);
 		}
