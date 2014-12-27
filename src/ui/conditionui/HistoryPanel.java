@@ -20,15 +20,7 @@ import ui.purchaseui.PurchaseListPane;
 import ui.purchaseui.ShowPurchasePanel;
 import ui.saleui.SaleListPane;
 import ui.saleui.ShowSalePanel;
-import ui.util.DatePickerGroup;
-import ui.util.DocumentShowDialog;
-import ui.util.ExcelSaver;
-import ui.util.FrameUtil;
-import ui.util.MyButton;
-import ui.util.MyComboBox;
-import ui.util.MyLabel;
-import ui.util.MyOptionPane;
-import ui.util.SavePathDialog;
+import ui.util.*;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.CashVO;
@@ -47,7 +39,7 @@ import config.PanelConfig;
 import config.TableConfig;
 
 @SuppressWarnings("serial")
-public class HistoryPanel extends JPanel implements ExcelSaver{
+public class HistoryPanel extends JPanel implements ExcelSaver, UpdateTableData {
 
 	private MyComboBox customer;
 	
@@ -218,38 +210,38 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	private void showExceptionDocument(int type, boolean isloss) {
 		ExceptionVO vo = this.exception.getSelectedVO();
 		if(vo!=null)
-			new DocumentShowDialog(frame, new ShowExceptionPanel(frame, vo, type, isloss), type);
+			new DocumentShowDialog(frame, new ShowExceptionPanel(frame, vo, type, isloss), this, type);
 	}
 
 	private void showPaymentDocument(int type, boolean isreceipt) {
 		PaymentVO vo = this.payment.getSelectedVO();
 		if(vo!=null)
-			new DocumentShowDialog(frame, new ShowPaymentPanel(frame, vo, type, isreceipt), type);
+			new DocumentShowDialog(frame, new ShowPaymentPanel(frame, vo, type, isreceipt), this, type);
 	}
 
 	private void showCashDocument(int type) {
 		CashVO vo = this.cash.getSelectedVO();
 		if(vo!=null)
-			new DocumentShowDialog(frame,new ShowCashPanel(frame,vo,type),type);
+			new DocumentShowDialog(frame,new ShowCashPanel(frame,vo,type), this, type);
 		
 	}
 
 	private void showPresentDocument(int type) {
 		PresentVO vo = this.present.getSelectedVO();
 		if(vo!=null)
-			new DocumentShowDialog(frame,new ShowPresentPanel(frame,vo,type),type);
+			new DocumentShowDialog(frame,new ShowPresentPanel(frame,vo,type), this, type);
 	}
 
 	private void showSaleDocument(int type, boolean isreturn) {
 		SaleVO vo = this.sales.getSelectedVO();
 		if(vo!=null)
-			new DocumentShowDialog(frame, new ShowSalePanel(frame, vo, type, isreturn),type);
+			new DocumentShowDialog(frame, new ShowSalePanel(frame, vo, type, isreturn), this, type);
 	}
 
 	private void showPurchaseDocument(int type, boolean isreturn) {
 		PurchaseVO vo = this.purchase.getSelectedVO();
 		if(vo!=null)	
-			new DocumentShowDialog(frame,new ShowPurchasePanel(frame,vo,type,isreturn),type);
+			new DocumentShowDialog(frame,new ShowPurchasePanel(frame,vo,type,isreturn), this, type);
 	}
 
 	public RequirementVO getRequirementVO(){
@@ -391,5 +383,9 @@ public class HistoryPanel extends JPanel implements ExcelSaver{
 	public String getDefaultPath() {
 		return controller.getDefaultPath();
 	}
-	
+
+	@Override
+	public void updateTableData() {
+		// TODO
+	}
 }

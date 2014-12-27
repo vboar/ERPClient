@@ -39,9 +39,11 @@ public class DocumentShowDialog extends JDialog {
 	private DialogConfig cfg;
 	private DocumentShowDialogExtra extra;
 	private WriteoffBLService writeoffCtrl;
+	private UpdateTableData updateTableData;
 
-	public DocumentShowDialog(JFrame frame, DocumentShowDialogExtra extra, int type) {
+	public DocumentShowDialog(JFrame frame, DocumentShowDialogExtra extra, UpdateTableData updateTableData, int type) {
 		super(frame, true);
+		this.updateTableData = updateTableData;
 		this.extra = extra;
 		this.type = type;
 		this.cfg = ERPConfig.getSHOWDOCUMENT_DIALOG_CONFIG();
@@ -181,6 +183,7 @@ public class DocumentShowDialog extends JDialog {
 						break;
 					}
 				}
+				updateTableData.updateTableData();
 				dispose();
 			}
 		});
@@ -189,8 +192,83 @@ public class DocumentShowDialog extends JDialog {
 		this.rejectBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 审批不通过
+				ApprovalBLService controller = ControllerFactoryImpl.getInstance().getApprovalController();
+				switch (extra.getDocumentType()) {
+					case PRESENT: {
+						PresentVO presentVO = ControllerFactoryImpl.getInstance().
+								getPresentController().getById(extra.getDocumentID());
+						presentVO.documentStatus = DocumentStatus.FAILED;
+						controller.approvePresent(presentVO);
+						break;
+					}
+					case OVERFLOW: {
+						ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getOverflowController().
+								getById(extra.getDocumentID());
+						exceptionVO.status = DocumentStatus.FAILED;
+						controller.approveOverflow(exceptionVO);
+						break;
+					}
+					case LOSS: {
+						ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getLossController().
+								getById(extra.getDocumentID());
+						exceptionVO.status = DocumentStatus.FAILED;
+						controller.approveLoss(exceptionVO);
+						break;
+					}
+					case SALE: {
+						SaleVO saleVO = ControllerFactoryImpl.getInstance().
+								getSaleController().getById(extra.getDocumentID());
+						saleVO.approvalState = DocumentStatus.FAILED;
+						controller.approveSale(saleVO);
+						break;
+					}
+					case SALERETURN: {
+						SaleVO saleVO = ControllerFactoryImpl.getInstance().
+								getSaleReturnController().getById(extra.getDocumentID());
+						saleVO.approvalState = DocumentStatus.FAILED;
+						controller.approveSaleReturn(saleVO);
+						break;
+					}
+					case PURCHASE: {
+						PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseController()
+								.getById(extra.getDocumentID());
+						purchaseVO.documentStatus = DocumentStatus.FAILED;
+						controller.approvePurchase(purchaseVO);
+						break;
+					}
+					case PURCHASERETURN: {
+						PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseReturnController()
+								.getById(extra.getDocumentID());
+						purchaseVO.documentStatus = DocumentStatus.FAILED;
+						controller.approvePurchaseReturn(purchaseVO);
+						break;
+					}
+					case RECEIPT: {
+						PaymentVO paymentVO = ControllerFactoryImpl.
+								getInstance().getReceiptController().getById(extra.getDocumentID());
+						paymentVO.approvalState = DocumentStatus.FAILED;
+						controller.approveReceipt(paymentVO);
+						break;
+					}
+					case PAYMENT: {
+						PaymentVO paymentVO = ControllerFactoryImpl.getInstance().
+								getPaymentController().getById(extra.getDocumentID());
+						paymentVO.approvalState = DocumentStatus.FAILED;
+						controller.approvePayment(paymentVO);
+						break;
+					}
+					case CASH: {
+						CashVO cashVO = ControllerFactoryImpl.getInstance().
+								getCashController().getById(extra.getDocumentID());
+						cashVO.approvalState = DocumentStatus.FAILED;
+						controller.approveCash(cashVO);
+						break;
+					}
+				}
+				updateTableData.updateTableData();
+				dispose();
 			}
+
 		});
 		// 红冲按钮
 		this.writeoffBtn = new MyButton(cfg.getButtons().element("writeoff"));

@@ -35,7 +35,7 @@ import util.DocumentType;
 import vo.*;
 
 @SuppressWarnings("serial")
-public class ApprovalPanel extends JPanel {
+public class ApprovalPanel extends JPanel implements UpdateTableData {
 
     private MyButton noncheckBtn;
 
@@ -265,59 +265,63 @@ public class ApprovalPanel extends JPanel {
         switch (vo.getType()) {
             case PRESENT: {
                 PresentVO presentVO = ControllerFactoryImpl.getInstance().getPresentController().getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowPresentPanel(frame,presentVO,type),type);
+                new DocumentShowDialog(frame,new ShowPresentPanel(frame,presentVO,type), this, type);
                 break;
             }
             case OVERFLOW: {
                 ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getOverflowController().
                         getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, false),type);
+                new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, false),this, type);
                 break;
             }
             case LOSS: {
                 ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getLossController().
                         getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, true),type);
+                new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, true),this, type);
                 break;
             }
             case SALE: {
                 SaleVO saleVO = ControllerFactoryImpl.getInstance().getSaleController().getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowSalePanel(frame,saleVO,type, false),type);
+                new DocumentShowDialog(frame,new ShowSalePanel(frame,saleVO,type, false),this, type);
                 break;
             }
             case SALERETURN: {
                 SaleVO saleVO = ControllerFactoryImpl.getInstance().getSaleReturnController().getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowSalePanel(frame,saleVO,type, true),type);
+                new DocumentShowDialog(frame,new ShowSalePanel(frame,saleVO,type, true), this, type);
                 break;
             }
             case PURCHASE: {
                 PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseController()
                         .getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowPurchasePanel(frame,purchaseVO,type, false),type);
+                new DocumentShowDialog(frame,new ShowPurchasePanel(frame,purchaseVO,type, false), this, type);
                 break;
             }
             case PURCHASERETURN: {
                 PurchaseVO purchaseVO = ControllerFactoryImpl.getInstance().getPurchaseReturnController()
                         .getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowPurchasePanel(frame,purchaseVO,type, true),type);
+                new DocumentShowDialog(frame,new ShowPurchasePanel(frame,purchaseVO,type, true), this, type);
                 break;
             }
             case RECEIPT: {
                 PaymentVO paymentVO = ControllerFactoryImpl.getInstance().getReceiptController().getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowPaymentPanel(frame,paymentVO,type, true),type);
+                new DocumentShowDialog(frame,new ShowPaymentPanel(frame,paymentVO,type, true), this, type);
                 break;
             }
             case PAYMENT: {
                 PaymentVO paymentVO = ControllerFactoryImpl.getInstance().getPaymentController().getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowPaymentPanel(frame,paymentVO,type, false),type);
+                new DocumentShowDialog(frame,new ShowPaymentPanel(frame,paymentVO,type, false), this, type);
                 break;
             }
             case CASH: {
                 CashVO cashVO = ControllerFactoryImpl.getInstance().getCashController().getById(vo.getId());
-                new DocumentShowDialog(frame,new ShowCashPanel(frame,cashVO,type),type);
+                new DocumentShowDialog(frame,new ShowCashPanel(frame,cashVO,type), this, type);
                 break;
             }
         }
     }
 
+    @Override
+    public void updateTableData() {
+        table.showTableByType(1);
+    }
 }
