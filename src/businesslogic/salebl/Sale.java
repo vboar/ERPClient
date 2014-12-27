@@ -418,7 +418,7 @@ public class Sale {
 		if(total>0){
 		
 		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
-		cus.updateBySale(vo.customerId, vo.totalAfterDiscount);
+		cus.updateBySale(vo.customerId, total);
 		}
 		
 		
@@ -552,14 +552,50 @@ public class Sale {
 		return result;
 	}
 		
-	public ResultMessage addlog(String content) {
-		//TODO
-		return null;
-	}
-
-	public void writeoff(SaleVO sale) {
-		//TODO
+	public void writeoff(SaleVO vo) {
 		
+		
+		double total=vo.totalAfterDiscount-vo.voucher;
+
+		Customer cus=new Customer();
+		if(total>0){
+		
+		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
+		cus.updateBySale(vo.customerId, 0-total);
+		}
+		
+		
+		
+		for(CommodityLineItemVO vo1:vo.saleList){
+			
+			Commodity commodity=new Commodity();
+			String id=vo1.id;
+			if(id.compareTo("99998")>0){
+				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id.substring(6));//通过商品的id找到对应促销包
+				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
+				for(CommodityLineItemVO commodityLineItemvo:spList){
+					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);
+					commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+					try {
+						DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+				continue;
+			}
+			
+			CommodityPO commoditypo=commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+			
+		}		
+				
 	}
 	
 	

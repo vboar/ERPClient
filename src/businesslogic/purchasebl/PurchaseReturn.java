@@ -194,7 +194,25 @@ public class PurchaseReturn {
 	}
 	
 	public void writeoff(PurchaseVO vo){
-		//TODO
+		double total = vo.total;
+
+		Customer cus = new Customer();
+		cus.updateByPurchaseReturn(vo.customerId, total);
+
+		for (CommodityLineItemVO vo1 : vo.saleList) {
+			Commodity commodity = new Commodity();
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
+			// commoditypo.setRecentPurchasePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 }

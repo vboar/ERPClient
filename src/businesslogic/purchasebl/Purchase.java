@@ -99,7 +99,7 @@ public class Purchase {
 			return "JHD-" + time + "-" + maxStr;
 		}
 	}
-	
+
 	public String createReturnId() {
 		Date date = new Date();
 		SimpleDateFormat myFmt = new SimpleDateFormat("yyyyMMdd");
@@ -127,8 +127,8 @@ public class Purchase {
 		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String time = myFmt.format(date);
 		vo.time = time;
-		vo.operatorId=Login.currentUserId;
-		
+		vo.operatorId = Login.currentUserId;
+
 		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
@@ -141,8 +141,8 @@ public class Purchase {
 	}
 
 	public ResultMessage update(PurchaseVO vo) {
-		String time=getById(vo.id).time;
-		vo.time=time;
+		String time = getById(vo.id).time;
+		vo.time = time;
 		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().update(po);
@@ -165,11 +165,11 @@ public class Purchase {
 	}
 
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		if(time1==null||time1.equals("")){
-			time1="1970/1/1 00:00:00";
+		if (time1 == null || time1.equals("")) {
+			time1 = "1970/1/1 00:00:00";
 		}
-		if(time2==null||time2.equals("")){
-			time2=Utility.getCurrentTime();
+		if (time2 == null || time2.equals("")) {
+			time2 = Utility.getCurrentTime();
 		}
 		ArrayList<PurchasePO> poList = null;
 		try {
@@ -296,28 +296,47 @@ public class Purchase {
 
 	// TODO
 	public ResultMessage approve(PurchaseVO vo) {
-		double total=vo.total;
+		double total = vo.total;
 
-		Customer cus=new Customer();
+		Customer cus = new Customer();
 		cus.updateByPurchase(vo.customerId, total);
-				
-		for(CommodityLineItemVO vo1:vo.saleList){
-		Commodity commodity=new Commodity();
-		CommodityPO commoditypo=commodity.getById(vo1.id);
-		commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
-		commoditypo.setRecentPurchasePrice(vo1.price);
-					try {
-			DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
-		} catch (RemoteException e) {
-			e.printStackTrace();
+
+		for (CommodityLineItemVO vo1 : vo.saleList) {
+			Commodity commodity = new Commodity();
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
+			commoditypo.setRecentPurchasePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
 		}
-				
-	}	
 		return ResultMessage.SUCCESS;
 	}
-	
-	public void writeoff(PurchaseVO vo){
-	//TODO
+
+	public void writeoff(PurchaseVO vo) {
+		double total = vo.total;
+
+		Customer cus = new Customer();
+		cus.updateByPurchase(vo.customerId, total);
+
+		for (CommodityLineItemVO vo1 : vo.saleList) {
+			Commodity commodity = new Commodity();
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+			//commoditypo.setRecentPurchasePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 }

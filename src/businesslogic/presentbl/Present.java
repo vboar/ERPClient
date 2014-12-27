@@ -25,11 +25,10 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class Present {
 
-	
 	public PresentPO voToPO(PresentVO vo) {
-		
+
 		String id = vo.id;
-		
+
 		String time = vo.time;
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
@@ -47,7 +46,7 @@ public class Present {
 		String id = po.getId();
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
-		
+
 		String customerName = po.getCustomerName();
 		ArrayList<PresentLineItemVO> list = Utility.presentPOListToVOList(po
 				.getList());
@@ -59,44 +58,44 @@ public class Present {
 				documentStatus, documentType, isWriteoff);
 		return vo;
 	}
-	
-	private ArrayList<PresentVO> poListToVOList(ArrayList<PresentPO> poList){
-		ArrayList<PresentVO> voList=new ArrayList<PresentVO>();
-		for(PresentPO po:poList){
-			PresentVO vo=poToVO(po);
+
+	private ArrayList<PresentVO> poListToVOList(ArrayList<PresentPO> poList) {
+		ArrayList<PresentVO> voList = new ArrayList<PresentVO>();
+		for (PresentPO po : poList) {
+			PresentVO vo = poToVO(po);
 			voList.add(vo);
 		}
 		return voList;
 	}
-	
-	public String createId(){
-	Date date=new Date();
-	SimpleDateFormat myFmt=new SimpleDateFormat("yyyyMMdd");
-	String time=myFmt.format(date);
-		ArrayList<PresentVO> presentList=show();
-		if(presentList.isEmpty()){
-			return "ZPD-"+time+"-00001";
-		}else{
-			String max=presentList.get(presentList.size()-1).id;
-			String day=max.substring(4,max.length()-5);
-			if(day.compareTo(time)<0){
-			    return "ZPD-"+time+"-00001";
+
+	public String createId() {
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyyMMdd");
+		String time = myFmt.format(date);
+		ArrayList<PresentVO> presentList = show();
+		if (presentList.isEmpty()) {
+			return "ZPD-" + time + "-00001";
+		} else {
+			String max = presentList.get(presentList.size() - 1).id;
+			String day = max.substring(4, max.length() - 5);
+			if (day.compareTo(time) < 0) {
+				return "ZPD-" + time + "-00001";
 			}
-			String oldMax=max.substring(max.length()-5);
-			int maxInt=Integer.parseInt(oldMax);
-			String pattern="00000";
-			 java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
-			 String maxStr=df.format(maxInt+1);
-			 return "ZPD-"+time+"-"+maxStr;
+			String oldMax = max.substring(max.length() - 5);
+			int maxInt = Integer.parseInt(oldMax);
+			String pattern = "00000";
+			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
+			String maxStr = df.format(maxInt + 1);
+			return "ZPD-" + time + "-" + maxStr;
 		}
 	}
-	
+
 	public ResultMessage create(PresentVO vo) {
-		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time=myFmt.format(date);
-		vo.time=time;
-		vo.id=createId();
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String time = myFmt.format(date);
+		vo.time = time;
+		vo.id = createId();
 		PresentPO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPresentData().insert(po);
@@ -108,10 +107,10 @@ public class Present {
 	}
 
 	public ResultMessage update(PresentVO vo) {
-		String time=getById(vo.id).time;
-		vo.time=time;
-		//会不会出错？
-		//TODO
+		String time = getById(vo.id).time;
+		vo.time = time;
+		// 会不会出错？
+		// TODO
 		PresentPO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPresentData().update(po);
@@ -120,89 +119,96 @@ public class Present {
 		}
 		return ResultMessage.SUCCESS;
 	}
-	
-	public PresentVO getById(String id){
-		PresentPO po=null;
+
+	public PresentVO getById(String id) {
+		PresentPO po = null;
 		try {
 			po = DataFactoryImpl.getInstance().getPresentData().getById(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		PresentVO vo=poToVO(po);
+		PresentVO vo = poToVO(po);
 		return vo;
 	}
-	
-	public ArrayList<PresentVO> findById(String id){
+
+	public ArrayList<PresentVO> findById(String id) {
 		try {
-			ArrayList<PresentPO> poList=DataFactoryImpl.getInstance().getPresentData().findById(id);
-			ArrayList<PresentVO> voList=poListToVOList(poList);
+			ArrayList<PresentPO> poList = DataFactoryImpl.getInstance()
+					.getPresentData().findById(id);
+			ArrayList<PresentVO> voList = poListToVOList(poList);
 			return voList;
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
 		return null;
-				
-	}
-	
-	public ArrayList<PresentVO> findByStatus(DocumentStatus status){
-		ArrayList<PresentPO> poList;
-		try {
-			poList = DataFactoryImpl.getInstance().getPresentData().findByStatus(status.ordinal());
-			ArrayList<PresentVO> voList=poListToVOList(poList);
-			return voList;
-		} catch (RemoteException e) {
-			
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public ArrayList<PresentVO> findByCustomerId(String customerId){
-		ArrayList<PresentPO> poList=null;
-	try {
-		poList=DataFactoryImpl.getInstance().getPresentData().findByCustomerId(customerId);
-	} catch (RemoteException e) {
-		e.printStackTrace();
-	}
-	ArrayList<PresentVO> voList=poListToVOList(poList);
-	return voList;
-	}
-	
-	public ArrayList<PresentVO> findByTime(String time1,String time2){
-		if(time1==null||time1.equals("")){
-			time1="1970/1/1 00:00:00";
-		}
-		if(time2==null||time2.equals("")){
-			time2=Utility.getCurrentTime();
-		}
-		ArrayList<PresentPO> poList=null;
-	try {
-		poList=DataFactoryImpl.getInstance().getPresentData().findByTime(time1, time2);
-	} catch (RemoteException e) {
-		e.printStackTrace();
-	}
-	ArrayList<PresentVO> voList=poListToVOList(poList);
-		System.out.println("presentbl 177: polist.size: "+voList.size());
-	return voList;
+
 	}
 
-	public ArrayList<PresentVO> show(){
-		ArrayList<PresentVO> result=new ArrayList<PresentVO>();
-		ArrayList<PresentPO> temp=new ArrayList<PresentPO>();
+	public ArrayList<PresentVO> findByStatus(DocumentStatus status) {
+		ArrayList<PresentPO> poList;
 		try {
-			temp=DataFactoryImpl.getInstance().getPresentData().findByStatus(DocumentStatus.FAILED.ordinal());
-			for(int i=0;i<temp.size();i++){
+			poList = DataFactoryImpl.getInstance().getPresentData()
+					.findByStatus(status.ordinal());
+			ArrayList<PresentVO> voList = poListToVOList(poList);
+			return voList;
+		} catch (RemoteException e) {
+
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public ArrayList<PresentVO> findByCustomerId(String customerId) {
+		ArrayList<PresentPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPresentData()
+					.findByCustomerId(customerId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PresentVO> voList = poListToVOList(poList);
+		return voList;
+	}
+
+	public ArrayList<PresentVO> findByTime(String time1, String time2) {
+		if (time1 == null || time1.equals("")) {
+			time1 = "1970/1/1 00:00:00";
+		}
+		if (time2 == null || time2.equals("")) {
+			time2 = Utility.getCurrentTime();
+		}
+		ArrayList<PresentPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getPresentData()
+					.findByTime(time1, time2);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<PresentVO> voList = poListToVOList(poList);
+		System.out.println("presentbl 177: polist.size: " + voList.size());
+		return voList;
+	}
+
+	public ArrayList<PresentVO> show() {
+		ArrayList<PresentVO> result = new ArrayList<PresentVO>();
+		ArrayList<PresentPO> temp = new ArrayList<PresentPO>();
+		try {
+			temp = DataFactoryImpl.getInstance().getPresentData()
+					.findByStatus(DocumentStatus.FAILED.ordinal());
+			for (int i = 0; i < temp.size(); i++) {
 				result.add(poToVO(temp.get(i)));
 			}
-			
-			temp=DataFactoryImpl.getInstance().getPresentData().findByStatus(DocumentStatus.PASSED.ordinal());
-			for(int i=0;i<temp.size();i++){
+
+			temp = DataFactoryImpl.getInstance().getPresentData()
+					.findByStatus(DocumentStatus.PASSED.ordinal());
+			for (int i = 0; i < temp.size(); i++) {
 				result.add(poToVO(temp.get(i)));
 			}
-			
-			temp=DataFactoryImpl.getInstance().getPresentData().findByStatus(DocumentStatus.NONCHECKED.ordinal());
-			for(int i=0;i<temp.size();i++){
+
+			temp = DataFactoryImpl.getInstance().getPresentData()
+					.findByStatus(DocumentStatus.NONCHECKED.ordinal());
+			for (int i = 0; i < temp.size(); i++) {
 				result.add(poToVO(temp.get(i)));
 			}
 		} catch (RemoteException e) {
@@ -210,39 +216,61 @@ public class Present {
 		}
 		return result;
 	}
-	
-	public ResultMessage approve(PresentVO vo){
-				
-		boolean present=true;
-		if(vo.documentType==DocumentType.PRESENTRETURN){
-			present=false;
+
+	public ResultMessage approve(PresentVO vo) {
+
+		boolean present = true;
+		if (vo.documentType == DocumentType.PRESENTRETURN) {
+			present = false;
 		}
-		for(PresentLineItemVO vo1:vo.list){
-		Commodity commodity=new Commodity();
-		CommodityPO commoditypo=commodity.getById(vo1.id);
-		if(present){
-			commoditypo.setNumber(commoditypo.getNumber()-vo1.number);
-		}else{
-			commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+		for (PresentLineItemVO vo1 : vo.list) {
+			Commodity commodity = new Commodity();
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			if (present) {
+				commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+			} else {
+				commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
+			}
+			// commoditypo.setRecentPurchasePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
 		}
-		//commoditypo.setRecentPurchasePrice(vo1.price);
-					try {
-			DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-				
-	}		
 		return ResultMessage.SUCCESS;
 
 	}
 
-	public void writeoff(PresentVO vo){
-		//TODO
+	public void writeoff(PresentVO vo) {
+		boolean present = true;
+		if (vo.documentType == DocumentType.PRESENTRETURN) {
+			present = false;
+		}
+		for (PresentLineItemVO vo1 : vo.list) {
+			Commodity commodity = new Commodity();
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			if (present) {
+				commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
+			} else {
+				commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+			}
+			// commoditypo.setRecentPurchasePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
-	
+
 	public static void main(String[] args) {
-		String id=new Present().createId();
+		String id = new Present().createId();
 		System.out.println(id);
 	}
 

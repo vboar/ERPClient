@@ -29,87 +29,79 @@ import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class SaleReturn {
 
-	Sale sale=new Sale();
-	
-	
-	public String createId(){
+	Sale sale = new Sale();
+
+	public String createId() {
 		return sale.createReturnId();
 	}
-	
-	public ResultMessage add(SaleVO vo) {	
-		Date date=new Date();
-		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time=myFmt.format(date);
-		vo.time=time;
+
+	public ResultMessage add(SaleVO vo) {
+		Date date = new Date();
+		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String time = myFmt.format(date);
+		vo.time = time;
 		SalePO po = sale.SaleVOToSalePO(vo);
 		try {
 			DataFactoryImpl.getInstance().getSaleData().insert(po);
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		 date=new Date();
-		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		 time=myFmt2.format(date);
-		 String id=new Present().createId();
+		date = new Date();
+		SimpleDateFormat myFmt2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		time = myFmt2.format(date);
+		String id = new Present().createId();
 
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
-		
+
 		ArrayList<PresentLineItemVO> list = vo.giftList;
-		
-		
+
 		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
 		DocumentType documentType = DocumentType.PRESENTRETURN;
 
-		PresentVO presentVO = new PresentVO(id, time, customerId,
-				customerName, list, documentStatus, documentType, false);
+		PresentVO presentVO = new PresentVO(id, time, customerId, customerName,
+				list, documentStatus, documentType, false);
 		Present pr = new Present();
 		pr.create(presentVO);
 
 		return ResultMessage.SUCCESS;
 
-
 	}
-	
-	public ResultMessage update(SaleVO vo)  {
-		ResultMessage rs =sale.update(vo);
+
+	public ResultMessage update(SaleVO vo) {
+		ResultMessage rs = sale.update(vo);
 		return rs;
 	}
-		
-	
-	
+
 	/**
 	 * 
-	 * @author chengcheng
-	 *下面这些方法是给salereturn专用的
+	 * @author chengcheng 下面这些方法是给salereturn专用的
 	 * 
 	 * 
 	 */
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	
-	
-	public ArrayList<SaleVO> findByTime(String time1, String time2){
-		if(time1==null||time1.equals("")){
-			time1="1970/1/1 00:00:00";
+	public ArrayList<SaleVO> findByTime(String time1, String time2) {
+		if (time1 == null || time1.equals("")) {
+			time1 = "1970/1/1 00:00:00";
 		}
-		if(time2==null||time2.equals("")){
-			time2=Utility.getCurrentTime();
+		if (time2 == null || time2.equals("")) {
+			time2 = Utility.getCurrentTime();
 		}
 
-		ArrayList<SalePO> poList=null;
-		
+		ArrayList<SalePO> poList = null;
+
 		try {
-			poList = DataFactoryImpl.getInstance()
-					.getSaleData().findByTime(time1, time2);
+			poList = DataFactoryImpl.getInstance().getSaleData()
+					.findByTime(time1, time2);
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
-		for(SalePO po:poList){
-			if(po.getDocumentType()==5){
+		ArrayList<SalePO> poList2 = new ArrayList<SalePO>();
+		for (SalePO po : poList) {
+			if (po.getDocumentType() == 5) {
 				poList2.add(po);
 			}
 		}
@@ -118,7 +110,6 @@ public class SaleReturn {
 
 	}
 
-	
 	public ArrayList<SaleVO> findByCommodityName(String commodityName) {
 
 		ArrayList<SaleVO> voList = show();
@@ -134,19 +125,18 @@ public class SaleReturn {
 		return result;
 	}
 
-	public ArrayList<SaleVO> findByCustomer(String customer)
-			 {
-		ArrayList<SalePO> poList=null;
+	public ArrayList<SaleVO> findByCustomer(String customer) {
+		ArrayList<SalePO> poList = null;
 		try {
-			poList = DataFactoryImpl.getInstance()
-					.getSaleData().findByCustomer(customer);
+			poList = DataFactoryImpl.getInstance().getSaleData()
+					.findByCustomer(customer);
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
-		for(SalePO po:poList){
-			if(po.getDocumentType()==5){
+		ArrayList<SalePO> poList2 = new ArrayList<SalePO>();
+		for (SalePO po : poList) {
+			if (po.getDocumentType() == 5) {
 				poList2.add(po);
 			}
 		}
@@ -154,20 +144,19 @@ public class SaleReturn {
 		return voList;
 	}
 
-	public ArrayList<SaleVO> findBySalesman(String salesman)
-			 {
-		ArrayList<SalePO> poList=null;
+	public ArrayList<SaleVO> findBySalesman(String salesman) {
+		ArrayList<SalePO> poList = null;
 		try {
-			poList = DataFactoryImpl.getInstance()
-					.getSaleData().findBySalesman(salesman);
+			poList = DataFactoryImpl.getInstance().getSaleData()
+					.findBySalesman(salesman);
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
-		for(SalePO po:poList){
-			if(po.getDocumentType()==5){
+
+		ArrayList<SalePO> poList2 = new ArrayList<SalePO>();
+		for (SalePO po : poList) {
+			if (po.getDocumentType() == 5) {
 				poList2.add(po);
 			}
 		}
@@ -175,20 +164,19 @@ public class SaleReturn {
 		return voList;
 	}
 
-	public ArrayList<SaleVO> findByStorage(String Storage)
-			 {
-		ArrayList<SalePO> poList=null;
+	public ArrayList<SaleVO> findByStorage(String Storage) {
+		ArrayList<SalePO> poList = null;
 		try {
-			poList = DataFactoryImpl.getInstance()
-					.getSaleData().findByStorage(Storage);
+			poList = DataFactoryImpl.getInstance().getSaleData()
+					.findByStorage(Storage);
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
-		for(SalePO po:poList){
-			if(po.getDocumentType()==5){
+
+		ArrayList<SalePO> poList2 = new ArrayList<SalePO>();
+		for (SalePO po : poList) {
+			if (po.getDocumentType() == 5) {
 				poList2.add(po);
 			}
 		}
@@ -196,40 +184,41 @@ public class SaleReturn {
 		return voList;
 
 	}
-	
-	public ArrayList<SaleVO> findByStatus(int status){
-		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
-		ArrayList<SalePO> temp=new ArrayList<SalePO>();
-		Sale s=new Sale();
+
+	public ArrayList<SaleVO> findByStatus(int status) {
+		ArrayList<SaleVO> result = new ArrayList<SaleVO>();
+		ArrayList<SalePO> temp = new ArrayList<SalePO>();
+		Sale s = new Sale();
 		try {
-			temp=DataFactoryImpl.getInstance().getSaleData().findByStatus(status);
+			temp = DataFactoryImpl.getInstance().getSaleData()
+					.findByStatus(status);
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		for(int i=0;i<temp.size();i++){
-			if(temp.get(i).getDocumentType()==DocumentType.SALERETURN.ordinal())
-			result.add(s.SalePOToSaleVO(temp.get(i)));
+
+		for (int i = 0; i < temp.size(); i++) {
+			if (temp.get(i).getDocumentType() == DocumentType.SALERETURN
+					.ordinal())
+				result.add(s.SalePOToSaleVO(temp.get(i)));
 		}
-		
+
 		return result;
 	}
-	
-	public ArrayList<SaleVO> show()  {
 
-		ArrayList<SalePO> poList=null;
+	public ArrayList<SaleVO> show() {
+
+		ArrayList<SalePO> poList = null;
 		try {
-			poList = DataFactoryImpl.getInstance()
-					.getSaleData().show();
+			poList = DataFactoryImpl.getInstance().getSaleData().show();
 		} catch (RemoteException e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		ArrayList<SalePO> poList2=new ArrayList<SalePO>();
-		for(SalePO po:poList){
-			if(po.getDocumentType()==5){
+
+		ArrayList<SalePO> poList2 = new ArrayList<SalePO>();
+		for (SalePO po : poList) {
+			if (po.getDocumentType() == 5) {
 				poList2.add(po);
 			}
 		}
@@ -237,55 +226,97 @@ public class SaleReturn {
 		return voList;
 
 	}
-	
-	//TODO
-	public ResultMessage approve(SaleVO vo) {		
-		double total=vo.totalAfterDiscount-vo.voucher;
 
-		Customer cus=new Customer();
-		if(total>0){
-		
-		//CustomerVO cusvo=new Customer().getByid(vo.customerId);
-		cus.updateBySaleReturn(vo.customerId, vo.totalAfterDiscount);
+	// TODO
+	public ResultMessage approve(SaleVO vo) {
+		double total = vo.totalAfterDiscount - vo.voucher;
+
+		Customer cus = new Customer();
+		if (total > 0) {
+
+			// CustomerVO cusvo=new Customer().getByid(vo.customerId);
+			cus.updateBySaleReturn(vo.customerId, total);
 		}
-		
-		
-		
-		for(CommodityLineItemVO vo1:vo.saleList){
-			
-			Commodity commodity=new Commodity();
-			String id=vo1.id;
-			if(id.compareTo("99998")>0){
-				SpecialOfferVO spevo=new SpecialOfferPromotion().getById(id.substring(6));
-				ArrayList<CommodityLineItemVO> spList=spevo.commodityList;
-				for(CommodityLineItemVO commodityLineItemvo:spList){
-					CommodityPO commoditypo=commodity.getById(commodityLineItemvo.id);
-					commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
+
+		for (CommodityLineItemVO vo1 : vo.saleList) {
+
+			Commodity commodity = new Commodity();
+			String id = vo1.id;
+			if (id.compareTo("99998") > 0) {
+				SpecialOfferVO spevo = new SpecialOfferPromotion().getById(id
+						.substring(6));
+				ArrayList<CommodityLineItemVO> spList = spevo.commodityList;
+				for (CommodityLineItemVO commodityLineItemvo : spList) {
+					CommodityPO commoditypo = commodity
+							.getById(commodityLineItemvo.id);
+					commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
 					try {
-						DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+						DataFactoryImpl.getInstance().getCommodityData()
+								.update(commoditypo);
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
 				}
 				continue;
 			}
-			
-			CommodityPO commoditypo=commodity.getById(vo1.id);
-			commoditypo.setNumber(commoditypo.getNumber()+vo1.number);
-			//commoditypo.setRecentSalePrice(vo1.price);
-						try {
-				DataFactoryImpl.getInstance().getCommodityData().update(commoditypo);
+
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
+			// commoditypo.setRecentSalePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			
-			
-		}		
-			return ResultMessage.SUCCESS;
-	}	
-	
-	public ResultMessage addlog(String content){
-		//TODO
-		return null;
+
+		}
+		return ResultMessage.SUCCESS;
+	}
+
+	public void writeoff(SaleVO vo) {
+		double total = vo.totalAfterDiscount - vo.voucher;
+
+		Customer cus = new Customer();
+		if (total > 0) {
+
+			// CustomerVO cusvo=new Customer().getByid(vo.customerId);
+			cus.updateBySaleReturn(vo.customerId, 0 - total);
+		}
+
+		for (CommodityLineItemVO vo1 : vo.saleList) {
+
+			Commodity commodity = new Commodity();
+			String id = vo1.id;
+			if (id.compareTo("99998") > 0) {
+				SpecialOfferVO spevo = new SpecialOfferPromotion().getById(id
+						.substring(6));
+				ArrayList<CommodityLineItemVO> spList = spevo.commodityList;
+				for (CommodityLineItemVO commodityLineItemvo : spList) {
+					CommodityPO commoditypo = commodity
+							.getById(commodityLineItemvo.id);
+					commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+					try {
+						DataFactoryImpl.getInstance().getCommodityData()
+								.update(commoditypo);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+				continue;
+			}
+
+			CommodityPO commoditypo = commodity.getById(vo1.id);
+			commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+			// commoditypo.setRecentSalePrice(vo1.price);
+			try {
+				DataFactoryImpl.getInstance().getCommodityData()
+						.update(commoditypo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 }
