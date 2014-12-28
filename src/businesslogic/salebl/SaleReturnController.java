@@ -37,26 +37,22 @@ public class SaleReturnController implements SaleBLService {
 
 	@Override
 	public ArrayList<SaleVO> findByStatus(DocumentStatus status) {
-		// TODO 自动生成的方法存根
-		return null;
+		return sr.findByStatus(status.ordinal());
 	}
 
 	@Override
 	public ArrayList<SaleVO> findByCustomer(String customer) {
-		// TODO 自动生成的方法存根
-		return null;
+		return sr.findByCustomer(customer);
 	}
 
 	@Override
 	public String createId() {
-		// TODO Auto-generated method stub
-		return null;
+		return sr.createId();		
 	}
 
 	@Override
 	public SaleVO getById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Sale().getById(id);
 	}
 
 	@Override

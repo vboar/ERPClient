@@ -174,7 +174,7 @@ public class Sale {
 		DocumentStatus documentStatus = DocumentStatus.NONCHECKED;
 		DocumentType documentType = DocumentType.PRESENT;
 
-		if(list!=null) {
+		if(list!=null&&!list.isEmpty()) {
 			String id = new Present().createId();
 			vo.presentId=id;
 			PresentVO presentVO = new PresentVO(id, time, customerId,
