@@ -17,6 +17,7 @@ import po.PresentPO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
 import businesslogic.commoditybl.Commodity;
@@ -91,10 +92,7 @@ public class Present {
 	}
 
 	public ResultMessage create(PresentVO vo) {
-		Date date = new Date();
-		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time = myFmt.format(date);
-		vo.time = time;
+		vo.time = Time.getCurrentTime();
 		vo.id = createId();
 		PresentPO po = voToPO(vo);
 		try {
@@ -172,12 +170,8 @@ public class Present {
 	}
 
 	public ArrayList<PresentVO> findByTime(String time1, String time2) {
-		if (time1 == null || time1.equals("")) {
-			time1 = "1970/1/1 00:00:00";
-		}
-		if (time2 == null || time2.equals("")) {
-			time2 = Utility.getCurrentTime();
-		}
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		ArrayList<PresentPO> poList = null;
 		try {
 			poList = DataFactoryImpl.getInstance().getPresentData()

@@ -286,4 +286,16 @@ public class Customer {
 		return result;
 	}
 	
+	
+	public CustomerVO getById(String id){
+		CustomerPO po=null;
+		try {
+			po=DataFactoryImpl.getInstance().getCustomerData().getById(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		CustomerVO vo=poToVo(po);
+		return vo;
+	}
+	
 }

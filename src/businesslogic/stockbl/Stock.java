@@ -18,6 +18,7 @@ import po.StockPO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.*;
 
 import java.math.BigDecimal;
@@ -49,14 +50,8 @@ public class Stock {
 	public ArrayList<StockInfoVO> showStockInfo(String time1, String time2) {
 
 		// 获得时间
-		if (time1 == null) {
-			time1 = "1970/1/1 00:00:00";
-		}
-		if (time2 == null) {
-			Date date = new Date();
-			SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			time2 = myFmt.format(date);
-		}
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		// 获取初始单据信息
 		ArrayList<PresentVO> presentList = new Present().findByTime(time1,
 				time2);

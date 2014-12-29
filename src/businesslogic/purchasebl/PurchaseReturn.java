@@ -6,19 +6,17 @@
 package businesslogic.purchasebl;
 
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import businesslogic.commoditybl.Commodity;
-import businesslogic.customerbl.Customer;
-import businesslogic.utilitybl.Utility;
 import po.CommodityPO;
 import po.PurchasePO;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.CommodityLineItemVO;
 import vo.PurchaseVO;
+import businesslogic.commoditybl.Commodity;
+import businesslogic.customerbl.Customer;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class PurchaseReturn {
@@ -29,9 +27,7 @@ public class PurchaseReturn {
 	}
 
 	public ResultMessage add(PurchaseVO vo) {
-		Date date = new Date();
-		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time = myFmt.format(date);
+		String time =Time.getCurrentTime();
 		vo.time = time;
 		PurchasePO po = purchase.voToPO(vo);
 		try {
@@ -54,13 +50,8 @@ public class PurchaseReturn {
 	}
 
 	public ArrayList<PurchaseVO> findByTime(String time1, String time2) {
-		if (time1 == null || time1.equals("")) {
-			time1 = "1970/1/1 00:00:00";
-		}
-		if (time2 == null || time2.equals("")) {
-			time2 = Utility.getCurrentTime();
-		}
-
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 		ArrayList<PurchasePO> poList = null;
 		try {
 			poList = DataFactoryImpl.getInstance().getPurchaseData()

@@ -43,7 +43,7 @@ public static String jdugeTime1(String time1){
 public static String jdugeTime2(String time2){
 	
 	if(time2!=null&&!time2.equals("")){
-		return time2;
+		return time2+" 23:59:59";
 	}else{
 		return getCurrentTime();
 	}

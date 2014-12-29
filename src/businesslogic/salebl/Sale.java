@@ -19,6 +19,7 @@ import po.*;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.*;
 
 import java.rmi.RemoteException;
@@ -165,8 +166,7 @@ public class Sale {
 		
 		
 				
-		SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	    time=myFmt2.format(date);
+	    time=Time.getCurrentTime();
 
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
@@ -223,12 +223,8 @@ public class Sale {
  
 
 	public ArrayList<SaleVO> findByTime(String time1, String time2){
-		if(time1==null||time1.equals("")){
-			time1="1970/1/1 00:00:00";
-		}
-		if(time2==null||time2.equals("")){
-			time2=Utility.getCurrentTime();
-		}
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 
 		ArrayList<SalePO> poList=null;
 		

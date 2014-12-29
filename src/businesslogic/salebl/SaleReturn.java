@@ -6,15 +6,14 @@
 package businesslogic.salebl;
 
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import po.CommodityPO;
 import po.SalePO;
 import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
+import util.Time;
 import vo.CommodityLineItemVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
@@ -24,7 +23,6 @@ import businesslogic.commoditybl.Commodity;
 import businesslogic.customerbl.Customer;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.SpecialOfferPromotion;
-import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
 public class SaleReturn {
@@ -36,9 +34,7 @@ public class SaleReturn {
 	}
 
 	public ResultMessage add(SaleVO vo) {
-		Date date = new Date();
-		SimpleDateFormat myFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String time = myFmt.format(date);
+		String time = Time.getCurrentTime();
 		vo.time = time;
 		SalePO po = sale.SaleVOToSalePO(vo);
 		try {
@@ -47,9 +43,6 @@ public class SaleReturn {
 
 			e.printStackTrace();
 		}
-		date = new Date();
-		SimpleDateFormat myFmt2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		time = myFmt2.format(date);
 		
 
 		String customerId = vo.customerId;
@@ -85,12 +78,8 @@ public class SaleReturn {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	public ArrayList<SaleVO> findByTime(String time1, String time2) {
-		if (time1 == null || time1.equals("")) {
-			time1 = "1970/1/1 00:00:00";
-		}
-		if (time2 == null || time2.equals("")) {
-			time2 = Utility.getCurrentTime();
-		}
+		time1=Time.jdugeTime1(time1);
+		time2=Time.jdugeTime2(time2);
 
 		ArrayList<SalePO> poList = null;
 
