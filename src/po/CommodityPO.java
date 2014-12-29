@@ -68,9 +68,10 @@ public class CommodityPO implements Serializable {
 	 * 无参构造
 	 */
 	public CommodityPO() {}
-	
+
 	/**
-	 * 构造函数
+	 * 构造方法
+	 * @param id
 	 * @param name
 	 * @param model
 	 * @param number

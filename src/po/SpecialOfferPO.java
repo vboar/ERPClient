@@ -43,13 +43,15 @@ public class SpecialOfferPO implements Serializable {
 	 * 是否生效
 	 */
 	private boolean valid;
-	
+
 	/**
-	 * 
-	 * @param CommodityList
+	 * 构造方法
+	 * @param id
+	 * @param commodityList
 	 * @param total
 	 * @param startTime
 	 * @param endTime
+	 * @param valid
 	 */
 	public SpecialOfferPO(String id,ArrayList<CommodityLineItemPO> commodityList
 			,double total,String startTime,String endTime,boolean valid){
@@ -88,6 +90,5 @@ public class SpecialOfferPO implements Serializable {
 	public String getEndTime() {
 		return endTime;
 	}
-	
 
 }

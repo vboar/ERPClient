@@ -597,7 +597,7 @@ public class Approval {
 		if(id.contains("XJFYD")){
 			Cash c=new Cash();
 			try {
-				DocumentVO result=c.poToVo(DataFactoryImpl.getInstance().getCashDataService().getById(id));
+				DocumentVO result=c.poToVo(DataFactoryImpl.getInstance().getCashData().getById(id));
 				return result;
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块

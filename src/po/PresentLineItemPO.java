@@ -33,7 +33,14 @@ public class PresentLineItemPO implements Serializable {
 	 * 赠品数量
 	 */
 	private int number;
-	
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param name
+	 * @param model
+	 * @param number
+	 */
 	public PresentLineItemPO(String id, String name, String model, int number) {
 		this.id = id;
 		this.name = name;

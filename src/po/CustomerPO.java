@@ -78,7 +78,23 @@ public class CustomerPO implements Serializable {
      * 是否可删
      */
     private boolean isDeletable;
-    
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param category
+	 * @param level
+	 * @param name
+	 * @param phoneNumber
+	 * @param address
+	 * @param postalCode
+	 * @param email
+	 * @param creditLimit
+	 * @param receivables
+	 * @param paybles
+	 * @param salesman
+	 * @param isDeletable
+	 */
     public CustomerPO(String id,int category,int level,String name,
   		            String phoneNumber,String address,String postalCode,String email,
   		            double creditLimit,double receivables,double paybles,

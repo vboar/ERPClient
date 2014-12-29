@@ -59,14 +59,16 @@ public class CashPO implements Serializable {
 	 * 单据类型
 	 */
 	private int documentType;
-	
+
 	/**
 	 * 构造方法
 	 * @param ID
-	 * @param operator
+	 * @param time
+	 * @param operatorId
 	 * @param bankAccount
 	 * @param clauseList
-	 * @param approvalState
+	 * @param total
+	 * @param documentStatus
 	 * @param isWriteOff
 	 * @param documentType
 	 */

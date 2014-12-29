@@ -13,14 +13,14 @@ public class TransferLineItemPO implements Serializable{
 	 * 序列化UID
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
-	 * 账户名称
+	 * 银行名称
 	 */
 	private String name;
 	
 	/**
-	 * 银行账号
+	 * 银行卡号
 	 */
 	private String bankAccount;
 	
@@ -33,14 +33,15 @@ public class TransferLineItemPO implements Serializable{
 	 * 备注
 	 */
 	private String remark;
-	
+
 	/**
 	 * 构造方法
+	 * @param name
 	 * @param bankAccount
 	 * @param account
 	 * @param remark
 	 */
-	public TransferLineItemPO(String name,String bankAccount, double account,String remark){
+	public TransferLineItemPO(String name, String bankAccount, double account,String remark){
 		this.name = name;
 		this.bankAccount = bankAccount;
 		this.account = account;
@@ -62,5 +63,6 @@ public class TransferLineItemPO implements Serializable{
 	public String getName() {
 		return name;
 	}
+	
 
 }

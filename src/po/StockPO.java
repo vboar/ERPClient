@@ -48,12 +48,17 @@ public class StockPO implements Serializable {
 	 * 批号
 	 */
 	private String batchNumber;
-	
+
 	/**
-	 * 无参构造
+	 * 构造方法
+	 * @param commodityId
+	 * @param commodityName
+	 * @param commodityModel
+	 * @param number
+	 * @param avgPrice
+	 * @param batch
+	 * @param batchNumber
 	 */
-	public StockPO() {}
-	
 	public StockPO(String commodityId, String commodityName, String commodityModel, int number, 
 			double avgPrice, String batch, String batchNumber) {
 		this.commodityId = commodityId;

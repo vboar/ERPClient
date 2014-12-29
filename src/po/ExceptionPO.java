@@ -49,14 +49,14 @@ public class ExceptionPO implements Serializable {
 	 * 无参构造
 	 */
 	public ExceptionPO() {}
-	
+
 	/**
 	 * 构造方法
 	 * @param id
 	 * @param time
 	 * @param list
-	 * @param status
-	 * @param type
+	 * @param documentStatus
+	 * @param documentType
 	 * @param isWriteoff
 	 */
 	public ExceptionPO(String id, String time, ArrayList<ExceptionLineItemPO> list,

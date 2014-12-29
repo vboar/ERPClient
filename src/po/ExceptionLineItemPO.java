@@ -39,6 +39,14 @@ public class ExceptionLineItemPO implements Serializable {
 	 */
 	private int actualNumber;
 
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param name
+	 * @param model
+	 * @param systemNumber
+	 * @param actualNumber
+	 */
 	public ExceptionLineItemPO(String id, String name, String model, int systemNumber, int actualNumber) {
 		this.id = id;
 		this.name = name;

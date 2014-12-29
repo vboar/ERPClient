@@ -74,7 +74,22 @@ public class PurchasePO implements Serializable {
 	* 单据类型
 	*/
 	private int documentType;
-	   
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param time
+	 * @param customerId
+	 * @param customerName
+	 * @param operatorId
+	 * @param storage
+	 * @param saleList
+	 * @param total
+	 * @param remark
+	 * @param documentStatus
+	 * @param isWriteOff
+	 * @param documentType
+	 */
 	public PurchasePO(String id,String time,String customerId,String customerName,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,double total,
 			String remark,int documentStatus,boolean isWriteOff,int documentType){

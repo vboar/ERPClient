@@ -34,11 +34,6 @@ public class WarningPO implements Serializable {
 	 * 单据类型
 	 */
 	private int documentType;
-	
-	/**
-	 * 无参构造
-	 */
-	public WarningPO() {}
 
 	/**
 	 * 构造方法

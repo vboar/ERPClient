@@ -1,5 +1,5 @@
 /**
- * 进出货清单PO类
+ * 商品条目PO类
  * @author oneoneO
  * @date  2014/10/25 
  */
@@ -48,19 +48,17 @@ public class CommodityLineItemPO implements Serializable {
      * 备注
      */
     private String remark;
-  
-    
-    /**
-     * 构造函数
-     * 
-     * @param id
-     * @param name
-     * @param model
-     * @param number
-     * @param price
-     * @param total
-     * @param remark
-     */
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param name
+	 * @param model
+	 * @param number
+	 * @param price
+	 * @param total
+	 * @param remark
+	 */
     public CommodityLineItemPO(String id, String name,String model,int number,double price,double total,String remark){
     	this.id=id;
     	this.name=name;
@@ -71,40 +69,32 @@ public class CommodityLineItemPO implements Serializable {
     	this.remark=remark;
     }
 
-
 	public String getId() {
 		return id;
 	}
-
 
 	public int getNumber() {
 		return number;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public String getModel() {
 		return model;
 	}
 
-
 	public double getPrice() {
 		return price;
 	}
-
 
 	public double getTotal() {
 		return total;
 	}
 
-
 	public String getRemark() {
 		return remark;
 	}
-    
-    
+
 }

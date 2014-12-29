@@ -55,7 +55,7 @@ public class Cash{
 	public ResultMessage add(CashVO vo){
 		vo.time=Time.getCurrentTime();
 		try {
-			DataFactoryImpl.getInstance().getCashDataService().insert(voToPo(vo));
+			DataFactoryImpl.getInstance().getCashData().insert(voToPo(vo));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class Cash{
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		ArrayList<CashPO> temp=new ArrayList<CashPO>();
 		try {
-			temp=DataFactoryImpl.getInstance().getCashDataService().findById(id);
+			temp=DataFactoryImpl.getInstance().getCashData().findById(id);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class Cash{
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		ArrayList<CashPO> temp=new ArrayList<CashPO>();
 		try {
-			temp=DataFactoryImpl.getInstance().getCashDataService().findByStatus(status);
+			temp=DataFactoryImpl.getInstance().getCashData().findByStatus(status);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -103,7 +103,7 @@ public class Cash{
 		try {
 			time1=Time.jdugeTime1(time1);
 			time2=Time.jdugeTime2(time2);
-			temp=DataFactoryImpl.getInstance().getCashDataService().findByTime(time1, time2);
+			temp=DataFactoryImpl.getInstance().getCashData().findByTime(time1, time2);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -118,7 +118,7 @@ public class Cash{
 	
 	public ResultMessage update(CashVO vo){
 		try {
-			DataFactoryImpl.getInstance().getCashDataService().update(voToPo(vo));
+			DataFactoryImpl.getInstance().getCashData().update(voToPo(vo));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -130,7 +130,7 @@ public class Cash{
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		ArrayList<CashPO> temp=new ArrayList<CashPO>();
 		try {
-			temp=DataFactoryImpl.getInstance().getCashDataService().show();
+			temp=DataFactoryImpl.getInstance().getCashData().show();
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -199,7 +199,7 @@ public class Cash{
 		CashVO result=null;
 		
 		try {
-			result=poToVo(DataFactoryImpl.getInstance().getCashDataService().getById(id));
+			result=poToVo(DataFactoryImpl.getInstance().getCashData().getById(id));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

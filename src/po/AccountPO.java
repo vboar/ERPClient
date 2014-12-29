@@ -31,6 +31,7 @@ public class AccountPO implements Serializable {
 	/**
 	 * 构造方法
 	 * @param name
+	 * @param account
 	 * @param balance
 	 */
 	public AccountPO(String name, String account, double balance){
@@ -61,10 +62,6 @@ public class AccountPO implements Serializable {
 
 	public void setAccount(String account) {
 		this.account = account;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

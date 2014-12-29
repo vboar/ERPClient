@@ -36,7 +36,7 @@ public class PaymentPO implements Serializable {
 	private String customerName;
 	
 	/**
-	 * 操作员编号
+	 * 操作员
 	 */
 	private String operatorId;
 	
@@ -64,16 +64,17 @@ public class PaymentPO implements Serializable {
 	 * 单据类型
 	 */
 	private int documentType;
-	
+
 	/**
 	 * 构造方法
 	 * @param id
+	 * @param time
 	 * @param customerId
 	 * @param customerName
-	 * @param operator
+	 * @param operatorId
 	 * @param transferList
 	 * @param total
-	 * @param approvalState
+	 * @param approvalStatus
 	 * @param isWriteOff
 	 * @param documentType
 	 */
@@ -108,7 +109,7 @@ public class PaymentPO implements Serializable {
 		return total;
 	}
 
-	public boolean getIsWriteOff() {
+	public boolean isWriteOff() {
 		return isWriteOff;
 	}
 
@@ -138,10 +139,6 @@ public class PaymentPO implements Serializable {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
-	}
-
-	public void setIsWriteOff(boolean isWriteOff) {
-		this.isWriteOff = isWriteOff;
 	}
 	
 }

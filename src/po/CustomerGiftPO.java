@@ -55,13 +55,12 @@ public class CustomerGiftPO implements Serializable {
 	 * 是否生效
 	 */
 	private boolean valid;
-	
+
 	/**
-	 * 
+	 * 构造方法
+	 * @param id
 	 * @param VIP
-	 * @param giftName
-	 * @param giftModel
-	 * @param giftNumber
+	 * @param giftInfo
 	 * @param discount
 	 * @param voucher
 	 * @param startTime
@@ -119,7 +118,5 @@ public class CustomerGiftPO implements Serializable {
 	public String getEndTime() {
 		return endTime;
 	}
-	
-	
 
 }

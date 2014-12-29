@@ -39,6 +39,14 @@ public class WarningLineItemPO implements Serializable {
 	 */
 	private int warningNumber;
 
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param name
+	 * @param model
+	 * @param stockNumber
+	 * @param warningNumber
+	 */
 	public WarningLineItemPO(String id, String name, String model, int stockNumber, int warningNumber) {
 		this.id = id;
 		this.name = name;
@@ -66,6 +74,5 @@ public class WarningLineItemPO implements Serializable {
 	public String getModel() {
 		return model;
 	}
-	
-	
+
 }

@@ -119,7 +119,7 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 	}
 
 	@Override
-	public CashDataService getCashDataService() throws RemoteException {
+	public CashDataService getCashData() throws RemoteException {
 		return new CashDataServiceImpl();
 	}
 

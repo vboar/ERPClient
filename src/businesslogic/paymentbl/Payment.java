@@ -252,7 +252,7 @@ public class Payment {
 			
 			PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),po.getCustomerName(),po.getOperatorId(),
 					temp,po.getTotal(),DocumentStatus.values()[po.getApprovalStatus()],
-					po.getIsWriteOff(),DocumentType.values()[po.getDocumentType()]);
+					po.isWriteOff(),DocumentType.values()[po.getDocumentType()]);
 		
 		return result;
 	}

@@ -38,7 +38,15 @@ public class MessagePO implements Serializable {
 	 * 消息内容
 	 */
     private String content;
-    
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param time
+	 * @param state
+	 * @param receiverId
+	 * @param content
+	 */
     public MessagePO(String id,String time,int state,String receiverId,String content){
     	this.id=id;
     	this.time=time;

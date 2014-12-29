@@ -14,6 +14,7 @@ public class LogPO implements Serializable {
 	 * 序列化UID
 	 */
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 编号
 	 */
@@ -33,12 +34,12 @@ public class LogPO implements Serializable {
 	 * 操作内容
 	 */
 	private String content;
-	
+
 	/**
-	 * 构造函数
+	 * 构造方法
 	 * @param id
 	 * @param time
-	 * @param operator
+	 * @param operatorId
 	 * @param content
 	 */
 	public LogPO(String id,String time,String operatorId,String content){

@@ -226,7 +226,7 @@ public class Receipt {
 		ArrayList<TransferLineItemVO> transferList=poListTOvoList(po.getTransferList());
 		PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),
 				po.getCustomerName(),po.getOperatorId(),transferList,po.getTotal(),
-				DocumentStatus.values()[po.getApprovalStatus()],po.getIsWriteOff(),
+				DocumentStatus.values()[po.getApprovalStatus()],po.isWriteOff(),
 				DocumentType.values()[po.getDocumentType()]);
 		return result;
 	} 

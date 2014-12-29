@@ -49,7 +49,7 @@ public interface DataFactory extends Remote {
 	
 	public MessageDataService getMessageData() throws RemoteException;
 	
-	public CashDataService getCashDataService() throws RemoteException;
+	public CashDataService getCashData() throws RemoteException;
 	
 	public PaymentDataService getPaymentData() throws RemoteException;
 	

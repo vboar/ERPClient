@@ -104,7 +104,7 @@ public class SalePO implements Serializable {
 	* 单据类型
 	*/
 	private int documentType;
-	
+
 	public SalePO(String id,String time,String customerId,String customerName,int customerVIP,String salesmanId,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,
 			String presentId,double totalBeforeDiscount,
@@ -144,10 +144,6 @@ public class SalePO implements Serializable {
 
 	public String getCustomerId() {
 		return customerId;
-	}
-
-	public String getSalesmanId() {
-		return salesmanId;
 	}
 
 	public String getStorage() {
@@ -208,6 +204,10 @@ public class SalePO implements Serializable {
 
 	public String getPresentId() {
 		return presentId;
+	}
+	
+	public String getSalesmanId() {
+		return salesmanId;
 	}
 	
 }

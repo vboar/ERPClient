@@ -51,7 +51,17 @@ public class TotalGiftPO implements Serializable {
 	 * 是否生效
 	 */
 	private boolean valid;
-	
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param total
+	 * @param giftInfo
+	 * @param voucher
+	 * @param startTime
+	 * @param endTime
+	 * @param valid
+	 */
 	public TotalGiftPO(String id,double total,ArrayList<PresentLineItemPO> giftInfo,double voucher,
 			String startTime,String endTime,boolean valid){
 		this.id=id;
@@ -78,7 +88,6 @@ public class TotalGiftPO implements Serializable {
 	public double getTotal() {
 		return total;
 	}
-	
 
 	public ArrayList<PresentLineItemPO> getGiftInfo() {
 		return giftInfo;
@@ -95,7 +104,5 @@ public class TotalGiftPO implements Serializable {
 	public String getEndTime() {
 		return endTime;
 	}
-	
-
 
 }

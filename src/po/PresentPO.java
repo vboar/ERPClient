@@ -54,7 +54,18 @@ public class PresentPO implements Serializable {
 	 * 是否为红冲单据
 	 */
 	private boolean isWriteoff;
-	
+
+	/**
+	 * 构造方法
+	 * @param id
+	 * @param time
+	 * @param customerId
+	 * @param customerName
+	 * @param list
+	 * @param documentStatus
+	 * @param documentType
+	 * @param isWriteoff
+	 */
 	public PresentPO(String id, String time, String customerId, String customerName, 
 			ArrayList<PresentLineItemPO> list, int documentStatus, int documentType, 
 			boolean isWriteoff) {

@@ -30,11 +30,6 @@ public class CategoryPO implements Serializable {
 	private int number;
 	
 	/**
-	 * 无参构造
-	 */
-	public CategoryPO() {}
-	
-	/**
 	 * 构造方法
 	 * @param id
 	 * @param name

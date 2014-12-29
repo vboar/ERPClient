@@ -24,11 +24,6 @@ public class InitialPO implements Serializable {
 	 */
 	private String name;
 	
-	/**
-	 * 无参构造
-	 */
-	public InitialPO() {}
-	
 	public InitialPO(String id, String name) {
 		this.id = id;
 		this.name = name;
