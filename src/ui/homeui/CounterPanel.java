@@ -127,7 +127,7 @@ public class CounterPanel extends MyMainPanel {
 
 	public void showCondition() {
 		removeAllPanel();
-		conditionPanel = new ConditionPanel(frame);
+		conditionPanel = new ConditionPanel(frame,false);
 		add(conditionPanel);
 		repaint();
 	}

@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
+import ui.util.MyOptionPane;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.DocumentStatus;
@@ -120,6 +121,9 @@ public class SaleListPane extends TablePanel {
 		}
 		this.dtm.setDataVector(data, columnNames);
 		this.updateWidth();
+		if(list.size()==0){
+			MyOptionPane.showMessageDialog(SaleListPane.this, "抱歉，未找到相关数据！");
+		}
 	}
 	
 	public void updateWidth(){

@@ -78,21 +78,25 @@ public class ShowChoosePromotionDialog extends JDialog{
 	private void initComponent() {
 		this.tabpane = new MyTabbedPane();
 		this.tabpane.setBounds(0, 0, this.getWidth(), this.getHeight()-140);
+		this.vip = new MyLabel(cfg.getLabels().element("viplab"));
+		this.price = new MyLabel(cfg.getLabels().element("pricelab"));
+		this.add(vip);
+		this.add(price);
 		if(pricelist!=null&&pricelist.size()>0){
 			this.pricetable = new PromotionTablePanel(
 				new TableConfig(cfg.getTablepane()),pricelist);
+			this.pricetable.getTable().setRowSelectionInterval(0, 0);
+			price.setText(viptable.getSeleted().id);
 			this.tabpane.add(this.pricetable,"总价优惠");
 		}
 		if(viplist!=null&&viplist.size()>0){
 			this.viptable = new PromotionTablePanel(
 				new TableConfig(cfg.getTablepane()),viplist);
+			this.viptable.getTable().setRowSelectionInterval(0, 0);
+			vip.setText(viptable.getSeleted().id);
 			this.tabpane.add(this.viptable,"VIP客户优惠");
 		}	
 		this.add(this.tabpane);
-		this.vip = new MyLabel(cfg.getLabels().element("viplab"));
-		this.price = new MyLabel(cfg.getLabels().element("pricelab"));
-		this.add(vip);
-		this.add(price);
 		this.add(new MyLabel(cfg.getLabels().element("vip")));
 		this.add(new MyLabel(cfg.getLabels().element("price")));
 		this.addBtn = new MyButton(cfg.getButtons().element("add"));

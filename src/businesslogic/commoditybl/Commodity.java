@@ -70,7 +70,7 @@ public class Commodity {
 		boolean isTrade = po.isTrade();
 
 		String categoryId = id.substring(0, id.length() - 6);
-		System.out.println("commoditybl:71 "+id);
+		//System.out.println("commoditybl:71 "+id);
 		CategoryPO categorypo = new Category().getById(categoryId);
 		CategoryVO categoryvo = new Category()
 				.CategoryPOToCategoryVO(categorypo);
@@ -130,7 +130,7 @@ public class Commodity {
 	public String createId(String fatherId) {
 		ArrayList<CommodityVO> voList = findById(fatherId);
 		if (voList.size() == 0) {
-			System.out.println("commoditybl 108 "+fatherId + "-00000");
+			//System.out.println("commoditybl 108 "+fatherId + "-00000");
 			return fatherId + "-00000";
 		} else {
 
@@ -140,7 +140,7 @@ public class Commodity {
 			String pattern = "00000";
 			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
 			String maxStr = df.format(maxInt + 1);
-			System.out.println("commoditybl 118 "+fatherId + "-" + maxStr);
+			//System.out.println("commoditybl 118 "+fatherId + "-" + maxStr);
 			return fatherId + "-" + maxStr;
 		}
 	}
@@ -165,7 +165,7 @@ public class Commodity {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		System.out.println("commoditybl: 143 po.id "+po.getId());
+		//System.out.println("commoditybl: 143 po.id "+po.getId());
 
 		// 修改分类
 		Category cat = new Category();
@@ -236,13 +236,13 @@ public class Commodity {
 		ResultMessage nameCheck = Utility.checkInputValid(po.getName(), 2, 14,
 				true);
 		if (nameCheck != ResultMessage.SUCCESS) {
-			System.out.println("commoditybl 218 namecheckfail");
+			//System.out.println("commoditybl 218 namecheckfail");
 			return nameCheck;
 		}
 		ResultMessage nameCheck2 = Utility.checkInputValid(po.getModel(), 2,
 				14, true);
 		if (nameCheck2 != ResultMessage.SUCCESS) {
-			System.out.println("commoditybl 224 namecheckfail");
+			//System.out.println("commoditybl 224 namecheckfail");
 			return nameCheck2;
 		}
 

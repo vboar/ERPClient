@@ -190,7 +190,8 @@ public class SaleVO implements DocumentVO {
 		for(int i=0; i<giftList.size()-1; ++i){
 			str = str + giftList.get(i).toString() + ",";
 		}
-		str = str + giftList.get(giftList.size()-1).toString();
+		if(giftList.size()>0)
+			str = str + giftList.get(giftList.size()-1).toString();
 		return str;
 	}
 	
@@ -199,7 +200,8 @@ public class SaleVO implements DocumentVO {
 		for(int i=0; i<saleList.size()-1; ++i){
 			str = str + saleList.get(i).toString() + ",";
 		}
-		str += saleList.get(saleList.size()-1).toString();
+		if(saleList.size()>0)
+			str += saleList.get(saleList.size()-1).toString();
 		return str;
 	}
 	

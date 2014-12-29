@@ -383,7 +383,6 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 			showStr = showStr + " " + this.promotionlist.get(1).toString();
 		}
 		showStr += "<html>";
-		// TODO 空指针
 		this.saleVo.totalBeforeDiscount = totalPrice;
 		this.saleVo = saleCtrl.calAfterPrice(vipid,priceid, this.saleVo);
 		// 显示折扣和总价和促销策略

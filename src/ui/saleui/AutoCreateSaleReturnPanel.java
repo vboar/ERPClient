@@ -13,6 +13,7 @@ import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
+import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.SaleVO;
@@ -83,6 +84,7 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 						SaleVO vo = tablepane.getSelectedVO();
 						vo.id = controller.createId();
 						vo.receiptType = DocumentType.SALERETURN;
+						vo.approvalState = DocumentStatus.NONCHECKED;
 						// 交给bl操作
 						ResultMessage addresult = controller.add(vo);
 						if(addresult==ResultMessage.SUCCESS){

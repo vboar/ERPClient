@@ -102,7 +102,7 @@ public class ManagerPanel extends MyMainPanel {
 
 	public void showCondition() {
 		removeAllPanel();
-		conditionPanel = new ConditionPanel(frame);
+		conditionPanel = new ConditionPanel(frame,true);
 		add(conditionPanel);
 		repaint();
 	}

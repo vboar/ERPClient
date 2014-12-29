@@ -95,6 +95,9 @@ public class CashListTable extends TablePanel {
         }
         this.dtm.setDataVector(data, columnNames);
         this.updateWidth();
+		if(list.size()==0){
+			MyOptionPane.showMessageDialog(CashListTable.this, "抱歉，未找到相关数据！");
+		}
     }
     
 	public void updateWidth(){

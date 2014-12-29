@@ -83,12 +83,15 @@ public class HistoryPanel extends JPanel implements ExcelSaver, UpdateTableData 
 	
 	private boolean hasTable = false;
 	
+	private boolean isManager;
+	
 	private DocumentType tableType;
 	
 	private HistoryBLService controller;
 	
-	public HistoryPanel(JFrame frame){
+	public HistoryPanel(JFrame frame, boolean isManager){
     	this.frame = frame;
+    	this.isManager = isManager;
     	vo = new RequirementVO();
     	this.controller = ControllerFactoryImpl.getInstance().getHistoryController();
     	this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
@@ -142,22 +145,24 @@ public class HistoryPanel extends JPanel implements ExcelSaver, UpdateTableData 
 		this.add(new MyLabel(cfg.getLabels().element("operator")));
 		this.add(new MyLabel(cfg.getLabels().element("store")));
 		// 初始化按钮
-		this.writeoff = new MyButton(cfg.getButtons().element("writeoff"));
-		this.writeoff.addActionListener(new ActionListener() {	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showDocumentDialog(1);
-			}
-		});
-		this.add(writeoff);
-		this.copy = new MyButton(cfg.getButtons().element("copy"));
-		this.copy.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showDocumentDialog(2);
-			}
-		});
-		this.add(copy);
+		if(!isManager){
+			this.writeoff = new MyButton(cfg.getButtons().element("writeoff"));
+			this.writeoff.addActionListener(new ActionListener() {	
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					showDocumentDialog(1);
+				}
+			});
+			this.add(writeoff);
+			this.copy = new MyButton(cfg.getButtons().element("copy"));
+			this.copy.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					showDocumentDialog(2);
+				}	
+			});
+			this.add(copy);
+		}
 		this.find = new MyButton(cfg.getButtons().element("find"));
 		this.find.addActionListener(new ActionListener() {
 			@Override
@@ -260,9 +265,11 @@ public class HistoryPanel extends JPanel implements ExcelSaver, UpdateTableData 
 		else vo.salesman = null;
 		if(!storage.getSelectedItem().equals("所有"))
 			vo.storage = storage.getSelectedItem().toString();
-		if(!customer.getSelectedItem().equals("所有"))
-			vo.customer = this.customer.getSelectedItem().toString().substring(0,7);
-		else vo.customer = null;
+		if(!customer.getSelectedItem().equals("所有")){
+			vo.customer = this.customer.getSelectedItem().toString().substring(5);
+		}else{ 
+			vo.customer = null;
+		}
 		return vo;
 	}
 	
@@ -386,6 +393,6 @@ public class HistoryPanel extends JPanel implements ExcelSaver, UpdateTableData 
 
 	@Override
 	public void updateTableData() {
-		// TODO
+		this.showTable();
 	}
 }

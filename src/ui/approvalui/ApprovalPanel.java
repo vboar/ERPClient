@@ -51,6 +51,8 @@ public class ApprovalPanel extends JPanel implements UpdateTableData {
 
     private MyButton detailBtn;
 
+	private MyLabel listLab;
+	
     private MyComboBox typeBox;
 
     private DatePickerGroup start;
@@ -128,10 +130,11 @@ public class ApprovalPanel extends JPanel implements UpdateTableData {
 
     private void initLabels(Element labels) {
         add(new MyLabel(labels.element("title")));
-        add(new MyLabel(labels.element("list")));
         add(new MyLabel(labels.element("type")));
         add(new MyLabel(labels.element("start")));
         add(new MyLabel(labels.element("end")));
+        this.listLab = new MyLabel(labels.element("list"));
+        add(listLab);
     }
 
     private void initButtons(Element buttons) {
@@ -142,6 +145,8 @@ public class ApprovalPanel extends JPanel implements UpdateTableData {
             public void actionPerformed(ActionEvent e) {
                 table.setStatus(DocumentStatus.NONCHECKED);
                 table.showTableByType(1);
+                listLab.setText("待审批单据列表");
+                repaint();
             }
         });
 
@@ -152,6 +157,8 @@ public class ApprovalPanel extends JPanel implements UpdateTableData {
             public void actionPerformed(ActionEvent e) {
                 table.setStatus(DocumentStatus.PASSED);
                 table.showTableByType(1);
+                listLab.setText("审批通过单据列表");
+                repaint();
             }
         });
 
@@ -162,6 +169,8 @@ public class ApprovalPanel extends JPanel implements UpdateTableData {
             public void actionPerformed(ActionEvent e) {
                 table.setStatus(DocumentStatus.FAILED);
                 table.showTableByType(1);
+                listLab.setText("审批不通过单据列表");
+                repaint();
             }
         });
 
@@ -277,6 +286,7 @@ public class ApprovalPanel extends JPanel implements UpdateTableData {
             case LOSS: {
                 ExceptionVO exceptionVO = ControllerFactoryImpl.getInstance().getLossController().
                         getById(vo.getId());
+             // TODO exceptionVO 是空针
                 new DocumentShowDialog(frame,new ShowExceptionPanel(frame,exceptionVO,type, true),this, type);
                 break;
             }

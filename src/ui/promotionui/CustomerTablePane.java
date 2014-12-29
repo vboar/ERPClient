@@ -2,6 +2,7 @@ package ui.promotionui;
 
 import java.util.ArrayList;
 
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -41,6 +42,7 @@ public class CustomerTablePane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
 		this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
 		this.table.getColumnModel().getColumn(0).setMinWidth(120);

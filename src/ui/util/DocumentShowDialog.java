@@ -276,8 +276,15 @@ public class DocumentShowDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 红冲
-				writeoffCtrl.create(extra.getDocumentType(),
+				ResultMessage result = writeoffCtrl.create(extra.getDocumentType(),
 						extra.getDocumentID());
+				if(result==ResultMessage.SUCCESS){
+					MyOptionPane.showMessageDialog(frame, "红冲成功！");
+				}else{
+					MyOptionPane.showMessageDialog(frame, "红冲失败！");
+				}
+				updateTableData.updateTableData();
+				DocumentShowDialog.this.dispose();
 			}
 		});
 		if (type == 0) {

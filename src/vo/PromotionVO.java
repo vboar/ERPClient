@@ -41,12 +41,13 @@ public class PromotionVO {
 	public String toString(){
 		String str = "促销编号:"+ id;
 		if(giftList!=null&&giftList.size()>0){
-			str += " 赠品列表：";
+			str += "  赠品列表：";
 			for(int i=0; i<giftList.size(); ++i){
-				str += " "+ giftList.get(i).name + "-" + giftList.get(i).model + "、";
+				str += " "+ giftList.get(i).name + "-" + giftList.get(i).model + "*" 
+						+ giftList.get(i).number + "、";
 			}
 		}
-		str = str + " 折扣: "+ discount + " 赠送代金券：" + voucher;
+		str = str + "  折扣: "+ discount + "  赠送代金券：" + voucher;
 		return str;
 	}
 }

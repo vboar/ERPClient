@@ -216,6 +216,8 @@ public class Receipt {
 		ArrayList<TransferLineItemPO> result=new ArrayList<TransferLineItemPO>();
 		for(int i=0;i<transferList.size();i++){
 			TransferLineItemVO temp=transferList.get(i);
+			if(temp.remark==null||temp.remark.equals(""))
+				temp.remark="无";
 			result.add(new TransferLineItemPO(temp.name,temp.bankAccount,temp.account,temp.remark));
 		}
 		return result;

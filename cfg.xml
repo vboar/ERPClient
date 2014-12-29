@@ -2317,9 +2317,9 @@
 		</tablepane>
 		<labels>
 			<vip text="用户优惠：" w="100" h="30" x="20" y="250" />
-			<viplab text="" w="400" h="30" x="120" y="250" />
+			<viplab text="无" w="400" h="30" x="120" y="250" />
 			<price text="总价优惠：" w="100" h="30" x="20" y="270" />
-			<pricelab text="" w="400" h="30" x="120" y="270" />
+			<pricelab text="无" w="400" h="30" x="120" y="270" />
 		</labels>
 	</choosepromotiondialog>
 

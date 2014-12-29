@@ -55,7 +55,7 @@ public abstract class TablePanel extends JPanel{
 	public MyTable getTable() {
 		return table;
 	}
-	
+
 	public void setRowHeaderWidth(int width){
 		this.rollpane.setRowHeaderWidth(width);
 	}

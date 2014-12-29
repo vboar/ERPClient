@@ -172,6 +172,8 @@ public class Cash{
 		ArrayList<ClauseLineItemPO> result=new ArrayList<ClauseLineItemPO>();
 		for(int i=0;i<clauseList.size();i++){
 			ClauseLineItemVO temp=clauseList.get(i);
+			if(temp.remark==null||temp.remark.equals(""))
+				temp.remark="无";
 			result.add(new ClauseLineItemPO(temp.name,temp.account,temp.remark));
 		}
 		return result;

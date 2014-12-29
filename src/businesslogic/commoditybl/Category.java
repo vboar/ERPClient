@@ -43,7 +43,7 @@ public class Category {
 	public CategoryVO CategoryPOToCategoryVO(CategoryPO po) {
 		
 		String id = po.getId();
-		System.out.println("categorybl: 44 "+id);
+		//System.out.println("categorybl: 44 "+id);
 		String name = po.getName();
 		int number = po.getNumber();
 		CategoryVO vo = new CategoryVO(id,name, number, null);

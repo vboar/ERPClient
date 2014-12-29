@@ -28,8 +28,11 @@ public class ConditionPanel extends JPanel {
 	
 	private PanelConfig cfg;
 	
-    public ConditionPanel(JFrame frame) {
+	private boolean isManager;
+	
+    public ConditionPanel(JFrame frame, boolean isManager) {
     	this.frame = frame;
+    	this.isManager = isManager;
     	this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		// 设置面板基础属性
 		this.setSize(cfg.getW(), cfg.getH());
@@ -50,7 +53,7 @@ public class ConditionPanel extends JPanel {
 	private void initComponent() {
 		this.add(new MyLabel(cfg.getLabels().element("title")));
     	this.detailsPanel = new SaleDetailsPanel(frame);
-    	this.historyPanel = new HistoryPanel(frame);
+    	this.historyPanel = new HistoryPanel(frame, isManager);
     	this.conditionPanel = new BusinessConditionPanel(frame);
     	this.tabPane = new MyTabbedPane();
     	this.tabPane.setBounds(0, 32, this.getWidth(), this.getHeight()-32);

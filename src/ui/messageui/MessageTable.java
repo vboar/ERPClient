@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
+import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.ResultMessage;
@@ -46,9 +47,18 @@ public class MessageTable extends TablePanel {
             }
         };
         this.table = new MyTable(this.dtm, this.getWidth());
+        this.updateWidth();
     }
 
-    private void initData(ArrayList<MessageVO> list) {
+    private void updateWidth() {
+		FrameUtil.setTableColumnWidth(table, this.getWidth(), 30);
+		this.table.getColumnModel().getColumn(0).setPreferredWidth(110);
+		this.table.getColumnModel().getColumn(1).setPreferredWidth(170);
+		this.table.getColumnModel().getColumn(2).setPreferredWidth(420);
+		this.updateUI();
+	}
+
+	private void initData(ArrayList<MessageVO> list) {
         int size;
         if(list == null) size = 0;
         else size = list.size();
@@ -69,13 +79,13 @@ public class MessageTable extends TablePanel {
         list = controller.showByUser(new UserVO(Login.currentUserId, null, Login.currentUserType, 0,
                 Login.currentUserName));
         initData(list);
-        updateUI();
+        this.updateWidth();
     }
 
     public void showByState(int state) {
         list = controller.findByStatus(state);
         initData(list);
-        updateUI();
+        this.updateWidth();
     }
 
     public ResultMessage setRead() {
@@ -84,7 +94,7 @@ public class MessageTable extends TablePanel {
         if(vo.state == 0) {
             vo.state = 1;
             controller.update(vo);
-            dtm.setValueAt(vo.state, table.getSelectedRow(), 0);
+            dtm.setValueAt(vo.state==0?"未读":"已读", table.getSelectedRow(), 0);
             updateUI();
             return ResultMessage.SUCCESS;
         } else {

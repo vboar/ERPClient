@@ -2,6 +2,7 @@ package ui.promotionui;
 
 import java.util.ArrayList;
 
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import ui.util.FrameUtil;
@@ -42,6 +43,7 @@ public class SpecialOfferTablePane extends TablePanel{
 			}
 		};
 		this.table = new MyTable(this.dtm,this.getWidth());
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), padding);
 		this.table.getColumnModel().getColumn(1).setPreferredWidth(200);
 	}

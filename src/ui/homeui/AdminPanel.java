@@ -34,9 +34,7 @@ public class AdminPanel extends MyMainPanel {
 		this.userManageBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				userPanel = new UserPanel(frame);
-				add(userPanel);
-				repaint();
+				showUser();
 			}
 		});
 		this.add(this.userManageBtn);
