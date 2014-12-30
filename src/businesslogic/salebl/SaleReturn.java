@@ -36,15 +36,8 @@ public class SaleReturn {
 	public ResultMessage add(SaleVO vo) {
 		String time = Time.getCurrentTime();
 		vo.time = time;
-		SalePO po = sale.SaleVOToSalePO(vo);
-		try {
-			DataFactoryImpl.getInstance().getSaleData().insert(po);
-		} catch (RemoteException e) {
-
-			e.printStackTrace();
-		}
-		
-
+		vo.presentId=" ";
+				
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
 
@@ -59,7 +52,18 @@ public class SaleReturn {
 				list, documentStatus, documentType, false);
 		Present pr = new Present();
 		pr.create(presentVO);
+		vo.presentId=id;
 		}
+		
+		SalePO po = sale.SaleVOToSalePO(vo);
+
+		try {
+			DataFactoryImpl.getInstance().getSaleData().insert(po);
+		} catch (RemoteException e) {
+
+			e.printStackTrace();
+		}
+
 		return ResultMessage.SUCCESS;
 
 	}
@@ -261,6 +265,13 @@ public class SaleReturn {
 				e.printStackTrace();
 			}
 
+		}
+		String id=vo.presentId;
+		if(id!=null&&id.length()>5){
+			PresentVO prvo=new Present().getById(id);
+			new Present().approve(prvo);
+			prvo.documentStatus=DocumentStatus.PASSED;
+			new Present().update(prvo);
 		}
 		return ResultMessage.SUCCESS;
 	}
