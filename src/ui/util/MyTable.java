@@ -27,22 +27,7 @@ public class MyTable extends JTable {
 		this.getTableHeader().setReorderingAllowed(false);
 		this.sorter = new TableRowSorter<TableModel>(dtm);
 		this.setRowSorter(sorter);
-		this.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-			public Component getTableCellRendererComponent(JTable table,
-					Object value,boolean isSelected, boolean hasFocus, int row, int column) {
-				super.getTableCellRendererComponent(table, value,isSelected, hasFocus, row, column);
-				if ((row % 2) != 0) {
-					setBackground(new Color(246, 243, 236));
-				} else {
-					setBackground(Color.white);
-				}
-				if (isSelected) {
-					setBackground(new Color(200,210,230));
-					setForeground(new Color(40,40,40));
-				}
-				return this;
-			}
-		});
+		this.setDefaultRenderer(Object.class, new MyTableCellRenderer());
 		this.setBackground(new Color(240,240,255));
 //		for(int i=0; i<this.getColumnCount();++i){
 //			this.getTableHeader().getColumnModel().getColumn(i).setMinWidth(containerW/this.getColumnCount());
@@ -59,6 +44,29 @@ public class MyTable extends JTable {
         this.updateUI();
         this.getTableHeader().getColumnModel().getColumn(column).setMaxWidth(0);
         this.getTableHeader().getColumnModel().getColumn(column).setMinWidth(0);
+	}
+	
+	private class MyTableCellRenderer extends DefaultTableCellRenderer{
+		
+		public Component getTableCellRendererComponent(JTable table,
+				Object value,boolean isSelected, boolean hasFocus, int row, int column) {
+			super.getTableCellRendererComponent(table, value,isSelected, hasFocus, row, column);
+			if ((row % 2) != 0) {
+				setBackground(new Color(246, 243, 236));
+			} else {
+				setBackground(Color.white);
+			}
+			if (isSelected) {
+				setBackground(new Color(200,210,230));
+				setForeground(new Color(40,40,40));
+			}
+			if(table.getValueAt(row, 0).toString().equals("true")){
+				setForeground(Color.RED);
+			}else{
+				setForeground(new Color(40,40,40));
+			}
+			return this;
+		}
 	}
 
 }

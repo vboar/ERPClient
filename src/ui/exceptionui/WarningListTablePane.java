@@ -25,7 +25,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class WarningListTablePane extends TablePanel {
 
-	private static int COLUMN_NUM = 3;
+	private static int COLUMN_NUM = 4;
 	
 	private ArrayList<WarningVO> list;
 	
@@ -82,9 +82,10 @@ public class WarningListTablePane extends TablePanel {
 	 * @return
 	 */
 	private Object[] createRow(Object[] row, WarningVO vo) {
-		row[0]=vo.id;
-		row[1]=vo.time;
-		row[2]=vo.listToStr();
+		row[0]=vo.isWriteoff();
+		row[1]=vo.id;
+		row[2]=vo.time;
+		row[3]=vo.listToStr();
 		return row;
 	}
 	
@@ -123,10 +124,10 @@ public class WarningListTablePane extends TablePanel {
 	
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 100);
-        this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(1).setMinWidth(160);
-        this.table.getColumnModel().getColumn(2).setMinWidth(460);
-		this.table.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer(){
+        this.table.getColumnModel().getColumn(2).setMinWidth(160);
+        this.table.getColumnModel().getColumn(3).setMinWidth(460);
+		this.table.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer(){
 			@Override
 			 public Component getTableCellRendererComponent(JTable table, Object value,
                      boolean isSelected, boolean hasFocus, int row, int column) {
@@ -135,6 +136,7 @@ public class WarningListTablePane extends TablePanel {
 				return this;
 			}
 		});
+		this.table.setUnvisibleColumn(0);
         this.updateUI();
 	}
 

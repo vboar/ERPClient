@@ -13,6 +13,7 @@ import ui.util.MyButton;
 import ui.util.MyLabel;
 import ui.util.MyOptionPane;
 import ui.util.MyTextField;
+import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.PurchaseVO;
@@ -82,6 +83,7 @@ public class AutoCreatePurchaseReturnPanel extends JPanel {
 						PurchaseVO vo = tablepane.getSelectedVO();
 						vo.id = controller.createId();
 						vo.receiptType = DocumentType.PURCHASERETURN;
+						vo.documentStatus = DocumentStatus.NONCHECKED;
 						ResultMessage addresult = controller.add(vo);
 						if(addresult==ResultMessage.SUCCESS){
 							MyOptionPane.showMessageDialog(frame, "创建退货单成功！");

@@ -87,7 +87,7 @@ public class Customer {
 		try {
 			DataFactoryImpl.getInstance().getCustomerData().update(new CustomerPO(vo.id,vo.category,vo.level,vo.name,vo.phoneNumber,vo.address,
 						vo.postalCode,vo.email,vo.creditLimit,po.getReceivables(),po.getPaybles(),
-						vo.salesman,po.isDeletable()));
+						vo.salesman,vo.isDeletable));
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();

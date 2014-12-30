@@ -15,9 +15,12 @@ import ui.util.*;
 import util.ResultMessage;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel{
@@ -62,6 +65,18 @@ public class LoginPanel extends JPanel{
 		this.bg = pcfg.getBg();
 		// 初始化组件
 		this.initComponent();
+		this.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					if(e.getSource()==loginBtn)
+						checkLogin();
+					if(e.getSource()==quitBtn)
+						checkQuit();
+						
+				}
+			}
+		});
 		this.repaint();
 	}
 
@@ -145,11 +160,7 @@ public class LoginPanel extends JPanel{
 			// 事件处理
 			@Override
 			public void actionPerformed(ActionEvent e){
-				int result = MyOptionPane.showConfirmDialog(null, "确认退出？","系统提示",
-						MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
-				if(result==MyOptionPane.YES_OPTION){
-					System.exit(0);
-				}
+				checkQuit();
 			}
 		});
 	}
@@ -195,6 +206,14 @@ public class LoginPanel extends JPanel{
 			} else {
 				MyOptionPane.showMessageDialog(null, "服务器未开启！");
 			}
+		}
+	}
+	
+	private void checkQuit(){
+		int result = MyOptionPane.showConfirmDialog(null, "确认退出？","系统提示",
+				MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
+		if(result==MyOptionPane.YES_OPTION){
+			System.exit(0);
 		}
 	}
 }

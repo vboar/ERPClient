@@ -192,6 +192,11 @@ public class Sale {
 			
 			e.printStackTrace();
 		}
+		
+		CustomerVO customerVO=new Customer().getById(vo.customerId);
+		customerVO.isDeletable=false;
+		new Customer().update(customerVO);
+		
 		return ResultMessage.SUCCESS;
 
 	}

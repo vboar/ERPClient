@@ -17,7 +17,7 @@ public class MyButton extends JButton{
 		this.setText(text);
 		this.setSize(w, h);
 		this.setLocation(x, y);
-		this.setFocusPainted(false);
+		//this.setFocusPainted(false);
 	}
 	
 	public MyButton(Element ele){
@@ -34,7 +34,7 @@ public class MyButton extends JButton{
 		if(ele.attributeValue("pathroll")!=null){
 			this.setRolloverIcon(new ImageIcon(ele.attributeValue("pathroll")));
 		}
-		this.setFocusPainted(false);
+		//this.setFocusPainted(false);
 	}
 	
 	public MyButton(String text, Element ele){
@@ -43,6 +43,6 @@ public class MyButton extends JButton{
 				Integer.parseInt(ele.attributeValue("h")));
 		this.setLocation(Integer.parseInt(ele.attributeValue("x")),
 				Integer.parseInt(ele.attributeValue("y")));
-		this.setFocusPainted(false);
+		//this.setFocusPainted(false);
 	}
 }

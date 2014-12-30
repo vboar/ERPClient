@@ -65,7 +65,7 @@ public class WarningVO implements DocumentVO {
 
 	@Override
 	public boolean isWriteoff() {
-		return isWriteoff();
+		return false;
 	}
 
 	@Override

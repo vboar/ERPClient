@@ -247,6 +247,7 @@ public class HistoryPanel extends JPanel implements ExcelSaver, UpdateTableData 
 		PurchaseVO vo = this.purchase.getSelectedVO();
 		if(vo!=null)	
 			new DocumentShowDialog(frame,new ShowPurchasePanel(frame,vo,type,isreturn), this, type);
+		this.purchase.updateData();
 	}
 
 	public RequirementVO getRequirementVO(){

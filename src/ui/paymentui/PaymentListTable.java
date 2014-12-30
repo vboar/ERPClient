@@ -23,7 +23,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class PaymentListTable extends TablePanel {
 	
-    private static int COLUMN_NUM = 8;
+    private static int COLUMN_NUM = 9;
 
     private ArrayList<PaymentVO> list;
 
@@ -62,14 +62,15 @@ public class PaymentListTable extends TablePanel {
     }
 
     private void createRow(Object[] row, PaymentVO vo){
-        row[0]=vo.id;
-        row[1]=vo.time;
-        row[2]=vo.customerId;
-        row[3]=vo.customerName;
-        row[4]=vo.listToStr();
-        row[5]=vo.total;
-        row[6]=vo.operatorId;
-        row[7]=vo.approvalState.toReadableString();
+    	row[0]=vo.isWriteOff;
+    	row[1]=vo.id;
+        row[2]=vo.time;
+        row[3]=vo.customerId;
+        row[4]=vo.customerName;
+        row[5]=vo.listToStr();
+        row[6]=vo.total;
+        row[7]=vo.operatorId;
+        row[8]=vo.approvalState.toReadableString();
     }
 
     /**
@@ -102,9 +103,9 @@ public class PaymentListTable extends TablePanel {
     
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.table.getColumnModel().getColumn(0).setMinWidth(160);
-        this.table.getColumnModel().getColumn(4).setMinWidth(300);
-		this.table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer(){
+        this.table.getColumnModel().getColumn(1).setMinWidth(160);
+        this.table.getColumnModel().getColumn(5).setMinWidth(300);
+		this.table.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer(){
 			@Override
 			 public Component getTableCellRendererComponent(JTable table, Object value,
                      boolean isSelected, boolean hasFocus, int row, int column) {
@@ -113,6 +114,7 @@ public class PaymentListTable extends TablePanel {
 				return this;
 			}
 		});
+		this.table.setUnvisibleColumn(0);
         this.updateUI();
 	}
 	
@@ -123,7 +125,7 @@ public class PaymentListTable extends TablePanel {
 			MyOptionPane.showMessageDialog(PaymentListTable.this, "请先选择一张单据！");
 			return null;
 		}
-		String id = (String)this.table.getValueAt(row, 0);
+		String id = (String)this.table.getValueAt(row, 1);
 		for(int i=0; i<list.size(); i++){
 			vo = list.get(i);
 			if(id.equals(vo.id)){

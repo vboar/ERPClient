@@ -59,6 +59,7 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 		this.customerVO.name = vo.customerName;
 		this.customerlist = new HashMap<String, CustomerVO>();
 		this.commoditylist = vo.saleList;
+		this.totalPrice = vo.total;
 		this.customerCtrl = ControllerFactoryImpl.getInstance()
 				.getCustomerController();
 		this.purchaseCtrl = isreturn? ControllerFactoryImpl.getInstance().getPurchaseReturnController()
@@ -220,8 +221,12 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 	}
 
 	public void delCommodity() {
-		commoditylist.remove(commodityTable.getTable().getSelectedRow());
-		commodityTable.deleteRow();
+		CommodityLineItemVO vo = this.commodityTable.getSelectedVO();
+		this.totalPrice = this.totalPrice - vo.number*vo.price;
+		this.totalLab.setText(Double.toString(totalPrice));
+		this.commoditylist.remove(this.commodityTable.getTable()
+				.getSelectedRow());
+		this.commodityTable.deleteRow();
 	}
 
 	@Override

@@ -116,7 +116,7 @@ public class CustomerInfoDialog extends EditDialog {
 			public void actionPerformed(ActionEvent e) {
 				try{
 				int category = categoryBox.getSelectedIndex();
-				int level = levelBox.getSelectedIndex();
+				int level = levelBox.getSelectedIndex()+1;
 				String id="";
 				if(!isAdd) id = vo.id;
 				else id = ControllerFactoryImpl.getInstance().getCustomerController().createId();

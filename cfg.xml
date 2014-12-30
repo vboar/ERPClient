@@ -266,12 +266,14 @@
 			<tablepane className="ui.presentui.ShowPanel" width="730"
 				height="340" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲单据" />
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="客户编号" />
 					<columnname name="客户名" />
 					<columnname name="赠品列表" />
 					<columnname name="单据状态" />
+					
 				</columnnames>
 			</tablepane>
 		</panel>
@@ -469,6 +471,7 @@
 			<tablepane className="ui.exceptionui.ExceptionListTablePane"
 				width="730" height="340" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲单据" />
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="商品列表" />
@@ -504,6 +507,7 @@
 			<tablepane className="ui.exceptionui.WarningListTablePane"
 				width="730" height="340" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲"/>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="商品列表" />
@@ -549,6 +553,7 @@
 			<tablepane className="ui.saleui.SaleListPane" width="730"
 				height="340" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲" />
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="客户ID" />
@@ -696,6 +701,7 @@
 			<tablepane className="ui.saleui.SaleListPane" width="730"
 				height="340" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲" />
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="客户ID" />
@@ -733,6 +739,7 @@
 			<tablepane className="ui.saleui.SaleListPane" width="730"
 				height="350" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲"/>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="客户ID" />
@@ -786,6 +793,7 @@
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
 				height="340" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲"/>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="供应商ID" />
@@ -914,6 +922,7 @@
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
 				height="350" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲"/>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="供应商ID" />
@@ -948,6 +957,7 @@
 			<tablepane className="ui.saleui.PurchaseListPane" width="730"
 				height="350" x="10" y="40">
 				<columnnames>
+					<columnname name="红冲"/>
 					<columnname name="单据编号" />
 					<columnname name="创建时间" />
 					<columnname name="供应商ID" />
@@ -1054,6 +1064,7 @@
 				<payment className="ui.paymentui.ShowPaymentTable" width="730"
 					height="350" x="10" y="60">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="客户编号" />
@@ -1067,6 +1078,7 @@
 				<cash className="ui.paymentui.ShowCashTable" width="730"
 					height="350" x="10" y="60">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="操作员" />
@@ -1403,6 +1415,7 @@
 			<tables>
 				<present width="730" height="260" x="10" y="100">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="时间" />
 						<columnname name="客户ID" />
@@ -1413,6 +1426,7 @@
 				</present>
 				<warning width="730" height="260" x="10" y="100">
 					<columnnames>
+					<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="商品列表" />
@@ -1420,6 +1434,7 @@
 				</warning>
 				<exception width="730" height="260" x="10" y="100">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="商品列表" />
@@ -1427,6 +1442,7 @@
 				</exception>
 				<payment width="730" height="260" x="10" y="100">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="客户编号" />
@@ -1439,6 +1455,7 @@
 				</payment>
 				<purchase width="730" height="260" x="10" y="100">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="供应商ID" />
@@ -1452,6 +1469,7 @@
 				</purchase>
 				<sale width="730" height="260" x="10" y="100">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="客户ID" />
@@ -1468,6 +1486,7 @@
 				</sale>
 				<cash width="730" height="260" x="10" y="100">
 					<columnnames>
+						<columnname name="红冲"/>
 						<columnname name="单据编号" />
 						<columnname name="创建时间" />
 						<columnname name="操作员" />

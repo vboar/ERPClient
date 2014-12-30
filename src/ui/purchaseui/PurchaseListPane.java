@@ -21,7 +21,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class PurchaseListPane extends TablePanel{
 
-	private static int COLUMN_NUM = 10;
+	private static int COLUMN_NUM = 11;
 	
 	private ArrayList<PurchaseVO> list;
 
@@ -67,16 +67,17 @@ public class PurchaseListPane extends TablePanel{
 	}
 	
 	private Object[] createRow(Object[] row, PurchaseVO vo) {
-		row[0]=vo.id;
-		row[1]=vo.time;
-		row[2]=vo.customerId;
-		row[3]=vo.customerName;
-		row[4]=vo.storage;
-		row[5]=vo.operatorId;
-		row[6]=vo.listToStr();
-		row[7]=vo.total;
-		row[8]=vo.remark;
-		row[9]=vo.documentStatus.toReadableString();
+		row[0]=vo.isWriteOff;
+		row[1]=vo.id;
+		row[2]=vo.time;
+		row[3]=vo.customerId;
+		row[4]=vo.customerName;
+		row[5]=vo.storage;
+		row[6]=vo.operatorId;
+		row[7]=vo.listToStr();
+		row[8]=vo.total;
+		row[9]=vo.remark;
+		row[10]=vo.documentStatus.toReadableString();
 		return row;
 	}
 
@@ -87,7 +88,7 @@ public class PurchaseListPane extends TablePanel{
 			MyOptionPane.showMessageDialog(PurchaseListPane.this, "请先选择一行数据！");
 			return null;
 		}
-		String id = (String)this.table.getValueAt(row, 0);
+		String id = (String)this.table.getValueAt(row, 1);
 		for(int i=0; i<list.size(); i++){
 			vo = list.get(i);
 			if(id.equals(vo.id)){
@@ -136,9 +137,9 @@ public class PurchaseListPane extends TablePanel{
 	
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 40);
-        this.table.getColumnModel().getColumn(0).setMinWidth(160);
-        this.table.getColumnModel().getColumn(6).setMinWidth(300);
-        this.table.getColumnModel().getColumn(6).setCellRenderer(new DefaultTableCellRenderer(){
+        this.table.getColumnModel().getColumn(1).setMinWidth(160);
+        this.table.getColumnModel().getColumn(7).setMinWidth(300);
+        this.table.getColumnModel().getColumn(7).setCellRenderer(new DefaultTableCellRenderer(){
 			 public Component getTableCellRendererComponent(JTable table, Object value,
                      boolean isSelected, boolean hasFocus, int row, int column) {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -146,6 +147,7 @@ public class PurchaseListPane extends TablePanel{
 				return this;
 			}
         });
+		this.table.setUnvisibleColumn(0);
         this.updateUI();
 	}
 

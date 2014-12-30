@@ -25,7 +25,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class ExceptionListTablePane extends TablePanel {
 
-	private static int COLUMN_NUM = 3;
+	private static int COLUMN_NUM = 4;
 
 	private ArrayList<ExceptionVO> list;
 
@@ -93,9 +93,10 @@ public class ExceptionListTablePane extends TablePanel {
 	 * @return
 	 */
 	private Object[] createRow(Object[] row, ExceptionVO vo) {
-		row[0] = vo.id;
-		row[1] = vo.time;
-		row[2] = vo.list.toString();
+		row[0] = vo.isWriteoff;
+		row[1] = vo.id;
+		row[2] = vo.time;
+		row[3] = vo.list.toString();
 		return row;
 	}
 
@@ -135,10 +136,10 @@ public class ExceptionListTablePane extends TablePanel {
 	
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 100);
-        this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(1).setMinWidth(160);
-        this.table.getColumnModel().getColumn(2).setMinWidth(460);
-        this.table.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer(){
+        this.table.getColumnModel().getColumn(2).setMinWidth(160);
+        this.table.getColumnModel().getColumn(3).setMinWidth(460);
+        this.table.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer(){
 			@Override
 			 public Component getTableCellRendererComponent(JTable table, Object value,
                     boolean isSelected, boolean hasFocus, int row, int column) {
@@ -147,13 +148,14 @@ public class ExceptionListTablePane extends TablePanel {
 				return this;
 			}
         });
+		this.table.setUnvisibleColumn(0);
         this.updateUI();
 	}
 
 	public ExceptionVO getSelectedVO() {
 		ExceptionVO vo = null;
 		int row = this.table.getSelectedRow();
-		String id = (String) this.table.getValueAt(row, 0);
+		String id = (String) this.table.getValueAt(row, 1);
 		for (int i = 0; i < list.size(); i++) {
 			vo = list.get(i);
 			if (id.equals(vo.id)) {

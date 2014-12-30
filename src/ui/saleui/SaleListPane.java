@@ -21,7 +21,7 @@ import config.TableConfig;
 @SuppressWarnings("serial")
 public class SaleListPane extends TablePanel {
 
-	private static int COLUMN_NUM = 13;
+	private static int COLUMN_NUM = 14;
 
 	private ArrayList<SaleVO> list;
 
@@ -73,19 +73,20 @@ public class SaleListPane extends TablePanel {
 	}
 
 	private Object[] createRow(Object[] row, SaleVO vo) {
-		row[0] = vo.id;
-		row[1] = vo.time;
-		row[2] = vo.customerId;
-		row[3] = vo.customerName;
-		row[4] = vo.customerVIP;
-		row[5] = vo.salesmanId;
-		row[6] = vo.operatorId;
-		row[7] = vo.storage;
-		row[8] = vo.saleListToStr();
-		row[9] = vo.totalBeforeDiscount;
-		row[10] = vo.discount;
-		row[11] = vo.totalAfterDiscount;
-		row[12] = vo.approvalState.toReadableString();
+		row[0] = vo.isWriteOff;
+		row[1] = vo.id;
+		row[2] = vo.time;
+		row[3] = vo.customerId;
+		row[4] = vo.customerName;
+		row[5] = vo.customerVIP;
+		row[6] = vo.salesmanId;
+		row[7] = vo.operatorId;
+		row[8] = vo.storage;
+		row[9] = vo.saleListToStr();
+		row[10] = vo.totalBeforeDiscount;
+		row[11] = vo.discount;
+		row[12] = vo.totalAfterDiscount;
+		row[13] = vo.approvalState.toReadableString();
 		return row;
 	}
 
@@ -98,7 +99,7 @@ public class SaleListPane extends TablePanel {
 	public SaleVO getSelectedVO() {
 		SaleVO vo = null;
 		int row = this.table.getSelectedRow();
-		String id = (String) this.table.getValueAt(row, 0);
+		String id = (String) this.table.getValueAt(row, 1);
 		for (int i = 0; i < list.size(); i++) {
 			vo = list.get(i);
 			if (id.equals(vo.id)) {
@@ -128,10 +129,10 @@ public class SaleListPane extends TablePanel {
 	
 	public void updateWidth(){
 		FrameUtil.setTableColumnWidth(this.table, this.getWidth(), 20);
-        this.table.getColumnModel().getColumn(0).setMinWidth(160);
         this.table.getColumnModel().getColumn(1).setMinWidth(160);
-        this.table.getColumnModel().getColumn(8).setMinWidth(300);
-		this.table.getColumnModel().getColumn(8).setCellRenderer(new DefaultTableCellRenderer(){
+        this.table.getColumnModel().getColumn(2).setMinWidth(160);
+        this.table.getColumnModel().getColumn(9).setMinWidth(300);
+		this.table.getColumnModel().getColumn(9).setCellRenderer(new DefaultTableCellRenderer(){
 			@Override
 			 public Component getTableCellRendererComponent(JTable table, Object value,
                      boolean isSelected, boolean hasFocus, int row, int column) {
@@ -140,6 +141,7 @@ public class SaleListPane extends TablePanel {
 				return this;
 			}
 		});
+		this.table.setUnvisibleColumn(0);
         this.updateUI();
 	}
 
