@@ -30,6 +30,9 @@ public class SaleDetails {
 	}
 
 	public ArrayList<SaleDetailsVO> show(RequirementVO vo) {
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Sale s = new Sale();
 		ArrayList<SaleDetailsVO> result = new ArrayList<SaleDetailsVO>();
 		ArrayList<SaleVO> all = new ArrayList<SaleVO>();// 存放全部符合条件的SaleVO
@@ -110,28 +113,9 @@ public class SaleDetails {
 
 	private boolean judgeTime(String time1, String time2, String time) {
 		boolean result = false;
-		if (time1 == null && time2 == null) {
+
+		if (time.compareTo(time1) >= 0 && time.compareTo(time2) <= 0)
 			result = true;
-			return result;
-		}
-
-		if (time1 == null && time2 != null) {
-			if (time.compareTo(time2) <= 0)
-				result = true;
-			return result;
-		}
-
-		if (time1 != null && time2 == null) {
-			if (time.compareTo(time1) >= 0
-					&& time.compareTo(Time.getCurrentTime()) <= 0)
-				result = true;
-			return result;
-		}
-
-		if (time1 != null && time2 != null) {
-			if (time.compareTo(time1) >= 0 && time.compareTo(time2) <= 0)
-				result = true;
-		}
 
 		return result;
 	}
