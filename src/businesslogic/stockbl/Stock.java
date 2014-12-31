@@ -20,6 +20,7 @@ import util.ResultMessage;
 import util.Time;
 import vo.CommodityLineItemVO;
 import vo.CommodityVO;
+import vo.ExceptionLineItemVO;
 import vo.ExceptionVO;
 import vo.PresentLineItemVO;
 import vo.PresentVO;
@@ -145,31 +146,53 @@ public class Stock {
 		
 
 		//报溢和报损
-//		for (PresentVO presentVO : presentList) {
-//			ArrayList<PresentLineItemVO> preList = presentVO.list;
-//			boolean present = true;
-//			if (presentVO.documentType == DocumentType.PRESENTRETURN) {
-//				present = false;
-//			}
-//			if(presentVO.isWriteoff){
-//				present=(present?false:true);
-//			}
-//			for (PresentLineItemVO presentvo : preList) {
-//
-//				double money = new Commodity().getById(presentvo.id)
-//						.getPurchasePrice();
-//				CommodityLineItemVO clivo = new CommodityLineItemVO(
-//						presentvo.id, presentvo.name, presentvo.model,
-//						presentvo.number, money, presentvo.number * money, null);
-//				if (present)
-//					outList.add(clivo);
-//				else
-//					inList.add(clivo);
-//
-//			}
-//
-//		}
-//		
+		for (ExceptionVO overFlowVO : overflowList) {
+			ArrayList<ExceptionLineItemVO> preList = overFlowVO.list;
+			boolean overFlow = true;
+			if(overFlowVO.isWriteoff){
+				overFlow=(overFlow?false:true);
+			}
+			for (ExceptionLineItemVO exceptionvo : preList) {
+
+				double money = new Commodity().getById(exceptionvo.id)
+						.getSalePrice();
+				int number=exceptionvo.actualNumber-exceptionvo.systemNumber;
+				CommodityLineItemVO clivo = new CommodityLineItemVO(
+						exceptionvo.id, exceptionvo.name, exceptionvo.model,
+						number, money, number * money, null);
+				if (overFlow)
+					inList.add(clivo);
+				else
+					outList.add(clivo);
+
+			}
+
+		}
+
+		
+		for (ExceptionVO lossVO : lossList) {
+			ArrayList<ExceptionLineItemVO> preList = lossVO.list;
+			boolean loss = true;
+			if(lossVO.isWriteoff){
+				loss=(loss?false:true);
+			}
+			for (ExceptionLineItemVO exceptionvo : preList) {
+
+				double money = new Commodity().getById(exceptionvo.id)
+						.getPurchasePrice();
+				int number=exceptionvo.systemNumber-exceptionvo.actualNumber;
+				CommodityLineItemVO clivo = new CommodityLineItemVO(
+						exceptionvo.id, exceptionvo.name, exceptionvo.model,
+						number, money, number * money, null);
+				if (loss)
+					outList.add(clivo);
+				else
+					inList.add(clivo);
+
+			}
+
+		}
+		
 		// 把present矫诏变成commodity的样子
 		System.out
 				.println("Stockbl 101: presentlist.size" + presentList.size());
