@@ -28,6 +28,7 @@ public class AddPresentCommodityDialog extends AddCommodityDialog implements Fuz
 	 */
 	public AddPresentCommodityDialog(AddCommodityLineItem panel,JFrame frame,boolean isPromotion){
 		super(panel,frame,true);
+		System.out.println("hei!");
 		this.isPromotion = isPromotion;
 		this.cfg = ERPConfig.getADDPRESENTCOMMODITY_DIALOG_CONFIG();
 		// 设置对话框基本属性
@@ -44,9 +45,10 @@ public class AddPresentCommodityDialog extends AddCommodityDialog implements Fuz
 	/**
 	 * 初始化按钮
 	 */
+	@Override
 	protected void initButtons(){
 		super.initButtons();
-		if(!isPromotion)
+		if(isPromotion)
 			return;
 		this.remove(commit);
 		// 提交按钮
@@ -59,6 +61,12 @@ public class AddPresentCommodityDialog extends AddCommodityDialog implements Fuz
 				if(result==MyOptionPane.YES_OPTION){
 					try{
 					int num = Integer.parseInt(numberTxt.getText());
+					System.out.println(num+" "+ addCommodityVO.number);
+					if(num>addCommodityVO.number){
+						MyOptionPane.showMessageDialog(frame, "库存不足，该商品库存仅余"+
+					addCommodityVO.number+"件");
+						return;
+					}
 					// 创建赠品信息
 					addCommodity(num);
 					AddPresentCommodityDialog.this.dispose();

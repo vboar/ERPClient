@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -80,7 +81,6 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 					int result = MyOptionPane.showConfirmDialog(frame, "确认根据此销售单创建退货单？",
 							"确认提示",MyOptionPane.YES_NO_OPTION,MyOptionPane.QUESTION_MESSAGE);
 					if(result == MyOptionPane.YES_OPTION){
-						// TODO 销售退货单 只修改ID和类型
 						SaleVO vo = tablepane.getSelectedVO();
 						vo.id = controller.createId();
 						vo.canReturn = false;
@@ -119,7 +119,11 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 		this.find.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO 销售单精确查找
+				ArrayList<SaleVO> list = new ArrayList<SaleVO>();
+				if(controller.getById(findTxt.getText())!=null){
+					list.add(controller.getById(findTxt.getText()));
+				}
+				tablepane.showFindData(list);
 			}
 		});
 		this.add(find);
@@ -130,7 +134,8 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e){
 				if(e.getSource()==findTxt){
-					findTxt.setText("");
+					if(findTxt.getText().equals("请输入单据编号"))
+						findTxt.setText("");
 					findTxt.setForeground(new Color(40,40,40));
 				}
 			}		

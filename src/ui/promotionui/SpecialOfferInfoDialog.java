@@ -161,10 +161,12 @@ public class SpecialOfferInfoDialog extends EditDialog implements AddCommodityLi
 	}
 
 	protected void createSpecialOfferVO() {
-		try{
+//		try{
 			String startTime = FrameUtil.getFormattedDate(this.start.getDate());
 			String endTime = FrameUtil.getFormattedDate(this.end.getDate());
+			System.out.println(this.total.getText());
 			double total = Double.parseDouble(this.total.getText());
+			System.out.println(total);
 			if(startTime.compareTo(endTime)>0){
 				MyOptionPane.showMessageDialog(frame, "请输入有效时间区间！");
 				return;
@@ -188,9 +190,9 @@ public class SpecialOfferInfoDialog extends EditDialog implements AddCommodityLi
 			}
 			dispose();
 			table.updateData();
-		}catch(NumberFormatException ex){
-			MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
-		}
+//		}catch(NumberFormatException ex){
+//			MyOptionPane.showMessageDialog(frame, "请按正确格式输入数据！");
+//		}
 	}
 
 	private void initTable() {

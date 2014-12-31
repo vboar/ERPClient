@@ -1677,12 +1677,12 @@
 				<end text="截止日期" w="60" h="25" x="465" y="90" />
 			</labels>
 			<datepicker>
-				<start w="120" h="25" x="335" y="90">
+				<start w="125" h="25" x="335" y="90">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />
 				</start>
-				<end w="120" h="25" x="525" y="90">
+				<end w="125" h="25" x="520" y="90">
 					<text w="100" h="25" x="0" y="0" />
 					<btn w="25" h="25" x="100" y="0" path="img/buttons/cs.png"
 						pathroll="img/buttons/csr.png" />

@@ -1,23 +1,28 @@
 package ui.approvalui;
 
-import businesslogicservice.approvalblservice.ApprovalBLService;
-import config.TableConfig;
-import po.SalePO;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
+
 import ui.util.FrameUtil;
 import ui.util.MyTable;
 import ui.util.TablePanel;
 import util.DocumentStatus;
 import util.DocumentType;
-import vo.*;
-
-import javax.lang.model.type.ArrayType;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
-import java.util.ArrayList;
+import vo.CashVO;
+import vo.DocumentVO;
+import vo.ExceptionVO;
+import vo.PaymentVO;
+import vo.PresentVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
+import businesslogicservice.approvalblservice.ApprovalBLService;
+import config.TableConfig;
 
 /**
  * Created by Vboar on 2014/12/8.
  */
+@SuppressWarnings("serial")
 public class ApprovalTable extends TablePanel {
 
     private String[] columnName;

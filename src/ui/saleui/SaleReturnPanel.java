@@ -109,10 +109,15 @@ public class SaleReturnPanel extends JPanel{
 	}
 
 	public void showShow(){
-		this.remove(autopane);
+		if(autopane!=null)
+			this.remove(autopane);
 		this.add(autocreate);
 		this.add(find);
 		this.add(show);
+		this.add(start);
+		this.add(end);
+		this.add(new MyLabel(cfg.getLabels().element("start")));
+		this.add(new MyLabel(cfg.getLabels().element("end")));
 		this.add(returnLabel);
 		this.add(tablepane);
 		repaint();

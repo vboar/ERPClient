@@ -626,8 +626,10 @@ public class Approval {
 		time2=Time.jdugeTime2(time2);
 		
 		ArrayList<PresentVO> temp1=findPresent(1,status,time1,time2);
-		for(int i=0;i<temp1.size();i++)
-			result.add(temp1.get(i));
+		for(int i=0;i<temp1.size();i++){
+			if(temp1.get(i).documentType!=DocumentType.PRESENTRETURN)
+				result.add(temp1.get(i));
+		}
 		
 		ArrayList<PurchaseVO> temp2=findPurchase(1,status,time1,time2);
 		for(int i=0;i<temp2.size();i++)

@@ -31,6 +31,9 @@ import java.util.Iterator;
 public class Sale {
 	
 	public SaleVO SalePOToSaleVO(SalePO po) {
+		if(po==null){
+			return null;
+		}
 		String id = po.getId();
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
