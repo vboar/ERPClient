@@ -29,15 +29,15 @@ public class PurchaseReturn {
 	public ResultMessage add(PurchaseVO vo) {
 		String time =Time.getCurrentTime();
 		vo.time = time;
-		// 更新对应进货单状态为不可退货
+		// 更新对应进货单状态为不可退货,不可红冲  @author ldq
 		PurchaseVO purVO = purchase.getById(vo.purId);
-		if(purVO==null||purVO.canReturn==false){
+		if(purVO==null||(purVO.canReturn==false&&!vo.isWriteOff)){
 			return ResultMessage.FAILED;
 		}
 		purVO.canReturn = false;
+		purVO.canWriteOff = false;
 		purchase.update(purVO);
-		
-		System.out.println("红冲退货单！"+vo.id + " "+ vo.isWriteOff);
+
 		PurchasePO po = purchase.voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);
@@ -197,13 +197,18 @@ public class PurchaseReturn {
 		double total = vo.total;
 
 		Customer cus = new Customer();
+		if(vo.isWriteOff) total = -total;
 		cus.updateByPurchaseReturn(vo.customerId, total);
 
 		for (CommodityLineItemVO vo1 : vo.saleList) {
 			Commodity commodity = new Commodity();
 			CommodityPO commoditypo = commodity.getById(vo1.id);
-			commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
-			// commoditypo.setRecentPurchasePrice(vo1.price);
+			//TODO 待查
+			if(!vo.isWriteOff)
+				commoditypo.setNumber(commoditypo.getNumber() - vo1.number);
+			else
+				commoditypo.setNumber(commoditypo.getNumber() + vo1.number);
+				// commoditypo.setRecentPurchasePrice(vo1.price);
 			try {
 				DataFactoryImpl.getInstance().getCommodityData()
 						.update(commoditypo);

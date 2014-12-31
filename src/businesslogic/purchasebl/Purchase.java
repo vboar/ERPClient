@@ -328,7 +328,7 @@ public class Purchase {
 		double total = vo.total;
 
 		Customer cus = new Customer();
-		cus.updateByPurchase(vo.customerId, total);
+		cus.updateByPurchase(vo.customerId, -total);
 
 		for (CommodityLineItemVO vo1 : vo.saleList) {
 			Commodity commodity = new Commodity();
