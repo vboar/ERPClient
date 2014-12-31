@@ -176,7 +176,7 @@ public class Overflow {
 			}
 			
 			Commodity c=new Commodity();
-			c.approveException(vo);
+			c.writeoff(vo);
 		}
 		
 		public ExceptionVO getById(String id){

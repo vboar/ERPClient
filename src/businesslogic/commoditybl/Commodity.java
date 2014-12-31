@@ -467,12 +467,21 @@ public class Commodity {
 
 		return ResultMessage.SUCCESS;
 	}
-
-	// public static void main(String[] args) {
-	// ArrayList<CommodityVO> voList=new ArrayList<CommodityVO>();
-	// voList=new Commodity().fuzzyFind("0000");
-	// for(int i=0;i<voList.size();i++)
-	// System.out.println(voList.get(i).id);
-	// }
+	
+	public ResultMessage writeoff(ExceptionVO vo){
+		for (int i = 0; i < vo.list.size(); i++) {
+			try {
+				CommodityPO temp = DataFactoryImpl.getInstance()
+						.getCommodityData().getById(vo.list.get(i).id);
+				temp.setNumber(temp.getNumber()+(vo.list.get(i).systemNumber-vo.list.get(i).actualNumber));
+				DataFactoryImpl.getInstance().getCommodityData().update(temp);
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		
+		return ResultMessage.SUCCESS;
+	}
 
 }
