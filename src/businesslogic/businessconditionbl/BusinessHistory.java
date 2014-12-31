@@ -51,6 +51,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<SaleVO> showSale(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Sale s=new Sale();
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
 		
@@ -89,6 +92,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<SaleVO> showSaleReturn(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		SaleReturn sr=new SaleReturn();
 		ArrayList<SaleVO> result=new ArrayList<SaleVO>();
 		
@@ -127,6 +133,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<PurchaseVO> showPurchase(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Purchase p=new Purchase();
 		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
 
@@ -165,6 +174,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<PurchaseVO> showPurchaseReturn(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		PurchaseReturn pr=new PurchaseReturn();
 		ArrayList<PurchaseVO> result=new ArrayList<PurchaseVO>();
 
@@ -203,6 +215,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<PaymentVO> showPayment(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Payment p=new Payment();
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 		
@@ -232,6 +247,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<PaymentVO> showReceipt(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Receipt r=new Receipt();
 		ArrayList<PaymentVO> result=new ArrayList<PaymentVO>();
 	
@@ -261,6 +279,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<CashVO> showCash(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Cash c=new Cash();
 		ArrayList<CashVO> result=new ArrayList<CashVO>();
 		
@@ -275,6 +296,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<ExceptionVO> showOverFlow(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Overflow of=new Overflow();
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
 		
@@ -289,6 +313,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<ExceptionVO> showLoss(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Loss l=new Loss();
 		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
 		
@@ -303,6 +330,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<PresentVO> showPresent(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Present p=new Present();
 		ArrayList<PresentVO> result=p.show();
 		
@@ -326,6 +356,9 @@ public class BusinessHistory {
 	}
 	
 	public ArrayList<WarningVO> showWarning(RequirementVO vo){
+		vo.time1=Time.jdugeTime1(vo.time1);
+		vo.time2=Time.jdugeTime2(vo.time2);
+		
 		Warning w=new Warning(); 
 		ArrayList<WarningVO> result=new ArrayList<WarningVO>();
 		
@@ -341,27 +374,9 @@ public class BusinessHistory {
 	
 	private boolean judgeTime(String time1, String time2, String time) {
 		boolean result=false;
-		if(time1==null&&time2==null){
+		
+		if(time.compareTo(time1)>=0&&time.compareTo(time2)<=0)
 			result=true;
-			return result;
-		}
-		
-		if(time1==null&&time2!=null){
-			if(time.compareTo(time2)<=0)
-				result=true;
-			return result;
-		}
-		
-		if(time1!=null&&time2==null){
-			if(time.compareTo(time1)>=0&&time.compareTo(Time.getCurrentTime())<=0)
-				result=true;
-			return result;
-		}
-		
-		if(time1!=null&&time2!=null){
-			if(time.compareTo(time1)>=0&&time.compareTo(time2)<=0)
-				result=true;
-		}
 		
 		return result;
 	}
