@@ -5,10 +5,10 @@
  */
 package vo;
 
+import java.util.ArrayList;
+
 import util.DocumentStatus;
 import util.DocumentType;
-
-import java.util.ArrayList;
 
 public class CashVO implements DocumentVO{
 	
@@ -48,6 +48,11 @@ public class CashVO implements DocumentVO{
 	public boolean isWriteOff;
 	
 	/**
+	 * 是否为红冲单据
+	 */
+	public boolean canWriteOff;
+	
+	/**
 	 * 单据类型
 	 */
 	public DocumentType documentType;
@@ -68,7 +73,8 @@ public class CashVO implements DocumentVO{
 	 */
 	public CashVO(String id, String operator, String bankAccount,String time,
 			ArrayList<ClauseLineItemVO> clauseList, double total,
-			DocumentStatus approvalState,boolean isWriteOff,DocumentType documentType) {
+			DocumentStatus approvalState,boolean isWriteOff, 
+			boolean canWriteOff,DocumentType documentType) {
 		super();
 		this.id = id;
 		this.operator = operator;
@@ -78,6 +84,7 @@ public class CashVO implements DocumentVO{
 		this.approvalState = approvalState;
 		this.documentType=documentType;
 		this.isWriteOff=isWriteOff;
+		this.canWriteOff=canWriteOff;
 		this.time=time;
 	}
 

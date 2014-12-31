@@ -43,6 +43,11 @@ public class ExceptionVO implements DocumentVO {
 	public boolean isWriteoff;
 	
 	/**
+	 * 是否可红冲
+	 */
+	public boolean canWriteoff;
+	
+	/**
 	 * 构造方法
 	 * @param id
 	 * @param time
@@ -52,13 +57,14 @@ public class ExceptionVO implements DocumentVO {
 	 * @param isWriteoff
 	 */
 	public ExceptionVO(String id, String time, ArrayList<ExceptionLineItemVO> list,
-			DocumentStatus status, DocumentType type, boolean isWriteoff) {
+			DocumentStatus status, DocumentType type, boolean isWriteoff,boolean canWriteoff) {
 		this.id = id;
 		this.time = time;
 		this.list = list;
 		this.status = status;
 		this.type = type;
 		this.isWriteoff = isWriteoff;
+		this.canWriteoff = canWriteoff;
 	}
 	
 	public ExceptionVO(String id,String time){

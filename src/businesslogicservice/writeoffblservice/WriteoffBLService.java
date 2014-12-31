@@ -6,7 +6,6 @@ package businesslogicservice.writeoffblservice;
 
 import util.DocumentType;
 import util.ResultMessage;
-import vo.DocumentVO;
 
 public interface WriteoffBLService {
 

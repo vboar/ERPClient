@@ -56,6 +56,11 @@ public class CashPO implements Serializable {
 	private boolean isWriteOff;
 	
 	/**
+	 * 是否可红冲
+	 */
+	public boolean canWriteOff;
+	
+	/**
 	 * 单据类型
 	 */
 	private int documentType;
@@ -73,7 +78,7 @@ public class CashPO implements Serializable {
 	 * @param documentType
 	 */
 	public CashPO(String ID,String time,String operatorId,String bankAccount,ArrayList<ClauseLineItemPO> clauseList,
-			double total, int documentStatus, boolean isWriteOff,int documentType){
+			double total, int documentStatus, boolean isWriteOff,boolean canWriteOff, int documentType){
 		this.id = ID;
 		this.time = time;
 		this.operatorId = operatorId;
@@ -82,6 +87,7 @@ public class CashPO implements Serializable {
 		this.total = total;
 		this.documentStatus = documentStatus;
 		this.isWriteOff = isWriteOff;
+		this.canWriteOff = canWriteOff;
 		this.documentType = documentType;
 	}
 
@@ -127,6 +133,10 @@ public class CashPO implements Serializable {
 
 	public String getTime() {
 		return time;
+	}
+
+	public boolean isCanWriteOff() {
+		return canWriteOff;
 	}
 
 }

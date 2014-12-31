@@ -33,6 +33,8 @@ public class ShowExceptionPanel extends ExceptionDocumentPanel implements
 	
 	private ExceptionBLService controller;
 	
+	private boolean isloss;
+	
 	/**
 	 * 构造函数
 	 * @param frame 主窗口
@@ -42,6 +44,7 @@ public class ShowExceptionPanel extends ExceptionDocumentPanel implements
 		super(frame);
 		this.type = type;
 		this.vo = vo;
+		this.isloss = isloss;
 		this.commoditylist = vo.list;
 		this.cfg = ERPConfig.getHOMEFRAME_CONFIG().getConfigMap().get(this.getClass().getName());
 		this.controller = isloss ? ControllerFactoryImpl.getInstance().getLossController()
@@ -159,7 +162,7 @@ public class ShowExceptionPanel extends ExceptionDocumentPanel implements
 	@Override
 	public void createCopyDocument() {
 		ExceptionVO vo = new ExceptionVO(this.documentId.getText(),null,this.commoditylist,
-				DocumentStatus.NONCHECKED,DocumentType.LOSS,false);
+				DocumentStatus.NONCHECKED,isloss?DocumentType.LOSS:DocumentType.OVERFLOW,false,true);
 		ResultMessage result = 	this.controller.create(vo);
 		if(result==ResultMessage.SUCCESS){
 			MyOptionPane.showMessageDialog(frame, "单据提交成功！");

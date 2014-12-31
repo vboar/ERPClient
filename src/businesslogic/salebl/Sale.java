@@ -183,7 +183,7 @@ public class Sale {
 			String id = new Present().createId();
 			vo.presentId=id;
 			PresentVO presentVO = new PresentVO(id, time, customerId,
-					customerName, list, documentStatus, documentType, false);
+					customerName, list, documentStatus, documentType, false, true);
 			Present pr = new Present();
 			pr.create(presentVO);
 		}

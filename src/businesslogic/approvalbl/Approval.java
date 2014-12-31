@@ -127,7 +127,7 @@ public class Approval {
 		Purchase p=new Purchase();
 		if(vo.documentStatus==DocumentStatus.PASSED){
 			p.update(vo);
-		return p.approve(vo);
+			return p.approve(vo);
 		}else{
 			return p.update(vo);
 		}

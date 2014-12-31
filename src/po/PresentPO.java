@@ -54,6 +54,11 @@ public class PresentPO implements Serializable {
 	 * 是否为红冲单据
 	 */
 	private boolean isWriteoff;
+	
+	/**
+	 * 是否可红冲
+	 */
+	private boolean canWriteOff;
 
 	/**
 	 * 构造方法
@@ -68,7 +73,7 @@ public class PresentPO implements Serializable {
 	 */
 	public PresentPO(String id, String time, String customerId, String customerName, 
 			ArrayList<PresentLineItemPO> list, int documentStatus, int documentType, 
-			boolean isWriteoff) {
+			boolean isWriteoff,boolean canWriteOff) {
 		this.id = id;
 		this.time = time;
 		this.customerId = customerId;
@@ -77,6 +82,7 @@ public class PresentPO implements Serializable {
 		this.documentStatus = documentStatus;
 		this.documentType = documentType;
 		this.isWriteoff = isWriteoff;
+		this.canWriteOff = canWriteOff;
 	}
 
 	public ArrayList<PresentLineItemPO> getList() {
@@ -117,6 +123,10 @@ public class PresentPO implements Serializable {
 
 	public String getCustomerName() {
 		return customerName;
+	}
+
+	public boolean isCanWriteOff() {
+		return canWriteOff;
 	}
 	
 }

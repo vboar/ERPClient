@@ -16,7 +16,6 @@ import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import util.Time;
-import vo.CommodityVO;
 import vo.ExceptionLineItemVO;
 import vo.ExceptionVO;
 import businesslogic.commoditybl.Commodity;
@@ -135,7 +134,8 @@ public class Overflow {
 	public ExceptionVO poToVo(ExceptionPO po) {
 		ArrayList<ExceptionLineItemVO> list=poListToVoList(po.getList()); 
 		ExceptionVO result=new ExceptionVO(po.getId(),po.getTime(),list,DocumentStatus.values()
-				[po.getDocumentStatus()],DocumentType.values()[po.getDocumentType()],po.isWriteoff());
+				[po.getDocumentStatus()],DocumentType.values()[po.getDocumentType()],
+				po.isWriteoff(),po.isCanWriteoff());
 		return result;
 	}
 
@@ -155,7 +155,8 @@ public class Overflow {
 			ExceptionLineItemVO temp=vo.list.get(i);
 			l.add(new ExceptionLineItemPO(temp.id,temp.name,temp.model,temp.systemNumber,temp.actualNumber));
 		}
-		ExceptionPO result=new ExceptionPO(vo.id, vo.time, l,vo.status.ordinal(), vo.type.ordinal(), vo.isWriteoff);
+		ExceptionPO result=new ExceptionPO(vo.id, vo.time, l,vo.status.ordinal(), vo.type.ordinal(), 
+				vo.isWriteoff,vo.canWriteoff);
 		return result;
 	}
 	

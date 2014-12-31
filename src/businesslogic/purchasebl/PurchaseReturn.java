@@ -31,11 +31,13 @@ public class PurchaseReturn {
 		vo.time = time;
 		// 更新对应进货单状态为不可退货
 		PurchaseVO purVO = purchase.getById(vo.purId);
-		if(purVO==null||purVO.canReturn==false||purVO.canWriteOff==false){
+		if(purVO==null||purVO.canReturn==false){
 			return ResultMessage.FAILED;
 		}
 		purVO.canReturn = false;
 		purchase.update(purVO);
+		
+		System.out.println("红冲退货单！"+vo.id + " "+ vo.isWriteOff);
 		PurchasePO po = purchase.voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);

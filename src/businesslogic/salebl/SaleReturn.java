@@ -37,7 +37,7 @@ public class SaleReturn {
 		
 		// 检查能否退货
 		SaleVO svo = sale.getById(vo.saleId);
-		if(svo==null||svo.canReturn==false||svo.canWriteOff==false){
+		if(svo==null||svo.canReturn==false){
 			return ResultMessage.FAILED;
 		}else{
 			svo.canReturn = false;
@@ -58,7 +58,7 @@ public class SaleReturn {
 
 		String id = new Present().createId();
 		PresentVO presentVO = new PresentVO(id, time, customerId, customerName,
-				list, documentStatus, documentType, false);
+				list, documentStatus, documentType, false, false);
 		Present pr = new Present();
 		pr.create(presentVO);
 		vo.presentId=id;

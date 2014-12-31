@@ -193,7 +193,7 @@ public class CreateCashPanel extends CashDocumentPanel implements FuzzySearch, A
     		return;
     	}
     	CashVO vo = new CashVO(this.documentIdLab.getText(),null,this.accountVO.account,null,list,
-    			this.total,DocumentStatus.NONCHECKED,false,DocumentType.CASH);
+    			this.total,DocumentStatus.NONCHECKED,false,true,DocumentType.CASH);
     	ResultMessage result = cashController.create(vo);
     	if(result == ResultMessage.SUCCESS){
     		MyOptionPane.showMessageDialog(frame, "创建现金费用单成功！");

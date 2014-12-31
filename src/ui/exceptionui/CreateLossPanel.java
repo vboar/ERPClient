@@ -147,7 +147,7 @@ public class CreateLossPanel extends ExceptionDocumentPanel implements AddExcept
 	 */
 	protected void createException() {
 		ExceptionVO vo = new ExceptionVO(this.documentId.getText(),null,this.commoditylist,
-				DocumentStatus.NONCHECKED,DocumentType.LOSS,false);
+				DocumentStatus.NONCHECKED,DocumentType.LOSS,false,true);
 		ResultMessage result = 	this.controller.create(vo);
 		if(result==ResultMessage.SUCCESS){
 			MyOptionPane.showMessageDialog(frame, "单据提交成功！");

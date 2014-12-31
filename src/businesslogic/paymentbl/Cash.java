@@ -163,7 +163,7 @@ public class Cash{
 	public CashPO voToPo(CashVO vo) {
 		ArrayList<ClauseLineItemPO> clauseList=voListTOpoList(vo.clauseList);
 		CashPO result=new CashPO(vo.id,vo.time,Login.currentUserId,vo.bankAccount,clauseList,vo.total,
-				vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal());
+				vo.approvalState.ordinal(),vo.isWriteOff,vo.canWriteOff,vo.documentType.ordinal());
 		
 		return result;
 	}
@@ -183,7 +183,7 @@ public class Cash{
 		ArrayList<ClauseLineItemVO> clauseList=poListTOvoList(po.getClauseList());
 		CashVO result=new CashVO(po.getId(),po.getOperatorId(),po.getBankAccount(),po.getTime(),
 				clauseList,po.getTotal(),DocumentStatus.values()[po.getDocumentStatus()],
-				po.isWriteOff(),DocumentType.values()[po.getDocumentType()]);
+				po.isWriteOff(),po.isCanWriteOff(),DocumentType.values()[po.getDocumentType()]);
 		
 		return result;
 	}

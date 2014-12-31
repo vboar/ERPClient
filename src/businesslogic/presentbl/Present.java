@@ -38,8 +38,9 @@ public class Present {
 		int documentStatus = vo.documentStatus.ordinal();
 		int documentType = vo.documentType.ordinal();
 		boolean isWriteoff = vo.isWriteoff;
+		boolean canWriteOff = vo.canWriteOff;
 		PresentPO po = new PresentPO(id, time, customerId, customerName, list,
-				documentStatus, documentType, isWriteoff);
+				documentStatus, documentType, isWriteoff,canWriteOff);
 		return po;
 	}
 
@@ -56,7 +57,7 @@ public class Present {
 		DocumentType documentType = DocumentType.values()[po.getDocumentType()];
 		boolean isWriteoff = po.isWriteoff();
 		PresentVO vo = new PresentVO(id, time, customerId, customerName, list,
-				documentStatus, documentType, isWriteoff);
+				documentStatus, documentType, isWriteoff,po.isCanWriteOff());
 		return vo;
 	}
 

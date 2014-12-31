@@ -153,7 +153,8 @@ public class Purchase {
 	public ResultMessage update(PurchaseVO vo) {
 		String time = getById(vo.id).time;
 		vo.time = time;
-		System.out.println(vo.id + " " +vo.canReturn);
+		System.out.println(vo.id + " " +vo.canReturn+" " +vo.documentStatus);
+		
 		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().update(po);

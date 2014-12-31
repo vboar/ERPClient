@@ -121,7 +121,7 @@ public class Loss {
 			ExceptionLineItemVO temp=vo.list.get(i);
 			l.add(new ExceptionLineItemPO(temp.id,temp.name,temp.model,temp.systemNumber,temp.actualNumber));
 		}
-		ExceptionPO result=new ExceptionPO(vo.id, vo.time, l,vo.status.ordinal(), vo.type.ordinal(), vo.isWriteoff);
+		ExceptionPO result=new ExceptionPO(vo.id, vo.time, l,vo.status.ordinal(), vo.type.ordinal(), vo.isWriteoff,vo.canWriteoff);
 		return result;
 	}
 
@@ -132,7 +132,7 @@ public class Loss {
 			l.add(new ExceptionLineItemVO(temp.getId(),temp.getName(),temp.getModel(),temp.getSystemNumber(),temp.getActualNumber()));
 		}
 		ExceptionVO result=new ExceptionVO(po.getId(),po.getTime(),l,DocumentStatus.values()[po.getDocumentStatus()],
-				DocumentType.values()[po.getDocumentType()],po.isWriteoff());
+				DocumentType.values()[po.getDocumentType()],po.isWriteoff(),po.isCanWriteoff());
 		return result;
 	}
 	

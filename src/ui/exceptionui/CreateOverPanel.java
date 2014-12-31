@@ -138,7 +138,7 @@ public class CreateOverPanel extends ExceptionDocumentPanel implements AddExcept
 	 */
 	protected void createException() {
 		ExceptionVO vo = new ExceptionVO(this.documentId.getText(),null,this.commoditylist,
-				DocumentStatus.NONCHECKED,DocumentType.OVERFLOW,false);
+				DocumentStatus.NONCHECKED,DocumentType.OVERFLOW,false,true);
 		ResultMessage result = 	this.controller.create(vo);
 		if(result==ResultMessage.SUCCESS){
 			MyOptionPane.showMessageDialog(null, "单据提交成功！");

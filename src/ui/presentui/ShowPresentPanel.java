@@ -213,7 +213,7 @@ public class ShowPresentPanel extends PresentDocumentPanel implements FuzzySearc
 		if(this.checkCompleted()){
 			ResultMessage result = this.presentController.create(new PresentVO(this.documentId.getText(),
 					null,customerVO.id,customerVO.name,
-					this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false));
+					this.commoditylist,DocumentStatus.NONCHECKED,DocumentType.PRESENT,false,true));
 			if(result == ResultMessage.SUCCESS){
 				MyOptionPane.showMessageDialog(frame, "赠送单提交成功！");
 				this.setVisible(false);

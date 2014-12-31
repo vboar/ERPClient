@@ -51,10 +51,16 @@ public class PresentVO implements DocumentVO {
 	 * 是否为红冲单据
 	 */
 	public boolean isWriteoff;
+	
+	/**
+	 * 是否可红冲
+	 */
+	public boolean canWriteOff;
 
 	public PresentVO(String id, String time, String customerId,
 			String customerName, ArrayList<PresentLineItemVO> list,
-			DocumentStatus documentStatus,DocumentType documentType,boolean isWriteoff) {
+			DocumentStatus documentStatus,DocumentType documentType,
+			boolean isWriteoff, boolean canWriteOff) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -64,6 +70,7 @@ public class PresentVO implements DocumentVO {
 		this.documentStatus = documentStatus;
 		this.documentType=documentType;
 		this.isWriteoff = isWriteoff;
+		this.canWriteOff = canWriteOff;
 	}
 	
 	public PresentVO(String time, String clientName){
