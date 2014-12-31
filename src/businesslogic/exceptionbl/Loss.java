@@ -133,7 +133,7 @@ public class Loss {
 		}
 		
 		Commodity c=new Commodity();
-		c.approveException(vo);
+		c.writeoff(vo);
 	}
 	
 	public ExceptionPO voToPo(ExceptionVO vo){
