@@ -302,6 +302,7 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 				}
 				// 单据ID
 				saleVo.id = this.documentId.getText();
+				saleVo.saleId = saleVo.id;
 				// 客户信息
 				saleVo.customerId = customerVO.id;
 				saleVo.customerName = customerVO.name;
@@ -315,6 +316,8 @@ public class CreateSalePanel extends SaleDocumentPanel implements FuzzySearch,
 				// 单据状态
 				saleVo.approvalState = DocumentStatus.NONCHECKED;
 				saleVo.isWriteOff = false;
+				saleVo.canReturn = true;
+				saleVo.canWriteOff = true;
 				saleVo.receiptType = DocumentType.SALE;
 				// 备注
 				String remark = this.remarkTxt.getArea().getText();

@@ -213,8 +213,8 @@ public class CreatePurchasePanel extends PurchaseDocumentPanel implements FuzzyS
 		String id = this.documentId.getText();
 		String storage = (String)this.storage.getSelectedItem();
 		String remark = this.remarkTxt.getArea().getText();
-		PurchaseVO vo = new PurchaseVO(id,null,customerVO.id,customerVO.name,null,storage,
-				commoditylist, totalPrice,remark,DocumentStatus.NONCHECKED, false,
+		PurchaseVO vo = new PurchaseVO(id,id,null,customerVO.id,customerVO.name,null,storage,
+				commoditylist, totalPrice,remark,DocumentStatus.NONCHECKED, false, true, true,
 				DocumentType.PURCHASE);
 		ResultMessage result = purchaseCtrl.add(vo);
 		if(result == ResultMessage.SUCCESS){

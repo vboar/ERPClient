@@ -79,12 +79,14 @@ public class MessageTable extends TablePanel {
         list = controller.showByUser(new UserVO(Login.currentUserId, null, Login.currentUserType, 0,
                 Login.currentUserName));
         initData(list);
+        this.dtm.setDataVector(data, columnNames);
         this.updateWidth();
     }
 
     public void showByState(int state) {
         list = controller.findByStatus(state);
         initData(list);
+        this.dtm.setDataVector(data, columnNames);
         this.updateWidth();
     }
 

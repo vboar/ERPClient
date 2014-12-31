@@ -61,7 +61,7 @@ public class MyTable extends JTable {
 				setForeground(new Color(40,40,40));
 			}
 			if(table.getValueAt(row, 0).toString().equals("true")){
-				setForeground(Color.RED);
+				setForeground(new Color(247,171,0));
 			}else{
 				setForeground(new Color(40,40,40));
 			}

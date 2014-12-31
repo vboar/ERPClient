@@ -1,9 +1,9 @@
 package vo;
 
+import java.util.ArrayList;
+
 import util.DocumentStatus;
 import util.DocumentType;
-
-import java.util.ArrayList;
 
 public class SaleVO implements DocumentVO {
 
@@ -12,6 +12,11 @@ public class SaleVO implements DocumentVO {
 	 */
 	public String id;
 
+	/**
+	* 单据编号
+	*/
+	public String saleId;
+	
 	/**
 	 * 创建时间
 	 */
@@ -96,6 +101,16 @@ public class SaleVO implements DocumentVO {
 	 * 是否为红冲单据
 	 */
 	public boolean isWriteOff;
+	
+	/**
+	 * 是否可退货
+	 */
+	public boolean canReturn;
+	
+	/**
+	 * 是否可红冲
+	 */
+	public boolean canWriteOff;
 
 	/**
 	 * 单据类型
@@ -116,15 +131,16 @@ public class SaleVO implements DocumentVO {
 	 * @param isWriteOff
 	 * @param receiptType
 	 */
-	public SaleVO(String id, String time, String customerId,
+	public SaleVO(String id, String saleId, String time, String customerId,
 			String customerName, int customerVIP, String salesmanId,
 			String operatorId, String storage,
 			ArrayList<CommodityLineItemVO> saleList,String presentId,
 			ArrayList<PresentLineItemVO> giftList, double totalBeforeDiscount,
 			double discount, double voucher, double totalAfterDiscount,
 			String remark, DocumentStatus approvalState, boolean isWriteOff,
-			DocumentType receiptType) {
+			boolean canReturn, boolean canWriteOff,	DocumentType receiptType) {
 		this.id = id;
+		this.saleId = saleId;
 		this.time = time;
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -143,6 +159,8 @@ public class SaleVO implements DocumentVO {
 		this.remark = remark;
 		this.approvalState = approvalState;
 		this.isWriteOff = isWriteOff;
+		this.canReturn = canReturn;
+		this.canWriteOff = canWriteOff;
 		this.receiptType = receiptType;
 	}
 	

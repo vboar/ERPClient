@@ -80,6 +80,7 @@ public class MessagePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 table.showByState(0);
+                repaint();
             }
         });
 
@@ -89,6 +90,7 @@ public class MessagePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 table.showByState(1);
+                repaint();
             }
         });
 
@@ -98,6 +100,7 @@ public class MessagePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 table.showAll();
+                repaint();
             }
         });
 

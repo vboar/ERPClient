@@ -19,6 +19,11 @@ public class SalePO implements Serializable {
 	* 单据编号
 	*/
 	private String id;
+	
+	/**
+	 * 对应销售单编号(针对退货单)
+	 */
+	private String saleId;
 	 
 	/**
 	* 创建时间
@@ -99,18 +104,29 @@ public class SalePO implements Serializable {
 	* 是否为红冲单据
 	*/
 	private boolean isWriteOff;
+	
+	/**
+	 * 是否可退货
+	 */
+	private boolean canReturn;
+	
+	/**
+	 * 是否可红冲
+	 */
+	private boolean canWriteOff;
 	   
 	/**
 	* 单据类型
 	*/
 	private int documentType;
 
-	public SalePO(String id,String time,String customerId,String customerName,int customerVIP,String salesmanId,
+	public SalePO(String id, String saleId, String time,String customerId,String customerName,int customerVIP,String salesmanId,
 			String operatorId,String storage,ArrayList<CommodityLineItemPO> saleList,
 			String presentId,double totalBeforeDiscount,
 			double discount,double voucher,double totalAfterDiscount,String remark,
-			int documentStatus,boolean isWriteOff,int documentType){
+			int documentStatus,boolean isWriteOff,boolean canReturn, boolean canWriteOff,int documentType){
 		this.id=id;
+		this.saleId=saleId;
 		this.time = time;
 		this.customerId=customerId;
 		this.customerName=customerName;
@@ -127,6 +143,8 @@ public class SalePO implements Serializable {
 		this.remark=remark;
 		this.documentStatus=documentStatus;
 		this.isWriteOff=isWriteOff;
+		this.canReturn = canReturn;
+		this.canWriteOff = canWriteOff;
 		this.documentType=documentType;
 	}
 	
@@ -208,6 +226,18 @@ public class SalePO implements Serializable {
 	
 	public String getSalesmanId() {
 		return salesmanId;
+	}
+
+	public String getSaleId() {
+		return saleId;
+	}
+
+	public boolean isCanReturn() {
+		return canReturn;
+	}
+
+	public boolean isCanWriteOff() {
+		return canWriteOff;
 	}
 	
 }

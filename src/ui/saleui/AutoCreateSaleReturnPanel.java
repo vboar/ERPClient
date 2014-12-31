@@ -83,6 +83,7 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 						// TODO 销售退货单 只修改ID和类型
 						SaleVO vo = tablepane.getSelectedVO();
 						vo.id = controller.createId();
+						vo.canReturn = false;
 						vo.receiptType = DocumentType.SALERETURN;
 						vo.approvalState = DocumentStatus.NONCHECKED;
 						// 交给bl操作
@@ -90,7 +91,7 @@ public class AutoCreateSaleReturnPanel extends JPanel{
 						if(addresult==ResultMessage.SUCCESS){
 							MyOptionPane.showMessageDialog(frame, "创建退货单成功！");
 						}else{
-							MyOptionPane.showMessageDialog(frame, "创建退货单失败");
+							MyOptionPane.showMessageDialog(frame, "该单据已被退货或红冲，创建退货单失败");
 						}
 						panel.showShow();
 					}

@@ -30,6 +30,7 @@ public class Purchase {
 
 	public PurchaseVO poToVO(PurchasePO po) {
 		String id = po.getId();
+		String purId = po.getPurId();
 		String time = po.getTime();
 		String customerId = po.getCustomerId();
 		String customerName = po.getCustomerName();
@@ -42,16 +43,19 @@ public class Purchase {
 		DocumentStatus documentStatus = DocumentStatus.values()[po
 				.getDocumentStatus()];
 		boolean isWriteOff = po.isWriteOff();
+		boolean canReturn = po.isCanReturn();
+		boolean canWriteOff = po.isCanWriteOff();
 		DocumentType documentType = DocumentType.values()[po.getDocumentType()];
-		PurchaseVO vo = new PurchaseVO(id, time, customerId, customerName,
+		PurchaseVO vo = new PurchaseVO(id, purId,time, customerId, customerName,
 				operatorId, storage, saleList, total, remark, documentStatus,
-				isWriteOff, documentType);
+				isWriteOff, canReturn, canWriteOff, documentType);
 		return vo;
 
 	}
 
 	public PurchasePO voToPO(PurchaseVO vo) {
 		String id = vo.id;
+		String purId = vo.purId;
 		String time = vo.time;
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
@@ -63,10 +67,12 @@ public class Purchase {
 		String remark = vo.remark;
 		int documentStatus = vo.documentStatus.ordinal();
 		boolean isWriteOff = vo.isWriteOff;
+		boolean canReturn = vo.canReturn;
+		boolean canWriteOff = vo.canWriteOff;
 		int documentType = vo.receiptType.ordinal();
-		PurchasePO po = new PurchasePO(id, time, customerId, customerName,
+		PurchasePO po = new PurchasePO(id, purId, time, customerId, customerName,
 				operatorId, storage, saleList, total, remark, documentStatus,
-				isWriteOff, documentType);
+				isWriteOff, canReturn, canWriteOff,documentType);
 		return po;
 
 	}
@@ -147,6 +153,7 @@ public class Purchase {
 	public ResultMessage update(PurchaseVO vo) {
 		String time = getById(vo.id).time;
 		vo.time = time;
+		System.out.println(vo.id + " " +vo.canReturn);
 		PurchasePO po = voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().update(po);
@@ -154,7 +161,6 @@ public class Purchase {
 			e.printStackTrace();
 		}
 		return ResultMessage.SUCCESS;
-
 	}
 
 	public PurchaseVO getById(String id) {

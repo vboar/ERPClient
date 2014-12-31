@@ -13,6 +13,11 @@ public class PurchaseVO implements DocumentVO {
 	public String id;
 
 	/**
+	 * 对应进货单ID(针对退货单)
+	 */
+	public String purId;
+	
+	/**
 	 * 创建时间
 	 */
 	public String time;
@@ -61,18 +66,29 @@ public class PurchaseVO implements DocumentVO {
 	 * 是否为红冲单据
 	 */
 	public boolean isWriteOff;
+	
+	/**
+	 * 是否可退货
+	 */
+	public boolean canReturn;
+	
+	/**
+	 * 是否可红冲
+	 */
+	public boolean canWriteOff;
 
 	/**
 	 * 单据类型
 	 */
 	public DocumentType receiptType;
 
-	public PurchaseVO(String id, String time,String customerId, String customerName,
+	public PurchaseVO(String id, String purId, String time,String customerId, String customerName,
 			String operatorId, String storage,
 			ArrayList<CommodityLineItemVO> saleList, double total,
-			String remark, DocumentStatus documentStatus, boolean isWriteOff,
-			DocumentType receiptType) {
+			String remark, DocumentStatus documentStatus, boolean isWriteOff,boolean canReturn,
+			boolean canWriteOff, DocumentType receiptType) {
 		this.id = id;
+		this.purId = purId;
 		this.time=time;
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -84,6 +100,8 @@ public class PurchaseVO implements DocumentVO {
 		this.documentStatus = documentStatus;
 		this.isWriteOff = isWriteOff;
 		this.receiptType = receiptType;
+		this.canReturn = canReturn;
+		this.canWriteOff = canWriteOff;
 	}
 
 	public PurchaseVO(String operator, double total) {
@@ -110,6 +128,7 @@ public class PurchaseVO implements DocumentVO {
 	public boolean isWriteoff() {
 		return isWriteOff;
 	}
+	
 
 	@Override
 	public String getTime() {

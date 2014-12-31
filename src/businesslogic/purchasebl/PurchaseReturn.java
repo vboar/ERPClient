@@ -29,6 +29,13 @@ public class PurchaseReturn {
 	public ResultMessage add(PurchaseVO vo) {
 		String time =Time.getCurrentTime();
 		vo.time = time;
+		// 更新对应进货单状态为不可退货
+		PurchaseVO purVO = purchase.getById(vo.purId);
+		if(purVO==null||purVO.canReturn==false||purVO.canWriteOff==false){
+			return ResultMessage.FAILED;
+		}
+		purVO.canReturn = false;
+		purchase.update(purVO);
 		PurchasePO po = purchase.voToPO(vo);
 		try {
 			DataFactoryImpl.getInstance().getPurchaseData().insert(po);

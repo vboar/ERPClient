@@ -34,6 +34,15 @@ public class SaleReturn {
 	}
 
 	public ResultMessage add(SaleVO vo) {
+		
+		// 检查能否退货
+		SaleVO svo = sale.getById(vo.saleId);
+		if(svo==null||svo.canReturn==false||svo.canWriteOff==false){
+			return ResultMessage.FAILED;
+		}else{
+			svo.canReturn = false;
+			sale.update(svo);
+		}
 		String time = Time.getCurrentTime();
 		vo.time = time;
 		vo.presentId=" ";

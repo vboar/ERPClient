@@ -62,18 +62,21 @@ public class Sale {
 		DocumentStatus approvalState = DocumentStatus.values()[po
 				.getDocumentStatus()];
 		boolean isWriteOff = po.isWriteOff();
+		boolean canReturn = po.isCanReturn();
+		boolean canWriteOff = po.isCanWriteOff();
 		DocumentType receiptType = DocumentType.values()[po.getDocumentType()];
-		SaleVO vo = new SaleVO(id, time, customerId, customerName, customerVIP,
+		SaleVO vo = new SaleVO(id, id,time, customerId, customerName, customerVIP,
 				salesman, operatorId, storage, saleList,
 				PresentId,giftList, totalBeforeDiscount, discount, voucher,
 				totalAfterDiscount, remark, approvalState, isWriteOff,
-				receiptType);
+				canReturn,canWriteOff,receiptType);
 		return vo;
 
 	}
 
 	public SalePO SaleVOToSalePO(SaleVO vo) {
 		String id = vo.id;
+		String saleId = vo.saleId;
 		String time = vo.time;
 		String customerId = vo.customerId;
 		String customerName = vo.customerName;
@@ -91,11 +94,13 @@ public class Sale {
 		String remark = vo.remark;
 		int approvalState = vo.approvalState.ordinal();
 		boolean isWriteOff = vo.isWriteOff;
+		boolean canReturn = vo.canReturn;
+		boolean canWriteOff = vo.canWriteOff;
 		int receiptType = vo.receiptType.ordinal();
-		SalePO po = new SalePO(id, time, customerId, customerName, customerVIP,
+		SalePO po = new SalePO(id,saleId,time, customerId, customerName, customerVIP,
 				salesman, operatorId, storage, saleList, presentId,
 				totalBeforeDiscount, discount, voucher, totalAfterDiscount,
-				remark, approvalState, isWriteOff, receiptType);
+				remark, approvalState, isWriteOff, canReturn, canWriteOff,receiptType);
 		return po;
 
 	}
@@ -193,6 +198,7 @@ public class Sale {
 			e.printStackTrace();
 		}
 		
+		// 更新客户信息
 		CustomerVO customerVO=new Customer().getById(vo.customerId);
 		customerVO.isDeletable=false;
 		new Customer().update(customerVO);
