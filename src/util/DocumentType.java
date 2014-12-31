@@ -18,7 +18,11 @@ public enum DocumentType {
 	PAYMENT, // 付款单
 	CASH, // 现金费用单
 	PRESENTRETURN;//赠品退货单
-	
+
+	/**
+	 * 枚举类型转中文String
+	 * @return
+	 */
 	public String toReadableString(){
 		switch(this){
 		case PRESENT:
@@ -49,7 +53,12 @@ public enum DocumentType {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * 根据String转枚举类型
+	 * @param type
+	 * @return
+	 */
 	public static DocumentType strToType(String type){
 		switch(type){
 		case "赠送单":

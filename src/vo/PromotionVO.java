@@ -1,3 +1,9 @@
+/**
+ * 促销策略VO类
+ * @author chengcheng
+ * @date 2014/11/02
+ */
+
 package vo;
 
 import java.util.ArrayList;
@@ -23,7 +29,8 @@ public class PromotionVO {
 	public double voucher;
 
 	/**
-	 * 
+	 * 构造函数
+	 * @param id
 	 * @param giftList
 	 * @param discount
 	 * @param voucher

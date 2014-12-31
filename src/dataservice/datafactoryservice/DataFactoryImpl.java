@@ -55,16 +55,33 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 单例的唯一一个实例
+	 */
 	private static DataFactory dataFactory;
-	
+
+	/**
+	 * 默认IP
+	 */
 	public static String address = "127.0.0.1";
 
+	/**
+	 * 默认端口
+	 */
 	public static String port = "8888";
-	
+
+	/**
+	 * 私有构造函数，不能在类外部new一个此对象
+	 * @throws RemoteException
+	 */
 	public DataFactoryImpl() throws RemoteException {
 		super();
 	}
-	
+
+	/**
+	 * 获得该单例
+	 * @return
+	 */
 	public static DataFactory getInstance() {
 		try {
 			dataFactory = (DataFactory) Naming.lookup("rmi://" + address + ":" + port + "/DataFactory");

@@ -48,13 +48,12 @@ public class CustomerGiftVO {
 	 * 是否生效
 	 */
 	public boolean valid;
-	
+
 	/**
-	 * 
+	 * 构造函数
+	 * @param id
 	 * @param VIP
-	 * @param giftName
-	 * @param giftModel
-	 * @param giftNumber
+	 * @param giftInfo
 	 * @param discount
 	 * @param voucher
 	 * @param startTime

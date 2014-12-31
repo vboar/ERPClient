@@ -47,13 +47,13 @@ public class RequirementVO {
 	 * 单据类型
 	 */
 	public DocumentType type = null;
-	
+
 	/**
-	 * 构造方法
+	 * 构造函数
 	 * @param time1
 	 * @param time2
-	 * @param commodityId
-	 * @param customerId
+	 * @param commodityName
+	 * @param customer
 	 * @param salesman
 	 * @param storage
 	 */
@@ -66,7 +66,17 @@ public class RequirementVO {
 		this.salesman = salesman;
 		this.storage = storage;
 	}
-	
+
+	/**
+	 * 构造函数
+	 * @param time1
+	 * @param time2
+	 * @param type
+	 * @param customer
+	 * @param salesman
+	 * @param storage
+	 * @param operator
+	 */
 	public RequirementVO(String time1,String time2, DocumentType type,
 			String customer,String salesman, String storage, String operator){
 		this.time1 = time1;
@@ -77,6 +87,9 @@ public class RequirementVO {
 		this.storage = storage;
 		this.operator = operator;
 	}
-	
+
+	/**
+	 * 无参构造函数
+	 */
 	public RequirementVO(){}
 }

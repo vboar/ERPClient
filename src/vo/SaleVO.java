@@ -1,3 +1,9 @@
+/**
+ * 销售单VO类
+ * @author oneoneO
+ * @date 2014/12/25
+ */
+
 package vo;
 
 import java.util.ArrayList;
@@ -119,9 +125,18 @@ public class SaleVO implements DocumentVO {
 
 	/**
 	 * 构造方法
+	 * @param id
+	 * @param saleId
+	 * @param time
 	 * @param customerId
+	 * @param customerName
+	 * @param customerVIP
+	 * @param salesmanId
+	 * @param operatorId
 	 * @param storage
 	 * @param saleList
+	 * @param presentId
+	 * @param giftList
 	 * @param totalBeforeDiscount
 	 * @param discount
 	 * @param voucher
@@ -129,6 +144,8 @@ public class SaleVO implements DocumentVO {
 	 * @param remark
 	 * @param approvalState
 	 * @param isWriteOff
+	 * @param canReturn
+	 * @param canWriteOff
 	 * @param receiptType
 	 */
 	public SaleVO(String id, String saleId, String time, String customerId,
@@ -163,11 +180,19 @@ public class SaleVO implements DocumentVO {
 		this.canWriteOff = canWriteOff;
 		this.receiptType = receiptType;
 	}
-	
+
+	/**
+	 * 无参构造方法
+	 */
 	public SaleVO(){
 		
 	}
 
+	/**
+	 * 构造方法
+	 * @param name
+	 * @param total
+	 */
 	public SaleVO(String name, double total) {
 		this.customerName = name;
 		this.totalAfterDiscount = total;
@@ -202,7 +227,11 @@ public class SaleVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 		this.approvalState = status;
 	}
-	
+
+	/**
+	 * 将赠品条目转成String
+	 * @return
+	 */
 	public String giftListToStr(){
 		String str="";
 		for(int i=0; i<giftList.size()-1; ++i){
@@ -212,7 +241,11 @@ public class SaleVO implements DocumentVO {
 			str = str + giftList.get(giftList.size()-1).toString();
 		return str;
 	}
-	
+
+	/**
+	 * 将商品条目转成String
+	 * @return
+	 */
 	public String saleListToStr(){
 		String str="";
 		for(int i=0; i<saleList.size()-1; ++i){

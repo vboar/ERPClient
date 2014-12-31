@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+/**
+ * 云龙的统计代码行小程序
+ */
 class CountLines {
 	public static void main(String[] args) throws FileNotFoundException {
 		final String path = "src";

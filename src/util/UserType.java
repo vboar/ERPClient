@@ -12,6 +12,10 @@ public enum UserType {
 	MANAGER, // 总经理
 	ADMINISTRATOR; // 系统管理员
 
+	/**
+	 * 枚举类型转中文String
+	 * @return
+	 */
 	public String toFriendString(){
 		switch (this) {
 		case STOCKKEEPER:
@@ -28,7 +32,12 @@ public enum UserType {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * 根据String转枚举类型
+	 * @param name
+	 * @return
+	 */
 	public static UserType check(String name){
 		switch (name) {
 		case "库存管理人员":

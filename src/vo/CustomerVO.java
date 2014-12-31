@@ -71,7 +71,23 @@ public class CustomerVO {
      * 是否可删
      */
     public boolean isDeletable;
-    
+
+    /**
+     * 构造函数
+     * @param id
+     * @param category
+     * @param level
+     * @param name
+     * @param phoneNumber
+     * @param address
+     * @param postalCode
+     * @param email
+     * @param creditLimit
+     * @param receivables
+     * @param paybles
+     * @param salesman
+     * @param isDeletable
+     */
     public CustomerVO(String id,int category,int level,String name,
   		            String phoneNumber,String address,String postalCode,String email,
   		            double creditLimit,double receivables,double paybles,
@@ -90,6 +106,9 @@ public class CustomerVO {
   	  this.salesman=salesman;
       this.isDeletable=isDeletable;    	 
     }
-    
+
+    /**
+     * 无参构造方法
+     */
     public CustomerVO(){}
 }

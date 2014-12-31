@@ -9,8 +9,7 @@ public enum ResultMessage {
 	SUCCESS, // 成功
 	FAILED, // 失败
 	WRONG, // 错误
-	
-	
+
 	EXIST,//想要添加的东西在数据库已存在
 	TOO_LONG,//输入的内容过长
 	TOO_SHORT,//输入的内容过短
@@ -27,6 +26,10 @@ public enum ResultMessage {
 	HAS_COMMODITY,//父分类下已经存在商品，不能添加子尚品
 	HAS_CATEGORY;//父分类下已存在子分类，不能添加商品
 
+	/**
+	 * 枚举类型转中文String
+	 * @return
+	 */
 	public String toFriendlyString() {
 		switch (this) {
 		case TOO_LONG:

@@ -1,6 +1,5 @@
 /**
- * 总价折让vo
- * @date 2014/10/25
+ * 总价折让vo类 * @date 2014/10/25
  * @author chengcheng
  */
 
@@ -9,6 +8,7 @@ package vo;
 import java.util.ArrayList;
 
 public class TotalGiftVO {
+
 	/**
 	 * id
 	 */
@@ -43,7 +43,17 @@ public class TotalGiftVO {
 	 * 是否生效
 	 */
 	public boolean valid;
-	
+
+	/**
+	 * 构造函数
+	 * @param id
+	 * @param total
+	 * @param giftInfo
+	 * @param voucher
+	 * @param startTime
+	 * @param endTime
+	 * @param valid
+	 */
 	public TotalGiftVO(String id,double total,ArrayList<PresentLineItemVO> giftInfo,
 			double voucher,String startTime,String endTime,boolean valid){
 		this.id=id;

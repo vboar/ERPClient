@@ -69,12 +69,15 @@ public class PaymentVO implements DocumentVO {
 	/**
 	 * 构造方法
 	 * @param id
+	 * @param time
 	 * @param customerId
 	 * @param customerName
 	 * @param operatorId
 	 * @param transferList
 	 * @param total
 	 * @param approvalState
+	 * @param isWriteOff
+	 * @param canWriteOff
 	 * @param documentType
 	 */
 	public PaymentVO(String id,String time, String customerId, String customerName,
@@ -94,12 +97,18 @@ public class PaymentVO implements DocumentVO {
 		this.canWriteOff = canWriteOff;
 		this.documentType = documentType;
 	}
-	
+
+	/**
+	 * 勾走方法
+	 */
 	public PaymentVO(String id, double total){
 		this.id = id;
 		this.total = total;
 	}
-	
+
+	/**
+	 * 无参构造方法
+	 */
 	public PaymentVO(){
 		
 	}
@@ -133,7 +142,11 @@ public class PaymentVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 		this.approvalState = status;
 	}
-	
+
+	/**
+	 * 将列表条目转成String
+	 * @return
+	 */
 	public String listToStr(){
 		String str = "";
 		for(int i=0; i<transferList.size()-1;++i){

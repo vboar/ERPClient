@@ -77,6 +77,10 @@ public class WarningVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 	}
 
+	/**
+	 * 将条目转成String
+	 * @return
+	 */
 	public String listToStr() {
 		String str = "";
 		if(list==null){

@@ -65,11 +65,11 @@ public class BusinessConditionVO {
 	/**
 	 * 构造方法
 	 * @param saleIncome
+	 * @param incomeAfterDiscount
+	 * @param discount
 	 * @param commodityOverIncome
 	 * @param costAdjustIncome
 	 * @param voucherIncome
-	 * @param incomeAfterDiscount
-	 * @param discount
 	 * @param saleCost
 	 * @param costByLoss
 	 * @param costBySending
@@ -94,7 +94,10 @@ public class BusinessConditionVO {
 		this.totalCost = totalCost;
 		this.profit = profit;
 	}
-	
+
+	/**
+	 * 无参构造方法
+	 */
 	public BusinessConditionVO(){}
 	
 	

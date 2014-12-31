@@ -63,6 +63,9 @@ public class StockVO {
 		this.batchNumber = batchNumber;
 	}
 
+	/**
+	 * 无参构造方法
+	 */
 	public StockVO() {
 	}
 	

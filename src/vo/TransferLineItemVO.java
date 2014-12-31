@@ -7,10 +7,13 @@ package vo;
 
 public class TransferLineItemVO {
 
+	/**
+	 * 账户名称
+	 */
 	public String name;
 
 	/**
-	 * 银行账号
+	 * 银行卡号
 	 */
 	public String bankAccount;
 	
@@ -26,6 +29,7 @@ public class TransferLineItemVO {
 
 	/**
 	 * 构造方法
+	 * @param name
 	 * @param bankAccount
 	 * @param account
 	 * @param remark

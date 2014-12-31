@@ -11,9 +11,6 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class SystemDataServiceImpl extends UnicastRemoteObject implements SystemDataService {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public SystemDataServiceImpl() throws RemoteException {

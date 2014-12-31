@@ -61,9 +61,10 @@ public class CommodityVO {
 	 * 它的分类
 	 */
 	public CategoryVO category;
-	
+
 	/**
-	 * 构造方法
+	 * 构造函数
+	 * @param id
 	 * @param name
 	 * @param model
 	 * @param number
@@ -73,6 +74,7 @@ public class CommodityVO {
 	 * @param recentSalePrice
 	 * @param warningNumber
 	 * @param isTrade
+	 * @param category
 	 */
 	public CommodityVO(String id, String name, String model, int number, double purchasePrice,
 			double salePrice, double recentPurchasePrice, double recentSalePrice,

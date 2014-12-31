@@ -1,7 +1,7 @@
 /**
  * 消息vo
  * @author chengcheng
- * @date=2014/10/25
+ * @date 2014/10/25
  */
 package vo;
 
@@ -31,7 +31,15 @@ public class MessageVO {
 	 * 消息内容
 	 */
     public String content;
-    
+
+	/**
+	 * 构造函数
+	 * @param id
+	 * @param time
+	 * @param state
+	 * @param receiver
+	 * @param content
+	 */
     public MessageVO(String id,String time,int state,String receiver,String content){
     	this.id=id;
     	this.time=time;

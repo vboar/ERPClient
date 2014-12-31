@@ -26,11 +26,13 @@ public class CategoryVO {
 	 * 父分类
 	 */
 	public CategoryVO father;
-	
+
 	/**
 	 * 构造方法
+	 * @param id
 	 * @param name
 	 * @param number
+	 * @param father
 	 */
 	public CategoryVO(String id, String name, int number,CategoryVO father) {
 		this.id = id;

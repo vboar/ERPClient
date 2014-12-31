@@ -57,6 +57,18 @@ public class PresentVO implements DocumentVO {
 	 */
 	public boolean canWriteOff;
 
+	/**
+	 * 构造函数
+	 * @param id
+	 * @param time
+	 * @param customerId
+	 * @param customerName
+	 * @param list
+	 * @param documentStatus
+	 * @param documentType
+	 * @param isWriteoff
+	 * @param canWriteOff
+	 */
 	public PresentVO(String id, String time, String customerId,
 			String customerName, ArrayList<PresentLineItemVO> list,
 			DocumentStatus documentStatus,DocumentType documentType,
@@ -72,22 +84,21 @@ public class PresentVO implements DocumentVO {
 		this.isWriteoff = isWriteoff;
 		this.canWriteOff = canWriteOff;
 	}
-	
+
+	/**
+	 * 构造函数
+	 * @param time
+	 * @param clientName
+	 */
 	public PresentVO(String time, String clientName){
 		this.time = time;
 		this.customerName = clientName;
 	}
-	
+
+	/**
+	 * 无参构造函数
+	 */
 	public PresentVO(){}
-	
-	public String lineItemToString(){
-		String str="";
-		for(int i=0; i<list.size()-1; ++i){
-			str =  str + list.get(i).toString()+"\n";
-		}
-		str = str + list.get(list.size()-1).toString();
-		return str;
-	}
 
 	@Override
 	public String getId() {
@@ -119,6 +130,10 @@ public class PresentVO implements DocumentVO {
 		this.documentStatus = status;
 	}
 
+	/**
+	 * 将条目转成String
+	 * @return
+	 */
 	public String listToStr() {
 		String str="";
 		for(int i=0; i<this.list.size()-1; ++i){

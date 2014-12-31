@@ -8,6 +8,7 @@ package vo;
 import java.util.ArrayList;
 
 public class SpecialOfferVO {
+
 	/**
 	 * id
 	 */
@@ -37,14 +38,15 @@ public class SpecialOfferVO {
 	 * 是否生效
 	 */
 	public boolean valid;
-	
+
 	/**
-	 * 
-	 * @param CommodityList
+	 * 构造方法
+	 * @param id
+	 * @param commodityList
 	 * @param total
 	 * @param startTime
 	 * @param endTime
-	 * @param valid 
+	 * @param valid
 	 */
 	public SpecialOfferVO(String id,ArrayList<CommodityLineItemVO> commodityList
 			,double total,String startTime,String endTime, boolean valid){

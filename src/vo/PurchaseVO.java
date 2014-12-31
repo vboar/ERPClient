@@ -1,3 +1,9 @@
+/**
+ * 进货单VO类
+ * @author oneoneO
+ * @date 2014/10/25
+ */
+
 package vo;
 
 import util.DocumentStatus;
@@ -82,6 +88,24 @@ public class PurchaseVO implements DocumentVO {
 	 */
 	public DocumentType receiptType;
 
+	/**
+	 * 构造函数
+	 * @param id
+	 * @param purId
+	 * @param time
+	 * @param customerId
+	 * @param customerName
+	 * @param operatorId
+	 * @param storage
+	 * @param saleList
+	 * @param total
+	 * @param remark
+	 * @param documentStatus
+	 * @param isWriteOff
+	 * @param canReturn
+	 * @param canWriteOff
+	 * @param receiptType
+	 */
 	public PurchaseVO(String id, String purId, String time,String customerId, String customerName,
 			String operatorId, String storage,
 			ArrayList<CommodityLineItemVO> saleList, double total,
@@ -104,6 +128,11 @@ public class PurchaseVO implements DocumentVO {
 		this.canWriteOff = canWriteOff;
 	}
 
+	/**
+	 * 构造函数
+	 * @param operator
+	 * @param total
+	 */
 	public PurchaseVO(String operator, double total) {
 		this.operatorId = operator;
 		this.total = total;
@@ -139,7 +168,11 @@ public class PurchaseVO implements DocumentVO {
 	public void setStatus(DocumentStatus status) {
 		this.documentStatus = status;
 	}
-	
+
+	/**
+	 * 将条目转成String
+	 * @return
+	 */
 	public String listToStr(){
 		String str="";
 		for(int i=0; i<saleList.size()-1; ++i){

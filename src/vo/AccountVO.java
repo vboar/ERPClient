@@ -25,6 +25,7 @@ public class AccountVO {
 	/**
 	 * 构造方法
 	 * @param name
+	 * @param account
 	 * @param balance
 	 */
 	public AccountVO(String name, String account, double balance) {
@@ -32,7 +33,10 @@ public class AccountVO {
 		this.account = account;
 		this.balance = balance;
 	}
-	
+
+	/**
+	 * 无参构造方法
+	 */
 	public AccountVO(){}
 	
 }

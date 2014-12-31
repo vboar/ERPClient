@@ -1,3 +1,9 @@
+/**
+ * 商品条目VO类
+ * @author chengcheng
+ * @date 2014/11/13
+ */
+
 package vo;
 
 public class CommodityLineItemVO {
@@ -35,11 +41,10 @@ public class CommodityLineItemVO {
      * 备注
      */
     public String remark;
-  
-    
+
+
     /**
      * 构造函数
-     * 
      * @param id
      * @param name
      * @param model
@@ -58,15 +63,29 @@ public class CommodityLineItemVO {
     	this.total=total;
     	this.remark=" ";
     }
-    
+
+    /**
+     * 构造函数
+     * @param id
+     * @param name
+     * @param model
+     * @param number
+     */
     public CommodityLineItemVO(String id, String name ,String model, int number){
     	this.id = id;
     	this.name = name;
     	this.model = model;
     	this.number = number;
     }
-    
-    
+
+    /**
+     * 构造函数
+     * @param id
+     * @param name
+     * @param model
+     * @param number
+     * @param price
+     */
     public CommodityLineItemVO(String id, String name ,String model, int number,double price){
     	this.id = id;
     	this.name = name;
