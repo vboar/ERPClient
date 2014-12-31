@@ -227,7 +227,7 @@ public class ShowPaymentPanel extends PaymentDocumentPanel implements
 			ResultMessage result = paymentController.create(new PaymentVO(
 					documentIdLab.getText(), null, customerVO.id,
 					customerVO.name, operatorLab.getText(), lists, total,
-					DocumentStatus.NONCHECKED, false, DocumentType.PAYMENT));
+					DocumentStatus.NONCHECKED, false, true, DocumentType.PAYMENT));
 			if (result == ResultMessage.SUCCESS) {
 				MyOptionPane.showMessageDialog(null, "付款单提交成功！");
 			} else {

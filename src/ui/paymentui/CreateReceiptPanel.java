@@ -192,7 +192,7 @@ public class CreateReceiptPanel extends PaymentDocumentPanel implements FuzzySea
 			}
 			ResultMessage result = receiptController.create(new PaymentVO(documentIdLab.getText(),
 					null, customerVO.id, customerVO.name, operatorLab.getText(), lists, total,
-					DocumentStatus.NONCHECKED, false, DocumentType.RECEIPT));
+					DocumentStatus.NONCHECKED, false,true, DocumentType.RECEIPT));
 			if(result == ResultMessage.SUCCESS) {
 				MyOptionPane.showMessageDialog(null, "付款单提交成功！");
 				panel.showShow();

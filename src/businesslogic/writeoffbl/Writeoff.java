@@ -38,6 +38,15 @@ public class Writeoff {
 		case PURCHASE:
 			Purchase pu=new Purchase();
 			PurchaseVO purchase=pu.getById(id);
+			
+			if(!purchase.canWriteOff)
+				return ResultMessage.FAILED;
+			
+			purchase.canWriteOff = false;
+			purchase.canReturn = false;
+			pu.update(purchase);
+			
+			purchase.canWriteOff=true;
 			purchase.isWriteOff=true;
 			pu.add(purchase);
 			pu.writeoff(purchase);
@@ -45,6 +54,14 @@ public class Writeoff {
 		case PURCHASERETURN:
 			PurchaseReturn pre=new PurchaseReturn();
 			PurchaseVO purchasere=pre.getById(id);
+			
+			if(!purchasere.canWriteOff)
+				return ResultMessage.FAILED;
+			
+			purchasere.canWriteOff = false;
+			pre.update(purchasere);
+			
+			purchasere.canWriteOff = true;
 			purchasere.isWriteOff=true;
 			pre.add(purchasere);
 			pre.writeoff(purchasere);
@@ -52,6 +69,15 @@ public class Writeoff {
 		case SALE:
 			Sale s=new Sale();
 			SaleVO sale=s.getById(id);
+			
+			if(!sale.canWriteOff)
+				return ResultMessage.FAILED;
+			
+			sale.canReturn = false;
+			sale.canWriteOff = false;
+			s.update(sale);
+			
+			sale.canWriteOff = true;
 			sale.isWriteOff=true;
 			s.add(sale);
 			s.writeoff(sale);
@@ -59,6 +85,14 @@ public class Writeoff {
 		case SALERETURN:
 			Sale s1=new Sale();
 			SaleVO sre=s1.getById(id);
+			
+			if(!sre.canWriteOff)
+				return ResultMessage.FAILED;
+			
+			sre.canWriteOff = false;
+			s1.update(sre);
+			
+			sre.canWriteOff = true;
 			sre.isWriteOff=true;
 			s1.add(sre);
 			s1.writeoff(sre);
@@ -66,6 +100,14 @@ public class Writeoff {
 		case PAYMENT:
 			Payment p=new Payment();
 			PaymentVO payment=p.getById(id);
+
+			if(!payment.canWriteOff)
+				return ResultMessage.FAILED;
+			
+			payment.canWriteOff = false;
+			p.update(payment);
+
+			payment.canWriteOff = true;
 			payment.isWriteOff=true;
 			p.create(payment);
 			p.writeoff(payment);
@@ -73,6 +115,14 @@ public class Writeoff {
 		case RECEIPT:
 			Receipt r=new Receipt();
 			PaymentVO receipt=r.getById(id);
+			
+			if(!receipt.canWriteOff)
+				return ResultMessage.FAILED;
+			
+			receipt.canWriteOff = false;
+			r.update(receipt);
+			
+			receipt.canWriteOff = true;
 			receipt.isWriteOff=true;
 			r.add(receipt);
 			r.writeoff(receipt);

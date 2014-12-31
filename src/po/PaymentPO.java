@@ -61,6 +61,11 @@ public class PaymentPO implements Serializable {
 	private boolean isWriteOff;
 	
 	/**
+	 * 是否可红冲
+	 */
+	private boolean canWriteOff;
+	
+	/**
 	 * 单据类型
 	 */
 	private int documentType;
@@ -80,7 +85,7 @@ public class PaymentPO implements Serializable {
 	 */
 	public PaymentPO(String id,String time,String customerId,String customerName,
 			String operatorId,ArrayList<TransferLineItemPO> transferList,double total,
-			int approvalStatus,boolean isWriteOff,int documentType){
+			int approvalStatus,boolean isWriteOff,boolean canWriteOff,int documentType){
 		this.id = id;
 		this.time = time;
 		this.customerId = customerId;
@@ -90,6 +95,7 @@ public class PaymentPO implements Serializable {
 		this.total = total;
 		this.approvalStatus = approvalStatus;
 		this.isWriteOff = isWriteOff;
+		this.canWriteOff = canWriteOff;
 		this.documentType = documentType;
 	}
 
@@ -139,6 +145,10 @@ public class PaymentPO implements Serializable {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public boolean isCanWriteOff() {
+		return canWriteOff;
 	}
 	
 }

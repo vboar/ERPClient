@@ -70,9 +70,8 @@ public class Payment {
 		try {
 			DataFactoryImpl.getInstance().getPaymentData().insert(new PaymentPO(vo.id,time,
 					vo.customerId,vo.customerName,Login.currentUserId,transferlist,
-					vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal()));
+					vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.canWriteOff,vo.documentType.ordinal()));
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		
@@ -156,7 +155,6 @@ public class Payment {
 			}
 			
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		
@@ -173,7 +171,6 @@ public class Payment {
 					result.add(poToVo(temp.get(i)));
 			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		return result;
@@ -189,7 +186,6 @@ public class Payment {
 					result.add(poToVo(temp.get(i)));
 			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		return result;
@@ -217,7 +213,6 @@ public class Payment {
 		try {
 			DataFactoryImpl.getInstance().getPaymentData().update(voToPo(vo));
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		return ResultMessage.SUCCESS;
@@ -226,7 +221,8 @@ public class Payment {
 	private PaymentPO voToPo(PaymentVO vo) {
 		ArrayList<TransferLineItemPO> list=voListToPoList(vo.transferList);
 		PaymentPO result=new PaymentPO(vo.id,vo.time,vo.customerId,vo.customerName,
-				vo.operatorId,list,vo.total,vo.approvalState.ordinal(),vo.isWriteOff,vo.documentType.ordinal());
+				vo.operatorId,list,vo.total,vo.approvalState.ordinal(),vo.isWriteOff,
+				vo.canWriteOff,vo.documentType.ordinal());
 		return result;
 	}
 
@@ -252,7 +248,7 @@ public class Payment {
 			
 			PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),po.getCustomerName(),po.getOperatorId(),
 					temp,po.getTotal(),DocumentStatus.values()[po.getApprovalStatus()],
-					po.isWriteOff(),DocumentType.values()[po.getDocumentType()]);
+					po.isWriteOff(),po.isCanWriteOff(),DocumentType.values()[po.getDocumentType()]);
 		
 		return result;
 	}
@@ -263,7 +259,6 @@ public class Payment {
 		try {
 			result=poToVo(DataFactoryImpl.getInstance().getPaymentData().getById(id));
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		

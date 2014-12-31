@@ -57,6 +57,11 @@ public class PaymentVO implements DocumentVO {
 	public boolean isWriteOff;
 	
 	/**
+	 * 是否可红冲
+	 */
+	public boolean canWriteOff;
+	
+	/**
 	 * 单据类型
 	 */
 	public DocumentType documentType;
@@ -75,7 +80,7 @@ public class PaymentVO implements DocumentVO {
 	public PaymentVO(String id,String time, String customerId, String customerName,
 			String operatorId, ArrayList<TransferLineItemVO> transferList,
 			double total, DocumentStatus approvalState,boolean isWriteOff,
-			DocumentType documentType) {
+			boolean canWriteOff,DocumentType documentType) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -86,6 +91,7 @@ public class PaymentVO implements DocumentVO {
 		this.total = total;
 		this.approvalState = approvalState;
 		this.isWriteOff = isWriteOff;
+		this.canWriteOff = canWriteOff;
 		this.documentType = documentType;
 	}
 	

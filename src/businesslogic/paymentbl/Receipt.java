@@ -208,7 +208,7 @@ public class Receipt {
 		ArrayList<TransferLineItemPO> transferList=voListTOpoList(vo.transferList);
 		PaymentPO result=new PaymentPO(vo.id,vo.time,vo.customerId,vo.customerName,
 				vo.operatorId,transferList,vo.total,vo.approvalState.ordinal(),vo.isWriteOff,
-				vo.documentType.ordinal());
+				vo.canWriteOff,vo.documentType.ordinal());
 		return result;
 	}
 	
@@ -229,7 +229,7 @@ public class Receipt {
 		PaymentVO result=new PaymentVO(po.getId(),po.getTime(),po.getCustomerId(),
 				po.getCustomerName(),po.getOperatorId(),transferList,po.getTotal(),
 				DocumentStatus.values()[po.getApprovalStatus()],po.isWriteOff(),
-				DocumentType.values()[po.getDocumentType()]);
+				po.isCanWriteOff(),DocumentType.values()[po.getDocumentType()]);
 		return result;
 	} 
 	
