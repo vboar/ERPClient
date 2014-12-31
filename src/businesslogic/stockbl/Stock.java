@@ -6,7 +6,31 @@
 
 package businesslogic.stockbl;
 
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+
+import po.StockPO;
+import util.DocumentStatus;
+import util.DocumentType;
+import util.ResultMessage;
+import util.Time;
+import vo.CommodityLineItemVO;
+import vo.CommodityVO;
+import vo.ExceptionVO;
+import vo.PresentLineItemVO;
+import vo.PresentVO;
+import vo.PurchaseVO;
+import vo.SaleVO;
+import vo.SpecialOfferVO;
+import vo.StockInfoVO;
+import vo.StockVO;
 import businesslogic.commoditybl.Commodity;
+import businesslogic.exceptionbl.Loss;
+import businesslogic.exceptionbl.Overflow;
 import businesslogic.presentbl.Present;
 import businesslogic.promotionbl.SpecialOfferPromotion;
 import businesslogic.purchasebl.Purchase;
@@ -14,19 +38,6 @@ import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
 import businesslogic.salebl.SaleReturn;
 import dataservice.datafactoryservice.DataFactoryImpl;
-import po.StockPO;
-import util.DocumentStatus;
-import util.DocumentType;
-import util.ResultMessage;
-import util.Time;
-import vo.*;
-
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 
 public class Stock {
 
@@ -63,6 +74,10 @@ public class Stock {
 				time2);
 		ArrayList<PurchaseVO> purchaseReturnList = new PurchaseReturn()
 				.findByTime(time1, time2);
+		ArrayList<ExceptionVO> overflowList=new Overflow().findByTime(time1, time2);
+		ArrayList<ExceptionVO> lossList=new Loss().findByTime(time1, time2);
+		
+		
 
 		ArrayList<CommodityLineItemVO> inList = new ArrayList<CommodityLineItemVO>();
 		ArrayList<CommodityLineItemVO> outList = new ArrayList<CommodityLineItemVO>();
@@ -73,7 +88,6 @@ public class Stock {
 			SaleVO salevo = salelistitr.next();
 			if (salevo.approvalState != DocumentStatus.PASSED) {
 				salelistitr.remove();
-
 			}
 			
 		}
@@ -109,7 +123,53 @@ public class Stock {
 
 			}
 		}
+		Iterator<ExceptionVO> overFlowItr = overflowList.iterator();
+		while (overFlowItr.hasNext()) {
+			ExceptionVO overflowvo = overFlowItr.next();
+			if (overflowvo.status != DocumentStatus.PASSED) {
+				overFlowItr.remove();
 
+			}
+		}
+		
+		Iterator<ExceptionVO> lossItr = lossList.iterator();
+		while (lossItr.hasNext()) {
+			ExceptionVO lossvo = lossItr.next();
+			if (lossvo.status != DocumentStatus.PASSED) {
+				lossItr.remove();
+
+			}
+		}
+
+
+		
+
+		//报溢和报损
+//		for (PresentVO presentVO : presentList) {
+//			ArrayList<PresentLineItemVO> preList = presentVO.list;
+//			boolean present = true;
+//			if (presentVO.documentType == DocumentType.PRESENTRETURN) {
+//				present = false;
+//			}
+//			if(presentVO.isWriteoff){
+//				present=(present?false:true);
+//			}
+//			for (PresentLineItemVO presentvo : preList) {
+//
+//				double money = new Commodity().getById(presentvo.id)
+//						.getPurchasePrice();
+//				CommodityLineItemVO clivo = new CommodityLineItemVO(
+//						presentvo.id, presentvo.name, presentvo.model,
+//						presentvo.number, money, presentvo.number * money, null);
+//				if (present)
+//					outList.add(clivo);
+//				else
+//					inList.add(clivo);
+//
+//			}
+//
+//		}
+//		
 		// 把present矫诏变成commodity的样子
 		System.out
 				.println("Stockbl 101: presentlist.size" + presentList.size());
@@ -118,6 +178,9 @@ public class Stock {
 			boolean present = true;
 			if (presentVO.documentType == DocumentType.PRESENTRETURN) {
 				present = false;
+			}
+			if(presentVO.isWriteoff){
+				present=(present?false:true);
 			}
 			for (PresentLineItemVO presentvo : preList) {
 
@@ -150,16 +213,28 @@ public class Stock {
 
 		// 加到第二级列表中，按照销售和进货分开
 		for (SaleVO salevo : saleList) {
+			if(salevo.isWriteOff){
+				inList.addAll(salevo.saleList);
+			}else
 			outList.addAll(salevo.saleList);
 		}
 		for (SaleVO salereturnvo : saleReturnList) {
+			if(salereturnvo.isWriteOff){
+				inList.addAll(salereturnvo.saleList);
+			}else
 			inList.addAll(salereturnvo.saleList);
 		}
 
 		for (PurchaseVO purchasevo : purchaseList) {
+			if(purchasevo.isWriteOff){
+				inList.addAll(purchasevo.saleList);
+			}else
 			inList.addAll(purchasevo.saleList);
 		}
 		for (PurchaseVO purchasereturnvo : purchaseReturnList) {
+			if(purchasereturnvo.isWriteOff){
+				inList.addAll(purchasereturnvo.saleList);
+			}else
 			outList.addAll(purchasereturnvo.saleList);
 		}
 
@@ -395,8 +470,6 @@ public class Stock {
 		}
 		return result;
 	}
-
-
 
 
 }

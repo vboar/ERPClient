@@ -77,13 +77,17 @@ public class Category {
 	public  String createId(String fatherId){
 		
 		if(fatherId==null){
-			ArrayList<CategoryVO> voList=show();
+			ArrayList<CategoryVO> voList=shownosort();
 			if(voList.isEmpty()){
 			return "00000";
 			}else{
-			
+			System.out.println("Categorybl 84____________________");
+				for(CategoryVO volistthing:voList){
+					System.out.println(volistthing.id);
+				}
 				String max=voList.get(voList.size()-1).id;
-				if(max.compareTo("99999")>0){
+				System.out.println("Categorybl 86: id="+max);
+				if(max.compareTo("9999")>0){
 					max=voList.get(voList.size()-2).id;
 				}
 				String oldMax=max.substring(0,5);
@@ -134,9 +138,11 @@ public class Category {
 		}
 		//是否有商品
 		if(father!=null){
-		ArrayList<CommodityVO> commodity=new Commodity().findById(father.id);
-		if(!commodity.isEmpty()){
-			return ResultMessage.HAS_COMMODITY;
+		ArrayList<CommodityVO> commoditylist=new Commodity().findById(father.id);
+		for(CommodityVO commodity:commoditylist){
+			if(commodity.id.length()>father.id.length()+1&&commodity.id.length()<father.id.length()+7){
+				return ResultMessage.HAS_COMMODITY;
+			}
 		}
 		
 		// 改父分类的number
@@ -324,7 +330,21 @@ public class Category {
 		return voList;
 
 	}
-	
+	private ArrayList<CategoryVO> shownosort() {
+		ArrayList<CategoryPO> poList = null;
+		try {
+			poList = DataFactoryImpl.getInstance().getCategoryData().show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		ArrayList<CategoryVO> voList = new ArrayList<CategoryVO>();
+		for (CategoryPO po : poList) {
+			voList.add(CategoryPOToCategoryVO(po));
+		}
+		return voList;
+
+	}
+
 //	public static void main(String[] args) {
 //		String id=new Category().createId("00000-00000");
 //		System.out.println(id);

@@ -96,6 +96,27 @@ public class Loss {
 		return result;
 	}
 	
+	public ArrayList<ExceptionVO> findByTime(String time1,String time2){
+		ArrayList<ExceptionVO> result=new ArrayList<ExceptionVO>();
+		ArrayList<ExceptionPO> temp=new ArrayList<ExceptionPO>();
+		
+		try {
+			time1=Time.jdugeTime1(time1);
+			time2=Time.jdugeTime2(time2);
+			temp=DataFactoryImpl.getInstance().getExceptionData().show(time1,time2);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<temp.size();i++){
+			if(temp.get(i).getDocumentType()==DocumentType.LOSS.ordinal())
+				result.add(poToVo(temp.get(i)));
+		}
+		return result;
+	}
+
+	
 	public ResultMessage approve(ExceptionVO vo){
 		Commodity c=new Commodity();
 		c.approveException(vo);
