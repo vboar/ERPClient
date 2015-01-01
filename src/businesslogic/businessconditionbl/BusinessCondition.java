@@ -69,10 +69,18 @@ public class BusinessCondition {
 		ArrayList<SaleVO> list=s.findByTime(time1, time2);
 		
 		for(int i=0;i<list.size();i++){
+			
 			SaleVO temp=list.get(i);
+			if(temp.isWriteOff){
+				result[0]-=temp.totalBeforeDiscount;
+				result[1]-=temp.totalAfterDiscount;
+				result[2]-=temp.voucher;
+
+			}else{
 			result[0]+=temp.totalBeforeDiscount;
 			result[1]+=temp.totalAfterDiscount;
 			result[2]+=temp.voucher;
+			}
 		}
 		
 		return result;
