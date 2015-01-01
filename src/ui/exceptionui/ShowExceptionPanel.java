@@ -156,7 +156,7 @@ public class ShowExceptionPanel extends ExceptionDocumentPanel implements
 
 	@Override
 	public String getDocumentID() {
-		return this.documentId.getText();
+		return vo.id;
 	}
 
 	@Override

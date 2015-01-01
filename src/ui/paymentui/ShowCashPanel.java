@@ -216,7 +216,7 @@ public class ShowCashPanel extends CashDocumentPanel implements FuzzySearch,
 
 	@Override
 	public String getDocumentID() {
-		return this.documentIdLab.getText();
+		return vo.id;
 	}
 
 	@Override

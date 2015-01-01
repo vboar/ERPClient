@@ -214,7 +214,7 @@ public class ShowPaymentPanel extends PaymentDocumentPanel implements
 
 	@Override
 	public String getDocumentID() {
-		return this.documentIdLab.getText();
+		return vo.id;
 	}
 
 	@Override
