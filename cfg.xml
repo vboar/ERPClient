@@ -2014,6 +2014,8 @@
 				<string str="VIP4" />
 				<string str="VIP5" />
 			</level>
+			<salesman w="100" h="30" x="120" y="180" >
+			</salesman>
 		</comboboxes>
 	</customerinfodialog>
 
@@ -2107,8 +2109,8 @@
 		<comboboxes>
 			<type w="130" h="30" x="80" y="140">
 				<string str="库存管理人员" />
-				<string str="进货销售人员" />
 				<string str="财务人员" />
+				<string str="进货销售人员" />
 				<string str="总经理" />
 				<string str="系统管理员" />
 			</type>

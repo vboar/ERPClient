@@ -66,6 +66,7 @@ public class ShowChoosePromotionDialog extends JDialog{
 				int result = MyOptionPane.showConfirmDialog(frame, "确认选择此促销优惠？","确认提示",
 						MyOptionPane.YES_NO_OPTION, MyOptionPane.QUESTION_MESSAGE);
 				if(result==MyOptionPane.YES_OPTION){
+					addPromotion();
 					panel.calTotal();
 					dispose();
 				}
@@ -86,7 +87,7 @@ public class ShowChoosePromotionDialog extends JDialog{
 			this.pricetable = new PromotionTablePanel(
 				new TableConfig(cfg.getTablepane()),pricelist);
 			this.pricetable.getTable().setRowSelectionInterval(0, 0);
-			price.setText(viptable.getSeleted().id);
+			price.setText(pricetable.getSeleted().id);
 			this.tabpane.add(this.pricetable,"总价优惠");
 		}
 		if(viplist!=null&&viplist.size()>0){
@@ -103,22 +104,25 @@ public class ShowChoosePromotionDialog extends JDialog{
 		this.addBtn.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectlist.clear();
-				if(viptable!=null&&viptable.getSeleted()!=null){
-					vip.setText(viptable.getSeleted().id);
-					selectlist.add(viptable.getSeleted());
-				}
-				if(pricetable!=null&&pricetable.getSeleted()!=null){
-					price.setText(pricetable.getSeleted().id);
-					selectlist.add(pricetable.getSeleted());
-				}
-				panel.getPromotions().clear();
-				panel.getPromotions().addAll(selectlist);
+				addPromotion();
 			}
 		});
 		this.add(this.addBtn);
 	}
 	
+	private void addPromotion(){
+		selectlist.clear();
+		if(viptable!=null&&viptable.getSeleted()!=null){
+			vip.setText(viptable.getSeleted().id);
+			selectlist.add(viptable.getSeleted());
+		}
+		if(pricetable!=null&&pricetable.getSeleted()!=null){
+			price.setText(pricetable.getSeleted().id);
+			selectlist.add(pricetable.getSeleted());
+		}
+		panel.getPromotions().clear();
+		panel.getPromotions().addAll(selectlist);
+	}
 	
 	
 }

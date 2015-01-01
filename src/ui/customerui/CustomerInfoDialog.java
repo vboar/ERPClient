@@ -8,6 +8,7 @@ package ui.customerui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -22,7 +23,9 @@ import ui.util.MyOptionPane;
 import ui.util.MyTextField;
 import util.ResultMessage;
 import vo.CustomerVO;
+import vo.UserVO;
 import businesslogic.controllerfactory.ControllerFactoryImpl;
+import businesslogicservice.userblservice.UserBLService;
 import config.DialogConfig;
 
 @SuppressWarnings("serial")
@@ -40,9 +43,11 @@ public class CustomerInfoDialog extends EditDialog {
 	
 	private MyTextField creditLimitTxt;
 	
-	private MyTextField salesmanTxt;
+	//private MyTextField salesmanTxt;
 	
 	private MyComboBox categoryBox;
+	
+	private MyComboBox salesmanBox;
 	
 	private MyComboBox levelBox;
 	
@@ -83,7 +88,8 @@ public class CustomerInfoDialog extends EditDialog {
 		this.nameTxt.setText(vo.name);
 		this.phoneNumberTxt.setText(vo.phoneNumber);
 		this.postalCodeTxt.setText(vo.postalCode);
-		this.salesmanTxt.setText(vo.salesman);
+		//this.salesmanTxt.setText(vo.salesman);
+		this.salesmanBox.setSelectedItem(vo.salesman);
 		this.categoryBox.setSelectedIndex(vo.category);
 		this.levelBox.setSelectedIndex(vo.level);
 	}
@@ -116,7 +122,7 @@ public class CustomerInfoDialog extends EditDialog {
 			public void actionPerformed(ActionEvent e) {
 				try{
 				int category = categoryBox.getSelectedIndex();
-				int level = levelBox.getSelectedIndex()+1;
+				int level = category==0?0:(levelBox.getSelectedIndex()+1);
 				String id="";
 				if(!isAdd) id = vo.id;
 				else id = ControllerFactoryImpl.getInstance().getCustomerController().createId();
@@ -126,7 +132,8 @@ public class CustomerInfoDialog extends EditDialog {
 				String postalCode = postalCodeTxt.getText();
 				String email = emailTxt.getText();
 				Double creditLimit = Double.parseDouble(creditLimitTxt.getText());
-				String salesman = salesmanTxt.getText();
+				//String salesman = salesmanTxt.getText();
+				String salesman = salesmanBox.getSelectedItem().toString();
 				CustomerVO vo = new CustomerVO(id, category, level, name,
 						phoneNumber, address,postalCode, email, creditLimit, 0, 0, salesman, true);
 				int result = MyOptionPane.showConfirmDialog(frame, "确认提交？", "确认提示",
@@ -186,16 +193,17 @@ public class CustomerInfoDialog extends EditDialog {
 		this.nameTxt = new MyTextField(ele.element("name"));
 		this.phoneNumberTxt = new MyTextField(ele.element("phonenumber"));
 		this.postalCodeTxt = new MyTextField(ele.element("postalcode"));
-		this.salesmanTxt = new MyTextField(ele.element("salesmanid"));
+		//this.salesmanTxt = new MyTextField(ele.element("salesmanid"));
 		this.add(addressTxt);
 		this.add(creditLimitTxt);
 		this.add(emailTxt);
 		this.add(nameTxt);
 		this.add(phoneNumberTxt);
 		this.add(postalCodeTxt);
-		this.add(salesmanTxt);
+		//this.add(salesmanTxt);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void initComboBoxes(Element ele) {
 		
 		this.categoryBox = new MyComboBox(ele.element("category"));
@@ -218,6 +226,13 @@ public class CustomerInfoDialog extends EditDialog {
 			levelBox.setEnabled(false);
 		}
 		
+		this.salesmanBox = new MyComboBox(ele.element("salesman"));
+		UserBLService uc = ControllerFactoryImpl.getInstance().getUserController();
+		ArrayList<UserVO> users = uc.fuzzyFindOperator("");
+		for(int i=0; i<users.size(); ++i){
+			salesmanBox.addItem(users.get(i).id);
+		}
+		this.add(salesmanBox);
 		this.add(categoryBox);
 		this.add(levelBox);
 	}

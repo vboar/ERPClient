@@ -94,11 +94,7 @@ public class UserInfoDialog extends EditDialog {
 		this.idTxt.setEnabled(false);
 		this.nameTxt.setText(vo.name);
 		this.passwordTxt.setText(vo.password);
-		if(vo.type.ordinal()<=1){
-			this.typebox.setSelectedIndex(vo.type.ordinal());
-		}else{
-			this.typebox.setSelectedIndex(0);
-		}
+		this.typebox.setSelectedIndex(vo.type.ordinal());
 		this.permissionbox.setSelectedIndex(vo.permission);
 	}
  
@@ -228,7 +224,9 @@ public class UserInfoDialog extends EditDialog {
 		this.typebox.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())){
+				if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())
+					||typebox.getSelectedItem().toString().equals(UserType.MANAGER.toFriendString())
+					||typebox.getSelectedItem().toString().equals(UserType.STOCKKEEPER.toFriendString())){
 					permissionbox.setEnabled(false);
 				}else{
 					permissionbox.setEnabled(true);
@@ -236,7 +234,9 @@ public class UserInfoDialog extends EditDialog {
 			}		
 		});
 		this.permissionbox = new MyComboBox(ele.element("permission"));
-		if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())){
+		if(typebox.getSelectedItem().toString().equals(UserType.ADMINISTRATOR.toFriendString())
+			||typebox.getSelectedItem().toString().equals(UserType.MANAGER.toFriendString())
+			||typebox.getSelectedItem().toString().equals(UserType.STOCKKEEPER.toFriendString())){
 			this.permissionbox.setEnabled(false);
 		}
 		this.add(this.typebox);
