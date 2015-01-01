@@ -3,10 +3,7 @@ package ui.util;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
 import util.DocumentStatus;
 import util.ResultMessage;
@@ -43,6 +40,7 @@ public class DocumentShowDialog extends JDialog {
 
 	public DocumentShowDialog(JFrame frame, DocumentShowDialogExtra extra, UpdateTableData updateTableData, int type) {
 		super(frame, true);
+		((JComponent) this.getContentPane()).setOpaque(true);
 		this.updateTableData = updateTableData;
 		this.extra = extra;
 		this.type = type;

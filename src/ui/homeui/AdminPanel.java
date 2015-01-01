@@ -25,6 +25,7 @@ public class AdminPanel extends MyMainPanel {
 	
 	public AdminPanel(HomeUI frame) {
 		super(frame);
+		showUser();
 	}
 	
 	@Override
