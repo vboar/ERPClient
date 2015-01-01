@@ -5,6 +5,7 @@
  */
 package businesslogic.writeoffbl;
 
+import util.DocumentStatus;
 import util.DocumentType;
 import util.ResultMessage;
 import vo.CashVO;
@@ -13,7 +14,7 @@ import vo.PaymentVO;
 import vo.PresentVO;
 import vo.PurchaseVO;
 import vo.SaleVO;
-import businesslogic.approvalbl.Approval;
+import businesslogic.exceptionbl.Loss;
 import businesslogic.exceptionbl.Overflow;
 import businesslogic.paymentbl.Cash;
 import businesslogic.paymentbl.Payment;
@@ -22,6 +23,7 @@ import businesslogic.presentbl.Present;
 import businesslogic.purchasebl.Purchase;
 import businesslogic.purchasebl.PurchaseReturn;
 import businesslogic.salebl.Sale;
+import businesslogic.salebl.SaleReturn;
 
 public class Writeoff {
 	
@@ -58,13 +60,12 @@ public class Writeoff {
 		Present pr=new Present();
 		PresentVO present=pr.getById(id);
 		
-		if(!present.canWriteOff)
+		if(!present.canWriteOff||present.documentStatus!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		present.canWriteOff = false;
 		pr.update(present);
 		
-		present.canWriteOff = true;
 		present.isWriteoff=true;
 		pr.create(present);
 		pr.writeoff(present);
@@ -75,14 +76,13 @@ public class Writeoff {
 		Purchase pu=new Purchase();
 		PurchaseVO purchase=pu.getById(id);
 		
-		if(!purchase.canWriteOff)
+		if(!purchase.canWriteOff||purchase.documentStatus!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		purchase.canWriteOff = false;
 		purchase.canReturn = false;
 		pu.update(purchase);
 		
-		purchase.canWriteOff=true;
 		purchase.isWriteOff=true;
 		pu.add(purchase);
 		pu.writeoff(purchase);
@@ -93,13 +93,12 @@ public class Writeoff {
 		PurchaseReturn pre=new PurchaseReturn();
 		PurchaseVO purchasere=pre.getById(id);
 		
-		if(!purchasere.canWriteOff)
+		if(!purchasere.canWriteOff||purchasere.documentStatus!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		purchasere.canWriteOff = false;
 		pre.update(purchasere);
 		
-		purchasere.canWriteOff = true;
 		purchasere.isWriteOff=true;
 		ResultMessage result = pre.add(purchasere);
 		pre.writeoff(purchasere);
@@ -110,14 +109,13 @@ public class Writeoff {
 		Sale s=new Sale();
 		SaleVO sale=s.getById(id);
 		
-		if(!sale.canWriteOff)
+		if(!sale.canWriteOff||sale.approvalState!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		sale.canReturn = false;
 		sale.canWriteOff = false;
 		s.update(sale);
 		
-		sale.canWriteOff = true;
 		sale.isWriteOff=true;
 		s.add(sale);
 		s.writeoff(sale);
@@ -127,17 +125,17 @@ public class Writeoff {
 	private ResultMessage writeoffSaleReturn(String id) {
 		Sale s1=new Sale();
 		SaleVO sre=s1.getById(id);
+		SaleReturn sr = new SaleReturn();
 		
-		if(!sre.canWriteOff)
+		if(!sre.canWriteOff||sre.approvalState!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		sre.canWriteOff = false;
 		s1.update(sre);
 		
-		sre.canWriteOff = true;
 		sre.isWriteOff=true;
-		s1.add(sre);
-		s1.writeoff(sre);
+		sr.add(sre);
+		sr.writeoff(sre);
 		return ResultMessage.SUCCESS;
 	}
 
@@ -145,13 +143,12 @@ public class Writeoff {
 		Payment p=new Payment();
 		PaymentVO payment=p.getById(id);
 
-		if(!payment.canWriteOff)
+		if(!payment.canWriteOff||payment.approvalState!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		payment.canWriteOff = false;
 		p.update(payment);
 
-		payment.canWriteOff = true;
 		payment.isWriteOff=true;
 		p.create(payment);
 		p.writeoff(payment);
@@ -162,13 +159,12 @@ public class Writeoff {
 		Receipt r=new Receipt();
 		PaymentVO receipt=r.getById(id);
 		
-		if(!receipt.canWriteOff)
+		if(!receipt.canWriteOff||receipt.approvalState!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		receipt.canWriteOff = false;
 		r.update(receipt);
-		
-		receipt.canWriteOff = true;
+
 		receipt.isWriteOff=true;
 		r.add(receipt);
 		r.writeoff(receipt);
@@ -176,39 +172,35 @@ public class Writeoff {
 	}
 	
 	private ResultMessage writeoffOver(String id){
-		Approval a=new Approval();
 		Overflow of=new Overflow();
 		ExceptionVO overflow=of.getById(id);
 		
-		if(!overflow.canWriteoff){
+		if(!overflow.canWriteoff||overflow.status!=DocumentStatus.PASSED){
 			return ResultMessage.FAILED;
 		}
 		overflow.canWriteoff = false;
 		of.update(overflow);
-		
-		overflow.canWriteoff = true;
+
 		overflow.isWriteoff=true;
 		of.create(overflow);
-		a.approveOverflow(overflow);
+		of.writeoff(overflow);
 		return ResultMessage.SUCCESS;
 	}
 	
 	
 	private ResultMessage writeoffLoss(String id){
-		Approval a=new Approval();
-		Overflow of1=new Overflow();
-		ExceptionVO loss=of1.getById(id);
+		Loss l=new Loss();
+		ExceptionVO loss=l.getById(id);
 		
-		if(!loss.canWriteoff){
+		if(!loss.canWriteoff||loss.status!=DocumentStatus.PASSED){
 			return ResultMessage.FAILED;
 		}
 		loss.canWriteoff = false;
-		of1.update(loss);
+		l.update(loss);
 		
-		loss.canWriteoff = true;
 		loss.isWriteoff=true;
-		of1.create(loss);
-		a.approveLoss(loss);
+		l.add(loss);
+		l.writeoff(loss);
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -216,13 +208,12 @@ public class Writeoff {
 		Cash c=new Cash();
 		CashVO cash=c.getById(id);
 		
-		if(!cash.canWriteOff)
+		if(!cash.canWriteOff||cash.approvalState!=DocumentStatus.PASSED)
 			return ResultMessage.FAILED;
 		
 		cash.canWriteOff = false;
 		c.update(cash);
 		
-		cash.canWriteOff = true;
 		cash.isWriteOff=true;
 		c.add(cash);
 		c.writeoff(cash);

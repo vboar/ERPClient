@@ -37,10 +37,11 @@ public class SaleReturn {
 		
 		// 检查能否退货
 		SaleVO svo = sale.getById(vo.saleId);
-		if(svo==null||svo.canReturn==false){
+		if(svo==null||(svo.canReturn==false&&!vo.isWriteOff)){
 			return ResultMessage.FAILED;
 		}else{
 			svo.canReturn = false;
+			svo.canWriteOff = false;
 			sale.update(svo);
 		}
 		String time = Time.getCurrentTime();
@@ -290,9 +291,8 @@ public class SaleReturn {
 
 		Customer cus = new Customer();
 		if (total > 0) {
-
 			// CustomerVO cusvo=new Customer().getByid(vo.customerId);
-			cus.updateBySaleReturn(vo.customerId, 0 - total);
+			cus.updateBySaleReturn(vo.customerId, 0-total);
 		}
 
 		for (CommodityLineItemVO vo1 : vo.saleList) {

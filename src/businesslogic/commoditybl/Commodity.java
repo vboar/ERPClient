@@ -457,7 +457,7 @@ public class Commodity {
 			try {
 				CommodityPO temp = DataFactoryImpl.getInstance()
 						.getCommodityData().getById(vo.list.get(i).id);
-				temp.setNumber(vo.list.get(i).actualNumber);
+				temp.setNumber(temp.getNumber()+vo.list.get(i).actualNumber-vo.list.get(i).systemNumber);
 				DataFactoryImpl.getInstance().getCommodityData().update(temp);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块

@@ -136,10 +136,13 @@ public class CategoryTreePane extends JPanel implements BasicOperation{
 	public void updateCatagory(String string){
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();	
 		CategoryVO vo = (CategoryVO)node.getUserObject();
+		String oldname = vo.name;
 		vo.name = string;
 		if(this.controller.update(vo)==ResultMessage.SUCCESS){
+			//vo.name = string;
 			MyOptionPane.showMessageDialog(frame, "修改成功！");
 		}else{
+			vo.name = oldname;
 			MyOptionPane.showMessageDialog(frame, "修改失败！");
 		}
 		this.tree.updateUI();

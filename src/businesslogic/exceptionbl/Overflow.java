@@ -168,13 +168,14 @@ public class Overflow {
 		}
 		
 		public void writeoff(ExceptionVO vo){
-			for(int i=0;i<vo.list.size();i++){
-				ExceptionLineItemVO commodity=vo.list.get(i);
-				int temp=commodity.actualNumber;
-				commodity.actualNumber=commodity.systemNumber;
-				commodity.systemNumber=temp;
-			}
-			
+//			if(vo.isWriteoff&&vo.canWriteoff){
+//				for(int i=0;i<vo.list.size();i++){
+//					ExceptionLineItemVO commodity=vo.list.get(i);
+//					int temp=commodity.actualNumber;
+//					commodity.actualNumber=commodity.systemNumber;
+//					commodity.systemNumber=temp;
+//				}
+//			}
 			Commodity c=new Commodity();
 			c.writeoff(vo);
 		}

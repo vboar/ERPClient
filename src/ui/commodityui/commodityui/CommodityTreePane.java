@@ -267,7 +267,8 @@ public class CommodityTreePane extends JPanel implements BasicOperation{
 				MyOptionPane.showMessageDialog(null, "修改成功！");
 				this.treeTable.updateUI();
 			}else{
-				MyOptionPane.showMessageDialog(null, "修改失败！");
+				MyOptionPane.showMessageDialog(null, "修改失败！(含有非法字符或商品名已存在。)");
+				this.infodialog.dispose();
 				this.treeTable.updateUI();
 			}
 		}
