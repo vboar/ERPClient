@@ -22,7 +22,7 @@ public class SpecialOfferPromotion {
 			return "SPO00";
 		} else {
 			String max = voList.get(voList.size() - 1).id;
-			String oldMax = max.substring(max.length() - 5);
+			String oldMax = max.substring(max.length() - 2);
 			int maxInt = Integer.parseInt(oldMax);
 			String pattern = "00";
 			java.text.DecimalFormat df = new java.text.DecimalFormat(pattern);
@@ -37,7 +37,7 @@ public class SpecialOfferPromotion {
 		String commodityId = vo.id;
 		String commodityName = "";
 		for (CommodityLineItemVO vo1 : vo.commodityList) {
-			commodityName += vo1.name + "X" + vo1.number + "和";
+			commodityName += vo1.name + "*" + vo1.number + "&";
 		}
 
 		if (!Utility.checkTime(vo.startTime, vo.endTime)) {
@@ -57,7 +57,7 @@ public class SpecialOfferPromotion {
 		CategoryVO catvo = cat.CategoryPOToCategoryVO(cat.getById("99999"));
 		System.out.println("specialofferpromotionbl 62: catvoid "+catvo.id);
 		CommodityVO commodityvo = new CommodityVO("99999-" + commodityId,
-				commodityName, "nothing", 0, 0, vo.total, 0, 0, 0, false, catvo);
+				commodityName, "促销包", 0, 0, vo.total, 0, 0, 0, false, catvo);
 		
 		Commodity commoditytest=new Commodity();
 		ResultMessage resultmessage=commoditytest.add(commodityvo);

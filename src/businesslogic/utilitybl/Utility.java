@@ -34,7 +34,7 @@ public class Utility {
 		char[] inputList = input.toCharArray();
 		for (char i : inputList) {
 			if ((i >= 'A' && i <= 'Z') || (i >= 'a' && i <= 'z')
-					|| (i >= '0' && i <= '9')) {
+					|| (i >= '0' && i <= '9')||(i=='&')||(i=='*')||(i=='-')||(i=='>')) {
 				continue;
 			} else if (Chinese && i >= 19968 && i <= 171941) {
 				continue;

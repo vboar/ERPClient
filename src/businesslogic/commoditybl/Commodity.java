@@ -153,7 +153,7 @@ public class Commodity {
 			return ResultMessage.EXIST;
 		}
 		// 输入非法
-		ResultMessage nameCheck = Utility.checkInputValid(po.getName(), 2, 14,
+		ResultMessage nameCheck = Utility.checkInputValid(po.getName(), 2, 140,
 				true);
 		if (nameCheck != ResultMessage.SUCCESS) {
 			return nameCheck;
