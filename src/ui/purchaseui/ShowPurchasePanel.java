@@ -129,7 +129,7 @@ public class ShowPurchasePanel extends PurchaseDocumentPanel implements
 	private void initLabels() {
 		// 填写单据编号标签
 		this.documentId = new MyLabel(cfg.getLabels().element("documentid"));
-		this.documentId.setText(vo.id);
+		this.documentId.setText(type==2?purchaseCtrl.createId():vo.id);
 		// 填写总价
 		this.totalLab = new MyLabel(cfg.getLabels().element("total"));
 		this.totalLab.setText(Double.toString(vo.total));

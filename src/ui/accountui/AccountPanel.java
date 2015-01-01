@@ -25,6 +25,11 @@ import config.ERPConfig;
 import config.PanelConfig;
 import config.TableConfig;
 
+/**
+ * 账户管理面板
+ * @author Vboar
+ * @date 2014/11/20
+ */
 @SuppressWarnings("serial")
 public class AccountPanel extends JPanel implements FuzzySearch {
 	

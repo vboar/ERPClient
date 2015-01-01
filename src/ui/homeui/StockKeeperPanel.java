@@ -52,6 +52,7 @@ public class StockKeeperPanel extends MyMainPanel {
 	
 	public StockKeeperPanel(JFrame frame){
 		super(frame);
+		showCategory();
 	}
 
 	@Override

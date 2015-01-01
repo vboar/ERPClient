@@ -48,6 +48,7 @@ public class CounterPanel extends MyMainPanel {
 	
 	public CounterPanel(JFrame frame) {
 		super(frame);
+		showAccount();
 	}
 
 	@Override

@@ -41,6 +41,7 @@ public class ManagerPanel extends MyMainPanel {
 
 	public ManagerPanel(JFrame frame) {
 		super(frame);
+		showApproval();
 	}
 
 	@Override

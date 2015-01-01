@@ -42,6 +42,7 @@ public class SalesmanPanel extends MyMainPanel {
 
 	public SalesmanPanel(JFrame frame) {
 		super(frame);
+		showSale();
 	}
 
 	@Override
