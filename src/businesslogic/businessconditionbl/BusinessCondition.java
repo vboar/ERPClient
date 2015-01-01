@@ -45,8 +45,8 @@ public class BusinessCondition {
 	double costAdjustIncome=costAdjustIncome(time1,time2);
 	double over=OverflowIncome(time1,time2);
 	double adjust=costAdjustIncome(time1,time2);
-	double sale=saleIncome[0]+saleReturnIncome+costAdjustIncome+over+adjust-saleIncome[2];
-	double saleAfterDiscount=saleIncome[1]+saleReturnIncome+costAdjustIncome+over+adjust-saleIncome[2];
+	double sale=saleIncome[0];
+	double saleAfterDiscount=saleIncome[1]+over+adjust;
 	
 	double saleCost=saleCost(time1,time2);
 	double loss=LossCost(time1,time2);
@@ -56,6 +56,7 @@ public class BusinessCondition {
 	BusinessConditionVO result=new BusinessConditionVO(sale,saleAfterDiscount,
 			saleIncome[0]-saleIncome[1],over,adjust,saleIncome[2],saleCost,loss,present,totalCost,
 			profit);
+		System.out.println("businesscondition "+result.saleIncome+" "+result.incomeAfterDiscount);
 
 	return result;
 	}
@@ -67,14 +68,36 @@ public class BusinessCondition {
 		double[] result=new double[3];
 		Sale s=new Sale();
 		ArrayList<SaleVO> list=s.findByTime(time1, time2);
-		
 		for(int i=0;i<list.size();i++){
+			
 			SaleVO temp=list.get(i);
+			if(temp.isWriteOff){
+				result[0]-=temp.totalBeforeDiscount;
+				result[1]-=temp.totalAfterDiscount;
+				result[2]-=temp.voucher;
+
+			}else{
 			result[0]+=temp.totalBeforeDiscount;
 			result[1]+=temp.totalAfterDiscount;
 			result[2]+=temp.voucher;
+			}
 		}
-		
+		ArrayList<SaleVO> list2=new SaleReturn().findByTime(time1, time2);
+		for(int i=0;i<list2.size();i++){
+
+			SaleVO temp=list2.get(i);
+			if(temp.isWriteOff){
+				result[0]+=temp.totalBeforeDiscount;
+				result[1]+=temp.totalAfterDiscount;
+				result[2]+=temp.voucher;
+
+			}else{
+				result[0]-=temp.totalBeforeDiscount;
+				result[1]-=temp.totalAfterDiscount;
+				result[2]-=temp.voucher;
+			}
+		}
+		System.out.println("businesscondition result="+result[0]+result[1]+result[2]);
 		return result;
 	}
 	
