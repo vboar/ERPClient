@@ -40,17 +40,18 @@ public class Log {
 			ArrayList<LogPO> temp=new ArrayList<LogPO>();
 			time1 = Time.jdugeTime1(time1);
 			time2 = Time.jdugeTime2(time2);
-			System.out.println(time1+" "+time2);
+
 			try {
 				temp=DataFactoryImpl.getInstance().getLogData().findByTime(time1, time2);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
+			
 			for(int i=0;i<temp.size();i++){
 				result.add(poToVo(temp.get(i)));
 			}
-			System.out.println("temp:" + temp.size());
+
 			return result;
 		}
 		
@@ -77,15 +78,17 @@ public class Log {
 			ArrayList<LogVO> temp=new ArrayList<LogVO>();
 			
 			temp=findByTime(time1,time2);
-			for(int i=0;i<temp.size();i++)
-				result.add(temp.get(i));
-			
-			temp=findByOperator(operatorId);
-			for(int i=0;i<temp.size();i++)
-				result.add(temp.get(i));
+			System.out.println(operatorId+" "+temp.get(0).operator);
+			if(operatorId==null||operatorId.equals(" "))
+				result=temp;
+			else
+				for(int i=0;i<temp.size();i++)
+					if(temp.get(i).operator.equals(operatorId))
+						result.add(temp.get(i));
 			
 			return result;
 		}
+		
 		public ArrayList<LogVO> show() {
 			ArrayList<LogVO> result=new ArrayList<LogVO>();
 			ArrayList<LogPO> temp=new ArrayList<LogPO>();
@@ -128,7 +131,7 @@ public class Log {
 		
 		//TODO
 		public String getOperator(){
-			String operator=Login.currentUserId+" "+Login.currentUserName;
+			String operator=Login.currentUserId;
 			return operator;
 		}
 
