@@ -6,6 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -46,6 +47,7 @@ public class ShowChoosePromotionDialog extends JDialog{
 	public ShowChoosePromotionDialog(final JFrame frame, ArrayList<PromotionVO> viplist,
 			ArrayList<PromotionVO> pricelist, final CheckPromotion panel){
 		super(frame,true);
+		((JComponent) this.getContentPane()).setOpaque(true);
 		this.panel = panel;
 		this.pricelist = pricelist;
 		this.viplist = viplist;

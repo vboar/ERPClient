@@ -2,6 +2,7 @@ package ui.util;
 
 import java.awt.event.WindowEvent;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -13,6 +14,7 @@ public class EditDialog extends JDialog{
 	public EditDialog(JFrame frame){
 		super(frame,true);
 		this.frame = frame;
+		((JComponent) this.getContentPane()).setOpaque(true);
 	}
 	
 	protected void processWindowEvent(WindowEvent e) {
