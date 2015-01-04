@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 
 import org.dom4j.Element;
 
@@ -39,7 +40,9 @@ public class UserInfoDialog extends EditDialog {
 	
 	private MyTextField nameTxt;
 	
-	private MyTextField passwordTxt;
+	//private MyTextField passwordTxt;
+	
+	private JPasswordField passwordTxt;
 	
 	private MyComboBox typebox;
 	
@@ -138,7 +141,7 @@ public class UserInfoDialog extends EditDialog {
 		this.commit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UserVO vo = new UserVO(idTxt.getText(),passwordTxt.getText(),
+				UserVO vo = new UserVO(idTxt.getText(),String.valueOf(passwordTxt.getPassword()),
 						UserType.check(typebox.getSelectedItem().toString()),
 						permissionbox.getSelectedIndex(),nameTxt.getText());
 					int result = MyOptionPane.showConfirmDialog(frame, "确认提交？", "确认提示",
@@ -201,7 +204,13 @@ public class UserInfoDialog extends EditDialog {
 				nameTip.setVisible(true);
 				passwordTip.setVisible(false);
 			}});
-		this.passwordTxt = new MyTextField(ele.element("password"));
+		
+		this.passwordTxt = new JPasswordField();
+		Element passEle = ele.element("password");
+		this.passwordTxt.setSize(Integer.parseInt(passEle.attributeValue("w")),
+				Integer.parseInt(passEle.attributeValue("h")));
+		this.passwordTxt.setLocation(Integer.parseInt(passEle.attributeValue("x")),
+				Integer.parseInt(passEle.attributeValue("y")));	
 		this.passwordTxt.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -210,6 +219,7 @@ public class UserInfoDialog extends EditDialog {
 				passwordTip.setVisible(true);
 			}
 		});
+		
 		this.add(this.idTxt);
 		this.add(this.nameTxt);
 		this.add(this.passwordTxt);

@@ -95,10 +95,12 @@ public class AddTradeCommodityDialog extends AddCommodityDialog implements
 	@Override
 	protected void showCommodity() {
 		super.showCommodity();
+		if(addCommodityVO!=null){
 		if(!isPurchase)
 			priceTxt.setText(Double.toString(addCommodityVO.salePrice));
 		else 
 			priceTxt.setText(Double.toString(addCommodityVO.purchasePrice));
+		}
 	}
 
 	protected void addCommodity(String key, int num, double price, String remark) {
