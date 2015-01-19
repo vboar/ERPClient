@@ -14,6 +14,7 @@ import util.ResultMessage;
 import util.UserType;
 import vo.UserVO;
 import businesslogic.logbl.Log;
+import businesslogic.loginbl.Login;
 import businesslogic.utilitybl.Utility;
 import dataservice.datafactoryservice.DataFactoryImpl;
 
@@ -298,6 +299,21 @@ public ArrayList<UserVO> fuzzyFindOperator(String keyWord) {
 		}
 
 		return false;
+	}
+
+	/**
+	 * 用户自行修改密码
+	 * @param oldword
+	 * @param newword
+	 * @return
+	 */
+	public ResultMessage updatePassword(String oldword, String newword) {
+		UserVO vo = this.getById(Login.currentUserId);
+		if(!vo.password.equals(oldword)){
+			return ResultMessage.FAILED;
+		}
+		vo.password = newword;
+		return this.update(vo);
 	}
 
 }

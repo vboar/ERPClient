@@ -97,6 +97,7 @@ public class UserInfoDialog extends EditDialog {
 		this.idTxt.setEnabled(false);
 		this.nameTxt.setText(vo.name);
 		this.passwordTxt.setText(vo.password);
+		this.passwordTxt.setEnabled(false);
 		this.typebox.setSelectedIndex(vo.type.ordinal());
 		this.permissionbox.setSelectedIndex(vo.permission);
 	}

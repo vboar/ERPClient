@@ -39,6 +39,8 @@
 			<buttons>
 				<mailbox text="" w="30" h="24" x="192" y="50"
 					path="img/common/mailrs.png" pathroll="img/common/mails.png" />
+				<password text="" w="30" h="30" x="192" y="10"
+					path="img/buttons/set.png" pathroll="img/buttons/set1.png" />
 			</buttons>
 			<labels>
 				<username w="100" h="30" x="60" y="8" />

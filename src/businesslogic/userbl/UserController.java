@@ -61,4 +61,7 @@ public class UserController implements UserBLService {
 		return user.fuzzyFindOperator(keyword);
 	}
 
+	public ResultMessage updatePassword(String oldword, String newword){
+		return user.updatePassword(oldword,newword);
+	}
 }

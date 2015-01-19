@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
@@ -34,6 +36,8 @@ public class LoginUserInfoPanel extends JPanel {
 	private MyButton mailbox;
 	
 	private PanelConfig pcfg;
+	
+	private MyButton changePassword;
 	
 	private LoginBLService lc;
 	
@@ -90,6 +94,15 @@ public class LoginUserInfoPanel extends JPanel {
 				}
 			}
 		});
+		
+		this.changePassword = new MyButton(button.element("password"));
+		this.changePassword.addMouseListener(new MouseAdapter() {
+			@Override 
+			public void mouseClicked(MouseEvent e) {
+				new UpdatePasswordDialog(frame);
+			}
+		});
+		this.add(changePassword);
 	}
 
 	private void initLabels(Element label) {

@@ -62,4 +62,5 @@ public interface UserBLService {
 	 */
 	public ArrayList<UserVO> fuzzyFindOperator(String keyword);
 
+	public ResultMessage updatePassword(String oldword, String newword);
 }
