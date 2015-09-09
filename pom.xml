@@ -71,6 +71,7 @@
 			<artifactId>poi</artifactId>
 			<version>3.9</version>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.jb2011.lnf.beautyeye</groupId>
 			<artifactId>beautyeye_lnf</artifactId>
@@ -81,5 +82,6 @@
 			<artifactId>datepicker_lnf</artifactId>
 			<version>1.0</version>
 		</dependency>
+		-->
 	</dependencies>
 </project>
