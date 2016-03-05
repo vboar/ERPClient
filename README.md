@@ -30,6 +30,19 @@ Deworm的软工二大作业：进销存管理系统客户端
 
 总经理：		00003 123456
 
-
 ===
 客户端截图：
+
+![登录界面](introduction/login.jpg)
+
+![商品分类管理](introduction/category.jpg)
+
+![商品管理](introduction/commodity.jpg)
+
+![销售管理](introduction/sale.jpg)
+
+![账户管理](introduction/account.jpg)
+
+![经营情况查看](introduction/condition.jpg)
+
+![单据审批](introduction/check.jpg)
