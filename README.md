@@ -5,7 +5,7 @@ Deworm的软工二大作业：进销存管理系统客户端
 
 团队成员：
 
-- [tomato990(对座)](https://github.com/tomato990)
+- [tomato990(队座)](https://github.com/tomato990)
 - [vboar](https://github.com/vboar)
 - [JaneLdq](https://github.com/JaneLdq)
 - [oneoneO1](https://github.com/oneoneO1)
